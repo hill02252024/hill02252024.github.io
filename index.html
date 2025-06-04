@@ -1,2 +1,353 @@
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-        crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>圖片縮放工具</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 
+    仅需在页面中引入一次下面这段异步脚本：
+    “ca-pub-7165265186193287” 请保持不变（你的 AdSense 发布者 ID）。
+  -->
+  <script 
+    async 
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
+    crossorigin="anonymous">
+  </script>
+
+  <!-- Google 字体 & JSZip -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" 
+    rel="stylesheet" 
+  />
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+  <style>
+    /* 全局重置 & 基础 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #f7f9fb;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 页面容器：Header + Main + Footer */
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* 页头 */
+    header {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    /* 主体区域：左右广告 + 中间内容 */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+    /* 左侧/右侧广告容器 */
+    .ad-side {
+      width: 160px;   /* 固定宽度 160px，高度 600px 由广告本身决定 */
+      flex-shrink: 0;
+      margin: 0 0.5rem;
+    }
+    /* 中间内容容器 */
+    .content-wrapper {
+      flex: 1;
+      max-width: 800px;
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: #222;
+      text-align: center;
+    }
+    /* 表单元素样式 */
+    input[type="file"] {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+    select, input[type="number"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      width: 100%;
+      max-width: 200px;
+    }
+    button {
+      margin-top: 1rem;
+      background: #6366f1;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #4f46e5;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+
+    /* 底部广告区 */
+    footer {
+      background-color: #ffffff;
+      padding: 1rem 0;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+    }
+    footer p {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* 响应式调整：屏幕宽度 ≤ 1024px 时隐藏左右侧广告 */
+    @media (max-width: 1024px) {
+      .ad-side {
+        display: none;
+      }
+      main {
+        padding: 1rem 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .content-wrapper {
+        padding: 1rem;
+      }
+      select, input[type="number"] {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header>
+      <h1>圖片縮放工具</h1>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <!-- 左側廣告位（固定 160×600） -->
+      <div class="ad-side">
+        <!-- 
+          左侧广告：请将 data-ad-client 保持为你的 ca-pub-7165265186193287 
+          data-ad-slot 改为你在 AdSense 后台为“侧栏广告”新建的单元 ID。
+        -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7165265186193287"
+             data-ad-slot="7387023042"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+
+      <!-- 中间内容区域 -->
+      <div class="content-wrapper">
+        <h2>上傳圖片並選擇縮放方式</h2>
+        <input type="file" id="imageInput" multiple accept="image/*" />
+
+        <div class="section">
+          <label for="scaleSelect">縮放比例（%）：</label>
+          <select id="scaleSelect">
+            <option value="1">100%</option>
+            <option value="0.7">70%</option>
+            <option value="0.5">50%</option>
+            <option value="0.4">40%</option>
+          </select>
+          <button id="resizeBtn">按比例縮放並下載 ZIP</button>
+        </div>
+
+        <div class="section">
+          <label>指定寬度（px）：</label>
+          <input type="number" id="fixedWidth" min="1" value="800" />
+          <label>指定高度（px）：</label>
+          <input type="number" id="fixedHeight" min="1" value="600" />
+          <button id="resizeFixedBtn">批量修改尺寸並下載 ZIP</button>
+        </div>
+      </div>
+
+      <!-- 右側廣告位（固定 160×600） -->
+      <div class="ad-side">
+        <!-- 
+          右侧广告：请将 data-ad-client 保持为你的 ca-pub-7165265186193287 
+          data-ad-slot 改为你在 AdSense 后台为“侧栏广告”新建的单元 ID。
+        -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-7165265186193287"
+             data-ad-slot="6533122288"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </main>
+
+    <!-- 底部响应式广告区 -->
+    <footer>
+      <!-- 
+        底部广告：需要在 AdSense 后台新建一个“响应式”（Auto Responsive）的广告单元，
+        然后拿到它的 data-ad-slot ID，替换下面的 BBBBBBBBBB 为你的广告单元 ID。
+        这样它会在移动端全宽显示，在 PC 端居中且自适应大小。
+      -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7165265186193287"
+           data-ad-slot="2755086428"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <p>© 2025 Your Company</p>
+    </footer>
+  </div>
+
+  <script>
+    /**
+     * 工具函数：将 File 对象读取为 Image 对象
+     * @param {File} file 
+     * @returns {Promise<HTMLImageElement>}
+     */
+    function loadImage(file) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    /** 
+     * 按百分比缩放并打包成 ZIP 下载 
+     */
+    document.getElementById("resizeBtn").addEventListener("click", async () => {
+      const scale = parseFloat(document.getElementById("scaleSelect").value);
+      const files = document.getElementById("imageInput").files;
+      if (files.length === 0) {
+        alert("請選擇圖片");
+        return;
+      }
+
+      const zip = new JSZip();
+      for (const file of files) {
+        try {
+          const img = await loadImage(file);
+          // 计算新宽高
+          const newWidth  = Math.round(img.width * scale);
+          const newHeight = Math.round(img.height * scale);
+
+          // 绘制到 canvas
+          const canvas = document.createElement("canvas");
+          canvas.width  = newWidth;
+          canvas.height = newHeight;
+          canvas.getContext("2d").drawImage(img, 0, 0, newWidth, newHeight);
+
+          // 转为 JPEG Blob
+          const blob = await new Promise((res) => canvas.toBlob(res, "image/jpeg"));
+          const newName = file.name.replace(/\.[^.]+$/, ".jpg");
+          zip.file(newName, blob);
+        } catch (err) {
+          console.error("載入/處理圖片失敗：", err);
+        }
+      }
+
+      // 生成 ZIP 并下载
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(zipBlob);
+      link.download = "resized_by_percentage.zip";
+      link.click();
+    });
+
+    /** 
+     * 按指定宽高（px）批量缩放并打包成 ZIP 下载 
+     */
+    document.getElementById("resizeFixedBtn").addEventListener("click", async () => {
+      const width  = parseInt(document.getElementById("fixedWidth").value, 10);
+      const height = parseInt(document.getElementById("fixedHeight").value, 10);
+      if (!width || !height) {
+        alert("請輸入有效寬高");
+        return;
+      }
+      const files = document.getElementById("imageInput").files;
+      if (files.length === 0) {
+        alert("請選擇圖片");
+        return;
+      }
+
+      const zip = new JSZip();
+      for (const file of files) {
+        try {
+          const img = await loadImage(file);
+          // 强制使用用户指定的宽高
+          const canvas = document.createElement("canvas");
+          canvas.width  = width;
+          canvas.height = height;
+          canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+
+          const blob = await new Promise((res) => canvas.toBlob(res, "image/jpeg"));
+          const newName = file.name.replace(/\.[^.]+$/, ".jpg");
+          zip.file(newName, blob);
+        } catch (err) {
+          console.error("載入/處理圖片失敗：", err);
+        }
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(zipBlob);
+      link.download = "resized_fixed_size.zip";
+      link.click();
+    });
+  </script>
+</body>
+</html>
