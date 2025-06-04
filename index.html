@@ -2,28 +2,26 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>圖片縮放工具</title>
+  <title>大數據分析與可視化平台</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 
-    仅需在页面中引入一次下面这段异步脚本：
-    “ca-pub-7165265186193287” 请保持不变（你的 AdSense 发布者 ID）。
-  -->
+  <!-- ====================================================== -->
+  <!--  一次性引入 AdSense 腳本（請勿重複貼多次）               -->
+  <!--  client=ca-pub-7165265186193287 → 請確認為你自己的 ID    -->
+  <!-- ====================================================== -->
   <script 
     async 
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
     crossorigin="anonymous">
   </script>
 
-  <!-- Google 字体 & JSZip -->
+  <!-- Google Font（Inter） & 自訂 CSS -->
   <link 
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" 
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" 
     rel="stylesheet" 
   />
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-
   <style>
-    /* 全局重置 & 基础 */
+    /* --------- 全局 Reset & 基本設定 --------- */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -33,133 +31,168 @@
       width: 100%;
       height: 100%;
       font-family: 'Inter', sans-serif;
-      background: #f7f9fb;
-      color: #333;
+      background-color: #0e0f14;
+      color: #f5f5f5;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
-
-    /* 页面容器：Header + Main + Footer */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    /* 頁面容器：Header + Main + Footer */
     .page-wrapper {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* 页头 */
+    /* --------- Header --------- */
     header {
-      text-align: center;
-      padding: 1rem 0;
-      background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: linear-gradient(90deg, #1f1c57, #3b2f8d);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
       position: sticky;
       top: 0;
       z-index: 10;
     }
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #222;
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
     }
 
-    /* 主体区域：左右广告 + 中间内容 */
+    /* --------- Hero 區塊 --------- */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1557426274-9f240d744c27?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')
+                  center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(14,15,20,0.65);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #dcdcdc;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content .btn-primary {
+      background-color: #ff6a00;
+      color: #fff;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .hero-content .btn-primary:hover {
+      background-color: #e55b00;
+    }
+
+    /* --------- Main 區塊 --------- */
     main {
       flex: 1;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 1rem;
+      margin-top: 1.5rem;
+      padding: 0 2rem;
     }
-    /* 左侧/右侧广告容器 */
+    /* 左／右側廣告區域 */
     .ad-side {
-      width: 160px;   /* 固定宽度 160px，高度 600px 由广告本身决定 */
+      width: 160px;   /* 或 300px 依你的廣告尺寸而定 */
       flex-shrink: 0;
-      margin: 0 0.5rem;
+      margin: 0 1rem;
     }
-    /* 中间内容容器 */
-    .content-wrapper {
+    /* 中間內容區 */
+    .content {
       flex: 1;
-      max-width: 800px;
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-    h2 {
-      margin-bottom: 1rem;
-      font-size: 1.6rem;
-      color: #222;
-      text-align: center;
-    }
-    /* 表单元素样式 */
-    input[type="file"] {
-      display: block;
-      margin-bottom: 1rem;
-      width: 100%;
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: 500;
-    }
-    select, input[type="number"] {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      width: 100%;
-      max-width: 200px;
-    }
-    button {
-      margin-top: 1rem;
-      background: #6366f1;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #4f46e5;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
     }
     .section {
       margin-top: 2rem;
     }
-
-    /* 底部广告区 */
-    footer {
-      background-color: #ffffff;
-      padding: 1rem 0;
+    .section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: #1f1c57;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      position: relative;
-      bottom: 0;
     }
-    footer p {
-      margin-top: 0.8rem;
-      font-size: 0.9rem;
-      color: #666;
+    .feature-card img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      color: #ffdd59;
+      margin-bottom: 0.6rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #dcdcdc;
+      line-height: 1.4;
     }
 
-    /* 响应式调整：屏幕宽度 ≤ 1024px 时隐藏左右侧广告 */
+    /* --------- Footer 底部 --------- */
+    footer {
+      background-color: #111;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    /* --------- 響應式 --------- */
     @media (max-width: 1024px) {
-      .ad-side {
-        display: none;
-      }
-      main {
-        padding: 1rem 0.5rem;
-      }
+      .ad-side { display: none; }
+      main { padding: 0 1rem; }
     }
     @media (max-width: 600px) {
-      .content-wrapper {
-        padding: 1rem;
-      }
-      select, input[type="number"] {
-        width: 100%;
+      .hero h1 { font-size: 2rem; }
+      .hero p  { font-size: 1rem; }
+      .features {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -169,185 +202,105 @@
   <div class="page-wrapper">
     <!-- Header -->
     <header>
-      <h1>圖片縮放工具</h1>
+      <div class="logo">BigData 知識庫</div>
     </header>
 
-    <!-- Main -->
+    <!-- Hero 區塊 -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>運用大數據，驅動企業決策</h1>
+        <p>即時匯集、分析並可視化海量資料，讓您快速洞察市場趨勢與用戶行為。</p>
+        <button class="btn-primary" onclick="location.href='#features'">立即了解</button>
+      </div>
+    </section>
+
+    <!-- Main 區塊：左右廣告 + 中心內容 -->
     <main>
-      <!-- 左側廣告位（固定 160×600） -->
+      <!-- 左側廣告（160×600）-->
       <div class="ad-side">
-        <!-- 
-          左侧广告：请将 data-ad-client 保持为你的 ca-pub-7165265186193287 
-          data-ad-slot 改为你在 AdSense 后台为“侧栏广告”新建的单元 ID。
-        -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px"
              data-ad-client="ca-pub-7165265186193287"
-             data-ad-slot="7387023042"></ins>
+             data-ad-slot="7387023042">
+        </ins>
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
 
-      <!-- 中间内容区域 -->
-      <div class="content-wrapper">
-        <h2>上傳圖片並選擇縮放方式</h2>
-        <input type="file" id="imageInput" multiple accept="image/*" />
-
-        <div class="section">
-          <label for="scaleSelect">縮放比例（%）：</label>
-          <select id="scaleSelect">
-            <option value="1">100%</option>
-            <option value="0.7">70%</option>
-            <option value="0.5">50%</option>
-            <option value="0.4">40%</option>
-          </select>
-          <button id="resizeBtn">按比例縮放並下載 ZIP</button>
+      <!-- 中間內容 -->
+      <div class="content">
+        <!-- 特色標題 -->
+        <div class="section" id="features">
+          <h2>我們的核心功能</h2>
+          <div class="features">
+            <!-- 功能卡片 1 -->
+            <div class="feature-card">
+              <img src="https://img.icons8.com/ios-filled/100/ffffff/big-data.png" alt="大數據圖標">
+              <h3>實時資料採集</h3>
+              <p>支援多種資料來源：API、日誌、IoT 裝置，快速蒐集海量原始資料。</p>
+            </div>
+            <!-- 功能卡片 2 -->
+            <div class="feature-card">
+              <img src="https://img.icons8.com/ios-filled/100/ffffff/data-configuration.png" alt="ETL 流程圖標">
+              <h3>靈活 ETL 處理</h3>
+              <p>內建 ETL 引擎，輕鬆清洗、轉換與匯入資料庫，滿足多樣化分析需求。</p>
+            </div>
+            <!-- 功能卡片 3 -->
+            <div class="feature-card">
+              <img src="https://img.icons8.com/ios-filled/100/ffffff/combo-chart.png" alt="可視化圖表圖標">
+              <h3>交互式可視化</h3>
+              <p>強大圖表庫與儀錶板，讓您以直觀方式探索資料，快速產出分析報告。</p>
+            </div>
+            <!-- 功能卡片 4 -->
+            <div class="feature-card">
+              <img src="https://img.icons8.com/ios-filled/100/ffffff/cloud-sync.png" alt="雲端圖標">
+              <h3>雲端擴展性</h3>
+              <p>與 AWS、GCP、Azure 無縫整合，自動彈性擴充，節省基礎架構成本。</p>
+            </div>
+          </div>
         </div>
 
+        <!-- 側邊工具連結示例（可自行改成其他內容） -->
         <div class="section">
-          <label>指定寬度（px）：</label>
-          <input type="number" id="fixedWidth" min="1" value="800" />
-          <label>指定高度（px）：</label>
-          <input type="number" id="fixedHeight" min="1" value="600" />
-          <button id="resizeFixedBtn">批量修改尺寸並下載 ZIP</button>
+          <h2>專業服務</h2>
+          <p>我們提供以下進階服務：</p>
+          <ul style="margin-top:0.8rem; color:#dcdcdc; line-height:1.6;">
+            <li>AI 預測分析與機器學習模型建置</li>
+            <li>大數據基礎架構規劃與部署</li>
+            <li>BI 報表與自動化儀錶板開發</li>
+            <li>資料庫優化與性能調校</li>
+          </ul>
         </div>
       </div>
 
-      <!-- 右側廣告位（固定 160×600） -->
+      <!-- 右側廣告（160×600）-->
       <div class="ad-side">
-        <!-- 
-          右侧广告：请将 data-ad-client 保持为你的 ca-pub-7165265186193287 
-          data-ad-slot 改为你在 AdSense 后台为“侧栏广告”新建的单元 ID。
-        -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:600px"
              data-ad-client="ca-pub-7165265186193287"
-             data-ad-slot="6533122288"></ins>
+             data-ad-slot="6533122288">
+        </ins>
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
     </main>
 
-    <!-- 底部响应式广告区 -->
+    <!-- 底部響應式廣告 -->
     <footer>
-      <!-- 
-        底部广告：需要在 AdSense 后台新建一个“响应式”（Auto Responsive）的广告单元，
-        然后拿到它的 data-ad-slot ID，替换下面的 BBBBBBBBBB 为你的广告单元 ID。
-        这样它会在移动端全宽显示，在 PC 端居中且自适应大小。
-      -->
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-7165265186193287"
            data-ad-slot="2755086428"
            data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+           data-full-width-responsive="true">
+      </ins>
       <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-
-      <p>© 2025 Your Company</p>
+      <p>© 2025 BigData 平台 All Rights Reserved.</p>
     </footer>
   </div>
-
-  <script>
-    /**
-     * 工具函数：将 File 对象读取为 Image 对象
-     * @param {File} file 
-     * @returns {Promise<HTMLImageElement>}
-     */
-    function loadImage(file) {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = URL.createObjectURL(file);
-      });
-    }
-
-    /** 
-     * 按百分比缩放并打包成 ZIP 下载 
-     */
-    document.getElementById("resizeBtn").addEventListener("click", async () => {
-      const scale = parseFloat(document.getElementById("scaleSelect").value);
-      const files = document.getElementById("imageInput").files;
-      if (files.length === 0) {
-        alert("請選擇圖片");
-        return;
-      }
-
-      const zip = new JSZip();
-      for (const file of files) {
-        try {
-          const img = await loadImage(file);
-          // 计算新宽高
-          const newWidth  = Math.round(img.width * scale);
-          const newHeight = Math.round(img.height * scale);
-
-          // 绘制到 canvas
-          const canvas = document.createElement("canvas");
-          canvas.width  = newWidth;
-          canvas.height = newHeight;
-          canvas.getContext("2d").drawImage(img, 0, 0, newWidth, newHeight);
-
-          // 转为 JPEG Blob
-          const blob = await new Promise((res) => canvas.toBlob(res, "image/jpeg"));
-          const newName = file.name.replace(/\.[^.]+$/, ".jpg");
-          zip.file(newName, blob);
-        } catch (err) {
-          console.error("載入/處理圖片失敗：", err);
-        }
-      }
-
-      // 生成 ZIP 并下载
-      const zipBlob = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(zipBlob);
-      link.download = "resized_by_percentage.zip";
-      link.click();
-    });
-
-    /** 
-     * 按指定宽高（px）批量缩放并打包成 ZIP 下载 
-     */
-    document.getElementById("resizeFixedBtn").addEventListener("click", async () => {
-      const width  = parseInt(document.getElementById("fixedWidth").value, 10);
-      const height = parseInt(document.getElementById("fixedHeight").value, 10);
-      if (!width || !height) {
-        alert("請輸入有效寬高");
-        return;
-      }
-      const files = document.getElementById("imageInput").files;
-      if (files.length === 0) {
-        alert("請選擇圖片");
-        return;
-      }
-
-      const zip = new JSZip();
-      for (const file of files) {
-        try {
-          const img = await loadImage(file);
-          // 强制使用用户指定的宽高
-          const canvas = document.createElement("canvas");
-          canvas.width  = width;
-          canvas.height = height;
-          canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-
-          const blob = await new Promise((res) => canvas.toBlob(res, "image/jpeg"));
-          const newName = file.name.replace(/\.[^.]+$/, ".jpg");
-          zip.file(newName, blob);
-        } catch (err) {
-          console.error("載入/處理圖片失敗：", err);
-        }
-      }
-
-      const zipBlob = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(zipBlob);
-      link.download = "resized_fixed_size.zip";
-      link.click();
-    });
-  </script>
 </body>
 </html>
