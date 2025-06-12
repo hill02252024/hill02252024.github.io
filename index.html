@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>今日待辦</title>
+  <title>Today's Tasks</title>
 
-  <!-- 引入 Font Awesome -->
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -13,37 +13,47 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
 
-  <!-- 自己的樣式 -->
-  <script type="module" crossorigin src="/todo-app/assets/index-DGT49JbO.js"></script>
-  <link rel="stylesheet" crossorigin href="/todo-app/assets/index-D-NVcPaO.css">
+  <!-- Custom Styles -->
+  <script type="module" crossorigin src="/assets/index-ByV9g7u4.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D5JLudB3.css">
 </head>
 <body>
   <aside class="adsense-aside"></aside>
 
   <main class="container">
-    <h1>今日待辦</h1>
+    <h1>Today's Tasks</h1>
+
     <div class="input-group">
-      <input id="task-input" placeholder="輸入新任務…" />
+      <input id="task-input" placeholder="Enter a new task…" />
       <select id="task-priority">
-        <option value="important">重要</option>
-        <option value="due">必須今日完成</option>
-        <option value="normal" selected>一般</option>
+        <option value="important">High Priority</option>
+        <option value="due">Due Today</option>
+        <option value="normal" selected>General</option>
       </select>
-      <button id="add-btn">新增</button>
+      <button id="add-btn">Add Task</button>
     </div>
 
     <section class="group important">
-      <h2>重要</h2>
+      <h2>High Priority</h2>
       <ul id="important-list" class="task-list"></ul>
     </section>
+
     <section class="group due">
-      <h2>必須今日完成</h2>
+      <h2>Due Today</h2>
       <ul id="due-list" class="task-list"></ul>
     </section>
+
     <section class="group normal">
-      <h2>一般</h2>
+      <h2>General</h2>
       <ul id="normal-list" class="task-list"></ul>
     </section>
+
+    <!-- Completed 区块 -->
+    <section class="group completed">
+      <h2>Completed</h2>
+      <ul id="completed-list" class="task-list hidden"></ul>
+    </section>
+    
   </main>
 
   <aside class="adsense-aside"></aside>
