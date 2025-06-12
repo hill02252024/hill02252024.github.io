@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日待辦</title>
+
+  <!-- 引入 Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+
+  <!-- 自己的樣式 -->
+  <script type="module" crossorigin src="/todo-app/assets/index-DGT49JbO.js"></script>
+  <link rel="stylesheet" crossorigin href="/todo-app/assets/index-D-NVcPaO.css">
+</head>
+<body>
+  <aside class="adsense-aside"></aside>
+
+  <main class="container">
+    <h1>今日待辦</h1>
+    <div class="input-group">
+      <input id="task-input" placeholder="輸入新任務…" />
+      <select id="task-priority">
+        <option value="important">重要</option>
+        <option value="due">必須今日完成</option>
+        <option value="normal" selected>一般</option>
+      </select>
+      <button id="add-btn">新增</button>
+    </div>
+
+    <section class="group important">
+      <h2>重要</h2>
+      <ul id="important-list" class="task-list"></ul>
+    </section>
+    <section class="group due">
+      <h2>必須今日完成</h2>
+      <ul id="due-list" class="task-list"></ul>
+    </section>
+    <section class="group normal">
+      <h2>一般</h2>
+      <ul id="normal-list" class="task-list"></ul>
+    </section>
+  </main>
+
+  <aside class="adsense-aside"></aside>
+</body>
+</html>
