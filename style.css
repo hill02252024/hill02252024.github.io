@@ -1,0 +1,202 @@
+/* Enhanced style.css with compliance links and Completed section */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --font-base: 'Inter', sans-serif;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --text-dark: #2c3e50;
+  --text-muted: #7f8c8d;
+  --accent: #5dade2;
+  --priority-high: #e74c3c;
+  --priority-due: #f39c12;
+  --priority-normal: #bdc3c7;
+  --button-bg: #5dade2;
+  --button-hover: #3498db;
+  --input-border: #dfe6e9;
+  --shadow: rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* 法遵與工具連結列 */
+.compliance-links {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-white);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: right;
+  font-size: 0.9rem;
+}
+.compliance-links a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 0.25rem;
+  transition: color 0.2s;
+}
+.compliance-links a:hover {
+  color: var(--button-hover);
+}
+
+/* 按鈕式連結 */
+.btn-link {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--button-bg);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+.btn-link:hover {
+  background-color: var(--button-hover);
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  background-color: var(--bg-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow);
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-group input,
+.input-group select {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+}
+
+.input-group button {
+  padding: 0 1.25rem;
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-group button:hover {
+  background-color: var(--button-hover);
+}
+
+.group {
+  margin-bottom: 2rem;
+}
+
+.group h2 {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.task-list li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 0;
+  margin-bottom: 0.75rem;
+  background-color: var(--bg-white);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--shadow);
+  padding-left: 8px;
+  transition: transform 0.1s;
+}
+.task-list li:hover {
+  transform: translateY(-2px);
+}
+.task-list li.important {
+  border-left: 8px solid var(--priority-high);
+}
+.task-list li.due {
+  border-left: 8px solid var(--priority-due);
+}
+.task-list li.normal {
+  border-left: 8px solid var(--priority-normal);
+}
+.task-list span {
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.complete-btn {
+  width: 32px;
+  height: 32px;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.complete-btn i {
+  color: #fff;
+  font-size: 1rem;
+}
+.complete-btn:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.1);
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+  }
+  .input-group button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
