@@ -1,0 +1,11 @@
+# robots.txt for hill02252024.github.io
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# 指定網站地圖位置，加速新頁面被索引
+Sitemap: https://hill02252024.github.io/sitemap.xml
+
+# 若未來想阻擋某些子目錄／檔案，可解除下列註解並調整
+# Disallow: /private/
+# Disallow: /secret-page.html
