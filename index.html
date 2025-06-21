@@ -6,7 +6,7 @@
   <title>Today's Tasks</title>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- 自訂樣式 -->
   <script type="module" crossorigin src="/assets/index-CF3jDW0Z.js"></script>
@@ -17,68 +17,101 @@
       margin: 0 auto;
       max-width: 1000px;
       padding: 0 200px;
+      font-family: Arial, sans-serif;
+      color: #333;
     }
     h1 {
       text-align: center;
       margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 2rem;
     }
     .input-group {
       margin: 20px auto;
       display: flex;
       justify-content: center;
-      background-color: #f0f8ff;
+      background-color: #e6f2ff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
     }
     .input-group input, .input-group select, .input-group button {
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      margin-right: 5px;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+    .input-group button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .input-group button:hover {
+      background-color: #0056b3;
     }
     .task-links {
       text-align: center;
-      margin: 20px 0;
+      margin: 25px 0;
     }
     .task-links a {
-      padding: 10px 20px;
-      border-radius: 4px;
-      margin: 0 5px;
+      padding: 10px 25px;
+      border-radius: 6px;
+      margin: 0 8px;
       text-decoration: none;
-      color: #007BFF;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      color: #007bff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background-color 0.3s, color 0.3s;
     }
     .task-links a:hover {
-      background-color: #e0f7fa;
+      background-color: #cce5ff;
+      color: #004085;
     }
-    .introduction, .testimonials, .features {
-      margin-bottom: 30px;
-      padding: 20px;
-      border-radius: 8px;
+    section.introduction, section.testimonials, section.features {
       background-color: #f9f9f9;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 7px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      line-height: 1.6;
+      font-size: 1rem;
     }
-    .compliance-links {
-      text-align: center;
-      margin-bottom: 20px;
+    section.introduction h2,
+    section.testimonials h2,
+    section.features h2 {
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      color: #222;
+    }
+    section.testimonials blockquote {
+      margin: 15px 0;
+      padding-left: 15px;
+      border-left: 4px solid #007bff;
+      font-style: italic;
+      color: #555;
+    }
+    section.features ul {
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    section.features ul li {
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
-  <!-- 合規與工具連結列 -->
-  <div class="compliance-links">
+  <div class="compliance-links" style="text-align:center; margin-bottom:20px;">
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
     <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
     <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
   </div>
-
-  <aside class="adsense-aside">
-    <!-- Google AdSense Code Placeholder -->
-  </aside>
 
   <main class="container">
     <h1>Today's Tasks</h1>
@@ -100,28 +133,25 @@
       <a href="#completed">Completed</a>
     </div>
 
-    <!-- Introduction Section -->
     <section class="introduction">
       <h2>Welcome to Today's Tasks</h2>
       <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
       <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
     </section>
 
-    <!-- User Testimonials -->
     <section class="testimonials">
       <h2>What Our Users Say</h2>
       <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
       <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
     </section>
 
-    <!-- Visual and Interactive Elements -->
     <section class="features">
       <h2>Features</h2>
       <ul>
-        <li><i class="fas fa-check-circle"></i> Easy task input and management</li>
-        <li><i class="fas fa-calendar-alt"></i> Prioritize tasks with ease</li>
-        <li><i class="fas fa-cloud"></i> Local storage ensures your tasks are always saved</li>
-        <li><i class="fas fa-mobile-alt"></i> Responsive design for all devices</li>
+        <li>Easy task input and management</li>
+        <li>Prioritize tasks with ease</li>
+        <li>Local storage ensures your tasks are always saved</li>
+        <li>Responsive design for all devices</li>
       </ul>
     </section>
 
@@ -145,9 +175,5 @@
       <ul id="completed-list" class="task-list hidden"></ul>
     </section>
   </main>
-
-  <aside class="adsense-aside">
-    <!-- Google AdSense Code Placeholder -->
-  </aside>
 </body>
 </html>
