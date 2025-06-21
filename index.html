@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Today's Tasks</title>
 
   <!-- Font Awesome -->
@@ -27,7 +27,7 @@
       z-index: 1000;
     }
     .container {
-      max-width: 960px;
+      max-width: 1040px;
       margin: 40px auto;
       padding: 0 40px;
       background: white;
@@ -119,7 +119,7 @@
       border-left-color: #6c757d;
       background: #e9ecef;
     }
-    .complete-btn {
+    .complete-btn, .restore-btn {
       background: none;
       border: none;
       color: #28a745;
@@ -127,7 +127,7 @@
       font-size: 1.2rem;
       transition: color 0.3s ease;
     }
-    .complete-btn:hover {
+    .complete-btn:hover, .restore-btn:hover {
       color: #218838;
     }
     .info-section {
@@ -178,6 +178,11 @@
     ul.features-list li {
       margin-bottom: 8px;
     }
+    .alert {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -221,7 +226,7 @@
 
     <section id="completed" class="task-group">
       <h2>Completed</h2>
-      <ul id="completed-list" class="task-list"></ul>
+      <ul id="completed-list" class="task-list hidden"></ul>
     </section>
 
     <!-- Collapsible Info Sections -->
@@ -252,6 +257,8 @@
         </ul>
       </div>
     </section>
+
+    <div class="alert" id="alert-message"></div>
   </div>
 
   <script>
@@ -283,12 +290,30 @@
         taskItem.querySelector('.complete-btn').addEventListener('click', function() {
           taskItem.classList.add('completed');
           document.getElementById('completed-list').appendChild(taskItem);
+          taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+          taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+            taskItem.remove();
+            taskList.appendChild(taskItem);
+          });
         });
 
         taskList.appendChild(taskItem);
         taskInput.value = ''; // Clear input
       }
     });
+
+    // Check time and alert if tasks are past due
+    function checkTime() {
+      const now = new Date();
+      const hours = now.getHours();
+      const alertMessage = document.getElementById('alert-message');
+      if (hours >= 17) {
+        alertMessage.textContent = "It's after 5 PM. Please consider leaving unfinished tasks for tomorrow.";
+      } else {
+        alertMessage.textContent = "";
+      }
+    }
+    checkTime();
   </script>
 </body>
 </html>
