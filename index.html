@@ -2,122 +2,173 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Today's Tasks</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- 自訂樣式 -->
-  <script type="module" crossorigin src="/assets/index-CF3jDW0Z.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CH7WanU0.css">
-
   <style>
-    .container {
-      margin: 0 auto;
-      max-width: 1040px; /* 调整后的宽度 */
-      padding: 0 40px; /* 调整左右内边距 */
+    body {
       font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      margin: 0;
+      padding: 0;
       color: #333;
+    }
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 24px 0;
+      font-size: 2.2rem;
       font-weight: 700;
-      font-size: 2rem;
+      color: #222;
     }
+    /* Task Input */
     .input-group {
-      margin: 20px auto;
       display: flex;
       justify-content: center;
       background-color: #e6f2ff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,123,255,0.15);
     }
-    .input-group input, .input-group select, .input-group button {
+    .input-group input, .input-group select {
       padding: 12px;
       border-radius: 6px;
       border: 1px solid #bbb;
-      margin-right: 10px;
       font-size: 1rem;
+      margin-right: 10px;
+      flex: 1;
+      max-width: 400px;
     }
     .input-group button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
       background-color: #007bff;
       color: white;
-      border: none;
+      font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
     .input-group button:hover {
       background-color: #0056b3;
     }
+    /* Task Links */
     .task-links {
       text-align: center;
-      margin: 25px 0;
+      margin-bottom: 20px;
     }
     .task-links a {
-      padding: 10px 25px;
-      border-radius: 6px;
-      margin: 0 8px;
+      margin: 0 12px;
       text-decoration: none;
       color: #007bff;
       font-weight: 700;
       font-size: 1.1rem;
-      transition: background-color 0.3s, color 0.3s;
+      transition: color 0.3s ease;
     }
     .task-links a:hover {
-      background-color: #cce5ff;
+      color: #0056b3;
+    }
+    /* Task Lists */
+    section.task-group {
+      margin-bottom: 30px;
+    }
+    section.task-group h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border-left: 5px solid #007bff;
+      padding-left: 10px;
       color: #004085;
     }
-    section.introduction, section.testimonials, section.features {
-      background-color: #f9f9f9;
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 7px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-      line-height: 1.6;
+    ul.task-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.task-list li {
+      background: #f0f8ff;
+      margin-bottom: 8px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid #007bff;
       font-size: 1rem;
     }
-    section.introduction h2,
-    section.testimonials h2,
-    section.features h2 {
-      font-weight: 700;
-      margin-bottom: 15px;
-      font-size: 1.4rem;
-      color: #222;
+    ul.task-list li.completed {
+      text-decoration: line-through;
+      color: #888;
+      border-left-color: #6c757d;
+      background: #e9ecef;
     }
-    section.testimonials blockquote {
-      margin: 15px 0;
-      padding-left: 15px;
+    /* Collapsible Info Sections */
+    .info-section {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .info-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    .info-section h2::after {
+      content: '▼';
+      position: absolute;
+      right: 0;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    .info-section.collapsed h2::after {
+      transform: rotate(-90deg);
+    }
+    .info-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 12px;
+      display: block;
+    }
+    .info-section.collapsed .info-content {
+      display: none;
+    }
+    blockquote {
+      margin: 12px 0;
+      padding-left: 16px;
       border-left: 4px solid #007bff;
       font-style: italic;
       color: #555;
     }
-    section.features ul {
+    ul.features-list {
       padding-left: 20px;
       list-style-type: disc;
     }
-    section.features ul li {
-      margin-bottom: 10px;
-      font-size: 1rem;
+    ul.features-list li {
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="compliance-links" style="text-align:center; margin-bottom:20px;">
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
-    <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
-  </div>
-
-  <main class="container">
+  <div class="container">
     <h1>Today's Tasks</h1>
 
     <div class="input-group">
-      <input id="task-input" placeholder="Enter a new task…" />
+      <input id="task-input" type="text" placeholder="Enter a new task…" />
       <select id="task-priority">
         <option value="important">High Priority</option>
         <option value="due">Due Today</option>
@@ -133,47 +184,66 @@
       <a href="#completed">Completed</a>
     </div>
 
-    <section class="introduction">
-      <h2>Welcome to Today's Tasks</h2>
-      <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
-      <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
-    </section>
-
-    <section class="testimonials">
-      <h2>What Our Users Say</h2>
-      <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
-      <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
-    </section>
-
-    <section class="features">
-      <h2>Features</h2>
-      <ul>
-        <li>Easy task input and management</li>
-        <li>Prioritize tasks with ease</li>
-        <li>Local storage ensures your tasks are always saved</li>
-        <li>Responsive design for all devices</li>
+    <!-- Tasks Lists -->
+    <section id="high-priority" class="task-group">
+      <h2>High Priority</h2>
+      <ul id="important-list" class="task-list">
+        <!-- 动态任务项 -->
       </ul>
     </section>
 
-    <section id="high-priority" class="group important">
-      <h2>High Priority</h2>
-      <ul id="important-list" class="task-list"></ul>
-    </section>
-
-    <section id="due-today" class="group due">
+    <section id="due-today" class="task-group">
       <h2>Due Today</h2>
       <ul id="due-list" class="task-list"></ul>
     </section>
 
-    <section id="general" class="group normal">
+    <section id="general" class="task-group">
       <h2>General</h2>
       <ul id="normal-list" class="task-list"></ul>
     </section>
 
-    <section id="completed" class="group completed">
+    <section id="completed" class="task-group">
       <h2>Completed</h2>
-      <ul id="completed-list" class="task-list hidden"></ul>
+      <ul id="completed-list" class="task-list"></ul>
     </section>
-  </main>
+
+    <!-- Collapsible Info Sections -->
+    <section class="info-section" id="welcome-section">
+      <h2>Welcome to Today's Tasks</h2>
+      <div class="info-content">
+        <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
+        <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
+      </div>
+    </section>
+
+    <section class="info-section" id="users-section">
+      <h2>What Our Users Say</h2>
+      <div class="info-content">
+        <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
+        <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
+      </div>
+    </section>
+
+    <section class="info-section" id="features-section">
+      <h2>Features</h2>
+      <div class="info-content">
+        <ul class="features-list">
+          <li>Easy task input and management</li>
+          <li>Prioritize tasks with ease</li>
+          <li>Local storage ensures your tasks are always saved</li>
+          <li>Responsive design for all devices</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // 折叠功能
+    document.querySelectorAll('.info-section h2').forEach(header => {
+      header.addEventListener('click', () => {
+        header.parentElement.classList.toggle('collapsed');
+      });
+    });
+  </script>
 </body>
 </html>
