@@ -16,6 +16,16 @@
       padding: 0;
       color: #333;
     }
+    .navbar {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      text-align: center;
+      font-size: 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
     .container {
       max-width: 960px;
       margin: 40px auto;
@@ -31,7 +41,6 @@
       font-weight: 700;
       color: #222;
     }
-    /* Task Input */
     .input-group {
       display: flex;
       justify-content: center;
@@ -63,7 +72,6 @@
     .input-group button:hover {
       background-color: #0056b3;
     }
-    /* Task Links */
     .task-links {
       text-align: center;
       margin-bottom: 20px;
@@ -79,7 +87,6 @@
     .task-links a:hover {
       color: #0056b3;
     }
-    /* Task Lists */
     section.task-group {
       margin-bottom: 30px;
     }
@@ -112,7 +119,17 @@
       border-left-color: #6c757d;
       background: #e9ecef;
     }
-    /* Collapsible Info Sections */
+    .complete-btn {
+      background: none;
+      border: none;
+      color: #28a745;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    .complete-btn:hover {
+      color: #218838;
+    }
     .info-section {
       background: #f9f9f9;
       border-radius: 8px;
@@ -164,6 +181,8 @@
   </style>
 </head>
 <body>
+  <div class="navbar">Today's Tasks</div>
+
   <div class="container">
     <h1>Today's Tasks</h1>
 
@@ -187,9 +206,7 @@
     <!-- Tasks Lists -->
     <section id="high-priority" class="task-group">
       <h2>High Priority</h2>
-      <ul id="important-list" class="task-list">
-        <!-- 动态任务项 -->
-      </ul>
+      <ul id="important-list" class="task-list"></ul>
     </section>
 
     <section id="due-today" class="task-group">
@@ -261,9 +278,14 @@
         
         const taskList = document.getElementById(taskListId);
         const taskItem = document.createElement('li');
-        taskItem.textContent = taskText;
-        taskList.appendChild(taskItem);
+        taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
         
+        taskItem.querySelector('.complete-btn').addEventListener('click', function() {
+          taskItem.classList.add('completed');
+          document.getElementById('completed-list').appendChild(taskItem);
+        });
+
+        taskList.appendChild(taskItem);
         taskInput.value = ''; // Clear input
       }
     });
