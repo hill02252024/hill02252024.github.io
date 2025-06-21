@@ -16,15 +16,23 @@
       padding: 0;
       color: #333;
     }
-    .navbar {
+    .compliance-links {
       background-color: #007bff;
       padding: 10px 20px;
       color: white;
       text-align: center;
-      font-size: 1.2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
+    }
+    .compliance-links a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .compliance-links a:hover {
+      text-decoration: underline;
     }
     .container {
       max-width: 1040px;
@@ -186,7 +194,13 @@
   </style>
 </head>
 <body>
-  <div class="navbar">Today's Tasks</div>
+  <div class="compliance-links">
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
+    <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
+  </div>
 
   <div class="container">
     <h1>Today's Tasks</h1>
