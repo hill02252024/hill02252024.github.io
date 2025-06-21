@@ -15,42 +15,15 @@
   <style>
     .container {
       margin: 0 auto;
-      max-width: 1000px; /* 增加了宽度 */
-      padding: 0 200px; /* 左右各增加100像素的空间 */
+      max-width: 1000px;
+      padding: 0 200px;
     }
     h1 {
       text-align: center;
       margin-bottom: 20px;
     }
-    .introduction, .testimonials, .features {
-      margin-bottom: 30px;
-    }
-    .features {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .features ul {
-      list-style: none;
-      padding: 0;
-    }
-    .features li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      transition: background-color 0.3s;
-    }
-    .features li:hover {
-      background-color: #e0f7fa;
-      border-radius: 5px;
-    }
-    .features i {
-      margin-right: 10px;
-      color: #00796b;
-    }
     .input-group {
-      margin: 20px auto; /* 调整位置 */
+      margin: 20px auto;
       display: flex;
       justify-content: center;
     }
@@ -59,6 +32,22 @@
       border-radius: 4px;
       border: 1px solid #ddd;
       margin-right: 5px;
+    }
+    .tab-links {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .tab-links a {
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 0 5px;
+      text-decoration: none;
+      color: #007BFF;
+      transition: background-color 0.3s;
+    }
+    .tab-links a:hover {
+      background-color: #e0f7fa;
     }
     .compliance-links {
       text-align: center;
@@ -93,48 +82,29 @@
       <button id="add-btn">Add Task</button>
     </div>
 
-    <!-- Introduction Section -->
-    <section class="introduction">
-      <h2>Welcome to Today's Tasks</h2>
-      <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
-      <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
-    </section>
+    <div class="tab-links">
+      <a href="#high-priority">High Priority</a>
+      <a href="#due-today">Due Today</a>
+      <a href="#general">General</a>
+      <a href="#completed">Completed</a>
+    </div>
 
-    <!-- User Testimonials -->
-    <section class="testimonials">
-      <h2>What Our Users Say</h2>
-      <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
-      <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
-    </section>
-
-    <!-- Visual and Interactive Elements -->
-    <section class="features">
-      <h2>Features</h2>
-      <ul>
-        <li><i class="fas fa-check-circle"></i> Easy task input and management</li>
-        <li><i class="fas fa-calendar-alt"></i> Prioritize tasks with ease</li>
-        <li><i class="fas fa-cloud"></i> Local storage ensures your tasks are always saved</li>
-        <li><i class="fas fa-mobile-alt"></i> Responsive design for all devices</li>
-      </ul>
-    </section>
-
-    <section class="group important">
+    <section id="high-priority" class="group important">
       <h2>High Priority</h2>
       <ul id="important-list" class="task-list"></ul>
     </section>
 
-    <section class="group due">
+    <section id="due-today" class="group due">
       <h2>Due Today</h2>
       <ul id="due-list" class="task-list"></ul>
     </section>
 
-    <section class="group normal">
+    <section id="general" class="group normal">
       <h2>General</h2>
       <ul id="normal-list" class="task-list"></ul>
     </section>
 
-    <!-- Completed 區塊 -->
-    <section class="group completed">
+    <section id="completed" class="group completed">
       <h2>Completed</h2>
       <ul id="completed-list" class="task-list hidden"></ul>
     </section>
