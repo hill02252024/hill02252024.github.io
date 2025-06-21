@@ -283,7 +283,75 @@
       });
     });
 
+    // Load tasks from localStorage
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
+      Object.keys(tasks).forEach(priority => {
+        const taskList = document.getElementById(`${priority}-list`);
+        tasks[priority].forEach(taskText => {
+          const taskItem = document.createElement('li');
+          taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+          if (priority === 'completed') {
+            taskItem.classList.add('completed');
+            taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+            taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+              taskItem.remove();
+              addTask(taskText, 'normal', false);
+            });
+          } else {
+            taskItem.querySelector('.complete-btn').addEventListener('click', function() {
+              taskItem.classList.add('completed');
+              document.getElementById('completed-list').appendChild(taskItem);
+              taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+              taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+                taskItem.remove();
+                addTask(taskText, priority, false);
+              });
+              saveTasks();
+            });
+          }
+          taskList.appendChild(taskItem);
+        });
+      });
+    }
+
+    // Save tasks to localStorage
+    function saveTasks() {
+      const tasks = { important: [], due: [], normal: [], completed: [] };
+      Object.keys(tasks).forEach(priority => {
+        const taskList = document.getElementById(`${priority}-list`);
+        tasks[priority] = Array.from(taskList.children).map(li => li.textContent.trim());
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
     // Add task function
+    function addTask(taskText, priority, save = true) {
+      const taskListId = {
+        important: 'important-list',
+        due: 'due-list',
+        normal: 'normal-list'
+      }[priority];
+      
+      const taskList = document.getElementById(taskListId);
+      const taskItem = document.createElement('li');
+      taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+      
+      taskItem.querySelector('.complete-btn').addEventListener('click', function() {
+        taskItem.classList.add('completed');
+        document.getElementById('completed-list').appendChild(taskItem);
+        taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+        taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+          taskItem.remove();
+          addTask(taskText, priority, false);
+        });
+        saveTasks();
+      });
+
+      taskList.appendChild(taskItem);
+      if (save) saveTasks();
+    }
+
     document.getElementById('add-btn').addEventListener('click', function() {
       const taskInput = document.getElementById('task-input');
       const taskPriority = document.getElementById('task-priority');
@@ -291,27 +359,7 @@
       const priority = taskPriority.value;
       
       if (taskText) {
-        const taskListId = {
-          important: 'important-list',
-          due: 'due-list',
-          normal: 'normal-list'
-        }[priority];
-        
-        const taskList = document.getElementById(taskListId);
-        const taskItem = document.createElement('li');
-        taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
-        
-        taskItem.querySelector('.complete-btn').addEventListener('click', function() {
-          taskItem.classList.add('completed');
-          document.getElementById('completed-list').appendChild(taskItem);
-          taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-          taskItem.querySelector('.restore-btn').addEventListener('click', function() {
-            taskItem.remove();
-            taskList.appendChild(taskItem);
-          });
-        });
-
-        taskList.appendChild(taskItem);
+        addTask(taskText, priority);
         taskInput.value = ''; // Clear input
       }
     });
@@ -327,7 +375,20 @@
         alertMessage.textContent = "";
       }
     }
+
+    // Clear tasks at midnight
+    function clearTasksAtMidnight() {
+      const now = new Date();
+      const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
+      setTimeout(() => {
+        localStorage.removeItem('tasks');
+        location.reload();
+      }, msUntilMidnight);
+    }
+
+    loadTasks();
     checkTime();
+    clearTasksAtMidnight();
   </script>
 </body>
 </html>
