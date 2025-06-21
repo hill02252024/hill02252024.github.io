@@ -244,6 +244,29 @@
         header.parentElement.classList.toggle('collapsed');
       });
     });
+
+    // Add task function
+    document.getElementById('add-btn').addEventListener('click', function() {
+      const taskInput = document.getElementById('task-input');
+      const taskPriority = document.getElementById('task-priority');
+      const taskText = taskInput.value.trim();
+      const priority = taskPriority.value;
+      
+      if (taskText) {
+        const taskListId = {
+          important: 'important-list',
+          due: 'due-list',
+          normal: 'normal-list'
+        }[priority];
+        
+        const taskList = document.getElementById(taskListId);
+        const taskItem = document.createElement('li');
+        taskItem.textContent = taskText;
+        taskList.appendChild(taskItem);
+        
+        taskInput.value = ''; // Clear input
+      }
+    });
   </script>
 </body>
 </html>
