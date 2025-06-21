@@ -26,6 +26,10 @@
       margin: 20px auto;
       display: flex;
       justify-content: center;
+      background-color: #f0f8ff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .input-group input, .input-group select, .input-group button {
       padding: 10px;
@@ -33,21 +37,28 @@
       border: 1px solid #ddd;
       margin-right: 5px;
     }
-    .tab-links {
-      display: flex;
-      justify-content: center;
+    .task-links {
+      text-align: center;
       margin: 20px 0;
     }
-    .tab-links a {
+    .task-links a {
       padding: 10px 20px;
       border-radius: 4px;
       margin: 0 5px;
       text-decoration: none;
       color: #007BFF;
+      font-weight: bold;
       transition: background-color 0.3s;
     }
-    .tab-links a:hover {
+    .task-links a:hover {
       background-color: #e0f7fa;
+    }
+    .introduction, .testimonials, .features {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .compliance-links {
       text-align: center;
@@ -82,12 +93,37 @@
       <button id="add-btn">Add Task</button>
     </div>
 
-    <div class="tab-links">
+    <div class="task-links">
       <a href="#high-priority">High Priority</a>
       <a href="#due-today">Due Today</a>
       <a href="#general">General</a>
       <a href="#completed">Completed</a>
     </div>
+
+    <!-- Introduction Section -->
+    <section class="introduction">
+      <h2>Welcome to Today's Tasks</h2>
+      <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
+      <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
+    </section>
+
+    <!-- User Testimonials -->
+    <section class="testimonials">
+      <h2>What Our Users Say</h2>
+      <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
+      <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
+    </section>
+
+    <!-- Visual and Interactive Elements -->
+    <section class="features">
+      <h2>Features</h2>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> Easy task input and management</li>
+        <li><i class="fas fa-calendar-alt"></i> Prioritize tasks with ease</li>
+        <li><i class="fas fa-cloud"></i> Local storage ensures your tasks are always saved</li>
+        <li><i class="fas fa-mobile-alt"></i> Responsive design for all devices</li>
+      </ul>
+    </section>
 
     <section id="high-priority" class="group important">
       <h2>High Priority</h2>
