@@ -16,61 +16,71 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    /* 現有 CSS 同上，省略 */
-    .ads-wrapper {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
       display: flex;
-      justify-content: space-between;
-      margin: 20px 0;
+      justify-content: center;
     }
-    .ad-box {
+    .ad-left, .ad-right {
       width: 160px;
       height: 600px;
+      flex-shrink: 0;
+      margin-top: 40px;
+    }
+    .main-content {
+      max-width: 1040px;
+      flex: 1;
     }
     @media (max-width: 1024px) {
-      .ads-wrapper {
+      .ad-left, .ad-right {
         display: none;
       }
+      body {
+        padding: 0 10px;
+      }
     }
+    /* 其餘 CSS 不變 */
   </style>
 </head>
 <body>
-  <div class="compliance-links">
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
-    <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
+  <div class="ad-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:160px;height:600px"
+         data-ad-client="ca-pub-7165265186193287"
+         data-ad-slot="7387023042"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- 廣告左右欄 -->
-  <div class="ads-wrapper">
-    <div class="ad-box">
-      <ins class="adsbygoogle"
-           style="display:inline-block;width:160px;height:600px"
-           data-ad-client="ca-pub-7165265186193287"
-           data-ad-slot="7387023042"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <div class="main-content">
+    <div class="compliance-links">
+      <a href="/about.html">About</a> |
+      <a href="/contact.html">Contact</a> |
+      <a href="/privacy.html">Privacy Policy</a> |
+      <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
+      <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
     </div>
 
-    <div class="ad-box">
-      <ins class="adsbygoogle"
-           style="display:inline-block;width:160px;height:600px"
-           data-ad-client="ca-pub-7165265186193287"
-           data-ad-slot="6533122288"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div class="container">
+      <h1>Today's Tasks</h1>
+
+      <!-- 原本所有內容照舊，不需要修改 -->
     </div>
   </div>
 
-  <!-- 原本 .container 開始 -->
-  <div class="container">
-    <h1>Today's Tasks</h1>
-
-    <!-- 其餘內容保留不變 -->
-    <!-- ... -->
+  <div class="ad-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:160px;height:600px"
+         data-ad-client="ca-pub-7165265186193287"
+         data-ad-slot="6533122288"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <script>
-    // 原本 script 保留不變
+    // 原本 JavaScript 保留不變
   </script>
 </body>
 </html>
