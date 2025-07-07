@@ -6,18 +6,194 @@
   <title>Today's Tasks</title>
 
   <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- 自訂樣式 -->
-  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .compliance-links {
+      background-color: #007bff;
+      padding: 10px 20px;
+      color: white;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .compliance-links a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .compliance-links a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 40px auto;
+      padding: 0 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin: 24px 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #222;
+    }
+    .input-group {
+      display: flex;
+      justify-content: center;
+      background-color: #e6f2ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,123,255,0.15);
+    }
+    .input-group input, .input-group select {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      font-size: 1rem;
+      margin-right: 10px;
+      flex: 1;
+      max-width: 400px;
+    }
+    .input-group button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .input-group button:hover {
+      background-color: #0056b3;
+    }
+    .task-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .task-links a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    .task-links a:hover {
+      color: #0056b3;
+    }
+    section.task-group {
+      margin-bottom: 30px;
+    }
+    section.task-group h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border-left: 5px solid #007bff;
+      padding-left: 10px;
+      color: #004085;
+    }
+    ul.task-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.task-list li {
+      background: #f0f8ff;
+      margin-bottom: 8px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid #007bff;
+      font-size: 1rem;
+    }
+    ul.task-list li.completed {
+      text-decoration: line-through;
+      color: #888;
+      border-left-color: #6c757d;
+      background: #e9ecef;
+    }
+    .complete-btn, .restore-btn {
+      background: none;
+      border: none;
+      color: #28a745;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    .complete-btn:hover, .restore-btn:hover {
+      color: #218838;
+    }
+    .info-section {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .info-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    .info-section h2::after {
+      content: '▼';
+      position: absolute;
+      right: 0;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    .info-section.collapsed h2::after {
+      transform: rotate(-90deg);
+    }
+    .info-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 12px;
+      display: block;
+    }
+    .info-section.collapsed .info-content {
+      display: none;
+    }
+    blockquote {
+      margin: 12px 0;
+      padding-left: 16px;
+      border-left: 4px solid #007bff;
+      font-style: italic;
+      color: #555;
+    }
+    ul.features-list {
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    ul.features-list li {
+      margin-bottom: 8px;
+    }
+    .alert {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <!-- 合規與工具連結列 -->
   <div class="compliance-links">
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
@@ -26,13 +202,11 @@
     <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
   </div>
 
-  <aside class="adsense-aside"></aside>
-
-  <main class="container">
+  <div class="container">
     <h1>Today's Tasks</h1>
 
     <div class="input-group">
-      <input id="task-input" placeholder="Enter a new task…" />
+      <input id="task-input" type="text" placeholder="Enter a new task…" />
       <select id="task-priority">
         <option value="important">High Priority</option>
         <option value="due">Due Today</option>
@@ -41,29 +215,180 @@
       <button id="add-btn">Add Task</button>
     </div>
 
-    <section class="group important">
+    <div class="task-links">
+      <a href="#high-priority">High Priority</a>
+      <a href="#due-today">Due Today</a>
+      <a href="#general">General</a>
+      <a href="#completed">Completed</a>
+    </div>
+
+    <!-- Tasks Lists -->
+    <section id="high-priority" class="task-group">
       <h2>High Priority</h2>
       <ul id="important-list" class="task-list"></ul>
     </section>
 
-    <section class="group due">
+    <section id="due-today" class="task-group">
       <h2>Due Today</h2>
       <ul id="due-list" class="task-list"></ul>
     </section>
 
-    <section class="group normal">
+    <section id="general" class="task-group">
       <h2>General</h2>
       <ul id="normal-list" class="task-list"></ul>
     </section>
 
-    <!-- Completed 區塊 -->
-    <section class="group completed">
+    <section id="completed" class="task-group">
       <h2>Completed</h2>
       <ul id="completed-list" class="task-list hidden"></ul>
     </section>
-  </main>
 
-  <aside class="adsense-aside"></aside>
-  <script type="module" src="/src/main.js"></script>
+    <!-- Collapsible Info Sections -->
+    <section class="info-section" id="welcome-section">
+      <h2>Welcome to Today's Tasks</h2>
+      <div class="info-content">
+        <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
+        <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
+      </div>
+    </section>
+
+    <section class="info-section" id="users-section">
+      <h2>What Our Users Say</h2>
+      <div class="info-content">
+        <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
+        <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
+      </div>
+    </section>
+
+    <section class="info-section" id="features-section">
+      <h2>Features</h2>
+      <div class="info-content">
+        <ul class="features-list">
+          <li>Easy task input and management</li>
+          <li>Prioritize tasks with ease</li>
+          <li>Local storage ensures your tasks are always saved</li>
+          <li>Responsive design for all devices</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="alert" id="alert-message"></div>
+  </div>
+
+  <script>
+    // 折叠功能
+    document.querySelectorAll('.info-section h2').forEach(header => {
+      header.addEventListener('click', () => {
+        header.parentElement.classList.toggle('collapsed');
+      });
+    });
+
+    // Load tasks from localStorage
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
+      Object.keys(tasks).forEach(priority => {
+        const taskList = document.getElementById(`${priority}-list`);
+        tasks[priority].forEach(taskText => {
+          const taskItem = document.createElement('li');
+          taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+          if (priority === 'completed') {
+            taskItem.classList.add('completed');
+            taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+            taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+              taskItem.remove();
+              addTask(taskText, 'normal', false);
+            });
+          } else {
+            taskItem.querySelector('.complete-btn').addEventListener('click', function() {
+              taskItem.classList.add('completed');
+              document.getElementById('completed-list').appendChild(taskItem);
+              taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+              taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+                taskItem.remove();
+                addTask(taskText, priority, false);
+              });
+              saveTasks();
+            });
+          }
+          taskList.appendChild(taskItem);
+        });
+      });
+    }
+
+    // Save tasks to localStorage
+    function saveTasks() {
+      const tasks = { important: [], due: [], normal: [], completed: [] };
+      Object.keys(tasks).forEach(priority => {
+        const taskList = document.getElementById(`${priority}-list`);
+        tasks[priority] = Array.from(taskList.children).map(li => li.textContent.trim());
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Add task function
+    function addTask(taskText, priority, save = true) {
+      const taskListId = {
+        important: 'important-list',
+        due: 'due-list',
+        normal: 'normal-list'
+      }[priority];
+      
+      const taskList = document.getElementById(taskListId);
+      const taskItem = document.createElement('li');
+      taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+      
+      taskItem.querySelector('.complete-btn').addEventListener('click', function() {
+        taskItem.classList.add('completed');
+        document.getElementById('completed-list').appendChild(taskItem);
+        taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+        taskItem.querySelector('.restore-btn').addEventListener('click', function() {
+          taskItem.remove();
+          addTask(taskText, priority, false);
+        });
+        saveTasks();
+      });
+
+      taskList.appendChild(taskItem);
+      if (save) saveTasks();
+    }
+
+    document.getElementById('add-btn').addEventListener('click', function() {
+      const taskInput = document.getElementById('task-input');
+      const taskPriority = document.getElementById('task-priority');
+      const taskText = taskInput.value.trim();
+      const priority = taskPriority.value;
+      
+      if (taskText) {
+        addTask(taskText, priority);
+        taskInput.value = ''; // Clear input
+      }
+    });
+
+    // Check time and alert if tasks are past due
+    function checkTime() {
+      const now = new Date();
+      const hours = now.getHours();
+      const alertMessage = document.getElementById('alert-message');
+      if (hours >= 17) {
+        alertMessage.textContent = "It's after 5 PM. Please consider leaving unfinished tasks for tomorrow.";
+      } else {
+        alertMessage.textContent = "";
+      }
+    }
+
+    // Clear tasks at midnight
+    function clearTasksAtMidnight() {
+      const now = new Date();
+      const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
+      setTimeout(() => {
+        localStorage.removeItem('tasks');
+        location.reload();
+      }, msUntilMidnight);
+    }
+
+    loadTasks();
+    checkTime();
+    clearTasksAtMidnight();
+  </script>
 </body>
 </html>
