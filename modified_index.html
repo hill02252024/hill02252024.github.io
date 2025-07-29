@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-     crossorigin="anonymous"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Today's Tasks</title>
+  <meta name="description" content="A simple daily to‑do list tool for busy professionals." />
+
+  <!-- Google AdSense -->
+  <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
+          crossorigin="anonymous"></script>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
 
   <style>
     body {
@@ -198,245 +204,217 @@
   </style>
 </head>
 <body>
-<style>
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.ad-sidebar {
-    flex: 0 0 160px;
-}
-.main-content {
-    flex: 1;
-    margin: 0 20px;
-}
-</style>
-<div class="flex-container">
-    <div class="ad-sidebar">
-        
-<!-- resize_leftads -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-7165265186193287"
-     data-ad-slot="7387023042"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+  <style>
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .ad-sidebar {
+      flex: 0 0 160px;
+    }
+    .main-content {
+      flex: 1;
+      margin: 0 20px;
+    }
+  </style>
 
+  <div class="flex-container">
+    <!-- 左側廣告 -->
+    <div class="ad-sidebar">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:160px;height:600px"
+           data-ad-client="ca-pub-7165265186193287"
+           data-ad-slot="7387023042"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
+
+    <!-- 主要內容 -->
     <div class="main-content">
-        
-  <div class="compliance-links">
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
-    <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
-  </div>
-
-  <div class="container">
-    <h1>Today's Tasks</h1>
-
-    <div class="input-group">
-      <input id="task-input" type="text" placeholder="Enter a new task…" />
-      <select id="task-priority">
-        <option value="important">High Priority</option>
-        <option value="due">Due Today</option>
-        <option value="normal" selected>General</option>
-      </select>
-      <button id="add-btn">Add Task</button>
-    </div>
-
-    <div class="task-links">
-      <a href="#high-priority">High Priority</a>
-      <a href="#due-today">Due Today</a>
-      <a href="#general">General</a>
-      <a href="#completed">Completed</a>
-    </div>
-
-    <!-- Tasks Lists -->
-    <section id="high-priority" class="task-group">
-      <h2>High Priority</h2>
-      <ul id="important-list" class="task-list"></ul>
-    </section>
-
-    <section id="due-today" class="task-group">
-      <h2>Due Today</h2>
-      <ul id="due-list" class="task-list"></ul>
-    </section>
-
-    <section id="general" class="task-group">
-      <h2>General</h2>
-      <ul id="normal-list" class="task-list"></ul>
-    </section>
-
-    <section id="completed" class="task-group">
-      <h2>Completed</h2>
-      <ul id="completed-list" class="task-list hidden"></ul>
-    </section>
-
-    <!-- Collapsible Info Sections -->
-    <section class="info-section" id="welcome-section">
-      <h2>Welcome to Today's Tasks</h2>
-      <div class="info-content">
-        <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
-        <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
+      <div class="compliance-links">
+        <a href="/about.html">About</a> |
+        <a href="/contact.html">Contact</a> |
+        <a href="/privacy.html">Privacy Policy</a> |
+        <a href="https://hill02252024.github.io/fire-calculator/" target="_blank">FIRE Calculator</a> |
+        <a href="https://hill02252024.github.io/resize/" target="_blank">Image Resizer</a>
       </div>
-    </section>
 
-    <section class="info-section" id="users-section">
-      <h2>What Our Users Say</h2>
-      <div class="info-content">
-        <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
-        <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
+      <div class="container">
+        <h1>Today's Tasks</h1>
+
+        <div class="input-group">
+          <input id="task-input" type="text" placeholder="Enter a new task…" />
+          <select id="task-priority">
+            <option value="important">High Priority</option>
+            <option value="due">Due Today</option>
+            <option value="normal" selected>General</option>
+          </select>
+          <button id="add-btn">Add Task</button>
+        </div>
+
+        <div class="task-links">
+          <a href="#high-priority">High Priority</a>
+          <a href="#due-today">Due Today</a>
+          <a href="#general">General</a>
+          <a href="#completed">Completed</a>
+        </div>
+
+        <!-- Tasks Lists -->
+        <section id="high-priority" class="task-group">
+          <h2>High Priority</h2>
+          <ul id="important-list" class="task-list"></ul>
+        </section>
+
+        <section id="due-today" class="task-group">
+          <h2>Due Today</h2>
+          <ul id="due-list" class="task-list"></ul>
+        </section>
+
+        <section id="general" class="task-group">
+          <h2>General</h2>
+          <ul id="normal-list" class="task-list"></ul>
+        </section>
+
+        <section id="completed" class="task-group">
+          <h2>Completed</h2>
+          <ul id="completed-list" class="task-list hidden"></ul>
+        </section>
+
+        <!-- Collapsible Info Sections -->
+        <section class="info-section" id="welcome-section">
+          <h2>Welcome to Today's Tasks</h2>
+          <div class="info-content">
+            <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
+            <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
+          </div>
+        </section>
+
+        <section class="info-section" id="users-section">
+          <h2>What Our Users Say</h2>
+          <div class="info-content">
+            <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
+            <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
+          </div>
+        </section>
+
+        <section class="info-section" id="features-section">
+          <h2>Features</h2>
+          <div class="info-content">
+            <ul class="features-list">
+              <li>Easy task input and management</li>
+              <li>Prioritize tasks with ease</li>
+              <li>Local storage ensures your tasks are always saved</li>
+              <li>Responsive design for all devices</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="alert" id="alert-message"></div>
       </div>
-    </section>
 
-    <section class="info-section" id="features-section">
-      <h2>Features</h2>
-      <div class="info-content">
-        <ul class="features-list">
-          <li>Easy task input and management</li>
-          <li>Prioritize tasks with ease</li>
-          <li>Local storage ensures your tasks are always saved</li>
-          <li>Responsive design for all devices</li>
-        </ul>
-      </div>
-    </section>
-
-    <div class="alert" id="alert-message"></div>
-  </div>
-
-  <script>
-    // 折叠功能
-    document.querySelectorAll('.info-section h2').forEach(header => {
-      header.addEventListener('click', () => {
-        header.parentElement.classList.toggle('collapsed');
-      });
-    });
-
-    // Load tasks from localStorage
-    function loadTasks() {
-      const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
-      Object.keys(tasks).forEach(priority => {
-        const taskList = document.getElementById(`${priority}-list`);
-        tasks[priority].forEach(taskText => {
-          const taskItem = document.createElement('li');
-          taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
-          if (priority === 'completed') {
-            taskItem.classList.add('completed');
-            taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-            taskItem.querySelector('.restore-btn').addEventListener('click', function() {
-              taskItem.remove();
-              addTask(taskText, 'normal', false);
+      <script>
+        // 折叠功能
+        document.querySelectorAll('.info-section h2').forEach(header => {
+          header.addEventListener('click', () => {
+            header.parentElement.classList.toggle('collapsed');
+          });
+        });
+        // Load tasks
+        function loadTasks() {
+          const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
+          Object.keys(tasks).forEach(priority => {
+            const list = document.getElementById(`${priority}-list`);
+            tasks[priority].forEach(text => {
+              const li = document.createElement('li');
+              li.innerHTML = `${text} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+              if (priority === 'completed') {
+                li.classList.add('completed');
+                li.innerHTML = `${text} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+                li.querySelector('.restore-btn').addEventListener('click', () => {
+                  li.remove();
+                  addTask(text, 'normal', false);
+                });
+              } else {
+                li.querySelector('.complete-btn').addEventListener('click', () => {
+                  li.classList.add('completed');
+                  document.getElementById('completed-list').appendChild(li);
+                  li.innerHTML = `${text} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+                  li.querySelector('.restore-btn').addEventListener('click', () => {
+                    li.remove();
+                    addTask(text, priority, false);
+                  });
+                  saveTasks();
+                });
+              }
+              list.appendChild(li);
             });
-          } else {
-            taskItem.querySelector('.complete-btn').addEventListener('click', function() {
-              taskItem.classList.add('completed');
-              document.getElementById('completed-list').appendChild(taskItem);
-              taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-              taskItem.querySelector('.restore-btn').addEventListener('click', function() {
-                taskItem.remove();
-                addTask(taskText, priority, false);
-              });
-              saveTasks();
+          });
+        }
+        // Save tasks
+        function saveTasks() {
+          const tasks = { important: [], due: [], normal: [], completed: [] };
+          Object.keys(tasks).forEach(priority => {
+            tasks[priority] = Array.from(document.getElementById(`${priority}-list`).children)
+              .map(li => li.textContent.trim());
+          });
+          localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+        // Add task
+        function addTask(text, priority, save = true) {
+          const idMap = { important: 'important-list', due: 'due-list', normal: 'normal-list' };
+          const list = document.getElementById(idMap[priority]);
+          const li = document.createElement('li');
+          li.innerHTML = `${text} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+          li.querySelector('.complete-btn').addEventListener('click', () => {
+            li.classList.add('completed');
+            document.getElementById('completed-list').appendChild(li);
+            li.innerHTML = `${text} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
+            li.querySelector('.restore-btn').addEventListener('click', () => {
+              li.remove();
+              addTask(text, priority, false);
             });
+            saveTasks();
+          });
+          list.appendChild(li);
+          if (save) saveTasks();
+        }
+        document.getElementById('add-btn').addEventListener('click', () => {
+          const input = document.getElementById('task-input');
+          const priority = document.getElementById('task-priority').value;
+          const text = input.value.trim();
+          if (text) {
+            addTask(text, priority);
+            input.value = '';
           }
-          taskList.appendChild(taskItem);
         });
-      });
-    }
-
-    // Save tasks to localStorage
-    function saveTasks() {
-      const tasks = { important: [], due: [], normal: [], completed: [] };
-      Object.keys(tasks).forEach(priority => {
-        const taskList = document.getElementById(`${priority}-list`);
-        tasks[priority] = Array.from(taskList.children).map(li => li.textContent.trim());
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-
-    // Add task function
-    function addTask(taskText, priority, save = true) {
-      const taskListId = {
-        important: 'important-list',
-        due: 'due-list',
-        normal: 'normal-list'
-      }[priority];
-      
-      const taskList = document.getElementById(taskListId);
-      const taskItem = document.createElement('li');
-      taskItem.innerHTML = `${taskText} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
-      
-      taskItem.querySelector('.complete-btn').addEventListener('click', function() {
-        taskItem.classList.add('completed');
-        document.getElementById('completed-list').appendChild(taskItem);
-        taskItem.innerHTML = `${taskText} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-        taskItem.querySelector('.restore-btn').addEventListener('click', function() {
-          taskItem.remove();
-          addTask(taskText, priority, false);
-        });
-        saveTasks();
-      });
-
-      taskList.appendChild(taskItem);
-      if (save) saveTasks();
-    }
-
-    document.getElementById('add-btn').addEventListener('click', function() {
-      const taskInput = document.getElementById('task-input');
-      const taskPriority = document.getElementById('task-priority');
-      const taskText = taskInput.value.trim();
-      const priority = taskPriority.value;
-      
-      if (taskText) {
-        addTask(taskText, priority);
-        taskInput.value = ''; // Clear input
-      }
-    });
-
-    // Check time and alert if tasks are past due
-    function checkTime() {
-      const now = new Date();
-      const hours = now.getHours();
-      const alertMessage = document.getElementById('alert-message');
-      if (hours >= 17) {
-        alertMessage.textContent = "It's after 5 PM. Please consider leaving unfinished tasks for tomorrow.";
-      } else {
-        alertMessage.textContent = "";
-      }
-    }
-
-    // Clear tasks at midnight
-    function clearTasksAtMidnight() {
-      const now = new Date();
-      const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
-      setTimeout(() => {
-        localStorage.removeItem('tasks');
-        location.reload();
-      }, msUntilMidnight);
-    }
-
-    loadTasks();
-    checkTime();
-    clearTasksAtMidnight();
-  </script>
-
+        // Time alert and midnight clear
+        function checkTime() {
+          const h = new Date().getHours();
+          document.getElementById('alert-message').textContent = h >= 17
+            ? "It's after 5 PM. Please consider leaving unfinished tasks for tomorrow."
+            : '';
+        }
+        function clearAtMidnight() {
+          const now = new Date();
+          const ms = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1) - now;
+          setTimeout(() => { localStorage.removeItem('tasks'); location.reload(); }, ms);
+        }
+        loadTasks(); checkTime(); clearAtMidnight();
+      </script>
     </div>
+
+    <!-- 右側廣告 -->
     <div class="ad-sidebar">
-        
-<!-- resize_leftads -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:160px;height:600px"
-     data-ad-client="ca-pub-7165265186193287"
-     data-ad-slot="7387023042"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:160px;height:600px"
+           data-ad-client="ca-pub-7165265186193287"
+           data-ad-slot="7387023042"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-</div>
+  </div>
 </body>
 </html>
