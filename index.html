@@ -3,119 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Today's Tasks</title>
-  <meta name="description" content="A simple daily to-do list tool for busy professionals." />
-
-  <!-- Google AdSense account verification -->
-  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-
-  <!-- Google AdSense library (load once sitewide) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
-
-  <!-- Font Awesome icons -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-
-  <style>
-    body { font-family: Arial, sans-serif; background:#f5f8fa; margin:0; color:#333; }
-    .compliance-links {
-      background:#007bff; color:#fff; text-align:center; padding:10px 16px; position:sticky; top:0; z-index:10;
-    }
-    .compliance-links a { color:#fff; margin:0 8px; text-decoration:none; font-weight:700; }
-    .compliance-links a:hover { text-decoration:underline; }
-
-    .container {
-      max-width: 1040px; margin: 32px auto; padding: 0 24px 48px;
-      background:#fff; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    /* Intro section */
-    .info-static { margin-bottom:24px; }
-    .info-static h2 { font-size:1.8rem; margin:16px 0 8px; color:#007bff; }
-    .info-static p, .info-static ul { font-size:1rem; line-height:1.6; margin-bottom:12px; }
-
-    /* App styles */
-    h1 { text-align:center; margin:20px 0; font-size:2.1rem; font-weight:700; color:#222; }
-    .input-group {
-      display:flex; justify-content:center; gap:10px; background:#e6f2ff;
-      padding:16px; border-radius:8px; margin: 0 16px 18px; box-shadow:0 2px 8px rgba(0,123,255,0.15);
-    }
-    .input-group input, .input-group select {
-      padding:12px; border-radius:6px; border:1px solid #bbb; font-size:1rem; max-width:400px; flex:1;
-    }
-    .input-group button {
-      padding:12px 20px; border-radius:6px; border:none; background:#007bff; color:#fff; font-weight:600; cursor:pointer;
-    }
-    .input-group button:hover { background:#0056b3; }
-
-    .task-links { text-align:center; margin:8px 0 20px; }
-    .task-links a { margin:0 10px; color:#007bff; text-decoration:none; font-weight:700; }
-    .task-links a:hover { color:#0056b3; }
-
-    section.task-group { margin:0 16px 26px; }
-    section.task-group h2 {
-      font-size:1.25rem; font-weight:700; margin:0 0 10px;
-      border-left:5px solid #007bff; padding-left:10px; color:#004085;
-    }
-    ul.task-list { list-style:none; padding-left:0; }
-    ul.task-list li {
-      background:#f0f8ff; margin-bottom:8px; padding:12px 16px; border-radius:6px;
-      display:flex; justify-content:space-between; align-items:center; border-left:4px solid #007bff; font-size:1rem;
-    }
-    ul.task-list li.completed { text-decoration:line-through; color:#888; border-left-color:#6c757d; background:#e9ecef; }
-    .complete-btn, .restore-btn { background:none; border:none; color:#28a745; cursor:pointer; font-size:1.1rem; }
-    .complete-btn:hover, .restore-btn:hover { color:#218838; }
-
-    /* Collapsible info sections */
-    .info-section { background:#f9f9f9; border-radius:8px; padding:18px 22px; margin:0 16px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
-    .info-section h2 { font-size:1.35rem; margin:0 0 10px; cursor:pointer; position:relative; }
-    .info-section h2::after { content:'▼'; position:absolute; right:0; font-size:1rem; transition:transform .2s; }
-    .info-section.collapsed h2::after { transform:rotate(-90deg); }
-    .info-content { line-height:1.65; }
-    .info-section.collapsed .info-content { display:none; }
-    blockquote { margin:10px 0; padding-left:14px; border-left:4px solid #007bff; color:#555; font-style:italic; }
-
-    /* Articles list */
-    .articles { margin: 0 16px 24px; padding:16px; background:#f7fbff; border:1px solid #d7e9ff; border-radius:8px; }
-    .articles h3 { margin:0 0 10px; color:#0056b3; }
-    .articles ul { margin:0; padding-left:18px; }
-    .articles li { margin:6px 0; }
-
-    /* Footer ad (single, responsive) */
-    footer { max-width:1040px; margin: 10px auto 30px; padding: 0 24px; }
-    .ad-note { text-align:center; color:#666; font-size:.9rem; margin:8px 0 6px; }
-  </style>
+  <title>Today's Tasks – Simple Daily To-Do List</title>
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive." />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- Top nav -->
   <div class="compliance-links">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
     <a href="/article1.html">Productivity Tips</a> |
     <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Why Digital To-Do Lists</a>
+    <a href="/article3.html">Digital To-Do Lists</a> |
+    <a href="/article4.html">How to Use</a> |
+    <a href="/article5.html">Weekly Review</a>
   </div>
 
-  <div class="container">
-    <!-- Intro copy to strengthen content -->
-    <section class="info-static">
-      <h2>What is Today's Tasks?</h2>
-      <p>Today's Tasks is a free, no-signup daily to-do list web app designed for busy professionals who want to organize their day in seconds. It runs entirely in your browser, stores data locally, and never sends your personal tasks to any server.</p>
-      <ul>
-        <li>Set priorities: High / Due Today / General</li>
-        <li>Mark tasks completed and restore them later</li>
-        <li>Automatic midnight reset each day</li>
-        <li>Responsive design for desktop & mobile</li>
-      </ul>
-      <p>Use Today's Tasks to streamline your workflow and boost your productivity. No ads in the app itself—just a clean interface to help you get things done.</p>
-    </section>
+  <main class="container">
+    <h1>What is Today's Tasks?</h1>
+    <p>Today's Tasks is a free, no-signup daily to-do list app designed for busy professionals who want to organize their day in seconds. It runs entirely in your browser, stores data locally, and never sends your personal tasks to any server.</p>
+    <ul>
+      <li>Set priorities: High / Due Today / General</li>
+      <li>Mark tasks completed and restore them later</li>
+      <li>Automatic midnight reset each day</li>
+      <li>Responsive design for desktop & mobile</li>
+    </ul>
 
-    <!-- App -->
-    <h1>Today's Tasks</h1>
+    <h2>Today's Tasks</h2>
     <div class="input-group">
       <input id="task-input" type="text" placeholder="Enter a new task…" />
       <select id="task-priority">
@@ -125,156 +40,45 @@
       </select>
       <button id="add-btn">Add Task</button>
     </div>
-    <div class="task-links">
-      <a href="#high-priority">High Priority</a>
-      <a href="#due-today">Due Today</a>
-      <a href="#general">General</a>
-      <a href="#completed">Completed</a>
-    </div>
-    <section id="high-priority" class="task-group">
+
+    <section class="group">
       <h2>High Priority</h2>
       <ul id="important-list" class="task-list"></ul>
     </section>
-    <section id="due-today" class="task-group">
+    <section class="group">
       <h2>Due Today</h2>
       <ul id="due-list" class="task-list"></ul>
     </section>
-    <section id="general" class="task-group">
+    <section class="group">
       <h2>General</h2>
       <ul id="normal-list" class="task-list"></ul>
     </section>
-    <section id="completed" class="task-group">
+    <section class="group">
       <h2>Completed</h2>
       <ul id="completed-list" class="task-list"></ul>
     </section>
+  </main>
 
-    <!-- Collapsible info -->
-    <section class="info-section" id="welcome-section">
-      <h2>Welcome to Today's Tasks</h2>
-      <div class="info-content">
-        <p>Today's Tasks is a simple yet powerful tool designed to help busy professionals manage their daily tasks efficiently. With features like priority setting and local storage, you can focus on what really matters.</p>
-        <p>Our tool is perfect for anyone looking to streamline their daily routine, set priorities, and achieve more with less stress. Experience the convenience of having your tasks organized and accessible at all times.</p>
-      </div>
-    </section>
-    <section class="info-section" id="users-section">
-      <h2>What Our Users Say</h2>
-      <div class="info-content">
-        <blockquote>"This tool has transformed the way I organize my day. Highly recommended!" - Jane Doe</blockquote>
-        <blockquote>"Simple, effective, and exactly what I needed for my daily task management." - John Smith</blockquote>
-      </div>
-    </section>
-    <section class="info-section" id="features-section">
-      <h2>Features</h2>
-      <div class="info-content">
-        <ul>
-          <li>Easy task input and management</li>
-          <li>Prioritize tasks with ease</li>
-          <li>Local storage ensures your tasks are always saved</li>
-          <li>Responsive design for all devices</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Articles promo -->
-    <section class="articles">
-      <h3>Recommended Reading</h3>
-      <ul>
-        <li><a href="/article1.html">7 Practical Productivity Tips for Busy Professionals</a></li>
-        <li><a href="/article2.html">Time Management Strategies That Actually Work</a></li>
-        <li><a href="/article3.html">The Benefits of Digital To-Do Lists</a></li>
-      </ul>
-    </section>
-
-    <div id="alert-message" class="ad-note"></div>
-  </div>
-
-  <!-- Single responsive Ad (keep only one during review) -->
-  <footer>
-    <div class="ad-note">Sponsored</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-7165265186193287"
-         data-ad-slot="7387023042"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <footer class="footer">
+    © 2025 Today’s Tasks. All rights reserved.
   </footer>
 
   <script>
-    // collapse sections
-    document.querySelectorAll('.info-section h2').forEach(h => {
-      h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
-    });
-
     function loadTasks() {
       const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
       Object.entries(tasks).forEach(([pri, arr]) => {
         const list = document.getElementById(`${pri}-list`);
         arr.forEach(text => {
           const li = document.createElement('li');
-          li.innerHTML = `${text} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
+          li.innerHTML = `<span>${text}</span> <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
           if (pri === 'completed') {
             li.classList.add('completed');
-            li.innerHTML = `${text} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-            li.querySelector('.restore-btn').addEventListener('click', () => { li.remove(); addTask(text, 'normal', false); });
-          } else {
-            li.querySelector('.complete-btn').addEventListener('click', () => {
-              li.classList.add('completed');
-              document.getElementById('completed-list').appendChild(li);
-              li.innerHTML = `${text} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-              li.querySelector('.restore-btn').addEventListener('click', () => { li.remove(); addTask(text, pri, false); });
-              saveTasks();
-            });
           }
           list.appendChild(li);
         });
       });
     }
-    function saveTasks() {
-      const res = {};
-      ['important','due','normal','completed'].forEach(pri => {
-        res[pri] = Array.from(document.getElementById(`${pri}-list`).children).map(li => li.textContent.trim());
-      });
-      localStorage.setItem('tasks', JSON.stringify(res));
-    }
-    function addTask(txt, pri, save=true) {
-      const map = { important:'important-list', due:'due-list', normal:'normal-list' };
-      const list = document.getElementById(map[pri]);
-      const li = document.createElement('li');
-      li.innerHTML = `${txt} <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
-      li.querySelector('.complete-btn').addEventListener('click', () => {
-        li.classList.add('completed');
-        document.getElementById('completed-list').appendChild(li);
-        li.innerHTML = `${txt} <button class="restore-btn"><i class="fas fa-undo"></i></button>`;
-        li.querySelector('.restore-btn').addEventListener('click', () => { li.remove(); addTask(txt, pri, false); });
-        saveTasks();
-      });
-      list.appendChild(li);
-      if (save) saveTasks();
-    }
-    document.getElementById('add-btn').onclick = () => {
-      const inp = document.getElementById('task-input');
-      const p = document.getElementById('task-priority').value;
-      const t = inp.value.trim();
-      if (t) { addTask(t, p); inp.value = ''; }
-    };
-
-    // friendly note after 5pm
-    const h = new Date().getHours();
-    document.getElementById('alert-message').textContent = h >= 17 ? "It's after 5 PM. Consider moving unfinished tasks to tomorrow." : '';
-
-    // midnight reset
-    (function clearAtMidnight(){
-      const n = new Date();
-      const ms = new Date(n.getFullYear(), n.getMonth(), n.getDate()+1) - n;
-      setTimeout(() => { localStorage.removeItem('tasks'); location.reload(); }, ms);
-    })();
-
     loadTasks();
   </script>
-    <footer class="footer">
-    © 2025 Today’s Tasks. All rights reserved.
-  </footer>
-
 </body>
 </html>
