@@ -1,5 +1,4 @@
-/* Enhanced style.css with compliance links and Completed section */
-
+/* === Global font & variables === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
@@ -9,6 +8,8 @@
   --text-dark: #2c3e50;
   --text-muted: #7f8c8d;
   --accent: #5dade2;
+  --accent-strong: #3498db;
+  --accent-strong-dark: #2c80b9;
   --priority-high: #e74c3c;
   --priority-due: #f39c12;
   --priority-normal: #bdc3c7;
@@ -29,33 +30,48 @@ body {
   background-color: var(--bg-light);
   color: var(--text-dark);
   padding: 2rem 0;
-  display: block; /* 重要：避免 flex 把 footer 推去左邊 */
+  display: block; /* 避免 flex 影響 footer */
 }
 
-/* 頂部導覽列 */
+/* === Top Navigation (blue rounded buttons style) === */
 .compliance-links {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 1.5rem;
-  padding: 0.75rem 1rem;
-  background-color: var(--accent);
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  max-width: 1040px;
+  margin: 12px auto 16px;
+  padding: 6px 0;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 0; /* 去掉分隔符空隙 */
 }
 .compliance-links a {
-  color: #fff;
+  display: inline-block;
+  font-size: 0.92rem;              
+  background: var(--accent-strong);
+  color: #fff !important;
+  padding: 6px 14px;
+  margin: 0 6px 6px 0;
+  border-radius: 6px;
   text-decoration: none;
-  margin: 0 0.5rem;
   font-weight: 600;
-  transition: opacity 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: background .15s ease, transform .05s ease;
 }
 .compliance-links a:hover {
-  opacity: 0.8;
+  background: var(--accent-strong-dark);
+  transform: translateY(-1px);
+}
+.compliance-links a:active {
+  transform: translateY(0);
 }
 
-/* Container */
+/* Small screen nav */
+@media (max-width: 640px) {
+  .compliance-links { padding: 8px 10px; }
+  .compliance-links a { margin: 0 6px 6px 0; }
+}
+
+/* === Container === */
 .container {
   width: 100%;
   max-width: 800px;
@@ -66,7 +82,7 @@ body {
   padding: 2rem;
 }
 
-/* Headings */
+/* === Headings === */
 h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -81,7 +97,7 @@ h2 {
   padding-bottom: 0.25rem;
 }
 
-/* Input group (for index) */
+/* === Input group (for index page) === */
 .input-group {
   display: flex;
   gap: 0.5rem;
@@ -109,7 +125,7 @@ h2 {
   background-color: var(--button-hover);
 }
 
-/* Groups / Sections */
+/* === Groups / Sections === */
 .group {
   margin-bottom: 2rem;
 }
@@ -117,7 +133,7 @@ h2 {
   cursor: pointer;
 }
 
-/* Task list (index) */
+/* === Task list (index) === */
 .task-list li {
   list-style: none;
   display: flex;
@@ -152,7 +168,7 @@ h2 {
   color: var(--text-muted);
 }
 
-/* Buttons */
+/* === Buttons === */
 .complete-btn {
   width: 32px;
   height: 32px;
@@ -178,7 +194,7 @@ h2 {
   display: none;
 }
 
-/* Footer */
+/* === Footer === */
 .footer {
   width: 100%;
   text-align: center;
@@ -188,7 +204,7 @@ h2 {
   padding: 0.75rem 0;
 }
 
-/* Responsive */
+/* === Responsive === */
 @media (max-width: 600px) {
   .input-group {
     flex-direction: column;
