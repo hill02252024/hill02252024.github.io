@@ -1,33 +1,49 @@
-/* ===== Global base (kept your design tokens) ===== */
+/* ===============================
+   Today's Tasks - Unified style.css
+   - 合併：原有變數與待辦清單樣式
+   - 統一：全站藍色頂欄 + 1040px 卡片
+   - 修正：上方大段空白（移除 body flex）
+   =============================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+/* ---------- Design tokens ---------- */
 :root {
   --font-base: 'Inter', sans-serif;
+
   --bg-light: #f5f8fa;
   --bg-white: #ffffff;
+
   --text-dark: #2c3e50;
   --text-muted: #7f8c8d;
-  --accent: #5dade2;
-  --accent-strong: #007bff;
+
+  --accent: #5dade2;            /* 次要藍 */
+  --accent-strong: #007bff;     /* 主藍（頂欄） */
   --accent-strong-dark: #0056b3;
+
   --priority-high: #e74c3c;
-  --priority-due: #f39c12;
+  --priority-due:  #f39c12;
   --priority-normal: #bdc3c7;
+
   --button-bg: #5dade2;
   --button-hover: #3498db;
+
   --input-border: #dfe6e9;
   --shadow: rgba(0,0,0,0.1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
+html, body { height: auto; }
+
 body {
   font-family: var(--font-base);
   background-color: var(--bg-light);
   color: var(--text-dark);
+  /* 修正上方空白：用 block 而不是 flex，且不加 body padding */
+  display: block;
 }
 
-/* ===== Top nav (unified across all pages) ===== */
+/* ---------- Top navigation (全站一致) ---------- */
 .compliance-links {
   width: 100%;
   background: var(--accent-strong);
@@ -46,26 +62,30 @@ body {
 }
 .compliance-links a:hover { text-decoration: underline; }
 
-/* ===== Page container (unified 1040px card) ===== */
+/* ---------- Page container (卡片) ---------- */
 .container {
   width: 100%;
   max-width: 1040px;
-  margin: 32px auto;
+  margin: 24px auto;                  /* 與頂欄保持距離 */
   background-color: var(--bg-white);
   border-radius: 8px;
   box-shadow: 0 4px 15px var(--shadow);
   padding: 24px;
 }
 
-/* ===== Typography ===== */
-h1 { font-size: 2rem; margin: 10px 0 16px; color: #222; }
+/* ---------- Typography ---------- */
+h1 { font-size: 2rem;  margin: 10px 0 16px; color: #222; }
 h2 { font-size: 1.35rem; margin: 18px 0 10px; color: var(--accent-strong-dark); }
-h3 { font-size: 1.15rem; margin: 14px 0 8px; color: var(--accent-strong-dark); }
+h3 { font-size: 1.15rem; margin: 14px 0 8px;  color: var(--accent-strong-dark); }
 p, li { line-height: 1.65; }
 small, .muted { color: var(--text-muted); }
 
-/* ===== Home app styles (kept from your original) ===== */
-.input-group { display: flex; gap: .5rem; margin: 16px 0 22px; background:#e6f2ff; padding:16px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,123,255,0.15); }
+/* ---------- Home app / task list（沿用＋微調） ---------- */
+.input-group {
+  display: flex; gap: .5rem; margin: 16px 0 22px;
+  background:#e6f2ff; padding:16px; border-radius:8px;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.15);
+}
 .input-group input, .input-group select {
   flex: 1; padding: .75rem 1rem; font-size: 1rem;
   border: 1px solid var(--input-border); border-radius: 6px;
@@ -92,6 +112,7 @@ small, .muted { color: var(--text-muted); }
   transition: transform .1s;
 }
 .task-list li:hover { transform: translateY(-2px); }
+
 .task-list li.important { border-left: 8px solid var(--priority-high); }
 .task-list li.due       { border-left: 8px solid var(--priority-due); }
 .task-list li.normal    { border-left: 8px solid var(--priority-normal); }
@@ -99,38 +120,50 @@ small, .muted { color: var(--text-muted); }
 
 .complete-btn {
   width: 32px; height: 32px; background: var(--accent);
-  border: none; border-radius: 50%; display:flex; align-items:center; justify-content:center;
+  border: none; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
   cursor: pointer; transition: background .2s, transform .1s;
 }
 .complete-btn i { color:#fff; font-size: 1rem; }
 .complete-btn:hover { background: var(--button-hover); transform: scale(1.1); }
+
 .completed span { text-decoration: line-through; color: var(--text-muted); }
 .hidden { display: none; }
 
-/* Collapsible info sections (home) */
-.info-section { background:#f9f9f9; border-radius:8px; padding:18px 22px; margin: 10px 0 20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+/* ---------- Collapsible info（首頁用） ---------- */
+.info-section {
+  background:#f9f9f9; border-radius:8px;
+  padding:18px 22px; margin: 10px 0 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
 .info-section h2 { position:relative; cursor:pointer; }
 .info-section h2::after { content:'▼'; position:absolute; right:0; font-size:1rem; transition: transform .2s; }
 .info-section.collapsed .info-content { display:none; }
 .info-section.collapsed h2::after { transform: rotate(-90deg); }
 
-/* Articles module (home + articles) */
-.articles { margin: 8px 0 24px; padding:16px; background:#f7fbff; border:1px solid #d7e9ff; border-radius:8px; }
+/* ---------- Articles module（首頁 + 文章頁） ---------- */
+.articles {
+  margin: 8px 0 24px; padding:16px;
+  background:#f7fbff; border:1px solid #d7e9ff; border-radius:8px;
+}
 .articles h3 { margin:0 0 10px; color: var(--accent-strong-dark); }
 .articles ul { margin:0; padding-left:18px; }
 
-/* Footer ad note on home */
+/* ---------- Footer ad note（首頁） ---------- */
 .ad-note { text-align:center; color:#666; font-size:.9rem; margin: 8px 0 6px; }
 
-/* Article helpers */
-blockquote { margin: 10px 0; padding-left: 14px; border-left: 4px solid var(--accent-strong); color:#555; font-style: italic; }
-
-/* Simple tables (for policies) */
+/* ---------- Generic content helpers（靜態頁面） ---------- */
+blockquote {
+  margin: 10px 0;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent-strong);
+  color:#555; font-style: italic;
+}
 table { width:100%; border-collapse: collapse; margin: 8px 0 16px; }
 th, td { border:1px solid #e6ecf1; padding:10px; text-align:left; }
 th { background:#f3f7ff; }
 
-/* Responsive */
+/* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   .input-group { flex-direction: column; }
   .input-group button { width: 100%; margin-top: .5rem; }
