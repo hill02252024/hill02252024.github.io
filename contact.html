@@ -4,48 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – Today's Tasks</title>
-  <meta name="description" content="Contact the team behind Today's Tasks for feedback, support, or partnership inquiries." />
+  <meta name="description" content="Get in touch with the Today's Tasks team for feedback, support, or partnerships." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <div class="compliance-links">
     <a href="/index.html">Home</a> |
-    <a href="/article1.html">Productivity Tips</a> |
-    <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Digital To-Do Lists</a> |
     <a href="/about.html">About</a> |
-    <a href="/privacy.html">Privacy</a> |
-    <a href="/contact.html">Contact</a>
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a>
   </div>
 
   <main class="container">
     <h1>Contact Us</h1>
 
     <section class="group">
-      <h2>General Feedback</h2>
-      <p>We welcome suggestions, feature requests, and bug reports. Your feedback helps us keep the app simple and useful for everyone.</p>
-      <p>Email: <a href="mailto:contact@hill02252024.github.io">contact@hill02252024.github.io</a></p>
+      <h2>Email</h2>
+      <p>Have questions or feedback? Email us at:<br>
+      <a href="mailto:contact@todays-tasks.com">contact@todays-tasks.com</a></p>
     </section>
 
     <section class="group">
-      <h2>Support</h2>
-      <p>If something doesn’t work as expected, please include your browser version and a short description of the steps to reproduce the issue. Screenshots are very helpful.</p>
-    </section>
-
-    <section class="group">
-      <h2>Partnerships & Press</h2>
-      <p>For partnership ideas, white-label opportunities, or press inquiries, drop us a note via the email above with the subject “Partnership”.</p>
-    </section>
-
-    <section class="group">
-      <h2>Privacy Requests</h2>
-      <p>To request data information or deletion, see our <a href="/privacy.html">Privacy Policy</a>. Because the app is local-first, most task data never leaves your device.</p>
+      <h2>Send Us a Message</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <label>Name:<br><input type="text" name="name" required></label><br><br>
+        <label>Email:<br><input type="email" name="email" required></label><br><br>
+        <label>Message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+        <button type="submit">Send Message</button>
+      </form>
     </section>
   </main>
-    <footer class="footer">
+
+  <footer class="footer">
     © 2025 Today’s Tasks. All rights reserved.
   </footer>
-
 </body>
 </html>
-
