@@ -1,14 +1,15 @@
-/* Enhanced style.css with compliance links and Completed section */
-
+/* ===== Global base (kept your design tokens) ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
   --font-base: 'Inter', sans-serif;
-  --bg-light: #f8f9fa;
+  --bg-light: #f5f8fa;
   --bg-white: #ffffff;
   --text-dark: #2c3e50;
   --text-muted: #7f8c8d;
   --accent: #5dade2;
+  --accent-strong: #007bff;
+  --accent-strong-dark: #0056b3;
   --priority-high: #e74c3c;
   --priority-due: #f39c12;
   --priority-normal: #bdc3c7;
@@ -18,185 +19,120 @@
   --shadow: rgba(0,0,0,0.1);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
   font-family: var(--font-base);
   background-color: var(--bg-light);
   color: var(--text-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
 }
 
-/* 法遵與工具連結列 */
+/* ===== Top nav (unified across all pages) ===== */
 .compliance-links {
   width: 100%;
-  max-width: 700px;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--bg-white);
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  text-align: right;
-  font-size: 0.9rem;
+  background: var(--accent-strong);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 .compliance-links a {
-  color: var(--accent);
-  text-decoration: none;
-  margin: 0 0.25rem;
-  transition: color 0.2s;
-}
-.compliance-links a:hover {
-  color: var(--button-hover);
-}
-
-/* 按鈕式連結 */
-.btn-link {
-  display: inline-block;
-  margin-left: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  background-color: var(--button-bg);
   color: #fff;
-  border-radius: 4px;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  margin: 0 10px;
+  font-weight: 700;
 }
-.btn-link:hover {
-  background-color: var(--button-hover);
-}
+.compliance-links a:hover { text-decoration: underline; }
 
+/* ===== Page container (unified 1040px card) ===== */
 .container {
   width: 100%;
-  max-width: 700px;
+  max-width: 1040px;
+  margin: 32px auto;
   background-color: var(--bg-white);
   border-radius: 8px;
-  box-shadow: 0 4px 12px var(--shadow);
-  padding: 2rem;
+  box-shadow: 0 4px 15px var(--shadow);
+  padding: 24px;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+/* ===== Typography ===== */
+h1 { font-size: 2rem; margin: 10px 0 16px; color: #222; }
+h2 { font-size: 1.35rem; margin: 18px 0 10px; color: var(--accent-strong-dark); }
+h3 { font-size: 1.15rem; margin: 14px 0 8px; color: var(--accent-strong-dark); }
+p, li { line-height: 1.65; }
+small, .muted { color: var(--text-muted); }
 
-.input-group {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+/* ===== Home app styles (kept from your original) ===== */
+.input-group { display: flex; gap: .5rem; margin: 16px 0 22px; background:#e6f2ff; padding:16px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,123,255,0.15); }
+.input-group input, .input-group select {
+  flex: 1; padding: .75rem 1rem; font-size: 1rem;
+  border: 1px solid var(--input-border); border-radius: 6px;
 }
-
-.input-group input,
-.input-group select {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-}
-
 .input-group button {
-  padding: 0 1.25rem;
-  background-color: var(--button-bg);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  padding: 0 1.25rem; background: var(--button-bg); color:#fff;
+  border:none; border-radius:6px; font-weight:600; cursor:pointer;
+  transition: background .2s;
 }
+.input-group button:hover { background: var(--button-hover); }
 
-.input-group button:hover {
-  background-color: var(--button-hover);
-}
-
-.group {
-  margin-bottom: 2rem;
-}
-
+.group { margin-bottom: 1.2rem; }
 .group h2 {
-  font-size: 1.25rem;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
-  cursor: pointer;
+  font-size: 1.25rem; color: var(--accent);
+  margin-bottom: .75rem; border-left: 5px solid var(--accent);
+  padding-left: 10px; display: inline-block; cursor: pointer;
 }
 
+.task-list { list-style: none; padding-left: 0; }
 .task-list li {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem 0.75rem 0;
-  margin-bottom: 0.75rem;
-  background-color: var(--bg-white);
-  border-radius: 6px;
-  box-shadow: 0 2px 8px var(--shadow);
-  padding-left: 8px;
-  transition: transform 0.1s;
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom: .75rem; padding: .75rem 1rem .75rem 8px;
+  background: var(--bg-white); border-radius: 6px; box-shadow: 0 2px 8px var(--shadow);
+  transition: transform .1s;
 }
-.task-list li:hover {
-  transform: translateY(-2px);
-}
-.task-list li.important {
-  border-left: 8px solid var(--priority-high);
-}
-.task-list li.due {
-  border-left: 8px solid var(--priority-due);
-}
-.task-list li.normal {
-  border-left: 8px solid var(--priority-normal);
-}
-.task-list span {
-  flex: 1;
-  padding-right: 0.5rem;
-}
+.task-list li:hover { transform: translateY(-2px); }
+.task-list li.important { border-left: 8px solid var(--priority-high); }
+.task-list li.due       { border-left: 8px solid var(--priority-due); }
+.task-list li.normal    { border-left: 8px solid var(--priority-normal); }
+.task-list span { flex: 1; padding-right: .5rem; }
 
 .complete-btn {
-  width: 32px;
-  height: 32px;
-  background-color: var(--accent);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  width: 32px; height: 32px; background: var(--accent);
+  border: none; border-radius: 50%; display:flex; align-items:center; justify-content:center;
+  cursor: pointer; transition: background .2s, transform .1s;
 }
-.complete-btn i {
-  color: #fff;
-  font-size: 1rem;
-}
-.complete-btn:hover {
-  background-color: var(--button-hover);
-  transform: scale(1.1);
-}
+.complete-btn i { color:#fff; font-size: 1rem; }
+.complete-btn:hover { background: var(--button-hover); transform: scale(1.1); }
+.completed span { text-decoration: line-through; color: var(--text-muted); }
+.hidden { display: none; }
 
-.completed span {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
+/* Collapsible info sections (home) */
+.info-section { background:#f9f9f9; border-radius:8px; padding:18px 22px; margin: 10px 0 20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+.info-section h2 { position:relative; cursor:pointer; }
+.info-section h2::after { content:'▼'; position:absolute; right:0; font-size:1rem; transition: transform .2s; }
+.info-section.collapsed .info-content { display:none; }
+.info-section.collapsed h2::after { transform: rotate(-90deg); }
 
-.hidden {
-  display: none;
-}
+/* Articles module (home + articles) */
+.articles { margin: 8px 0 24px; padding:16px; background:#f7fbff; border:1px solid #d7e9ff; border-radius:8px; }
+.articles h3 { margin:0 0 10px; color: var(--accent-strong-dark); }
+.articles ul { margin:0; padding-left:18px; }
+
+/* Footer ad note on home */
+.ad-note { text-align:center; color:#666; font-size:.9rem; margin: 8px 0 6px; }
+
+/* Article helpers */
+blockquote { margin: 10px 0; padding-left: 14px; border-left: 4px solid var(--accent-strong); color:#555; font-style: italic; }
+
+/* Simple tables (for policies) */
+table { width:100%; border-collapse: collapse; margin: 8px 0 16px; }
+th, td { border:1px solid #e6ecf1; padding:10px; text-align:left; }
+th { background:#f3f7ff; }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .input-group {
-    flex-direction: column;
-  }
-  .input-group button {
-    width: 100%;
-    margin-top: 0.5rem;
-  }
+@media (max-width: 640px) {
+  .input-group { flex-direction: column; }
+  .input-group button { width: 100%; margin-top: .5rem; }
+  .container { padding: 18px; }
 }
