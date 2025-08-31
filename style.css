@@ -28,72 +28,65 @@ body {
   font-family: var(--font-base);
   background-color: var(--bg-light);
   color: var(--text-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 2rem 0;
+  display: block; /* 重要：避免 flex 把 footer 推去左邊 */
 }
 
-/* 法遵與工具連結列 */
+/* 頂部導覽列 */
 .compliance-links {
   width: 100%;
-  max-width: 900px;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--bg-white);
+  max-width: 1000px;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--accent);
   border-radius: 4px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 .compliance-links a {
-  color: var(--accent);
+  color: #fff;
   text-decoration: none;
   margin: 0 0.5rem;
-  transition: color 0.2s;
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 .compliance-links a:hover {
-  color: var(--button-hover);
+  opacity: 0.8;
 }
 
-/* 按鈕式連結 */
-.btn-link {
-  display: inline-block;
-  margin-left: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  background-color: var(--button-bg);
-  color: #fff;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-}
-.btn-link:hover {
-  background-color: var(--button-hover);
-}
-
+/* Container */
 .container {
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
+  margin: 0 auto;
   background-color: var(--bg-white);
   border-radius: 8px;
   box-shadow: 0 4px 12px var(--shadow);
   padding: 2rem;
-  margin-bottom: 2rem;
 }
 
+/* Headings */
 h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
 
+/* Input group (for index) */
 .input-group {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
-
 .input-group input,
 .input-group select {
   flex: 1;
@@ -102,7 +95,6 @@ h1 {
   border: 1px solid var(--input-border);
   border-radius: 4px;
 }
-
 .input-group button {
   padding: 0 1.25rem;
   background-color: var(--button-bg);
@@ -113,24 +105,19 @@ h1 {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .input-group button:hover {
   background-color: var(--button-hover);
 }
 
+/* Groups / Sections */
 .group {
   margin-bottom: 2rem;
 }
-
 .group h2 {
-  font-size: 1.25rem;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
   cursor: pointer;
 }
 
+/* Task list (index) */
 .task-list li {
   list-style: none;
   display: flex;
@@ -160,7 +147,12 @@ h1 {
   flex: 1;
   padding-right: 0.5rem;
 }
+.completed span {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
 
+/* Buttons */
 .complete-btn {
   width: 32px;
   height: 32px;
@@ -182,22 +174,18 @@ h1 {
   transform: scale(1.1);
 }
 
-.completed span {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
-
 .hidden {
   display: none;
 }
 
 /* Footer */
 .footer {
-  margin-top: auto;
-  padding: 1rem;
+  width: 100%;
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-muted);
+  margin: 2rem 0 1rem;
+  padding: 0.75rem 0;
 }
 
 /* Responsive */
