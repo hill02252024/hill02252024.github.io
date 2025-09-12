@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- Top navigation (keep style and links) -->
+  <!-- Top navigation -->
   <div class="compliance-links">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
@@ -18,7 +18,8 @@
     <a href="/article2.html">Time Management</a> |
     <a href="/article3.html">Digital To-Do Lists</a> |
     <a href="/article4.html">How to Use</a> |
-    <a href="/article5.html">Weekly Review</a>
+    <a href="/article5.html">Weekly Review</a> |
+    <a href="/etsy-guides.html">Time-Saving</a>
   </div>
 
   <main class="container">
@@ -30,14 +31,6 @@
       <li>Automatic midnight reset each day</li>
       <li>Responsive design for desktop and mobile</li>
     </ul>
-
-    <!-- New SEO-friendly CTA block -->
-    <section aria-label="Time-Saving templates">
-      <h2 class="sr-only">Explore Time-Saving Templates and Guides</h2>
-      <p>
-        <a href="/etsy-guides.html" class="btn">⭐ Explore Time-Saving Templates →</a>
-      </p>
-    </section>
 
     <h2>Today's Tasks</h2>
     <div class="input-group">
@@ -98,9 +91,11 @@
       });
     }
 
-    // Minimal add-task behavior (keeps your existing UX)
+    // Save current DOM lists back to localStorage
     function saveTasksFromDOM() {
-      const toArr = id => Array.from(document.querySelectorAll('#' + id + ' li span')).map(s => s.textContent.trim());
+      const toArr = id =>
+        Array.from(document.querySelectorAll('#' + id + ' li span'))
+             .map(s => s.textContent.trim());
       const data = {
         important: toArr('important-list'),
         due: toArr('due-list'),
@@ -137,7 +132,8 @@
             li.classList.add('completed');
             document.getElementById('completed-list').appendChild(li);
           } else {
-            li.remove(); // remove from completed if clicked again
+            // if clicked again in completed, remove
+            li.remove();
           }
           saveTasksFromDOM();
         }
