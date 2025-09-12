@@ -2,50 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Time-Saving Templates & Guides – Etsy Bestsellers for Busy Families</title>
-  <meta name="description" content="Explore time-saving Excel & Google Sheets templates loved by busy American families: cleaning & chore tracker, teacher planner, meal planner, subscription tracker, finance kits, health logs, and more. Easy to use, instant download, SEO-friendly product hub." />
-  <link rel="canonical" href="https://todays-tasks.com/etsy-guides.html" />
-  <meta property="og:title" content="Time-Saving Templates & Guides" />
-  <meta property="og:description" content="All our Etsy-ready templates in one place. Search, filter, and find your perfect time-saver." />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Time-Saving Templates & Guides – Etsy Picks for Busy Families</title>
+  <meta name="description" content="Curated Excel & Google Sheets templates for US families: cleaning schedules, teacher planners, student tools, meal planners, subscriptions, wellness logs and more. Instant download, beginner-friendly."/>
+  <link rel="stylesheet" href="/style.css"/>
   <style>
-    /* Page-scoped helpers (kept minimal; uses your base /style.css for layout/typography) */
-    .page-hero {max-width: 960px;margin: 24px auto 12px;padding: 0 16px;}
-    .filters {max-width: 960px;margin: 0 auto 12px;padding: 12px 16px;background:#f7f9fc;border:1px solid #e5e9f2;border-radius:8px;}
-    .filters form {display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-    .filters .search {flex:1 1 340px;}
-    .filters input[type="search"]{width:100%;padding:10px 12px;border:1px solid #cfd6e4;border-radius:6px}
-    .filters select{padding:10px 12px;border:1px solid #cfd6e4;border-radius:6px;background:#fff}
-    .chip {display:inline-block;padding:8px 12px;border:1px solid #cfd6e4;border-radius:999px;background:#fff;cursor:pointer;font-size:14px}
+    /* ---- page-specific light theme (同首頁風格) ---- */
+    .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px;}
+    .h1{font-size:30px;margin:10px 0 6px;}
+    .lede{color:#4b5563;margin-bottom:14px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;color:#1f2937;background:#fff;cursor:pointer}
     .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
-    .grid {max-width: 1100px;margin: 8px auto 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:0 16px}
-    .card {border:1px solid #e5e9f2;border-radius:12px;background:#fff;display:flex;flex-direction:column}
-    .card picture,.card img{width:100%;height:164px;object-fit:cover;border-top-left-radius:12px;border-top-right-radius:12px;background:#eef3ff}
-    .card-content{padding:12px 14px 8px}
-    .card h3{font-size:18px;margin:0 0 8px}
-    .meta {font-size:12px;color:#667085;margin-bottom:6px}
-    .bullets{padding-left:18px;margin:6px 0}
+    .toolbar{display:flex;gap:10px;align-items:center;margin:10px 0 16px;flex-wrap:wrap}
+    .toolbar input[type="search"]{flex:1;min-width:280px;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+    .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/10;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280}
+    .card-body{padding:12px}
+    .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
+    .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
+    .bullets{font-size:13px;color:#374151;margin:0 0 10px 16px}
     .bullets li{margin:2px 0}
-    .cta-row{display:flex;gap:8px;padding:10px 14px 14px;margin-top:auto}
-    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #2563eb;color:#2563eb;background:#fff}
-    .btn.primary{background:#2563eb;color:#fff;border-color:#2563eb}
-    .section {max-width:960px;margin: 24px auto;padding:0 16px}
-    .kicker{font-size:13px;color:#667085;margin-bottom:6px}
-    .anchor-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .anchor-links a{border:1px solid #cfd6e4;border-radius:999px;padding:6px 10px;background:#fff}
-    /* FAQ */
-    details{border:1px solid #e5e9f2;border-radius:8px;padding:10px 12px;background:#fff}
-    details+details{margin-top:8px}
-    summary{cursor:pointer;font-weight:600}
-    /* Print friendly */
-    @media print {.filters,.cta-row,.anchor-links{display:none}}
+    .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
+    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+    /* SEO blocks */
+    .section{margin:28px 0}
+    .faq summary{font-weight:700;cursor:pointer}
+    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
   </style>
 </head>
 <body>
-  <!-- Top navigation (keeps your original style & links) -->
-  <div class="compliance-links">
+  <!-- Top nav (與首頁一致) -->
+  <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
@@ -55,346 +48,183 @@
     <a href="/article3.html">Digital To-Do Lists</a> |
     <a href="/article4.html">How to Use</a> |
     <a href="/article5.html">Weekly Review</a> |
-    <a href="/etsy-guides.html"><strong>Time-Saving</strong></a>
+    <a href="/etsy-guides.html" aria-current="page">Time-Saving</a>
   </div>
 
-  <!-- Hero -->
-  <header class="page-hero">
-    <h1>Time-Saving Templates & Guides</h1>
-    <p class="kicker">For busy US families — simple spreadsheets that save hours each week.</p>
-    <p>Browse our most-loved Excel & Google Sheets templates: cleaning schedules, teacher planners, student tools, meal planners, subscription trackers, wellness logs, and more. Every template is beginner-friendly, instant-download, and optimized for Etsy shoppers.</p>
-    <div class="anchor-links" aria-label="Quick category links">
-      <a href="#cleaning">Cleaning</a>
-      <a href="#teacher">Teacher</a>
-      <a href="#student">Student</a>
-      <a href="#meal">Meal Planner</a>
-      <a href="#subscription">Subscriptions</a>
-      <a href="#fitness">Fitness & Nutrition</a>
-      <a href="#health">Medical & Health</a>
-      <a href="#finance">Home Finance</a>
-      <a href="#baby">Baby & Parenting</a>
-      <a href="#holiday">Holiday & Gifting</a>
+  <main class="page-wrap">
+    <h1 class="h1">Time-Saving Templates &amp; Guides</h1>
+    <p class="lede">For busy US families — simple spreadsheets that save hours each week. All templates are beginner-friendly, instant-download, and <strong>Excel/Google Sheets</strong> ready.</p>
+
+    <!-- 類別捷徑（可內鏈到錨點，利於SEO） -->
+    <div class="chips" aria-label="Categories">
+      <a class="chip" href="#cat-cleaning">Cleaning</a>
+      <a class="chip" href="#cat-teacher">Teacher</a>
+      <a class="chip" href="#cat-student">Student</a>
+      <a class="chip" href="#cat-meal">Meal Planner</a>
+      <a class="chip" href="#cat-fitness">Fitness & Nutrition</a>
+      <a class="chip" href="#cat-health">Medical & Health</a>
+      <a class="chip" href="#cat-baby">Baby & Parenting</a>
+      <a class="chip" href="#cat-finance">Home Finance</a>
+      <a class="chip" href="#cat-wedding">Wedding</a>
+      <a class="chip" href="#cat-holiday">Holiday Travel</a>
+      <a class="chip" href="#cat-productivity">Productivity</a>
     </div>
-  </header>
 
-  <!-- Controls -->
-  <section class="filters" aria-label="Search and filter">
-    <form id="filtersForm" onsubmit="return false;">
-      <div class="search">
-        <input id="q" type="search" placeholder="Search templates e.g. cleaning, teacher, budget…" aria-label="Search templates">
+    <!-- 工具列：搜尋 + 分類濾鏡 + 排序 -->
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search templates e.g. cleaning, teacher, budget…" aria-label="Search templates"/>
+      <div class="chips" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="cleaning">Cleaning</button>
+        <button class="chip" data-filter="teacher">Teacher</button>
+        <button class="chip" data-filter="student">Student</button>
+        <button class="chip" data-filter="meal">Meal</button>
+        <button class="chip" data-filter="fitness">Fitness</button>
+        <button class="chip" data-filter="health">Health</button>
+        <button class="chip" data-filter="baby">Baby</button>
+        <button class="chip" data-filter="finance">Finance</button>
+        <button class="chip" data-filter="wedding">Wedding</button>
+        <button class="chip" data-filter="holiday">Holiday</button>
+        <button class="chip" data-filter="productivity">Productivity</button>
       </div>
+      <label for="sort" class="sr-only">Sort</label>
       <select id="sort" aria-label="Sort results">
-        <option value="pop">Sort: Popular</option>
-        <option value="new">Sort: New</option>
-        <option value="az">Sort: A → Z</option>
+        <option value="popular">Sort: Popular</option>
+        <option value="new">Sort: Newest</option>
+        <option value="priceAsc">Price: Low to High</option>
+        <option value="priceDesc">Price: High to Low</option>
       </select>
-      <div id="chips" aria-label="Category filter" style="display:flex;flex-wrap:wrap;gap:8px">
-        <!-- Chips generated by JS -->
-      </div>
-    </form>
-  </section>
+    </div>
 
-  <!-- Grid -->
-  <section class="grid" id="grid" aria-live="polite">
-    <!-- === SAMPLE CARDS (duplicate to reach 80 as you add products) === -->
-    <!-- Cleaning -->
-    <article class="card" data-cat="Cleaning" id="cleaning">
-      <picture><img src="/assets/cleaning-placeholder.jpg" alt="Cleaning & Chore Tracker spreadsheet dashboard"></picture>
-      <div class="card-content">
-        <h3>Cleaning & Chore Tracker (Excel + Sheets)</h3>
-        <div class="meta">Category: Cleaning • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Auto weekly schedule & streaks</li>
-          <li>Energy/time estimator + alerts</li>
-          <li>Budget vs actual supplies heatmap</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#cleaning-detail">Learn More</a>
-      </div>
-    </article>
+    <!-- 卡片區 -->
+    <div id="grid" class="grid" aria-live="polite"></div>
 
-    <!-- Teacher -->
-    <article class="card" data-cat="Teacher" id="teacher">
-      <picture><img src="/assets/teacher-placeholder.jpg" alt="Teacher Planner dashboard with gradebook and attendance"></picture>
-      <div class="card-content">
-        <h3>Teacher Planner Premium (Excel)</h3>
-        <div class="meta">Category: Teacher • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Lesson plans, gradebook, seating chart</li>
-          <li>Parent contacts & exam planner</li>
-          <li>Resolution tracker + gamified streaks</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#teacher-detail">Learn More</a>
-      </div>
-    </article>
+    <!-- 內容說明（SEO 長文 + FAQ） -->
+    <section class="section" id="about">
+      <h2 id="why">Why Families Love These Templates</h2>
+      <p>We design for real homes: fair rotation, clear schedules, budget awareness, and easy dashboards. Color-coded alerts prevent missed tasks, while streaks keep everyone motivated. Great for couples, roommates, and families with kids.</p>
+      <ul>
+        <li>Instant download, no subscription needed</li>
+        <li>Works on both Excel and Google Sheets (Microsoft 365 recommended for Excel)</li>
+        <li>Step-by-step quick start inside each file</li>
+      </ul>
+    </section>
 
-    <!-- Student -->
-    <article class="card" data-cat="Student" id="student">
-      <picture><img src="/assets/student-placeholder.jpg" alt="Assignment & Exam Planner with countdown"></picture>
-      <div class="card-content">
-        <h3>Assignment & Exam Planner</h3>
-        <div class="meta">Category: Student • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>7-day deadline color alerts</li>
-          <li>GPA calculator + study hours</li>
-          <li>Weekly focus & ADHD-friendly layout</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#student-detail">Learn More</a>
-      </div>
-    </article>
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <details class="faq"><summary>Do I need Microsoft 365 or a Google account?</summary>
+        <p>Excel files work best on Microsoft 365 (Office 2021+). Google Sheets versions require a free Google account.</p>
+      </details>
+      <details class="faq"><summary>Are these beginner-friendly?</summary>
+        <p>Yes. Dropdowns, auto-calcs, and sample data are included so you can start in minutes.</p>
+      </details>
+      <details class="faq"><summary>Commercial use?</summary>
+        <p>Personal use only. Resale or redistribution is not permitted.</p>
+      </details>
+    </section>
+  </main>
 
-    <!-- Meal -->
-    <article class="card" data-cat="Meal" id="meal">
-      <picture><img src="/assets/meal-placeholder.jpg" alt="Automated meal planner calendar and grocery list"></picture>
-      <div class="card-content">
-        <h3>Automated Meal Planner</h3>
-        <div class="meta">Category: Meal Planner • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Auto grocery list per menu</li>
-          <li>Calendar view + cost tracker</li>
-          <li>Diet filters & pantry sync</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#meal-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Subscription -->
-    <article class="card" data-cat="Subscription" id="subscription">
-      <picture><img src="/assets/subscription-placeholder.jpg" alt="Subscription tracker dashboard with calendar"></picture>
-      <div class="card-content">
-        <h3>Subscription Tracker</h3>
-        <div class="meta">Category: Subscriptions • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>7-day renewal color alerts</li>
-          <li>Cancel-to-save estimator</li>
-          <li>Calendar & cost analytics</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#subscription-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Fitness -->
-    <article class="card" data-cat="Fitness" id="fitness">
-      <picture><img src="/assets/fitness-placeholder.jpg" alt="Fitness & Nutrition tracker weight trend"></picture>
-      <div class="card-content">
-        <h3>Fitness + Nutrition Tracker</h3>
-        <div class="meta">Category: Fitness • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Workout log + macros + calories</li>
-          <li>Weight trend & progress photos</li>
-          <li>Resolution goals & 30-day challenge</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#fitness-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Health -->
-    <article class="card" data-cat="Health" id="health">
-      <picture><img src="/assets/health-placeholder.jpg" alt="Medical & health log with dashboards"></picture>
-      <div class="card-content">
-        <h3>Medical & Health Log</h3>
-        <div class="meta">Category: Health • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Symptoms, meds, appointments</li>
-          <li>Weekly, monthly, annual dashboards</li>
-          <li>Doctor-ready printable report</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#health-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Finance -->
-    <article class="card" data-cat="Finance" id="finance">
-      <picture><img src="/assets/finance-placeholder.jpg" alt="Home budget and cashflow charts"></picture>
-      <div class="card-content">
-        <h3>Home Budget & Cashflow Kit</h3>
-        <div class="meta">Category: Finance • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Monthly budget + envelopes</li>
-          <li>Net worth & goals dashboard</li>
-          <li>Bill tracker + debt payoff</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#finance-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Baby -->
-    <article class="card" data-cat="Baby" id="baby">
-      <picture><img src="/assets/baby-placeholder.jpg" alt="Baby routine & milestone tracker"></picture>
-      <div class="card-content">
-        <h3>Baby Routine & Milestone Tracker</h3>
-        <div class="meta">Category: Baby & Parenting • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Feeding, sleep, diaper logs</li>
-          <li>Vaccines & growth charts</li>
-          <li>Caregiver-friendly views</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#baby-detail">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Holiday -->
-    <article class="card" data-cat="Holiday" id="holiday">
-      <picture><img src="/assets/holiday-placeholder.jpg" alt="Holiday gift and budget planner"></picture>
-      <div class="card-content">
-        <h3>Holiday Gift & Budget Planner</h3>
-        <div class="meta">Category: Holiday • Skill: Beginner</div>
-        <ul class="bullets">
-          <li>Gifting list + shipping tracker</li>
-          <li>Black Friday plan & totals</li>
-          <li>Printable checklists</li>
-        </ul>
-      </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#" rel="noopener">View on Etsy</a>
-        <a class="btn" href="#holiday-detail">Learn More</a>
-      </div>
-    </article>
-    <!-- === /SAMPLE CARDS === -->
-  </section>
-
-  <!-- SEO content block -->
-  <section class="section" id="cleaning-detail" aria-labelledby="cleaning-h2">
-    <h2 id="cleaning-h2">Why Families Love Our Cleaning & Chore Tracker</h2>
-    <p>Designed for real homes, this tracker balances fair rotation, clear schedules, and budget awareness. Color-coded alerts prevent missed tasks, while streaks keep everyone motivated. Great for couples, roommates, and families with kids.</p>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section" aria-labelledby="faq-h2">
-    <h2 id="faq-h2">FAQ</h2>
-    <details>
-      <summary>Do I need Microsoft 365 or a Google account?</summary>
-      <p>You can use Excel (Microsoft 365 or Office 2021+) or Google Sheets (free Google account). Each listing includes both versions when available.</p>
-    </details>
-    <details>
-      <summary>Are these beginner-friendly?</summary>
-      <p>Yes. Every file includes simple instructions and sample data so you can see results instantly.</p>
-    </details>
-    <details>
-      <summary>Can I print pages?</summary>
-      <p>Yes. Key tabs and calendars are print-friendly. We also keep the layout clean for ink-saving printouts.</p>
-    </details>
-  </section>
-
-  <footer class="footer">
-    © 2025 Today’s Tasks. All rights reserved.
-  </footer>
-
-  <!-- Lightweight filtering & sorting -->
   <script>
-    const categories = ["Cleaning","Teacher","Student","Meal","Subscription","Fitness","Health","Finance","Baby","Holiday"];
-    const chipsEl = document.getElementById('chips');
+    /* -------------------------------------------------------
+       1) 產品資料區：請把 54 個 Etsy 清單貼到 PRODUCTS 陣列
+          字段：
+          - title: 產品標題（請用你在 Etsy 的正式標題）
+          - url:   Etsy 連結
+          - cat:   分類（cleaning / teacher / student / meal / fitness / health / baby / finance / wedding / holiday / productivity）
+          - price: 數字（用於排序），例如 5.05 -> 5.05
+          - badges: 可選，陣列，例如 ["Excel","Sheets"] 或 ["Bestseller"]
+          - bullets: 可選，展示 2–3 個賣點
+       ------------------------------------------------------- */
+
+    const PRODUCTS = [
+      // ✅ 已替換為你的真實連結：Cleaning & Chore Tracker
+      {
+        title: "Cleaning & Chore Tracker Spreadsheet (Excel + Google Sheets) – Weekly Planner, Family Dashboard",
+        url: "https://www.etsy.com/listing/4367620957/cleaning-chore-tracker-spreadsheet-excel",
+        cat: "cleaning",
+        price: 5.05,
+        badges: ["Excel","Sheets","Instant"],
+        bullets: [
+          "Auto weekly schedule & streaks",
+          "Energy/time estimator + smart alerts",
+          "Budget vs actual supplies heatmap"
+        ]
+      },
+
+      // 👉👉 在此往下連續貼上其餘 53 個產品（每筆一行）
+      // 範例（請用你的真實標題與連結替換）：
+      // { title: "Teacher Planner V4 Premium (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "teacher", price: 10.00, badges:["Excel","Premium"], bullets:["Auto gradebook & GPA","Parent contacts & seating","Resolution tracker"] },
+      // { title: "Student Assignment & Exam Planner (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "student", price: 8.99, badges:["Excel"], bullets:["Countdown alerts","GPA auto-calc","Weekly study plan"] },
+      // { title: "Meal Planner Pro – Calendar & Grocery List (Sheets)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "meal", price: 9.66, badges:["Sheets"], bullets:["One-click grocery list","Calendar view","Budget mini-tracker"] },
+      // { title: "Fitness + Nutrition Tracker Premium", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "fitness", price: 9.99, badges:["Excel"], bullets:["Workout log & macros","Weight trend & photos","Gamified streaks"] },
+      // { title: "Medical & Health Log – Meds & Symptoms", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "health", price: 9.06, badges:["Excel","Sheets"], bullets:["Doctor report","Medication alerts","Annual dashboard"] },
+      // { title: "Baby Routine & Milestone Tracker", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "baby", price: 10.80, badges:["Excel"], bullets:["Feeding & sleep logs","Growth charts","All-in-one dashboard"] },
+      // { title: "Home Budget & Expense Tracker (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "finance", price: 5.90, badges:["Excel"], bullets:["Monthly summary","Debt widgets","Savings goals"] },
+      // { title: "Wedding Planner: Budget, Guest List, Timeline", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "wedding", price: 7.99, badges:["Excel","PDF"], bullets:["Vendor tracker","Seating chart","Checklist"] },
+      // { title: "Holiday Itinerary – 7-Day Family Trip (Paris)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "holiday", price: 3.50, badges:["PDF"], bullets:["Family-friendly agenda","Packing list","Maps & tips"] },
+      // { title: "Productivity Dashboard – Tasks & Goals", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "productivity", price: 5.50, badges:["Excel","Sheets"], bullets:["Kanban & Eisenhower","Gantt & calendar","Weekly review"] },
+    ];
+
+    /* ---------- 渲染 / 濾鏡 / 排序 ---------- */
     const grid = document.getElementById('grid');
     const q = document.getElementById('q');
-    const sort = document.getElementById('sort');
-    let activeCat = "All";
+    const sortSel = document.getElementById('sort');
+    const filterBar = document.getElementById('filters');
 
-    // Build chips
-    function renderChips(){
-      chipsEl.innerHTML = '';
-      const all = document.createElement('button');
-      all.type='button'; all.className = 'chip' + (activeCat==="All"?' active':'');
-      all.textContent = 'All';
-      all.onclick = ()=>{activeCat="All"; renderChips(); filterCards();};
-      chipsEl.appendChild(all);
-
-      categories.forEach(c=>{
-        const b = document.createElement('button');
-        b.type='button';
-        b.className = 'chip' + (activeCat===c?' active':'');
-        b.textContent = c;
-        b.onclick = ()=>{activeCat=c; renderChips(); filterCards();};
-        chipsEl.appendChild(b);
-      });
+    function render(items){
+      grid.innerHTML = items.map(item => `
+        <article class="card" data-cat="${item.cat}">
+          <div class="thumb" role="img" aria-label="${item.title} thumbnail">
+            <!-- 可換真實縮圖：把下行替換成 <img src="/assets/....jpg" alt="${item.title}" loading="lazy"/> -->
+            <span>thumbnail</span>
+          </div>
+          <div class="card-body">
+            <h3 class="title">${item.title}</h3>
+            <div class="meta">Category: <a href="#cat-${item.cat}">${cap(item.cat)}</a>
+              ${item.price ? `<span class="badge">$${item.price.toFixed(2)}</span>`:''}
+              ${Array.isArray(item.badges)? item.badges.map(b=>`<span class="badge">${b}</span>`).join(''):''}
+            </div>
+            ${Array.isArray(item.bullets)? `<ul class="bullets">`+item.bullets.slice(0,3).map(b=>`<li>${b}</li>`).join('')+`</ul>`:''}
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="${item.url}" target="_blank" rel="noopener">View on Etsy</a>
+            <a class="btn" href="#why">Learn More</a>
+          </div>
+        </article>
+      `).join('');
     }
 
-    function filterCards(){
+    function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+    function apply(){
       const term = q.value.trim().toLowerCase();
-      const cards = [...grid.querySelectorAll('.card')];
+      const active = document.querySelector('#filters .chip.active')?.dataset.filter || 'all';
+      let list = PRODUCTS.slice();
 
-      // Sort
-      if (sort.value==='az') {
-        cards.sort((a,b)=>a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent));
-      } else if (sort.value==='new') {
-        cards.sort((a,b)=>b.id.localeCompare(a.id)); // placeholder
-      } // 'pop' keeps original order for now
+      // filter
+      if(active!=='all'){ list = list.filter(it=>it.cat===active); }
+      if(term){ list = list.filter(it=> it.title.toLowerCase().includes(term)); }
 
-      // Apply
-      grid.innerHTML = '';
-      cards.forEach(card=>{
-        const cat = card.dataset.cat;
-        const text = card.textContent.toLowerCase();
-        const matchCat = (activeCat==='All' || cat===activeCat);
-        const matchTerm = (!term || text.includes(term));
-        card.style.display = (matchCat && matchTerm) ? '' : 'none';
-        grid.appendChild(card);
-      });
+      // sort
+      const s = sortSel.value;
+      if(s==='priceAsc') list.sort((a,b)=>(a.price||0)-(b.price||0));
+      if(s==='priceDesc') list.sort((a,b)=>(b.price||0)-(a.price||0));
+      if(s==='new') list = list; // 若需要可依你新增的順序視為新→舊
+      // default popular: 保持原順序，你可把最賣座的排前面
+
+      render(list);
     }
 
-    q.addEventListener('input', filterCards);
-    sort.addEventListener('change', filterCards);
-    renderChips();
-    filterCards();
-  </script>
+    filterBar.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.chip'); if(!btn) return;
+      filterBar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active'); apply();
+    });
+    q.addEventListener('input', apply);
+    sortSel.addEventListener('change', apply);
 
-  <!-- JSON-LD: ItemList (extend as you add products) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Time-Saving Templates & Guides",
-    "itemListElement": [
-      {"@type": "ListItem","position": 1,"url": "https://todays-tasks.com/etsy-guides.html#cleaning","name": "Cleaning & Chore Tracker (Excel + Sheets)"},
-      {"@type": "ListItem","position": 2,"url": "https://todays-tasks.com/etsy-guides.html#teacher","name": "Teacher Planner Premium (Excel)"},
-      {"@type": "ListItem","position": 3,"url": "https://todays-tasks.com/etsy-guides.html#student","name": "Assignment & Exam Planner"},
-      {"@type": "ListItem","position": 4,"url": "https://todays-tasks.com/etsy-guides.html#meal","name": "Automated Meal Planner"},
-      {"@type": "ListItem","position": 5,"url": "https://todays-tasks.com/etsy-guides.html#subscription","name": "Subscription Tracker"},
-      {"@type": "ListItem","position": 6,"url": "https://todays-tasks.com/etsy-guides.html#fitness","name": "Fitness + Nutrition Tracker"},
-      {"@type": "ListItem","position": 7,"url": "https://todays-tasks.com/etsy-guides.html#health","name": "Medical & Health Log"},
-      {"@type": "ListItem","position": 8,"url": "https://todays-tasks.com/etsy-guides.html#finance","name": "Home Budget & Cashflow Kit"},
-      {"@type": "ListItem","position": 9,"url": "https://todays-tasks.com/etsy-guides.html#baby","name": "Baby Routine & Milestone Tracker"},
-      {"@type": "ListItem","position": 10,"url": "https://todays-tasks.com/etsy-guides.html#holiday","name": "Holiday Gift & Budget Planner"}
-    ]
-  }
-  </script>
-
-  <!-- JSON-LD: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"Do I need Microsoft 365 or a Google account?","acceptedAnswer":{"@type":"Answer","text":"Use Excel (Microsoft 365 or Office 2021+) or Google Sheets (free Google account). Listings include both versions when available."}},
-      {"@type":"Question","name":"Are these beginner-friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every file includes simple instructions and sample data so you can see results instantly."}},
-      {"@type":"Question","name":"Can I print pages?","acceptedAnswer":{"@type":"Answer","text":"Yes. Key tabs and calendars are print-friendly for clean, ink-saving printouts."}}
-    ]
-  }
+    // 初次渲染
+    apply();
   </script>
 </body>
 </html>
