@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Today's Tasks – Simple Daily To-Do List</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive." />
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive in seconds." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+  <!-- Top navigation (keep style and links) -->
   <div class="compliance-links">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
@@ -27,18 +28,26 @@
       <li>Set priorities: High / Due Today / General</li>
       <li>Mark tasks completed and restore them later</li>
       <li>Automatic midnight reset each day</li>
-      <li>Responsive design for desktop & mobile</li>
+      <li>Responsive design for desktop and mobile</li>
     </ul>
+
+    <!-- New SEO-friendly CTA block -->
+    <section aria-label="Time-Saving templates">
+      <h2 class="sr-only">Explore Time-Saving Templates and Guides</h2>
+      <p>
+        <a href="/etsy-guides.html" class="btn">⭐ Explore Time-Saving Templates →</a>
+      </p>
+    </section>
 
     <h2>Today's Tasks</h2>
     <div class="input-group">
-      <input id="task-input" type="text" placeholder="Enter a new task…" />
-      <select id="task-priority">
+      <input id="task-input" type="text" placeholder="Enter a new task…" aria-label="New task" />
+      <select id="task-priority" aria-label="Task priority">
         <option value="important">High Priority</option>
         <option value="due">Due Today</option>
         <option value="normal" selected>General</option>
       </select>
-      <button id="add-btn">Add Task</button>
+      <button id="add-btn" type="button">Add Task</button>
     </div>
 
     <section class="group">
@@ -64,21 +73,79 @@
   </footer>
 
   <script>
+    // Load saved tasks from localStorage and render them
     function loadTasks() {
-      const tasks = JSON.parse(localStorage.getItem('tasks')) || { important: [], due: [], normal: [], completed: [] };
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || {
+        important: [],
+        due: [],
+        normal: [],
+        completed: []
+      };
+
       Object.entries(tasks).forEach(([pri, arr]) => {
-        const list = document.getElementById(`${pri}-list`);
+        const list = document.getElementById(pri + '-list');
+        if (!list) return;
+
         arr.forEach(text => {
           const li = document.createElement('li');
-          li.innerHTML = `<span>${text}</span> <button class="complete-btn"><i class="fas fa-check-circle"></i></button>`;
-          if (pri === 'completed') {
-            li.classList.add('completed');
-          }
+          li.innerHTML = `
+            <span>${text}</span>
+            <button class="complete-btn" title="Mark complete">✔</button>
+          `;
+          if (pri === 'completed') li.classList.add('completed');
           list.appendChild(li);
         });
       });
     }
+
+    // Minimal add-task behavior (keeps your existing UX)
+    function saveTasksFromDOM() {
+      const toArr = id => Array.from(document.querySelectorAll('#' + id + ' li span')).map(s => s.textContent.trim());
+      const data = {
+        important: toArr('important-list'),
+        due: toArr('due-list'),
+        normal: toArr('normal-list'),
+        completed: toArr('completed-list')
+      };
+      localStorage.setItem('tasks', JSON.stringify(data));
+    }
+
+    function addTask() {
+      const input = document.getElementById('task-input');
+      const pri = document.getElementById('task-priority').value;
+      const text = (input.value || '').trim();
+      if (!text) return;
+
+      const list = document.getElementById(pri + '-list');
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${text}</span>
+        <button class="complete-btn" title="Mark complete">✔</button>
+      `;
+      list.appendChild(li);
+      input.value = '';
+      saveTasksFromDOM();
+    }
+
+    function attachEvents() {
+      document.getElementById('add-btn').addEventListener('click', addTask);
+      document.addEventListener('click', e => {
+        if (e.target && e.target.classList.contains('complete-btn')) {
+          const li = e.target.closest('li');
+          const span = li.querySelector('span');
+          if (!li.classList.contains('completed')) {
+            li.classList.add('completed');
+            document.getElementById('completed-list').appendChild(li);
+          } else {
+            li.remove(); // remove from completed if clicked again
+          }
+          saveTasksFromDOM();
+        }
+      });
+    }
+
     loadTasks();
+    attachEvents();
   </script>
 </body>
 </html>
