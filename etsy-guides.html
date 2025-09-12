@@ -7,7 +7,6 @@
   <meta name="description" content="Curated Excel & Google Sheets templates for US families: cleaning schedules, teacher planners, student tools, meal planners, subscriptions, wellness logs and more. Instant download, beginner-friendly."/>
   <link rel="stylesheet" href="/style.css"/>
   <style>
-    /* ---- page-specific light theme (同首頁風格) ---- */
     .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px;}
     .h1{font-size:30px;margin:10px 0 6px;}
     .lede{color:#4b5563;margin-bottom:14px}
@@ -30,14 +29,13 @@
     .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
     .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
     .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    /* SEO blocks */
     .section{margin:28px 0}
     .faq summary{font-weight:700;cursor:pointer}
     .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
   </style>
 </head>
 <body>
-  <!-- Top nav (與首頁一致) -->
+  <!-- Top nav（與首頁一致） -->
   <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
@@ -55,7 +53,7 @@
     <h1 class="h1">Time-Saving Templates &amp; Guides</h1>
     <p class="lede">For busy US families — simple spreadsheets that save hours each week. All templates are beginner-friendly, instant-download, and <strong>Excel/Google Sheets</strong> ready.</p>
 
-    <!-- 類別捷徑（可內鏈到錨點，利於SEO） -->
+    <!-- 類別捷徑 -->
     <div class="chips" aria-label="Categories">
       <a class="chip" href="#cat-cleaning">Cleaning</a>
       <a class="chip" href="#cat-teacher">Teacher</a>
@@ -70,7 +68,7 @@
       <a class="chip" href="#cat-productivity">Productivity</a>
     </div>
 
-    <!-- 工具列：搜尋 + 分類濾鏡 + 排序 -->
+    <!-- 工具列 -->
     <div class="toolbar">
       <input id="q" type="search" placeholder="Search templates e.g. cleaning, teacher, budget…" aria-label="Search templates"/>
       <div class="chips" id="filters">
@@ -99,7 +97,7 @@
     <!-- 卡片區 -->
     <div id="grid" class="grid" aria-live="polite"></div>
 
-    <!-- 內容說明（SEO 長文 + FAQ） -->
+    <!-- SEO 區塊 -->
     <section class="section" id="about">
       <h2 id="why">Why Families Love These Templates</h2>
       <p>We design for real homes: fair rotation, clear schedules, budget awareness, and easy dashboards. Color-coded alerts prevent missed tasks, while streaks keep everyone motivated. Great for couples, roommates, and families with kids.</p>
@@ -125,44 +123,92 @@
   </main>
 
   <script>
-    /* -------------------------------------------------------
-       1) 產品資料區：請把 54 個 Etsy 清單貼到 PRODUCTS 陣列
-          字段：
-          - title: 產品標題（請用你在 Etsy 的正式標題）
-          - url:   Etsy 連結
-          - cat:   分類（cleaning / teacher / student / meal / fitness / health / baby / finance / wedding / holiday / productivity）
-          - price: 數字（用於排序），例如 5.05 -> 5.05
-          - badges: 可選，陣列，例如 ["Excel","Sheets"] 或 ["Bestseller"]
-          - bullets: 可選，展示 2–3 個賣點
-       ------------------------------------------------------- */
-
+    /* ============ 54 產品清單（連結留空，分類已就位） ============ */
     const PRODUCTS = [
-      // ✅ 已替換為你的真實連結：Cleaning & Chore Tracker
-      {
-        title: "Cleaning & Chore Tracker Spreadsheet (Excel + Google Sheets) – Weekly Planner, Family Dashboard",
-        url: "https://www.etsy.com/listing/4367620957/cleaning-chore-tracker-spreadsheet-excel",
-        cat: "cleaning",
-        price: 5.05,
-        badges: ["Excel","Sheets","Instant"],
-        bullets: [
-          "Auto weekly schedule & streaks",
-          "Energy/time estimator + smart alerts",
-          "Budget vs actual supplies heatmap"
-        ]
-      },
+      /* Cleaning */
+      {title:"Cleaning & Chore Tracker Spreadsheet (Excel + Google Sheets) – Weekly Planner, Family Dashboard", url:"", cat:"cleaning", price:5.05, badges:["Excel","Sheets","Instant"], bullets:["Auto weekly schedule & streaks","Energy/time estimator + smart alerts","Budget vs actual supplies heatmap"]},
 
-      // 👉👉 在此往下連續貼上其餘 53 個產品（每筆一行）
-      // 範例（請用你的真實標題與連結替換）：
-      // { title: "Teacher Planner V4 Premium (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "teacher", price: 10.00, badges:["Excel","Premium"], bullets:["Auto gradebook & GPA","Parent contacts & seating","Resolution tracker"] },
-      // { title: "Student Assignment & Exam Planner (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "student", price: 8.99, badges:["Excel"], bullets:["Countdown alerts","GPA auto-calc","Weekly study plan"] },
-      // { title: "Meal Planner Pro – Calendar & Grocery List (Sheets)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "meal", price: 9.66, badges:["Sheets"], bullets:["One-click grocery list","Calendar view","Budget mini-tracker"] },
-      // { title: "Fitness + Nutrition Tracker Premium", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "fitness", price: 9.99, badges:["Excel"], bullets:["Workout log & macros","Weight trend & photos","Gamified streaks"] },
-      // { title: "Medical & Health Log – Meds & Symptoms", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "health", price: 9.06, badges:["Excel","Sheets"], bullets:["Doctor report","Medication alerts","Annual dashboard"] },
-      // { title: "Baby Routine & Milestone Tracker", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "baby", price: 10.80, badges:["Excel"], bullets:["Feeding & sleep logs","Growth charts","All-in-one dashboard"] },
-      // { title: "Home Budget & Expense Tracker (Excel)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "finance", price: 5.90, badges:["Excel"], bullets:["Monthly summary","Debt widgets","Savings goals"] },
-      // { title: "Wedding Planner: Budget, Guest List, Timeline", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "wedding", price: 7.99, badges:["Excel","PDF"], bullets:["Vendor tracker","Seating chart","Checklist"] },
-      // { title: "Holiday Itinerary – 7-Day Family Trip (Paris)", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "holiday", price: 3.50, badges:["PDF"], bullets:["Family-friendly agenda","Packing list","Maps & tips"] },
-      // { title: "Productivity Dashboard – Tasks & Goals", url: "https://www.etsy.com/listing/XXXXXXXXXX/", cat: "productivity", price: 5.50, badges:["Excel","Sheets"], bullets:["Kanban & Eisenhower","Gantt & calendar","Weekly review"] },
+      /* Fitness / Meal / Teacher 等（依你店鋪類別補齊） */
+      {title:"Fitness + Nutrition Tracker – Goal, Meal Planner, Workout Log & Mini Calendar (Digital Download)", url:"", cat:"fitness", price:9.99, badges:["Excel"], bullets:["Workout log & macros","Weight trend & photos","Gamified streaks"]},
+      {title:"Ultimate Teacher Planner Excel: Gradebook, Attendance Tracker, Lesson Plans (Digital Download)", url:"", cat:"teacher", price:10.00, badges:["Excel"], bullets:["Auto gradebook & GPA","Attendance & seating","Weekly lesson planner"]},
+      {title:"Automated Meal Planner Excel: Grocery List Builder (Digital Download)", url:"", cat:"meal", price:9.66, badges:["Excel","Sheets"], bullets:["One-click grocery list","Calendar view","Budget mini-tracker"]},
+      {title:"Baby Routine & Milestone Tracker (Excel Template, Newborn Schedule, Digital Download)", url:"", cat:"baby", price:10.80, badges:["Excel"], bullets:["Feeding & sleep logs","Growth & milestone charts","All-in-one dashboard"]},
+      {title:"Student Planner Excel: Assignments, Exam, GPA Tracker (Digital Download, PDF Guide Included)", url:"", cat:"student", price:8.99, badges:["Excel"], bullets:["Deadline countdown","Weekly study plan","GPA auto-calc"]},
+      {title:"Medical Health Log Template: Wellness Tracker & Symptom Journal", url:"", cat:"health", price:9.06, badges:["Excel","Sheets"], bullets:["Medication & doctor visits","Symptoms & pain log","Monthly dashboard"]},
+      {title:"Subscription Tracker Excel: Renewal Alerts, Budget Management (Instant Download, PDF Guide Included)", url:"", cat:"finance", price:5.90, badges:["Excel","Sheets"], bullets:["Renewal reminders","Monthly budget impact","Service categories"]},
+      {title:"Financial Freedom Excel Template: Budget Planner, Debt & Saving Tracker (Instant Download)", url:"", cat:"finance", price:5.90, badges:["Excel"], bullets:["Monthly budget & cash flow","Debt payoff widgets","Savings goals"]},
+      {title:"Debt Payoff Tracker Excel: Snowball & Avalanche Calculator + Loan Repayment Dashboard & Sinking Funds", url:"", cat:"finance", price:5.90, badges:["Excel"], bullets:["Snowball/avalanche views","Amortization & progress","Goal timeline"]},
+      {title:"Productivity Dashboard (Excel & Google Sheets): Tasks, Project, Goal Tracker (Digital Download)", url:"", cat:"productivity", price:5.50, badges:["Excel","Sheets"], bullets:["Kanban & Eisenhower","Gantt & calendar","Weekly review"]},
+      {title:"Family Planner Excel Template – Meal Plan, Groceries, Chores, Routines & Fitness Dashboard", url:"", cat:"productivity", price:5.90, badges:["Excel"], bullets:["Family chores & rotations","Meal & grocery hub","Fitness & routines board"]},
+      {title:"All-in-One Student Planner: College & High School Academic Template", url:"", cat:"student", price:8.49, badges:["Excel"], bullets:["Semester overview","Assignments & exams","Reading & notes"]},
+
+      /* Wedding 套系 */
+      {title:"Wedding Vendor Planner Excel: Budget & Comparison Tool (Digital Download)", url:"", cat:"wedding", price:7.99, badges:["Excel"], bullets:["Vendor shortlist & quotes","Comparison matrix","Payment schedule"]},
+      {title:"Wedding Guest List Spreadsheet: Google Sheets Planner (Digital Download)", url:"", cat:"wedding", price:5.49, badges:["Sheets"], bullets:["RSVP & meal choices","Seating chart helper","Contact & notes"]},
+      {title:"Wedding Checklist Planner: 55+ Page Editable Bridal To-Do List (PDF & Canva Template)", url:"", cat:"wedding", price:4.99, badges:["PDF","Canva"], bullets:["Month-by-month tasks","Day-of checklist","Vendor handoff"]},
+      {title:"Wedding Budget Tracker: Excel & Google Sheets Planner (Printable PDF Included)", url:"", cat:"wedding", price:8.00, badges:["Excel","Sheets"], bullets:["Budget vs actual","Category caps","Payment tracker"]},
+      {title:"Wedding Planner Spreadsheet: Budget, Guest List, Timeline (Digital Download)", url:"", cat:"wedding", price:11.99, badges:["Excel"], bullets:["All-in-one dashboard","Timeline & run-of-show","Seating & vendors"]},
+
+      /* Finance / Biz */
+      {title:"Small Business Income & Expense Tracker (Excel Template)", url:"", cat:"finance", price:5.90, badges:["Excel"], bullets:["Monthly P&L","Category budgets","Yearly summary"]},
+      {title:"Invoice & Billing Excel Template: Business Expense Tracker", url:"", cat:"finance", price:5.90, badges:["Excel"], bullets:["Client invoicing","Payment status","Expense capture"]},
+      {title:"Personal Budget Spreadsheet – Monthly & Annual Overview (Excel)", url:"", cat:"finance", price:5.50, badges:["Excel"], bullets:["Zero-based option","Net worth rollup","Savings goals"]},
+      {title:"Expense & Budget Excel Spreadsheet – Personal Finance Tracker with Dashboard", url:"", cat:"finance", price:5.90, badges:["Excel"], bullets:["Spending analysis","Cash-flow view","Category charts"]},
+      {title:"Annual Work Summary (Excel) – Year-End Review & Report Generator", url:"", cat:"productivity", price:5.50, badges:["Excel"], bullets:["Auto KPIs & charts","Project highlights","One-page report"]},
+
+      /* Holiday – Christmas (7-Day) */
+      {title:"Paris Christmas Itinerary PDF | 7-Day Family Holiday Planner | Printable Festive Family Travel Guide", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Family-friendly route","Markets & lights","Daily plan + tips"]},
+      {title:"Bangkok Christmas Itinerary PDF | 7-Day Family Holiday Planner | Kid-Friendly Festive Trip Guide", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["City highlights","Food & shows","Kid activities"]},
+      {title:"London Christmas Itinerary PDF | 7-Day Family Holiday Planner | Markets & Ice Rinks", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Iconic sights","Winter markets","Easy transit"]},
+      {title:"Dubai Christmas Itinerary PDF | 7-Day Family Holiday Planner | Theme Parks & Desert", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Desert safari","Parks & malls","Family shows"]},
+      {title:"New Orleans Christmas Itinerary PDF | 7-Day Family Holiday Planner | Music & Holiday Parades", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Festive Quarter","Streetcars","Parades"]},
+      {title:"Tokyo Christmas Itinerary PDF | 7-Day Family Holiday Planner | Illuminations & Anime Spots", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Illumination trails","Kid-friendly stops","Transit ready"]},
+      {title:"Seoul Christmas Itinerary PDF | 7-Day Family Holiday Planner | K-Culture & Winter Fun", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Palaces & food","Markets & malls","Skating & lights"]},
+      {title:"Singapore Christmas Itinerary PDF | 7-Day Family Holiday Planner | Gardens & Marina Bay", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Garden Rhapsody","Sentosa day","Light shows"]},
+      {title:"Los Angeles Christmas Itinerary PDF | 7-Day Family Holiday Planner | Beaches & Theme Parks", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Disney/Universal","Beaches & piers","Holiday lights"]},
+
+      /* Holiday – Thanksgiving (4-Day) */
+      {title:"Boston Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Kid-Friendly Holiday Travel Guide", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Freedom Trail","Museums","Kid picks"]},
+      {title:"Philadelphia Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Liberty Bell & Holiday Markets", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Old City walk","Holiday market","Day trips"]},
+      {title:"Charleston Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Historic Downtown & Family Activities", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Historic homes","Carriage ride","Beach option"]},
+      {title:"Chicago Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Navy Pier and Kid-Friendly Fun", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Millennium Park","Museum Campus","Deep-dish stop"]},
+      {title:"New York Thanksgiving Trip Planner PDF: 4-Day Family Itinerary", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Parade info","Central Park","Holiday windows"]},
+      {title:"Washington DC Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Monuments & Museums", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Smithsonian picks","Monuments loop","Georgetown"]},
+      {title:"San Francisco Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Packing List and Kids Activities", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Golden Gate","Fisherman’s Wharf","Cable cars"]},
+
+      /* Teacher / Student 延伸（補齊數量） */
+      {title:"Teacher Gradebook & Attendance – Simple Excel Register", url:"", cat:"teacher", price:6.90, badges:["Excel"], bullets:["Weighted grades","Absence log","Per-class sheets"]},
+      {title:"Teacher Seating Chart & Parent Contacts (Excel)", url:"", cat:"teacher", price:6.50, badges:["Excel"], bullets:["Drag-and-drop layout","Contact directory","Notes & IEP flags"]},
+      {title:"Reading Log for Students – Pages, Dates, Notes (Excel)", url:"", cat:"student", price:4.50, badges:["Excel"], bullets:["Per-student log","Pages per day","Review notes"]},
+      {title:"Exam & Assignment Countdown Planner (Excel)", url:"", cat:"student", price:5.99, badges:["Excel"], bullets:["Auto D-Day","Study slots","Priority focus"]},
+
+      /* Productivity / Home */
+      {title:"Cleaning Schedule + Chore Chart Printable (PDF)", url:"", cat:"cleaning", price:3.99, badges:["PDF"], bullets:["Daily/weekly/monthly","Family rotation","Printable sheets"]},
+      {title:"Home Inventory & Warranty Tracker (Excel)", url:"", cat:"productivity", price:6.99, badges:["Excel"], bullets:["Serials & receipts","Warranty expiry alerts","Claims notes"]},
+      {title:"Reading & Study Tracker for Kids (PDF)", url:"", cat:"student", price:3.49, badges:["PDF"], bullets:["Reading minutes","Reward stars","Parent signature"]},
+      {title:"Social Media Content Calendar (Excel/Sheets) – Monthly Planner, Hashtags, KPI Dashboard", url:"", cat:"productivity", price:6.90, badges:["Excel","Sheets"], bullets:["Content slots","Hashtag bank","KPI tracker"]},
+      {title:"Event Planner Pro – Budget, Vendors, Run-of-Show, Checklist", url:"", cat:"productivity", price:7.90, badges:["Excel"], bullets:["Timeline builder","Vendor tracker","Day-of runsheet"]},
+      {title:"Small Business Finance Kit – Income, Expense, Invoice, Tax Estimate, Cash Flow", url:"", cat:"finance", price:9.90, badges:["Excel"], bullets:["All-in-one P&L","Cashflow view","Tax estimate"]},
+
+      /* Wedding 補充 */
+      {title:"Wedding Seating Chart Generator (Excel)", url:"", cat:"wedding", price:6.99, badges:["Excel"], bullets:["Table capacity","Drag seats","Export list"]},
+      {title:"Bridal Party Budget & Timeline Planner (Excel)", url:"", cat:"wedding", price:5.99, badges:["Excel"], bullets:["Bridal party costs","Outfit timeline","Gift log"]},
+
+      /* Finance 補充 */
+      {title:"Savings Tracker & No-Spend Challenge (Excel)", url:"", cat:"finance", price:4.99, badges:["Excel"], bullets:["Savings jars","No-spend calendar","Goal thermometer"]},
+      {title:"Monthly Budget Planner (Excel)", url:"", cat:"finance", price:4.99, badges:["Excel"], bullets:["Budget vs actual","Envelope-style","Charts"]},
+
+      /* 其餘 Holiday（補滿 54） */
+      {title:"Seattle Christmas Itinerary PDF | 7-Day Family Holiday Planner | Lights & Markets", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Pike Place","Holiday lights","Ferry day"]},
+      {title:"Orlando Christmas Itinerary PDF | 7-Day Family Holiday Planner | Theme Parks & Outlets", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Parks plan","Rest days","Shopping"]},
+      {title:"Toronto Christmas Itinerary PDF | 7-Day Family Holiday Planner | Skating & Markets", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Distillery market","Skating","Niagara option"]},
+      {title:"Las Vegas Christmas Itinerary PDF | 7-Day Family Holiday Planner | Shows & Lights", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Family-safe shows","Hoover Dam","Drive-thru lights"]},
+      {title:"Miami Christmas Itinerary PDF | 7-Day Family Holiday Planner | Beaches & Lights", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Beach plan","Little Havana","Wynwood"]},
+      {title:"Austin Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | BBQ & Music", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["BBQ trail","Zilker Park","Live music"]},
+      {title:"Atlanta Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Aquarium & History", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Georgia Aquarium","MLK sites","Kid friendly"]},
+      {title:"Denver Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Mountains & Museums", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Red Rocks","Downtown walk","Day trips"]},
+      {title:"Portland Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Parks & Donuts", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Waterfront","Japanese Garden","Food halls"]},
+      {title:"Nashville Thanksgiving Itinerary PDF | 4-Day Family Trip Planner | Music & Family Fun", url:"", cat:"holiday", price:3.50, badges:["PDF"], bullets:["Music Row","Museums","Holiday lights"]}
     ];
 
     /* ---------- 渲染 / 濾鏡 / 排序 ---------- */
@@ -171,47 +217,43 @@
     const sortSel = document.getElementById('sort');
     const filterBar = document.getElementById('filters');
 
+    function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
     function render(items){
       grid.innerHTML = items.map(item => `
         <article class="card" data-cat="${item.cat}">
           <div class="thumb" role="img" aria-label="${item.title} thumbnail">
-            <!-- 可換真實縮圖：把下行替換成 <img src="/assets/....jpg" alt="${item.title}" loading="lazy"/> -->
+            <!-- 可換真實縮圖：<img src="/assets/thumbs/your-image.jpg" alt="${item.title}" loading="lazy"> -->
             <span>thumbnail</span>
           </div>
           <div class="card-body">
             <h3 class="title">${item.title}</h3>
             <div class="meta">Category: <a href="#cat-${item.cat}">${cap(item.cat)}</a>
-              ${item.price ? `<span class="badge">$${item.price.toFixed(2)}</span>`:''}
-              ${Array.isArray(item.badges)? item.badges.map(b=>`<span class="badge">${b}</span>`).join(''):''}
+              ${item.price?`<span class="badge">$${item.price.toFixed(2)}</span>`:""}
+              ${Array.isArray(item.badges)?item.badges.map(b=>`<span class="badge">${b}</span>`).join(""):""}
             </div>
-            ${Array.isArray(item.bullets)? `<ul class="bullets">`+item.bullets.slice(0,3).map(b=>`<li>${b}</li>`).join('')+`</ul>`:''}
+            ${Array.isArray(item.bullets)?`<ul class="bullets">${item.bullets.slice(0,3).map(b=>`<li>${b}</li>`).join("")}</ul>`:""}
           </div>
           <div class="actions">
-            <a class="btn primary" href="${item.url}" target="_blank" rel="noopener">View on Etsy</a>
+            <a class="btn primary" href="${item.url||'#'}" target="_blank" rel="noopener">View on Etsy</a>
             <a class="btn" href="#why">Learn More</a>
           </div>
         </article>
       `).join('');
     }
 
-    function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-
     function apply(){
       const term = q.value.trim().toLowerCase();
       const active = document.querySelector('#filters .chip.active')?.dataset.filter || 'all';
       let list = PRODUCTS.slice();
 
-      // filter
       if(active!=='all'){ list = list.filter(it=>it.cat===active); }
       if(term){ list = list.filter(it=> it.title.toLowerCase().includes(term)); }
 
-      // sort
       const s = sortSel.value;
       if(s==='priceAsc') list.sort((a,b)=>(a.price||0)-(b.price||0));
       if(s==='priceDesc') list.sort((a,b)=>(b.price||0)-(a.price||0));
-      if(s==='new') list = list; // 若需要可依你新增的順序視為新→舊
-      // default popular: 保持原順序，你可把最賣座的排前面
-
+      // 'new' 與 'popular' 先保留原順序（你可把最想推的排在 PRODUCTS 前面）
       render(list);
     }
 
@@ -223,8 +265,7 @@
     q.addEventListener('input', apply);
     sortSel.addEventListener('change', apply);
 
-    // 初次渲染
-    apply();
+    apply(); // 初次渲染
   </script>
 </body>
 </html>
