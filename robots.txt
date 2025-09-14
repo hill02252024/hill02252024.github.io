@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-User-agent: Mediapartners-Google
-Allow: /
+Sitemap: https://www.todays-tasks.com/sitemap.xml
