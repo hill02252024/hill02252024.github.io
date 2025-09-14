@@ -6,6 +6,13 @@
   <title>Today's Tasks – Simple Daily To-Do List</title>
   <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive in seconds." />
   <link rel="stylesheet" href="/style.css" />
+
+  <!-- AdSense account hint (optional but helpful) -->
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <!-- AdSense global script: include once per page inside <head> -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
+    crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Top navigation -->
@@ -127,12 +134,12 @@
       document.addEventListener('click', e => {
         if (e.target && e.target.classList.contains('complete-btn')) {
           const li = e.target.closest('li');
-          const span = li.querySelector('span');
+          if (!li) return;
           if (!li.classList.contains('completed')) {
             li.classList.add('completed');
             document.getElementById('completed-list').appendChild(li);
           } else {
-            // if clicked again in completed, remove
+            // If clicked again in completed, remove it
             li.remove();
           }
           saveTasksFromDOM();
