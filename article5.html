@@ -4,17 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weekly Review Checklist</title>
-  <meta name="description" content="A structured weekly review checklist to reflect, reset, and stay productive with Today's Tasks." />
+  <meta name="description" content="A structured weekly review checklist to reflect, reset, and stay productive with Today's Tasks. Includes practical steps, visuals, and links to related guides." />
+
+  <!-- Canonical & basic social -->
+  <link rel="canonical" href="https://todays-tasks.com/article5.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Weekly Review Checklist" />
+  <meta property="og:description" content="Reflect, reset, and plan the week ahead with a simple weekly review flow. Includes practical steps, visuals, and related reading." />
+  <meta property="og:url" content="https://todays-tasks.com/article5.html" />
+
   <link rel="stylesheet" href="/style.css" />
+
+  <!-- Small page-local styles to make figures neat -->
+  <style>
+    .toc{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin:16px 0}
+    .toc h2{margin:0 0 8px;font-size:18px}
+    .toc a{display:inline-block;margin:6px 10px 0 0}
+    figure{margin:12px 0;background:#fafafa;border:1px solid #eee;border-radius:12px;padding:12px}
+    figure svg{width:100%;max-width:520px;height:auto;display:block;margin:auto}
+    figure figcaption{font-size:13px;color:#6b7280;margin-top:8px;text-align:center}
+    .inline-cta{display:inline-block;margin-top:8px}
+    .related{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-top:20px}
+    .badge{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;margin-left:6px}
+  </style>
 
   <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" 
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- FAQ schema to enrich SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How long should a weekly review take?",
+        "acceptedAnswer":{"@type":"Answer","text":"Most people finish in 20–30 minutes. Keep the checklist short: clear completed tasks, re-prioritize, capture loose ends, set top 3 goals, then reflect."}
+      },
+      {
+        "@type":"Question",
+        "name":"What tools do I need for a weekly review?",
+        "acceptedAnswer":{"@type":"Answer","text":"You can complete the review directly in Today's Tasks. The three lanes (High, Due Today, General) make re-prioritizing fast. A calendar helps block time for your top 3 goals."}
+      },
+      {
+        "@type":"Question",
+        "name":"When should I schedule my review?",
+        "acceptedAnswer":{"@type":"Answer","text":"Pick a consistent time: Friday afternoon or Sunday evening work well. Consistency matters more than the exact day."}
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="compliance-links">
+  <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
@@ -23,44 +67,161 @@
     <a href="/article2.html">Time Management</a> |
     <a href="/article3.html">Digital To-Do Lists</a> |
     <a href="/article4.html">How to Use</a> |
-    <a href="/article5.html">Weekly Review</a>
+    <a href="/article5.html" aria-current="page">Weekly Review</a>
   </div>
 
   <main class="container">
-    <h1>Weekly Review Checklist</h1>
-    <section class="group">
+    <h1>Weekly Review Checklist <span class="badge">20–30 min</span></h1>
+    <p>Use this structured weekly review to clear your mind, reset priorities, and start the week with momentum. It pairs perfectly with <a href="/index.html">Today’s Tasks</a>, which keeps your list simple and fast.</p>
+
+    <!-- Table of contents with in-page anchors -->
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Checklist Overview</h2>
+      <a href="#why">Why it matters</a>
+      <a href="#step1">Step 1</a>
+      <a href="#step2">Step 2</a>
+      <a href="#step3">Step 3</a>
+      <a href="#step4">Step 4</a>
+      <a href="#step5">Step 5</a>
+      <a href="#wrap">Bring it together</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <section id="why" class="group">
       <h2>Why a Weekly Review Matters</h2>
-      <p>A weekly review helps you clear your mind, evaluate what worked, and set priorities for the week ahead. Without reflection, tasks pile up and productivity suffers.</p>
+      <p>A weekly review helps you evaluate what worked, capture loose ends, and set priorities for the week ahead. Without reflection, tasks pile up and attention fragments.</p>
+
+      <!-- SVG: calendar + check marks -->
+      <figure role="img" aria-label="Calendar and checklist illustration">
+        <svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="20" width="260" height="200" rx="12" fill="#EEF2FF" stroke="#C7D2FE"/>
+          <rect x="30" y="50" width="220" height="24" rx="4" fill="#DBEAFE"/>
+          <rect x="30" y="86" width="220" height="24" rx="4" fill="#DBEAFE"/>
+          <rect x="30" y="122" width="220" height="24" rx="4" fill="#DBEAFE"/>
+          <rect x="30" y="158" width="220" height="24" rx="4" fill="#DBEAFE"/>
+          <circle cx="330" cy="60" r="40" fill="#DCFCE7" stroke="#86EFAC"/>
+          <path d="M312 60 l12 12 24-24" stroke="#16A34A" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="390" y="66" font-size="16" fill="#111827">Review done → clarity gained</text>
+        </svg>
+        <figcaption>Keep it lightweight: short review, big clarity.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
+    <section id="step1" class="group">
       <h2>Step 1: Clear Completed Tasks</h2>
-      <p>Archive tasks marked as complete. A clean slate keeps your list relevant and prevents clutter from distracting you.</p>
+      <p>Archive items you’ve finished. A clean slate keeps your list relevant and prevents old tasks from stealing attention.</p>
+      <figure role="img" aria-label="Archive completed tasks illustration">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="520" height="60" rx="8" fill="#F1F5F9"/>
+          <rect x="30" y="35" width="260" height="30" rx="6" fill="#E2E8F0"/>
+          <rect x="300" y="35" width="120" height="30" rx="6" fill="#DCFCE7" />
+          <text x="308" y="55" font-size="14" fill="#065F46">Move to Completed</text>
+          <path d="M470 35 l20 15 -20 15" stroke="#94A3B8" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <figcaption>Move finished work off-stage to reduce noise.</figcaption>
+      </figure>
+      <p class="inline-cta"><a href="/article4.html#completing-and-restoring">How to archive in Today’s Tasks →</a></p>
     </section>
 
-    <section class="group">
+    <section id="step2" class="group">
       <h2>Step 2: Re-evaluate Priorities</h2>
-      <p>Look at what’s left in High, Due Today, and General. Move items around if their urgency or importance has changed.</p>
+      <p>Scan <strong>High</strong>, <strong>Due Today</strong>, and <strong>General</strong>. Promote anything urgent, demote anything that can wait. Less is more.</p>
+      <figure role="img" aria-label="Reprioritize lanes illustration">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="160" height="120" rx="10" fill="#FFE4E6" stroke="#FDA4AF"/>
+          <rect x="200" y="20" width="160" height="120" rx="10" fill="#FEF3C7" stroke="#FCD34D"/>
+          <rect x="380" y="20" width="160" height="120" rx="10" fill="#E0F2FE" stroke="#93C5FD"/>
+          <path d="M110 130 C110 60, 250 60, 250 130" stroke="#64748B" stroke-width="4" fill="none" stroke-dasharray="6 6"/>
+          <path d="M290 130 C290 60, 430 60, 430 130" stroke="#64748B" stroke-width="4" fill="none" stroke-dasharray="6 6"/>
+          <text x="60" y="18" font-size="12" fill="#9A3412">High</text>
+          <text x="240" y="18" font-size="12" fill="#92400E">Due Today</text>
+          <text x="420" y="18" font-size="12" fill="#1E3A8A">General</text>
+        </svg>
+        <figcaption>Re-shuffle across lanes to reflect reality.</figcaption>
+      </figure>
+      <p class="inline-cta"><a href="/article2.html">More on practical time management →</a></p>
     </section>
 
-    <section class="group">
+    <section id="step3" class="group">
       <h2>Step 3: Capture Loose Ends</h2>
-      <p>Think about emails, conversations, or projects from the past week. Write them down as new tasks so nothing gets forgotten.</p>
+      <p>Scan emails, messages, notebooks, and your head. Convert anything unfinished into clear, single-step tasks. If it takes under two minutes, just do it.</p>
+      <figure role="img" aria-label="Inbox capture illustration">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="30" width="500" height="100" rx="10" fill="#F5F3FF" stroke="#DDD6FE"/>
+          <circle cx="80" cy="80" r="24" fill="#C7D2FE"/>
+          <circle cx="130" cy="80" r="24" fill="#BAE6FD"/>
+          <circle cx="180" cy="80" r="24" fill="#A7F3D0"/>
+          <path d="M210 80 H500" stroke="#CBD5E1" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <figcaption>Gather everything into one trusted place.</figcaption>
+      </figure>
+      <p class="inline-cta"><a href="/article3.html">Why digital lists make capture effortless →</a></p>
     </section>
 
-    <section class="group">
+    <section id="step4" class="group">
       <h2>Step 4: Plan Top Three Goals</h2>
-      <p>Decide on three outcomes that would make the coming week a success. These become your guiding priorities when the week gets busy.</p>
+      <p>Define three outcomes that would make next week a win. Block time for them now. Protect these blocks like meetings with yourself.</p>
+      <figure role="img" aria-label="Top three goals on a calendar">
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="40" width="520" height="130" rx="12" fill="#ECFEFF" stroke="#A5F3FC"/>
+          <rect x="40" y="60" width="150" height="28" rx="6" fill="#06B6D4" />
+          <rect x="210" y="60" width="150" height="28" rx="6" fill="#0284C7" />
+          <rect x="380" y="60" width="150" height="28" rx="6" fill="#0EA5E9" />
+          <text x="60" y="78" font-size="13" fill="#fff">Goal 1</text>
+          <text x="232" y="78" font-size="13" fill="#fff">Goal 2</text>
+          <text x="402" y="78" font-size="13" fill="#fff">Goal 3</text>
+        </svg>
+        <figcaption>Pick three outcomes and protect the time.</figcaption>
+      </figure>
+      <p class="inline-cta"><a href="/article1.html">7 quick productivity tips to support your top 3 →</a></p>
     </section>
 
-    <section class="group">
+    <section id="step5" class="group">
       <h2>Step 5: Reflect and Improve</h2>
-      <p>Ask yourself: What slowed me down? What boosted my progress? Small tweaks compound into big productivity gains over time.</p>
+      <p>Ask: What slowed me down? What moved the needle? Write one small change for next week—constraints and tiny habits beat willpower.</p>
+      <figure role="img" aria-label="Small improvements trend upward">
+        <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="520" height="120" rx="10" fill="#FFF7ED" stroke="#FED7AA"/>
+          <path d="M40 120 C120 80, 240 100, 320 70 S 480 40, 520 60" stroke="#EA580C" stroke-width="4" fill="none"/>
+          <circle cx="520" cy="60" r="6" fill="#EA580C"/>
+        </svg>
+        <figcaption>Small tweaks compound into big gains.</figcaption>
+      </figure>
+      <p class="inline-cta"><a href="/article4.html#automatic-reset">See how auto-reset keeps momentum →</a></p>
     </section>
 
-    <section class="group">
+    <section id="wrap" class="group">
       <h2>Bring It All Together</h2>
-      <p>Use Today’s Tasks as the anchor for your review. The app’s simple lanes help you reset each week with clarity, focus, and momentum.</p>
+      <p>Use <a href="/index.html">Today’s Tasks</a> as your weekly anchor. The three-lane layout helps you re-prioritize in seconds and start each week with clarity and focus.</p>
+      <p class="inline-cta"><a href="/index.html">Open the app and schedule your next review →</a></p>
+    </section>
+
+    <!-- Related internal links to strengthen interlinking -->
+    <aside class="related" aria-label="Related reading">
+      <h3>Related Reading</h3>
+      <ul>
+        <li><a href="/article1.html">7 Practical Productivity Tips</a></li>
+        <li><a href="/article2.html">Time Management Strategies That Actually Work</a></li>
+        <li><a href="/article3.html">The Benefits of Digital To-Do Lists</a></li>
+        <li><a href="/article4.html">How to Use Today’s Tasks</a></li>
+      </ul>
+    </aside>
+
+    <!-- Short FAQ mirrors JSON-LD content -->
+    <section id="faq" class="group">
+      <h2>Weekly Review FAQ</h2>
+      <details>
+        <summary>How long should it take?</summary>
+        <p>Plan for 20–30 minutes. If it regularly exceeds that, shorten the checklist or time-box each step.</p>
+      </details>
+      <details>
+        <summary>Which day is best?</summary>
+        <p>Friday afternoon (close the loop) or Sunday evening (prime the week). Consistency is the key.</p>
+      </details>
+      <details>
+        <summary>Do I need extra tools?</summary>
+        <p>No. The review works inside <a href="/index.html">Today’s Tasks</a>. A calendar helps for time blocking.</p>
+      </details>
     </section>
   </main>
 
