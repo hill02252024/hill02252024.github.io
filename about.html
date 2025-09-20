@@ -4,20 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About – Today's Tasks</title>
-  <meta name="description" content="About Today's Tasks: a fast, privacy-first daily to-do list that helps busy professionals plan and focus." />
+  <meta name="description" content="Learn the story, mission, and privacy-first design behind Today's Tasks — a fast, lightweight daily to-do list. See how it works, who it's for, and why professionals choose it to plan, focus, and finish work each day." />
   <link rel="stylesheet" href="/style.css" />
 
   <!-- ✅ Google AdSense 自動廣告程式碼 -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" 
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- ✅ 基本結構化資料（可幫助 SEO） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Today's Tasks",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Web",
+    "url": "https://todays-tasks.com/",
+    "description": "A fast, privacy-first daily to-do list that runs entirely in your browser with local storage.",
+    "creator": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    }
+  }
+  </script>
+
+  <style>
+    /* 小幅強化可讀性（仍沿用既有 style.css） */
+    .toc {background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin:12px 0}
+    .toc a{display:inline-block;margin:6px 10px 0 0}
+    figure{margin:12px 0}
+    figure img{width:100%;height:auto;border-radius:10px;border:1px solid #e5e7eb;object-fit:contain}
+    figure figcaption{font-size:0.9rem;color:#6b7280;margin-top:6px}
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+    .kpi div{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px;text-align:center}
+    .note{background:#fffbe7;border:1px solid #f1e3a6;border-radius:8px;padding:10px;margin:10px 0}
+    .badge{display:inline-block;border:1px solid #bfdbfe;background:#e5f2ff;color:#2563eb;border-radius:999px;padding:2px 10px;font-size:12px;margin-left:6px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:900px){.kpi{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <!-- 導覽列（和 privacy.html 一樣結構） -->
-  <div class="compliance-links">
+  <!-- 導覽列 -->
+  <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
+    <a href="/about.html" aria-current="page">About</a>
     <a href="/contact.html">Contact</a>
     <a href="/privacy.html">Privacy Policy</a>
     <a href="/article1.html">Productivity Tips</a>
@@ -25,39 +55,172 @@
     <a href="/article3.html">Digital To-Do Lists</a>
     <a href="/article4.html">How to Use</a>
     <a href="/article5.html">Weekly Review</a>
+    <a href="/etsy-guides.html">Time-Saving</a>
   </div>
 
   <main class="container">
     <h1>About Today's Tasks</h1>
 
-    <section class="group">
+    <p class="lede">Today’s Tasks is a fast, privacy-first daily to-do list that runs entirely in your browser. We design for busy professionals who need to plan in seconds, act with clarity, and finish work each day without noise or friction.</p>
+
+    <!-- 目錄：便於長文導覽與 SEO 片段理解 -->
+    <nav class="toc" aria-label="On-page">
+      <strong>On this page:</strong>
+      <a href="#mission">Mission</a>
+      <a href="#story">Our Story</a>
+      <a href="#principles">Design Principles</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#privacy">Privacy & Data</a>
+      <a href="#who-for">Who It’s For</a>
+      <a href="#compare">Why Different</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#faq">FAQ</a>
+      <a href="#resources">Further Reading</a>
+      <a href="#next">What’s Next</a>
+    </nav>
+
+    <section class="group" id="mission">
       <h2>Our Mission</h2>
-      <p>Today’s Tasks exists to help busy professionals focus on what truly matters. We remove friction from daily planning so you can capture the next action, set clear priorities, and get back to meaningful work. No accounts, no complicated setup—just a lightweight list that works anywhere.</p>
+      <p>Our mission is simple: <em>help you protect attention and make the next right move</em>. Modern knowledge work is full of shifting priorities and constant interruptions. When the list becomes heavy, you stop using it. Today’s Tasks removes drag so your list stays light and actionable. Capture a task, choose a lane, and move on—no accounts, syncing headaches, or complex setup required.</p>
+      <div class="kpi" aria-label="Product principles at a glance">
+        <div><strong>0s</strong><br/>account creation <span class="badge">frictionless</span></div>
+        <div><strong>3</strong><br/>priorities: High / Today / General</div>
+        <div><strong>100%</strong><br/>local by default <span class="badge">privacy-first</span></div>
+      </div>
+      <figure>
+        <img src="/assets/illustrations/mission-diagram.png" alt="Diagram showing the capture → prioritize → finish loop used in Today's Tasks" loading="lazy" />
+        <figcaption>Our loop: capture quickly, prioritize clearly, finish daily. Simplicity prevents list bloat.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
-      <h2>Who We Are</h2>
-      <p>We’re a small team of developers and productivity enthusiasts. We value speed, clarity, and privacy. Our philosophy is to build useful tools that feel invisible: fast to load, easy to use, and respectful of your time and data.</p>
+    <section class="group" id="story">
+      <h2>Who We Are &amp; How We Started</h2>
+      <p>We are a small team of developers and productivity enthusiasts who build tools we wish existed—fast to load, obvious to use, and respectful of privacy. Today’s Tasks began as a one-evening experiment: could we create a to-do list that loads instantly, requires no account, and still feels reliable enough to run your day? Colleagues asked for the prototype; friends kept using it; the checklist survived real deadlines. We decided to polish the edges without losing the speed that made it useful.</p>
+      <p>Our philosophy: ship the smallest thing that makes life better, then iterate based on real-world feedback. We prefer features that remove cognitive load rather than add complexity. If a change doesn’t help you finish work sooner, we don’t ship it.</p>
+      <figure>
+        <img src="/assets/illustrations/history-wireframe.png" alt="Early wireframe of Today's Tasks lanes and minimal controls" loading="lazy" />
+        <figcaption>Early wireframe: three lanes, a single add box, and no settings maze—because defaults should be good.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
-      <h2>What We Offer</h2>
+    <section class="group" id="principles">
+      <h2>Design Principles</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Speed Over Everything</h3>
+          <p>Performance is a feature. If your tool takes ten seconds to open, you’ll plan in your head instead. The app ships minimal JavaScript, cached assets, and plain-language HTML so it loads quickly even on modest connections.</p>
+          <h3>Clarity Over Customization</h3>
+          <p>More settings create more decisions. We focus on good defaults and a short path from thought to action. The three-lane model—High Priority, Due Today, and General—covers most daily routines without labels fatigue.</p>
+        </div>
+        <div>
+          <h3>Local-First Privacy</h3>
+          <p>Your tasks belong to you. By default, they live in your browser’s <em>LocalStorage</em> and never leave your device unless you export or share them yourself. See our <a href="/privacy.html">Privacy Policy</a> for details.</p>
+          <h3>Accessible & Inclusive</h3>
+          <p>Keyboard navigation, readable type, and sensible contrast are first-class. We keep the interface simple so more people can use it, including on older devices.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="group" id="how-it-works">
+      <h2>How Today’s Tasks Works</h2>
+      <p>Open the app and you’ll see one input box, a priority selector, and three lists. Type the next action, choose where it belongs, and press “Add Task.” Completed items move to a separate section where you can restore them anytime. Each midnight, the app resets your visible list so you start fresh—no more stale tasks weighing on tomorrow.</p>
       <ul>
-        <li><strong>Daily To-Do List:</strong> Plan and prioritize your day in seconds with three simple lanes—High Priority, Due Today, and General.</li>
-        <li><strong>Local-Only Storage:</strong> Your tasks stay in your browser’s LocalStorage by default. Nothing is sent to our servers.</li>
-        <li><strong>Helpful Utilities:</strong> Extras like a FIRE Calculator and Image Resizer to support your workflow without installing apps.</li>
-        <li><strong>Responsive Design:</strong> Works smoothly on desktop and mobile so you can review your list anywhere.</li>
+        <li><strong>High Priority</strong>: urgent items or hard deadlines that demand attention today.</li>
+        <li><strong>Due Today</strong>: outcomes that would make the day a win.</li>
+        <li><strong>General</strong>: everything else worth tracking without hijacking the day.</li>
+      </ul>
+      <p class="note">Want a quick tour? See <a href="/article4.html">How to Use Today’s Tasks</a>, then build a weekly reset routine with <a href="/article5.html">Weekly Review Checklist</a>.</p>
+      <figure>
+        <img src="/assets/illustrations/lanes-screenshot.png" alt="Screenshot of the three lanes: High, Due Today, and General" loading="lazy" />
+        <figcaption>Three lanes, one input—fast capture keeps momentum high.</figcaption>
+      </figure>
+    </section>
+
+    <section class="group" id="privacy">
+      <h2>Privacy &amp; Data Respect</h2>
+      <p>We believe productivity tools should be trustworthy by default. Today’s Tasks stores your list locally in the browser. We don’t require accounts or send your tasks to our servers. If you choose to export, you control the file. For analytics and ads, we follow platform policies and keep things lightweight. Read the full <a href="/privacy.html">Privacy Policy</a> for cookie usage, third-party services, and update practices.</p>
+    </section>
+
+    <section class="group" id="who-for">
+      <h2>Who It’s For</h2>
+      <p>Today’s Tasks is built for people who value momentum over micromanagement: freelancers juggling clients, managers running 1:1s and status meetings, students balancing classes, and parents coordinating household tasks. If you’ve tried heavy project tools for daily planning and found them slow, this app is likely a better fit.</p>
+      <ul>
+        <li><strong>Professionals</strong>: Plan mornings in two minutes, review afternoons in one. Pair with your calendar for time blocks.</li>
+        <li><strong>Students</strong>: Keep assignments in General, move deadlines to Due Today, and promote urgent work to High.</li>
+        <li><strong>Households</strong>: Share routines and use our curated <a href="/etsy-guides.html">Time-Saving Templates &amp; Guides</a> to reduce weekly admin.</li>
       </ul>
     </section>
 
-    <section class="group">
-      <h2>Why Choose Us</h2>
-      <p>We focus on essentials: fast performance, clear UI, and privacy-first choices. We ship small, frequent improvements and listen to feedback. If a feature doesn’t help you finish work sooner, we don’t add it.</p>
+    <section class="group" id="compare">
+      <h2>Why Today’s Tasks Is Different</h2>
+      <p>Many to-do apps optimize for project complexity. We optimize for <em>daily execution</em>. Fewer clicks, fewer labels, fewer decisions. You can still run complex projects—just capture the next visible step. For larger planning and context on why this approach works, see <a href="/article1.html">7 Practical Productivity Tips</a> and <a href="/article2.html">Time Management Strategies That Actually Work</a>.</p>
+      <figure>
+        <img src="/assets/illustrations/compare-simple-vs-heavy.png" alt="Comparison diagram: simple daily list versus heavy project boards" loading="lazy" />
+        <figcaption>Daily planning thrives on clarity. The right constraint keeps you moving.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
+    <section class="group" id="use-cases">
+      <h2>Common Use Cases</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Morning Focus Ritual</h3>
+          <p>Before opening your inbox, add three outcomes that would make today a success. Put hard deadlines in High Priority and the rest in Due Today. When everything is a priority, nothing is—use the lanes to say “not now” without losing the task.</p>
+        </div>
+        <div>
+          <h3>Weekly Reset</h3>
+          <p>On Fridays, archive finished items, re-rank priorities, and plan next week’s top three. Our <a href="/article5.html">Weekly Review Checklist</a> walks through a simple reflection that prevents drift and keeps projects moving.</p>
+        </div>
+        <div>
+          <h3>Student Planning</h3>
+          <p>Track assignments in General; move upcoming exams to Due Today; mark last-minute study sessions High. See <a href="/article3.html">The Benefits of Digital To-Do Lists</a> for why digital capture speeds up editing and reduces friction.</p>
+        </div>
+        <div>
+          <h3>Home & Life Admin</h3>
+          <p>Combine errands, budget reminders, and routines. Our curated <a href="/etsy-guides.html">templates</a> save hours on planning chores, meal prep, fitness tracking, and event planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="group" id="faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Do I need an account?</summary>
+        <p>No. The app runs locally by default, so you can plan instantly—perfect for quick morning setups or on shared devices.</p>
+      </details>
+      <details>
+        <summary>Where is my data stored?</summary>
+        <p>Your tasks are saved in your browser’s LocalStorage. They never leave your device unless you export or share them. See the <a href="/privacy.html">Privacy Policy</a> for details.</p>
+      </details>
+      <details>
+        <summary>Can I restore completed items?</summary>
+        <p>Yes. Marking an item complete moves it to a separate section where you can restore it anytime.</p>
+      </details>
+      <details>
+        <summary>How do I learn the workflow quickly?</summary>
+        <p>Start with <a href="/article4.html">How to Use Today’s Tasks</a>, then practice a five-minute <a href="/article5.html">Weekly Review</a>. You’ll feel the difference within a week.</p>
+      </details>
+      <details>
+        <summary>Does it work on mobile?</summary>
+        <p>Absolutely. The layout is responsive and keyboard-friendly on desktop.</p>
+      </details>
+    </section>
+
+    <section class="group" id="resources">
+      <h2>Further Reading &amp; Internal Links</h2>
+      <ul>
+        <li><a href="/article1.html">7 Practical Productivity Tips</a> – evidence-based habits for consistent output.</li>
+        <li><a href="/article2.html">Time Management Strategies That Actually Work</a> – capacity, constraints, and weekly steering.</li>
+        <li><a href="/article3.html">Benefits of Digital To-Do Lists</a> – why browser-based planning removes friction.</li>
+        <li><a href="/article4.html">How to Use Today’s Tasks</a> – a short starter guide to lanes and nightly reset.</li>
+        <li><a href="/article5.html">Weekly Review Checklist</a> – a simple ritual to reflect, reset, and focus.</li>
+      </ul>
+    </section>
+
+    <section class="group" id="next">
       <h2>What’s Next</h2>
-      <p>We’re exploring gentle enhancements—keyboard shortcuts, optional export, and accessibility refinements—while keeping the app simple. If you have ideas, we’d love to hear from you on the <a href="/contact.html">Contact</a> page.</p>
+      <p>We’re exploring gentle enhancements—keyboard shortcuts, optional export, and accessibility refinements—while keeping the app simple. We’ll continue to prioritize speed, clarity, and privacy over feature bloat.</p>
+      <p>If you have ideas or feedback, we’d love to hear from you on the <a href="/contact.html">Contact</a> page. If the app saves you time, share it with a friend who struggles with list bloat. The best compliment is another focused day.</p>
     </section>
   </main>
 
