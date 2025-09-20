@@ -2,19 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to Use Today's Tasks</title>
-  <meta name="description" content="Step-by-step guide on how to use the Today's Tasks web app for daily productivity." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>How to Use Today's Tasks (Step-by-Step Guide + Tips)</title>
+  <meta name="description" content="A step-by-step guide to using Today's Tasks: add tasks, prioritize with High/Due Today/General, complete & restore, and benefit from the automatic midnight reset. Includes pro tips, internal links, and visuals." />
+  <link rel="canonical" href="https://todays-tasks.com/article4.html" />
+  <meta property="og:title" content="How to Use Today's Tasks (Step-by-Step Guide + Tips)" />
+  <meta property="og:description" content="Learn how to use Today's Tasks effectively with clear steps, visuals, and productivity tips." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://todays-tasks.com/article4.html" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/tt-og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="/style.css" />
 
   <!-- ✅ Google AdSense 自動廣告程式碼 -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" 
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- ✅ FAQ 結構化資料（有助通過審核與 SEO） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Do I need an account to use Today's Tasks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Today's Tasks runs entirely in your browser and saves to LocalStorage. No sign-up or sync is required."
+      }
+    },{
+      "@type": "Question",
+      "name": "What happens to my list at midnight?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app automatically resets the daily lists at midnight to keep things tidy. Long-term items can be re-added on the next day."
+      }
+    },{
+      "@type": "Question",
+      "name": "How should I use the three priorities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use High for urgent or critical work, Due Today for important items to finish today, and General for ongoing tasks. This keeps focus without micromanagement."
+      }
+    }]
+  }
+  </script>
+
+  <style>
+    /* 輕量補強圖片與表格呈現 */
+    .article-hero{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff}
+    .article-hero img{display:block;width:100%;height:auto}
+    figure{margin:14px 0}
+    figcaption{font-size:13px;color:#6b7280;margin-top:6px}
+    .toc{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fafafa;margin:12px 0}
+    .toc h3{margin:0 0 8px 0;font-size:16px}
+    .toc ul{margin:0;padding-left:18px}
+    .callout{border-left:4px solid #2563eb;background:#f5f8ff;padding:12px;border-radius:8px}
+    .protips li{margin:6px 0}
+    .related{border-top:1px solid #e5e7eb;margin-top:20px;padding-top:12px}
+    .breadcrumb{font-size:13px;color:#6b7280;margin-bottom:8px}
+    .breadcrumb a{color:#6b7280;text-decoration:underline}
+  </style>
 </head>
 <body>
-  <div class="compliance-links">
+  <!-- 站內導覽 -->
+  <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
@@ -26,35 +80,113 @@
   </div>
 
   <main class="container">
-    <h1>How to Use Today's Tasks</h1>
-    <section class="group">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a> › How to Use
+    </nav>
+
+    <header class="group">
+      <h1>How to Use Today's Tasks</h1>
+      <p class="lede">Master the basics in minutes: add tasks, prioritize clearly, complete and restore with one click, and let the <strong>automatic midnight reset</strong> keep your list fresh. This guide includes pro tips, visuals, and links to deeper articles.</p>
+
+      <!-- 置頂示意圖（可換成你的實際截圖） -->
+      <figure class="article-hero">
+        <img src="/assets/tt-overview.png" alt="Today's Tasks overview: three lanes for High, Due Today, and General" loading="lazy" width="1280" height="720">
+        <figcaption>Overview of the three-lane layout (High / Due Today / General) and the quick-add box.</figcaption>
+      </figure>
+
+      <!-- 目錄 -->
+      <div class="toc" aria-labelledby="toc-title">
+        <h3 id="toc-title">Table of Contents</h3>
+        <ul>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#adding-tasks">Adding Tasks</a></li>
+          <li><a href="#organizing-priorities">Organizing Priorities</a></li>
+          <li><a href="#complete-restore">Completing & Restoring</a></li>
+          <li><a href="#auto-reset">Automatic Reset</a></li>
+          <li><a href="#pro-tips">Pro Tips</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="group" id="getting-started">
       <h2>Getting Started</h2>
-      <p>Today's Tasks is designed to be simple and intuitive. No registration is required—just open the website and start organizing your day in seconds. Your tasks are saved directly in your browser’s local storage, which means they never leave your device.</p>
+      <p>Today's Tasks is designed to be simple and intuitive. No registration is required—just open the website and start organizing your day in seconds. Your tasks are saved directly in your browser’s <em>LocalStorage</em>, which means they never leave your device.</p>
+
+      <figure>
+        <img src="/assets/tt-quickstart.png" alt="Quick start: type a task, choose priority, and click Add Task" loading="lazy" width="1200" height="700">
+        <figcaption>Quick start: type a task, pick a priority, click <em>Add Task</em>.</figcaption>
+      </figure>
+
+      <div class="callout">
+        Tip: If you’re new to digital lists, read <a href="/article3.html">The Benefits of Digital To-Do Lists</a> for why a lightweight web app beats spreadsheets and paper for fast capture.
+      </div>
     </section>
 
-    <section class="group">
+    <section class="group" id="adding-tasks">
       <h2>Adding Tasks</h2>
-      <p>To add a task, type it into the input box at the top of the page, choose a priority (High, Due Today, or General), and click “Add Task.” Tasks instantly appear in their respective lists, ready to track.</p>
+      <p>Type the item into the input at the top of the page, choose a priority (<strong>High</strong>, <strong>Due Today</strong>, or <strong>General</strong>), then click <em>Add Task</em>. Tasks appear instantly in the correct lane.</p>
+
+      <figure>
+        <img src="/assets/tt-add-task.png" alt="Adding a task into the input and selecting a priority" loading="lazy" width="1200" height="700">
+        <figcaption>Add tasks with one input—no modal, no extra dialog.</figcaption>
+      </figure>
+
+      <p class="related">Related reading: <a href="/article1.html">7 Practical Productivity Tips</a> • <a href="/article2.html">Time Management Strategies</a></p>
     </section>
 
-    <section class="group">
+    <section class="group" id="organizing-priorities">
       <h2>Organizing Priorities</h2>
-      <p>Use the three lanes—High, Due Today, and General—to separate urgent work from ongoing responsibilities. High priority is for critical deadlines, Due Today helps you finish daily goals, and General keeps longer-term tasks visible.</p>
+      <p>Use the three lanes to separate urgent work from ongoing responsibilities. <strong>High</strong> is for critical deadlines, <strong>Due Today</strong> helps you finish daily goals, and <strong>General</strong> keeps longer-term tasks visible without clutter.</p>
+
+      <figure>
+        <img src="/assets/tt-priorities.png" alt="Three lanes: High, Due Today, General, each showing example tasks" loading="lazy" width="1200" height="700">
+        <figcaption>Keep the list simple but clear with three lanes—enough for focus, not enough for micromanagement.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
+    <section class="group" id="complete-restore">
       <h2>Completing and Restoring</h2>
-      <p>Click the green checkmark to mark a task complete. Completed tasks move into a separate section where you can restore them anytime. This helps track progress without losing visibility.</p>
+      <p>Click the green checkmark to mark a task complete. Completed tasks move into a separate section where you can restore them anytime. This makes it easy to track progress without losing visibility.</p>
+
+      <figure>
+        <img src="/assets/tt-complete-restore.png" alt="Completing a task and restoring it from the completed section" loading="lazy" width="1200" height="700">
+        <figcaption>Done items are archived for later reference—restore with one click.</figcaption>
+      </figure>
     </section>
 
-    <section class="group">
+    <section class="group" id="auto-reset">
       <h2>Automatic Reset</h2>
-      <p>At midnight, the app automatically resets your daily tasks to keep your list clean. Important long-term items can easily be re-added the next day.</p>
+      <p>At midnight, the app automatically resets your daily tasks to keep your list clean. Important long-term items can be re-added the next day.</p>
+
+      <div class="callout">
+        Make it a habit: pair the reset with a 5-minute <a href="/article5.html">Weekly Review</a> to re-prioritize and carry over anything still relevant.
+      </div>
     </section>
 
-    <section class="group">
-      <h2>Why This Matters</h2>
-      <p>By keeping things simple, Today’s Tasks makes sure you spend less time managing your list and more time getting real work done. Whether you’re a student, professional, or freelancer, this app adapts to your workflow without distraction.</p>
+    <section class="group" id="pro-tips">
+      <h2>Pro Tips (Make It Stick)</h2>
+      <ul class="protips">
+        <li><strong>Start with a daily intention.</strong> One sentence that defines success for today.</li>
+        <li><strong>Batch admin work.</strong> Keep email and errands to one or two windows per day.</li>
+        <li><strong>Use short, named blocks.</strong> e.g., “Draft client email (25 min)”.</li>
+        <li><strong>Plan the next step, not the entire project.</strong> Every task should be completable in one sitting.</li>
+        <li><strong>Close with a 2-minute review.</strong> Move items forward and tee up tomorrow’s top three.</li>
+      </ul>
+      <p class="related">Deep dives: <a href="/article1.html">Productivity Tips</a> • <a href="/article2.html">Time Management</a></p>
+    </section>
+
+    <section class="group" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">FAQ</h2>
+      <details><summary>Do I need an account?</summary>
+        <p>No. Everything runs locally in your browser (LocalStorage). Nothing is sent to our servers.</p>
+      </details>
+      <details><summary>Will I lose my list?</summary>
+        <p>Your daily lanes reset at midnight by design. For long-term items, keep them in General or re-add them the next day.</p>
+      </details>
+      <details><summary>Can I use it on mobile?</summary>
+        <p>Yes. The layout is responsive for phones and desktops.</p>
+      </details>
     </section>
   </main>
 
