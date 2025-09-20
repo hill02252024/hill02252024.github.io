@@ -4,88 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Benefits of Digital To-Do Lists</title>
-  <meta name="description" content="Why a lightweight, browser-based to-do list can boost clarity and momentum for modern work.">
+  <meta name="description" content="A practical guide to why browser-based to-do lists boost clarity and momentum: syncing, editing speed, privacy, prioritization, automatic resets, accessibility and more.">
+
+  <!-- Canonical & indexing -->
+  <link rel="canonical" href="https://todays-tasks.com/article3.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Benefits of Digital To-Do Lists">
+  <meta property="og:description" content="Why a lightweight, browser-based to-do list can boost clarity and momentum for modern work.">
+  <meta property="og:url" content="https://todays-tasks.com/article3.html">
+  <meta property="og:image" content="https://todays-tasks.com/assets/digital-todo-benefits-hero.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Benefits of Digital To-Do Lists">
+  <meta name="twitter:description" content="Why a lightweight, browser-based to-do list can boost clarity and momentum for modern work.">
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/digital-todo-benefits-hero.png">
 
   <!-- AdSense account hint -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
 
   <!-- AdSense global script -->
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/style.css">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f8fa;
-      margin: 0;
-      color: #333;
+    :root{
+      --brand:#007bff;
+      --ink:#333;
+      --muted:#6b7280;
+      --paper:#fff;
+      --bg:#f5f8fa;
+      --line:#e5e7eb;
     }
-    .container {
-      max-width: 860px;
-      margin: 24px auto;
-      background: #fff;
-      padding: 24px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.06);
-    }
-    .topnav {
-      background: #007bff;
-      color: #fff;
-      padding: 10px 14px;
-      text-align: center;
-    }
-    .topnav a {
-      color: #fff;
-      margin: 0 8px;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .topnav a:hover {
-      text-decoration: underline;
-    }
+    body {font-family: Arial, sans-serif;background: var(--bg);margin:0;color:var(--ink);}
+    .topnav{background:var(--brand);color:#fff;text-align:center}
+    .topnav a{color:#fff;text-decoration:none;font-weight:700;padding:.75rem .5rem;display:inline-block}
+    .topnav a:hover{text-decoration:underline}
+    .wrap{max-width:860px;margin:24px auto;background:var(--paper);padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .breadcrumbs{font-size:14px;color:var(--muted);margin:0 auto 8px;max-width:860px;padding:0 4px}
+    .breadcrumbs a{color:var(--muted)}
+    h1{margin:.2rem 0 1rem}
+    .lede{color:var(--muted);margin-top:-6px}
+    .toc{border:1px solid var(--line);background:#fafafa;border-radius:10px;padding:14px;margin:16px 0}
+    .toc strong{display:block;margin-bottom:6px}
+    .toc a{display:block;color:var(--brand);text-decoration:none;margin:4px 0}
+    .toc a:hover{text-decoration:underline}
+    figure{margin:16px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+    .responsive-img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain;background:#f3f4f6}
+    figcaption{font-size:13px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:760px){.two-col{grid-template-columns:1fr}}
+    .callout{border-left:4px solid var(--brand);background:#f0f6ff;border-radius:6px;padding:12px 14px;margin:16px 0}
+    .callout a{color:var(--brand)}
+    hr{border:none;border-top:1px solid var(--line);margin:24px 0}
+    .more h3{margin:.2rem 0 .6rem}
+    .more a{display:inline-block;margin:4px 8px 0 0}
+    .meta{color:var(--muted);font-size:14px;margin-top:6px}
   </style>
+
+  <!-- BreadcrumbList structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+      {"@type":"ListItem","position":2,"name":"Articles","item":"https://todays-tasks.com/article3.html"},
+      {"@type":"ListItem","position":3,"name":"The Benefits of Digital To-Do Lists","item":"https://todays-tasks.com/article3.html"}
+    ]
+  }
+  </script>
+
+  <!-- Article & FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"The Benefits of Digital To-Do Lists",
+    "description":"Why a lightweight, browser-based to-do list can boost clarity and momentum for modern work.",
+    "image":"https://todays-tasks.com/assets/digital-todo-benefits-hero.png",
+    "mainEntityOfPage":"https://todays-tasks.com/article3.html",
+    "author":{"@type":"Organization","name":"Today's Tasks"},
+    "publisher":{"@type":"Organization","name":"Today's Tasks"},
+    "datePublished":"2025-01-01",
+    "dateModified":"2025-09-07"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Do I need to install anything?","acceptedAnswer":{"@type":"Answer","text":"No. Today’s Tasks runs in your browser, so there’s nothing to install or update."}},
+      {"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Your tasks are saved in your browser’s LocalStorage by default and never leave your device unless you export them."}},
+      {"@type":"Question","name":"How should I prioritize tasks?","acceptedAnswer":{"@type":"Answer","text":"Use three lanes—High Priority, Due Today, and General—to keep decisions simple and momentum high."}}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="topnav">
+
+  <!-- Breadcrumbs (visible) -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/index.html">Home</a> › <span>Digital To-Do Lists</span>
+  </nav>
+
+  <div class="topnav" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/article1.html">Productivity Tips</a> |
     <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Digital To-Do Lists</a> |
+    <a aria-current="page" href="/article3.html">Digital To-Do Lists</a> |
+    <a href="/article4.html">How to Use</a> |
+    <a href="/article5.html">Weekly Review</a> |
     <a href="/about.html">About</a> |
     <a href="/privacy.html">Privacy</a> |
     <a href="/contact.html">Contact</a>
   </div>
 
-  <main class="container">
-    <h1>The Benefits of Digital To-Do Lists</h1>
-    <p>Paper lists are timeless, but modern work often lives in the browser. A lightweight digital list provides clarity without the overhead of a full project management suite. Here is why many professionals choose a simple web-based approach.</p>
+  <main class="wrap">
+    <header>
+      <h1>The Benefits of Digital To-Do Lists</h1>
+      <p class="lede">Paper lists are timeless, but modern work often lives in the browser. A lightweight digital list provides clarity without the overhead of a full project management suite. Here’s why many professionals choose a simple web-based approach.</p>
+      <p class="meta">Updated · Sep 2025 · 6–8 min read</p>
 
-    <h2>Always available, instantly synced</h2>
-    <p>With a browser-based list you can add tasks on your laptop at the office and review them on your phone at lunch. There is nothing to install, update, or maintain.</p>
+      <figure>
+        <!-- 建議放置：/assets/digital-todo-benefits-hero.png (1200×630 以上，<200KB) -->
+        <img class="responsive-img" src="/assets/digital-todo-benefits-hero.png" alt="Overview of a clean, lightweight digital to-do list on desktop and mobile" loading="lazy" width="1200" height="630">
+        <figcaption>A lightweight digital list pairs clarity with speed—no complex setup required.</figcaption>
+      </figure>
 
-    <h2>Cleaner capture and faster editing</h2>
-    <p>Typing beats handwriting when items change quickly. Reorder, rename, or recategorize tasks in seconds. A tidy list encourages action.</p>
+      <!-- 目錄 -->
+      <nav class="toc" aria-label="Table of contents">
+        <strong>On this page</strong>
+        <a href="#sync">Always available, instantly synced</a>
+        <a href="#edit">Cleaner capture and faster editing</a>
+        <a href="#privacy">Privacy by default</a>
+        <a href="#prioritize">Lightweight prioritization</a>
+        <a href="#reset">Automatic resets reduce clutter</a>
+        <a href="#momentum">Focus on momentum</a>
+        <a href="#a11y">Accessible and inclusive</a>
+        <a href="#calendar">Pairs well with your calendar</a>
+      </nav>
+    </header>
 
-    <h2>Privacy by default</h2>
-    <p>Today’s Tasks stores data locally in your browser. Your tasks never leave your device unless you choose to export or sync elsewhere.</p>
+    <section id="sync">
+      <h2>Always available, instantly synced</h2>
+      <div class="two-col">
+        <p>With a browser-based list you can add tasks on your laptop at the office and review them on your phone at lunch. There’s nothing to install, update, or maintain. The experience is consistent everywhere you sign in.</p>
+        <figure>
+          <!-- 建議放置：/assets/digital-sync-diagram.png -->
+          <img class="responsive-img" src="/assets/digital-sync-diagram.png" alt="Diagram showing tasks captured on desktop and reviewed on mobile" loading="lazy" width="1000" height="600">
+          <figcaption>Capture anywhere, review anywhere: laptop at work, phone on the go.</figcaption>
+        </figure>
+      </div>
+      <div class="callout">
+        Tip: Try our app right now—open <a href="/index.html">Today’s Tasks</a>, add a task, and revisit from another device.
+      </div>
+    </section>
 
-    <h2>Lightweight prioritization</h2>
-    <p>Three simple lanes—High Priority, Due Today, and General—are enough for most days. You spend less time choosing labels and more time doing the work.</p>
+    <section id="edit">
+      <h2>Cleaner capture and faster editing</h2>
+      <p>Typing beats handwriting when items change quickly. Rename, reorder, or recategorize in seconds. A tidy list reduces friction and nudges action. For a step-by-step primer, see <a href="/article4.html">How to Use Today’s Tasks</a>.</p>
+      <figure>
+        <!-- 建議放置：/assets/digital-quick-edit.png -->
+        <img class="responsive-img" src="/assets/digital-quick-edit.png" alt="Quick edit interactions: rename, reorder, recategorize tasks" loading="lazy" width="1200" height="720">
+        <figcaption>Quick edits keep your list fresh and trustworthy.</figcaption>
+      </figure>
+    </section>
 
-    <h2>Automatic resets reduce clutter</h2>
-    <p>Midnight clears the list so you start fresh. Important items can be re-added, but stale tasks no longer weigh on your mind.</p>
+    <section id="privacy">
+      <h2>Privacy by default</h2>
+      <p>Today’s Tasks stores data locally in your browser. Your tasks never leave your device unless you choose to export or sync elsewhere. Learn more in our <a href="/privacy.html">Privacy Policy</a>.</p>
+    </section>
 
-    <h2>Focus on momentum over micro-management</h2>
-    <p>Digital lists work best when they capture the next visible step, not the entire project. This converts intention into motion and builds momentum quickly.</p>
+    <section id="prioritize">
+      <h2>Lightweight prioritization</h2>
+      <p>Three simple lanes—<strong>High Priority</strong>, <strong>Due Today</strong>, and <strong>General</strong>—are enough for most days. Fewer labels mean faster decisions and more momentum. For prioritization tactics, check <a href="/article1.html">7 Practical Productivity Tips</a>.</p>
+      <figure>
+        <!-- 建議放置：/assets/digital-priority-lanes.png -->
+        <img class="responsive-img" src="/assets/digital-priority-lanes.png" alt="Three-lane list: High Priority, Due Today, General" loading="lazy" width="1200" height="600">
+        <figcaption>Three lanes keep priorities obvious without micro-management.</figcaption>
+      </figure>
+    </section>
 
-    <h2>Accessible and inclusive</h2>
-    <p>Web apps can support keyboard navigation, readable type, and high-contrast themes. Accessibility features make productivity available to more people.</p>
+    <section id="reset">
+      <h2>Automatic resets reduce clutter</h2>
+      <p>At midnight the list resets so you start fresh. Important items can be re-added, but stale tasks no longer weigh on your mind. Pair this with a weekly reset—see <a href="/article5.html">Weekly Review Checklist</a>—to keep the system lean.</p>
+    </section>
 
-    <h2>Pairs well with your calendar</h2>
-    <p>Tasks answer “what”. Calendars answer “when”. Use your list to select the next step, then block time on the calendar to do it. Together they remove decision fatigue.</p>
+    <section id="momentum">
+      <h2>Focus on momentum over micro-management</h2>
+      <p>Digital lists work best when they capture the next visible step—not the entire project. Converting intention into the smallest executable action builds momentum quickly. When you finish, log the next step rather than “close the project.”</p>
+    </section>
+
+    <section id="a11y">
+      <h2>Accessible and inclusive</h2>
+      <p>Web apps can support keyboard navigation, readable type, and high-contrast themes. Good accessibility makes productivity available to more people and often improves speed for everyone.</p>
+    </section>
+
+    <section id="calendar">
+      <h2>Pairs well with your calendar</h2>
+      <p>Tasks answer <em>what</em>. Calendars answer <em>when</em>. Use your list to pick the next step, then block time on your calendar to do it. Together they remove decision fatigue.</p>
+    </section>
+
+    <hr>
+
+    <!-- In-article ad placeholder (自動廣告會自行決定是否填入) -->
+    <!-- <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-7165265186193287"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+
+    <section class="more" aria-labelledby="more-reading">
+      <h3 id="more-reading">Further Reading</h3>
+      <p>Keep improving your workflow with these practical guides:</p>
+      <a href="/article1.html">Productivity Tips</a>
+      <a href="/article2.html">Time Management</a>
+      <a href="/article4.html">How to Use Today’s Tasks</a>
+      <a href="/article5.html">Weekly Review Checklist</a>
+      <a href="/etsy-guides.html">Time-Saving Templates</a>
+    </section>
   </main>
 
   <footer class="footer">
