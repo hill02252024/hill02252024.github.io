@@ -4,58 +4,191 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy – Today's Tasks</title>
-  <meta name="description" content="Read our Privacy Policy to learn how we handle your data and keep your tasks safe." />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="description" content="Learn how Today's Tasks protects your privacy: what we store locally, what cookies third-parties use for ads/analytics, and how to control or opt out." />
+  <link rel="canonical" href="https://todays-tasks.com/privacy.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Today's Tasks" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy – Today's Tasks" />
+  <meta property="og:description" content="We keep your to-do data in your browser. Read how ads/analytics work and how to control cookies." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://todays-tasks.com/privacy.html" />
 
   <!-- ✅ Google AdSense Verification -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .toc{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fafafa;margin-bottom:16px}
+    .toc a{display:block;margin:4px 0}
+    .meta-note{color:#6b7280;font-size:14px;margin-top:-6px;margin-bottom:12px}
+    figure.illustration{margin:12px 0 18px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
+    figure.illustration figcaption{font-size:13px;color:#6b7280;padding:8px 12px;border-top:1px solid #f3f4f6}
+    .inline-links a{margin-right:10px}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:0 6px}
+  </style>
+
+  <!-- FAQ / HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Where is my to-do data stored?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Your tasks are stored in your own browser's LocalStorage and never sent to our servers by default." }
+    },{
+      "@type": "Question",
+      "name": "Do you use cookies?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We use limited cookies via third parties (e.g., Google AdSense/Analytics) for ad delivery and anonymous usage insights. You can manage or disable cookies in your browser." }
+    },{
+      "@type": "Question",
+      "name": "How can I delete my data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Open your browser settings and clear site data/storage for todays-tasks.com or click the Reset option in the app to clear lists. This erases LocalStorage on your device." }
+    },{
+      "@type": "Question",
+      "name": "How do I opt out of personalized ads?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Visit https://adssettings.google.com to manage ad personalization. You can also use your browser's tracking protection and cookie controls." }
+    }]
+  }
+  </script>
 </head>
 <body>
   <!-- 導覽列 -->
-  <div class="compliance-links">
-    <a href="/index.html">Home</a> 
-    <a href="/about.html">About</a> 
-    <a href="/contact.html">Contact</a> 
-    <a href="/privacy.html">Privacy Policy</a> 
-    <a href="/article1.html">Productivity Tips</a> 
-    <a href="/article2.html">Time Management</a> 
-    <a href="/article3.html">Digital To-Do Lists</a> 
-    <a href="/article4.html">How to Use</a> 
+  <div class="compliance-links" role="navigation" aria-label="Primary">
+    <a href="/index.html">Home</a> |
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html" aria-current="page">Privacy Policy</a> |
+    <a href="/article1.html">Productivity Tips</a> |
+    <a href="/article2.html">Time Management</a> |
+    <a href="/article3.html">Digital To-Do Lists</a> |
+    <a href="/article4.html">How to Use</a> |
     <a href="/article5.html">Weekly Review</a>
   </div>
 
   <main class="container">
     <h1>Privacy Policy</h1>
+    <p class="meta-note">Last updated: <time datetime="2025-09-07">September 7, 2025</time></p>
 
-    <section class="group">
+    <!-- 目錄（SEO + 可用性） -->
+    <nav class="toc" aria-label="Table of contents">
+      <strong>On this page</strong>
+      <a href="#who-we-are">Who We Are</a>
+      <a href="#what-we-collect">Information We Collect</a>
+      <a href="#local-data">Local-Only Tasks</a>
+      <a href="#third-parties">Third-Party Services (Ads/Analytics)</a>
+      <a href="#cookies">Cookies & Controls</a>
+      <a href="#data-security">Data Security</a>
+      <a href="#your-rights">Your Rights & Choices</a>
+      <a href="#children">Children</a>
+      <a href="#intl">International Users</a>
+      <a href="#changes">Policy Updates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- 示意圖（輕量 SVG，避免外部檔案遺失） -->
+    <figure class="illustration">
+      <svg width="100%" height="160" viewBox="0 0 720 160" role="img" aria-labelledby="pp-diagram-title">
+        <title id="pp-diagram-title">Privacy diagram: data stays in your browser; ads/analytics via third parties</title>
+        <rect x="15" y="25" width="190" height="110" rx="12" fill="#eef2ff" stroke="#c7d2fe"/>
+        <text x="110" y="50" text-anchor="middle" font-size="14" fill="#1f2937">Your Browser</text>
+        <text x="110" y="70" text-anchor="middle" font-size="12" fill="#374151">LocalStorage</text>
+        <text x="110" y="90" text-anchor="middle" font-size="12" fill="#374151">Tasks kept locally</text>
+        <rect x="265" y="25" width="190" height="110" rx="12" fill="#ecfeff" stroke="#a5f3fc"/>
+        <text x="360" y="50" text-anchor="middle" font-size="14" fill="#1f2937">Today's Tasks App</text>
+        <text x="360" y="70" text-anchor="middle" font-size="12" fill="#374151">No account, no sync</text>
+        <rect x="515" y="25" width="190" height="110" rx="12" fill="#fef3c7" stroke="#fde68a"/>
+        <text x="610" y="50" text-anchor="middle" font-size="14" fill="#1f2937">Third Parties</text>
+        <text x="610" y="70" text-anchor="middle" font-size="12" fill="#374151">Ads / Analytics</text>
+        <line x1="205" y1="80" x2="265" y2="80" stroke="#6b7280" stroke-dasharray="4 4"/>
+        <line x1="455" y1="80" x2="515" y2="80" stroke="#6b7280" stroke-dasharray="4 4"/>
+        <circle cx="110" cy="120" r="10" fill="#10b981"/>
+        <text x="130" y="124" font-size="12" fill="#065f46">Your tasks do not leave the device</text>
+      </svg>
+      <figcaption>Illustration: Tasks stay in your browser. Ads/analytics are delivered by trusted providers with their own policies.</figcaption>
+    </figure>
+
+    <section class="group" id="who-we-are">
+      <h2>Who We Are</h2>
+      <p>Today’s Tasks is a lightweight to-do web app focused on privacy and clarity. We do not require accounts and we keep your personal tasks on your device by default.</p>
+      <p class="inline-links">
+        Related: <a href="/about.html">About</a> · <a href="/article3.html">Why digital to-do lists?</a> · <a href="/article4.html">How to use the app</a>
+      </p>
+    </section>
+
+    <section class="group" id="what-we-collect">
       <h2>Information We Collect</h2>
       <ul>
-        <li><strong>LocalStorage:</strong> Your to-do tasks stay entirely in your browser.</li>
-        <li><strong>Analytics:</strong> Anonymous usage data may be collected to improve performance.</li>
+        <li><strong>Operational data:</strong> Basic, anonymous technical info (e.g., page views, approximate device type) used to understand performance and improve features.</li>
+        <li><strong>Ad data:</strong> Third-party ad partners may process limited data to deliver and measure ads. See <a href="#third-parties">Third-Party Services</a>.</li>
       </ul>
     </section>
 
-    <section class="group">
-      <h2>Third-Party Services</h2>
-      <p>We use Google AdSense to serve ads. Please refer to the <a href="https://policies.google.com/technologies/ads" target="_blank">Google Ads Policy</a> for details.</p>
+    <section class="group" id="local-data">
+      <h2>Local-Only Tasks</h2>
+      <p>Your to-do items are stored in your own browser’s <span class="kbd">LocalStorage</span>. By default, we do not transmit task content to our servers.</p>
+      <p>To remove local data anytime, you can clear site storage for <em>todays-tasks.com</em> in your browser settings or use the app’s reset options (see <a href="/article4.html">How to Use</a>).</p>
     </section>
 
-    <section class="group">
-      <h2>Cookies</h2>
-      <p>We only use cookies for analytics and ad delivery. You can disable cookies anytime in your browser settings.</p>
+    <section class="group" id="third-parties">
+      <h2>Third-Party Services (Ads/Analytics)</h2>
+      <p>We use Google services to serve ads and understand anonymous usage patterns. Please review their policies:</p>
+      <ul>
+        <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads & Technologies</a></li>
+        <li><a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Google Cookies</a></li>
+        <li><a href="https://adssettings.google.com" target="_blank" rel="noopener">Manage ad personalization</a></li>
+      </ul>
+      <p>You may also enable your browser’s tracking protection and disable third-party cookies to reduce personalization.</p>
     </section>
 
-    <section class="group">
+    <section class="group" id="cookies">
+      <h2>Cookies & Controls</h2>
+      <p>We rely on minimal, third-party cookies for ad delivery and aggregate analytics. You can:</p>
+      <ul>
+        <li>Disable cookies in your browser settings</li>
+        <li>Use <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ad Settings</a> to opt out of personalized ads</li>
+        <li>Use private browsing or tracking-protection modes</li>
+      </ul>
+    </section>
+
+    <section class="group" id="data-security">
       <h2>Data Security</h2>
-      <p>We implement industry-standard security measures to protect your data from unauthorized access or misuse.</p>
+      <p>We apply industry-standard safeguards to protect site traffic and minimize data collection. Because task content is stored locally, you control it on your device.</p>
     </section>
 
-    <section class="group">
+    <section class="group" id="your-rights">
+      <h2>Your Rights & Choices</h2>
+      <ul>
+        <li><strong>Access & Deletion:</strong> Clear site data in your browser to remove tasks and local settings.</li>
+        <li><strong>Opt-out:</strong> Manage ad personalization via <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
+        <li><strong>Contact:</strong> Have a privacy question? <a href="/contact.html">Contact us</a>.</li>
+      </ul>
+    </section>
+
+    <section class="group" id="children">
+      <h2>Children</h2>
+      <p>Today’s Tasks is intended for general audiences and not directed to children under 13. We do not knowingly collect personal information from children.</p>
+    </section>
+
+    <section class="group" id="intl">
+      <h2>International Users</h2>
+      <p>By using this site, you understand data may be processed by third-party providers in regions where they operate. We seek privacy-respecting defaults wherever possible.</p>
+    </section>
+
+    <section class="group" id="changes">
       <h2>Policy Updates</h2>
-      <p>Updates to this Privacy Policy will be posted here with a revised date. We encourage you to review it periodically.</p>
+      <p>When this policy changes, we will update the date at the top. Material changes will be summarized here.</p>
+    </section>
+
+    <section class="group" id="contact">
+      <h2>Contact</h2>
+      <p>Questions about this policy? Reach us via the <a href="/contact.html">Contact</a> page.</p>
+      <p class="inline-links">
+        Helpful reading: <a href="/article5.html">Weekly Review Checklist</a> · <a href="/article2.html">Time Management Strategies</a>
+      </p>
     </section>
   </main>
 
