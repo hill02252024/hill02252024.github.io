@@ -2,48 +2,193 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Contact – Today's Tasks</title>
-  <meta name="description" content="Get in touch with the Today's Tasks team for feedback, support, or partnerships." />
+  <meta name="description" content="Contact the Today's Tasks team for feedback, support, or partnerships. We read every message." />
+  <link rel="canonical" href="https://todays-tasks.com/contact.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact – Today's Tasks">
+  <meta property="og:description" content="Have feedback or partnership ideas? Get in touch with the Today's Tasks team.">
+  <meta property="og:url" content="https://todays-tasks.com/contact.html">
+  <meta property="og:image" content="https://todays-tasks.com/assets/contact-hero.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact – Today's Tasks">
+  <meta name="twitter:description" content="Reach the Today's Tasks team for support or partnerships.">
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/contact-hero.png">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/style.css" />
 
-  <!-- Google AdSense 自動廣告程式碼 -->
+  <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- JSON-LD: Organization + WebSite + ContactPage + Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Organization",
+        "name":"Today's Tasks",
+        "url":"https://todays-tasks.com",
+        "logo":"https://todays-tasks.com/assets/icon-512.png",
+        "contactPoint":{
+          "@type":"ContactPoint",
+          "contactType":"customer support",
+          "email":"contact@hill02252024.github.io",
+          "availableLanguage":["en"]
+        }
+      },
+      {
+        "@type":"WebSite",
+        "url":"https://todays-tasks.com",
+        "name":"Today's Tasks",
+        "potentialAction":{
+          "@type":"SearchAction",
+          "target":"https://todays-tasks.com/etsy-guides.html?q={search_term_string}",
+          "query-input":"required name=search_term_string"
+        }
+      },
+      {
+        "@type":"ContactPage",
+        "name":"Contact – Today's Tasks",
+        "url":"https://todays-tasks.com/contact.html",
+        "about":{"@type":"SoftwareApplication","name":"Today's Tasks"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/index.html"},
+          {"@type":"ListItem","position":2,"name":"Contact","item":"https://todays-tasks.com/contact.html"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <!-- 導覽列 -->
-  <div class="compliance-links">
-    <a href="/index.html">Home</a> 
-    <a href="/about.html">About</a> 
-    <a href="/contact.html">Contact</a> 
-    <a href="/privacy.html">Privacy Policy</a> 
-    <a href="/article1.html">Productivity Tips</a> 
-    <a href="/article2.html">Time Management</a> 
-    <a href="/article3.html">Digital To-Do Lists</a> 
-    <a href="/article4.html">How to Use</a> 
+  <!-- Top nav -->
+  <nav class="compliance-links" aria-label="Primary">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html" aria-current="page">Contact</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/article1.html">Productivity Tips</a>
+    <a href="/article2.html">Time Management</a>
+    <a href="/article3.html">Digital To-Do Lists</a>
+    <a href="/article4.html">How to Use</a>
     <a href="/article5.html">Weekly Review</a>
-  </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <nav class="container" aria-label="Breadcrumb">
+    <ol style="list-style:none;display:flex;gap:8px;padding:0;margin:10px 0 0">
+      <li><a href="/index.html">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page">Contact</li>
+    </ol>
+  </nav>
 
   <main class="container">
-    <h1>Contact Us</h1>
+    <header class="group" style="text-align:center">
+      <!-- 置換為實際圖：/assets/contact-hero.png（1200×630 以上） -->
+      <img src="/assets/contact-hero.png" alt="Contact the Today's Tasks team" style="max-width:100%;height:auto;border-radius:8px">
+      <h1>Contact Us</h1>
+      <p>Have feedback, questions, or partnership ideas? We read every message and usually respond within a few business days.</p>
+    </header>
 
     <section class="group">
       <h2>Email</h2>
-      <p>Have questions or feedback? Reach us at:<br>
-      <a href="mailto:contact@hill02252024.github.io">contact@hill02252024.github.io</a></p>
+      <p>
+        Prefer email? Reach us at
+        <a href="mailto:contact@hill02252024.github.io">contact@hill02252024.github.io</a>.
+        For privacy details, see our <a href="/privacy.html">Privacy Policy</a>.
+      </p>
     </section>
 
-    <section class="group">
-      <h2>Send Us a Message</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-        <label>Name:<br><input type="text" name="name" required></label><br><br>
-        <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-        <button type="submit">Send Message</button>
+    <section class="group" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Send Us a Message</h2>
+
+      <!-- 提示：將 action 換成你在 Formspree 建立的實際 endpoint -->
+      <form action="https://formspree.io/f/your-form-id" method="POST" aria-describedby="contact-form-note">
+        <!-- 蜜罐反機器人欄位（避免垃圾訊息） -->
+        <label class="sr-only" for="company">Company (leave blank)</label>
+        <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" />
+
+        <div style="display:grid;gap:10px;max-width:560px">
+          <label>
+            Name
+            <input type="text" name="name" required aria-required="true" autocomplete="name">
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required aria-required="true" autocomplete="email">
+          </label>
+
+          <label>
+            Subject
+            <input type="text" name="subject" placeholder="Feedback / Support / Partnership" />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="6" required aria-required="true" placeholder="How can we help?"></textarea>
+          </label>
+
+          <label style="display:flex;gap:8px;align-items:flex-start">
+            <input type="checkbox" name="consent" value="agree" required aria-required="true">
+            <span>I agree to the processing of my information as described in the <a href="/privacy.html">Privacy Policy</a>.</span>
+          </label>
+
+          <!-- Formspree 需要的無刷新返回 -->
+          <input type="hidden" name="_subject" value="New message from Contact Page">
+          <input type="hidden" name="_format" value="plain">
+
+          <button type="submit">Send Message</button>
+          <p id="contact-form-note" class="muted">We don’t sell personal data. Messages are used solely to respond to your request.</p>
+        </div>
       </form>
+    </section>
+
+    <!-- 內部連結：SEO / UX 強化 -->
+    <section class="group">
+      <h2>Popular Help & Guides</h2>
+      <ul>
+        <li><a href="/article4.html">How to Use Today’s Tasks</a> – a quick start guide</li>
+        <li><a href="/article5.html">Weekly Review Checklist</a> – stay organized every week</li>
+        <li><a href="/article1.html">7 Practical Productivity Tips</a> – small habits, big results</li>
+        <li><a href="/article2.html">Time Management Strategies</a> – match work to your energy</li>
+        <li><a href="/article3.html">Benefits of Digital To-Do Lists</a> – why digital beats paper for most pros</li>
+        <li><a href="/etsy-guides.html">Time-Saving Templates & Guides</a> – curated Excel/Sheets helpers</li>
+      </ul>
+    </section>
+
+    <!-- FAQ：可摺疊，增加頁面深度 -->
+    <section class="group">
+      <h2>FAQs</h2>
+      <details>
+        <summary>Do I need an account to use the app?</summary>
+        <p>No. Today’s Tasks runs entirely in your browser and stores data locally by default.</p>
+      </details>
+      <details>
+        <summary>How do I move tasks to Completed?</summary>
+        <p>Click the green checkmark on a task. You can restore completed items anytime.</p>
+      </details>
+      <details>
+        <summary>Will you respond to every message?</summary>
+        <p>We try our best. If you don’t hear back within a few days, feel free to follow up.</p>
+      </details>
+      <details>
+        <summary>Where can I learn more about privacy?</summary>
+        <p>See our <a href="/privacy.html">Privacy Policy</a> for details on data, cookies, and ads.</p>
+      </details>
     </section>
   </main>
 
