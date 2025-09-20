@@ -4,60 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Time Management Strategies That Actually Work</title>
-  <meta name="description" content="Evidence-based time management strategies: prioritization, energy matching, and calendar design that reduce stress.">
+  <meta name="description" content="Evidence-based time management strategies that reduce stress: energy-based planning, priority matrices, realistic capacity, weekly reviews, and more.">
+
   <link rel="stylesheet" href="/style.css">
 
   <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- Breadcrumb & Article schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://todays-tasks.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Time Management",
+      "item": "https://todays-tasks.com/article2.html"
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Time Management Strategies That Actually Work",
+    "description": "Evidence-based time management strategies that reduce stress: energy-based planning, priority matrices, realistic capacity, weekly reviews, and more.",
+    "author": { "@type": "Organization", "name": "Today's Tasks" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks",
+      "logo": { "@type": "ImageObject", "url": "https://todays-tasks.com/vite.svg" }
+    },
+    "mainEntityOfPage": "https://todays-tasks.com/article2.html"
+  }
+  </script>
 
   <style>
-    body { font-family: Arial, sans-serif; background:#f5f8fa; margin:0; color:#333 }
-    .container { max-width:860px; margin:24px auto; background:#fff; padding:24px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.06) }
-    .topnav { background:#007bff; color:#fff; padding:10px 14px; text-align:center }
+    :root{--blue:#007bff;--ink:#333;--muted:#6b7280;--panel:#fff;--bg:#f5f8fa}
+    body { font-family: Arial, sans-serif; background:var(--bg); margin:0; color:var(--ink) }
+    .container { max-width:860px; margin:24px auto; background:var(--panel); padding:24px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.06) }
+    .topnav { background:var(--blue); color:#fff; padding:10px 14px; text-align:center }
     .topnav a { color:#fff; margin:0 8px; text-decoration:none; font-weight:700 }
     .topnav a:hover { text-decoration:underline }
+    h1{margin-top:4px}
+    .toc{background:#f0f6ff;border:1px solid #e3efff;border-radius:8px;padding:12px;margin:16px 0}
+    .toc strong{display:block;margin-bottom:6px}
+    .toc a{color:#0b63ce;text-decoration:none}
+    .toc a:hover{text-decoration:underline}
+    figure{margin:18px 0}
+    figcaption{font-size:12px;color:var(--muted);margin-top:6px}
+    .svg-wrap{border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#fcfdff}
+    .related{border-top:1px solid #eef2f7;margin-top:28px;padding-top:18px}
+    .related a{color:#0b63ce}
+    .faq details{border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;margin:10px 0;background:#fafafa}
+    .faq summary{cursor:pointer;font-weight:700}
+    .breadcrumbs{font-size:13px;color:var(--muted);margin:0 0 8px}
+    .breadcrumbs a{color:#4f87ff;text-decoration:none}
+    .breadcrumbs a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
-  <div class="topnav">
+  <div class="topnav" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
     <a href="/article1.html">Productivity Tips</a> |
-    <a href="/article2.html">Time Management</a> |
+    <a href="/article2.html" aria-current="page">Time Management</a> |
     <a href="/article3.html">Digital To-Do Lists</a> |
+    <a href="/article4.html">How to Use</a> |
+    <a href="/article5.html">Weekly Review</a> |
     <a href="/about.html">About</a> |
     <a href="/privacy.html">Privacy</a> |
     <a href="/contact.html">Contact</a>
   </div>
 
   <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a> › <span>Time Management</span>
+    </nav>
+
     <h1>Time Management Strategies That Actually Work</h1>
     <p>Great time management is less about squeezing more into a calendar and more about matching the right work to the right moment. The strategies below are simple, sustainable, and designed for professionals who juggle competing priorities.</p>
 
-    <h2>Design your day around energy</h2>
+    <!-- Table of contents with in-page anchors -->
+    <div class="toc" aria-label="Table of contents">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#energy">Design your day around energy</a></li>
+        <li><a href="#matrix">Rank tasks with a simple matrix</a></li>
+        <li><a href="#capacity">Make a realistic daily capacity</a></li>
+        <li><a href="#blocks">Standardize recurring blocks</a></li>
+        <li><a href="#shutdown">Pre-commit to shutdown</a></li>
+        <li><a href="#constraints">Use constraints to end procrastination</a></li>
+        <li><a href="#weekly-review">Weekly review to steer the ship</a></li>
+        <li><a href="#tools">Tools support, not replace, decisions</a></li>
+      </ol>
+    </div>
+
+    <h2 id="energy">Design your day around energy</h2>
     <p>Schedule deep work during your personal peak—often the morning—and hold meetings or admin for low-energy periods. Protect peak hours with a “no-meeting” rule whenever possible.</p>
 
-    <h2>Rank tasks with a simple matrix</h2>
+    <!-- Inline SVG: Energy curve -->
+    <figure class="svg-wrap">
+      <svg viewBox="0 0 700 260" width="100%" height="auto" role="img" aria-label="Energy curve across the day">
+        <rect x="0" y="0" width="700" height="260" fill="#ffffff"/>
+        <polyline points="30,200 120,170 200,120 280,70 360,55 440,80 520,120 600,170 670,195"
+                  fill="none" stroke="#3b82f6" stroke-width="4"/>
+        <text x="20" y="220" font-size="12" fill="#666">6am</text>
+        <text x="330" y="220" font-size="12" fill="#666">Noon</text>
+        <text x="640" y="220" font-size="12" fill="#666">6pm</text>
+        <text x="10" y="20" font-size="12" fill="#666">Energy ↑</text>
+      </svg>
+      <figcaption>Match deep work to your personal energy peak; push meetings and admin to low-energy hours.</figcaption>
+    </figure>
+
+    <h2 id="matrix">Rank tasks with a simple matrix</h2>
     <p>Use a two-by-two lens: impact vs. effort. High-impact, low-effort tasks deserve immediate attention; low-impact, high-effort tasks should be questioned or deferred. Today’s Tasks lists can mirror these categories.</p>
 
-    <h2>Make a realistic daily capacity</h2>
+    <!-- Inline SVG: Impact/Effort matrix -->
+    <figure class="svg-wrap">
+      <svg viewBox="0 0 700 360" width="100%" height="auto" role="img" aria-label="Impact vs. Effort matrix">
+        <rect x="0" y="0" width="700" height="360" fill="#ffffff"/>
+        <line x1="350" y1="40" x2="350" y2="320" stroke="#e5e7eb" stroke-width="2"/>
+        <line x1="40" y1="180" x2="660" y2="180" stroke="#e5e7eb" stroke-width="2"/>
+        <text x="320" y="350" font-size="12" fill="#666">Effort →</text>
+        <text x="10" y="20" font-size="12" fill="#666">Impact ↑</text>
+
+        <rect x="45" y="45" width="300" height="130" fill="#e8f3ff" stroke="#bfdbfe"/>
+        <text x="60" y="80" font-size="14" fill="#0b63ce">Quick Wins</text>
+
+        <rect x="355" y="45" width="300" height="130" fill="#fff7ed" stroke="#fed7aa"/>
+        <text x="370" y="80" font-size="14" fill="#c2410c">Big Bets</text>
+
+        <rect x="45" y="185" width="300" height="130" fill="#f1f5f9" stroke="#e2e8f0"/>
+        <text x="60" y="220" font-size="14" fill="#475569">Fill-ins</text>
+
+        <rect x="355" y="185" width="300" height="130" fill="#fef2f2" stroke="#fecaca"/>
+        <text x="370" y="220" font-size="14" fill="#991b1b">Avoid / Question</text>
+      </svg>
+      <figcaption>Impact × Effort：先做「Quick Wins」，慎選「Big Bets」，把「Avoid/Question」移出清單。</figcaption>
+    </figure>
+
+    <h2 id="capacity">Make a realistic daily capacity</h2>
     <p>Decide your limit for meaningful tasks per day (for example, three significant items). When the list exceeds capacity, renegotiate commitments or move items to a later date. Scarcity creates focus.</p>
 
-    <h2>Standardize recurring blocks</h2>
+    <h2 id="blocks">Standardize recurring blocks</h2>
     <p>Batch similar work: 1:1s on Tuesdays, reviews on Thursdays, invoices on the last business day. Routines reduce switching costs and help others know when to reach you.</p>
 
-    <h2>Pre-commit to shutdown</h2>
+    <h2 id="shutdown">Pre-commit to shutdown</h2>
     <p>Pick a daily stop time. A predictable finish forces earlier choices, prevents perfectionism, and improves rest—ironically making you faster tomorrow.</p>
 
-    <h2>Use constraints to end procrastination</h2>
+    <h2 id="constraints">Use constraints to end procrastination</h2>
     <p>When a task feels vague, set a 15-minute timer to produce a rough first pass. Constraints turn avoidance into motion and create material you can improve.</p>
 
-    <h2>Weekly review to steer the ship</h2>
+    <h2 id="weekly-review">Weekly review to steer the ship</h2>
     <p>Once a week, scan goals, scan calendars, and decide the three outcomes that would make next week a win. Archive completed tasks and clear anything that no longer matters.</p>
+    <p><strong>延伸閱讀：</strong> <a href="/article5.html">Weekly Review Checklist</a>（逐步帶你完成高品質的每週回顧）。</p>
 
-    <h2>Tools support, not replace, decisions</h2>
-    <p>Software cannot choose priorities for you, but it can remove friction. Today’s Tasks keeps focus on action: capture, prioritize, complete, and reset—so the system stays tidy without maintenance.</p>
+    <h2 id="tools">Tools support, not replace, decisions</h2>
+    <p>Software cannot choose priorities for you, but it can remove friction. Today’s Tasks keeps focus on action: capture, prioritize, complete, and reset—so the system stays tidy without maintenance. 想直接開始？前往 <a href="/index.html">Today’s Tasks</a> 把下一步寫進清單。</p>
+
+    <!-- Internal links / Related reading -->
+    <section class="related" aria-label="Related">
+      <h3>You might also like</h3>
+      <ul>
+        <li><a href="/article1.html">7 Practical Productivity Tips for Busy Professionals</a></li>
+        <li><a href="/article3.html">The Benefits of Digital To-Do Lists</a></li>
+        <li><a href="/article4.html">How to Use Today’s Tasks</a></li>
+        <li><a href="/etsy-guides.html">Time-Saving Templates &amp; Guides</a></li>
+      </ul>
+    </section>
+
+    <!-- FAQ: adds depth and long-tail keywords -->
+    <section class="faq" aria-label="FAQ">
+      <h3>FAQs</h3>
+      <details>
+        <summary>How many tasks should I plan per day?</summary>
+        <p>Most professionals do best with three meaningful outcomes per day. Add smaller “fill-ins” only after the big three are clearly defined.</p>
+      </details>
+      <details>
+        <summary>What if meetings take my entire morning?</summary>
+        <p>Protect at least one 90-minute deep-work block on your peak-energy days. Move non-urgent meetings to low-energy windows.</p>
+      </details>
+      <details>
+        <summary>How often should I do a weekly review?</summary>
+        <p>Once a week is ideal. Use our <a href="/article5.html">Weekly Review Checklist</a> to clear completed tasks, reset priorities, and choose next week’s three outcomes.</p>
+      </details>
+    </section>
   </main>
 
   <footer class="footer">
