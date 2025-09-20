@@ -7,17 +7,32 @@
   <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive in seconds." />
   <link rel="stylesheet" href="/style.css" />
 
-  <!-- AdSense account hint (optional but helpful) -->
+  <!-- AdSense account hint -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <!-- AdSense global script: include once per page inside <head> -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287"
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- FAQ schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Your list saves in your browser’s localStorage."}},
+      {"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Only on your device. Nothing is sent to our servers."}},
+      {"@type":"Question","name":"Can I use it offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add, complete, and restore tasks offline; they sync locally."}},
+      {"@type":"Question","name":"What are the priority lanes?","acceptedAnswer":{"@type":"Answer","text":"High, Due Today, and General—keep critical, urgent, and normal work apart."}},
+      {"@type":"Question","name":"Will tasks reset daily?","acceptedAnswer":{"@type":"Answer","text":"The app clears daily at midnight to prevent clutter. Restorable items go to Completed."}},
+      {"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, the layout is responsive for phones, tablets, and desktops."}},
+      {"@type":"Question","name":"Can I recover finished items?","acceptedAnswer":{"@type":"Answer","text":"Use the Completed list to restore or permanently remove tasks."}},
+      {"@type":"Question","name":"How do I get started fast?","acceptedAnswer":{"@type":"Answer","text":"Type a task, pick a lane, press Add. See our guides for tips."}}
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Top navigation -->
   <div class="compliance-links">
-    <a href="/index.html">Home</a> |
+    <a href="/index.html" aria-current="page">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
@@ -66,6 +81,29 @@
       <h2>Completed</h2>
       <ul id="completed-list" class="task-list"></ul>
     </section>
+
+    <!-- ===== 使用情境（SEO 強化） ===== -->
+    <section class="group">
+      <h2>Use Cases</h2>
+      <p><strong>Busy professionals</strong>: park deep-work items in <em>High</em>, time-bound errands in <em>Due Today</em>, and keep a light buffer in <em>General</em>. Pair with our <a href="/article2.html">time-management guide</a>.</p>
+      <p><strong>Students</strong>: log homework and exam prep by urgency. Review at night to reset for tomorrow—see tips in <a href="/article3.html">digital to-do lists</a>.</p>
+      <p><strong>Freelancers</strong>: track client deliverables and invoices; move shipped tasks to <em>Completed</em> for a clean slate. Learn a weekly cadence in <a href="/article5.html">Weekly Review</a>.</p>
+      <p><strong>Parents & households</strong>: capture chores and shopping, then reset daily to avoid clutter. Explore our <a href="/etsy-guides.html">time-saving templates</a>.</p>
+      <p><strong>Small teams</strong>: use lanes as a lightweight stand-up—yesterday’s done, today’s focus, and upcoming items. See practical <a href="/article1.html">productivity tips</a>.</p>
+    </section>
+
+    <!-- ===== FAQ（精簡版） ===== -->
+    <section class="group" id="faq">
+      <h2>FAQ</h2>
+      <details><summary>Do I need an account?</summary><p>No. Your list saves locally in your browser—zero sign-up.</p></details>
+      <details><summary>Is my data private?</summary><p>Yes. We never send your tasks to any server.</p></details>
+      <details><summary>Does it work offline?</summary><p>Yes. Tasks add/complete/restore offline and persist locally.</p></details>
+      <details><summary>How should I use the lanes?</summary><p>High = critical, Due Today = time-bound, General = everything else.</p></details>
+      <details><summary>What happens at midnight?</summary><p>The list resets to keep focus; finished items stay in Completed.</p></details>
+      <details><summary>Can I restore a finished task?</summary><p>Open <em>Completed</em>, then move the item back to a lane.</p></details>
+      <details><summary>Is it mobile friendly?</summary><p>Yes. The UI is responsive across phones, tablets, and desktops.</p></details>
+      <details><summary>Where do I learn more?</summary><p>See <a href="/article4.html">How to Use</a> and our guides above.</p></details>
+    </section>
   </main>
 
   <footer class="footer">
@@ -81,11 +119,9 @@
         normal: [],
         completed: []
       };
-
       Object.entries(tasks).forEach(([pri, arr]) => {
         const list = document.getElementById(pri + '-list');
         if (!list) return;
-
         arr.forEach(text => {
           const li = document.createElement('li');
           li.innerHTML = `
@@ -117,7 +153,6 @@
       const pri = document.getElementById('task-priority').value;
       const text = (input.value || '').trim();
       if (!text) return;
-
       const list = document.getElementById(pri + '-list');
       const li = document.createElement('li');
       li.innerHTML = `
