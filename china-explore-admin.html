@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>後台｜中國內地美食美景（本機編輯器）</title>
+<title>後台｜中國內地美食美景編輯器</title>
 <link rel="stylesheet" href="/style.css" />
 <style>
   .wrap{max-width:1000px;margin:24px auto;padding:0 16px}
@@ -17,7 +17,6 @@
   .primary{background:#111827;color:#fff;border-color:#111827}
   table{width:100%;border-collapse:collapse;margin-top:16px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
   th,td{border-bottom:1px solid #f1f5f9;padding:10px;text-align:left}
-  tr:last-child td{border-bottom:none}
   .small{font-size:12px;color:#6b7280}
 </style>
 </head>
@@ -29,75 +28,40 @@
   </div>
 
   <main class="wrap">
-    <h1>後台｜中國內地美食美景（本機編輯器）</h1>
-    <p class="small">說明：這頁不會寫入 GitHub。你在本機輸入後「匯出 JSON」，再把檔案上傳到 <code>/data/china.json</code>。圖片放在 <code>/assets/china/</code>，或貼 Raw URL。</p>
+    <h1>後台｜中國內地美食美景（本機預覽版）</h1>
+    <p class="small">說明：新增內容後點「暫存到本機」即可在前台 china-explore.html 即時預覽。</p>
 
     <form id="f">
       <div>
-        <label>標題（必填）</label>
-        <input name="title" required placeholder="例：成都｜小郡肝串串香（寬窄巷子）" />
+        <label>標題 *</label>
+        <input name="title" required placeholder="例：成都｜小郡肝串串香" />
       </div>
       <div class="row">
-        <div style="flex:1">
-          <label>城市</label>
-          <input name="city" placeholder="例：成都" />
-        </div>
-        <div style="flex:1">
-          <label>省份</label>
-          <input name="province" placeholder="例：四川" />
-        </div>
-        <div style="flex:1">
-          <label>類型</label>
-          <input name="kind" placeholder="例：美食 / 美景" />
-        </div>
+        <input name="city" placeholder="城市：成都" />
+        <input name="province" placeholder="省份：四川" />
+        <input name="kind" placeholder="類型：美食 / 美景" />
       </div>
-
-      <div>
-        <label>主標籤（必填，逗號分隔）</label>
-        <input name="tags" required placeholder="例：四川,成都,串串,辣" />
-      </div>
-
-      <div>
-        <label>圖片網址（建議：/assets/china/xxx.jpg 或 GitHub Raw）</label>
-        <input name="image" placeholder="/assets/china/xxx.jpg" />
-      </div>
-
-      <div>
-        <label>外部連結（可選，地圖/店家/攻略）</label>
-        <input name="link" placeholder="https://..." />
-      </div>
-
-      <div style="grid-column:1/-1">
-        <label>摘要（卡片上的短說明，建議 1–2 句）</label>
-        <input name="excerpt" />
-      </div>
-
-      <div style="grid-column:1/-1">
-        <label>詳細內容（圖文說明）</label>
-        <textarea name="content"></textarea>
-      </div>
-
+      <div><label>標籤 *</label><input name="tags" required placeholder="例：四川,成都,串串,辣" /></div>
+      <div><label>圖片網址 *</label><input name="image" placeholder="/assets/china/demo.jpg" /></div>
+      <div><label>外部連結</label><input name="link" placeholder="https://..." /></div>
+      <div style="grid-column:1/-1"><label>摘要</label><input name="excerpt" /></div>
+      <div style="grid-column:1/-1"><label>詳細內容</label><textarea name="content"></textarea></div>
       <div class="row" style="grid-column:1/-1">
         <button type="submit" class="btn primary">加入清單</button>
-        <button type="button" id="exportBtn" class="btn">匯出 JSON</button>
         <button type="button" id="saveLocal" class="btn">暫存到本機</button>
-        <button type="button" id="loadLocal" class="btn">從本機載入</button>
-        <button type="button" id="importBtn" class="btn">匯入 JSON（貼上）</button>
-        <a class="btn" href="/data/china.json" target="_blank" rel="noopener">查看目前線上 JSON</a>
+        <button type="button" id="exportBtn" class="btn">匯出 JSON</button>
       </div>
     </form>
 
-    <table id="tbl" aria-label="清單表格">
-      <thead>
-        <tr><th style="width:36px">#</th><th>標題</th><th>省市</th><th>標籤</th><th>連結</th><th style="width:120px">操作</th></tr>
-      </thead>
+    <table id="tbl">
+      <thead><tr><th>#</th><th>標題</th><th>城市</th><th>標籤</th><th>操作</th></tr></thead>
       <tbody></tbody>
     </table>
   </main>
 
   <script>
-    const form = document.getElementById('f');
-    const tbody = document.querySelector('#tbl tbody');
+    const form = document.getElementById("f");
+    const tbody = document.querySelector("#tbl tbody");
     let rows = [];
 
     function uid(){ return Math.random().toString(36).slice(2,10); }
@@ -106,113 +70,58 @@
       tbody.innerHTML = rows.map((x,i)=>`
         <tr>
           <td>${i+1}</td>
-          <td>${x.title||""}</td>
-          <td class="small">${x.province||""}/${x.city||""}</td>
+          <td>${x.title}</td>
+          <td>${x.city||""}</td>
           <td class="small">${(x.tags||[]).join(", ")}</td>
-          <td class="small">${x.link?`<a href="${x.link}" target="_blank">link</a>`:""}</td>
-          <td>
-            <button class="btn" data-edit="${x.id}">編輯</button>
-            <button class="btn" data-del="${x.id}">刪除</button>
-          </td>
-        </tr>
-      `).join('');
+          <td><button class="btn" data-del="${x.id}">刪除</button></td>
+        </tr>`).join("");
     }
 
-    function toObj(fd){
-      const o = Object.fromEntries(fd.entries());
-      if(!o.title) { alert("標題為必填"); throw new Error(); }
-      if(!o.tags)  { alert("主標籤為必填"); throw new Error(); }
-      return {
-        id: o.id || uid(),
-        title: o.title.trim(),
-        city: (o.city||"").trim(),
-        province: (o.province||"").trim(),
-        kind: (o.kind||"").trim(),
-        tags: o.tags.split(",").map(s=>s.trim()).filter(Boolean),
-        image: (o.image||"").trim(),
-        link: (o.link||"").trim(),
-        excerpt: (o.excerpt||"").trim(),
-        content: (o.content||"").trim(),
-        created: o.created || new Date().toISOString().slice(0,10)
-      };
-    }
-
-    form.addEventListener('submit', e=>{
+    form.addEventListener("submit", e=>{
       e.preventDefault();
-      const fd = new FormData(form);
-      const obj = toObj(fd);
-      const idx = rows.findIndex(r=>r.id===obj.id);
-      if (idx>=0) rows[idx]=obj; else rows.unshift(obj);
+      const d = Object.fromEntries(new FormData(form).entries());
+      const item = {
+        id: uid(),
+        title: d.title.trim(),
+        city: d.city.trim(),
+        province: d.province.trim(),
+        kind: d.kind.trim(),
+        tags: d.tags.split(",").map(x=>x.trim()),
+        image: d.image.trim(),
+        link: d.link.trim(),
+        excerpt: d.excerpt.trim(),
+        content: d.content.trim(),
+        created: new Date().toISOString().slice(0,10)
+      };
+      rows.unshift(item);
+      render();
       form.reset();
+    });
+
+    tbody.addEventListener("click", e=>{
+      const btn = e.target.closest("[data-del]");
+      if(!btn) return;
+      const id = btn.dataset.del;
+      rows = rows.filter(r=>r.id!==id);
       render();
     });
 
-    tbody.addEventListener('click', e=>{
-      const b = e.target.closest('button');
-      if(!b) return;
-      const id = b.dataset.edit || b.dataset.del;
-      const idx = rows.findIndex(r=>r.id===id);
-      if (b.dataset.edit){
-        const r = rows[idx];
-        for (const k of ["id","title","city","province","kind","image","link","excerpt","content","created"]) {
-          let el = form.querySelector(`[name="${k}"]`);
-          if (!el){
-            if(k==="id"){ const hid=document.createElement('input');hid.type='hidden';hid.name='id';form.appendChild(hid);el=hid; }
-            else continue;
-          }
-          el.value = r[k] || "";
-        }
-        form.querySelector('[name="tags"]').value = (r.tags||[]).join(", ");
-        window.scrollTo({top:0,behavior:"smooth"});
-      } else if (b.dataset.del){
-        if(confirm('確定刪除此項目？')){ rows.splice(idx,1); render(); }
-      }
-    });
+    document.getElementById("saveLocal").onclick = ()=>{
+      localStorage.setItem("china_rows", JSON.stringify(rows));
+      alert("✅ 已暫存到本機（前台會自動預覽）");
+    };
 
-    // 匯出 JSON
-    document.getElementById('exportBtn').onclick = ()=>{
-      if (!rows.length){ alert("沒有資料可匯出"); return; }
-      const blob = new Blob([JSON.stringify(rows, null, 2)], {type:"application/json"});
-      const a = document.createElement('a');
+    document.getElementById("exportBtn").onclick = ()=>{
+      const blob = new Blob([JSON.stringify(rows,null,2)], {type:"application/json"});
+      const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = "china.json";
       a.click();
-      URL.revokeObjectURL(a.href);
     };
 
-    // 暫存 / 載入（localStorage）
-    document.getElementById('saveLocal').onclick = ()=>{
-      localStorage.setItem('china_rows', JSON.stringify(rows));
-      alert('已暫存到本機瀏覽器。');
-    };
-    document.getElementById('loadLocal').onclick = ()=>{
-      const s = localStorage.getItem('china_rows');
-      if (!s){ alert('本機沒有暫存'); return; }
-      rows = JSON.parse(s);
-      render();
-    };
-
-    // 匯入 JSON（貼上字串）
-    document.getElementById('importBtn').onclick = async ()=>{
-      const txt = prompt('請貼上 JSON 陣列：');
-      if(!txt) return;
-      try{
-        const arr = JSON.parse(txt);
-        if(!Array.isArray(arr)) throw 0;
-        rows = arr;
-        render();
-      }catch(e){ alert('格式錯誤，請確認是 JSON 陣列。'); }
-    };
-
-    // 初始：若本機有暫存就載入，否則抓線上 json（方便延續編輯）
-    (async function init(){
-      const s = localStorage.getItem('china_rows');
-      if (s){ rows = JSON.parse(s); render(); return; }
-      try {
-        const r = await fetch('/data/china.json',{cache:'no-store'});
-        if (r.ok){ rows = await r.json(); render(); }
-      } catch(e){}
-    })();
+    // 初始化
+    const saved = localStorage.getItem("china_rows");
+    if (saved) { try { rows = JSON.parse(saved); render(); } catch {} }
   </script>
 </body>
 </html>
