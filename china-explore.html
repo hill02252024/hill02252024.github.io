@@ -18,7 +18,7 @@
     @media(max-width:640px){.grid{grid-template-columns:1fr}}
     .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
     .thumb{aspect-ratio:4/3;background:#f3f4f6;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:100%;height:100%;object-fit:contain} /* 不裁切，維持比例 */
+    .thumb img{width:100%;height:100%;object-fit:contain} /* 不裁切 */
     .body{padding:12px}
     .title{font-weight:700;margin:2px 0 4px}
     .meta{font-size:12px;color:#6b7280;margin-bottom:6px}
@@ -26,7 +26,6 @@
     .tag{font-size:12px;border:1px solid #e5e7eb;border-radius:999px;padding:2px 8px;background:#fafafa}
     .actions{display:flex;gap:8px;margin-top:auto;padding:10px;border-top:1px solid #f3f4f6;background:#fafafa}
     .btn{display:inline-block;border:1px solid #d1d5db;border-radius:8px;padding:8px 12px;text-align:center;background:#fff}
-    /* Modal */
     dialog{max-width:860px;width:96%;border:none;border-radius:12px}
     dialog::backdrop{background:rgba(0,0,0,.35)}
     .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:8px 12px}
@@ -36,41 +35,31 @@
   </style>
 </head>
 <body>
-  <!-- 第一行：原本導覽 -->
-  <div class="compliance-links" role="navigation" aria-label="Primary">
+  <div class="compliance-links">
     <a href="/index.html">Home</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
     <a href="/productivity-tips.html">Productivity Tips</a> |
-    <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Digital To-Do Lists</a> |
-    <a href="/article4.html">How to Use</a> |
-    <a href="/article5.html">Weekly Review</a> |
-    <a href="/etsy-guides.html">Time-Saving</a>
+    <a href="/china-explore.html" aria-current="page">China Explore</a> |
+    <a href="/china-explore-admin.html">Admin</a>
   </div>
 
   <main class="wrap">
     <h1>中國內地｜美食美景分享</h1>
-    <p class="meta">第二行提供 TAG 快速篩選（城市 / 省份 / 主題…）。內容來源：<code>/data/china.json</code>。</p>
+    <p class="meta">💡 支援「本機暫存預覽」功能，若 Admin 有暫存資料會自動顯示。</p>
 
-    <!-- 第二行：TAG 列 -->
-    <div id="tagBar" class="subnav" aria-label="Tags">
+    <div id="tagBar" class="subnav">
       <button class="chip active" data-tag="__ALL">全部</button>
-      <!-- 其餘由 JS 動態產生 -->
     </div>
 
     <div class="toolbar">
-      <input id="q" type="search" placeholder="搜尋：標題 / 城市 / 省份 / 標籤…" aria-label="Search"/>
+      <input id="q" type="search" placeholder="搜尋城市 / 標題 / 標籤…" />
     </div>
 
     <section id="grid" class="grid" aria-live="polite"></section>
   </main>
 
-  <!-- 詳情 Modal -->
   <dialog id="viewer">
     <div class="modal-header">
-      <h3 id="viewerTitle" style="margin:0"></h3>
+      <h3 id="viewerTitle"></h3>
       <button id="closeBtn" class="btn">關閉</button>
     </div>
     <div class="modal-body">
@@ -86,56 +75,48 @@
   <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
 
   <script>
-  // 讀取資料：/data/china.json（若尚未建立，使用內建示例）
   const DATA_URL = "/data/china.json";
   let ALL = [];
 
-  const SAMPLE = [
-    {
-      id:"demo-1",
-      title:"成都｜小郡肝串串香（寬窄巷子）",
-      city:"成都", province:"四川", kind:"美食",
-      tags:["四川","成都","串串","辣"],
-      image:"/assets/china/demo-chuanchuan.jpg",
-      link:"https://maps.google.com",
-      excerpt:"湯底香麻，牛油厚而不膩，鴨腸與毛肚必點。",
-      content:"店內用餐尖峰需排隊，建議下午離峰時段前往。辣度可調，第一次可選中辣。",
-      created:"2025-09-07"
-    },
-    {
-      id:"demo-2",
-      title:"張家界｜天門山玻璃棧道",
-      city:"張家界", province:"湖南", kind:"美景",
-      tags:["湖南","張家界","玻璃棧道","山景"],
-      image:"/assets/china/demo-zhangjiajie.jpg",
-      link:"https://maps.google.com",
-      excerpt:"雲海翻滾時如入仙境，建議早場入山避開人潮。",
-      content:"雨後能見度高，注意防滑鞋；山上溫差大請備外套。",
-      created:"2025-09-07"
-    }
-  ];
-
   async function load() {
+    // ✅ 優先讀本機資料（Admin 的暫存）
+    const local = localStorage.getItem("china_rows");
+    if (local) {
+      try {
+        const arr = JSON.parse(local);
+        if (Array.isArray(arr) && arr.length) {
+          ALL = arr;
+          console.log("🔹使用本機暫存資料預覽，共", ALL.length, "筆");
+          init();
+          return;
+        }
+      } catch {}
+    }
+
+    // ✅ 沒有本機就讀線上 json
     try {
-      const r = await fetch(DATA_URL, {cache:"no-store"});
-      if (!r.ok) throw new Error("no data");
+      const r = await fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw 0;
       ALL = await r.json();
-    } catch(e){ ALL = SAMPLE; }
+      console.log("📦 使用線上資料", ALL.length, "筆");
+    } catch {
+      ALL = [];
+    }
     init();
   }
 
-  const grid = document.getElementById('grid');
-  const q = document.getElementById('q');
-  const tagBar = document.getElementById('tagBar');
+  const grid = document.getElementById("grid");
+  const q = document.getElementById("q");
+  const tagBar = document.getElementById("tagBar");
   let activeTag = "__ALL";
 
-  function buildTags(){
+  function buildTags() {
     const set = new Set();
-    ALL.forEach(x => (x.tags||[]).forEach(t => set.add(t)));
+    ALL.forEach(x => (x.tags || []).forEach(t => set.add(t)));
     const frag = document.createDocumentFragment();
-    [...set].sort().forEach(t=>{
-      const b = document.createElement('button');
-      b.className = 'chip';
+    [...set].sort().forEach(t => {
+      const b = document.createElement("button");
+      b.className = "chip";
       b.dataset.tag = t;
       b.textContent = t;
       frag.appendChild(b);
@@ -143,77 +124,68 @@
     tagBar.appendChild(frag);
   }
 
-  function render(items){
+  function render(items) {
     grid.innerHTML = items.map(item => `
       <article class="card">
         <div class="thumb">
-          ${item.image ? `<img src="${item.image}" alt="${item.title}">` : `<span class="meta">No Image</span>`}
+          ${item.image ? `<img src="${item.image}" alt="${item.title}">` : `<span>No Image</span>`}
         </div>
         <div class="body">
           <h3 class="title"><a href="#${item.id}" data-open="${item.id}">${item.title}</a></h3>
           <div class="meta">${item.province || ""} ${item.city || ""} · ${item.kind || ""}</div>
           <p>${item.excerpt || ""}</p>
-          <div class="tags">
-            ${(item.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}
-          </div>
+          <div class="tags">${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join("")}</div>
         </div>
         <div class="actions">
           <a class="btn" href="#${item.id}" data-open="${item.id}">查看詳情</a>
-          ${item.link ? `<a class="btn" href="${item.link}" target="_blank" rel="noopener">外部連結</a>` : ""}
+          ${item.link ? `<a class="btn" href="${item.link}" target="_blank">外部連結</a>` : ""}
         </div>
       </article>
-    `).join('');
+    `).join("");
   }
 
-  function apply(){
+  function apply() {
     const term = q.value.trim().toLowerCase();
     let items = ALL.slice();
-    if (activeTag !== "__ALL") {
-      items = items.filter(x => (x.tags||[]).includes(activeTag));
-    }
-    if (term){
+    if (activeTag !== "__ALL") items = items.filter(x => (x.tags || []).includes(activeTag));
+    if (term) {
       items = items.filter(x =>
-        (x.title||"").toLowerCase().includes(term) ||
-        (x.city||"").toLowerCase().includes(term) ||
-        (x.province||"").toLowerCase().includes(term) ||
-        (x.tags||[]).some(t => (t||"").toLowerCase().includes(term))
+        (x.title || "").toLowerCase().includes(term) ||
+        (x.city || "").toLowerCase().includes(term) ||
+        (x.province || "").toLowerCase().includes(term)
       );
     }
     render(items);
   }
 
-  tagBar.addEventListener('click', e=>{
-    const btn = e.target.closest('.chip');
-    if(!btn) return;
-    tagBar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    btn.classList.add('active');
+  tagBar.addEventListener("click", e => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    tagBar.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
     activeTag = btn.dataset.tag;
     apply();
   });
+  q.addEventListener("input", apply);
 
-  q.addEventListener('input', apply);
-
-  // Modal open
-  grid.addEventListener('click', e=>{
-    const a = e.target.closest('[data-open]');
-    if(!a) return;
-    const id = a.getAttribute('data-open');
-    const item = ALL.find(x=>x.id===id);
+  grid.addEventListener("click", e => {
+    const a = e.target.closest("[data-open]");
+    if (!a) return;
+    const id = a.getAttribute("data-open");
+    const item = ALL.find(x => x.id === id);
     if (!item) return;
-    document.getElementById('viewerTitle').textContent = item.title || "";
-    document.getElementById('viewerImg').src = item.image || "";
-    document.getElementById('viewerImg').alt = item.title || "";
-    document.getElementById('viewerMeta').textContent =
-      `${item.province||""} ${item.city||""} · ${(item.tags||[]).join(" / ")}`;
-    document.getElementById('viewerDesc').textContent = item.content || item.excerpt || "";
-    const linkA = document.getElementById('viewerLink');
-    if (item.link){ linkA.href = item.link; linkA.style.display='inline-block'; }
-    else { linkA.style.display='none'; }
-    document.getElementById('viewer').showModal();
+    document.getElementById("viewerTitle").textContent = item.title;
+    document.getElementById("viewerImg").src = item.image || "";
+    document.getElementById("viewerMeta").textContent = `${item.province || ""} ${item.city || ""}`;
+    document.getElementById("viewerDesc").textContent = item.content || item.excerpt;
+    const linkA = document.getElementById("viewerLink");
+    if (item.link) { linkA.href = item.link; linkA.style.display = "inline-block"; } 
+    else { linkA.style.display = "none"; }
+    document.getElementById("viewer").showModal();
   });
-  document.getElementById('closeBtn').onclick = ()=>document.getElementById('viewer').close();
+  document.getElementById("closeBtn").onclick = () => document.getElementById("viewer").close();
 
-  function init(){ buildTags(); apply(); }
+  function init() { buildTags(); apply(); }
   load();
   </script>
 </body>
