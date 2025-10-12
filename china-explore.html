@@ -2,191 +2,316 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>中國內地｜美食美景分享</title>
-  <meta name="description" content="分享在中國內地旅行的美食與美景：依城市/省份/主題 TAG 快速篩選，點擊卡片看圖文與連結。" />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>中國美食美景分享｜China Explore</title>
+  <meta name="description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋與排序，圖片不裁切自適應顯示。"/>
+
+  <!-- 基礎樣式（沿用你站上的風格，並補上卡片與 chips） -->
+  <link rel="stylesheet" href="/style.css"/>
+
   <style>
-    .wrap{max-width:1080px;margin:24px auto;padding:0 16px}
-    .subnav{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
-    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;background:#fff;cursor:pointer}
+    /* 版面 */
+    .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px}
+    .h1{font-size:28px;margin:6px 0 4px}
+    .lede{color:#4b5563;margin-bottom:14px}
+
+    /* 工具列 */
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 12px}
+    .toolbar input[type="search"],
+    .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+    .toolbar input[type="search"]{flex:1;min-width:240px}
+
+    /* 第二行：動態 chips（標籤快速篩選） */
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;
+      color:#1f2937;background:#fff;cursor:pointer;user-select:none}
     .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
-    .toolbar{display:flex;gap:10px;align-items:center;margin:6px 0 16px;flex-wrap:wrap}
-    .toolbar input{flex:1;min-width:240px;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+
+    /* 卡片格線 */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.grid{grid-template-columns:1fr}}
-    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
-    .thumb{aspect-ratio:4/3;background:#f3f4f6;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:100%;height:100%;object-fit:contain} /* 不裁切 */
-    .body{padding:12px}
-    .title{font-weight:700;margin:2px 0 4px}
-    .meta{font-size:12px;color:#6b7280;margin-bottom:6px}
+
+    /* 卡片 */
+    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;
+      display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:contain;display:block}
+    .card-body{padding:12px}
+    .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
+    .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
+    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
     .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-    .tag{font-size:12px;border:1px solid #e5e7eb;border-radius:999px;padding:2px 8px;background:#fafafa}
-    .actions{display:flex;gap:8px;margin-top:auto;padding:10px;border-top:1px solid #f3f4f6;background:#fafafa}
-    .btn{display:inline-block;border:1px solid #d1d5db;border-radius:8px;padding:8px 12px;text-align:center;background:#fff}
-    dialog{max-width:860px;width:96%;border:none;border-radius:12px}
-    dialog::backdrop{background:rgba(0,0,0,.35)}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:8px 12px}
-    .modal-body{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:12px}
-    @media(max-width:820px){.modal-body{grid-template-columns:1fr}}
-    .modal-body img{width:100%;height:100%;object-fit:contain;background:#f5f5f5;border:1px solid #eee;border-radius:8px}
+    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
+    .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
+    .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
+    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+
+    /* 空狀態 / 載入 */
+    .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
   </style>
+
+  <!-- JSON-LD（Breadcrumb）強化 SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/china-explore.html"}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="compliance-links">
+  <!-- 與首頁一致的頂部導覽 -->
+  <div class="compliance-links" role="navigation" aria-label="Primary">
     <a href="/index.html">Home</a> |
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
     <a href="/productivity-tips.html">Productivity Tips</a> |
-    <a href="/china-explore.html" aria-current="page">China Explore</a> |
-    <a href="/china-explore-admin.html">Admin</a>
+    <a href="/article2.html">Time Management</a> |
+    <a href="/article3.html">Digital To-Do Lists</a> |
+    <a href="/article4.html">How to Use</a> |
+    <a href="/article5.html">Weekly Review</a> |
+    <a href="/etsy-guides.html">Time-Saving</a>
   </div>
 
-  <main class="wrap">
-    <h1>中國內地｜美食美景分享</h1>
-    <p class="meta">💡 支援「本機暫存預覽」功能，若 Admin 有暫存資料會自動顯示。</p>
+  <main class="page-wrap">
+    <h1 class="h1">中國美食美景分享（China Explore）</h1>
+    <p class="lede">即時從 Google 試算表同步內容：可用城市、省份、類別與標籤篩選，支援搜尋與排序。圖片以「不裁切」模式自適應顯示。</p>
 
-    <div id="tagBar" class="subnav">
-      <button class="chip active" data-tag="__ALL">全部</button>
+    <!-- 工具列：搜尋 + 下拉過濾 + 排序 -->
+    <div class="toolbar" aria-label="Filters">
+      <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
+      <select id="citySel" aria-label="城市">
+        <option value="">全部城市</option>
+      </select>
+      <select id="provSel" aria-label="省份">
+        <option value="">全部省份</option>
+      </select>
+      <select id="kindSel" aria-label="類別">
+        <option value="">全部類別</option>
+        <option value="美食">美食</option>
+        <option value="美景">美景</option>
+      </select>
+      <select id="sortSel" aria-label="排序">
+        <option value="new">排序：最新</option>
+        <option value="az">排序：A→Z</option>
+      </select>
+      <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
     </div>
 
-    <div class="toolbar">
-      <input id="q" type="search" placeholder="搜尋城市 / 標題 / 標籤…" />
-    </div>
+    <!-- 第二行：標籤 chips（動態，由資料產生） -->
+    <div id="tagChips" class="chips" aria-label="Tags 快速篩選"></div>
 
-    <section id="grid" class="grid" aria-live="polite"></section>
+    <!-- 清單 -->
+    <div id="status" class="loading" role="status">載入中…</div>
+    <div id="grid" class="grid" aria-live="polite" hidden></div>
   </main>
-
-  <dialog id="viewer">
-    <div class="modal-header">
-      <h3 id="viewerTitle"></h3>
-      <button id="closeBtn" class="btn">關閉</button>
-    </div>
-    <div class="modal-body">
-      <img id="viewerImg" alt="">
-      <div>
-        <div id="viewerMeta" class="meta"></div>
-        <p id="viewerDesc"></p>
-        <p><a id="viewerLink" class="btn" target="_blank" rel="noopener">前往連結</a></p>
-      </div>
-    </div>
-  </dialog>
 
   <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
 
   <script>
-  const DATA_URL = "/data/china.json";
-  let ALL = [];
+    // === 設定：你的 JSON 端點 ===
+    const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
 
-  async function load() {
-    // ✅ 優先讀本機資料（Admin 的暫存）
-    const local = localStorage.getItem("china_rows");
-    if (local) {
-      try {
-        const arr = JSON.parse(local);
-        if (Array.isArray(arr) && arr.length) {
-          ALL = arr;
-          console.log("🔹使用本機暫存資料預覽，共", ALL.length, "筆");
-          init();
-          return;
-        }
-      } catch {}
+    // === DOM 參照 ===
+    const q        = document.getElementById('q');
+    const citySel  = document.getElementById('citySel');
+    const provSel  = document.getElementById('provSel');
+    const kindSel  = document.getElementById('kindSel');
+    const sortSel  = document.getElementById('sortSel');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    const tagChips = document.getElementById('tagChips');
+    const statusEl = document.getElementById('status');
+    const grid     = document.getElementById('grid');
+
+    // === 狀態 ===
+    let RAW = [];        // 原始 items
+    let TAGS = new Set();// 全站標籤
+    let ACTIVE_TAG = ""; // 當前 chips 篩選
+
+    // === 讀取資料 ===
+    async function fetchFeed(noCache=false){
+      try{
+        statusEl.hidden = false;
+        statusEl.textContent = "載入中…";
+        grid.hidden = true;
+
+        // 加時間參數可強制略過快取
+        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
+        const res = await fetch(url, {cache: noCache ? 'no-store' : 'default'});
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+
+        RAW = Array.isArray(json.items) ? json.items : [];
+        normalize(RAW);
+        buildFacetOptions(RAW);
+        buildTagChips(RAW);
+        apply();
+      }catch(err){
+        statusEl.textContent = "讀取失敗：" + err.message;
+      }
     }
 
-    // ✅ 沒有本機就讀線上 json
-    try {
-      const r = await fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store" });
-      if (!r.ok) throw 0;
-      ALL = await r.json();
-      console.log("📦 使用線上資料", ALL.length, "筆");
-    } catch {
-      ALL = [];
+    // === 欄位正規化、防止 null ===
+    function normalize(list){
+      for (const it of list){
+        it.title    = (it.title || "").toString();
+        it.city     = (it.city || "").toString();
+        it.province = (it.province || "").toString();
+        it.kind     = (it.kind || "").toString();
+        it.tags     = Array.isArray(it.tags) ? it.tags : (it.tags ? it.tags.toString().split(',').map(s=>s.trim()).filter(Boolean) : []);
+        it.image    = (it.image || "").toString();
+        it.link     = (it.link || "").toString();
+        it.excerpt  = (it.excerpt || "").toString();
+        it.content  = (it.content || "").toString();
+        // created 轉日期
+        it.created  = it.created ? new Date(it.created) : new Date(0);
+      }
     }
-    init();
-  }
 
-  const grid = document.getElementById("grid");
-  const q = document.getElementById("q");
-  const tagBar = document.getElementById("tagBar");
-  let activeTag = "__ALL";
+    // === 產生下拉（城市、省份）與標籤 ===
+    function buildFacetOptions(list){
+      const cities = [...new Set(list.map(x=>x.city).filter(Boolean))].sort();
+      const provs  = [...new Set(list.map(x=>x.province).filter(Boolean))].sort();
 
-  function buildTags() {
-    const set = new Set();
-    ALL.forEach(x => (x.tags || []).forEach(t => set.add(t)));
-    const frag = document.createDocumentFragment();
-    [...set].sort().forEach(t => {
-      const b = document.createElement("button");
+      fillSelect(citySel,  ["全部城市", ...cities], ["", ...cities]);
+      fillSelect(provSel,  ["全部省份", ...provs ],  ["", ...provs ]);
+    }
+    function fillSelect(sel, labels, values){
+      sel.innerHTML = "";
+      labels.forEach((lbl, i)=>{
+        const opt = document.createElement('option');
+        opt.textContent = lbl;
+        opt.value = values[i];
+        sel.appendChild(opt);
+      });
+    }
+    function buildTagChips(list){
+      TAGS = new Set();
+      list.forEach(x => (x.tags||[]).forEach(t=>TAGS.add(t)));
+      tagChips.innerHTML = "";
+      const allChip = chipEl("全部標籤", "");
+      allChip.classList.add('active');
+      tagChips.appendChild(allChip);
+
+      [...TAGS].sort().forEach(tag=>{
+        tagChips.appendChild(chipEl(tag, tag));
+      });
+    }
+    function chipEl(text, value){
+      const b = document.createElement('button');
+      b.type = "button";
       b.className = "chip";
-      b.dataset.tag = t;
-      b.textContent = t;
-      frag.appendChild(b);
-    });
-    tagBar.appendChild(frag);
-  }
-
-  function render(items) {
-    grid.innerHTML = items.map(item => `
-      <article class="card">
-        <div class="thumb">
-          ${item.image ? `<img src="${item.image}" alt="${item.title}">` : `<span>No Image</span>`}
-        </div>
-        <div class="body">
-          <h3 class="title"><a href="#${item.id}" data-open="${item.id}">${item.title}</a></h3>
-          <div class="meta">${item.province || ""} ${item.city || ""} · ${item.kind || ""}</div>
-          <p>${item.excerpt || ""}</p>
-          <div class="tags">${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join("")}</div>
-        </div>
-        <div class="actions">
-          <a class="btn" href="#${item.id}" data-open="${item.id}">查看詳情</a>
-          ${item.link ? `<a class="btn" href="${item.link}" target="_blank">外部連結</a>` : ""}
-        </div>
-      </article>
-    `).join("");
-  }
-
-  function apply() {
-    const term = q.value.trim().toLowerCase();
-    let items = ALL.slice();
-    if (activeTag !== "__ALL") items = items.filter(x => (x.tags || []).includes(activeTag));
-    if (term) {
-      items = items.filter(x =>
-        (x.title || "").toLowerCase().includes(term) ||
-        (x.city || "").toLowerCase().includes(term) ||
-        (x.province || "").toLowerCase().includes(term)
-      );
+      b.textContent = text;
+      b.dataset.value = value;
+      b.addEventListener('click', ()=>{
+        // 切換選取
+        [...tagChips.querySelectorAll('.chip')].forEach(c=>c.classList.remove('active'));
+        b.classList.add('active');
+        ACTIVE_TAG = value;
+        apply();
+      });
+      return b;
     }
-    render(items);
-  }
 
-  tagBar.addEventListener("click", e => {
-    const btn = e.target.closest(".chip");
-    if (!btn) return;
-    tagBar.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-    btn.classList.add("active");
-    activeTag = btn.dataset.tag;
-    apply();
-  });
-  q.addEventListener("input", apply);
+    // === 篩選 + 排序 + 渲染 ===
+    function apply(){
+      const term = q.value.trim().toLowerCase();
+      const city = citySel.value;
+      const prov = provSel.value;
+      const kind = kindSel.value;
+      const sort = sortSel.value;
 
-  grid.addEventListener("click", e => {
-    const a = e.target.closest("[data-open]");
-    if (!a) return;
-    const id = a.getAttribute("data-open");
-    const item = ALL.find(x => x.id === id);
-    if (!item) return;
-    document.getElementById("viewerTitle").textContent = item.title;
-    document.getElementById("viewerImg").src = item.image || "";
-    document.getElementById("viewerMeta").textContent = `${item.province || ""} ${item.city || ""}`;
-    document.getElementById("viewerDesc").textContent = item.content || item.excerpt;
-    const linkA = document.getElementById("viewerLink");
-    if (item.link) { linkA.href = item.link; linkA.style.display = "inline-block"; } 
-    else { linkA.style.display = "none"; }
-    document.getElementById("viewer").showModal();
-  });
-  document.getElementById("closeBtn").onclick = () => document.getElementById("viewer").close();
+      let list = RAW.slice();
 
-  function init() { buildTags(); apply(); }
-  load();
+      // 篩選
+      if (city) list = list.filter(x=>x.city === city);
+      if (prov) list = list.filter(x=>x.province === prov);
+      if (kind) list = list.filter(x=>x.kind === kind);
+      if (ACTIVE_TAG) list = list.filter(x => (x.tags||[]).includes(ACTIVE_TAG));
+      if (term){
+        list = list.filter(x=>{
+          const hay = [
+            x.title, x.excerpt, x.content, x.city, x.province, x.kind,
+            ...(x.tags||[])
+          ].join(" ").toLowerCase();
+          return hay.includes(term);
+        });
+      }
+
+      // 排序
+      if (sort === 'new'){
+        list.sort((a,b)=> b.created - a.created);
+      } else if (sort === 'az'){
+        list.sort((a,b)=> a.title.localeCompare(b.title,'zh-Hant'));
+      }
+
+      // 渲染
+      render(list);
+    }
+
+    function render(items){
+      if (!items.length){
+        grid.hidden = true;
+        statusEl.hidden = false;
+        statusEl.className = "empty";
+        statusEl.textContent = "沒有符合條件的內容。調整篩選或再試搜尋關鍵字。";
+        return;
+      }
+
+      const html = items.map(x=>cardHTML(x)).join('');
+      grid.innerHTML = html;
+      statusEl.hidden = true;
+      grid.hidden = false;
+    }
+
+    function cardHTML(x){
+      const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
+      const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
+      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
+      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : "";
+      return `
+        <article class="card">
+          <div class="thumb">${img}</div>
+          <div class="card-body">
+            <h3 class="title">${escapeHTML(x.title)}</h3>
+            <div class="meta">
+              ${x.city?`<span>城市：${escapeHTML(x.city)}</span>`:""}
+              ${x.province?`　<span>省份：${escapeHTML(x.province)}</span>`:""}
+              ${x.kind?`　<span class="badge">${escapeHTML(x.kind)}</span>`:""}
+              ${dateStr?`　<span>${dateStr}</span>`:""}
+            </div>
+            ${x.excerpt?`<p class="excerpt">${escapeHTML(x.excerpt)}</p>`:""}
+            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
+          </div>
+          <div class="actions">
+            ${linkBtn}
+            <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
+          </div>
+        </article>
+      `;
+    }
+
+    // === 小工具 ===
+    function escapeHTML(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+    function escapeAttr(s){return escapeHTML(s)}
+
+    // === 事件 ===
+    q.addEventListener('input', apply);
+    citySel.addEventListener('change', apply);
+    provSel.addEventListener('change', apply);
+    kindSel.addEventListener('change', apply);
+    sortSel.addEventListener('change', apply);
+    refreshBtn.addEventListener('click', ()=>fetchFeed(true));
+
+    // === 啟動 ===
+    fetchFeed();
   </script>
 </body>
 </html>
