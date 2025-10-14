@@ -1,38 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Today's Tasks – Simple Daily To-Do List</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive in seconds." />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>中國美食美景分享｜China Explore</title>
+  <meta name="description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋與排序，圖片不裁切自適應顯示。"/>
 
-  <!-- AdSense account hint -->
-  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <!-- 基礎樣式（沿用你站上的風格，並補上卡片與 chips） -->
+  <link rel="stylesheet" href="/style.css"/>
 
-  <!-- FAQ schema for SEO -->
+  <style>
+    /* 版面 */
+    .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px}
+    .h1{font-size:28px;margin:6px 0 4px}
+    .lede{color:#4b5563;margin-bottom:14px}
+
+    /* 工具列 */
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 12px}
+    .toolbar input[type="search"],
+    .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+    .toolbar input[type="search"]{flex:1;min-width:240px}
+
+    /* 第二行：動態 chips（標籤快速篩選） */
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;
+      color:#1f2937;background:#fff;cursor:pointer;user-select:none}
+    .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
+
+    /* 卡片格線 */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+    /* 卡片 */
+    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;
+      display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:contain;display:block}
+    .card-body{padding:12px}
+    .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
+    .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
+    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
+    .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
+    .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
+    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+
+    /* 空狀態 / 載入 */
+    .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
+  </style>
+
+  <!-- JSON-LD（Breadcrumb）強化 SEO -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Your list saves in your browser’s localStorage."}},
-      {"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Only on your device. Nothing is sent to our servers."}},
-      {"@type":"Question","name":"Can I use it offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add, complete, and restore tasks offline; they sync locally."}},
-      {"@type":"Question","name":"What are the priority lanes?","acceptedAnswer":{"@type":"Answer","text":"High, Due Today, and General—keep critical, urgent, and normal work apart."}},
-      {"@type":"Question","name":"Will tasks reset daily?","acceptedAnswer":{"@type":"Answer","text":"The app clears daily at midnight to prevent clutter. Restorable items go to Completed."}},
-      {"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, the layout is responsive for phones, tablets, and desktops."}},
-      {"@type":"Question","name":"Can I recover finished items?","acceptedAnswer":{"@type":"Answer","text":"Use the Completed list to restore or permanently remove tasks."}},
-      {"@type":"Question","name":"How do I get started fast?","acceptedAnswer":{"@type":"Answer","text":"Type a task, pick a lane, press Add. See our guides for tips."}}
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/china-explore.html"}
     ]
   }
   </script>
 </head>
 <body>
-  <!-- Top navigation -->
-  <div class="compliance-links">
-    <a href="/index.html" aria-current="page">Home</a> |
+  <!-- 與首頁一致的頂部導覽 -->
+  <div class="compliance-links" role="navigation" aria-label="Primary">
+    <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
@@ -41,149 +76,243 @@
     <a href="/article3.html">Digital To-Do Lists</a> |
     <a href="/article4.html">How to Use</a> |
     <a href="/article5.html">Weekly Review</a> |
-    <a href="/etsy-guides.html">Time-Saving</a>
+    <a href="/etsy-guides.html">Time-Saving</a> |
+    <a href="/todo.html">To Do List</a>
   </div>
 
-  <main class="container">
-    <h1>What is Today's Tasks?</h1>
-    <p>Today's Tasks is a free, no-signup daily to-do list app designed for busy professionals who want to organize their day in seconds. It runs entirely in your browser, stores data locally, and never sends your personal tasks to any server.</p>
-    <ul>
-      <li>Set priorities: High / Due Today / General</li>
-      <li>Mark tasks completed and restore them later</li>
-      <li>Automatic midnight reset each day</li>
-      <li>Responsive design for desktop and mobile</li>
-    </ul>
+  <main class="page-wrap">
+    <h1 class="h1">中國美食美景分享（China Explore）</h1>
+    <p class="lede">即時從 Google 試算表同步內容：可用城市、省份、類別與標籤篩選，支援搜尋與排序。圖片以「不裁切」模式自適應顯示。</p>
 
-    <h2>Today's Tasks</h2>
-    <div class="input-group">
-      <input id="task-input" type="text" placeholder="Enter a new task…" aria-label="New task" />
-      <select id="task-priority" aria-label="Task priority">
-        <option value="important">High Priority</option>
-        <option value="due">Due Today</option>
-        <option value="normal" selected>General</option>
+    <!-- 工具列：搜尋 + 下拉過濾 + 排序 -->
+    <div class="toolbar" aria-label="Filters">
+      <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
+      <select id="citySel" aria-label="城市">
+        <option value="">全部城市</option>
       </select>
-      <button id="add-btn" type="button">Add Task</button>
+      <select id="provSel" aria-label="省份">
+        <option value="">全部省份</option>
+      </select>
+      <select id="kindSel" aria-label="類別">
+        <option value="">全部類別</option>
+        <option value="美食">美食</option>
+        <option value="美景">美景</option>
+      </select>
+      <select id="sortSel" aria-label="排序">
+        <option value="new">排序：最新</option>
+        <option value="az">排序：A→Z</option>
+      </select>
+      <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
     </div>
 
-    <section class="group">
-      <h2>High Priority</h2>
-      <ul id="important-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>Due Today</h2>
-      <ul id="due-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>General</h2>
-      <ul id="normal-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>Completed</h2>
-      <ul id="completed-list" class="task-list"></ul>
-    </section>
+    <!-- 第二行：標籤 chips（動態，由資料產生） -->
+    <div id="tagChips" class="chips" aria-label="Tags 快速篩選"></div>
 
-    <!-- ===== 使用情境（SEO 強化） ===== -->
-    <section class="group">
-      <h2>Use Cases</h2>
-      <p><strong>Busy professionals</strong>: park deep-work items in <em>High</em>, time-bound errands in <em>Due Today</em>, and keep a light buffer in <em>General</em>. Pair with our <a href="/article2.html">time-management guide</a>.</p>
-      <p><strong>Students</strong>: log homework and exam prep by urgency. Review at night to reset for tomorrow—see tips in <a href="/article3.html">digital to-do lists</a>.</p>
-      <p><strong>Freelancers</strong>: track client deliverables and invoices; move shipped tasks to <em>Completed</em> for a clean slate. Learn a weekly cadence in <a href="/article5.html">Weekly Review</a>.</p>
-      <p><strong>Parents & households</strong>: capture chores and shopping, then reset daily to avoid clutter. Explore our <a href="/etsy-guides.html">time-saving templates</a>.</p>
-      <p><strong>Small teams</strong>: use lanes as a lightweight stand-up—yesterday’s done, today’s focus, and upcoming items. See practical <a href="/productivity-tips.html">productivity tips</a>.</p>
-    </section>
-
-    <!-- ===== FAQ（精簡版） ===== -->
-    <section class="group" id="faq">
-      <h2>FAQ</h2>
-      <details><summary>Do I need an account?</summary><p>No. Your list saves locally in your browser—zero sign-up.</p></details>
-      <details><summary>Is my data private?</summary><p>Yes. We never send your tasks to any server.</p></details>
-      <details><summary>Does it work offline?</summary><p>Yes. Tasks add/complete/restore offline and persist locally.</p></details>
-      <details><summary>How should I use the lanes?</summary><p>High = critical, Due Today = time-bound, General = everything else.</p></details>
-      <details><summary>What happens at midnight?</summary><p>The list resets to keep focus; finished items stay in Completed.</p></details>
-      <details><summary>Can I restore a finished task?</summary><p>Open <em>Completed</em>, then move the item back to a lane.</p></details>
-      <details><summary>Is it mobile friendly?</summary><p>Yes. The UI is responsive across phones, tablets, and desktops.</p></details>
-      <details><summary>Where do I learn more?</summary><p>See <a href="/article4.html">How to Use</a> and our guides above.</p></details>
-    </section>
+    <!-- 清單 -->
+    <div id="status" class="loading" role="status">載入中…</div>
+    <div id="grid" class="grid" aria-live="polite" hidden></div>
   </main>
 
-  <footer class="footer">
-    © 2025 Today’s Tasks. All rights reserved.
-  </footer>
+  <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
 
   <script>
-    // Load saved tasks from localStorage and render them
-    function loadTasks() {
-      const tasks = JSON.parse(localStorage.getItem('tasks')) || {
-        important: [],
-        due: [],
-        normal: [],
-        completed: []
-      };
-      Object.entries(tasks).forEach(([pri, arr]) => {
-        const list = document.getElementById(pri + '-list');
-        if (!list) return;
-        arr.forEach(text => {
-          const li = document.createElement('li');
-          li.innerHTML = `
-            <span>${text}</span>
-            <button class="complete-btn" title="Mark complete">✔</button>
-          `;
-          if (pri === 'completed') li.classList.add('completed');
-          list.appendChild(li);
+    // === 設定：你的 JSON 端點 ===
+    const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
+
+    // === DOM 參照 ===
+    const q        = document.getElementById('q');
+    const citySel  = document.getElementById('citySel');
+    const provSel  = document.getElementById('provSel');
+    const kindSel  = document.getElementById('kindSel');
+    const sortSel  = document.getElementById('sortSel');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    const tagChips = document.getElementById('tagChips');
+    const statusEl = document.getElementById('status');
+    const grid     = document.getElementById('grid');
+
+    // === 狀態 ===
+    let RAW = [];        // 原始 items
+    let TAGS = new Set();// 全站標籤
+    let ACTIVE_TAG = ""; // 當前 chips 篩選
+
+    // === 讀取資料 ===
+    async function fetchFeed(noCache=false){
+      try{
+        statusEl.hidden = false;
+        statusEl.textContent = "載入中…";
+        grid.hidden = true;
+
+        // 加時間參數可強制略過快取
+        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
+        const res = await fetch(url, {cache: noCache ? 'no-store' : 'default'});
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+
+        RAW = Array.isArray(json.items) ? json.items : [];
+        normalize(RAW);
+        buildFacetOptions(RAW);
+        buildTagChips(RAW);
+        apply();
+      }catch(err){
+        statusEl.textContent = "讀取失敗：" + err.message;
+      }
+    }
+
+    // === 欄位正規化、防止 null ===
+    function normalize(list){
+      for (const it of list){
+        it.title    = (it.title || "").toString();
+        it.city     = (it.city || "").toString();
+        it.province = (it.province || "").toString();
+        it.kind     = (it.kind || "").toString();
+        it.tags     = Array.isArray(it.tags) ? it.tags : (it.tags ? it.tags.toString().split(',').map(s=>s.trim()).filter(Boolean) : []);
+        it.image    = (it.image || "").toString();
+        it.link     = (it.link || "").toString();
+        it.excerpt  = (it.excerpt || "").toString();
+        it.content  = (it.content || "").toString();
+        // created 轉日期
+        it.created  = it.created ? new Date(it.created) : new Date(0);
+      }
+    }
+
+    // === 產生下拉（城市、省份）與標籤 ===
+    function buildFacetOptions(list){
+      const cities = [...new Set(list.map(x=>x.city).filter(Boolean))].sort();
+      const provs  = [...new Set(list.map(x=>x.province).filter(Boolean))].sort();
+
+      fillSelect(citySel,  ["全部城市", ...cities], ["", ...cities]);
+      fillSelect(provSel,  ["全部省份", ...provs ],  ["", ...provs ]);
+    }
+    function fillSelect(sel, labels, values){
+      sel.innerHTML = "";
+      labels.forEach((lbl, i)=>{
+        const opt = document.createElement('option');
+        opt.textContent = lbl;
+        opt.value = values[i];
+        sel.appendChild(opt);
+      });
+    }
+    function buildTagChips(list){
+      TAGS = new Set();
+      list.forEach(x => (x.tags||[]).forEach(t=>TAGS.add(t)));
+      tagChips.innerHTML = "";
+      const allChip = chipEl("全部標籤", "");
+      allChip.classList.add('active');
+      tagChips.appendChild(allChip);
+
+      [...TAGS].sort().forEach(tag=>{
+        tagChips.appendChild(chipEl(tag, tag));
+      });
+    }
+    function chipEl(text, value){
+      const b = document.createElement('button');
+      b.type = "button";
+      b.className = "chip";
+      b.textContent = text;
+      b.dataset.value = value;
+      b.addEventListener('click', ()=>{
+        // 切換選取
+        [...tagChips.querySelectorAll('.chip')].forEach(c=>c.classList.remove('active'));
+        b.classList.add('active');
+        ACTIVE_TAG = value;
+        apply();
+      });
+      return b;
+    }
+
+    // === 篩選 + 排序 + 渲染 ===
+    function apply(){
+      const term = q.value.trim().toLowerCase();
+      const city = citySel.value;
+      const prov = provSel.value;
+      const kind = kindSel.value;
+      const sort = sortSel.value;
+
+      let list = RAW.slice();
+
+      // 篩選
+      if (city) list = list.filter(x=>x.city === city);
+      if (prov) list = list.filter(x=>x.province === prov);
+      if (kind) list = list.filter(x=>x.kind === kind);
+      if (ACTIVE_TAG) list = list.filter(x => (x.tags||[]).includes(ACTIVE_TAG));
+      if (term){
+        list = list.filter(x=>{
+          const hay = [
+            x.title, x.excerpt, x.content, x.city, x.province, x.kind,
+            ...(x.tags||[])
+          ].join(" ").toLowerCase();
+          return hay.includes(term);
         });
-      });
+      }
+
+      // 排序
+      if (sort === 'new'){
+        list.sort((a,b)=> b.created - a.created);
+      } else if (sort === 'az'){
+        list.sort((a,b)=> a.title.localeCompare(b.title,'zh-Hant'));
+      }
+
+      // 渲染
+      render(list);
     }
 
-    // Save current DOM lists back to localStorage
-    function saveTasksFromDOM() {
-      const toArr = id =>
-        Array.from(document.querySelectorAll('#' + id + ' li span'))
-             .map(s => s.textContent.trim());
-      const data = {
-        important: toArr('important-list'),
-        due: toArr('due-list'),
-        normal: toArr('normal-list'),
-        completed: toArr('completed-list')
-      };
-      localStorage.setItem('tasks', JSON.stringify(data));
+    function render(items){
+      if (!items.length){
+        grid.hidden = true;
+        statusEl.hidden = false;
+        statusEl.className = "empty";
+        statusEl.textContent = "沒有符合條件的內容。調整篩選或再試搜尋關鍵字。";
+        return;
+      }
+
+      const html = items.map(x=>cardHTML(x)).join('');
+      grid.innerHTML = html;
+      statusEl.hidden = true;
+      grid.hidden = false;
     }
 
-    function addTask() {
-      const input = document.getElementById('task-input');
-      const pri = document.getElementById('task-priority').value;
-      const text = (input.value || '').trim();
-      if (!text) return;
-      const list = document.getElementById(pri + '-list');
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span>${text}</span>
-        <button class="complete-btn" title="Mark complete">✔</button>
+    function cardHTML(x){
+      const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
+      const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
+      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
+      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : "";
+      return `
+        <article class="card">
+          <div class="thumb">${img}</div>
+          <div class="card-body">
+            <h3 class="title">${escapeHTML(x.title)}</h3>
+            <div class="meta">
+              ${x.city?`<span>城市：${escapeHTML(x.city)}</span>`:""}
+              ${x.province?`　<span>省份：${escapeHTML(x.province)}</span>`:""}
+              ${x.kind?`　<span class="badge">${escapeHTML(x.kind)}</span>`:""}
+              ${dateStr?`　<span>${dateStr}</span>`:""}
+            </div>
+            ${x.excerpt?`<p class="excerpt">${escapeHTML(x.excerpt)}</p>`:""}
+            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
+          </div>
+          <div class="actions">
+            ${linkBtn}
+            <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
+          </div>
+        </article>
       `;
-      list.appendChild(li);
-      input.value = '';
-      saveTasksFromDOM();
     }
 
-    function attachEvents() {
-      document.getElementById('add-btn').addEventListener('click', addTask);
-      document.addEventListener('click', e => {
-        if (e.target && e.target.classList.contains('complete-btn')) {
-          const li = e.target.closest('li');
-          if (!li) return;
-          if (!li.classList.contains('completed')) {
-            li.classList.add('completed');
-            document.getElementById('completed-list').appendChild(li);
-          } else {
-            // If clicked again in completed, remove it
-            li.remove();
-          }
-          saveTasksFromDOM();
-        }
-      });
-    }
+    // === 小工具 ===
+    function escapeHTML(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+    function escapeAttr(s){return escapeHTML(s)}
 
-    loadTasks();
-    attachEvents();
+    // === 事件 ===
+    q.addEventListener('input', apply);
+    citySel.addEventListener('change', apply);
+    provSel.addEventListener('change', apply);
+    kindSel.addEventListener('change', apply);
+    sortSel.addEventListener('change', apply);
+    refreshBtn.addEventListener('click', ()=>fetchFeed(true));
+
+    // === 啟動 ===
+    fetchFeed();
   </script>
 </body>
 </html>
