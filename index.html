@@ -2,9 +2,9 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>中國美食美景分享｜China Explore</title>
-  <meta name="description" content="中國內地旅行的美食與美景分享。首頁聚焦單篇 Spotlight，一鍵爽看；支援城市、省份、類別與標籤篩選，圖片不裁切自適應顯示。"/>
+  <meta name="description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋、排序與分頁。圖片不裁切自適應顯示。"/>
 
   <link rel="stylesheet" href="/style.css"/>
 
@@ -13,39 +13,32 @@
     .h1{font-size:28px;margin:6px 0 4px}
     .lede{color:#4b5563;margin-bottom:14px}
 
-    /* ===== Spotlight：聚焦單篇 ===== */
-    .spotlight{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;align-items:start;background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden}
-    @media(max-width:920px){.spotlight{grid-template-columns:1fr}}
-    .spotlight-hero{background:#0b0c0f}
-    .spotlight-hero .frame{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
-    .spotlight-hero img{width:100%;height:100%;object-fit:contain;display:block}
-    .spotlight-body{padding:16px 16px 12px}
-    .spotlight-title{font-size:22px;line-height:1.35;margin:0 0 6px}
-    .spotlight-meta{font-size:13px;color:#6b7280;margin-bottom:8px}
-    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
-    .spotlight-excerpt{margin:8px 0 8px;color:#374151}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0}
-    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
-    .spotlight-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:10px;border:1px solid #d1d5db;background:#fff;color:#111827}
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    .btn.ghost{background:#fff}
-    .navline{display:flex;gap:8px;align-items:center;margin:10px 0 0}
-    .navline .sep{color:#cbd5e1}
+    /* 最新美食分享（首頁模組） */
+    .latest{margin:18px 0 8px}
+    .latest h2{font-size:20px;margin:0 0 10px}
+    .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:980px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.latest-grid{grid-template-columns:1fr}}
+    .latest-card{border:1px solid #e5e7eb;border-radius:10px;background:#fff;overflow:hidden}
+    .latest-thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
+    .latest-thumb img{width:100%;height:100%;object-fit:contain;display:block}
+    .latest-body{padding:10px}
+    .latest-title{font-weight:700;line-height:1.35;margin:0 0 4px;font-size:15px}
+    .latest-meta{font-size:12px;color:#6b7280}
 
-    /* ===== 工具列（收斂版） ===== */
-    .tools{margin:18px 0 8px}
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-    .toolbar input[type="search"],.toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
-    .toolbar input[type="search"]{flex:1;min-width:220px}
+    /* 工具列 */
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 12px}
+    .toolbar input[type="search"],
+    .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
+    .toolbar input[type="search"]{flex:1;min-width:240px}
 
     /* 標籤 chips */
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
-    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;background:#fff;color:#1f2937;cursor:pointer}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;
+      color:#1f2937;background:#fff;cursor:pointer;user-select:none}
     .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
 
-    /* 主清單（預設收起） */
-    .grid-wrap{margin-top:14px}
+    /* 主清單卡片 */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.grid{grid-template-columns:1fr}}
@@ -55,32 +48,41 @@
     .card-body{padding:12px}
     .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
     .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
-    .excerpt{font-size:13px;color:#374151;margin-top:6px}
+    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
+    .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
+    .bio{margin:8px 0 0;font-size:12px;color:#6b7280}
     .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
+    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
 
-    /* 載入／空狀態 */
+    /* 分頁 */
+    .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0}
+    .pager button{min-width:40px;padding:8px 10px;border:1px solid #d1d5db;background:#fff;border-radius:8px;cursor:pointer}
+    .pager button[disabled]{opacity:.5;cursor:not-allowed}
+    .pager .active{background:#111827;color:#fff;border-color:#111827}
+
+    /* 空狀態 / 載入 */
     .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
-
-    /* 頂部導覽 */
-    .compliance-links a{white-space:nowrap}
   </style>
 
-  <!-- 固定麵包屑 JSON-LD -->
+  <!-- 麵包屑 JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
     "itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
-      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/index.html"}
+      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/china-explore.html"}
     ]
   }
   </script>
 </head>
 <body>
-  <!-- 頂部導覽（保留原連結） -->
+  <!-- 導覽列（保留你原有連結） -->
   <div class="compliance-links" role="navigation" aria-label="Primary">
-    <a href="/index.html" aria-current="page">Home</a> |
+    <a href="/index.html">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
@@ -95,68 +97,48 @@
 
   <main class="page-wrap">
     <h1 class="h1">中國美食美景分享（China Explore）</h1>
-    <p class="lede">首頁採用「聚焦單篇」設計：一次只看一則最值分享的內容，用最少思考就能做決定；需要時再展開完整清單與強力篩選。</p>
+    <p class="lede">即時從 Google 試算表同步內容：支援搜尋、篩選、排序與分頁；圖片以「不裁切」模式自適應顯示。</p>
 
-    <!-- ===== Spotlight：聚焦單篇 ===== -->
-    <section id="spotlight" class="spotlight" aria-label="精選內容">
-      <div class="spotlight-hero">
-        <div class="frame" id="sl-img"></div>
-      </div>
-      <div class="spotlight-body">
-        <h2 id="sl-title" class="spotlight-title"></h2>
-        <div id="sl-meta" class="spotlight-meta"></div>
-        <p id="sl-excerpt" class="spotlight-excerpt"></p>
-        <div id="sl-tags" class="tags"></div>
-        <div class="spotlight-actions">
-          <a id="sl-link" class="btn primary" href="#" target="_blank" rel="noopener">查看詳情</a>
-          <a id="sl-authority" class="btn ghost" href="#" target="_blank" rel="nofollow noopener">權威連結</a>
-        </div>
-        <div class="navline">
-          <button id="prevBtn" class="btn">← 上一則</button>
-          <span class="sep">|</span>
-          <button id="nextBtn" class="btn">下一則 →</button>
-          <span class="sep">|</span>
-          <button id="randBtn" class="btn">隨機看看 🎲</button>
-          <span class="sep">|</span>
-          <button id="toggleListBtn" class="btn">顯示全部</button>
-        </div>
-      </div>
+    <!-- ① 最新美食分享 -->
+    <section class="latest" aria-label="最新美食分享">
+      <h2>🍜 最新美食分享</h2>
+      <div id="latest" class="latest-grid"></div>
     </section>
 
-    <!-- ===== 工具列（收斂版） ===== -->
-    <section class="tools" aria-label="篩選工具">
-      <div class="toolbar">
-        <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
-        <select id="citySel" aria-label="城市"><option value="">全部城市</option></select>
-        <select id="provSel" aria-label="省份"><option value="">全部省份</option></select>
-        <select id="kindSel" aria-label="類別">
-          <option value="">全部類別</option>
-          <option value="美食">美食</option>
-          <option value="美景">美景</option>
-        </select>
-        <select id="sortSel" aria-label="排序">
-          <option value="new">排序：最新</option>
-          <option value="az">排序：A→Z</option>
-        </select>
-        <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
-      </div>
-      <div id="tagChips" class="chips" aria-label="標籤"></div>
-    </section>
+    <!-- ② 工具列 -->
+    <div class="toolbar" aria-label="Filters">
+      <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
+      <select id="citySel" aria-label="城市"><option value="">全部城市</option></select>
+      <select id="provSel" aria-label="省份"><option value="">全部省份</option></select>
+      <select id="kindSel" aria-label="類別">
+        <option value="">全部類別</option>
+        <option value="美食">美食</option>
+        <option value="美景">美景</option>
+      </select>
+      <select id="sortSel" aria-label="排序">
+        <option value="new">排序：最新</option>
+        <option value="az">排序：A→Z</option>
+      </select>
+      <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
+    </div>
 
-    <!-- ===== 主清單（預設隱藏） ===== -->
-    <section class="grid-wrap" id="gridWrap" hidden>
-      <div id="status" class="loading" role="status">載入中…</div>
-      <div id="grid" class="grid" aria-live="polite" hidden></div>
-    </section>
+    <!-- 標籤 chips -->
+    <div id="tagChips" class="chips" aria-label="Tags 快速篩選"></div>
+
+    <!-- 主清單 + 分頁 -->
+    <div id="status" class="loading" role="status">載入中…</div>
+    <div id="grid" class="grid" aria-live="polite" hidden></div>
+    <nav id="pager" class="pager" aria-label="分頁" hidden></nav>
   </main>
 
   <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
 
   <script>
-    // === 換成你的 JSON 端點 ===
-    const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
+    /* ===== 設定 ===== */
+    const FEED_URL  = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
+    const PAGE_SIZE = 10;
 
-    // DOM 參照
+    /* ===== DOM ===== */
     const q = document.getElementById('q');
     const citySel = document.getElementById('citySel');
     const provSel = document.getElementById('provSel');
@@ -164,244 +146,280 @@
     const sortSel = document.getElementById('sortSel');
     const refreshBtn = document.getElementById('refreshBtn');
     const tagChips = document.getElementById('tagChips');
-    const gridWrap = document.getElementById('gridWrap');
     const statusEl = document.getElementById('status');
     const grid = document.getElementById('grid');
-    const toggleListBtn = document.getElementById('toggleListBtn');
+    const latestWrap = document.getElementById('latest');
+    const pager = document.getElementById('pager');
 
-    // Spotlight DOM
-    const slImg = document.getElementById('sl-img');
-    const slTitle = document.getElementById('sl-title');
-    const slMeta = document.getElementById('sl-meta');
-    const slExcerpt = document.getElementById('sl-excerpt');
-    const slTags = document.getElementById('sl-tags');
-    const slLink = document.getElementById('sl-link');
-    const slAuthority = document.getElementById('sl-authority');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const randBtn = document.getElementById('randBtn');
-
-    // 狀態
+    /* ===== 狀態 ===== */
     let RAW = [];
-    let VIEW = [];   // 依篩選/排序後的結果
-    let CUR = 0;     // Spotlight 目前索引
-    let TAGS = new Set();
+    let FILTERED = [];
     let ACTIVE_TAG = "";
+    let TAGS = new Set();
+    let curPage = getPageFromHash() || 1;
 
-    // 啟動
+    /* ===== 啟動 ===== */
+    attachEvents();
     fetchFeed();
 
-    // 事件
-    q.addEventListener('input', rebuild);
-    citySel.addEventListener('change', rebuild);
-    provSel.addEventListener('change', rebuild);
-    kindSel.addEventListener('change', rebuild);
-    sortSel.addEventListener('change', rebuild);
-    refreshBtn.addEventListener('click', ()=>fetchFeed(true));
-    toggleListBtn.addEventListener('click', ()=>{
-      gridWrap.hidden = !gridWrap.hidden;
-      toggleListBtn.textContent = gridWrap.hidden ? '顯示全部' : '收起清單';
-    });
-    prevBtn.addEventListener('click', ()=> step(-1));
-    nextBtn.addEventListener('click', ()=> step(+1));
-    randBtn.addEventListener('click', ()=> { if (VIEW.length){ CUR = Math.floor(Math.random()*VIEW.length); renderSpotlight(); }});
-
-    // 左右方向鍵切換
-    window.addEventListener('keydown', (e)=>{
-      if (e.key === 'ArrowLeft') step(-1);
-      if (e.key === 'ArrowRight') step(+1);
-    });
-
-    // 讀取資料
-    async function fetchFeed(noCache=false){
-      try{
-        statusEl.hidden=false; statusEl.textContent='載入中…'; grid.hidden=true;
-        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?')+'t='+Date.now() : FEED_URL;
-        const res = await fetch(url, {cache: noCache ? 'no-store':'default'});
-        if(!res.ok) throw new Error('HTTP '+res.status);
-        const json = await res.json();
-        RAW = Array.isArray(json.items) ? json.items : [];
-        normalize(RAW);
-        buildFacets(RAW);
-        rebuild(); // 會產生 VIEW 並渲染 Spotlight + (可選)清單
-      }catch(err){
-        statusEl.textContent = '讀取失敗：'+err.message;
-      }
-    }
-
-    // 正規化
-    function normalize(list){
-      list.forEach(it=>{
-        it.id = it.id ?? '';
-        it.title = (it.title||'').toString();
-        it.city = (it.city||'').toString();
-        it.province = (it.province||'').toString();
-        it.kind = (it.kind||'').toString();
-        it.tags = Array.isArray(it.tags) ? it.tags : (it.tags ? it.tags.toString().split(',').map(s=>s.trim()).filter(Boolean) : []);
-        it.image = (it.image||'').toString();
-        it.link = (it.link||'').toString();
-        it.excerpt = (it.excerpt||'').toString();
-        it.content = (it.content||'').toString();
-        it.created = it.created ? new Date(it.created) : new Date(0);
+    /* ===== 事件 ===== */
+    function attachEvents(){
+      q.addEventListener('input', ()=>{ curPage=1; apply(); });
+      citySel.addEventListener('change', ()=>{ curPage=1; apply(); });
+      provSel.addEventListener('change', ()=>{ curPage=1; apply(); });
+      kindSel.addEventListener('change', ()=>{ curPage=1; apply(); });
+      sortSel.addEventListener('change', ()=>{ curPage=1; apply(); });
+      refreshBtn.addEventListener('click', ()=>fetchFeed(true));
+      window.addEventListener('hashchange', ()=>{
+        const p = getPageFromHash();
+        if(p && p!==curPage){ curPage=p; renderPaged(); }
       });
     }
 
-    // 篩選組建
-    function buildFacets(list){
-      const cities=[...new Set(list.map(x=>x.city).filter(Boolean))].sort();
-      const provs =[...new Set(list.map(x=>x.province).filter(Boolean))].sort();
-      fillSelect(citySel,["全部城市",...cities],["",...cities]);
-      fillSelect(provSel,["全部省份",...provs],["",...provs]);
+    /* ===== 讀取資料 ===== */
+    async function fetchFeed(noCache=false){
+      try{
+        statusEl.hidden = false; statusEl.textContent = "載入中…"; grid.hidden = true; pager.hidden = true;
 
-      TAGS = new Set(); list.forEach(x=>(x.tags||[]).forEach(t=>TAGS.add(t)));
-      tagChips.innerHTML='';
-      const all=chipEl('全部標籤',''); all.classList.add('active'); tagChips.appendChild(all);
-      [...TAGS].sort().forEach(t=>tagChips.appendChild(chipEl(t,t)));
+        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
+        const res = await fetch(url, {cache: noCache ? 'no-store' : 'default'});
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+
+        RAW = Array.isArray(json.items) ? json.items : [];
+        normalize(RAW);
+        buildFacetOptions(RAW);
+        buildTagChips(RAW);
+        renderLatest(RAW);
+        injectJSONLD(RAW);
+        apply();
+      }catch(err){
+        statusEl.textContent = "讀取失敗：" + err.message;
+      }
     }
-    function fillSelect(sel,labels,values){
-      sel.innerHTML=''; labels.forEach((lbl,i)=>{const o=document.createElement('option');o.textContent=lbl;o.value=values[i];sel.appendChild(o);});
+
+    /* ===== 正規化 ===== */
+    function normalize(list){
+      for(const it of list){
+        it.title = (it.title||"").toString();
+        it.city = (it.city||"").toString();
+        it.province = (it.province||"").toString();
+        it.kind = (it.kind||"").toString();
+        it.tags = Array.isArray(it.tags)? it.tags : (it.tags? it.tags.toString().split(",").map(s=>s.trim()).filter(Boolean):[]);
+        it.image = (it.image||"").toString();
+        it.link = (it.link||"").toString();
+        it.excerpt = (it.excerpt||"").toString();
+        it.content = (it.content||"").toString();
+        it.created = it.created ? new Date(it.created) : new Date(0);
+      }
+    }
+
+    /* ===== 下拉 / 標籤 ===== */
+    function buildFacetOptions(list){
+      const cities = [...new Set(list.map(x=>x.city).filter(Boolean))].sort();
+      const provs  = [...new Set(list.map(x=>x.province).filter(Boolean))].sort();
+      fillSelect(citySel, ["全部城市", ...cities], ["", ...cities]);
+      fillSelect(provSel, ["全部省份", ...provs],  ["", ...provs ]);
+    }
+    function fillSelect(sel, labels, values){
+      sel.innerHTML = "";
+      labels.forEach((lbl,i)=>{
+        const opt = document.createElement('option');
+        opt.textContent = lbl; opt.value = values[i];
+        sel.appendChild(opt);
+      });
+    }
+    function buildTagChips(list){
+      TAGS = new Set();
+      list.forEach(x => (x.tags||[]).forEach(t=>TAGS.add(t)));
+      tagChips.innerHTML = "";
+      const allChip = chipEl("全部標籤","");
+      allChip.classList.add('active');
+      tagChips.appendChild(allChip);
+      [...TAGS].sort().forEach(t=> tagChips.appendChild(chipEl(t,t)));
     }
     function chipEl(text,value){
-      const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=text; b.dataset.value=value;
-      b.addEventListener('click',()=>{
+      const b = document.createElement('button');
+      b.type="button"; b.className="chip"; b.textContent=text; b.dataset.value=value;
+      b.addEventListener('click', ()=>{
         [...tagChips.querySelectorAll('.chip')].forEach(c=>c.classList.remove('active'));
-        b.classList.add('active'); ACTIVE_TAG=value; rebuild();
+        b.classList.add('active'); ACTIVE_TAG=value; curPage=1; apply();
       });
       return b;
     }
 
-    // 重建 View（Spotlight 優先）
-    function rebuild(){
-      VIEW = RAW.slice();
+    /* ===== 最新美食（前 6 筆） ===== */
+    function renderLatest(list){
+      const latest = list.slice().sort((a,b)=>b.created-a.created)
+        .filter(x=>x.kind==="美食").slice(0,6);
+      latestWrap.innerHTML = latest.map(x=>`
+        <article class="latest-card">
+          <div class="latest-thumb">
+            ${x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`}
+          </div>
+          <div class="latest-body">
+            <div class="latest-title">${escapeHTML(x.title)}</div>
+            <div class="latest-meta">${x.city?escapeHTML(x.city):""} ${x.province?(" · "+escapeHTML(x.province)):""}</div>
+          </div>
+        </article>
+      `).join('');
+    }
 
+    /* ===== 篩選 + 排序 + 分頁 ===== */
+    function apply(){
       const term = q.value.trim().toLowerCase();
-      if (citySel.value) VIEW = VIEW.filter(x=>x.city===citySel.value);
-      if (provSel.value) VIEW = VIEW.filter(x=>x.province===provSel.value);
-      if (kindSel.value) VIEW = VIEW.filter(x=>x.kind===kindSel.value);
-      if (ACTIVE_TAG)   VIEW = VIEW.filter(x=>(x.tags||[]).includes(ACTIVE_TAG));
-      if (term){
-        VIEW = VIEW.filter(x=>{
-          const hay=[x.title,x.excerpt,x.content,x.city,x.province,x.kind,...(x.tags||[])].join(' ').toLowerCase();
+      const city = citySel.value, prov = provSel.value, kind = kindSel.value, sort = sortSel.value;
+
+      let list = RAW.slice();
+      if(city) list = list.filter(x=>x.city===city);
+      if(prov) list = list.filter(x=>x.province===prov);
+      if(kind) list = list.filter(x=>x.kind===kind);
+      if(ACTIVE_TAG) list = list.filter(x=>(x.tags||[]).includes(ACTIVE_TAG));
+      if(term){
+        list = list.filter(x=>{
+          const hay = [x.title,x.excerpt,x.content,x.city,x.province,x.kind,...(x.tags||[])].join(" ").toLowerCase();
           return hay.includes(term);
         });
       }
-      if (sortSel.value==='new') VIEW.sort((a,b)=>b.created-a.created);
-      else if (sortSel.value==='az') VIEW.sort((a,b)=>a.title.localeCompare(b.title,'zh-Hant'));
+      if(sort==="new") list.sort((a,b)=>b.created-a.created);
+      if(sort==="az")  list.sort((a,b)=>a.title.localeCompare(b.title,'zh-Hant'));
 
-      CUR = 0;
-      renderSpotlight();
-      renderList();
+      FILTERED = list;
+      // 若目前頁超出範圍，回到第 1 頁
+      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
+      if(curPage>totalPages) curPage=1;
+
+      renderPaged();
     }
 
-    // Spotlight 渲染（＋預載下一張）
-    function renderSpotlight(){
-      const it = VIEW[CUR];
-      if (!it){ slImg.innerHTML=''; slTitle.textContent='尚無內容'; slMeta.textContent=''; slExcerpt.textContent=''; slTags.innerHTML=''; slLink.style.display='none'; slAuthority.style.display='none'; injectPostJsonLd(null); return; }
-
-      slImg.innerHTML = it.image ? `<img src="${escapeAttr(it.image)}" alt="${escapeAttr(it.title)}" loading="eager">`
-                                 : `<div style="color:#9ca3af;font-size:12px">No image</div>`;
-      slTitle.textContent = it.title || '';
-      slMeta.innerHTML = `
-        ${it.city?`<span>${escapeHTML(it.city)}</span>`:''}
-        ${it.province?` · <span>${escapeHTML(it.province)}</span>`:''}
-        ${it.kind?` · <span class="badge">${escapeHTML(it.kind)}</span>`:''}
-        ${isValidDate(it.created)?` · <time datetime="${it.created.toISOString()}">${it.created.toLocaleDateString()}</time>`:''}
-      `;
-      slExcerpt.textContent = it.excerpt || '';
-      slTags.innerHTML = (it.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
-
-      if (it.link){ slLink.href = it.link; slLink.style.display='inline-block'; } else { slLink.style.display='none'; }
-      const auth = buildAuthorityLink(it);
-      if (auth){ slAuthority.href = auth; slAuthority.style.display='inline-block'; } else { slAuthority.style.display='none'; }
-
-      // JSON-LD 僅針對 Spotlight
-      injectPostJsonLd(it);
-
-      // 預載下一張
-      if (VIEW.length>1){
-        const nxt = VIEW[(CUR+1)%VIEW.length];
-        if (nxt && nxt.image){ const img = new Image(); img.src = nxt.image; }
+    function renderPaged(){
+      if(!FILTERED.length){
+        grid.hidden=true; pager.hidden=true; statusEl.hidden=false; statusEl.className="empty";
+        statusEl.textContent="沒有符合條件的內容。調整篩選或再試搜尋關鍵字。"; return;
       }
-    }
-    function isValidDate(d){ return d instanceof Date && !isNaN(d); }
+      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
+      const start = (curPage-1)*PAGE_SIZE;
+      const pageItems = FILTERED.slice(start, start+PAGE_SIZE);
 
-    function step(delta){
-      if (!VIEW.length) return;
-      CUR = (CUR + delta + VIEW.length) % VIEW.length;
-      renderSpotlight();
-    }
+      grid.innerHTML = pageItems.map(x=>cardHTML(x)).join('');
+      statusEl.hidden=true; grid.hidden=false;
 
-    function buildAuthorityLink(x){
-      const q = encodeURIComponent((x.city?x.city+' ':'') + (x.title||''));
-      if (x.kind === '美食') return `https://www.dianping.com/search/keyword/2/0_${q}`;
-      if (x.kind === '美景') return `https://www.tripadvisor.com/Search?q=${q}`;
-      return '';
+      renderPager(totalPages);
+      setPageHash(curPage);
+      // 捲回清單頂端（保有使用感）
+      window.scrollTo({ top: grid.offsetTop - 80, behavior:'smooth' });
     }
 
-    // 主清單（備選：顯示全部）
-    function renderList(){
-      if (!VIEW.length){ grid.hidden=true; statusEl.hidden=false; statusEl.className='empty'; statusEl.textContent='沒有符合條件的內容。'; return; }
-      const html = VIEW.map(x=>cardHTML(x)).join('');
-      grid.innerHTML = html; statusEl.hidden=true; grid.hidden=false;
+    function renderPager(totalPages){
+      pager.hidden = false;
+      const btn = (label, disabled, go, active=false)=>{
+        return `<button ${disabled?'disabled':''} class="${active?'active':''}" aria-current="${active?'page':'false'}" onclick="${disabled?'':go}">${label}</button>`;
+      };
+      let html = "";
+      html += btn('«', curPage===1, 'goPage(1)');
+      html += btn('‹', curPage===1, `goPage(${curPage-1})`);
+
+      // 中央 5 個頁碼視窗
+      const span = 2;
+      const from = Math.max(1, curPage-span);
+      const to   = Math.min(totalPages, curPage+span);
+      for(let i=from;i<=to;i++){
+        html += btn(i, false, `goPage(${i})`, i===curPage);
+      }
+
+      html += btn('›', curPage===totalPages, `goPage(${curPage+1})`);
+      html += btn('»', curPage===totalPages, `goPage(${totalPages})`);
+      pager.innerHTML = html;
     }
+
+    function goPage(n){
+      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
+      curPage = Math.min(Math.max(1,n), totalPages);
+      renderPaged();
+    }
+    function setPageHash(p){ location.hash = 'p=' + p; }
+    function getPageFromHash(){
+      const m = location.hash.match(/p=(\d+)/); return m ? parseInt(m[1],10) : null;
+    }
+
+    /* ===== 卡片（含作者簡介、權威連結） ===== */
     function cardHTML(x){
-      const dateStr = isValidDate(x.created) ? x.created.toLocaleDateString() : '';
-      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
+      const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
       const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
-      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : '';
-      const auth = buildAuthorityLink(x);
+      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
+      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : "";
+      const authority = buildAuthorityLink(x);
       return `
-        <article class="card">
+        <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
           <div class="thumb">${img}</div>
           <div class="card-body">
-            <h3 class="title">${escapeHTML(x.title)}</h3>
+            <h3 class="title" itemprop="headline">${escapeHTML(x.title)}</h3>
             <div class="meta">
-              ${x.city?`<span>${escapeHTML(x.city)}</span>`:''}
-              ${x.province?` · <span>${escapeHTML(x.province)}</span>`:''}
-              ${x.kind?` · <span class="badge">${escapeHTML(x.kind)}</span>`:''}
-              ${dateStr?` · <span>${dateStr}</span>`:''}
+              ${x.city?`<span itemprop="contentLocation">${escapeHTML(x.city)}</span>`:""}
+              ${x.province?`　<span>${escapeHTML(x.province)}</span>`:""}
+              ${x.kind?`　<span class="badge">${escapeHTML(x.kind)}</span>`:""}
+              ${dateStr?`　<span itemprop="datePublished" content="${x.created.toISOString()}">${dateStr}</span>`:""}
             </div>
-            ${x.excerpt?`<p class="excerpt">${escapeHTML(x.excerpt)}</p>`:''}
-            ${tags?`<div class="tags">${tags}</div>`:''}
+            ${x.excerpt?`<p class="excerpt" itemprop="description">${escapeHTML(x.excerpt)}</p>`:""}
+            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
+            <p class="bio">作者：Hill｜原創實拍與在地體驗筆記。未經授權請勿轉載（© Today’s Tasks）。</p>
           </div>
           <div class="actions">
             ${linkBtn}
-            ${auth?`<a class="btn" href="${auth}" target="_blank" rel="nofollow noopener">權威連結</a>`:''}
-            <button class="btn" onclick="jumpTo('${escapeAttr(x.id)}')">在上方顯示</button>
+            ${authority}
+            <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
           </div>
         </article>
       `;
     }
-    // 從清單跳到 Spotlight
-    window.jumpTo = function(id){
-      const idx = VIEW.findIndex(x=>String(x.id)===String(id));
-      if (idx>=0){ CUR=idx; renderSpotlight(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+    function buildAuthorityLink(x){
+      const q = encodeURIComponent((x.city?x.city+" ":"") + x.title);
+      if(x.kind==="美食"){
+        const url = `https://www.dianping.com/search/keyword/2/0_${q}`;
+        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`;
+      }else{
+        const url = `https://www.tripadvisor.com/Search?q=${q}`;
+        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：TripAdvisor</a>`;
+      }
     }
 
-    // JSON-LD：動態注入 Spotlight 的 BlogPosting
-    function injectPostJsonLd(it){
-      // 清除舊的
-      document.querySelectorAll('script[data-spotlight-jsonld="1"]').forEach(n=>n.remove());
-      if (!it) return;
-      const obj = {
+    /* ===== JSON-LD（自動） ===== */
+    function injectJSONLD(list){
+      const top = list.slice().sort((a,b)=>b.created-a.created).slice(0,10);
+      const itemList = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": top.map((it, i)=>({
+          "@type":"ListItem",
+          "position": i+1,
+          "url": it.link || "https://todays-tasks.com/china-explore.html"
+        }))
+      };
+      const posts = top.map(it => ({
         "@context":"https://schema.org",
         "@type":"BlogPosting",
         "headline": it.title || "",
         "image": it.image ? [it.image] : undefined,
-        "datePublished": isValidDate(it.created) ? it.created.toISOString() : undefined,
-        "author": {"@type":"Person","name":"Hill"},
-        "publisher":{"@type":"Organization","name":"Today's Tasks"},
+        "datePublished": it.created? new Date(it.created).toISOString() : undefined,
+        "author": { "@type":"Person","name":"Hill" },
+        "publisher": { "@type":"Organization","name":"Today's Tasks" },
         "articleSection": it.kind || "",
         "description": it.excerpt || "",
-        "mainEntityOfPage": it.link || "https://todays-tasks.com/index.html"
-      };
-      const s=document.createElement('script'); s.type='application/ld+json'; s.dataset.spotlightJsonld='1'; s.textContent=JSON.stringify(obj);
-      document.head.appendChild(s);
+        "mainEntityOfPage": it.link || "https://todays-tasks.com/china-explore.html"
+      }));
+
+      document.querySelectorAll('script[data-dynamic-jsonld="1"]').forEach(n=>n.remove());
+      addJsonLd(itemList); posts.forEach(p=>addJsonLd(p));
+    }
+    function addJsonLd(obj){
+      const s=document.createElement('script'); s.type="application/ld+json"; s.dataset.dynamicJsonld="1";
+      s.textContent=JSON.stringify(obj); document.head.appendChild(s);
     }
 
-    // 小工具
-    function escapeHTML(s){return (s||'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
-    function escapeAttr(s){return escapeHTML(s);}
+    /* ===== 工具 ===== */
+    function escapeHTML(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+    function escapeAttr(s){return escapeHTML(s)}
   </script>
 </body>
 </html>
