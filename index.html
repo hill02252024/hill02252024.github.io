@@ -4,79 +4,69 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>中國美食美景分享｜China Explore</title>
-  <meta name="description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋與排序，圖片不裁切自適應顯示。"/>
+  <meta name="description" content="精選一篇中國內地旅行的美食或美景介紹，圖文精要、外部權威連結、上一則／下一則快速切換。"/>
 
   <link rel="stylesheet" href="/style.css"/>
 
   <style>
-    .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px}
+    :root{
+      --fg:#111827;--muted:#6b7280;--line:#e5e7eb;--chip:#f3f4f6;--bg:#fff;--accent:#111827;
+    }
+    body{color:var(--fg)}
+    .page-wrap{max-width:980px;margin:24px auto;padding:0 16px}
     .h1{font-size:28px;margin:6px 0 4px}
-    .lede{color:#4b5563;margin-bottom:14px}
+    .lede{color:#4b5563;margin:0 0 14px}
 
-    /* 最新美食分享（首頁模組） */
-    .latest{margin:18px 0 8px}
-    .latest h2{font-size:20px;margin:0 0 10px}
-    .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media(max-width:980px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.latest-grid{grid-template-columns:1fr}}
-    .latest-card{border:1px solid #e5e7eb;border-radius:10px;background:#fff;overflow:hidden}
-    .latest-thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
-    .latest-thumb img{width:100%;height:100%;object-fit:contain;display:block}
-    .latest-body{padding:10px}
-    .latest-title{font-weight:700;line-height:1.35;margin:0 0 4px;font-size:15px}
-    .latest-meta{font-size:12px;color:#6b7280}
+    /* Hero 單篇卡 */
+    .hero{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+    .hero-media{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
+    .hero-media img{width:100%;height:100%;object-fit:contain;display:block}
+    .hero-body{padding:16px}
+    .title{font-weight:800;line-height:1.28;margin:0 0 8px;font-size:22px}
+    .meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;
+      font-size:12px;border:1px solid #bfdbfe}
+    .excerpt{font-size:15px;line-height:1.6;margin:8px 0 8px}
+    .content{font-size:15px;line-height:1.8;margin:8px 0 4px;white-space:pre-wrap}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--chip);color:#374151}
+    .bio{margin:12px 0 0;font-size:12px;color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+    .btn{display:inline-block;text-align:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line);
+      background:#fff;color:var(--fg);text-decoration:none}
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn.ghost{background:#fafafa}
 
-    /* 工具列 */
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 12px}
-    .toolbar input[type="search"],
-    .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
-    .toolbar input[type="search"]{flex:1;min-width:240px}
+    /* 上一則 / 下一則工具列 */
+    .navrail{display:flex;justify-content:space-between;gap:8px;margin:12px 0}
+    .pill{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--fg);
+      text-decoration:none;font-size:13px}
+    .pill:focus{outline:2px solid #2563eb;outline-offset:2px}
 
-    /* 標籤 chips */
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
-    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;
-      color:#1f2937;background:#fff;cursor:pointer;user-select:none}
-    .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
+    .loading,.empty{padding:18px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc;color:#475569;margin:12px 0}
 
-    /* 主清單卡片 */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.grid{grid-template-columns:1fr}}
-    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
-    .thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:100%;height:100%;object-fit:contain;display:block}
-    .card-body{padding:12px}
-    .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
-    .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
-    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
-    .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
-    .bio{margin:8px 0 0;font-size:12px;color:#6b7280}
-    .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
-    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-
-    /* 空狀態 / 載入 */
-    .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
+    @media (max-width:640px){
+      .title{font-size:20px}
+      .content,.excerpt{font-size:14px}
+    }
   </style>
 
-  <!-- 固定麵包屑（類別頁） -->
+  <!-- 麵包屑（首頁） -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
     "itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
-      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/china-explore.html"}
+      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/index.html"}
     ]
   }
   </script>
 </head>
 <body>
-  <!-- 導覽列（保留你原有連結） -->
+  <!-- 導覽列 -->
   <div class="compliance-links" role="navigation" aria-label="Primary">
-    <a href="/index.html">Home</a> |
+    <a href="/index.html" aria-current="page">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
@@ -91,37 +81,21 @@
 
   <main class="page-wrap">
     <h1 class="h1">中國美食美景分享（China Explore）</h1>
-    <p class="lede">即時從 Google 試算表同步內容：可用城市、省份、類別與標籤篩選，支援搜尋與排序。圖片以「不裁切」模式自適應顯示。</p>
+    <p class="lede">一次只看一篇：圖片大、資訊精、上一則／下一則秒切換。支援 URL 指定 <code>?id=數字</code> 或 <code>?n=索引</code>。</p>
 
-    <!-- ① 最新美食分享模組 -->
-    <section class="latest" aria-label="最新美食分享">
-      <h2>🍜 最新美食分享</h2>
-      <div id="latest" class="latest-grid"></div>
-    </section>
-
-    <!-- ② 工具列：搜尋 + 下拉過濾 + 排序 -->
-    <div class="toolbar" aria-label="Filters">
-      <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
-      <select id="citySel" aria-label="城市"><option value="">全部城市</option></select>
-      <select id="provSel" aria-label="省份"><option value="">全部省份</option></select>
-      <select id="kindSel" aria-label="類別">
-        <option value="">全部類別</option>
-        <option value="美食">美食</option>
-        <option value="美景">美景</option>
-      </select>
-      <select id="sortSel" aria-label="排序">
-        <option value="new">排序：最新</option>
-        <option value="az">排序：A→Z</option>
-      </select>
-      <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
+    <div id="rail" class="navrail" hidden>
+      <a id="prevBtn" class="pill" href="#">← 上一則</a>
+      <a id="nextBtn" class="pill" href="#">下一則 →</a>
     </div>
 
-    <!-- 標籤 chips -->
-    <div id="tagChips" class="chips" aria-label="Tags 快速篩選"></div>
+    <section id="stage" class="hero" aria-live="polite" hidden></section>
+    <div id="status" class="loading">載入中…</div>
 
-    <!-- 主清單 -->
-    <div id="status" class="loading" role="status">載入中…</div>
-    <div id="grid" class="grid" aria-live="polite" hidden></div>
+    <div class="actions" style="margin-top:12px">
+      <a class="btn" href="/china-explore.html">回到清單</a>
+      <a class="btn ghost" id="randomBtn" href="#">隨機看一則</a>
+      <a class="btn ghost" id="refreshBtn" href="#">重新整理</a>
+    </div>
   </main>
 
   <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
@@ -130,246 +104,208 @@
     // === 你的 Google Apps Script JSON 端點 ===
     const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
 
-    // DOM
-    const q = document.getElementById('q');
-    const citySel = document.getElementById('citySel');
-    const provSel = document.getElementById('provSel');
-    const kindSel = document.getElementById('kindSel');
-    const sortSel = document.getElementById('sortSel');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const tagChips = document.getElementById('tagChips');
+    // DOM 參照
+    const stage = document.getElementById('stage');
     const statusEl = document.getElementById('status');
-    const grid = document.getElementById('grid');
-    const latestWrap = document.getElementById('latest');
+    const rail = document.getElementById('rail');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const randomBtn = document.getElementById('randomBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
 
     // 狀態
-    let RAW = [];
-    let ACTIVE_TAG = "";
-    let TAGS = new Set();
+    let LIST = [];        // 正規化後的所有項目（照時間新→舊）
+    let INDEX = 0;        // 目前顯示的索引
 
     // 啟動
-    fetchFeed();
+    init();
+    async function init(){
+      await fetchFeed();
+      // 依 URL 參數決定顯示哪一筆
+      const url = new URL(location.href);
+      const idParam = url.searchParams.get('id');
+      const nParam = url.searchParams.get('n');
 
-    // 事件
-    q.addEventListener('input', apply);
-    citySel.addEventListener('change', apply);
-    provSel.addEventListener('change', apply);
-    kindSel.addEventListener('change', apply);
-    sortSel.addEventListener('change', apply);
-    refreshBtn.addEventListener('click', ()=>fetchFeed(true));
+      if (idParam){
+        const idx = LIST.findIndex(x => String(x.id) === String(idParam));
+        INDEX = idx >= 0 ? idx : 0;
+      } else if (nParam){
+        const n = parseInt(nParam,10);
+        INDEX = isFinite(n) && n>=0 && n<LIST.length ? n : 0;
+      } else {
+        INDEX = 0; // 預設最新一筆
+      }
+      renderAt(INDEX);
+    }
 
     // 讀取資料
     async function fetchFeed(noCache=false){
-      try{
-        statusEl.hidden = false;
-        statusEl.textContent = "載入中…";
-        grid.hidden = true;
+      statusEl.hidden = false;
+      statusEl.textContent = "載入中…";
+      stage.hidden = true;
+      rail.hidden = true;
 
-        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
-        const res = await fetch(url, {cache: noCache ? 'no-store' : 'default'});
-        if(!res.ok) throw new Error('HTTP ' + res.status);
-        const json = await res.json();
+      const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
+      const res = await fetch(url, {cache: noCache? 'no-store':'default'});
+      if(!res.ok){ statusEl.textContent = "讀取失敗：" + res.status; return; }
+      const json = await res.json();
+      const items = Array.isArray(json.items)? json.items : [];
 
-        RAW = Array.isArray(json.items)? json.items : [];
-        normalize(RAW);
-        buildFacetOptions(RAW);
-        buildTagChips(RAW);
-        renderLatest(RAW);
-        injectJSONLD(RAW);        // ③ 自動產生 JSON-LD 結構化資料
-        apply();
-      }catch(err){
-        statusEl.textContent = "讀取失敗：" + err.message;
+      LIST = normalize(items).sort((a,b)=> b.created - a.created); // 最新在前
+      if(!LIST.length){
+        statusEl.className = "empty";
+        statusEl.textContent = "目前尚無內容。";
+        return;
       }
     }
 
     // 正規化
     function normalize(list){
-      for(const it of list){
-        it.title = (it.title||"").toString();
-        it.city = (it.city||"").toString();
-        it.province = (it.province||"").toString();
-        it.kind = (it.kind||"").toString();
-        it.tags = Array.isArray(it.tags)? it.tags : (it.tags? it.tags.toString().split(",").map(s=>s.trim()).filter(Boolean):[]);
-        it.image = (it.image||"").toString();
-        it.link = (it.link||"").toString();
-        it.excerpt = (it.excerpt||"").toString();
-        it.content = (it.content||"").toString();
-        it.created = it.created ? new Date(it.created) : new Date(0);
-      }
-    }
-
-    // 下拉與 Tags
-    function buildFacetOptions(list){
-      const cities = [...new Set(list.map(x=>x.city).filter(Boolean))].sort();
-      const provs = [...new Set(list.map(x=>x.province).filter(Boolean))].sort();
-      fillSelect(citySel, ["全部城市", ...cities], ["", ...cities]);
-      fillSelect(provSel, ["全部省份", ...provs], ["", ...provs]);
-    }
-    function fillSelect(sel, labels, values){
-      sel.innerHTML = "";
-      labels.forEach((lbl,i)=>{
-        const opt = document.createElement('option');
-        opt.textContent = lbl; opt.value = values[i];
-        sel.appendChild(opt);
+      return list.map(r=>{
+        return {
+          id: r.id ?? "",
+          title: String(r.title||""),
+          city: String(r.city||""),
+          province: String(r.province||""),
+          kind: String(r.kind||""),
+          tags: Array.isArray(r.tags)? r.tags : (r.tags? String(r.tags).split(",").map(s=>s.trim()).filter(Boolean):[]),
+          image: String(r.image||""),
+          link: String(r.link||""),
+          excerpt: String(r.excerpt||""),
+          content: String(r.content||""),
+          created: r.created ? new Date(r.created) : new Date(0)
+        }
       });
     }
-    function buildTagChips(list){
-      TAGS = new Set();
-      list.forEach(x => (x.tags||[]).forEach(t=>TAGS.add(t)));
-      tagChips.innerHTML = "";
-      const allChip = chipEl("全部標籤","");
-      allChip.classList.add('active');
-      tagChips.appendChild(allChip);
-      [...TAGS].sort().forEach(t=> tagChips.appendChild(chipEl(t,t)));
-    }
-    function chipEl(text,value){
-      const b = document.createElement('button');
-      b.type="button"; b.className="chip"; b.textContent=text; b.dataset.value=value;
-      b.addEventListener('click', ()=>{
-        [...tagChips.querySelectorAll('.chip')].forEach(c=>c.classList.remove('active'));
-        b.classList.add('active');
-        ACTIVE_TAG = value; apply();
-      });
-      return b;
-    }
 
-    // 最新美食分享（取最新 6 筆、kind=美食 優先）
-    function renderLatest(list){
-      const latest = list.slice().sort((a,b)=>b.created-a.created)
-        .filter(x=>x.kind==="美食")
-        .slice(0,6);
-      latestWrap.innerHTML = latest.map(x=>`
-        <article class="latest-card">
-          <div class="latest-thumb">
-            ${x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`}
-          </div>
-          <div class="latest-body">
-            <div class="latest-title">${escapeHTML(x.title)}</div>
-            <div class="latest-meta">${x.city?escapeHTML(x.city):""} ${x.province?(" · "+escapeHTML(x.province)):""}</div>
-          </div>
-        </article>
-      `).join('');
-    }
+    // 依索引渲染
+    function renderAt(i){
+      if(!LIST.length) return;
+      INDEX = ((i % LIST.length) + LIST.length) % LIST.length; // 循環
+      const x = LIST[INDEX];
 
-    // 主清單：篩選 + 排序 + 渲染
-    function apply(){
-      const term = q.value.trim().toLowerCase();
-      const city = citySel.value, prov = provSel.value, kind = kindSel.value, sort = sortSel.value;
+      stage.innerHTML = heroHTML(x);
+      statusEl.hidden = true;
+      stage.hidden = false;
 
-      let list = RAW.slice();
-      if(city) list = list.filter(x=>x.city===city);
-      if(prov) list = list.filter(x=>x.province===prov);
-      if(kind) list = list.filter(x=>x.kind===kind);
-      if(ACTIVE_TAG) list = list.filter(x=>(x.tags||[]).includes(ACTIVE_TAG));
-      if(term){
-        list = list.filter(x=>{
-          const hay = [x.title,x.excerpt,x.content,x.city,x.province,x.kind,...(x.tags||[])].join(" ").toLowerCase();
-          return hay.includes(term);
-        });
+      // 導覽列
+      rail.hidden = false;
+      prevBtn.href = buildLink(INDEX-1);
+      nextBtn.href = buildLink(INDEX+1);
+
+      // 預先載入下一張圖片，切換體感更快
+      const preloadIdx = (INDEX+1) % LIST.length;
+      if (LIST[preloadIdx].image){
+        const img = new Image();
+        img.src = LIST[preloadIdx].image;
       }
-      if(sort==="new") list.sort((a,b)=>b.created-a.created);
-      if(sort==="az") list.sort((a,b)=>a.title.localeCompare(b.title,'zh-Hant'));
 
-      render(list);
+      // 更新 URL（不重整）
+      const url = new URL(location.href);
+      if (x.id) { url.searchParams.set('id', x.id); url.searchParams.delete('n'); }
+      else { url.searchParams.set('n', INDEX); url.searchParams.delete('id'); }
+      history.replaceState(null, "", url);
+
+      // 注入單篇 JSON-LD
+      injectJsonLdForPost(x);
     }
 
-    function render(items){
-      if(!items.length){
-        grid.hidden=true; statusEl.hidden=false; statusEl.className="empty";
-        statusEl.textContent="沒有符合條件的內容。調整篩選或再試搜尋關鍵字。"; return;
-      }
-      grid.innerHTML = items.map(x=>cardHTML(x)).join('');
-      statusEl.hidden=true; grid.hidden=false;
-    }
-
-    // ④ 卡片含「作者簡介＋版權」與「權威連結」
-    function cardHTML(x){
+    // 產出 hero HTML
+    function heroHTML(x){
       const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
-      const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
-      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
-      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : "";
-      const authority = buildAuthorityLink(x); // 外部權威連結
+      const tags = (x.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("");
+      const auth = authorityLink(x);
+
       return `
-        <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
-          <div class="thumb">${img}</div>
-          <div class="card-body">
-            <h3 class="title" itemprop="headline">${escapeHTML(x.title)}</h3>
-            <div class="meta">
-              ${x.city?`<span itemprop="contentLocation">${escapeHTML(x.city)}</span>`:""}
-              ${x.province?`　<span>${escapeHTML(x.province)}</span>`:""}
-              ${x.kind?`　<span class="badge">${escapeHTML(x.kind)}</span>`:""}
-              ${dateStr?`　<span itemprop="datePublished" content="${x.created.toISOString()}">${dateStr}</span>`:""}
-            </div>
-            ${x.excerpt?`<p class="excerpt" itemprop="description">${escapeHTML(x.excerpt)}</p>`:""}
-            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
-            <p class="bio">作者：Hill｜原創實拍與在地體驗筆記。未經授權請勿轉載（© Today’s Tasks）。</p>
+        <article class="hero" itemscope itemtype="https://schema.org/BlogPosting">
+          <div class="hero-media">
+            ${x.image ? `<img src="${att(x.image)}" alt="${att(x.title||x.city||'Photo')}" loading="eager" fetchpriority="high">`
+                       : `<div style="font-size:12px;color:#6b7280">No image</div>`}
           </div>
-          <div class="actions">
-            ${linkBtn}
-            ${authority}
-            <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
+          <div class="hero-body">
+            <h2 class="title" itemprop="headline">${esc(x.title)}</h2>
+            <div class="meta">
+              ${x.city?`<span itemprop="contentLocation">${esc(x.city)}</span>`:""}
+              ${x.province?`<span>· ${esc(x.province)}</span>`:""}
+              ${x.kind?`<span class="badge">${esc(x.kind)}</span>`:""}
+              ${dateStr?`<span>· ${dateStr}</span>`:""}
+            </div>
+            ${x.excerpt?`<p class="excerpt" itemprop="description">${esc(x.excerpt)}</p>`:""}
+            ${x.content?`<div class="content" itemprop="articleBody">${esc(x.content)}</div>`:""}
+            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
+
+            <div class="actions">
+              ${x.link?`<a class="btn primary" href="${att(x.link)}" target="_blank" rel="noopener">查看詳情</a>`:""}
+              ${auth}
+              <a class="btn" href="/china-explore.html">回到清單</a>
+            </div>
+
+            <p class="bio">作者：Hill｜原創實拍與在地體驗筆記。未經授權請勿轉載（© Today’s Tasks）。</p>
           </div>
         </article>
       `;
     }
 
-    // 權威連結（依類別產生搜尋連結）
-    function buildAuthorityLink(x){
-      const q = encodeURIComponent((x.city?x.city+" ":"") + x.title);
-      if(x.kind==="美食"){
-        const url = `https://www.dianping.com/search/keyword/2/0_${q}`;
-        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`;
-      }else{
-        const url = `https://www.tripadvisor.com/Search?q=${q}`;
-        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：TripAdvisor</a>`;
+    // 權威連結
+    function authorityLink(x){
+      const q = encodeURIComponent(`${x.city?x.city+" ":""}${x.title||""}`);
+      if (x.kind === "美食"){
+        return `<a class="btn ghost" href="https://www.dianping.com/search/keyword/2/0_${q}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`;
       }
+      return `<a class="btn ghost" href="https://www.tripadvisor.com/Search?q=${q}" target="_blank" rel="nofollow noopener">權威連結：TripAdvisor</a>`;
     }
 
-    // ③ 自動注入 JSON-LD（從試算表餵入，無須手寫）
-    function injectJSONLD(list){
-      // 只取前 10 筆避免過大
-      const top = list.slice().sort((a,b)=>b.created-a.created).slice(0,10);
-      const itemList = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": top.map((it, i)=>({
-          "@type":"ListItem",
-          "position": i+1,
-          "url": it.link || "https://todays-tasks.com/china-explore.html"
-        }))
-      };
-      const posts = top.map(it => ({
+    // 產出上一則/下一則的網址
+    function buildLink(i){
+      i = ((i % LIST.length) + LIST.length) % LIST.length;
+      const x = LIST[i];
+      return x.id ? `?id=${encodeURIComponent(x.id)}` : `?n=${i}`;
+    }
+
+    // JSON-LD for 單篇；從資料自動帶入
+    function injectJsonLdForPost(x){
+      // 先移除舊的
+      document.querySelectorAll('script[data-post-jsonld="1"]').forEach(n=>n.remove());
+      const obj = {
         "@context":"https://schema.org",
         "@type":"BlogPosting",
-        "headline": it.title || "",
-        "image": it.image ? [it.image] : undefined,
-        "datePublished": it.created? new Date(it.created).toISOString() : undefined,
-        "author": { "@type":"Person","name":"Hill" },
-        "publisher": { "@type":"Organization","name":"Today's Tasks" },
-        "articleSection": it.kind || "",
-        "description": it.excerpt || "",
-        "mainEntityOfPage": it.link || "https://todays-tasks.com/china-explore.html"
-      }));
-
-      // 先移除舊的動態 JSON-LD
-      document.querySelectorAll('script[data-dynamic-jsonld="1"]').forEach(n=>n.remove());
-
-      // 插入 ItemList
-      addJsonLd(itemList);
-      // 插入每篇 BlogPosting
-      posts.forEach(p=>addJsonLd(p));
-    }
-    function addJsonLd(obj){
+        "headline": x.title || "",
+        "image": x.image ? [x.image] : undefined,
+        "datePublished": x.created? new Date(x.created).toISOString() : undefined,
+        "author":{"@type":"Person","name":"Hill"},
+        "publisher":{"@type":"Organization","name":"Today's Tasks"},
+        "articleSection": x.kind || "",
+        "description": x.excerpt || "",
+        "mainEntityOfPage": location.href
+      };
       const s = document.createElement('script');
       s.type = "application/ld+json";
-      s.dataset.dynamicJsonld = "1";
+      s.dataset.postJsonld = "1";
       s.textContent = JSON.stringify(obj);
       document.head.appendChild(s);
     }
 
     // 工具
-    function escapeHTML(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
-    function escapeAttr(s){return escapeHTML(s)}
+    function esc(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+    function att(s){return esc(s)}
+
+    // 事件：上一則 / 下一則 / 隨機 / 重新整理 / 鍵盤
+    prevBtn.addEventListener('click', e=>{
+      e.preventDefault(); renderAt(INDEX-1);
+    });
+    nextBtn.addEventListener('click', e=>{
+      e.preventDefault(); renderAt(INDEX+1);
+    });
+    randomBtn.addEventListener('click', e=>{
+      e.preventDefault(); renderAt(Math.floor(Math.random()*LIST.length));
+    });
+    refreshBtn.addEventListener('click', e=>{
+      e.preventDefault(); fetchFeed(true).then(()=>renderAt(INDEX));
+    });
+    window.addEventListener('keydown', e=>{
+      if(e.key==="ArrowLeft") renderAt(INDEX-1);
+      if(e.key==="ArrowRight") renderAt(INDEX+1);
+    });
   </script>
 </body>
 </html>
