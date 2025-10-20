@@ -198,19 +198,27 @@
       }
     }
 
-    /* ===== 正規化 ===== */
+    /* ===== 正規化（全面字串化＋穩健 tags） ===== */
     function normalize(list){
       for(const it of list){
-        it.id = it.id ?? "";
-        it.title = (it.title||"").toString();
-        it.city = (it.city||"").toString();
-        it.province = (it.province||"").toString();
-        it.kind = (it.kind||"").toString();
-        it.tags = Array.isArray(it.tags)? it.tags : (it.tags? it.tags.toString().split(",").map(s=>s.trim()).filter(Boolean):[]);
-        it.image = (it.image||"").toString();
-        it.link = (it.link||"").toString();
-        it.excerpt = (it.excerpt||"").toString();
-        it.content = (it.content||"").toString();
+        it.id       = _toSafeString(it.id);
+        it.title    = _toSafeString(it.title);
+        it.city     = _toSafeString(it.city);
+        it.province = _toSafeString(it.province);
+        it.kind     = _toSafeString(it.kind);
+
+        // tags 允許陣列或字串；統一成陣列字串
+        if (Array.isArray(it.tags)) {
+          it.tags = it.tags.map(_toSafeString).map(s=>s.trim()).filter(Boolean);
+        } else {
+          const raw = _toSafeString(it.tags);
+          it.tags = raw ? raw.split(",").map(s=>s.trim()).filter(Boolean) : [];
+        }
+
+        it.image   = _toSafeString(it.image);
+        it.link    = _toSafeString(it.link);
+        it.excerpt = _toSafeString(it.excerpt);
+        it.content = _toSafeString(it.content);
         it.created = it.created ? new Date(it.created) : new Date(0);
       }
     }
@@ -415,9 +423,23 @@
       s.textContent=JSON.stringify(obj); document.head.appendChild(s);
     }
 
-    /* ===== 工具 ===== */
-    function escapeHTML(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
-    function escapeAttr(s){return escapeHTML(s)}
+    /* ===== 安全字串化 + 轉義工具（修正 replace 錯誤的關鍵） ===== */
+    function _toSafeString(v){
+      if (v == null) return "";
+      if (typeof v === "string") return v;
+      if (typeof v === "number" || typeof v === "boolean") return String(v);
+      if (Array.isArray(v)) return v.join(",");
+      try { return String(v); } catch { return ""; }
+    }
+    function escapeHTML(s){
+      const str = _toSafeString(s);
+      return str.replace(/[&<>"']/g, c => (
+        {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]
+      ));
+    }
+    function escapeAttr(s){
+      return escapeHTML(s);
+    }
   </script>
 </body>
 </html>
