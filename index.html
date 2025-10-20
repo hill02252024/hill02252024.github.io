@@ -19,7 +19,7 @@
     .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     @media(max-width:980px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.latest-grid{grid-template-columns:1fr}}
-    .latest-card{border:1px solid #e5e7eb;border-radius:10px;background:#fff;overflow:hidden}
+    .latest-card{border:1px solid #e5e7eb;border-radius:10px;background:#fff;overflow:hidden;text-decoration:none;color:inherit;display:block}
     .latest-thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
     .latest-thumb img{width:100%;height:100%;object-fit:contain;display:block}
     .latest-body{padding:10px}
@@ -54,7 +54,7 @@
     .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
     .bio{margin:8px 0 0;font-size:12px;color:#6b7280}
     .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
-    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827}
+    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827;text-decoration:none}
     .btn.primary{background:#111827;color:#fff;border-color:#111827}
 
     /* 分頁 */
@@ -201,6 +201,7 @@
     /* ===== 正規化 ===== */
     function normalize(list){
       for(const it of list){
+        it.id = it.id ?? "";
         it.title = (it.title||"").toString();
         it.city = (it.city||"").toString();
         it.province = (it.province||"").toString();
@@ -253,7 +254,7 @@
       const latest = list.slice().sort((a,b)=>b.created-a.created)
         .filter(x=>x.kind==="美食").slice(0,6);
       latestWrap.innerHTML = latest.map(x=>`
-        <article class="latest-card">
+        <a class="latest-card" href="/post.html?id=${escapeAttr(x.id)}" aria-label="${escapeAttr(x.title)}">
           <div class="latest-thumb">
             ${x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`}
           </div>
@@ -261,7 +262,7 @@
             <div class="latest-title">${escapeHTML(x.title)}</div>
             <div class="latest-meta">${x.city?escapeHTML(x.city):""} ${x.province?(" · "+escapeHTML(x.province)):""}</div>
           </div>
-        </article>
+        </a>
       `).join('');
     }
 
@@ -285,7 +286,6 @@
       if(sort==="az")  list.sort((a,b)=>a.title.localeCompare(b.title,'zh-Hant'));
 
       FILTERED = list;
-      // 若目前頁超出範圍，回到第 1 頁
       const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
       if(curPage>totalPages) curPage=1;
 
@@ -306,7 +306,6 @@
 
       renderPager(totalPages);
       setPageHash(curPage);
-      // 捲回清單頂端（保有使用感）
       window.scrollTo({ top: grid.offsetTop - 80, behavior:'smooth' });
     }
 
@@ -319,7 +318,6 @@
       html += btn('«', curPage===1, 'goPage(1)');
       html += btn('‹', curPage===1, `goPage(${curPage-1})`);
 
-      // 中央 5 個頁碼視窗
       const span = 2;
       const from = Math.max(1, curPage-span);
       const to   = Math.min(totalPages, curPage+span);
@@ -342,18 +340,18 @@
       const m = location.hash.match(/p=(\d+)/); return m ? parseInt(m[1],10) : null;
     }
 
-    /* ===== 卡片（含作者簡介、權威連結） ===== */
+    /* ===== 卡片（改為站內詳文頁） ===== */
     function cardHTML(x){
       const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
       const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
       const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
-      const linkBtn = x.link ? `<a class="btn primary" href="${escapeAttr(x.link)}" target="_blank" rel="noopener">查看詳情</a>` : "";
+      const detailUrl = `/post.html?id=${escapeAttr(x.id)}`;
       const authority = buildAuthorityLink(x);
       return `
         <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
-          <div class="thumb">${img}</div>
+          <a class="thumb" href="${detailUrl}" aria-label="${escapeAttr(x.title)}">${img}</a>
           <div class="card-body">
-            <h3 class="title" itemprop="headline">${escapeHTML(x.title)}</h3>
+            <h3 class="title" itemprop="headline"><a href="${detailUrl}" style="text-decoration:none;color:inherit">${escapeHTML(x.title)}</a></h3>
             <div class="meta">
               ${x.city?`<span itemprop="contentLocation">${escapeHTML(x.city)}</span>`:""}
               ${x.province?`　<span>${escapeHTML(x.province)}</span>`:""}
@@ -365,7 +363,7 @@
             <p class="bio">作者：Hill｜原創實拍與在地體驗筆記。未經授權請勿轉載（© Today’s Tasks）。</p>
           </div>
           <div class="actions">
-            ${linkBtn}
+            <a class="btn primary" href="${detailUrl}">查看詳情</a>
             ${authority}
             <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
           </div>
@@ -384,7 +382,7 @@
       }
     }
 
-    /* ===== JSON-LD（自動） ===== */
+    /* ===== JSON-LD（用站內詳文連結） ===== */
     function injectJSONLD(list){
       const top = list.slice().sort((a,b)=>b.created-a.created).slice(0,10);
       const itemList = {
@@ -393,7 +391,7 @@
         "itemListElement": top.map((it, i)=>({
           "@type":"ListItem",
           "position": i+1,
-          "url": it.link || "https://todays-tasks.com/china-explore.html"
+          "url": `/post.html?id=${encodeURIComponent(it.id)}`
         }))
       };
       const posts = top.map(it => ({
@@ -406,7 +404,7 @@
         "publisher": { "@type":"Organization","name":"Today's Tasks" },
         "articleSection": it.kind || "",
         "description": it.excerpt || "",
-        "mainEntityOfPage": it.link || "https://todays-tasks.com/china-explore.html"
+        "mainEntityOfPage": `/post.html?id=${encodeURIComponent(it.id)}`
       }));
 
       document.querySelectorAll('script[data-dynamic-jsonld="1"]').forEach(n=>n.remove());
