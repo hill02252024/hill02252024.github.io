@@ -32,7 +32,7 @@
     .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
     .toolbar input[type="search"]{flex:1;min-width:240px}
 
-    /* 標籤 chips */
+    /* 原 chips（保留） */
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
     .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;
       color:#1f2937;background:#fff;cursor:pointer;user-select:none}
@@ -65,6 +65,43 @@
 
     /* 空狀態 / 載入 */
     .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
+
+    /* ===== 精簡 Tag 區：一行橫向捲動＋More 彈窗 ===== */
+    .chips-compact-wrap { position: relative; margin: 10px 0 16px; }
+    .chips-scroll {
+      display: flex; gap: 8px; overflow-x: auto; padding-right: 48px;
+      scrollbar-width: none; -ms-overflow-style: none; white-space: nowrap;
+    }
+    .chips-scroll::-webkit-scrollbar { display: none; }
+    .chips-fade::after{
+      content:""; position:absolute; right:52px; top:0; height:100%; width:48px; pointer-events:none;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, #ffffff 80%);
+    }
+    .chips-more-btn{
+      position:absolute; right:0; top:50%; transform: translateY(-50%);
+      border:1px solid #d1d5db; background:#fff; border-radius:8px; padding:8px 10px; font-size:14px; cursor:pointer;
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0; background:rgba(15,23,42,.5); display:none; align-items:center; justify-content:center; z-index:50;
+    }
+    .modal{
+      width:min(720px, 92vw); background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.2);
+      padding:16px;
+    }
+    .modal-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px }
+    .modal-title{ font-size:18px; font-weight:700 }
+    .modal-close{ border:1px solid #d1d5db; background:#fff; border-radius:8px; padding:6px 10px; cursor:pointer }
+    .modal-search{ width:100%; padding:10px 12px; border:1px solid #d1d5db; border-radius:8px; margin-bottom:10px }
+    .modal-tags{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:8px; max-height:48vh; overflow:auto;
+    }
+    @media(max-width:720px){ .modal-tags{ grid-template-columns:repeat(2,1fr) } }
+    .modal-tag{
+      border:1px solid #d1d5db; border-radius:10px; padding:8px 10px; font-size:14px; cursor:pointer; background:#fff;
+    }
+    .modal-tag.active{ background:#2563eb; color:#fff; border-color:#2563eb }
   </style>
 
   <!-- 麵包屑 JSON-LD -->
@@ -122,8 +159,23 @@
       <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
     </div>
 
-    <!-- 標籤 chips -->
-    <div id="tagChips" class="chips" aria-label="Tags 快速篩選"></div>
+    <!-- 標籤 chips（精簡版：一行＋More 彈窗） -->
+    <div class="chips-compact-wrap chips-fade">
+      <div id="tagChips" class="chips-scroll" aria-label="Tags 快速篩選"></div>
+      <button id="moreTagsBtn" class="chips-more-btn" type="button" title="更多標籤">+0</button>
+    </div>
+
+    <!-- 更多標籤彈窗 -->
+    <div id="tagModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="tagModalTitle">
+      <div class="modal">
+        <div class="modal-header">
+          <div id="tagModalTitle" class="modal-title">選擇標籤</div>
+          <button class="modal-close" type="button" id="tagModalClose">關閉</button>
+        </div>
+        <input id="tagSearch" class="modal-search" placeholder="搜尋標籤…" aria-label="搜尋標籤"/>
+        <div id="tagAll" class="modal-tags" aria-label="所有標籤"></div>
+      </div>
+    </div>
 
     <!-- 主清單 + 分頁 -->
     <div id="status" class="loading" role="status">載入中…</div>
@@ -137,6 +189,7 @@
     /* ===== 設定 ===== */
     const FEED_URL  = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
     const PAGE_SIZE = 10;
+    const MAX_INLINE_TAGS = 12; // 首頁顯示（含「全部標籤」）
 
     /* ===== DOM ===== */
     const q = document.getElementById('q');
@@ -146,6 +199,11 @@
     const sortSel = document.getElementById('sortSel');
     const refreshBtn = document.getElementById('refreshBtn');
     const tagChips = document.getElementById('tagChips');
+    const moreTagsBtn = document.getElementById('moreTagsBtn');
+    const tagModal = document.getElementById('tagModal');
+    const tagModalClose = document.getElementById('tagModalClose');
+    const tagSearch = document.getElementById('tagSearch');
+    const tagAll = document.getElementById('tagAll');
     const statusEl = document.getElementById('status');
     const grid = document.getElementById('grid');
     const latestWrap = document.getElementById('latest');
@@ -207,7 +265,6 @@
         it.province = _toSafeString(it.province);
         it.kind     = _toSafeString(it.kind);
 
-        // tags 允許陣列或字串；統一成陣列字串
         if (Array.isArray(it.tags)) {
           it.tags = it.tags.map(_toSafeString).map(s=>s.trim()).filter(Boolean);
         } else {
@@ -238,23 +295,90 @@
         sel.appendChild(opt);
       });
     }
+
+    /* ===== 標籤：首頁精簡顯示 + Modal 全量搜尋 ===== */
     function buildTagChips(list){
-      TAGS = new Set();
-      list.forEach(x => (x.tags||[]).forEach(t=>TAGS.add(t)));
+      // 依出現次數排序，熱門靠前（也可改為簡單字母排序）
+      const count = new Map();
+      list.forEach(x => (x.tags||[]).forEach(t=> count.set(t, (count.get(t)||0)+1)));
+      const sorted = [...count.entries()].sort((a,b)=> b[1]-a[1]).map(([t])=>t);
+      TAGS = new Set(sorted);
+      const allTags = ["", ...sorted]; // "" = 全部標籤
+
+      // 首頁：只顯示前 MAX_INLINE_TAGS 個（含「全部標籤」）
       tagChips.innerHTML = "";
-      const allChip = chipEl("全部標籤","");
-      allChip.classList.add('active');
-      tagChips.appendChild(allChip);
-      [...TAGS].sort().forEach(t=> tagChips.appendChild(chipEl(t,t)));
+      const inline = allTags.slice(0, MAX_INLINE_TAGS);
+      inline.forEach(v => tagChips.appendChild(chipInlineEl(v)));
+
+      // 計算剩餘數，更新 +N
+      const remaining = Math.max(0, allTags.length - inline.length);
+      moreTagsBtn.textContent = remaining > 0 ? `+${remaining}` : "+0";
+      moreTagsBtn.disabled = remaining === 0;
+
+      // Modal：放全部（含搜尋）
+      renderModalTags(allTags);
+
+      // 事件：開關與搜尋
+      moreTagsBtn.onclick = () => openTagModal();
+      tagModalClose.onclick = () => closeTagModal();
+      tagModal.addEventListener('click', (e)=>{ if(e.target === tagModal) closeTagModal(); });
+      tagSearch.addEventListener('input', ()=> filterModalTags());
     }
-    function chipEl(text,value){
+
+    function chipInlineEl(value){
+      const label = value ? value : "全部標籤";
       const b = document.createElement('button');
-      b.type="button"; b.className="chip"; b.textContent=text; b.dataset.value=value;
-      b.addEventListener('click', ()=>{
-        [...tagChips.querySelectorAll('.chip')].forEach(c=>c.classList.remove('active'));
-        b.classList.add('active'); ACTIVE_TAG=value; curPage=1; apply();
-      });
+      b.type="button"; b.className="chip"; b.textContent=label; b.dataset.value=value;
+      if ((ACTIVE_TAG||"") === value) b.classList.add('active');
+      b.addEventListener('click', ()=> selectTag(value, /*fromModal*/false));
       return b;
+    }
+
+    function renderModalTags(allTags){
+      tagAll.innerHTML = "";
+      allTags.forEach(v=>{
+        const btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "modal-tag";
+        btn.textContent = v ? v : "全部標籤";
+        btn.dataset.value = v;
+        if ((ACTIVE_TAG||"") === v) btn.classList.add('active');
+        btn.addEventListener('click', ()=> selectTag(v, /*fromModal*/true));
+        tagAll.appendChild(btn);
+      });
+    }
+
+    function filterModalTags(){
+      const kw = tagSearch.value.trim().toLowerCase();
+      [...tagAll.children].forEach(btn=>{
+        const t = btn.textContent.toLowerCase();
+        btn.style.display = (!kw || t.includes(kw)) ? "" : "none";
+      });
+    }
+
+    function openTagModal(){
+      tagModal.style.display = "flex";
+      tagSearch.value = "";
+      filterModalTags();
+      setTimeout(()=> tagSearch.focus(), 0);
+    }
+
+    function closeTagModal(){
+      tagModal.style.display = "none";
+    }
+
+    function selectTag(value, fromModal){
+      ACTIVE_TAG = value || "";
+      // 更新首頁 chips
+      [...tagChips.querySelectorAll('.chip')].forEach(c=>{
+        c.classList.toggle('active', (c.dataset.value||"") === ACTIVE_TAG);
+      });
+      // 更新 Modal
+      [...tagAll.querySelectorAll('.modal-tag')].forEach(c=>{
+        c.classList.toggle('active', (c.dataset.value||"") === ACTIVE_TAG);
+      });
+      curPage = 1; apply();
+      if (fromModal) closeTagModal();
     }
 
     /* ===== 最新美食（前 6 筆） ===== */
@@ -423,7 +547,7 @@
       s.textContent=JSON.stringify(obj); document.head.appendChild(s);
     }
 
-    /* ===== 安全字串化 + 轉義工具（修正 replace 錯誤的關鍵） ===== */
+    /* ===== 安全字串化 + 轉義工具 ===== */
     function _toSafeString(v){
       if (v == null) return "";
       if (typeof v === "string") return v;
@@ -437,9 +561,7 @@
         {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]
       ));
     }
-    function escapeAttr(s){
-      return escapeHTML(s);
-    }
+    function escapeAttr(s){ return escapeHTML(s); }
   </script>
 </body>
 </html>
