@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.todays-tasks.com/sitemap.xml
+Sitemap: https://todays-tasks.com/sitemap.xml
