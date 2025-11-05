@@ -7,28 +7,32 @@
   <!-- 基本 SEO -->
   <title>文章內容｜China Explore</title>
   <meta name="description" content="中國美食與景點實地體驗筆記，包含交通、價位、推薦菜式與拍攝照片。" />
+  <meta name="robots" content="index,follow,max-image-preview:large"/>
+
+  <!-- 固定主版 canonical（用非 www + HTTPS + 帶 id 的主版本） -->
   <link rel="canonical" id="canonicalLink" href="" />
 
-  <!-- Open Graph / Twitter（動態注入內容後會覆寫） -->
+  <!-- Open Graph / Twitter（載入文章後會覆寫） -->
   <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Today's Tasks" />
   <meta property="og:title" id="ogTitle" content="文章內容｜China Explore" />
   <meta property="og:description" id="ogDesc" content="中國美食與景點實地體驗筆記。" />
-  <meta property="og:image" id="ogImg" content="/assets/cover.jpg" />
+  <meta property="og:image" id="ogImg" content="https://todays-tasks.com/assets/cover.jpg" />
   <meta property="og:url" id="ogUrl" content="" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" id="twTitle" content="文章內容｜China Explore" />
   <meta name="twitter:description" id="twDesc" content="中國美食與景點實地體驗筆記。" />
-  <meta name="twitter:image" id="twImg" content="/assets/cover.jpg" />
+  <meta name="twitter:image" id="twImg" content="https://todays-tasks.com/assets/cover.jpg" />
 
   <!-- AdSense（與首頁一致） -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
 
-  <!-- 站內樣式 -->
+  <!-- 樣式 -->
   <link rel="stylesheet" href="/style.css" />
 
   <style>
-    /* 文章頁專屬樣式：乾淨、可讀性高 */
+    /* 文章頁：可讀性 */
     body{background:#f8fafc;color:#111827;line-height:1.7}
     .wrap{max-width:860px;margin:0 auto;padding:20px}
     .breadcrumbs{font-size:14px;color:#6b7280;margin:8px 0 6px}
@@ -62,7 +66,7 @@
     .topnav{margin-bottom:8px}
   </style>
 
-  <!-- 固定麵包屑 JSON-LD（會在載入內容後再動態補 BlogPosting） -->
+  <!-- 固定麵包屑 JSON-LD（載入後再補 BlogPosting） -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -75,9 +79,9 @@
   </script>
 </head>
 <body>
-  <!-- 與首頁一致的導覽列 -->
+  <!-- 導覽列：避免 /index.html 造成 301，Home 直接用 / -->
   <div class="compliance-links topnav" role="navigation" aria-label="Primary">
-    <a href="/index.html">Home</a> |
+    <a href="/">Home</a> |
     <a href="/about.html">About</a> |
     <a href="/contact.html">Contact</a> |
     <a href="/privacy.html">Privacy Policy</a> |
@@ -92,7 +96,7 @@
 
   <main class="wrap" id="contentRoot">
     <nav class="breadcrumbs" aria-label="Breadcrumbs">
-      <a href="/index.html">Home</a> › <a href="/china-explore.html">China Explore</a> › <span id="crumbTitle">載入中…</span>
+      <a href="/">Home</a> › <a href="/china-explore.html">China Explore</a> › <span id="crumbTitle">載入中…</span>
     </nav>
 
     <article id="postWrap" class="article" hidden>
@@ -126,7 +130,7 @@
   </footer>
 
   <script>
-    // === 你的 Google Apps Script JSON 端點 ===
+    // === Google Apps Script JSON 端點 ===
     const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
 
     const params = new URLSearchParams(location.search);
@@ -144,6 +148,7 @@
         const res = await fetch(FEED_URL, {cache:"no-cache"});
         const {items=[]} = await res.json();
         ALL = normalize(items);
+
         if (!targetId){
           statusEl.textContent = "缺少文章 id。";
           return;
@@ -160,7 +165,7 @@
         renderRelated(post);
 
         // SEO：注入 JSON-LD（BlogPosting）與 og/twitter/canonical
-        injectSEO(post);
+        injectSEO(post, idx);
 
         statusEl.hidden = true;
         postWrap.hidden = false;
@@ -205,7 +210,7 @@
 
       $("postTags").innerHTML = (p.tags||[]).map(t=>`<span class="tag">#${escHtml(t)}</span>`).join("");
 
-      // 內文：把換行轉成段落（保留你的 Excel 格式）
+      // 內文：把換行轉成段落（保留試算表格式）
       const bodyHtml = [p.excerpt, p.content]
         .filter(Boolean)
         .join("\n\n")
@@ -223,7 +228,6 @@
       const q = encodeURIComponent([(p.city||""), p.title].filter(Boolean).join(" "));
       const dp = `https://www.dianping.com/search/keyword/2/0_${q}`;
       const ta = `https://www.tripadvisor.com/Search?q=${q}`;
-      // 美食優先大眾點評，其他用 TripAdvisor
       if ((p.kind||"").includes("食")){
         return `<a class="btn primary" href="${dp}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`;
       } else {
@@ -270,20 +274,30 @@
       `).join("") || `<div class="article">暫無相關內容</div>`;
     }
 
-    function injectSEO(p){
-      const url = location.origin + location.pathname + location.search;
+    function injectSEO(p, idx){
+      // 固定主版本：非 www + https + 帶參數
+      const CANONICAL = `https://todays-tasks.com/post.html?id=${encodeURIComponent(String(p.id||""))}`;
       const title = p.title || "文章內容｜China Explore";
-      const desc = p.excerpt || "中國美食與景點實地體驗筆記。";
-      const img = p.image || (location.origin + "/assets/cover.jpg");
+      const desc  = p.excerpt || "中國美食與景點實地體驗筆記。";
+      const img   = p.image || "https://todays-tasks.com/assets/cover.jpg";
 
-      $("canonicalLink").href = url;
+      // canonical + og/twitter
+      $("canonicalLink").href = CANONICAL;
       $("ogTitle").setAttribute("content", title);
       $("ogDesc").setAttribute("content", desc);
       $("ogImg").setAttribute("content", img);
-      $("ogUrl").setAttribute("content", url);
+      $("ogUrl").setAttribute("content", CANONICAL);
       $("twTitle").setAttribute("content", title);
       $("twDesc").setAttribute("content", desc);
       $("twImg").setAttribute("content", img);
+      document.title = title + "｜China Explore";
+
+      // <link rel="prev/next">（幫助爬蟲理解上下篇）
+      [...document.querySelectorAll('link[rel="prev"],link[rel="next"]')].forEach(n=>n.remove());
+      const head = document.getElementsByTagName('head')[0];
+      const prev = ALL[idx+1], next = ALL[idx-1];
+      if (prev){ const l=document.createElement('link'); l.rel='prev'; l.href=`https://todays-tasks.com/post.html?id=${encodeURIComponent(prev.id)}`; head.appendChild(l); }
+      if (next){ const l=document.createElement('link'); l.rel='next'; l.href=`https://todays-tasks.com/post.html?id=${encodeURIComponent(next.id)}`; head.appendChild(l); }
 
       // BlogPosting JSON-LD（動態）
       const jsonld = {
@@ -291,22 +305,21 @@
         "@type":"BlogPosting",
         "headline": title,
         "image": img,
-        "datePublished": p.created && !isNaN(p.created) ? p.created.toISOString() : undefined,
+        "datePublished": (p.created && !isNaN(p.created)) ? p.created.toISOString() : undefined,
         "author":{"@type":"Person","name":"Hill"},
         "publisher":{"@type":"Organization","name":"Today's Tasks"},
         "articleSection": p.kind || "",
         "description": desc,
-        "mainEntityOfPage": url
+        "mainEntityOfPage": CANONICAL
       };
       const s = document.createElement("script");
       s.type = "application/ld+json";
       s.textContent = JSON.stringify(jsonld);
       document.head.appendChild(s);
-      document.title = title + "｜China Explore";
     }
 
     // 安全轉義
-    function escHtml(s){ return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+    function escHtml(s){ return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;"," >":"&gt;","\"":"&quot;","'":"&#39;"}[c] || c)); }
     function escAttr(s){ return escHtml(String(s||"")); }
   </script>
 </body>
