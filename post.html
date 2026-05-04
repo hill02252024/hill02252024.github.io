@@ -9,23 +9,26 @@
   <meta name="description" content="中國美食與景點實地體驗筆記，包含交通、價位、推薦菜式與拍攝照片。" />
   <meta name="robots" content="index,follow,max-image-preview:large"/>
 
-  <!-- 固定主版 canonical（用非 www + HTTPS + 帶 id 的主版本） -->
-  <link rel="canonical" id="canonicalLink" href="" />
+  <!-- 固定主版 canonical（用非 www + HTTPS + 帶 id 的主版本）。
+       載入後 JS 會覆寫為帶 ?id= 的具體網址；先給合理預設避免爬蟲在 JS 執行前看到空值。 -->
+  <link rel="canonical" id="canonicalLink" href="https://todays-tasks.com/post.html" />
 
   <!-- Open Graph / Twitter（載入文章後會覆寫） -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Today's Tasks" />
   <meta property="og:title" id="ogTitle" content="文章內容｜China Explore" />
   <meta property="og:description" id="ogDesc" content="中國美食與景點實地體驗筆記。" />
-  <meta property="og:image" id="ogImg" content="https://todays-tasks.com/assets/cover.jpg" />
-  <meta property="og:url" id="ogUrl" content="" />
+  <meta property="og:image" id="ogImg" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta property="og:url" id="ogUrl" content="https://todays-tasks.com/post.html" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" id="twTitle" content="文章內容｜China Explore" />
   <meta name="twitter:description" id="twDesc" content="中國美食與景點實地體驗筆記。" />
-  <meta name="twitter:image" id="twImg" content="https://todays-tasks.com/assets/cover.jpg" />
+  <meta name="twitter:image" id="twImg" content="https://todays-tasks.com/assets/1.jpg" />
 
   <!-- AdSense（與首頁一致） -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
 
   <!-- 樣式 -->
@@ -279,7 +282,7 @@
       const CANONICAL = `https://todays-tasks.com/post.html?id=${encodeURIComponent(String(p.id||""))}`;
       const title = p.title || "文章內容｜China Explore";
       const desc  = p.excerpt || "中國美食與景點實地體驗筆記。";
-      const img   = p.image || "https://todays-tasks.com/assets/cover.jpg";
+      const img   = p.image || "https://todays-tasks.com/assets/1.jpg";
 
       // canonical + og/twitter
       $("canonicalLink").href = CANONICAL;
