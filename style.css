@@ -1,5 +1,42 @@
 /* Enhanced style.css with compliance links, Completed section and top nav fix */
 
+/* ---- Unified site-wide primary navigation ---- */
+.site-nav {
+  background: #2c3e50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: background-color 0.15s ease;
+}
+.site-nav a:hover,
+.site-nav a:focus {
+  background: #34495e;
+  text-decoration: underline;
+  outline: none;
+}
+.site-nav a.active {
+  background: #1a252f;
+  font-weight: 700;
+  text-decoration: underline;
+}
+@media (max-width: 760px) {
+  .site-nav a { padding: 10px 10px; font-size: 13px; }
+}
+
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {

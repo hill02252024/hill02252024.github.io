@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>中國美食美景分享｜China Explore</title>
-  <meta name="description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋、排序與分頁。圖片不裁切自適應顯示。"/>
+  <title>Today's Tasks – Simple Productivity App | To-Do List & Task Manager</title>
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast, privacy-first three-lane list."/>
   <meta name="robots" content="index,follow,max-image-preview:large"/>
 
-  <!-- Canonical：首頁主版本 -->
   <link rel="canonical" href="https://todays-tasks.com/"/>
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Today's Tasks">
-  <meta property="og:title" content="中國美食美景分享｜China Explore">
-  <meta property="og:description" content="中國內地旅行的美食與美景分享。依城市、類別與標籤瀏覽，支援搜尋、排序與分頁。">
+  <meta property="og:title" content="Today's Tasks – Simple Productivity App">
+  <meta property="og:description" content="A free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast three-lane list.">
   <meta property="og:url" content="https://todays-tasks.com/">
   <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Today's Tasks – Simple Productivity App">
+  <meta name="twitter:description" content="A free, no-signup daily to-do list for busy professionals.">
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg">
 
   <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -29,73 +31,42 @@
   <link rel="stylesheet" href="/style.css"/>
 
   <style>
-    /* 你的原樣式（略）— 保留 */
-    .page-wrap{max-width:1080px;margin:24px auto;padding:0 16px}
-    .h1{font-size:28px;margin:6px 0 4px}
-    .lede{color:#4b5563;margin-bottom:14px}
-    .latest{margin:18px 0 8px}
-    .latest h2{font-size:20px;margin:0 0 10px}
-    .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media(max-width:980px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.latest-grid{grid-template-columns:1fr}}
-    .latest-card{border:1px solid #e5e7eb;border-radius:10px;background:#fff;overflow:hidden;text-decoration:none;color:inherit;display:block}
-    .latest-thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
-    .latest-thumb img{width:100%;height:100%;object-fit:contain;display:block}
-    .latest-body{padding:10px}
-    .latest-title{font-weight:700;line-height:1.35;margin:0 0 4px;font-size:15px}
-    .latest-meta{font-size:12px;color:#6b7280}
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 12px}
-    .toolbar input[type="search"], .toolbar select{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px}
-    .toolbar input[type="search"]{flex:1;min-width:240px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
-    .chip{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;font-size:14px;color:#1f2937;background:#fff;cursor:pointer;user-select:none}
-    .chip.active{background:#2563eb;color:#fff;border-color:#2563eb}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.grid{grid-template-columns:1fr}}
-    .card{border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
-    .thumb{aspect-ratio:16/10;background:#f8fafc;display:flex;align-items:center;justify-content:center}
-    .thumb img{width:100%;height:100%;object-fit:contain;display:block}
-    .card-body{padding:12px}
-    .title{font-weight:700;line-height:1.35;margin:2px 0 6px}
-    .meta{font-size:12px;color:#6b7280;margin-bottom:8px}
-    .badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f2ff;color:#2563eb;font-size:12px;border:1px solid #bfdbfe}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#f3f4f6;color:#374151}
-    .excerpt{font-size:13px;color:#374151;margin:6px 0 0}
-    .bio{margin:8px 0 0;font-size:12px;color:#6b7280}
-    .actions{display:flex;gap:8px;margin-top:auto;padding:12px;border-top:1px solid #f3f4f6;background:#fafafa}
-    .btn{display:inline-block;text-align:center;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#111827;text-decoration:none}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#fafafa;margin:0;line-height:1.6}
+    .page-wrap{max-width:980px;margin:0 auto;padding:0 16px}
+    .hero{padding:56px 16px 40px;text-align:center;background:linear-gradient(180deg,#eef2ff 0%,#fafafa 100%);border-bottom:1px solid #e5e7eb}
+    .hero h1{font-size:40px;line-height:1.2;margin:0 0 12px;color:#111827}
+    .hero p.lede{font-size:18px;color:#4b5563;max-width:640px;margin:0 auto 24px}
+    .cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid #d1d5db;color:#111827;background:#fff}
     .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0}
-    .pager button{min-width:40px;padding:8px 10px;border:1px solid #d1d5db;background:#fff;border-radius:8px;cursor:pointer}
-    .pager button[disabled]{opacity:.5;cursor:not-allowed}
-    .pager .active{background:#111827;color:#fff;border-color:#111827}
-    .empty,.loading{padding:24px;border:1px dashed #cbd5e1;border-radius:12px;color:#475569;background:#f8fafc;margin:12px 0}
-    .chips-compact-wrap{position:relative;margin:10px 0 16px}
-    .chips-scroll{display:flex;gap:8px;overflow-x:auto;padding-right:48px;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap}
-    .chips-scroll::-webkit-scrollbar{display:none}
-    .chips-fade::after{content:"";position:absolute;right:52px;top:0;height:100%;width:48px;pointer-events:none;background:linear-gradient(90deg, rgba(255,255,255,0) 0%, #ffffff 80%)}
-    .chips-more-btn{position:absolute;right:0;top:50%;transform:translateY(-50%);border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:8px 10px;font-size:14px;cursor:pointer}
-    .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:50}
-    .modal{width:min(720px, 92vw);background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.2);padding:16px}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    .modal-title{font-size:18px;font-weight:700}
-    .modal-close{border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
-    .modal-search{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px}
-    .modal-tags{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:48vh;overflow:auto}
-    @media(max-width:720px){.modal-tags{grid-template-columns:repeat(2,1fr)}}
-    .modal-tag{border:1px solid #d1d5db;border-radius:10px;padding:8px 10px;font-size:14px;cursor:pointer;background:#fff}
-    .modal-tag.active{background:#2563eb;color:#fff;border-color:#2563eb}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:40px 0}
+    @media(max-width:760px){.features{grid-template-columns:1fr}}
+    .feature{padding:18px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
+    .feature h3{margin:0 0 6px;font-size:17px}
+    .feature p{margin:0;font-size:14px;color:#4b5563}
+    .section{margin:48px 0}
+    .section h2{font-size:24px;margin:0 0 14px}
+    .section p{color:#374151}
+    .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+    @media(max-width:640px){.links-grid{grid-template-columns:1fr}}
+    .link-card{padding:14px 16px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;text-decoration:none;color:#111827}
+    .link-card:hover{border-color:#111827}
+    .link-card strong{display:block;margin-bottom:4px}
+    .link-card span{font-size:13px;color:#6b7280}
+    .notice{margin:32px 0;padding:14px 16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;color:#9a3412;font-size:14px}
+    .notice a{color:#9a3412;font-weight:600}
   </style>
 
-  <!-- 組織 + 站內搜尋（提升品牌/AdSense信任） -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Organization",
+    "@type":"SoftwareApplication",
     "name":"Today's Tasks",
-    "url":"https://todays-tasks.com"
+    "applicationCategory":"ProductivityApplication",
+    "operatingSystem":"Web",
+    "url":"https://todays-tasks.com/",
+    "description":"A free, no-signup daily to-do list for busy professionals.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
   }
   </script>
   <script type="application/ld+json">
@@ -111,442 +82,68 @@
     }
   }
   </script>
-
-  <!-- 麵包屑 JSON-LD（首頁 + 專欄） -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
-      {"@type":"ListItem","position":2,"name":"China Explore","item":"https://todays-tasks.com/china-explore.html"}
-    ]
-  }
-  </script>
 </head>
 <body>
-  <!-- 導覽列 -->
-  <nav class="compliance-links" aria-label="Primary">
-    <a href="/">Home</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/productivity-tips.html">Productivity Tips</a> |
-    <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Digital To-Do Lists</a> |
-    <a href="/article4.html">How to Use</a> |
-    <a href="/article5.html">Weekly Review</a> |
-    <a href="/etsy-guides.html">Time-Saving</a> |
-    <a href="/todo.html">To Do List</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" class="active" aria-current="page">Home</a>
+    <a href="/todo.html">Todo App</a>
+    <a href="/productivity-tips.html">Productivity Tips</a>
+    <a href="/time-management-strategies.html">Time Management</a>
+    <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
+    <a href="/how-to-use-todays-tasks.html">How to Use</a>
+    <a href="/weekly-review-checklist.html">Weekly Review</a>
+    <a href="/etsy-guides.html">Templates</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/privacy.html">Privacy Policy</a>
   </nav>
 
-  <main class="page-wrap">
-    <h1 class="h1">中國美食美景分享（China Explore）</h1>
-    <p class="lede">即時從 Google 試算表同步內容：支援搜尋、篩選、排序與分頁；圖片以「不裁切」模式自適應顯示。</p>
+  <header class="hero">
+    <h1>Stay focused. Finish what matters.</h1>
+    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast three-lane list that lives in your browser — no accounts, no syncing headaches.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="/todo.html">Open the App</a>
+      <a class="btn" href="/productivity-tips.html">Read the Productivity Guide</a>
+    </div>
+  </header>
 
-    <!-- 最新 -->
-    <section class="latest" aria-label="最新美食分享">
-      <h2>🍜 最新美食分享</h2>
-      <div id="latest" class="latest-grid"></div>
+  <main class="page-wrap">
+    <section class="features" aria-label="Key features">
+      <div class="feature">
+        <h3>Three-lane focus</h3>
+        <p>High Priority, Due Today, and General. Three lanes is enough to stop your day from drifting without turning planning into a chore.</p>
+      </div>
+      <div class="feature">
+        <h3>No account required</h3>
+        <p>Open the page and start. Your tasks live in your browser via local storage, never on our servers.</p>
+      </div>
+      <div class="feature">
+        <h3>Automatic midnight reset</h3>
+        <p>Each day starts fresh. Stale tasks no longer weigh on tomorrow — re-add the ones that still matter.</p>
+      </div>
     </section>
 
-    <!-- 工具列 -->
-    <div class="toolbar" aria-label="Filters">
-      <input id="q" type="search" placeholder="搜尋標題／摘要／內文／標籤…" aria-label="搜尋"/>
-      <select id="citySel" aria-label="城市"><option value="">全部城市</option></select>
-      <select id="provSel" aria-label="省份"><option value="">全部省份</option></select>
-      <select id="kindSel" aria-label="類別">
-        <option value="">全部類別</option>
-        <option value="美食">美食</option>
-        <option value="美景">美景</option>
-      </select>
-      <select id="sortSel" aria-label="排序">
-        <option value="new">排序：最新</option>
-        <option value="az">排序：A→Z</option>
-      </select>
-      <button id="refreshBtn" class="btn" type="button" title="重新抓取資料">Refresh</button>
-    </div>
-
-    <!-- 標籤 -->
-    <div class="chips-compact-wrap chips-fade">
-      <div id="tagChips" class="chips-scroll" aria-label="Tags 快速篩選"></div>
-      <button id="moreTagsBtn" class="chips-more-btn" type="button" title="更多標籤">+0</button>
-    </div>
-
-    <!-- 更多標籤彈窗 -->
-    <div id="tagModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="tagModalTitle">
-      <div class="modal">
-        <div class="modal-header">
-          <div id="tagModalTitle" class="modal-title">選擇標籤</div>
-          <button class="modal-close" type="button" id="tagModalClose">關閉</button>
-        </div>
-        <input id="tagSearch" class="modal-search" placeholder="搜尋標籤…" aria-label="搜尋標籤"/>
-        <div id="tagAll" class="modal-tags" aria-label="所有標籤"></div>
+    <section class="section">
+      <h2>Start with the right habits</h2>
+      <p>The app is the easy part. The compounding wins come from how you use it. Pick a guide:</p>
+      <div class="links-grid">
+        <a class="link-card" href="/productivity-tips-busy-professionals.html"><strong>7 Practical Productivity Tips for Busy Professionals</strong><span>Daily intentions, batched communication, single-task mode.</span></a>
+        <a class="link-card" href="/time-management-strategies.html"><strong>Time Management Strategies That Actually Work</strong><span>Energy-based planning, priority matrices, weekly reviews.</span></a>
+        <a class="link-card" href="/digital-vs-paper-todo-lists.html"><strong>The Benefits of Digital To-Do Lists</strong><span>Why a lightweight web list beats spreadsheets and paper.</span></a>
+        <a class="link-card" href="/how-to-use-todays-tasks.html"><strong>How to Use Today's Tasks</strong><span>A step-by-step walkthrough of the three-lane workflow.</span></a>
+        <a class="link-card" href="/weekly-review-checklist.html"><strong>Weekly Review Checklist</strong><span>A 20-minute reset that prevents drift.</span></a>
+        <a class="link-card" href="/etsy-guides.html"><strong>Time-Saving Templates &amp; Guides</strong><span>Curated Excel/Sheets templates for households and teams.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- 主清單 + 分頁 -->
-    <div id="status" class="loading" role="status">載入中…</div>
-    <div id="grid" class="grid" aria-live="polite" hidden></div>
-    <nav id="pager" class="pager" aria-label="分頁" hidden></nav>
+    <div class="notice">
+      <strong>Looking for the China Explore travel guide?</strong> That content is moving to a dedicated subdomain at <a href="https://china.todays-tasks.com">china.todays-tasks.com</a> (coming soon). The legacy index is still available at <a href="/china-explore.html">/china-explore.html</a> for now.
+    </div>
   </main>
 
-  <footer class="footer">© 2025 Today’s Tasks. All rights reserved.</footer>
-
-  <script>
-    /* ===== 設定 ===== */
-    const FEED_URL  = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
-    const PAGE_SIZE = 10;
-    const MAX_INLINE_TAGS = 12;
-
-    /* ===== DOM ===== */
-    const q = document.getElementById('q');
-    const citySel = document.getElementById('citySel');
-    const provSel = document.getElementById('provSel');
-    const kindSel = document.getElementById('kindSel');
-    const sortSel = document.getElementById('sortSel');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const tagChips = document.getElementById('tagChips');
-    const moreTagsBtn = document.getElementById('moreTagsBtn');
-    const tagModal = document.getElementById('tagModal');
-    const tagModalClose = document.getElementById('tagModalClose');
-    const tagSearch = document.getElementById('tagSearch');
-    const tagAll = document.getElementById('tagAll');
-    const statusEl = document.getElementById('status');
-    const grid = document.getElementById('grid');
-    const latestWrap = document.getElementById('latest');
-    const pager = document.getElementById('pager');
-
-    /* ===== 狀態 ===== */
-    let RAW = [];
-    let FILTERED = [];
-    let ACTIVE_TAG = "";
-    let TAGS = new Set();
-    let curPage = getPageFromHash() || 1;
-
-    /* ===== 啟動 ===== */
-    attachEvents();
-    fetchFeed();
-
-    function attachEvents(){
-      q.addEventListener('input', ()=>{ curPage=1; apply(); });
-      citySel.addEventListener('change', ()=>{ curPage=1; apply(); });
-      provSel.addEventListener('change', ()=>{ curPage=1; apply(); });
-      kindSel.addEventListener('change', ()=>{ curPage=1; apply(); });
-      sortSel.addEventListener('change', ()=>{ curPage=1; apply(); });
-      refreshBtn.addEventListener('click', ()=>fetchFeed(true));
-      window.addEventListener('hashchange', ()=>{
-        const p = getPageFromHash();
-        if(p && p!==curPage){ curPage=p; renderPaged(); }
-      });
-    }
-
-    async function fetchFeed(noCache=false){
-      try{
-        statusEl.hidden = false; statusEl.textContent = "載入中…"; grid.hidden = true; pager.hidden = true;
-        const url = noCache ? FEED_URL + (FEED_URL.includes('?')?'&':'?') + 't=' + Date.now() : FEED_URL;
-        const res = await fetch(url, {cache: noCache ? 'no-store' : 'default'});
-        if(!res.ok) throw new Error('HTTP ' + res.status);
-        const json = await res.json();
-
-        RAW = Array.isArray(json.items) ? json.items : [];
-        normalize(RAW);
-        buildFacetOptions(RAW);
-        buildTagChips(RAW);
-        renderLatest(RAW);
-        injectJSONLD(RAW);
-        apply();
-      }catch(err){
-        statusEl.textContent = "讀取失敗：" + err.message;
-      }
-    }
-
-    function normalize(list){
-      for(const it of list){
-        it.id       = _toSafeString(it.id);
-        it.title    = _toSafeString(it.title);
-        it.city     = _toSafeString(it.city);
-        it.province = _toSafeString(it.province);
-        it.kind     = _toSafeString(it.kind);
-
-        if (Array.isArray(it.tags)) {
-          it.tags = it.tags.map(_toSafeString).map(s=>s.trim()).filter(Boolean);
-        } else {
-          const raw = _toSafeString(it.tags);
-          it.tags = raw ? raw.split(",").map(s=>s.trim()).filter(Boolean) : [];
-        }
-
-        it.image   = _toSafeString(it.image);
-        it.link    = _toSafeString(it.link);
-        it.excerpt = _toSafeString(it.excerpt);
-        it.content = _toSafeString(it.content);
-        it.created = it.created ? new Date(it.created) : new Date(0);
-      }
-    }
-
-    function buildFacetOptions(list){
-      const cities = [...new Set(list.map(x=>x.city).filter(Boolean))].sort();
-      const provs  = [...new Set(list.map(x=>x.province).filter(Boolean))].sort();
-      fillSelect(citySel, ["全部城市", ...cities], ["", ...cities]);
-      fillSelect(provSel, ["全部省份", ...provs],  ["", ...provs ]);
-    }
-    function fillSelect(sel, labels, values){
-      sel.innerHTML = "";
-      labels.forEach((lbl,i)=>{
-        const opt = document.createElement('option');
-        opt.textContent = lbl; opt.value = values[i];
-        sel.appendChild(opt);
-      });
-    }
-
-    function buildTagChips(list){
-      const count = new Map();
-      list.forEach(x => (x.tags||[]).forEach(t=> count.set(t, (count.get(t)||0)+1)));
-      const sorted = [...count.entries()].sort((a,b)=> b[1]-a[1]).map(([t])=>t);
-      TAGS = new Set(sorted);
-      const allTags = ["", ...sorted];
-
-      tagChips.innerHTML = "";
-      const inline = allTags.slice(0, MAX_INLINE_TAGS);
-      inline.forEach(v => tagChips.appendChild(chipInlineEl(v)));
-
-      const remaining = Math.max(0, allTags.length - inline.length);
-      moreTagsBtn.textContent = remaining > 0 ? `+${remaining}` : "+0";
-      moreTagsBtn.disabled = remaining === 0;
-
-      renderModalTags(allTags);
-
-      moreTagsBtn.onclick = () => openTagModal();
-      tagModalClose.onclick = () => closeTagModal();
-      tagModal.addEventListener('click', (e)=>{ if(e.target === tagModal) closeTagModal(); });
-      tagSearch.addEventListener('input', ()=> filterModalTags());
-    }
-
-    function chipInlineEl(value){
-      const label = value ? value : "全部標籤";
-      const b = document.createElement('button');
-      b.type="button"; b.className="chip"; b.textContent=label; b.dataset.value=value;
-      if ((ACTIVE_TAG||"") === value) b.classList.add('active');
-      b.addEventListener('click', ()=> selectTag(value, false));
-      return b;
-    }
-
-    function renderModalTags(allTags){
-      tagAll.innerHTML = "";
-      allTags.forEach(v=>{
-        const btn = document.createElement('button');
-        btn.type = "button";
-        btn.className = "modal-tag";
-        btn.textContent = v ? v : "全部標籤";
-        btn.dataset.value = v;
-        if ((ACTIVE_TAG||"") === v) btn.classList.add('active');
-        btn.addEventListener('click', ()=> selectTag(v, true));
-        tagAll.appendChild(btn);
-      });
-    }
-
-    function filterModalTags(){
-      const kw = tagSearch.value.trim().toLowerCase();
-      [...tagAll.children].forEach(btn=>{
-        const t = btn.textContent.toLowerCase();
-        btn.style.display = (!kw || t.includes(kw)) ? "" : "none";
-      });
-    }
-
-    function openTagModal(){ tagModal.style.display = "flex"; tagSearch.value = ""; filterModalTags(); setTimeout(()=> tagSearch.focus(), 0); }
-    function closeTagModal(){ tagModal.style.display = "none"; }
-
-    function selectTag(value, fromModal){
-      ACTIVE_TAG = value || "";
-      [...tagChips.querySelectorAll('.chip')].forEach(c=> c.classList.toggle('active', (c.dataset.value||"") === ACTIVE_TAG));
-      [...tagAll.querySelectorAll('.modal-tag')].forEach(c=> c.classList.toggle('active', (c.dataset.value||"") === ACTIVE_TAG));
-      curPage = 1; apply();
-      if (fromModal) closeTagModal();
-    }
-
-    function renderLatest(list){
-      const latest = list.slice().sort((a,b)=>b.created-a.created)
-        .filter(x=>x.kind==="美食").slice(0,6);
-      latestWrap.innerHTML = latest.map(x=>`
-        <a class="latest-card" href="/post.html?id=${escapeAttr(x.id)}" aria-label="${escapeAttr(x.title)}">
-          <div class="latest-thumb">
-            ${x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`}
-          </div>
-          <div class="latest-body">
-            <div class="latest-title">${escapeHTML(x.title)}</div>
-            <div class="latest-meta">${x.city?escapeHTML(x.city):""} ${x.province?(" · "+escapeHTML(x.province)):""}</div>
-          </div>
-        </a>
-      `).join('');
-    }
-
-    function apply(){
-      const term = q.value.trim().toLowerCase();
-      const city = citySel.value, prov = provSel.value, kind = kindSel.value, sort = sortSel.value;
-
-      let list = RAW.slice();
-      if(city) list = list.filter(x=>x.city===city);
-      if(prov) list = list.filter(x=>x.province===prov);
-      if(kind) list = list.filter(x=>x.kind===kind);
-      if(ACTIVE_TAG) list = list.filter(x=>(x.tags||[]).includes(ACTIVE_TAG));
-      if(term){
-        list = list.filter(x=>{
-          const hay = [x.title,x.excerpt,x.content,x.city,x.province,x.kind,...(x.tags||[])].join(" ").toLowerCase();
-          return hay.includes(term);
-        });
-      }
-      if(sort==="new") list.sort((a,b)=>b.created-a.created);
-      if(sort==="az")  list.sort((a,b)=>a.title.localeCompare(b.title,'zh-Hant'));
-
-      FILTERED = list;
-      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
-      if(curPage>totalPages) curPage=1;
-
-      renderPaged();
-    }
-
-    function renderPaged(){
-      if(!FILTERED.length){
-        grid.hidden=true; pager.hidden=true; statusEl.hidden=false; statusEl.className="empty";
-        statusEl.textContent="沒有符合條件的內容。調整篩選或再試搜尋關鍵字。"; return;
-      }
-      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
-      const start = (curPage-1)*PAGE_SIZE;
-      const pageItems = FILTERED.slice(start, start+PAGE_SIZE);
-
-      grid.innerHTML = pageItems.map(x=>cardHTML(x)).join('');
-      statusEl.hidden=true; grid.hidden=false;
-
-      renderPager(totalPages);
-      setPageHash(curPage);
-
-      // 分頁 rel（讓 Google 知道上下頁）
-      const head = document.getElementsByTagName('head')[0];
-      [...document.querySelectorAll('link[rel="prev"],link[rel="next"]')].forEach(n=>n.remove());
-      const base = location.origin + location.pathname;
-      if(curPage>1){ const l=document.createElement('link'); l.rel='prev'; l.href=`${base}#p=${curPage-1}`; head.appendChild(l); }
-      const totalPages2 = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
-      if(curPage<totalPages2){ const l=document.createElement('link'); l.rel='next'; l.href=`${base}#p=${curPage+1}`; head.appendChild(l); }
-
-      window.scrollTo({ top: grid.offsetTop - 80, behavior:'smooth' });
-    }
-
-    function renderPager(totalPages){
-      pager.hidden = false;
-      const btn = (label, disabled, go, active=false)=>{
-        return `<button ${disabled?'disabled':''} class="${active?'active':''}" aria-current="${active?'page':'false'}" onclick="${disabled?'':go}">${label}</button>`;
-      };
-      let html = "";
-      html += btn('«', curPage===1, 'goPage(1)');
-      html += btn('‹', curPage===1, `goPage(${curPage-1})`);
-
-      const span = 2;
-      const from = Math.max(1, curPage-span);
-      const to   = Math.min(totalPages, curPage+span);
-      for(let i=from;i<=to;i++){
-        html += btn(i, false, `goPage(${i})`, i===curPage);
-      }
-
-      html += btn('›', curPage===totalPages, `goPage(${curPage+1})`);
-      html += btn('»', curPage===totalPages, `goPage(${totalPages})`);
-      pager.innerHTML = html;
-    }
-
-    function goPage(n){
-      const totalPages = Math.max(1, Math.ceil(FILTERED.length / PAGE_SIZE));
-      curPage = Math.min(Math.max(1,n), totalPages);
-      renderPaged();
-    }
-    function setPageHash(p){ location.hash = 'p=' + p; }
-    function getPageFromHash(){ const m = location.hash.match(/p=(\d+)/); return m ? parseInt(m[1],10) : null; }
-
-    function cardHTML(x){
-      const dateStr = x.created instanceof Date && !isNaN(x.created) ? x.created.toLocaleDateString() : "";
-      const tags = (x.tags||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join('');
-      const img = x.image ? `<img src="${escapeAttr(x.image)}" alt="${escapeAttr(x.title)}" loading="lazy">` : `<div style="font-size:12px;color:#6b7280">No image</div>`;
-      const detailUrl = `/post.html?id=${escapeAttr(x.id)}`;
-      const authority = buildAuthorityLink(x);
-      return `
-        <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
-          <a class="thumb" href="${detailUrl}" aria-label="${escapeAttr(x.title)}">${img}</a>
-          <div class="card-body">
-            <h3 class="title" itemprop="headline"><a href="${detailUrl}" style="text-decoration:none;color:inherit">${escapeHTML(x.title)}</a></h3>
-            <div class="meta">
-              ${x.city?`<span itemprop="contentLocation">${escapeHTML(x.city)}</span>`:""}
-              ${x.province?`　<span>${escapeHTML(x.province)}</span>`:""}
-              ${x.kind?`　<span class="badge">${escapeHTML(x.kind)}</span>`:""}
-              ${dateStr?`　<span itemprop="datePublished" content="${x.created.toISOString()}">${dateStr}</span>`:""}
-            </div>
-            ${x.excerpt?`<p class="excerpt" itemprop="description">${escapeHTML(x.excerpt)}</p>`:""}
-            ${tags?`<div class="tags" aria-label="標籤">${tags}</div>`:""}
-            <p class="bio">作者：Hill｜原創實拍與在地體驗筆記。未經授權請勿轉載（© Today’s Tasks）。</p>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="${detailUrl}">查看詳情</a>
-            ${authority}
-            <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到上方</a>
-          </div>
-        </article>
-      `;
-    }
-
-    function buildAuthorityLink(x){
-      const q = encodeURIComponent((x.city?x.city+" ":"") + x.title);
-      if(x.kind==="美食"){
-        const url = `https://www.dianping.com/search/keyword/2/0_${q}`;
-        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`;
-      }else{
-        const url = `https://www.tripadvisor.com/Search?q=${q}`;
-        return `<a class="btn" href="${url}" target="_blank" rel="nofollow noopener">權威連結：TripAdvisor</a>`;
-      }
-    }
-
-    /* ===== JSON-LD（使用絕對網址） ===== */
-    function injectJSONLD(list){
-      const top = list.slice().sort((a,b)=>b.created-a.created).slice(0,10);
-      const itemList = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": top.map((it, i)=>({
-          "@type":"ListItem",
-          "position": i+1,
-          "url": `https://todays-tasks.com/post.html?id=${encodeURIComponent(it.id)}`
-        }))
-      };
-      const posts = top.map(it => ({
-        "@context":"https://schema.org",
-        "@type":"BlogPosting",
-        "headline": it.title || "",
-        "image": it.image ? [it.image] : undefined,
-        "datePublished": it.created? new Date(it.created).toISOString() : undefined,
-        "author": { "@type":"Person","name":"Hill" },
-        "publisher": { "@type":"Organization","name":"Today's Tasks" },
-        "articleSection": it.kind || "",
-        "description": it.excerpt || "",
-        "mainEntityOfPage": `https://todays-tasks.com/post.html?id=${encodeURIComponent(it.id)}`
-      }));
-
-      document.querySelectorAll('script[data-dynamic-jsonld="1"]').forEach(n=>n.remove());
-      addJsonLd(itemList); posts.forEach(p=>addJsonLd(p));
-    }
-    function addJsonLd(obj){
-      const s=document.createElement('script'); s.type="application/ld+json"; s.dataset.dynamicJsonld="1";
-      s.textContent=JSON.stringify(obj); document.head.appendChild(s);
-    }
-
-    /* ===== 工具 ===== */
-    function _toSafeString(v){
-      if (v == null) return "";
-      if (typeof v === "string") return v;
-      if (typeof v === "number" || typeof v === "boolean") return String(v);
-      if (Array.isArray(v)) return v.join(",");
-      try { return String(v); } catch { return ""; }
-    }
-    function escapeHTML(s){
-      const str = _toSafeString(s);
-      return str.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-    }
-    function escapeAttr(s){ return escapeHTML(s); }
-  </script>
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks. All rights reserved.</footer>
 </body>
 </html>

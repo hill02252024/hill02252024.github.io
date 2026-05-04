@@ -1,11 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Today's Tasks – Simple Daily To-Do List</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Organize, prioritize, and stay productive in seconds." />
+  <title>Today's Tasks – Free To-Do List App | No Signup, Local Storage</title>
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Three priority lanes, automatic midnight reset, runs entirely in your browser." />
+  <link rel="canonical" href="https://todays-tasks.com/todo.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Today's Tasks – Free Daily To-Do List App" />
+  <meta property="og:description" content="A free, no-signup daily to-do list app for busy professionals. Three-lane focus: High Priority, Due Today, General. Local-storage privacy-first." />
+  <meta property="og:url" content="https://todays-tasks.com/todo.html" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Today's Tasks – Free Daily To-Do List App" />
+  <meta name="twitter:description" content="A free, no-signup daily to-do list app for busy professionals." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
+
   <link rel="stylesheet" href="/style.css" />
 
   <!-- AdSense account hint -->
@@ -14,134 +25,204 @@
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
 
-  <!-- FAQ schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+      {"@type":"ListItem","position":2,"name":"Todo App","item":"https://todays-tasks.com/todo.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Today's Tasks",
+    "applicationCategory":"ProductivityApplication",
+    "operatingSystem":"Web",
+    "url":"https://todays-tasks.com/todo.html",
+    "description":"A free, no-signup daily to-do list for busy professionals. Three priority lanes with automatic midnight reset.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Your list saves in your browser’s localStorage."}},
+      {"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No account needed. Your list saves in your browser's localStorage."}},
       {"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Only on your device. Nothing is sent to our servers."}},
-      {"@type":"Question","name":"Can I use it offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add, complete, and restore tasks offline; they sync locally."}},
-      {"@type":"Question","name":"What are the priority lanes?","acceptedAnswer":{"@type":"Answer","text":"High, Due Today, and General—keep critical, urgent, and normal work apart."}},
-      {"@type":"Question","name":"Will tasks reset daily?","acceptedAnswer":{"@type":"Answer","text":"The app clears daily at midnight to prevent clutter. Restorable items go to Completed."}},
-      {"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, the layout is responsive for phones, tablets, and desktops."}},
-      {"@type":"Question","name":"Can I recover finished items?","acceptedAnswer":{"@type":"Answer","text":"Use the Completed list to restore or permanently remove tasks."}},
-      {"@type":"Question","name":"How do I get started fast?","acceptedAnswer":{"@type":"Answer","text":"Type a task, pick a lane, press Add. See our guides for tips."}}
+      {"@type":"Question","name":"Can I use it offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add, complete, and restore tasks offline; they persist locally."}},
+      {"@type":"Question","name":"What are the priority lanes?","acceptedAnswer":{"@type":"Answer","text":"High Priority, Due Today, and General—keep critical, urgent, and normal work apart."}},
+      {"@type":"Question","name":"Will tasks reset daily?","acceptedAnswer":{"@type":"Answer","text":"The visible list clears daily at midnight to prevent clutter. Finished items go to Completed for restore."}},
+      {"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes. The layout is responsive for phones, tablets, and desktops."}}
     ]
   }
   </script>
+
+  <style>
+    .hero{padding:36px 16px 28px;text-align:center;background:linear-gradient(180deg,#eef2ff 0%,#fafafa 100%);border-bottom:1px solid #e5e7eb}
+    .hero h1{font-size:34px;line-height:1.2;margin:0 0 10px;color:#111827}
+    .hero p{font-size:17px;color:#374151;max-width:600px;margin:0 auto 16px}
+    .hero .cta{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;text-decoration:none;background:#111827;color:#fff;border:1px solid #111827}
+    .container{max-width:880px;margin:24px auto;padding:0 16px;color:#111827;line-height:1.7}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 24px}
+    @media(max-width:760px){.feature-grid{grid-template-columns:1fr}}
+    .feature-grid .f{padding:14px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
+    .feature-grid .f h3{margin:0 0 4px;font-size:16px}
+    .feature-grid .f p{margin:0;font-size:14px;color:#4b5563}
+    .steps{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;margin:18px 0}
+    .steps ol{margin:0;padding-left:22px}
+    .steps li{margin:6px 0}
+    .input-group{display:flex;gap:8px;margin:8px 0 16px;flex-wrap:wrap}
+    .input-group input{flex:1;min-width:200px;padding:10px;border:1px solid #d1d5db;border-radius:8px}
+    .input-group select,.input-group button{padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer}
+    .input-group button{background:#111827;color:#fff;border-color:#111827}
+    .group{margin:18px 0;padding:14px 16px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
+    .group h2{margin:0 0 8px;font-size:18px}
+    .task-list{list-style:none;padding:0;margin:0}
+    .task-list li{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border:1px solid #e5e7eb;border-radius:8px;margin:4px 0;background:#fafafa}
+    .task-list li.completed span{text-decoration:line-through;color:#9ca3af}
+    .complete-btn{background:#fff;border:1px solid #d1d5db;border-radius:6px;padding:4px 10px;cursor:pointer}
+    .related{margin-top:30px;padding:14px 18px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px}
+    .related strong{display:block;margin-bottom:6px}
+    .related a{display:block;color:#92400e;margin:3px 0}
+  </style>
 </head>
 <body>
-  <!-- Top navigation -->
-  <div class="compliance-links">
-    <a href="/index.html" aria-current="page">Home</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/productivity-tips.html">Productivity Tips</a> |
-    <a href="/article2.html">Time Management</a> |
-    <a href="/article3.html">Digital To-Do Lists</a> |
-    <a href="/article4.html">How to Use</a> |
-    <a href="/article5.html">Weekly Review</a> |
-    <a href="/etsy-guides.html">Time-Saving</a>
-  </div>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/">Home</a>
+    <a href="/todo.html" class="active" aria-current="page">Todo App</a>
+    <a href="/productivity-tips.html">Productivity Tips</a>
+    <a href="/time-management-strategies.html">Time Management</a>
+    <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
+    <a href="/how-to-use-todays-tasks.html">How to Use</a>
+    <a href="/weekly-review-checklist.html">Weekly Review</a>
+    <a href="/etsy-guides.html">Templates</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </nav>
+
+  <header class="hero">
+    <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>
+    <p>Free, no-signup, browser-based. Three priority lanes, automatic midnight reset, your data stored locally on your device. Open it and start in five seconds.</p>
+    <a class="cta" href="#app">Start your list ↓</a>
+  </header>
 
   <main class="container">
-    <h1>What is Today's Tasks?</h1>
-    <p>Today's Tasks is a free, no-signup daily to-do list app designed for busy professionals who want to organize their day in seconds. It runs entirely in your browser, stores data locally, and never sends your personal tasks to any server.</p>
-    <ul>
-      <li>Set priorities: High / Due Today / General</li>
-      <li>Mark tasks completed and restore them later</li>
-      <li>Automatic midnight reset each day</li>
-      <li>Responsive design for desktop and mobile</li>
-    </ul>
+    <section>
+      <h2>Built for one job: get today done</h2>
+      <p>Most to-do apps are project-management tools in disguise — they ask you to set up workspaces, tags, projects, sub-projects, recurring rules, and integrations before you can write down a single task. Today's Tasks does the opposite. There is one input, three lanes, and a Completed section. The whole interface fits on one screen, including on a phone.</p>
 
-    <h2>Today's Tasks</h2>
-    <div class="input-group">
-      <input id="task-input" type="text" placeholder="Enter a new task…" aria-label="New task" />
-      <select id="task-priority" aria-label="Task priority">
-        <option value="important">High Priority</option>
-        <option value="due">Due Today</option>
-        <option value="normal" selected>General</option>
-      </select>
-      <button id="add-btn" type="button">Add Task</button>
-    </div>
-
-    <section class="group">
-      <h2>High Priority</h2>
-      <ul id="important-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>Due Today</h2>
-      <ul id="due-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>General</h2>
-      <ul id="normal-list" class="task-list"></ul>
-    </section>
-    <section class="group">
-      <h2>Completed</h2>
-      <ul id="completed-list" class="task-list"></ul>
+      <div class="feature-grid">
+        <div class="f"><h3>No account needed</h3><p>Open the page, type, and start. Your list saves in your browser via <code>localStorage</code> — nothing is sent to our servers.</p></div>
+        <div class="f"><h3>Three priority lanes</h3><p><strong>High Priority</strong> for urgent and important. <strong>Due Today</strong> for time-bound outcomes. <strong>General</strong> for everything else.</p></div>
+        <div class="f"><h3>Automatic midnight reset</h3><p>The visible list clears each day so stale items don't accumulate. Finished items move to <em>Completed</em> and can be restored.</p></div>
+        <div class="f"><h3>Works offline</h3><p>Add, complete, and restore tasks without a network. Your data persists locally between sessions.</p></div>
+        <div class="f"><h3>Responsive design</h3><p>The interface adapts cleanly to phones, tablets, and desktops. Same five-second add flow on any screen.</p></div>
+        <div class="f"><h3>Privacy by default</h3><p>No tracking of your task content, no required telemetry, no third-party analytics on your tasks. See our <a href="/privacy.html">privacy policy</a>.</p></div>
+      </div>
     </section>
 
-    <!-- ===== 使用情境（SEO 強化） ===== -->
-    <section class="group">
-      <h2>Use Cases</h2>
-      <p><strong>Busy professionals</strong>: park deep-work items in <em>High</em>, time-bound errands in <em>Due Today</em>, and keep a light buffer in <em>General</em>. Pair with our <a href="/article2.html">time-management guide</a>.</p>
-      <p><strong>Students</strong>: log homework and exam prep by urgency. Review at night to reset for tomorrow—see tips in <a href="/article3.html">digital to-do lists</a>.</p>
-      <p><strong>Freelancers</strong>: track client deliverables and invoices; move shipped tasks to <em>Completed</em> for a clean slate. Learn a weekly cadence in <a href="/article5.html">Weekly Review</a>.</p>
-      <p><strong>Parents & households</strong>: capture chores and shopping, then reset daily to avoid clutter. Explore our <a href="/etsy-guides.html">time-saving templates</a>.</p>
-      <p><strong>Small teams</strong>: use lanes as a lightweight stand-up—yesterday’s done, today’s focus, and upcoming items. See practical <a href="/productivity-tips.html">productivity tips</a>.</p>
+    <section>
+      <h2>How it works in three steps</h2>
+      <div class="steps">
+        <ol>
+          <li><strong>Type a task.</strong> One line, one outcome. Vague tasks ("work on report") become stuck tasks; concrete tasks ("draft outline of Section 2") move.</li>
+          <li><strong>Pick a lane.</strong> High Priority for the must-finish-today items, Due Today for time-bound work, General for everything else worth tracking. The default lane is General — the right choice for most items.</li>
+          <li><strong>Press Add.</strong> Done. The task appears in its lane. When you finish it, click the check button to mark complete.</li>
+        </ol>
+      </div>
+      <p>Want a deeper walkthrough including the midnight reset behavior and tips for restoring completed items? See <a href="/how-to-use-todays-tasks.html">How to Use Today's Tasks</a>.</p>
     </section>
 
-    <!-- ===== FAQ（精簡版） ===== -->
-    <section class="group" id="faq">
-      <h2>FAQ</h2>
-      <details><summary>Do I need an account?</summary><p>No. Your list saves locally in your browser—zero sign-up.</p></details>
-      <details><summary>Is my data private?</summary><p>Yes. We never send your tasks to any server.</p></details>
-      <details><summary>Does it work offline?</summary><p>Yes. Tasks add/complete/restore offline and persist locally.</p></details>
-      <details><summary>How should I use the lanes?</summary><p>High = critical, Due Today = time-bound, General = everything else.</p></details>
-      <details><summary>What happens at midnight?</summary><p>The list resets to keep focus; finished items stay in Completed.</p></details>
-      <details><summary>Can I restore a finished task?</summary><p>Open <em>Completed</em>, then move the item back to a lane.</p></details>
-      <details><summary>Is it mobile friendly?</summary><p>Yes. The UI is responsive across phones, tablets, and desktops.</p></details>
-      <details><summary>Where do I learn more?</summary><p>See <a href="/article4.html">How to Use</a> and our guides above.</p></details>
+    <section id="app">
+      <h2>Try it now</h2>
+      <p>The app loads instantly below — no signup, no install. Your tasks save in your browser as you type.</p>
+      <div class="input-group">
+        <input id="task-input" type="text" placeholder="Enter a new task…" aria-label="New task" />
+        <select id="task-priority" aria-label="Task priority">
+          <option value="important">High Priority</option>
+          <option value="due">Due Today</option>
+          <option value="normal" selected>General</option>
+        </select>
+        <button id="add-btn" type="button">Add Task</button>
+      </div>
+
+      <section class="group">
+        <h2>High Priority</h2>
+        <ul id="important-list" class="task-list"></ul>
+      </section>
+      <section class="group">
+        <h2>Due Today</h2>
+        <ul id="due-list" class="task-list"></ul>
+      </section>
+      <section class="group">
+        <h2>General</h2>
+        <ul id="normal-list" class="task-list"></ul>
+      </section>
+      <section class="group">
+        <h2>Completed</h2>
+        <ul id="completed-list" class="task-list"></ul>
+      </section>
     </section>
+
+    <section>
+      <h2>Who it's for</h2>
+      <p><strong>Busy professionals</strong> who want to start the day with three concrete priorities and finish before lunch. Pair the app with the techniques in our <a href="/time-management-strategies.html">time-management strategies</a> guide.</p>
+      <p><strong>Students</strong> juggling assignments, exam prep, and life. The three lanes map cleanly onto coursework (High = exam tomorrow, Due Today = today's reading, General = ongoing projects).</p>
+      <p><strong>Freelancers and contractors</strong> tracking client deliverables. Move shipped work to Completed for a clean Monday morning.</p>
+      <p><strong>Parents and households</strong> coordinating chores, errands, and shopping without a heavyweight project tool. Combined with our <a href="/etsy-guides.html">templates and guides</a>, the daily list handles the rest.</p>
+      <p><strong>Small teams</strong> using the lanes as a lightweight stand-up format: yesterday's done, today's focus, upcoming items. See practical tactics in our <a href="/productivity-tips.html">complete productivity guide</a>.</p>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently asked questions</h2>
+      <details><summary>Do I need an account or to install anything?</summary><p>No. Today's Tasks runs entirely in your browser. There is no sign-up, no app to install, and no email required.</p></details>
+      <details><summary>Where is my data stored?</summary><p>In your browser's <code>localStorage</code>, on your device only. Your task content is never sent to our servers. If you clear browser storage, the list is removed — there is no cloud copy by design.</p></details>
+      <details><summary>Does it work offline?</summary><p>Yes. Once the page is loaded, you can add, complete, and restore tasks without a network connection. Your changes persist locally between sessions.</p></details>
+      <details><summary>How should I use the lanes?</summary><p>High = critical and time-sensitive. Due Today = the outcomes that would make today a win. General = everything else worth tracking. When in doubt, default to General — the lanes work best when High and Due Today stay short.</p></details>
+      <details><summary>What happens at midnight?</summary><p>The visible task list resets to keep your view focused on today. Items aren't deleted — completed work stays in the Completed section, and you can re-add anything that still matters.</p></details>
+      <details><summary>Can I restore a completed task?</summary><p>Yes. Finished items appear in the Completed section. Click the action button to restore or remove them.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. The app is free with no in-app purchases, no premium tier, and no upsells. The site shows ads to cover hosting; see our <a href="/privacy.html">privacy policy</a> for details.</p></details>
+      <details><summary>Where do I learn more?</summary><p>Read our <a href="/how-to-use-todays-tasks.html">step-by-step how-to guide</a>, or start with the <a href="/productivity-tips.html">complete productivity guide</a> for habits and strategies that compound on top of the daily list.</p></details>
+    </section>
+
+    <aside class="related" aria-label="Related reading">
+      <strong>Related reading</strong>
+      <a href="/productivity-tips.html">→ The Complete Guide to Productivity & Time Management</a>
+      <a href="/digital-vs-paper-todo-lists.html">→ Why Digital To-Do Lists Beat Paper</a>
+      <a href="/how-to-use-todays-tasks.html">→ How to Use Today's Tasks Effectively</a>
+      <a href="/weekly-review-checklist.html">→ Weekly Review Checklist</a>
+    </aside>
   </main>
 
-  <footer class="footer">
-    © 2025 Today’s Tasks. All rights reserved.
-  </footer>
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks. All rights reserved.</footer>
 
   <script>
-    // Load saved tasks from localStorage and render them
     function loadTasks() {
       const tasks = JSON.parse(localStorage.getItem('tasks')) || {
-        important: [],
-        due: [],
-        normal: [],
-        completed: []
+        important: [], due: [], normal: [], completed: []
       };
       Object.entries(tasks).forEach(([pri, arr]) => {
         const list = document.getElementById(pri + '-list');
         if (!list) return;
         arr.forEach(text => {
           const li = document.createElement('li');
-          li.innerHTML = `
-            <span>${text}</span>
-            <button class="complete-btn" title="Mark complete">✔</button>
-          `;
+          li.innerHTML = `<span>${text}</span><button class="complete-btn" title="Mark complete">✔</button>`;
           if (pri === 'completed') li.classList.add('completed');
           list.appendChild(li);
         });
       });
     }
-
-    // Save current DOM lists back to localStorage
     function saveTasksFromDOM() {
-      const toArr = id =>
-        Array.from(document.querySelectorAll('#' + id + ' li span'))
-             .map(s => s.textContent.trim());
+      const toArr = id => Array.from(document.querySelectorAll('#' + id + ' li span')).map(s => s.textContent.trim());
       const data = {
         important: toArr('important-list'),
         due: toArr('due-list'),
@@ -150,7 +231,6 @@
       };
       localStorage.setItem('tasks', JSON.stringify(data));
     }
-
     function addTask() {
       const input = document.getElementById('task-input');
       const pri = document.getElementById('task-priority').value;
@@ -158,15 +238,11 @@
       if (!text) return;
       const list = document.getElementById(pri + '-list');
       const li = document.createElement('li');
-      li.innerHTML = `
-        <span>${text}</span>
-        <button class="complete-btn" title="Mark complete">✔</button>
-      `;
+      li.innerHTML = `<span>${text}</span><button class="complete-btn" title="Mark complete">✔</button>`;
       list.appendChild(li);
       input.value = '';
       saveTasksFromDOM();
     }
-
     function attachEvents() {
       document.getElementById('add-btn').addEventListener('click', addTask);
       document.addEventListener('click', e => {
@@ -177,14 +253,12 @@
             li.classList.add('completed');
             document.getElementById('completed-list').appendChild(li);
           } else {
-            // If clicked again in completed, remove it
             li.remove();
           }
           saveTasksFromDOM();
         }
       });
     }
-
     loadTasks();
     attachEvents();
   </script>

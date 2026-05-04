@@ -1,14 +1,4 @@
 User-agent: *
 Allow: /
 
-# Local-only admin form (data lives in localStorage; not safe for crawl).
-Disallow: /china-explore-admin.html
-
-# Thin pages held back from indexing until expanded with substantive content.
-Disallow: /blog-remote-work.html
-Disallow: /blog-8020-time-management.html
-Disallow: /blog-tool-comparison.html
-Disallow: /blog-student-balance.html
-Disallow: /blog-why-digital-todo-better.html
-
 Sitemap: https://todays-tasks.com/sitemap.xml
