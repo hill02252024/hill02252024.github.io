@@ -4,25 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Today's Tasks – Simple Productivity App | To-Do List & Task Manager</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast, privacy-first three-lane list."/>
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list for busy professionals. Plus China Explore — a curated journal of food and travel notes from across mainland China."/>
   <meta name="robots" content="index,follow,max-image-preview:large"/>
 
   <link rel="canonical" href="https://todays-tasks.com/"/>
 
-  <!-- Open Graph / Twitter -->
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Today's Tasks">
-  <meta property="og:title" content="Today's Tasks – Simple Productivity App">
-  <meta property="og:description" content="A free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast three-lane list.">
+  <meta property="og:title" content="Today's Tasks – Productivity App + China Explore">
+  <meta property="og:description" content="A free, no-signup daily to-do list for busy professionals, plus a curated journal of food and travel notes from mainland China.">
   <meta property="og:url" content="https://todays-tasks.com/">
   <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Today's Tasks – Simple Productivity App">
-  <meta name="twitter:description" content="A free, no-signup daily to-do list for busy professionals.">
+  <meta name="twitter:title" content="Today's Tasks – Productivity App + China Explore">
+  <meta name="twitter:description" content="A free, no-signup daily to-do list for busy professionals, plus a curated journal of food and travel notes from mainland China.">
   <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg">
 
-  <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
@@ -30,45 +28,6 @@
 
   <link rel="stylesheet" href="/style.css"/>
 
-  <style>
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#fafafa;margin:0;line-height:1.6}
-    .page-wrap{max-width:980px;margin:0 auto;padding:0 16px}
-    .hero{padding:56px 16px 40px;text-align:center;background:linear-gradient(180deg,#eef2ff 0%,#fafafa 100%);border-bottom:1px solid #e5e7eb}
-    .hero h1{font-size:40px;line-height:1.2;margin:0 0 12px;color:#111827}
-    .hero p.lede{font-size:18px;color:#4b5563;max-width:640px;margin:0 auto 24px}
-    .cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px}
-    .btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid #d1d5db;color:#111827;background:#fff}
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:40px 0}
-    @media(max-width:760px){.features{grid-template-columns:1fr}}
-    .feature{padding:18px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
-    .feature h3{margin:0 0 6px;font-size:17px}
-    .feature p{margin:0;font-size:14px;color:#4b5563}
-    .section{margin:48px 0}
-    .section h2{font-size:24px;margin:0 0 14px}
-    .section p{color:#374151}
-    .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
-    @media(max-width:640px){.links-grid{grid-template-columns:1fr}}
-    .link-card{padding:14px 16px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;text-decoration:none;color:#111827}
-    .link-card:hover{border-color:#111827}
-    .link-card strong{display:block;margin-bottom:4px}
-    .link-card span{font-size:13px;color:#6b7280}
-    .notice{margin:32px 0;padding:14px 16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;color:#9a3412;font-size:14px}
-    .notice a{color:#9a3412;font-weight:600}
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"Today's Tasks",
-    "applicationCategory":"ProductivityApplication",
-    "operatingSystem":"Web",
-    "url":"https://todays-tasks.com/",
-    "description":"A free, no-signup daily to-do list for busy professionals.",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
-  }
-  </script>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -82,6 +41,70 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Today's Tasks",
+    "applicationCategory":"ProductivityApplication",
+    "operatingSystem":"Web",
+    "url":"https://todays-tasks.com/",
+    "description":"A free, no-signup daily to-do list for busy professionals.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <style>
+    /* ---- Section divider with side label ---- */
+    .topic-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 24px 0 8px;
+    }
+    .topic-divider::before, .topic-divider::after {
+      content: ""; flex: 1; height: 1px; background: var(--border);
+    }
+    .topic-divider span {
+      font-size: 12.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-subtle);
+    }
+
+    /* China card grid */
+    .china-card {
+      overflow: hidden; padding: 0;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      transition: box-shadow 0.18s ease, transform 0.12s ease, border-color 0.15s ease;
+    }
+    .china-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+    }
+    .china-thumb { aspect-ratio: 16/10; background: var(--surface-2); overflow: hidden; }
+    .china-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .china-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+    .china-body h3 { font-size: 16px; margin: 0 0 6px; line-height: 1.35; }
+    .china-meta { font-size: 12.5px; color: var(--text-subtle); margin: 0 0 6px; }
+    .china-excerpt { font-size: 14px; color: var(--text-muted); margin: 0 0 12px; flex: 1; }
+    .china-card a.read-more {
+      font-size: 13.5px; color: var(--accent); font-weight: 600;
+      align-self: flex-start;
+    }
+    .china-card a.read-more:hover { color: var(--accent-hover); }
+
+    .china-loader {
+      text-align: center; padding: 32px;
+      color: var(--text-muted); font-size: 14.5px;
+    }
+
+    /* Hero CTA tweak */
+    .hero-cta {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px;
+    }
+  </style>
 </head>
 <body>
   <nav class="site-nav" aria-label="Primary">
@@ -100,50 +123,153 @@
 
   <header class="hero">
     <h1>Stay focused. Finish what matters.</h1>
-    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Capture, prioritize, and finish work with a fast three-lane list that lives in your browser — no accounts, no syncing headaches.</p>
-    <div class="cta-row">
+    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Below it, you'll also find <strong>China Explore</strong> — a curated journal of food and travel notes from across mainland China.</p>
+    <div class="hero-cta">
       <a class="btn primary" href="/todo.html">Open the App</a>
       <a class="btn" href="/productivity-tips.html">Read the Productivity Guide</a>
     </div>
   </header>
 
-  <main class="page-wrap">
-    <section class="features" aria-label="Key features">
-      <div class="feature">
-        <h3>Three-lane focus</h3>
-        <p>High Priority, Due Today, and General. Three lanes is enough to stop your day from drifting without turning planning into a chore.</p>
-      </div>
-      <div class="feature">
-        <h3>No account required</h3>
-        <p>Open the page and start. Your tasks live in your browser via local storage, never on our servers.</p>
-      </div>
-      <div class="feature">
-        <h3>Automatic midnight reset</h3>
-        <p>Each day starts fresh. Stale tasks no longer weigh on tomorrow — re-add the ones that still matter.</p>
-      </div>
-    </section>
+  <!-- ============ TODAY'S TASKS SECTION ============ -->
+  <section class="section" aria-label="Today's Tasks productivity">
+    <div class="container">
+      <div class="topic-divider"><span>① Today's Tasks · Productivity</span></div>
 
-    <section class="section">
-      <h2>Start with the right habits</h2>
-      <p>The app is the easy part. The compounding wins come from how you use it. Pick a guide:</p>
-      <div class="links-grid">
-        <a class="link-card" href="/productivity-tips-busy-professionals.html"><strong>7 Practical Productivity Tips for Busy Professionals</strong><span>Daily intentions, batched communication, single-task mode.</span></a>
-        <a class="link-card" href="/time-management-strategies.html"><strong>Time Management Strategies That Actually Work</strong><span>Energy-based planning, priority matrices, weekly reviews.</span></a>
-        <a class="link-card" href="/digital-vs-paper-todo-lists.html"><strong>The Benefits of Digital To-Do Lists</strong><span>Why a lightweight web list beats spreadsheets and paper.</span></a>
-        <a class="link-card" href="/how-to-use-todays-tasks.html"><strong>How to Use Today's Tasks</strong><span>A step-by-step walkthrough of the three-lane workflow.</span></a>
-        <a class="link-card" href="/weekly-review-checklist.html"><strong>Weekly Review Checklist</strong><span>A 20-minute reset that prevents drift.</span></a>
-        <a class="link-card" href="/etsy-guides.html"><strong>Time-Saving Templates &amp; Guides</strong><span>Curated Excel/Sheets templates for households and teams.</span></a>
+      <div class="section-header">
+        <span class="eyebrow">Productivity</span>
+        <h2>A daily list that stays out of your way</h2>
+        <p>Three priority lanes. Automatic midnight reset. Your data stays in your browser — no accounts, no syncing headaches.</p>
       </div>
-    </section>
 
-    <div class="notice">
-      <strong>Looking for the China Explore travel guide?</strong> That content is moving to a dedicated subdomain at <a href="https://china.todays-tasks.com">china.todays-tasks.com</a> (coming soon). The legacy index is still available at <a href="/china-explore.html">/china-explore.html</a> for now.
+      <div class="grid grid-3" role="list">
+        <article class="card hoverable" role="listitem">
+          <h3>Three-lane focus</h3>
+          <p>High Priority, Due Today, and General. Three lanes is enough to stop your day from drifting without turning planning into a chore.</p>
+        </article>
+        <article class="card hoverable" role="listitem">
+          <h3>No account required</h3>
+          <p>Open the page and start. Your tasks live in your browser via local storage — never sent to our servers.</p>
+        </article>
+        <article class="card hoverable" role="listitem">
+          <h3>Automatic midnight reset</h3>
+          <p>Each day starts fresh. Stale tasks no longer weigh on tomorrow — re-add the ones that still matter.</p>
+        </article>
+      </div>
+
+      <div class="section-header" style="margin-top:48px;margin-bottom:24px">
+        <h2 style="font-size:22px">Start with the right habits</h2>
+        <p>The app is the easy part. The compounding wins come from how you use it.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <a class="card hoverable card-link" href="/productivity-tips-busy-professionals.html">
+          <h3>7 Practical Productivity Tips for Busy Professionals →</h3>
+          <p>Daily intentions, batched communication, single-task mode, and a two-minute daily review.</p>
+        </a>
+        <a class="card hoverable card-link" href="/time-management-strategies.html">
+          <h3>Time Management Strategies That Actually Work →</h3>
+          <p>Energy-based planning, priority matrices, realistic capacity, and the weekly review framework.</p>
+        </a>
+        <a class="card hoverable card-link" href="/digital-vs-paper-todo-lists.html">
+          <h3>The Benefits of Digital To-Do Lists →</h3>
+          <p>Sync, edit speed, privacy, lightweight prioritization, automatic resets, and accessibility.</p>
+        </a>
+        <a class="card hoverable card-link" href="/how-to-use-todays-tasks.html">
+          <h3>How to Use Today's Tasks →</h3>
+          <p>A step-by-step walkthrough of the three-lane workflow.</p>
+        </a>
+        <a class="card hoverable card-link" href="/weekly-review-checklist.html">
+          <h3>Weekly Review Checklist →</h3>
+          <p>A 20-minute reset that prevents drift and starts Monday strong.</p>
+        </a>
+        <a class="card hoverable card-link" href="/etsy-guides.html">
+          <h3>Time-Saving Templates &amp; Guides →</h3>
+          <p>Curated Excel/Sheets templates for households and teams.</p>
+        </a>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
+  <!-- ============ CHINA EXPLORE SECTION ============ -->
+  <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)" aria-label="China Explore food and travel">
+    <div class="container">
+      <div class="topic-divider"><span>② China Explore · 美食美景</span></div>
+
+      <div class="section-header">
+        <span class="eyebrow" style="background:#fef3c7;color:#92400e">China Explore</span>
+        <h2>美食美景｜實地拍攝與在地體驗筆記</h2>
+        <p>從深圳燒烤、廣州點都德、香港街坊小食，到內地各地的景點與小吃。每一篇都是親身走過、親自拍攝。<br>
+        <a href="/china-explore.html">瀏覽完整清單 →</a></p>
+      </div>
+
+      <div id="china-grid" class="grid grid-3" aria-live="polite">
+        <div class="china-loader">載入最新美食美景中…</div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px">
+        <a class="btn" href="/china-explore.html">查看全部 China Explore 文章 →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container footer-secondary">
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
-  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks. All rights reserved.</footer>
+  <footer class="footer">© 2025 Today's Tasks. All rights reserved.</footer>
+
+  <script>
+    // China Explore feed loader — fetches from the Apps Script endpoint and
+    // renders the 9 most recent items as cards linking to the static-rendered
+    // post pages under /posts/<id>.html. Falls back gracefully on error.
+    (function(){
+      const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
+      const grid = document.getElementById('china-grid');
+      if (!grid) return;
+
+      function escHtml(s){ return String(s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+      function escAttr(s){ return escHtml(s); }
+
+      function postUrl(id){
+        return "/posts/" + encodeURIComponent(String(id||"")).replace(/%20/g,"-") + ".html";
+      }
+
+      function renderCard(p){
+        const url = postUrl(p.id);
+        const img = p.image
+          ? `<img src="${escAttr(p.image)}" alt="${escAttr(p.title||'')}" loading="lazy">`
+          : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-subtle);font-size:13px">No image</div>`;
+        const meta = [p.city, p.province, p.kind].filter(Boolean).map(escHtml).join(" · ");
+        const excerpt = p.excerpt ? `<p class="china-excerpt">${escHtml(String(p.excerpt).slice(0,90))}${String(p.excerpt).length>90?'…':''}</p>` : `<p class="china-excerpt"></p>`;
+        return `
+          <a class="china-card" href="${escAttr(url)}" aria-label="${escAttr(p.title||'')}">
+            <div class="china-thumb">${img}</div>
+            <div class="china-body">
+              <h3>${escHtml(p.title||"")}</h3>
+              ${meta ? `<div class="china-meta">${meta}</div>` : ""}
+              ${excerpt}
+              <span class="read-more">查看詳情 →</span>
+            </div>
+          </a>
+        `;
+      }
+
+      fetch(FEED_URL, { cache: "default" })
+        .then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)))
+        .then(json => {
+          const items = (Array.isArray(json.items) ? json.items : [])
+            .slice()
+            .sort((a,b) => new Date(b.created||0) - new Date(a.created||0))
+            .slice(0, 9);
+          if (!items.length) {
+            grid.innerHTML = `<div class="china-loader">暫無內容。</div>`;
+            return;
+          }
+          grid.innerHTML = items.map(renderCard).join('');
+        })
+        .catch(err => {
+          grid.innerHTML = `<div class="china-loader">讀取失敗，請稍後再試。<br><a href="/china-explore.html">直接前往清單頁面 →</a></div>`;
+        });
+    })();
+  </script>
 </body>
 </html>

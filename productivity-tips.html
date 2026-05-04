@@ -48,24 +48,39 @@
   </script>
 
   <style>
-    .wrap{max-width:880px;margin:24px auto;padding:0 16px;color:#111827;line-height:1.7}
-    .wrap h1{font-size:32px;line-height:1.2;margin:8px 0 8px}
-    .lede{font-size:18px;color:#374151;margin:0 0 18px}
-    .toc{border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;background:#f8fafc;margin:18px 0}
-    .toc strong{display:block;margin-bottom:6px;font-size:14px;text-transform:uppercase;letter-spacing:0.5px;color:#6b7280}
-    .toc ol{margin:0;padding-left:20px}
-    .toc a{color:#1e40af}
-    .wrap h2{font-size:24px;margin:36px 0 8px}
-    .wrap h3{font-size:18px;margin:18px 0 6px}
-    .wrap p{margin:8px 0}
-    .article-card{display:block;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin:10px 0;background:#fff;text-decoration:none;color:inherit}
-    .article-card:hover{border-color:#111827}
-    .article-card strong{display:block;margin-bottom:4px}
-    .article-card span{display:block;color:#4b5563;font-size:14px}
-    .cta-box{background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:16px 20px;margin:24px 0}
-    .cta-box a{color:#1e40af;font-weight:600}
-    .faq dt{font-weight:600;margin-top:14px}
-    .faq dd{margin:4px 0 0;color:#374151}
+    /* Page-specific extensions on top of the global design system. */
+    .wrap { max-width: 880px; margin: 0 auto; padding: 32px 24px; }
+    .wrap > .lede { font-size: 18.5px; color: var(--text-muted); margin: 0 0 24px; line-height: 1.6; }
+    .article-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 18px 20px; margin: 12px 0;
+      background: var(--surface);
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.18s ease, border-color 0.15s ease, transform 0.12s ease;
+    }
+    .article-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      color: inherit;
+      text-decoration: none;
+    }
+    .article-card strong { display: block; margin-bottom: 4px; font-size: 15.5px; color: var(--text); }
+    .article-card span { display: block; color: var(--text-muted); font-size: 14px; }
+
+    .cta-box {
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--r-lg);
+      padding: 20px 24px; margin: 28px 0;
+      color: #1e3a8a;
+    }
+    .cta-box a { color: var(--accent-hover); font-weight: 700; }
+
+    .faq dt { font-weight: 700; margin-top: 18px; color: var(--text); }
+    .faq dd { margin: 6px 0 0; color: var(--text-muted); }
   </style>
 </head>
 <body>

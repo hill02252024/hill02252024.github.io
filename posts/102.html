@@ -55,25 +55,35 @@
   </script>
 
   <style>
-    body{background:#f8fafc;color:#111827;line-height:1.7}
-    .wrap{max-width:860px;margin:0 auto;padding:20px}
-    .breadcrumbs{font-size:14px;color:#6b7280;margin:8px 0 6px}
-    .breadcrumbs a{color:#2563eb;text-decoration:none}
-    .hero{border-radius:12px;overflow:hidden;margin:12px 0 16px;background:#fff}
-    .hero img{width:100%;height:auto;object-fit:cover;display:block}
-    h1{font-size:28px;margin:6px 0 10px}
-    .meta{font-size:14px;color:#6b7280;margin-bottom:14px}
-    .tags{margin:8px 0;display:flex;gap:8px;flex-wrap:wrap}
-    .tag{font-size:12px;background:#eef2ff;border:1px solid #c7d2fe;color:#3730a3;border-radius:999px;padding:2px 8px}
-    .article{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}
-    .article p{margin:12px 0}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
-    .btn{display:inline-block;border:1px solid #d1d5db;border-radius:8px;padding:10px 12px;background:#fff;color:#111827;text-decoration:none}
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    .pager{display:flex;justify-content:space-between;gap:8px;margin:16px 0}
-    .pager a{flex:1;text-align:center}
-    .author{margin-top:18px;padding:14px;border:1px solid #e5e7eb;border-radius:12px;background:#fafafa;color:#374151;font-size:14px}
-    footer{margin-top:28px;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px}
+    /* Page-specific extensions on top of the global design system. */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 24px; }
+    .breadcrumbs { font-size: 13.5px; color: var(--text-subtle); margin: 8px 0 12px; }
+    .breadcrumbs a { color: var(--accent); }
+    .hero {
+      border-radius: var(--r-lg); overflow: hidden;
+      margin: 12px 0 20px; background: var(--surface);
+    }
+    .hero img { width: 100%; height: auto; object-fit: cover; display: block; }
+    .article {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px 28px 24px;
+    }
+    .article h1 { font-size: clamp(24px, 3vw, 30px); margin: 0 0 10px; }
+    .article p { margin: 14px 0; line-height: 1.75; }
+    .meta { font-size: 14px; color: var(--text-subtle); margin: 0 0 14px; }
+    .tags { margin: 8px 0 4px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 12px; background: var(--accent-soft); color: var(--accent-hover);
+      border: 1px solid #bfdbfe; border-radius: 999px; padding: 2px 9px;
+    }
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 4px; }
+    .pager { display: flex; justify-content: space-between; gap: 10px; margin: 20px 0; }
+    .pager a { flex: 1; text-align: center; }
+    .author {
+      margin-top: 22px; padding: 16px 18px;
+      border: 1px solid var(--border); border-radius: var(--r);
+      background: var(--surface-2); color: var(--text-muted); font-size: 14px;
+    }
   </style>
 </head>
 <body>
