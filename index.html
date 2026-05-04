@@ -104,6 +104,25 @@
     .hero-cta {
       display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px;
     }
+
+    /* ---- AdSense side rails (160x600 skyscrapers) ----
+       Floated into the empty side margins on wide screens via position:fixed,
+       which keeps the existing single-column layout 100% intact. Hidden under
+       1480px so they don't crowd or overlap the main content. */
+    .ad-rail {
+      position: fixed;
+      top: 96px;          /* below the sticky nav */
+      width: 160px;
+      height: 600px;
+      z-index: 5;
+    }
+    .ad-rail-left  { left:  max(16px, calc(50% - 720px)); }
+    .ad-rail-right { right: max(16px, calc(50% - 720px)); }
+    .ad-rail ins { display: inline-block; width: 160px; height: 600px; }
+
+    @media (max-width: 1480px) {
+      .ad-rail { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -120,6 +139,22 @@
     <a href="/contact.html">Contact</a>
     <a href="/privacy.html">Privacy Policy</a>
   </nav>
+
+  <!-- Side ad rails (160x600). Hidden under 1480px viewport via CSS. -->
+  <aside class="ad-rail ad-rail-left" aria-label="Sponsored">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:160px;height:600px"
+         data-ad-client="ca-pub-7165265186193287"
+         data-ad-slot="6533122288"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+  <aside class="ad-rail ad-rail-right" aria-label="Sponsored">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:160px;height:600px"
+         data-ad-client="ca-pub-7165265186193287"
+         data-ad-slot="7387023042"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
 
   <header class="hero">
     <h1>Stay focused. Finish what matters.</h1>
