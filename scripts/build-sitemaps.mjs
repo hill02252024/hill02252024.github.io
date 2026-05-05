@@ -2,17 +2,44 @@
 //
 // Builds three sitemap files:
 //   sitemap-pages.xml  — homepage + static indexable pages (apex domain)
-//   sitemap-posts.xml  — dynamic China-explore posts (post.html?id=…)
+//   sitemap-posts.xml  — China-explore posts that pass the indexability gate
 //   sitemap.xml        — sitemap index referencing both
 //
-// Run via the daily GitHub Action (.github/workflows/build-sitemaps.yml).
+// Indexability gate matches scripts/static-render-posts.mjs (Phase 3d):
+//   - >= 250 English words OR >= 500 Chinese characters of body content.
 import fs from "node:fs/promises";
 
 const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
 const SITE = "https://todays-tasks.com";
+const POST_DIR = "china/posts";
+const MIN_ENGLISH_WORDS = 250;
+const MIN_CJK_CHARS = 500;
 
 function esc(s=""){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function iso(d){try{return new Date(d).toISOString()}catch{return new Date().toISOString();}}
+
+function shouldIndex(p) {
+  const text = String((p.excerpt || "") + " " + (p.content || ""))
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const englishWords = text.match(/[A-Za-z]+(?:['-][A-Za-z]+)*/g) || [];
+  const cjkChars = text.match(/[㐀-鿿豈-﫿]/g) || [];
+  return englishWords.length >= MIN_ENGLISH_WORDS || cjkChars.length >= MIN_CJK_CHARS;
+}
+
+function makeSlug(item) {
+  const id = String(item.id || "").trim();
+  if (id && /^[A-Za-z0-9_-]+$/.test(id)) return id;
+  const title = String(item.title || "").trim();
+  const base = title
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+  return base || `post-${Math.random().toString(36).slice(2, 10)}`;
+}
 
 const res = await fetch(FEED_URL, {cache:"no-store"});
 if(!res.ok){throw new Error("Fetch feed failed: "+res.status);}
@@ -20,16 +47,23 @@ const json = await res.json();
 const items = Array.isArray(json.items)?json.items:[];
 const now = iso(Date.now());
 
-// Static-rendered post URLs (one HTML file per item under /posts/<id>.html).
-// Slug = item id verbatim (matches scripts/static-render-posts.mjs makeSlug
-// when id is alphanumeric — which is the Apps Script default).
-const postUrls = items.map(it=>({
-  loc:`${SITE}/posts/${encodeURIComponent(String(it.id||"")).replace(/%20/g,"-")}.html`,
-  lastmod:iso(it.created||json.updated||Date.now()),
+// Only items that pass shouldIndex go into the sitemap.
+// Slug derivation must match static-render-posts.mjs exactly so URLs line up.
+const itemsWithSlug = items.map(it => ({ ...it, _slug: makeSlug(it) }));
+const seenSlugs = new Map();
+for (const it of itemsWithSlug) {
+  const count = (seenSlugs.get(it._slug) || 0) + 1;
+  seenSlugs.set(it._slug, count);
+  if (count > 1) it._slug = `${it._slug}-${count}`;
+}
+const indexableItems = itemsWithSlug.filter(shouldIndex);
+const postUrls = indexableItems.map(it => ({
+  loc: `${SITE}/${POST_DIR}/${it._slug}.html`,
+  lastmod: iso(it.created || json.updated || Date.now()),
 }));
 
-// Static pages that should be indexed. Keep this list aligned with robots.txt;
-// noindexed pages (admin, thin blogs) MUST NOT appear here.
+// Static pages that should be indexed. Keep aligned with on-page robots tags.
+// /china/ is intentionally excluded — it's noindex while posts are being expanded.
 const STATIC_PAGES = [
   "/about.html",
   "/contact.html",
@@ -40,6 +74,7 @@ const STATIC_PAGES = [
   "/digital-vs-paper-todo-lists.html",
   "/how-to-use-todays-tasks.html",
   "/weekly-review-checklist.html",
+  "/time-blocking-guide.html",
   "/etsy-guides.html",
   "/todo.html",
 ];
@@ -48,19 +83,15 @@ const STATIC_PAGES = [
 const sitemapPages=`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE}/</loc><lastmod>${iso(json.updated||Date.now())}</lastmod></url>
-  <url><loc>${SITE}/china-explore.html</loc></url>
   ${STATIC_PAGES.map(p=>`<url><loc>${SITE}${p}</loc></url>`).join("\n  ")}
 </urlset>`;
 
 await fs.writeFile("sitemap-pages.xml", sitemapPages, "utf8");
 
 // ---- sitemap-posts.xml ----
-// Posts are noindexed while content is being expanded (AdSense Phase 1).
-// We emit an empty <urlset> so Google sees no URLs to crawl from this sitemap
-// instead of the noindex post URLs. Re-enable by replacing this block with the
-// previous postUrls map once posts are substantive.
 const sitemapPosts=`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${postUrls.map(u=>`<url><loc>${esc(u.loc)}</loc><lastmod>${u.lastmod}</lastmod></url>`).join("\n  ")}
 </urlset>`;
 
 await fs.writeFile("sitemap-posts.xml", sitemapPosts, "utf8");
@@ -74,8 +105,8 @@ const sitemapIndex=`<?xml version="1.0" encoding="UTF-8"?>
 
 await fs.writeFile("sitemap.xml", sitemapIndex, "utf8");
 
-// ---- feed.xml ----
-const latest=items.slice().sort((a,b)=>new Date(b.created||0)-new Date(a.created||0)).slice(0,50);
+// ---- feed.xml (RSS — only indexable posts) ----
+const latest=indexableItems.slice().sort((a,b)=>new Date(b.created||0)-new Date(a.created||0)).slice(0,50);
 const rss=`<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
 <title>China Explore – 最新更新</title>
@@ -83,7 +114,7 @@ const rss=`<?xml version="1.0" encoding="UTF-8"?>
 <description>中國美食美景分享</description>
 <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${latest.map(it=>{
-  const url=`${SITE}/posts/${encodeURIComponent(String(it.id||"")).replace(/%20/g,"-")}.html`;
+  const url=`${SITE}/${POST_DIR}/${it._slug}.html`;
   return `<item><title>${esc(it.title||"")}</title>
   <link>${esc(url)}</link><guid>${esc(url)}</guid>
   <pubDate>${new Date(it.created||Date.now()).toUTCString()}</pubDate>
@@ -93,4 +124,4 @@ ${latest.map(it=>{
 
 await fs.writeFile("feed.xml", rss, "utf8");
 
-console.log(`✅ sitemap-pages.xml (${STATIC_PAGES.length + 2}), sitemap-posts.xml (empty urlset; posts are noindex), sitemap.xml (index), feed.xml (${latest.length}) updated.`);
+console.log(`✅ sitemap-pages.xml (${STATIC_PAGES.length + 1}), sitemap-posts.xml (${postUrls.length} indexable / ${items.length} total), sitemap.xml (index), feed.xml (${latest.length}) updated.`);

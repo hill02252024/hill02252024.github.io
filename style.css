@@ -74,49 +74,139 @@ li { margin: 4px 0; }
 code { background: var(--surface-2); padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
 hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 
-/* ---------- Top navigation ---------- */
-.site-nav {
-  background: var(--nav-bg);
+/* ---------- Top navigation (centered, frosted, sticky) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+.site-brand {
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.site-brand:hover { color: var(--accent-hover); text-decoration: none; }
+.site-nav {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
   padding: 0;
   margin: 0;
-  position: sticky; top: 0; z-index: 50;
-  box-shadow: var(--shadow-sm);
 }
 .site-nav a {
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 16px;
-  font-size: 14px;
+  position: relative;
+  padding: 8px 14px;
+  color: var(--text-muted);
   font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
   white-space: nowrap;
   line-height: 1.2;
-  transition: background-color 0.15s ease;
+  transition: color 0.15s ease;
 }
-.site-nav a:hover, .site-nav a:focus {
-  background: var(--nav-bg-hover);
-  color: #fff;
-  text-decoration: none;
-  outline: none;
-}
-.site-nav a.active {
-  background: var(--nav-bg-active);
-  font-weight: 700;
-  position: relative;
-}
-.site-nav a.active::after {
+.site-nav a::after {
   content: "";
-  position: absolute; left: 16px; right: 16px; bottom: 8px;
-  height: 2px; background: var(--accent);
+  position: absolute;
+  left: 14px; right: 14px; bottom: 4px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  border-radius: 1px;
 }
-@media (max-width: 760px) {
-  .site-nav a { padding: 11px 12px; font-size: 13px; }
+.site-nav a:hover, .site-nav a:focus { color: var(--text); outline: none; }
+.site-nav a:hover::after, .site-nav a:focus::after { transform: scaleX(1); }
+.site-nav a.active { color: var(--text); font-weight: 700; }
+.site-nav a.active::after { transform: scaleX(1); }
+.site-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--r);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.08s ease;
+}
+.site-cta:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
+.site-cta:active { transform: translateY(1px); }
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-toggle-bar {
+  display: block;
+  width: 18px; height: 2px;
+  background: var(--text);
+  margin: 4px 0;
+  border-radius: 1px;
 }
 
-/* Compatibility shim — anything still using .compliance-links inherits */
-.compliance-links { background: var(--nav-bg); }
+@media (max-width: 768px) {
+  .site-header-inner { height: 56px; gap: 8px; }
+  .nav-toggle { display: block; order: 3; }
+  .site-cta { display: none; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 56px; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    padding: 8px 16px 16px;
+    gap: 0;
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+  .site-header.is-open .site-nav { display: flex; }
+  .site-header.is-open .site-cta {
+    display: inline-flex;
+    margin: 12px 16px 16px;
+    align-self: flex-start;
+    order: 99;
+  }
+  .site-nav a {
+    padding: 14px 8px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav a:last-child { border-bottom: 0; }
+  .site-nav a::after { display: none; }
+  .site-nav a.active { color: var(--accent); }
+}
 
 /* ---------- Layout primitives ---------- */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }

@@ -96,19 +96,30 @@
   </style>
 </head>
 <body>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="/">Home</a>
-    <a href="/todo.html" class="active" aria-current="page">Todo App</a>
-    <a href="/productivity-tips.html">Productivity Tips</a>
-    <a href="/time-management-strategies.html">Time Management</a>
-    <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
-    <a href="/how-to-use-todays-tasks.html">How to Use</a>
-    <a href="/weekly-review-checklist.html">Weekly Review</a>
-    <a href="/etsy-guides.html">Templates</a>
-    <a href="/about.html">About</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/privacy.html">Privacy Policy</a>
-  </nav>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/">Today's Tasks</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="/productivity-tips.html">Productivity Tips</a>
+        <a href="/time-management-strategies.html">Time Management</a>
+        <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
+        <a href="/how-to-use-todays-tasks.html">How to Use</a>
+        <a href="/weekly-review-checklist.html">Weekly Review</a>
+        <a href="/time-blocking-guide.html">Time Blocking</a>
+        <a href="/etsy-guides.html">Templates</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+      <a class="site-cta active" aria-current="page" href="/todo.html">Todo App</a>
+    </div>
+  </header>
+  <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
 
   <header class="hero">
     <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>

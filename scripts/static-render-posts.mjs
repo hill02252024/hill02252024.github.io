@@ -1,23 +1,20 @@
 // scripts/static-render-posts.mjs
 //
 // Fetches all China-explore posts from the Apps Script feed and writes one
-// static HTML file per post under /posts/<slug>.html. The slug is derived from
-// the post id (or from a sanitized title when present), guaranteeing stable
-// URLs that don't depend on JS execution.
+// static HTML file per post under /china/posts/<slug>.html.
 //
-// Why: previously each post lived at /post.html?id=<id> and was rendered at
-// runtime by JS. That weakens SEO (query-string canonicals, JS-dependent
-// content) and breaks if the Apps Script endpoint is rate-limited. Static
-// pages fix both. The dynamic /post.html template is kept as a fallback.
-//
-// Usage: node scripts/static-render-posts.mjs
-//        npx run from the GitHub Action alongside build-sitemaps.mjs.
+// Indexability is gated by shouldIndex(): a post must have at least 250
+// English words OR 500 Chinese characters of body content (excerpt + content,
+// HTML stripped) to be indexed. Otherwise it gets noindex,follow and is
+// excluded from sitemap-posts.xml.
 import fs from "node:fs/promises";
 import path from "node:path";
 
 const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
 const SITE = "https://todays-tasks.com";
-const OUT_DIR = "posts";
+const OUT_DIR = "china/posts";
+const MIN_ENGLISH_WORDS = 250;
+const MIN_CJK_CHARS = 500;
 
 function escHtml(s = "") {
   return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
@@ -25,8 +22,6 @@ function escHtml(s = "") {
 function escAttr(s = "") { return escHtml(s); }
 function iso(d) { try { return new Date(d).toISOString(); } catch { return new Date().toISOString(); } }
 
-// Slug derivation: stable, URL-safe, prefers id (the Apps Script id is already
-// short and unique). Falls back to a sanitized title prefix when id is empty.
 function makeSlug(item) {
   const id = String(item.id || "").trim();
   if (id && /^[A-Za-z0-9_-]+$/.test(id)) return id;
@@ -45,13 +40,49 @@ function renderBody(p) {
   return text.split(/\n{2,}/).map(seg => `<p>${escHtml(seg).replace(/\n/g, "<br>")}</p>`).join("");
 }
 
+// Phase 3d — auto-index by content length.
+// Posts that don't meet the threshold stay noindex,follow and out of the sitemap.
+export function shouldIndex(p) {
+  const text = String((p.excerpt || "") + " " + (p.content || ""))
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const englishWords = text.match(/[A-Za-z]+(?:['-][A-Za-z]+)*/g) || [];
+  const cjkChars = text.match(/[㐀-鿿豈-﫿]/g) || [];
+  return englishWords.length >= MIN_ENGLISH_WORDS || cjkChars.length >= MIN_CJK_CHARS;
+}
+
+function navBlock() {
+  return `  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/">Today's Tasks</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="/productivity-tips.html">Productivity Tips</a>
+        <a href="/time-management-strategies.html">Time Management</a>
+        <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
+        <a href="/how-to-use-todays-tasks.html">How to Use</a>
+        <a href="/weekly-review-checklist.html">Weekly Review</a>
+        <a href="/time-blocking-guide.html">Time Blocking</a>
+        <a href="/etsy-guides.html">Templates</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+      <a class="site-cta" href="/todo.html">Todo App</a>
+    </div>
+  </header>
+  <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>`;
+}
+
 function postHtml(p, prev, next) {
-  const slug = makeSlug(p);
+  const slug = p._slug;
   const url = `${SITE}/${OUT_DIR}/${slug}.html`;
   const title = p.title || "China Explore";
-  // Only emit description-class metadata when there's a real excerpt. Using a
-  // shared fallback string across 100+ pages produced duplicate <meta description>
-  // on every post — flagged in the AdSense audit.
   const desc = (p.excerpt || "").trim();
   const hasDesc = desc.length > 0;
   const img = p.image || `${SITE}/assets/1.jpg`;
@@ -62,8 +93,9 @@ function postHtml(p, prev, next) {
   const authority = isFood
     ? `<a class="btn primary" href="https://www.dianping.com/search/keyword/2/0_${q}" target="_blank" rel="nofollow noopener">權威連結：大眾點評</a>`
     : `<a class="btn primary" href="https://www.tripadvisor.com/Search?q=${q}" target="_blank" rel="nofollow noopener">權威連結：Tripadvisor</a>`;
-  const prevLink = prev ? `<a class="btn" href="/${OUT_DIR}/${makeSlug(prev)}.html">← 上一篇：${escHtml(prev.title || "")}</a>` : `<span></span>`;
-  const nextLink = next ? `<a class="btn" href="/${OUT_DIR}/${makeSlug(next)}.html">下一篇：${escHtml(next.title || "")} →</a>` : `<span></span>`;
+  const prevLink = prev ? `<a class="btn" href="/${OUT_DIR}/${prev._slug}.html">← 上一篇：${escHtml(prev.title || "")}</a>` : `<span></span>`;
+  const nextLink = next ? `<a class="btn" href="/${OUT_DIR}/${next._slug}.html">下一篇：${escHtml(next.title || "")} →</a>` : `<span></span>`;
+  const indexable = shouldIndex(p);
 
   return `<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -72,8 +104,7 @@ function postHtml(p, prev, next) {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>${escHtml(title)}｜China Explore</title>
   ${hasDesc ? `<meta name="description" content="${escAttr(desc.slice(0, 160))}" />` : ""}
-  <!-- Posts are noindexed while content is being expanded. AdSense Phase 1. -->
-  <meta name="robots" content="noindex,follow" />
+  ${indexable ? `<meta name="robots" content="index,follow,max-image-preview:large" />` : `<meta name="robots" content="noindex,follow" />`}
   <link rel="canonical" href="${url}" />
 
   <meta property="og:locale" content="zh_TW" />
@@ -101,7 +132,7 @@ function postHtml(p, prev, next) {
     "@type":"BreadcrumbList",
     "itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},
-      {"@type":"ListItem","position":2,"name":"China Explore","item":"${SITE}/china-explore.html"},
+      {"@type":"ListItem","position":2,"name":"China Explore","item":"${SITE}/china/"},
       {"@type":"ListItem","position":3,"name":${JSON.stringify(title)},"item":"${url}"}
     ]
   }
@@ -123,7 +154,6 @@ function postHtml(p, prev, next) {
   </script>
 
   <style>
-    /* Page-specific extensions on top of the global design system. */
     .wrap { max-width: 860px; margin: 0 auto; padding: 24px; }
     .breadcrumbs { font-size: 13.5px; color: var(--text-subtle); margin: 8px 0 12px; }
     .breadcrumbs a { color: var(--accent); }
@@ -155,23 +185,11 @@ function postHtml(p, prev, next) {
   </style>
 </head>
 <body>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="/">Home</a>
-    <a href="/todo.html">Todo App</a>
-    <a href="/productivity-tips.html">Productivity Tips</a>
-    <a href="/time-management-strategies.html">Time Management</a>
-    <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
-    <a href="/how-to-use-todays-tasks.html">How to Use</a>
-    <a href="/weekly-review-checklist.html">Weekly Review</a>
-    <a href="/etsy-guides.html">Templates</a>
-    <a href="/about.html">About</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/privacy.html">Privacy Policy</a>
-  </nav>
+${navBlock()}
 
   <main class="wrap">
     <nav class="breadcrumbs" aria-label="Breadcrumbs">
-      <a href="/">Home</a> › <a href="/china-explore.html">China Explore</a> › <span>${escHtml(title)}</span>
+      <a href="/">Home</a> › <a href="/china/">China Explore</a> › <span>${escHtml(title)}</span>
     </nav>
 
     <article class="article">
@@ -184,7 +202,7 @@ function postHtml(p, prev, next) {
 
       <div class="cta-row">
         ${authority}
-        <a class="btn" href="/china-explore.html">回到清單</a>
+        <a class="btn" href="/china/">回到清單</a>
       </div>
 
       <div class="author">
@@ -215,17 +233,17 @@ const items = (Array.isArray(json.items) ? json.items : []).slice().sort((a, b) 
 
 await fs.mkdir(OUT_DIR, { recursive: true });
 
-// Pre-compute slugs once so prev/next links are stable.
 const itemsWithSlug = items.map(it => ({ ...it, _slug: makeSlug(it) }));
 const seenSlugs = new Map();
 for (const it of itemsWithSlug) {
-  // Disambiguate slug collisions by appending a numeric suffix.
   const count = (seenSlugs.get(it._slug) || 0) + 1;
   seenSlugs.set(it._slug, count);
   if (count > 1) it._slug = `${it._slug}-${count}`;
 }
 
 let written = 0;
+let indexed = 0;
+let noindexed = 0;
 for (let i = 0; i < itemsWithSlug.length; i++) {
   const p = itemsWithSlug[i];
   const prev = itemsWithSlug[i + 1] || null;
@@ -233,6 +251,7 @@ for (let i = 0; i < itemsWithSlug.length; i++) {
   const html = postHtml(p, prev, next);
   await fs.writeFile(path.join(OUT_DIR, `${p._slug}.html`), html, "utf8");
   written++;
+  if (shouldIndex(p)) indexed++; else noindexed++;
 }
 
-console.log(`✅ static-render-posts.mjs wrote ${written} files to /${OUT_DIR}/`);
+console.log(`✅ static-render-posts.mjs wrote ${written} files to /${OUT_DIR}/ (${indexed} indexable, ${noindexed} noindex)`);

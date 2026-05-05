@@ -1,0 +1,178 @@
+<!--
+  Article template — copy this file to the repo root with a descriptive slug
+  (e.g. /how-i-handle-email.html), then fill in every {{PLACEHOLDER}}.
+
+  Checklist when adding a new article:
+    1. Replace every {{...}} placeholder.
+    2. Add the new path to STATIC_PAGES in scripts/build-sitemaps.mjs.
+    3. Add a card link from productivity-tips.html (the pillar) and from
+       index.html's "Start with the right habits" grid.
+    4. Add the new article URL to the "Related articles" aside on at least
+       two thematically adjacent supporting articles.
+    5. Run `node scripts/build-sitemaps.mjs` and commit.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Title: 50–60 chars, unique, descriptive, no trailing brand suffix -->
+  <title>{{TITLE_50_60_CHARS}}</title>
+
+  <!-- Description: 120–155 chars, click-intent, no boilerplate -->
+  <meta name="description" content="{{DESC_120_155_CHARS}}" />
+
+  <!-- Canonical: must use apex todays-tasks.com -->
+  <link rel="canonical" href="https://todays-tasks.com/{{SLUG}}.html" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{TITLE_50_60_CHARS}}" />
+  <meta property="og:description" content="{{DESC_120_155_CHARS}}" />
+  <meta property="og:url" content="https://todays-tasks.com/{{SLUG}}.html" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TITLE_50_60_CHARS}}" />
+  <meta name="twitter:description" content="{{DESC_120_155_CHARS}}" />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
+
+  <!-- Google AdSense (do not modify the client/account IDs) -->
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <!-- Global stylesheet (do not inline page-specific styles unless necessary) -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Breadcrumb structured data — Home → Pillar → Article -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+      {"@type":"ListItem","position":2,"name":"Productivity & Time Management","item":"https://todays-tasks.com/productivity-tips.html"},
+      {"@type":"ListItem","position":3,"name":"{{TITLE_50_60_CHARS}}","item":"https://todays-tasks.com/{{SLUG}}.html"}
+    ]
+  }
+  </script>
+
+  <!-- Article structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"{{TITLE_50_60_CHARS}}",
+    "description":"{{DESC_120_155_CHARS}}",
+    "author":{"@type":"Person","name":"Hill"},
+    "publisher":{"@type":"Organization","name":"Today's Tasks"},
+    "mainEntityOfPage":"https://todays-tasks.com/{{SLUG}}.html",
+    "image":"https://todays-tasks.com/assets/1.jpg",
+    "inLanguage":"en"
+  }
+  </script>
+
+  <style>
+    /* Page-specific style additions go here. Keep minimal — most styling
+       comes from style.css. Common patterns: .toc, .callout, .article-body */
+    .article-wrap { max-width: 780px; margin: 0 auto; padding: 32px 24px; }
+    .article-wrap h1 { font-size: clamp(28px, 4vw, 38px); margin: 0 0 12px; letter-spacing: -0.02em; }
+    .article-wrap .lede { font-size: 18px; color: var(--text-muted); margin: 0 0 24px; line-height: 1.6; }
+    .article-wrap h2 { margin-top: 36px; font-size: 22px; }
+    .article-wrap p, .article-wrap ul, .article-wrap ol { font-size: 16.5px; line-height: 1.75; }
+    .related-aside {
+      max-width: 780px; margin: 32px auto 16px;
+      padding: 14px 18px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); font-size: 15px;
+    }
+    .related-aside strong { display: block; margin-bottom: 6px; }
+    .related-aside a { display: block; color: var(--accent-hover); margin: 3px 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ============== HEADER (DO NOT MODIFY) ============== -->
+  <!-- Identical site-header is used on every public page. Keep in sync with
+       style.css and the other pages whenever the nav changes. -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/">Today's Tasks</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="/productivity-tips.html">Productivity Tips</a>
+        <a href="/time-management-strategies.html">Time Management</a>
+        <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
+        <a href="/how-to-use-todays-tasks.html">How to Use</a>
+        <a href="/weekly-review-checklist.html">Weekly Review</a>
+        <a href="/time-blocking-guide.html">Time Blocking</a>
+        <a href="/etsy-guides.html">Templates</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+      <a class="site-cta" href="/todo.html">Todo App</a>
+    </div>
+  </header>
+  <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
+
+  <main class="article-wrap article-body">
+    <!-- ============== HERO ============== -->
+    <!-- The H1 should match the <title> tag's main keyword phrase. The lede
+         paragraph is what shows up in social shares; it's what readers see
+         first, so it carries the most weight. Aim for 1–2 sentences. -->
+    <h1>{{TITLE_50_60_CHARS}}</h1>
+    <p class="lede">{{LEDE_1_TO_2_SENTENCES}}</p>
+
+    <!-- ============== ARTICLE BODY ============== -->
+    <!-- Default voice: first-person ("I" / "we"), opinionated, with at least
+         one personal anecdote or specific example. Avoid generic productivity
+         platitudes — replace them with concrete numbers, named tools, or
+         specific scenarios. -->
+
+    <h2>{{H2_SECTION_1}}</h2>
+    <p>{{BODY_TEXT_1}}</p>
+
+    <h2>{{H2_SECTION_2}}</h2>
+    <p>{{BODY_TEXT_2}}</p>
+
+    <h2>{{H2_SECTION_3}}</h2>
+    <p>{{BODY_TEXT_3}}</p>
+
+    <!-- ============== CTA ============== -->
+    <!-- One CTA per article, near the end. Always link to /todo.html. -->
+    <p style="margin:28px 0 8px"><a class="btn primary" href="/todo.html">Open Today's Tasks →</a></p>
+
+    <!-- ============== FAQ (optional) ============== -->
+    <!-- If included, also wire it up as FAQPage JSON-LD above. -->
+    <h2>FAQ</h2>
+    <dl class="faq">
+      <dt>{{Q1}}</dt>
+      <dd>{{A1}}</dd>
+    </dl>
+  </main>
+
+  <!-- ============== RELATED ARTICLES ASIDE (REQUIRED) ============== -->
+  <!-- Always link to:
+         1. The pillar (/productivity-tips.html)
+         2. At least two thematically adjacent supporting articles -->
+  <aside class="related-aside" aria-label="Related articles">
+    <strong>Related articles</strong>
+    <a href="/productivity-tips.html">→ Pillar: The Complete Guide to Productivity & Time Management</a>
+    <a href="/{{SIBLING_1}}.html">→ {{SIBLING_1_TITLE}}</a>
+    <a href="/{{SIBLING_2}}.html">→ {{SIBLING_2_TITLE}}</a>
+  </aside>
+
+  <!-- ============== FOOTER (DO NOT MODIFY structure) ============== -->
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+</body>
+</html>
