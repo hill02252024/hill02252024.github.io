@@ -91,15 +91,9 @@
       </button>
       <nav class="site-nav" id="primary-nav" aria-label="Primary">
         <a href="/productivity-tips.html">Productivity Tips</a>
-        <a href="/time-management-strategies.html">Time Management</a>
-        <a href="/digital-vs-paper-todo-lists.html">Digital To-Do Lists</a>
-        <a href="/how-to-use-todays-tasks.html">How to Use</a>
-        <a href="/weekly-review-checklist.html">Weekly Review</a>
         <a href="/time-blocking-guide.html">Time Blocking</a>
         <a href="/etsy-guides.html">Templates</a>
         <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/privacy.html">Privacy</a>
       </nav>
       <a class="site-cta" href="/todo.html">Todo App</a>
     </div>
@@ -122,92 +116,140 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </aside>
 
-  <header class="hero">
-    <h1>Stay focused. Finish what matters.</h1>
-    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Three priority lanes, automatic midnight reset — your data stays in your browser.</p>
-    <div class="hero-cta">
-      <a class="btn primary" href="/todo.html">Open the App</a>
-      <a class="btn" href="/productivity-tips.html">Read the Productivity Guide</a>
+  <!-- ============ HERO (two-column) ============ -->
+  <header class="home-hero">
+    <div class="home-hero-grid">
+      <div class="home-hero-text">
+        <h1>Stay focused.<br>Finish what matters.</h1>
+        <p class="home-hero-sub">A free, no-signup daily to-do list for busy professionals. Three priority lanes, automatic midnight reset — your data stays in your browser.</p>
+        <div class="home-hero-cta">
+          <a class="btn primary" href="/todo.html">Open the App</a>
+          <a class="btn outline" href="/productivity-tips.html">Read the Guide</a>
+        </div>
+        <p class="home-hero-proof">No signup · Runs in your browser · Free forever</p>
+      </div>
+      <div class="home-hero-mockup" aria-hidden="true">
+        <div class="mockup-window">
+          <div class="mockup-bar">
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-input">
+              <span>What's next?</span>
+              <span class="mockup-add">+ Add</span>
+            </div>
+            <div class="mockup-lane">
+              <div class="mockup-lane-title">High Priority</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Draft Q3 customer summary</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Review legal contract</div>
+            </div>
+            <div class="mockup-lane">
+              <div class="mockup-lane-title">Due Today</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Reply to client email</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Submit expense report</div>
+            </div>
+            <div class="mockup-lane">
+              <div class="mockup-lane-title">General</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Schedule team retrospective</div>
+              <div class="mockup-task"><span class="mockup-check"></span>Update portfolio site</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- ============ INTRO / WHAT THIS IS ============ -->
+  <!-- ============ FEATURE CARD (two-column with checkmarks) ============ -->
   <section class="section" aria-label="What Today's Tasks is">
     <div class="container">
-      <div class="container-narrow">
-        <h2>What Today's Tasks is — and what it isn't</h2>
-        <p>Today's Tasks is a single-page daily to-do list. Open the page, type a task, pick a lane, press add. Nothing gets installed. Nothing gets uploaded. You don't need an account. The app exists because almost every "minimal" to-do app I'd used over the previous decade ended up demanding setup time — workspaces, projects, tags, recurring rules — before it would let me write down a single task. After enough of that, I built the version I actually wanted to use, and it turned out plenty of other people wanted the same thing.</p>
-        <p><strong>What it is:</strong> three priority lanes (High Priority, Due Today, General), a midnight reset that clears the visible list each day so stale items don't accumulate, and local-storage persistence so your data stays in your own browser. <strong>What it isn't:</strong> a project management tool, a team collaboration platform, or a notes/wiki/calendar replacement. It's deliberately a single tool that does one thing fast.</p>
-        <p>The articles linked below cover the small set of habits the app is designed around — daily intentions, time-blocking, single-task mode, and a 20-minute Friday review. Read whichever ones address your specific friction points. Or just <a href="/todo.html">open the app</a> and start.</p>
-        <div class="btn-row" style="margin-top:18px">
-          <a class="btn primary" href="/todo.html">Open the App</a>
-          <a class="btn" href="/productivity-tips.html">Read the Productivity Guide</a>
-          <a class="btn" href="/about.html">About the project</a>
+      <div class="feature-card">
+        <div class="feature-text">
+          <h2>What Today's Tasks is — and what it isn't</h2>
+          <p>It's a single-page daily to-do list. Open it, type a task, pick a lane, press add. The constraint is the feature — there's nothing to configure, so there's nothing to drift.</p>
+          <p>It is <strong>not</strong> a project management tool, a team collaboration platform, or a notes/wiki/calendar replacement. It's deliberately a single tool that does one thing fast.</p>
         </div>
+        <ul class="feature-bullets">
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>No signup or installation</strong>
+              <span class="feature-bullet-desc">Open the page and start in five seconds. No account, no email required.</span>
+            </div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Resets at midnight automatically</strong>
+              <span class="feature-bullet-desc">Stale items don't accumulate. Today is always a fresh list.</span>
+            </div>
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Data stays in your browser</strong>
+              <span class="feature-bullet-desc">Local storage by default. Nothing is sent to our servers.</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============ TODAY'S TASKS SECTION ============ -->
-  <section class="section" aria-label="Today's Tasks productivity" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <!-- ============ PRODUCTIVITY GUIDES (3-column cards) ============ -->
+  <section class="section" aria-label="Productivity guides" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Productivity</span>
-        <h2>A daily list that stays out of your way</h2>
-        <p>Three priority lanes. Automatic midnight reset. Your data stays in your browser — no accounts, no syncing headaches.</p>
+        <span class="eyebrow">Guides</span>
+        <h2>Productivity Guides</h2>
+        <p>The small set of habits the app is designed around — written in plain language, with concrete examples.</p>
       </div>
-
-      <div class="grid grid-3" role="list">
-        <article class="card hoverable" role="listitem">
-          <h3>Three-lane focus</h3>
-          <p>High Priority, Due Today, and General. Three lanes is enough to stop your day from drifting without turning planning into a chore.</p>
-        </article>
-        <article class="card hoverable" role="listitem">
-          <h3>No account required</h3>
-          <p>Open the page and start. Your tasks live in your browser via local storage — never sent to our servers.</p>
-        </article>
-        <article class="card hoverable" role="listitem">
-          <h3>Automatic midnight reset</h3>
-          <p>Each day starts fresh. Stale tasks no longer weigh on tomorrow — re-add the ones that still matter.</p>
-        </article>
-      </div>
-
-      <div class="section-header" style="margin-top:48px;margin-bottom:24px">
-        <h2 style="font-size:22px">Start with the right habits</h2>
-        <p>The app is the easy part. The compounding wins come from how you use it.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <a class="card hoverable card-link" href="/productivity-tips-busy-professionals.html">
-          <h3>7 Practical Productivity Tips for Busy Professionals →</h3>
-          <p>Daily intentions, batched communication, single-task mode, and a two-minute daily review.</p>
+      <div class="guide-grid">
+        <a class="guide-card" href="/productivity-tips.html">
+          <span class="guide-tag">Pillar</span>
+          <h3>The Complete Guide to Productivity &amp; Time Management</h3>
+          <p>The index for the small set of habits I actually use to run my own days.</p>
+          <span class="guide-link">Read →</span>
         </a>
-        <a class="card hoverable card-link" href="/time-management-strategies.html">
-          <h3>Time Management Strategies That Actually Work →</h3>
-          <p>Energy-based planning, priority matrices, realistic capacity, and the weekly review framework.</p>
+        <a class="guide-card" href="/time-blocking-guide.html">
+          <span class="guide-tag">Time</span>
+          <h3>Time-Blocking 101: Plan a Focused Workday</h3>
+          <p>The version I actually use, three rules, one anti-pattern, plus a sample weekday schedule.</p>
+          <span class="guide-link">Read →</span>
         </a>
-        <a class="card hoverable card-link" href="/time-blocking-guide.html">
-          <h3>Time-Blocking 101: Plan a Focused Workday →</h3>
-          <p>The version I use after years of trial: three rules, one anti-pattern, how it pairs with the daily list.</p>
+        <a class="guide-card" href="/time-management-strategies.html">
+          <span class="guide-tag">Strategy</span>
+          <h3>Time Management Strategies That Actually Work</h3>
+          <p>Energy-based planning, priority matrices, realistic capacity planning.</p>
+          <span class="guide-link">Read →</span>
         </a>
-        <a class="card hoverable card-link" href="/digital-vs-paper-todo-lists.html">
-          <h3>The Benefits of Digital To-Do Lists →</h3>
-          <p>Sync, edit speed, privacy, lightweight prioritization, automatic resets, and accessibility.</p>
+        <a class="guide-card" href="/productivity-tips-busy-professionals.html">
+          <span class="guide-tag">Habits</span>
+          <h3>7 Productivity Tips for Busy Professionals</h3>
+          <p>Daily intentions, named blocks, batched communication, single-task mode.</p>
+          <span class="guide-link">Read →</span>
         </a>
-        <a class="card hoverable card-link" href="/how-to-use-todays-tasks.html">
-          <h3>How to Use Today's Tasks →</h3>
-          <p>A step-by-step walkthrough of the three-lane workflow.</p>
+        <a class="guide-card" href="/digital-vs-paper-todo-lists.html">
+          <span class="guide-tag">Tools</span>
+          <h3>Digital vs Paper To-Do Lists: Why Digital Wins</h3>
+          <p>Six concrete reasons a digital to-do list beats paper for modern work.</p>
+          <span class="guide-link">Read →</span>
         </a>
-        <a class="card hoverable card-link" href="/weekly-review-checklist.html">
-          <h3>Weekly Review Checklist →</h3>
-          <p>A 20-minute reset that prevents drift and starts Monday strong.</p>
-        </a>
-        <a class="card hoverable card-link" href="/etsy-guides.html">
-          <h3>Time-Saving Templates &amp; Guides →</h3>
-          <p>Curated Excel/Sheets templates for households and teams.</p>
+        <a class="guide-card" href="/weekly-review-checklist.html">
+          <span class="guide-tag">Review</span>
+          <h3>Weekly Review Checklist – Reset in 20 Minutes</h3>
+          <p>Clear stale tasks, re-prioritize, choose the top three for next week.</p>
+          <span class="guide-link">Read →</span>
         </a>
       </div>
     </div>
+  </section>
+
+  <!-- ============ FINAL CTA BANNER ============ -->
+  <section class="cta-banner" aria-label="Open Today's Tasks">
+    <h2>Ready to finish what matters today?</h2>
+    <a class="btn primary" href="/todo.html">Open Today's Tasks — it's free</a>
   </section>
 
   <div class="container footer-secondary">
