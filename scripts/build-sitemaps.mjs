@@ -55,9 +55,12 @@ const sitemapPages=`<?xml version="1.0" encoding="UTF-8"?>
 await fs.writeFile("sitemap-pages.xml", sitemapPages, "utf8");
 
 // ---- sitemap-posts.xml ----
+// Posts are noindexed while content is being expanded (AdSense Phase 1).
+// We emit an empty <urlset> so Google sees no URLs to crawl from this sitemap
+// instead of the noindex post URLs. Re-enable by replacing this block with the
+// previous postUrls map once posts are substantive.
 const sitemapPosts=`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${postUrls.map(u=>`<url><loc>${esc(u.loc)}</loc><lastmod>${u.lastmod}</lastmod></url>`).join("\n  ")}
 </urlset>`;
 
 await fs.writeFile("sitemap-posts.xml", sitemapPosts, "utf8");
@@ -90,4 +93,4 @@ ${latest.map(it=>{
 
 await fs.writeFile("feed.xml", rss, "utf8");
 
-console.log(`✅ sitemap-pages.xml (${STATIC_PAGES.length + 2}), sitemap-posts.xml (${postUrls.length}), sitemap.xml (index), feed.xml (${latest.length}) updated.`);
+console.log(`✅ sitemap-pages.xml (${STATIC_PAGES.length + 2}), sitemap-posts.xml (empty urlset; posts are noindex), sitemap.xml (index), feed.xml (${latest.length}) updated.`);

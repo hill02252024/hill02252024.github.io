@@ -49,7 +49,11 @@ function postHtml(p, prev, next) {
   const slug = makeSlug(p);
   const url = `${SITE}/${OUT_DIR}/${slug}.html`;
   const title = p.title || "China Explore";
-  const desc = p.excerpt || "中國美食與景點實地體驗筆記。";
+  // Only emit description-class metadata when there's a real excerpt. Using a
+  // shared fallback string across 100+ pages produced duplicate <meta description>
+  // on every post — flagged in the AdSense audit.
+  const desc = (p.excerpt || "").trim();
+  const hasDesc = desc.length > 0;
   const img = p.image || `${SITE}/assets/1.jpg`;
   const tags = (p.tags || []).map(t => `<span class="tag">#${escHtml(t)}</span>`).join("");
   const dateStr = p.created ? new Date(p.created).toISOString().slice(0, 10) : "";
@@ -67,20 +71,21 @@ function postHtml(p, prev, next) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>${escHtml(title)}｜China Explore</title>
-  <meta name="description" content="${escAttr(desc.slice(0, 160))}" />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
+  ${hasDesc ? `<meta name="description" content="${escAttr(desc.slice(0, 160))}" />` : ""}
+  <!-- Posts are noindexed while content is being expanded. AdSense Phase 1. -->
+  <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="${url}" />
 
   <meta property="og:locale" content="zh_TW" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Today's Tasks" />
   <meta property="og:title" content="${escAttr(title)}" />
-  <meta property="og:description" content="${escAttr(desc.slice(0, 200))}" />
+  ${hasDesc ? `<meta property="og:description" content="${escAttr(desc.slice(0, 200))}" />` : ""}
   <meta property="og:url" content="${url}" />
   <meta property="og:image" content="${escAttr(img)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escAttr(title)}" />
-  <meta name="twitter:description" content="${escAttr(desc.slice(0, 200))}" />
+  ${hasDesc ? `<meta name="twitter:description" content="${escAttr(desc.slice(0, 200))}" />` : ""}
   <meta name="twitter:image" content="${escAttr(img)}" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -106,7 +111,7 @@ function postHtml(p, prev, next) {
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":${JSON.stringify(title)},
-    "description":${JSON.stringify(desc.slice(0, 200))},
+    ${hasDesc ? `"description":${JSON.stringify(desc.slice(0, 200))},` : ""}
     "image":"${escAttr(img)}",
     ${dateStr ? `"datePublished":"${dateStr}",` : ""}
     "author":{"@type":"Person","name":"Hill"},

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Today's Tasks – Simple Productivity App | To-Do List & Task Manager</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list for busy professionals. Plus China Explore — a curated journal of food and travel notes from across mainland China."/>
+  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list for busy professionals. Three priority lanes, automatic midnight reset, your data stays in your browser."/>
   <meta name="robots" content="index,follow,max-image-preview:large"/>
 
   <link rel="canonical" href="https://todays-tasks.com/"/>
@@ -55,51 +55,6 @@
   </script>
 
   <style>
-    /* ---- Section divider with side label ---- */
-    .topic-divider {
-      display: flex; align-items: center; gap: 16px;
-      margin: 24px 0 8px;
-    }
-    .topic-divider::before, .topic-divider::after {
-      content: ""; flex: 1; height: 1px; background: var(--border);
-    }
-    .topic-divider span {
-      font-size: 12.5px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--text-subtle);
-    }
-
-    /* China card grid */
-    .china-card {
-      overflow: hidden; padding: 0;
-      display: flex; flex-direction: column;
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      background: var(--surface);
-      transition: box-shadow 0.18s ease, transform 0.12s ease, border-color 0.15s ease;
-    }
-    .china-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-      border-color: var(--border-strong);
-    }
-    .china-thumb { aspect-ratio: 16/10; background: var(--surface-2); overflow: hidden; }
-    .china-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .china-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
-    .china-body h3 { font-size: 16px; margin: 0 0 6px; line-height: 1.35; }
-    .china-meta { font-size: 12.5px; color: var(--text-subtle); margin: 0 0 6px; }
-    .china-excerpt { font-size: 14px; color: var(--text-muted); margin: 0 0 12px; flex: 1; }
-    .china-card a.read-more {
-      font-size: 13.5px; color: var(--accent); font-weight: 600;
-      align-self: flex-start;
-    }
-    .china-card a.read-more:hover { color: var(--accent-hover); }
-
-    .china-loader {
-      text-align: center; padding: 32px;
-      color: var(--text-muted); font-size: 14.5px;
-    }
-
     /* Hero CTA tweak */
     .hero-cta {
       display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px;
@@ -158,7 +113,7 @@
 
   <header class="hero">
     <h1>Stay focused. Finish what matters.</h1>
-    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Below it, you'll also find <strong>China Explore</strong> — a curated journal of food and travel notes from across mainland China.</p>
+    <p class="lede">Today's Tasks is a free, no-signup daily to-do list for busy professionals. Three priority lanes, automatic midnight reset — your data stays in your browser.</p>
     <div class="hero-cta">
       <a class="btn primary" href="/todo.html">Open the App</a>
       <a class="btn" href="/productivity-tips.html">Read the Productivity Guide</a>
@@ -168,8 +123,6 @@
   <!-- ============ TODAY'S TASKS SECTION ============ -->
   <section class="section" aria-label="Today's Tasks productivity">
     <div class="container">
-      <div class="topic-divider"><span>① Today's Tasks · Productivity</span></div>
-
       <div class="section-header">
         <span class="eyebrow">Productivity</span>
         <h2>A daily list that stays out of your way</h2>
@@ -225,86 +178,9 @@
     </div>
   </section>
 
-  <!-- ============ CHINA EXPLORE SECTION ============ -->
-  <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)" aria-label="China Explore food and travel">
-    <div class="container">
-      <div class="topic-divider"><span>② China Explore · 美食美景</span></div>
-
-      <div class="section-header">
-        <span class="eyebrow" style="background:#fef3c7;color:#92400e">China Explore</span>
-        <h2>美食美景｜實地拍攝與在地體驗筆記</h2>
-        <p>從深圳燒烤、廣州點都德、香港街坊小食，到內地各地的景點與小吃。每一篇都是親身走過、親自拍攝。<br>
-        <a href="/china-explore.html">瀏覽完整清單 →</a></p>
-      </div>
-
-      <div id="china-grid" class="grid grid-3" aria-live="polite">
-        <div class="china-loader">載入最新美食美景中…</div>
-      </div>
-
-      <div style="text-align:center;margin-top:28px">
-        <a class="btn" href="/china-explore.html">查看全部 China Explore 文章 →</a>
-      </div>
-    </div>
-  </section>
-
   <div class="container footer-secondary">
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
   <footer class="footer">© 2025 Today's Tasks. All rights reserved.</footer>
-
-  <script>
-    // China Explore feed loader — fetches from the Apps Script endpoint and
-    // renders the 9 most recent items as cards linking to the static-rendered
-    // post pages under /posts/<id>.html. Falls back gracefully on error.
-    (function(){
-      const FEED_URL = "https://script.google.com/macros/s/AKfycbwq5InzCeyUnW-GHe6bNqReMQMzWvwKe_pAZpD7ONHZ4LZrBdt8lgtpdxu1c57AaPx3ww/exec";
-      const grid = document.getElementById('china-grid');
-      if (!grid) return;
-
-      function escHtml(s){ return String(s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
-      function escAttr(s){ return escHtml(s); }
-
-      function postUrl(id){
-        return "/posts/" + encodeURIComponent(String(id||"")).replace(/%20/g,"-") + ".html";
-      }
-
-      function renderCard(p){
-        const url = postUrl(p.id);
-        const img = p.image
-          ? `<img src="${escAttr(p.image)}" alt="${escAttr(p.title||'')}" loading="lazy">`
-          : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-subtle);font-size:13px">No image</div>`;
-        const meta = [p.city, p.province, p.kind].filter(Boolean).map(escHtml).join(" · ");
-        const excerpt = p.excerpt ? `<p class="china-excerpt">${escHtml(String(p.excerpt).slice(0,90))}${String(p.excerpt).length>90?'…':''}</p>` : `<p class="china-excerpt"></p>`;
-        return `
-          <a class="china-card" href="${escAttr(url)}" aria-label="${escAttr(p.title||'')}">
-            <div class="china-thumb">${img}</div>
-            <div class="china-body">
-              <h3>${escHtml(p.title||"")}</h3>
-              ${meta ? `<div class="china-meta">${meta}</div>` : ""}
-              ${excerpt}
-              <span class="read-more">查看詳情 →</span>
-            </div>
-          </a>
-        `;
-      }
-
-      fetch(FEED_URL, { cache: "default" })
-        .then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)))
-        .then(json => {
-          const items = (Array.isArray(json.items) ? json.items : [])
-            .slice()
-            .sort((a,b) => new Date(b.created||0) - new Date(a.created||0))
-            .slice(0, 9);
-          if (!items.length) {
-            grid.innerHTML = `<div class="china-loader">暫無內容。</div>`;
-            return;
-          }
-          grid.innerHTML = items.map(renderCard).join('');
-        })
-        .catch(err => {
-          grid.innerHTML = `<div class="china-loader">讀取失敗，請稍後再試。<br><a href="/china-explore.html">直接前往清單頁面 →</a></div>`;
-        });
-    })();
-  </script>
 </body>
 </html>
