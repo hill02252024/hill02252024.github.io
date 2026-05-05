@@ -68,6 +68,9 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://todays-tasks.com/contact.html"}]}
+  </script>
 </head>
 <body>
   <!-- Top nav -->
@@ -96,14 +99,15 @@
   </header>
   <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
 
-  <!-- Breadcrumbs -->
-  <nav class="container" aria-label="Breadcrumb">
-    <ol style="list-style:none;display:flex;gap:8px;padding:0;margin:10px 0 0">
-      <li><a href="/index.html">Home</a></li>
-      <li aria-hidden="true">/</li>
-      <li aria-current="page">Contact</li>
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span>Home</span></a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">Contact</li>
     </ol>
   </nav>
+
+  <!-- Breadcrumbs -->
 
   <main class="container">
     <header class="group" style="text-align:center">

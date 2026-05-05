@@ -22,18 +22,6 @@
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
-      {"@type":"ListItem","position":2,"name":"Productivity & Time Management","item":"https://todays-tasks.com/productivity-tips.html"},
-      {"@type":"ListItem","position":3,"name":"How to Use Today's Tasks","item":"https://todays-tasks.com/how-to-use-todays-tasks.html"}
-    ]
-  }
-  </script>
-
   <!-- ✅ FAQ 結構化資料（有助通過審核與 SEO） -->
   <script type="application/ld+json">
   {
@@ -79,6 +67,9 @@
     .breadcrumb{font-size:13px;color:#6b7280;margin-bottom:8px}
     .breadcrumb a{color:#6b7280;text-decoration:underline}
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},{"@type":"ListItem","position":2,"name":"Productivity Tips","item":"https://todays-tasks.com/productivity-tips.html"},{"@type":"ListItem","position":3,"name":"How to Use Today's Tasks","item":"https://todays-tasks.com/how-to-use-todays-tasks.html"}]}
+  </script>
 </head>
 <body>
   <!-- 站內導覽 -->
@@ -107,10 +98,17 @@
   </header>
   <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
 
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span>Home</span></a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/productivity-tips.html">Productivity Tips</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">How to Use Today&#39;s Tasks</li>
+    </ol>
+  </nav>
+
   <main class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/index.html">Home</a> › How to Use
-    </nav>
 
     <header class="group">
       <h1>How to Use Today's Tasks</h1>

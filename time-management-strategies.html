@@ -29,23 +29,6 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://todays-tasks.com/"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Time Management",
-      "item": "https://todays-tasks.com/time-management-strategies.html"
-    }]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Time Management Strategies That Actually Work",
     "description": "Evidence-based time management strategies that reduce stress: energy-based planning, priority matrices, realistic capacity, weekly reviews, and more.",
@@ -82,6 +65,9 @@
     .breadcrumbs a{color:#4f87ff;text-decoration:none}
     .breadcrumbs a:hover{text-decoration:underline}
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},{"@type":"ListItem","position":2,"name":"Productivity Tips","item":"https://todays-tasks.com/productivity-tips.html"},{"@type":"ListItem","position":3,"name":"Time Management Strategies","item":"https://todays-tasks.com/time-management-strategies.html"}]}
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -109,10 +95,17 @@
   </header>
   <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
 
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span>Home</span></a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/productivity-tips.html">Productivity Tips</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">Time Management Strategies</li>
+    </ol>
+  </nav>
+
   <main class="container">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/index.html">Home</a> › <span>Time Management</span>
-    </nav>
 
     <h1>Time Management Strategies That Actually Work</h1>
     <p>Great time management is less about squeezing more into a calendar and more about matching the right work to the right moment. The strategies below are simple, sustainable, and designed for professionals who juggle competing priorities.</p>

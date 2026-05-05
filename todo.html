@@ -24,17 +24,6 @@
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
-      {"@type":"ListItem","position":2,"name":"Todo App","item":"https://todays-tasks.com/todo.html"}
-    ]
-  }
-  </script>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -94,6 +83,9 @@
     .related a { display: block; color: #92400e; margin: 4px 0; font-size: 14.5px; }
     .related a:hover { color: #78350f; }
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},{"@type":"ListItem","position":2,"name":"Today's Tasks App","item":"https://todays-tasks.com/todo.html"}]}
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -120,6 +112,14 @@
     </div>
   </header>
   <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
+
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span>Home</span></a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">Today&#39;s Tasks App</li>
+    </ol>
+  </nav>
 
   <header class="hero">
     <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>
