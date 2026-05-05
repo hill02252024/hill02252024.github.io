@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Today's Tasks – Free To-Do List App | No Signup, Local Storage</title>
-  <meta name="description" content="Today's Tasks is a free, no-signup daily to-do list app for busy professionals. Three priority lanes, automatic midnight reset, runs entirely in your browser." />
+  <title>Today's Tasks App – Free Browser To-Do List</title>
+  <meta name="description" content="The free Today's Tasks web app: three priority lanes, automatic midnight reset, local-storage privacy. No signup, no install, no sync needed." />
   <link rel="canonical" href="https://todays-tasks.com/todo.html" />
 
   <meta property="og:type" content="website" />
@@ -112,14 +112,15 @@
 
   <header class="hero">
     <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>
-    <p>Free, no-signup, browser-based. Three priority lanes, automatic midnight reset, your data stored locally on your device. Open it and start in five seconds.</p>
+    <p>The whole thing is one page. Type a task, pick a lane, press add. Three lanes (High Priority, Due Today, General), an automatic midnight reset so old items don't pile up, and your data stored in your own browser. No account, no install, no sync. The app starts below.</p>
     <a class="cta" href="#app">Start your list ↓</a>
   </header>
 
   <main class="container">
     <section>
       <h2>Built for one job: get today done</h2>
-      <p>Most to-do apps are project-management tools in disguise — they ask you to set up workspaces, tags, projects, sub-projects, recurring rules, and integrations before you can write down a single task. Today's Tasks does the opposite. There is one input, three lanes, and a Completed section. The whole interface fits on one screen, including on a phone.</p>
+      <p>I built Today's Tasks the week I gave up on Notion. Not because Notion is bad — it's excellent if your work needs that much structure — but because I was spending fifteen minutes every morning maintaining the system instead of doing the work. Most "minimal" to-do apps suffer from the same drift: they start simple, then ask you to set up workspaces, tags, projects, sub-projects, recurring rules, and integrations before you can write down a single task.</p>
+      <p>Today's Tasks does the opposite, and stays that way on purpose. One input. Three lanes. A Completed section. The whole interface fits on one screen, including on a phone. There is nothing to configure, which means there's nothing to drift.</p>
 
       <div class="feature-grid">
         <div class="f"><h3>No account needed</h3><p>Open the page, type, and start. Your list saves in your browser via <code>localStorage</code> — nothing is sent to our servers.</p></div>
@@ -176,23 +177,24 @@
 
     <section>
       <h2>Who it's for</h2>
-      <p><strong>Busy professionals</strong> who want to start the day with three concrete priorities and finish before lunch. Pair the app with the techniques in our <a href="/time-management-strategies.html">time-management strategies</a> guide.</p>
-      <p><strong>Students</strong> juggling assignments, exam prep, and life. The three lanes map cleanly onto coursework (High = exam tomorrow, Due Today = today's reading, General = ongoing projects).</p>
-      <p><strong>Freelancers and contractors</strong> tracking client deliverables. Move shipped work to Completed for a clean Monday morning.</p>
-      <p><strong>Parents and households</strong> coordinating chores, errands, and shopping without a heavyweight project tool. Combined with our <a href="/etsy-guides.html">templates and guides</a>, the daily list handles the rest.</p>
-      <p><strong>Small teams</strong> using the lanes as a lightweight stand-up format: yesterday's done, today's focus, upcoming items. See practical tactics in our <a href="/productivity-tips.html">complete productivity guide</a>.</p>
+      <p>Concrete examples of how I and people I've shown the app to use it day-to-day:</p>
+      <p><strong>Busy professionals.</strong> Three High Priority items by 9am — usually two outcomes I've already committed to deadline-wise, plus the one thing I'd be embarrassed to push to tomorrow again. Everything else lives in General until it earns a spot. Pair with the techniques in the <a href="/time-management-strategies.html">time-management strategies</a> guide.</p>
+      <p><strong>Students.</strong> The three lanes map cleanly onto coursework: High = exam tomorrow morning, Due Today = today's reading and the lab writeup, General = ongoing semester projects. The midnight reset means yesterday's "study chapter 4" doesn't haunt today's list — if it still matters, you re-add it deliberately.</p>
+      <p><strong>Freelancers and contractors.</strong> One client per row, what's actually in flight that day. When a deliverable ships, it moves to Completed. Friday afternoon I scan Completed to write the week's invoice memo. It's not a CRM and shouldn't be — but it's enough to keep five concurrent client threads from blurring together.</p>
+      <p><strong>Parents and households.</strong> The single-input flow is the entire point here — capture chores, errands, school pickups before they're forgotten, without opening an app. Combined with the <a href="/etsy-guides.html">templates and guides</a>, the daily list handles the rest.</p>
+      <p><strong>Small teams.</strong> A lightweight stand-up format that works as a shared screen during the morning sync: yesterday's done (Completed), today's focus (Due Today), upcoming items (General). See practical tactics in the <a href="/productivity-tips.html">complete productivity guide</a>.</p>
     </section>
 
     <section id="faq">
       <h2>Frequently asked questions</h2>
-      <details><summary>Do I need an account or to install anything?</summary><p>No. Today's Tasks runs entirely in your browser. There is no sign-up, no app to install, and no email required.</p></details>
-      <details><summary>Where is my data stored?</summary><p>In your browser's <code>localStorage</code>, on your device only. Your task content is never sent to our servers. If you clear browser storage, the list is removed — there is no cloud copy by design.</p></details>
-      <details><summary>Does it work offline?</summary><p>Yes. Once the page is loaded, you can add, complete, and restore tasks without a network connection. Your changes persist locally between sessions.</p></details>
-      <details><summary>How should I use the lanes?</summary><p>High = critical and time-sensitive. Due Today = the outcomes that would make today a win. General = everything else worth tracking. When in doubt, default to General — the lanes work best when High and Due Today stay short.</p></details>
-      <details><summary>What happens at midnight?</summary><p>The visible task list resets to keep your view focused on today. Items aren't deleted — completed work stays in the Completed section, and you can re-add anything that still matters.</p></details>
+      <details><summary>Do I need an account or to install anything?</summary><p>No. Open the page and you're using the app. No sign-up, no install, no email required. If that feels surprising in 2025, that's by design.</p></details>
+      <details><summary>Where is my data stored?</summary><p>In your browser's <code>localStorage</code>, on your device only. Your tasks never leave your machine. The flip side: there's no cloud backup, so if you clear your browser storage or switch browsers, the list goes with it. For most daily-list use cases this is the right tradeoff.</p></details>
+      <details><summary>Does it work offline?</summary><p>Yes — after the page has loaded once. Add, complete, and restore tasks without a network connection; your changes persist locally between sessions.</p></details>
+      <details><summary>How should I use the lanes?</summary><p>High = critical and time-sensitive (the things that ruin tomorrow if you skip them today). Due Today = outcomes that would make today a win. General = everything else worth tracking. The system fails the moment your High lane has more than three items — at that point everything is "high" and the lane stops doing its job. When in doubt, default to General.</p></details>
+      <details><summary>What happens at midnight?</summary><p>The visible list clears so you start fresh. Items aren't deleted — completed work stays in Completed, and you can re-add anything that still matters. The point is to force a deliberate choice about what's on today's list rather than letting yesterday's items quietly carry over.</p></details>
       <details><summary>Can I restore a completed task?</summary><p>Yes. Finished items appear in the Completed section. Click the action button to restore or remove them.</p></details>
-      <details><summary>Is it really free?</summary><p>Yes. The app is free with no in-app purchases, no premium tier, and no upsells. The site shows ads to cover hosting; see our <a href="/privacy.html">privacy policy</a> for details.</p></details>
-      <details><summary>Where do I learn more?</summary><p>Read our <a href="/how-to-use-todays-tasks.html">step-by-step how-to guide</a>, or start with the <a href="/productivity-tips.html">complete productivity guide</a> for habits and strategies that compound on top of the daily list.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. No in-app purchases, no premium tier, no upsells. The site shows ads to cover hosting; see the <a href="/privacy.html">privacy policy</a> for details on what trackers run and how to opt out.</p></details>
+      <details><summary>Where do I learn more?</summary><p>Read the <a href="/how-to-use-todays-tasks.html">step-by-step how-to guide</a>, or start with the <a href="/productivity-tips.html">complete productivity guide</a> for the habits and strategies the lanes are designed around.</p></details>
     </section>
 
     <aside class="related" aria-label="Related reading">
@@ -207,7 +209,7 @@
   <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
-  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks. All rights reserved.</footer>
+  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
 
   <script>
     function loadTasks() {

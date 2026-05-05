@@ -202,7 +202,7 @@ function postHtml(p, prev, next) {
   <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
-  <footer style="text-align:center">© 2025 Today's Tasks. All rights reserved.</footer>
+  <footer style="text-align:center">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
 </body>
 </html>
 `;
