@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Today's Tasks New-Tab Extension — Coming Soon</title>
+  <meta name="description" content="A planned browser extension that puts Today's Tasks on your new-tab page. Open a tab, see today's three lanes. Free, no account, in development." />
+  <link rel="canonical" href="https://todays-tasks.com/new-tab.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Today's Tasks New-Tab Extension — Coming Soon" />
+  <meta property="og:description" content="A planned browser extension that puts Today's Tasks on your new-tab page. Open a tab, see today's three lanes." />
+  <meta property="og:url" content="https://todays-tasks.com/new-tab.html" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Today's Tasks New-Tab Extension — Coming Soon" />
+  <meta name="twitter:description" content="A planned browser extension that puts Today's Tasks on your new-tab page." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},
+    {"@type":"ListItem","position":2,"name":"New-Tab Extension","item":"https://todays-tasks.com/new-tab.html"}
+  ]}
+  </script>
+
+  <style>
+    .nt-hero {
+      background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+      padding: 72px 24px 56px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .nt-hero h1 {
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin: 0 0 16px;
+    }
+    .nt-hero .lede {
+      font-size: 18px; color: var(--text-muted);
+      max-width: 640px; margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .nt-status {
+      display: inline-block;
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #92400e; background: #fef3c7;
+      padding: 5px 12px; border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .nt-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+    .nt-section { max-width: 880px; margin: 0 auto; padding: 56px 24px; }
+    .nt-section h2 { font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 14px; letter-spacing: -0.015em; }
+    .nt-section p { font-size: 16.5px; line-height: 1.7; color: var(--text); margin: 0 0 14px; }
+    .nt-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 24px 0 0; }
+    @media (max-width: 800px) { .nt-benefits { grid-template-columns: 1fr; } }
+    .nt-benefit {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 22px 24px;
+    }
+    .nt-benefit h3 { margin: 0 0 8px; font-size: 16px; }
+    .nt-benefit p { margin: 0; font-size: 14.5px; color: var(--text-muted); line-height: 1.6; }
+    .nt-honesty {
+      max-width: 720px; margin: 32px auto 0;
+      padding: 16px 20px;
+      background: #fff7ed; border: 1px solid #fed7aa;
+      border-radius: var(--r); color: #7c2d12;
+      font-size: 14.5px; line-height: 1.6;
+    }
+    .nt-honesty strong { color: #7c2d12; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/">Today's Tasks</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="/productivity-tips.html">Productivity Tips</a>
+        <a href="/time-blocking-guide.html">Time Blocking</a>
+        <a href="/etsy-guides.html">Templates</a>
+        <a href="/about.html">About</a>
+      </nav>
+      <a class="site-cta" href="/todo.html">Todo App</a>
+    </div>
+  </header>
+  <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
+
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">New-Tab Extension</li>
+    </ol>
+  </nav>
+
+  <header class="nt-hero">
+    <span class="nt-status">In development</span>
+    <h1>Today's Tasks, every time you open a tab.</h1>
+    <p class="lede">I'm building a browser extension that puts your three lanes on the new-tab page. Open a tab, see today's list. No URL typing, no re-finding the bookmark. The web app stays available for everyone — the extension just removes one friction step for people who live in the browser.</p>
+    <div class="nt-cta">
+      <a class="btn primary" href="#waitlist">Join the waitlist</a>
+      <a class="btn outline" href="/todo.html">Try the web app first</a>
+    </div>
+  </header>
+
+  <section class="nt-section">
+    <h2>Why this exists</h2>
+    <p>The single biggest gap in the current Today's Tasks experience is that you have to <em>remember</em> to come back. The web app has no notification, no email, no reminder — by design, since those are the things that turn a calm tool into a noisy one. But that means every visit requires you to actively decide to open the URL, find the bookmark, or search "todays tasks" in your address bar.</p>
+    <p>A new-tab extension solves this without adding noise. Every time you'd open a new tab anyway — at the start of the day, between meetings, after closing a Slack thread — you'd see today's list. Nothing intrusive, nothing pinging you. Just your three lanes, where you'd naturally look anyway.</p>
+    <p>If you mostly work inside a browser (and most knowledge work today does), this is probably the version of Today's Tasks you actually want.</p>
+  </section>
+
+  <section class="nt-section" style="background:var(--surface);max-width:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div style="max-width:880px;margin:0 auto">
+      <h2>What it'll do</h2>
+      <p>Same model as the web app — three priority lanes, one input, automatic midnight reset, local-only data. The extension is a thin shell over the existing app, not a separate product with separate sync logic.</p>
+      <div class="nt-benefits">
+        <div class="nt-benefit">
+          <h3>One glance, every tab</h3>
+          <p>Open a new tab and immediately see High Priority, Due Today, and General. No URL typing, no bookmark hunting, no app-switching.</p>
+        </div>
+        <div class="nt-benefit">
+          <h3>Same three-lane model</h3>
+          <p>Identical structure to the web app, including the midnight reset that clears stale items. Nothing new to learn.</p>
+        </div>
+        <div class="nt-benefit">
+          <h3>Local-only data, no account</h3>
+          <p>Tasks live in browser storage. No sync to my servers, no account, no telemetry on your task content. Same privacy stance as the web app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nt-section">
+    <h2>What it won't do</h2>
+    <p>To keep expectations realistic, here's what the extension is <em>not</em>:</p>
+    <ul style="font-size:16.5px;line-height:1.75;color:var(--text);padding-left:22px;margin:0 0 14px">
+      <li>It won't sync across devices. Same as the web app, your tasks live on the browser you're using.</li>
+      <li>It won't replace your tab UI completely. The standard browser features (history, recently closed, bookmarks) stay where you expect them.</li>
+      <li>It won't add notifications, badges, or daily emails. The whole point is fewer interruptions, not more.</li>
+      <li>It won't be a paid upgrade. The web app is free; the extension will be free too.</li>
+    </ul>
+
+    <div class="nt-honesty">
+      <strong>Honest status:</strong> This page is a planning announcement, not a release. There's no extension to install yet. I'm collecting waitlist emails so I can send a single notification when the Chrome and Firefox versions are ready — no other emails sent from the waitlist list. Estimated timeline: a few months, but I'd rather ship it well than rush.
+    </div>
+  </section>
+
+  <!-- ============ WAITLIST CAPTURE ============
+       Same Buttondown endpoint pattern as the rest of the site; the `tag`
+       distinguishes new-tab waitlist signups from general newsletter signups. -->
+  <section class="section email-capture" id="waitlist" aria-label="Join the new-tab extension waitlist">
+    <div class="container">
+      <div class="container-narrow">
+        <h2>Get notified when the extension is ready</h2>
+        <p>One email when the Chrome and Firefox extensions are available — that's it. You'll go on a separate list from the weekly newsletter, so subscribing here doesn't sign you up for anything else.</p>
+        <form class="email-capture-form" data-newsletter
+              action="https://buttondown.email/api/emails/embed-subscribe/your-buttondown-username"
+              method="post" target="_blank">
+          <label class="sr-only" for="hp-email-newtab">Email address</label>
+          <input id="hp-email-newtab" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
+          <input type="hidden" name="tag" value="new-tab-waitlist">
+          <label class="sr-only" for="hp-website-newtab">Leave blank</label>
+          <input id="hp-website-newtab" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0">
+          <button type="submit" class="btn primary">Notify me</button>
+        </form>
+        <div class="email-capture-success" role="status" hidden>Thanks — you're on the waitlist. I'll email once when it's ready.</div>
+        <p class="email-capture-note">One email. Unsubscribe with one click. No other use of your address.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="nt-section" style="text-align:center">
+    <h2 style="font-size:20px">In the meantime</h2>
+    <p style="max-width:520px;margin:0 auto 16px">The web app already works well as a daily list — most of what the extension adds is removing one click from the workflow.</p>
+    <div class="nt-cta">
+      <a class="btn primary" href="/todo.html">Open the web app</a>
+      <a class="btn outline" href="/productivity-tips.html">Read the productivity guide</a>
+    </div>
+  </section>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:16px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script>
+    document.querySelectorAll('form[data-newsletter]').forEach(function(form){
+      form.addEventListener('submit', function(e){
+        var hp = form.querySelector('input[name="website"]');
+        if (hp && hp.value) { e.preventDefault(); return; }
+        e.preventDefault();
+        try { fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' }); } catch (err) {}
+        form.hidden = true;
+        var note = form.parentElement.querySelector('.email-capture-note');
+        if (note) note.hidden = true;
+        var success = form.parentElement.querySelector('.email-capture-success');
+        if (success) success.hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>

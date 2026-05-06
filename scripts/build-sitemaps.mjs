@@ -77,6 +77,7 @@ const STATIC_PAGES = [
   "/time-blocking-guide.html",
   "/etsy-guides.html",
   "/todo.html",
+  "/new-tab.html",
 ];
 
 // ---- sitemap-pages.xml ----

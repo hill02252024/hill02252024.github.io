@@ -170,6 +170,26 @@
       <strong>Ready to try it?</strong> <a href="/todo.html">Open Today's Tasks →</a> — no signup, no install, your data stays on your device.
     </div>
 
+    <!-- ============ INLINE EMAIL CAPTURE (article variant) ============
+         Same Buttondown endpoint as the homepage. Replace the placeholder
+         username after creating a free Buttondown account. -->
+    <aside class="email-inline" aria-label="Subscribe to the weekly email">
+      <h3>Get the weekly productivity email</h3>
+      <p>One short email every Friday with the most useful idea I came across that week. No spam, no upsell, no personal-reply expectation.</p>
+      <form class="email-capture-form" data-newsletter
+            action="https://buttondown.email/api/emails/embed-subscribe/your-buttondown-username"
+            method="post" target="_blank">
+        <label class="sr-only" for="hp-email-tips">Email address</label>
+        <input id="hp-email-tips" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
+        <input type="hidden" name="tag" value="article-pillar">
+        <label class="sr-only" for="hp-website-tips">Leave blank</label>
+        <input id="hp-website-tips" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0">
+        <button type="submit" class="btn primary">Subscribe</button>
+      </form>
+      <div class="email-capture-success" role="status" hidden>Thanks — please check your inbox to confirm the subscription.</div>
+      <p class="email-capture-note">Free · Unsubscribe with one click · No account needed</p>
+    </aside>
+
     <h2 id="faq">FAQ</h2>
     <dl class="faq">
       <dt>How many of these habits should I adopt at once?</dt>
@@ -193,5 +213,22 @@
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
   <footer class="footer" style="text-align:center;padding:18px 0;border-top:1px solid #e5e7eb;color:#6b7280;font-size:14px">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <!-- Newsletter form progressive enhancement (same as homepage) -->
+  <script>
+    document.querySelectorAll('form[data-newsletter]').forEach(function(form){
+      form.addEventListener('submit', function(e){
+        var hp = form.querySelector('input[name="website"]');
+        if (hp && hp.value) { e.preventDefault(); return; }
+        e.preventDefault();
+        try { fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' }); } catch (err) {}
+        form.hidden = true;
+        var note = form.parentElement.querySelector('.email-capture-note');
+        if (note) note.hidden = true;
+        var success = form.parentElement.querySelector('.email-capture-success');
+        if (success) success.hidden = false;
+      });
+    });
+  </script>
 </body>
 </html>
