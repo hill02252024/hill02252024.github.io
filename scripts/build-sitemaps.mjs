@@ -78,6 +78,16 @@ const STATIC_PAGES = [
   "/etsy-guides.html",
   "/todo.html",
   "/new-tab.html",
+  // Comparison cluster
+  "/compare/",
+  "/compare/no-signup-to-do-list-apps.html",
+  "/compare/notion-alternatives-daily-tasks.html",
+  "/compare/todoist-vs-todays-tasks.html",
+  "/compare/what-i-use-instead-of-notion.html",
+  "/compare/notion-vs-todays-tasks.html",
+  "/compare/asana-vs-todays-tasks.html",
+  "/compare/todoist-vs-notion-vs-todays-tasks.html",
+  "/compare/simple-daily-planner-apps.html",
 ];
 
 // ---- sitemap-pages.xml ----
