@@ -56,7 +56,25 @@ for (const it of itemsWithSlug) {
   seenSlugs.set(it._slug, count);
   if (count > 1) it._slug = `${it._slug}-${count}`;
 }
-const indexableItems = itemsWithSlug.filter(shouldIndex);
+
+// Cross-check against on-disk rendered HTML so the sitemap can never disagree
+// with what's actually published (the two scripts fetch the feed independently
+// and could otherwise race when the spreadsheet content shifts mid-build).
+async function postFileIsIndexable(slug) {
+  try {
+    const html = await fs.readFile(`${POST_DIR}/${slug}.html`, "utf8");
+    return !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html);
+  } catch {
+    return false; // file missing → not in sitemap
+  }
+}
+
+const indexableItems = [];
+for (const it of itemsWithSlug) {
+  if (shouldIndex(it) && await postFileIsIndexable(it._slug)) {
+    indexableItems.push(it);
+  }
+}
 const postUrls = indexableItems.map(it => ({
   loc: `${SITE}/${POST_DIR}/${it._slug}.html`,
   lastmod: iso(it.created || json.updated || Date.now()),
