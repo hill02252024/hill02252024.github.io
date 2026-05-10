@@ -227,7 +227,11 @@ const items = (Array.isArray(json.items) ? json.items : []).slice().sort((a, b) 
 
 await fs.mkdir(OUT_DIR, { recursive: true });
 
-const itemsWithSlug = items.map(it => ({ ...it, _slug: makeSlug(it) }));
+// Skip empty-body posts entirely — never write a stub HTML file for them.
+// Prevents duplicate-title, empty-body pages from being publicly accessible.
+const itemsWithSlug = items
+  .filter(it => ((it.excerpt || "") + (it.content || "")).trim().length > 0)
+  .map(it => ({ ...it, _slug: makeSlug(it) }));
 const seenSlugs = new Map();
 for (const it of itemsWithSlug) {
   const count = (seenSlugs.get(it._slug) || 0) + 1;

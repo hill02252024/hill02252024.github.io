@@ -121,8 +121,8 @@
     <h1>Today's Tasks, every time you open a tab.</h1>
     <p class="lede">I'm building a browser extension that puts your three lanes on the new-tab page. Open a tab, see today's list. No URL typing, no re-finding the bookmark. The web app stays available for everyone — the extension just removes one friction step for people who live in the browser.</p>
     <div class="nt-cta">
-      <a class="btn primary" href="#waitlist">Join the waitlist</a>
-      <a class="btn outline" href="/todo.html">Try the web app first</a>
+      <a class="btn primary" href="/todo.html">Try the web app</a>
+      <a class="btn outline" href="/productivity-tips.html">Read the productivity guide</a>
     </div>
   </header>
 
@@ -165,31 +165,7 @@
     </ul>
 
     <div class="nt-honesty">
-      <strong>Honest status:</strong> This page is a planning announcement, not a release. There's no extension to install yet. I'm collecting waitlist emails so I can send a single notification when the Chrome and Firefox versions are ready — no other emails sent from the waitlist list. Estimated timeline: a few months, but I'd rather ship it well than rush.
-    </div>
-  </section>
-
-  <!-- ============ WAITLIST CAPTURE ============
-       Same Buttondown endpoint pattern as the rest of the site; the `tag`
-       distinguishes new-tab waitlist signups from general newsletter signups. -->
-  <section class="section email-capture" id="waitlist" aria-label="Join the new-tab extension waitlist">
-    <div class="container">
-      <div class="container-narrow">
-        <h2>Get notified when the extension is ready</h2>
-        <p>One email when the Chrome and Firefox extensions are available — that's it. You'll go on a separate list from the weekly newsletter, so subscribing here doesn't sign you up for anything else.</p>
-        <form class="email-capture-form" data-newsletter
-              action="https://buttondown.email/api/emails/embed-subscribe/your-buttondown-username"
-              method="post" target="_blank">
-          <label class="sr-only" for="hp-email-newtab">Email address</label>
-          <input id="hp-email-newtab" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
-          <input type="hidden" name="tag" value="new-tab-waitlist">
-          <label class="sr-only" for="hp-website-newtab">Leave blank</label>
-          <input id="hp-website-newtab" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0">
-          <button type="submit" class="btn primary">Notify me</button>
-        </form>
-        <div class="email-capture-success" role="status" hidden>Thanks — you're on the waitlist. I'll email once when it's ready.</div>
-        <p class="email-capture-note">One email. Unsubscribe with one click. No other use of your address.</p>
-      </div>
+      <strong>Honest status:</strong> This page is a planning announcement, not a release. There's no extension to install yet. Bookmark this page and check back when it ships. Estimated timeline: a few months, but I'd rather ship it well than rush.
     </div>
   </section>
 

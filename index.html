@@ -199,34 +199,6 @@
     </div>
   </section>
 
-  <!-- ============ EMAIL CAPTURE (homepage section) ============
-       Setup: replace `your-buttondown-username` in the form action below with
-       your actual Buttondown username (free tier: 100 subs, no JS required).
-       Sign up at https://buttondown.email — takes 3 minutes.
-       Alternative: any service with an embed URL works (MailerLite, Mailchimp,
-       ConvertKit, etc.) — change the action URL accordingly. -->
-  <section class="section email-capture" aria-label="Subscribe to the weekly email">
-    <div class="container">
-      <div class="container-narrow">
-        <h2>A short weekly productivity email</h2>
-        <p>Every Friday I send one email with the most useful idea I came across that week — usually a habit I tried, a tool worth knowing about, or a counter-take on something popular. Single email. No personal-reply expectation. No upsell.</p>
-        <form class="email-capture-form" data-newsletter
-              action="https://buttondown.email/api/emails/embed-subscribe/your-buttondown-username"
-              method="post" target="_blank">
-          <label class="sr-only" for="hp-email-home">Email address</label>
-          <input id="hp-email-home" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
-          <input type="hidden" name="tag" value="homepage">
-          <!-- honeypot: real users skip this; bots fill it -->
-          <label class="sr-only" for="hp-website-home">Leave blank</label>
-          <input id="hp-website-home" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0">
-          <button type="submit" class="btn primary">Subscribe</button>
-        </form>
-        <div class="email-capture-success" role="status" hidden>Thanks — please check your inbox to confirm the subscription.</div>
-        <p class="email-capture-note">Free · Unsubscribe with one click · No account on this site needed</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ PRODUCTIVITY GUIDES (3-column cards) ============ -->
   <section class="section" aria-label="Productivity guides" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
     <div class="container">

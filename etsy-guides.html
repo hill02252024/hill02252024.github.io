@@ -460,7 +460,8 @@
     function apply(){
       const term = q.value.trim().toLowerCase();
       const active = document.querySelector('#filters .chip.active')?.dataset.filter || 'all';
-      let list = PRODUCTS.slice();
+      // Hide cards without a working URL — don't render broken affiliate buttons.
+      let list = PRODUCTS.slice().filter(it => it.url);
 
       if(active!=='all'){ list = list.filter(it=>it.cat===active); }
       if(term){ list = list.filter(it=> it.title.toLowerCase().includes(term)); }
