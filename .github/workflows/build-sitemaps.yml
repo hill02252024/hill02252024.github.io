@@ -8,6 +8,18 @@ on:
       - "scripts/build-sitemaps.mjs"
       - "scripts/static-render-posts.mjs"
 
+# Workflow-level env. FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 opts the
+# JavaScript actions used below (checkout, setup-node) into the Node 24
+# runtime as it rolls out, ahead of the eventual default switch.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# Explicit write permission for the auto-commit step. Without this, the
+# default GITHUB_TOKEN is read-only and `git push` exits 128
+# ("Permission to <repo>.git denied to github-actions[bot]").
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
