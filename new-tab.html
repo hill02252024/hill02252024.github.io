@@ -169,6 +169,26 @@
     </div>
   </section>
 
+  <section class="nt-section">
+    <h2 class="nt-h2">Why I'm building the extension instead of a sync server</h2>
+    <p>The most common feature request the web app gets is "make it sync between my laptop and my phone." It is the right request — most knowledge workers actually do switch devices — but sync is not the answer I'm going to ship, and the new-tab extension is what I'm shipping instead. The reasoning has three steps.</p>
+    <p><strong>Step one:</strong> sync requires accounts, and accounts kill the five-second open. The whole product proposition is "no signup." The moment I add login I have to add password reset, account deletion, GDPR data export, two-factor recovery, and a server that has uptime obligations. That's a real product with real ops; it's also the moment Today's Tasks stops being the small thing I can keep maintaining alongside everything else.</p>
+    <p><strong>Step two:</strong> when I actually watch how I use the app, I switch devices far less often than I switch tabs. I open ten tabs an hour, but I only really need my list in two contexts: at my laptop in the morning, and on my phone occasionally when I'm walking somewhere and remember a thing. The mobile case is solved by the existing responsive web app — open the URL on your phone, add the task, it'll be there next time you open it on that phone. Sync between the two would be nice. A new-tab extension that surfaces the list every time I open a tab on my main machine would actually be transformative.</p>
+    <p><strong>Step three:</strong> if I'm wrong about that, the extension teaches me cheaply. I can ship it, see whether the friction drop changes how people use the list, and decide based on actual signal whether device-sync is worth the operational weight. If it turns out the new-tab placement is enough — and I suspect for most people it will be — I save myself building a server I'd then be on the hook for.</p>
+  </section>
+
+  <section class="nt-section">
+    <h2 class="nt-h2">What "shipping it well" actually means</h2>
+    <p>"A few months" is vague on purpose — I have a day job and this is the side project. But concretely the bar for shipping is:</p>
+    <ul style="font-size:16.5px;line-height:1.75;color:var(--text);padding-left:22px;margin:0 0 14px">
+      <li><strong>It survives a private-browsing test.</strong> The extension storage has to behave sanely if the browser is set to clear data on close, and degrade to "your list is gone" without weird ghost states.</li>
+      <li><strong>It works in Chrome, Edge, Brave, and Firefox at minimum.</strong> Safari extensions are a separate distribution path and probably won't make the first release.</li>
+      <li><strong>The size is under 100 KB.</strong> A new-tab page that takes a second to paint is worse than the default browser one. The whole codebase budget is "smaller than this page you're reading."</li>
+      <li><strong>Permissions stay minimal.</strong> The extension manifest will request <code>storage</code> only. No <code>tabs</code>, no <code>history</code>, no host permissions. The Chrome Web Store reviewer's checklist matters here, and so does your peace of mind.</li>
+    </ul>
+    <p>If you want a heads-up the day the extension is in the Chrome Web Store, the email box at the top of this page is where to leave your address. I'll send one email when it ships and that's it — no drip campaign, no "thanks for signing up!" auto-reply.</p>
+  </section>
+
   <section class="nt-section" style="text-align:center">
     <h2 style="font-size:20px">In the meantime</h2>
     <p style="max-width:520px;margin:0 auto 16px">The web app already works well as a daily list — most of what the extension adds is removing one click from the workflow.</p>

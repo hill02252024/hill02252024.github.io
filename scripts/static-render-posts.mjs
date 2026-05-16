@@ -43,13 +43,14 @@ function renderBody(p) {
 // Phase 3d — auto-index by content length.
 // Posts that don't meet the threshold stay noindex,follow and out of the sitemap.
 export function shouldIndex(p) {
-  const text = String((p.excerpt || "") + " " + (p.content || ""))
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  const englishWords = text.match(/[A-Za-z]+(?:['-][A-Za-z]+)*/g) || [];
-  const cjkChars = text.match(/[㐀-鿿豈-﫿]/g) || [];
-  return englishWords.length >= MIN_ENGLISH_WORDS || cjkChars.length >= MIN_CJK_CHARS;
+  // 2026-05-16 — China-explore cluster permanently noindex.
+  // todays-tasks.com is an English-language productivity site; mixing in
+  // Chinese-language travel/food posts confuses topical focus and triggered
+  // "thin content" AdSense rejections. Pages still render so old links
+  // don't 404, but none are indexable and none appear in sitemap-posts.xml.
+  // To re-enable later, restore the previous length-gate from git history.
+  void p;
+  return false;
 }
 
 function navBlock() {
