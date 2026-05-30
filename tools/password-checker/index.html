@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Strength Checker — Free, Browser-Only | Today's Tasks</title>
+  <meta name="description" content="Free password strength checker with entropy score, breach detection (k-anonymous), and crack-time estimate. Runs entirely in your browser. We never see your password." />
+  <meta name="keywords" content="password strength checker, password entropy, password breach check, have i been pwned, secure password, password generator" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/password-checker/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Password Strength Checker — Free, Browser-Only" /><meta property="og:description" content="Entropy + breach + crack time. We never see your password." /><meta property="og:url" content="https://todays-tasks.com/tools/password-checker/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Password Strength Checker","url":"https://todays-tasks.com/tools/password-checker/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Does this tool send my password anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Entropy scoring and crack-time estimation run entirely in your browser. The breach check uses k-anonymity — only the first 5 characters of the SHA-1 hash leave your device, never the password itself."}},
+    {"@type":"Question","name":"What is k-anonymity?","acceptedAnswer":{"@type":"Answer","text":"A privacy technique where we hash your password locally, then send only the first 5 hex characters to the Have I Been Pwned API. The API returns hundreds of partial matches and we check the full hash against them in your browser. Your actual password never leaves your device."}},
+    {"@type":"Question","name":"What makes a strong password?","acceptedAnswer":{"@type":"Answer","text":"Length matters more than complexity. A 16-character passphrase made of random words beats an 8-character mix of symbols. Aim for 60+ bits of entropy — that's roughly 12+ random characters or 4+ random dictionary words."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Password Strength Checker</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000001" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ Browser-only · No upload</span>
+    <h1>Password Strength Checker</h1>
+    <p class="intro">See how strong your password really is. Entropy, character composition, common-password penalties, breach-database lookup (anonymized), and an estimated time-to-crack — all computed inside your browser.</p>
+
+    <div class="calc-card">
+      <label for="pw">Password to test</label>
+      <div style="position:relative">
+        <input type="password" id="pw" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type or paste here…" style="padding-right:84px" />
+        <button type="button" id="togglePw" style="position:absolute;right:6px;top:6px;background:transparent;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;padding:6px 10px;font-family:inherit">👁 Show</button>
+      </div>
+      <div class="strength-meter" id="meter"><div></div></div>
+      <div class="strength-label" id="label">Type a password to score it</div>
+
+      <div id="metrics" style="display:none;margin-top:14px">
+        <div class="result-box show" style="opacity:1;max-height:none;background:var(--surface-2);border-color:var(--border)">
+          <div class="secondary" id="metricsGrid"></div>
+          <div id="suggestions" style="margin-top:14px;font-size:13.5px;color:var(--text-muted);line-height:1.6"></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <button type="button" class="btn-calc" id="breachBtn" style="background:#059669">Check breach databases (anonymized)</button>
+        <div id="breachResult" class="result-box" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000002" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>How the Score Works</h2>
+    <p>This tool computes a composite score from four signals: character pool size, length, common-password penalty, and pattern detection (sequential, repeated, keyboard walks). Together they produce an entropy estimate in bits.</p>
+    <div class="formula">entropy ≈ log2(pool^length) − pattern_penalty<br><br>scoring bands:<br>  &lt; 28 bits → very weak (cracked in minutes)<br>  28–35    → weak (cracked in hours)<br>  36–59    → moderate (days–months)<br>  60–127   → strong (years–centuries)<br>  ≥ 128    → excellent (effectively uncrackable)</div>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>Does this tool send my password anywhere?</summary><p>No. Entropy scoring and crack-time estimation run entirely in your browser. The breach check uses k-anonymity — only the first 5 characters of the SHA-1 hash leave your device, never the password itself.</p></details>
+    <details class="faq-item"><summary>What is k-anonymity?</summary><p>We hash your password locally with SHA-1, then send only the first 5 hex characters to the Have I Been Pwned public API. The API returns hundreds of partial matches; we filter them in your browser. Your actual password never leaves your device.</p></details>
+    <details class="faq-item"><summary>What makes a strong password?</summary><p>Length matters more than complexity. A 16-character random passphrase beats an 8-character symbol soup. Aim for 60+ bits of entropy — roughly 12+ random characters or 4+ random words.</p></details>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/password-vault/"><div class="icon-box passwords">🗝️</div><h2>Password Vault Lite</h2><p>End-to-end encrypted, in your browser.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Data Leak Checker</h2><p>Check breach databases for your email.</p></a>
+      <a class="tool-card privacy-card" href="/tools/email-alias/"><div class="icon-box email">📧</div><h2>Email Alias Generator</h2><p>Site-specific email aliases.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var pw = document.getElementById('pw');
+    var meter = document.getElementById('meter');
+    var label = document.getElementById('label');
+    var metrics = document.getElementById('metrics');
+    var metricsGrid = document.getElementById('metricsGrid');
+    var suggestions = document.getElementById('suggestions');
+
+    var COMMON = ['password','123456','qwerty','letmein','welcome','admin','iloveyou','monkey','dragon','master','login','passw0rd','football','baseball','sunshine','princess','hello','abc123','11111111','000000'];
+
+    function poolSize(p) {
+      var pool = 0;
+      if (/[a-z]/.test(p)) pool += 26;
+      if (/[A-Z]/.test(p)) pool += 26;
+      if (/[0-9]/.test(p)) pool += 10;
+      if (/[^A-Za-z0-9]/.test(p)) pool += 33;
+      return pool || 26;
+    }
+    function patternPenalty(p) {
+      var penalty = 0;
+      // Sequential ascii
+      for (var i = 0; i < p.length - 2; i++) {
+        var a = p.charCodeAt(i), b = p.charCodeAt(i+1), c = p.charCodeAt(i+2);
+        if (b === a + 1 && c === a + 2) penalty += 1.5;
+        if (b === a - 1 && c === a - 2) penalty += 1.5;
+      }
+      // Repeated chars
+      var rep = p.match(/(.)\1{2,}/g) || [];
+      penalty += rep.length * 2;
+      // Keyboard walks (qwerty rows)
+      var rows = ['qwertyuiop','asdfghjkl','zxcvbnm','1234567890'];
+      rows.forEach(function(r) {
+        for (var i = 0; i <= p.length - 3; i++) {
+          var sub = p.toLowerCase().substr(i, 3);
+          if (r.indexOf(sub) >= 0) penalty += 2;
+        }
+      });
+      // Common password top-list
+      var pLow = p.toLowerCase();
+      if (COMMON.indexOf(pLow) >= 0) penalty += 30;
+      return penalty;
+    }
+    function scoreEntropy(p) {
+      if (!p) return { entropy: 0, score: 0 };
+      var pool = poolSize(p);
+      var base = Math.log2(Math.pow(pool, p.length));
+      var pen = patternPenalty(p);
+      var entropy = Math.max(0, base - pen);
+      var score = entropy < 28 ? 0 : entropy < 36 ? 1 : entropy < 60 ? 2 : entropy < 128 ? 3 : 4;
+      return { entropy: entropy, score: score, pool: pool, pen: pen };
+    }
+    function crackTime(entropy) {
+      // Assume 1e10 guesses/sec offline GPU attack on bcrypt/SHA.
+      var guesses = Math.pow(2, entropy) / 2;
+      var seconds = guesses / 1e10;
+      if (seconds < 1) return 'less than a second';
+      var units = [['century', 31536000*100], ['year', 31536000], ['month', 2592000], ['day', 86400], ['hour', 3600], ['minute', 60], ['second', 1]];
+      for (var i = 0; i < units.length; i++) {
+        if (seconds >= units[i][1]) {
+          var v = seconds / units[i][1];
+          if (v > 1e9) return 'centuries (10⁹+)';
+          return v.toFixed(v > 10 ? 0 : 1) + ' ' + units[i][0] + (v >= 2 ? 's' : '');
+        }
+      }
+      return 'instant';
+    }
+    function suggest(p) {
+      var s = [];
+      if (p.length < 12) s.push('Increase length to 12+ characters (the single biggest improvement).');
+      if (!/[A-Z]/.test(p)) s.push('Add uppercase letters.');
+      if (!/[0-9]/.test(p)) s.push('Add digits.');
+      if (!/[^A-Za-z0-9]/.test(p)) s.push('Add symbols (!@#$ etc.).');
+      if (COMMON.indexOf(p.toLowerCase()) >= 0) s.push('This is on every top-1000 password list — change it immediately.');
+      if (/(.)\1{2,}/.test(p)) s.push('Avoid repeated characters (aaa, 111).');
+      if (/(?:abc|123|qwe|asd|zxc)/i.test(p)) s.push('Avoid sequential / keyboard patterns.');
+      if (s.length === 0) s.push('Strong choice. Consider storing it in a password manager so you never have to remember it.');
+      return s;
+    }
+    var labels = ['Very weak', 'Weak', 'Moderate', 'Strong', 'Excellent'];
+
+    function update() {
+      var p = pw.value;
+      if (!p) {
+        meter.className = 'strength-meter';
+        label.textContent = 'Type a password to score it';
+        metrics.style.display = 'none';
+        return;
+      }
+      var r = scoreEntropy(p);
+      meter.className = 'strength-meter s' + r.score;
+      label.innerHTML = '<span class="s' + r.score + '">' + labels[r.score] + '</span>';
+      metrics.style.display = '';
+      metricsGrid.innerHTML =
+        '<div>Length<b>' + p.length + '</b></div>' +
+        '<div>Entropy<b>' + r.entropy.toFixed(1) + ' bits</b></div>' +
+        '<div>Character pool<b>' + r.pool + '</b></div>' +
+        '<div>Estimated crack time<b>' + crackTime(r.entropy) + '</b></div>';
+      suggestions.innerHTML = '<strong>Suggestions:</strong><ul style="margin:6px 0 0 18px;padding:0">' +
+        suggest(p).map(function(s) { return '<li style="margin-bottom:4px">' + s + '</li>'; }).join('') + '</ul>';
+    }
+    pw.addEventListener('input', update);
+    document.getElementById('togglePw').addEventListener('click', function() {
+      var isText = pw.type === 'text';
+      pw.type = isText ? 'password' : 'text';
+      this.textContent = isText ? '👁 Show' : '🙈 Hide';
+    });
+
+    // SHA-1 (k-anonymity uses SHA-1 because that's HIBP's format)
+    function sha1(str) {
+      var enc = new TextEncoder().encode(str);
+      return crypto.subtle.digest('SHA-1', enc).then(function(buf) {
+        var bytes = new Uint8Array(buf);
+        var hex = '';
+        for (var i = 0; i < bytes.length; i++) hex += ('00' + bytes[i].toString(16)).slice(-2);
+        return hex.toUpperCase();
+      });
+    }
+    document.getElementById('breachBtn').addEventListener('click', function() {
+      var p = pw.value;
+      if (!p) { tt.showResult('breachResult', '<div class="primary">Type a password first.</div>', 'error'); return; }
+      tt.showResult('breachResult', '<div class="primary">Checking…</div>');
+      sha1(p).then(function(hash) {
+        var prefix = hash.substr(0, 5);
+        var suffix = hash.substr(5);
+        return fetch('https://api.pwnedpasswords.com/range/' + prefix, { headers: { 'Add-Padding': 'true' } })
+          .then(function(r) { return r.text(); })
+          .then(function(text) {
+            var lines = text.split(/\r?\n/);
+            var hit = null;
+            for (var i = 0; i < lines.length; i++) {
+              var parts = lines[i].split(':');
+              if (parts[0] === suffix) { hit = parseInt(parts[1], 10); break; }
+            }
+            if (hit) {
+              tt.showResult('breachResult',
+                '<div class="primary"><span class="label">⚠ Breached</span>Seen ' + hit.toLocaleString() + ' time' + (hit === 1 ? '' : 's') + ' in known breaches</div>' +
+                '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This password has appeared in public breach corpora. Change it everywhere it\'s used. The lookup was anonymized — only the first 5 chars of the hash were sent.</p>', 'error');
+            } else {
+              tt.showResult('breachResult',
+                '<div class="primary"><span class="label">✓ Not found</span>No matches in 600M+ breached passwords</div>' +
+                '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This is not a guarantee of safety, just that it hasn\'t appeared in known leaks. Combine with strong entropy + unique-per-site.</p>', 'bmi-normal');
+            }
+          });
+      }).catch(function(e) {
+        tt.showResult('breachResult', '<div class="primary">Lookup failed</div><p style="margin:10px 0 0;color:var(--text-muted)">Network error or HIBP API unavailable. ' + (e.message || '') + '</p>', 'error');
+      });
+    });
+  </script>
+</body>
+</html>

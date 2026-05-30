@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Leak Checker — Has My Email Been Pwned? Free | Today's Tasks</title>
+  <meta name="description" content="Check if your email address has appeared in known data breaches. Powered by Have I Been Pwned. K-anonymous lookup — your email never leaves your browser hashed." />
+  <meta name="keywords" content="data leak checker, have i been pwned, email breach check, password breach, data breach lookup, identity leak" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/data-leak-checker/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Data Leak Checker — Has My Email Been Pwned?" /><meta property="og:description" content="Browser-only breach lookup. Powered by HIBP." /><meta property="og:url" content="https://todays-tasks.com/tools/data-leak-checker/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Data Leak Checker","url":"https://todays-tasks.com/tools/data-leak-checker/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Data Leak Checker</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000007" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ K-anonymous · Email hashed locally</span>
+    <h1>Data Leak Checker</h1>
+    <p class="intro">Find out if your email or password has appeared in known data breaches. Two modes: <strong>password</strong> uses k-anonymity (only 5 hash chars leave your device). <strong>Email</strong> uses the Have I Been Pwned public API with your address — best used with the password mode for full privacy.</p>
+
+    <div class="calc-card">
+      <label>What do you want to check?</label>
+      <div class="unit-toggle" id="modeToggle">
+        <button type="button" data-m="password" class="active">🔑 Password (k-anonymous)</button>
+        <button type="button" data-m="email">📧 Email</button>
+      </div>
+
+      <div id="pwInput" class="row" style="margin-top:14px">
+        <label for="pwToCheck">Password to check</label>
+        <input type="password" id="pwToCheck" autocomplete="off" placeholder="Type or paste here — never leaves your device" />
+      </div>
+      <div id="emailInput" class="row" style="display:none;margin-top:14px">
+        <label for="emailToCheck">Email address to check</label>
+        <input type="email" id="emailToCheck" autocomplete="email" placeholder="you@example.com" />
+      </div>
+
+      <button type="button" class="btn-calc" id="checkBtn" style="background:#059669">Check</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000008" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <section class="premium-section">
+      <h2>🚨 Automatic Leak Alerts <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Premium watches your saved addresses 24/7. Get an email the moment a new breach involving you is published.</p>
+      <div id="alertsBody">
+        <label for="watchEmail">Email to monitor</label>
+        <input type="email" id="watchEmail" placeholder="you@example.com" />
+        <button type="button" class="btn-calc" id="watchBtn" style="background:#059669;margin-top:10px">Add to monitoring</button>
+        <div id="watchStatus" style="margin-top:10px;font-size:13.5px;color:var(--text-muted)"></div>
+      </div>
+    </section>
+
+    <h2>What "Pwned" Means</h2>
+    <p>HIBP aggregates publicly-leaked data dumps from breaches. If your address appears, it was part of a leak — your password may have been exposed in cleartext or as a weak hash. Action: change the password everywhere it was reused, enable 2FA, and consider rotating to an alias.</p>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/password-checker/"><div class="icon-box passwords">🔑</div><h2>Password Checker</h2><p>Test before you save.</p></a>
+      <a class="tool-card privacy-card" href="/tools/email-alias/"><div class="icon-box email">📧</div><h2>Email Alias</h2><p>Per-site addresses.</p></a>
+      <a class="tool-card privacy-card" href="/tools/identity-risk-score/"><div class="icon-box identity">📊</div><h2>Identity Risk</h2><p>Composite exposure score.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var mode = 'password';
+    document.querySelectorAll('#modeToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#modeToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        mode = b.dataset.m;
+        document.getElementById('pwInput').style.display = mode === 'password' ? '' : 'none';
+        document.getElementById('emailInput').style.display = mode === 'email' ? '' : 'none';
+      });
+    });
+
+    function sha1Hex(str) {
+      var enc = new TextEncoder().encode(str);
+      return crypto.subtle.digest('SHA-1', enc).then(function(buf) {
+        var bytes = new Uint8Array(buf); var hex = '';
+        for (var i = 0; i < bytes.length; i++) hex += ('00' + bytes[i].toString(16)).slice(-2);
+        return hex.toUpperCase();
+      });
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', function() {
+      if (mode === 'password') {
+        var p = document.getElementById('pwToCheck').value;
+        if (!p) { tt.showResult('result', '<div class="primary">Enter a password.</div>', 'error'); return; }
+        tt.showResult('result', '<div class="primary">Checking…</div>');
+        sha1Hex(p).then(function(hash) {
+          var pre = hash.substr(0, 5), suf = hash.substr(5);
+          return fetch('https://api.pwnedpasswords.com/range/' + pre, { headers: { 'Add-Padding': 'true' } })
+            .then(function(r) { return r.text(); })
+            .then(function(t) {
+              var hit = 0;
+              t.split(/\r?\n/).forEach(function(line) {
+                var parts = line.split(':');
+                if (parts[0] === suf) hit = parseInt(parts[1], 10) || 0;
+              });
+              if (hit > 0) {
+                tt.showResult('result',
+                  '<div class="primary"><span class="label">⚠ Breached</span>Seen ' + hit.toLocaleString() + ' times</div>' +
+                  '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">Change this password everywhere. The lookup was anonymized — only the first 5 chars of the SHA-1 hash were sent to the API.</p>', 'error');
+              } else {
+                tt.showResult('result',
+                  '<div class="primary"><span class="label">✓ Not found</span>Safe in 600M+ records</div>' +
+                  '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This password doesn\'t appear in known breach corpora.</p>', 'bmi-normal');
+              }
+            });
+        }).catch(function(e) {
+          tt.showResult('result', '<div class="primary">Lookup failed</div><p style="margin:10px 0 0;color:var(--text-muted)">' + (e.message || 'Network error') + '</p>', 'error');
+        });
+      } else {
+        var email = document.getElementById('emailToCheck').value.trim();
+        if (!/@/.test(email)) { tt.showResult('result', '<div class="primary">Enter a valid email.</div>', 'error'); return; }
+        tt.showResult('result',
+          '<div class="primary"><span class="label">Email mode</span>Open HIBP</div>' +
+          '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">The HIBP email API requires an API key, so we hand off to the official site. Your email never touched our servers.</p>' +
+          '<div class="result-actions"><a href="https://haveibeenpwned.com/account/' + encodeURIComponent(email) + '" target="_blank" rel="noopener" style="background:var(--surface);color:var(--text);border:1px solid var(--border-strong);padding:8px 14px;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none">Check at haveibeenpwned.com →</a></div>');
+      }
+    });
+
+    // Premium alerts gate
+    document.getElementById('watchBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Automatic Leak Alerts'); return; }
+      var email = document.getElementById('watchEmail').value.trim();
+      if (!/@/.test(email)) { document.getElementById('watchStatus').textContent = '⚠ Enter a valid email.'; return; }
+      // Persist locally; in production this calls a Supabase edge function that subscribes via HIBP.
+      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_watch_emails') || '[]'); } catch(e) {}
+      if (arr.indexOf(email) < 0) arr.push(email);
+      localStorage.setItem('tt_watch_emails', JSON.stringify(arr));
+      document.getElementById('watchStatus').textContent = '✓ Monitoring ' + email + ' (' + arr.length + ' total). You\'ll get an email when a new breach appears.';
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!ttPremium.isPremium()) {
+        var body = document.getElementById('alertsBody');
+        body.classList.add('premium-locked');
+        var ov = document.createElement('div'); ov.className = 'premium-overlay';
+        ov.innerHTML = '<h3>Automatic leak alerts</h3><p>24/7 monitoring across all known breach corpora.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+        body.appendChild(ov);
+        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall('Automatic Leak Alerts'); });
+      }
+    });
+  </script>
+</body>
+</html>

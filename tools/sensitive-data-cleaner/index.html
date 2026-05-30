@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensitive Data Cleaner — Strip PII From Any Text | Today's Tasks</title>
+  <meta name="description" content="Strip emails, phone numbers, SSNs, credit cards, IBANs and IP addresses from any text. Replace with safe placeholders. Browser-only — your text never leaves your device." />
+  <meta name="keywords" content="pii stripper, sensitive data cleaner, redact text online, sanitize text, gdpr data masking" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/sensitive-data-cleaner/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Sensitive Data Cleaner — Free" /><meta property="og:url" content="https://todays-tasks.com/tools/sensitive-data-cleaner/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sensitive Data Cleaner","url":"https://todays-tasks.com/tools/sensitive-data-cleaner/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Sensitive Data Cleaner</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000015" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ Browser-only · Text never uploaded</span>
+    <h1>Sensitive Data Cleaner</h1>
+    <p class="intro">Sister tool to the Document Redactor — same detection engine, but instead of black bars we substitute readable placeholders like <code>[EMAIL]</code> and <code>[CARD]</code>. Useful for sharing logs, bug reports, or AI prompts safely.</p>
+
+    <div class="calc-card">
+      <label for="src">Paste your text</label>
+      <textarea id="src" rows="9" style="width:100%;font-family:'SF Mono',Menlo,monospace;font-size:13.5px;padding:12px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface);color:var(--text);resize:vertical" placeholder="Paste a log, email thread, or prompt here…"></textarea>
+
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <label style="font-size:13px;color:var(--text-muted)">Replacement style:</label>
+        <div class="unit-toggle" id="styleToggle">
+          <button type="button" data-s="placeholder" class="active">[TAG]</button>
+          <button type="button" data-s="hash">●●●●</button>
+          <button type="button" data-s="masked">john*****</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn-calc" id="cleanBtn" style="background:#059669;margin-top:14px">Clean text</button>
+
+      <h3 style="font-size:15px;margin:22px 0 8px">Clean output</h3>
+      <div class="redactor-area" id="out"><em style="color:var(--text-subtle)">Output will appear here.</em></div>
+      <p id="stats" style="margin-top:10px;font-size:13px;color:var(--text-muted)"></p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" id="copyBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📋 Copy clean text</button>
+        <button type="button" id="dlBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📥 Download .txt</button>
+      </div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000016" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>Common Use Cases</h2>
+    <ul style="font-size:14.5px;line-height:1.7">
+      <li><strong>Posting log output to Stack Overflow / Discord</strong> — keep customer IDs out of public threads.</li>
+      <li><strong>AI prompts</strong> — strip names + cards before sending to ChatGPT / Claude / Gemini.</li>
+      <li><strong>Bug reports</strong> — share the error, not the user.</li>
+      <li><strong>Newsletters / drafts</strong> — sanitise quotes before publishing.</li>
+    </ul>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/document-redactor/"><div class="icon-box documents">✂️</div><h2>Document Redactor</h2><p>Black bars instead of placeholders.</p></a>
+      <a class="tool-card privacy-card" href="/tools/email-alias/"><div class="icon-box email">📧</div><h2>Email Alias</h2><p>Per-site forwarders.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Data Leak Checker</h2><p>Has your email been pwned?</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var RX = {
+      EMAIL: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g,
+      PHONE: /\b(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?)?\d{3,4}[\s.-]?\d{3,4}\b/g,
+      SSN:   /\b\d{3}[- ]?\d{2}[- ]?\d{4}\b/g,
+      CARD:  /\b(?:\d[ -]?){13,19}\b/g,
+      IBAN:  /\b[A-Z]{2}\d{2}[A-Z0-9]{10,30}\b/g,
+      IP:    /\b(?:\d{1,3}\.){3}\d{1,3}\b/g,
+      URL:   /\bhttps?:\/\/[^\s)]+/g
+    };
+    function luhn(num) {
+      var d = (num+'').replace(/\D/g,''); if (d.length < 13) return false;
+      var sum = 0, alt = false;
+      for (var i = d.length-1; i >= 0; i--) { var n = +d[i]; if (alt) { n *= 2; if (n > 9) n -= 9; } sum += n; alt = !alt; }
+      return sum % 10 === 0;
+    }
+    var style = 'placeholder';
+    document.querySelectorAll('#styleToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#styleToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active'); style = b.dataset.s;
+      });
+    });
+    function replace(tag, match) {
+      if (style === 'placeholder') return '[' + tag + ']';
+      if (style === 'hash') return '●'.repeat(Math.min(match.length, 8));
+      // masked: keep first 2 chars, mask the rest
+      var keep = Math.min(2, Math.floor(match.length / 4));
+      return match.slice(0, keep) + '*'.repeat(Math.max(3, match.length - keep));
+    }
+    document.getElementById('cleanBtn').addEventListener('click', function() {
+      var text = document.getElementById('src').value;
+      if (!text) { document.getElementById('out').innerHTML = '<em style="color:var(--text-subtle)">Source is empty.</em>'; return; }
+      var counts = {};
+      var out = text;
+      Object.keys(RX).forEach(function(k) {
+        counts[k] = 0;
+        out = out.replace(RX[k], function(m) {
+          if (k === 'CARD' && !luhn(m)) return m;
+          counts[k]++;
+          return replace(k, m);
+        });
+      });
+      document.getElementById('out').textContent = out;
+      var lines = Object.keys(counts).filter(function(k) { return counts[k] > 0; }).map(function(k) { return counts[k] + ' ' + k.toLowerCase(); });
+      document.getElementById('stats').textContent = lines.length ? '✓ Cleaned: ' + lines.join(', ') + '.' : 'Nothing detected.';
+    });
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      navigator.clipboard.writeText(document.getElementById('out').textContent).then(function() {
+        var b = document.getElementById('copyBtn'); b.textContent = '✓ Copied'; setTimeout(function() { b.textContent = '📋 Copy clean text'; }, 1500);
+      });
+    });
+    document.getElementById('dlBtn').addEventListener('click', function() {
+      var t = document.getElementById('out').textContent;
+      var b = new Blob([t], { type: 'text/plain' }); var url = URL.createObjectURL(b);
+      var a = document.createElement('a'); a.href = url; a.download = 'cleaned.txt'; a.click(); URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

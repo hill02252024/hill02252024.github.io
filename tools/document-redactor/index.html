@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Redactor — Browser-Only PII Black-Out | Today's Tasks</title>
+  <meta name="description" content="Free document redactor. Paste text and the tool blacks out names, emails, phone numbers, IDs, credit cards, IBANs — all in your browser. Export clean text or as a redacted image." />
+  <meta name="keywords" content="document redactor, pii redaction, text redaction, black out names, free redaction tool, browser redactor" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/document-redactor/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Document Redactor — Browser-Only PII Removal" /><meta property="og:description" content="Black out names, IDs, addresses — locally." /><meta property="og:url" content="https://todays-tasks.com/tools/document-redactor/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Document Redactor","url":"https://todays-tasks.com/tools/document-redactor/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Document Redactor</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000009" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ Browser-only · Text never uploaded</span>
+    <h1>Document Redactor</h1>
+    <p class="intro">Paste any text — bank statement, contract, screenshot transcription, email thread — and the redactor blacks out personally identifiable information before you share it. All processing happens in your browser; nothing is uploaded.</p>
+
+    <div class="calc-card">
+      <label for="src">Source text</label>
+      <textarea id="src" rows="8" style="width:100%;font-family:'SF Mono',Menlo,monospace;font-size:13.5px;padding:12px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface);color:var(--text);resize:vertical" placeholder="Paste text here. Try: 'John Smith, SSN 123-45-6789, card 4532 1234 5678 9010, email john@example.com'"></textarea>
+
+      <div class="redactor-options">
+        <label><input type="checkbox" data-rx="email" checked /> Email</label>
+        <label><input type="checkbox" data-rx="phone" checked /> Phone</label>
+        <label><input type="checkbox" data-rx="ssn" checked /> SSN</label>
+        <label><input type="checkbox" data-rx="card" checked /> Credit card</label>
+        <label><input type="checkbox" data-rx="iban" checked /> IBAN</label>
+        <label><input type="checkbox" data-rx="ip" checked /> IP address</label>
+        <label><input type="checkbox" data-rx="url" /> URLs</label>
+        <label><input type="checkbox" data-rx="names" /> Names (heuristic)</label>
+        <label><input type="checkbox" data-rx="dates" /> Dates</label>
+        <label><input type="checkbox" data-rx="addr" /> Addresses</label>
+      </div>
+      <div class="row">
+        <label for="customTerms">Custom terms to redact <span class="hint">comma separated</span></label>
+        <input type="text" id="customTerms" placeholder="Acme Corp, Project Phoenix" />
+      </div>
+
+      <button type="button" class="btn-calc" id="redactBtn" style="background:#059669">Redact now</button>
+
+      <h3 style="font-size:15px;margin:22px 0 8px">Redacted output</h3>
+      <div class="redactor-area" id="redactedOut"><em style="color:var(--text-subtle)">Output will appear here.</em></div>
+      <p id="stats" style="margin-top:10px;font-size:13px;color:var(--text-muted)"></p>
+
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" id="copyBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📋 Copy clean text</button>
+        <button type="button" id="dlBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📥 Download .txt</button>
+        <button type="button" id="imgBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">🖼 Export as image</button>
+      </div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000010" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>What Gets Detected</h2>
+    <ul style="font-size:14.5px;line-height:1.7">
+      <li><strong>Email</strong> — RFC-ish: <code>local@domain.tld</code></li>
+      <li><strong>Phone</strong> — 7+ digits with separators (international and local formats)</li>
+      <li><strong>SSN</strong> — US Social Security <code>123-45-6789</code></li>
+      <li><strong>Credit card</strong> — 13–19 digit groups, with Luhn validation</li>
+      <li><strong>IBAN</strong> — 2-letter country + 2 check digits + up to 30 alphanumeric</li>
+      <li><strong>IP address</strong> — IPv4 + simplified IPv6</li>
+      <li><strong>Names</strong> — capitalised consecutive words (heuristic, may over-match)</li>
+      <li><strong>Custom</strong> — anything you list, case-insensitive</li>
+    </ul>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/sensitive-data-cleaner/"><div class="icon-box documents">🧹</div><h2>Data Cleaner</h2><p>Same engine, plain output.</p></a>
+      <a class="tool-card privacy-card" href="/tools/email-alias/"><div class="icon-box email">📧</div><h2>Email Alias</h2><p>Per-site forwarders.</p></a>
+      <a class="tool-card privacy-card" href="/tools/password-checker/"><div class="icon-box passwords">🔑</div><h2>Password Checker</h2><p>Score + breach lookup.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var RX = {
+      email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g,
+      phone: /\b(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?)?\d{3,4}[\s.-]?\d{3,4}\b/g,
+      ssn:   /\b\d{3}[- ]?\d{2}[- ]?\d{4}\b/g,
+      card:  /\b(?:\d[ -]?){13,19}\b/g,
+      iban:  /\b[A-Z]{2}\d{2}[A-Z0-9]{10,30}\b/g,
+      ip:    /\b(?:\d{1,3}\.){3}\d{1,3}\b|\b(?:[a-f0-9]{1,4}:){2,7}[a-f0-9]{1,4}\b/gi,
+      url:   /\bhttps?:\/\/[^\s)]+/g,
+      names: /\b[A-Z][a-z]{2,}\s+[A-Z][a-z]{2,}(?:\s+[A-Z][a-z]+)?\b/g,
+      dates: /\b(?:\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4}|\d{4}-\d{2}-\d{2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s*\d{2,4})\b/gi,
+      addr:  /\b\d{1,5}\s+[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+(?:St|Street|Ave|Avenue|Rd|Road|Blvd|Boulevard|Ln|Lane|Dr|Drive|Ct|Court|Pl|Place|Way)\b/g
+    };
+    function luhn(num) {
+      var d = (num + '').replace(/\D/g, '');
+      if (d.length < 13) return false;
+      var sum = 0, alt = false;
+      for (var i = d.length - 1; i >= 0; i--) {
+        var n = parseInt(d[i], 10);
+        if (alt) { n *= 2; if (n > 9) n -= 9; }
+        sum += n; alt = !alt;
+      }
+      return sum % 10 === 0;
+    }
+
+    function redact(text, opts, customTerms) {
+      var counts = {};
+      var out = text;
+      Object.keys(RX).forEach(function(k) {
+        if (!opts[k]) return;
+        counts[k] = 0;
+        out = out.replace(RX[k], function(match) {
+          if (k === 'card' && !luhn(match)) return match;
+          counts[k]++;
+          return '█'.repeat(Math.min(match.length, 16));
+        });
+      });
+      if (customTerms && customTerms.length) {
+        counts.custom = 0;
+        customTerms.forEach(function(term) {
+          if (!term) return;
+          var rx = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+          out = out.replace(rx, function(m) { counts.custom++; return '█'.repeat(Math.min(m.length, 16)); });
+        });
+      }
+      return { text: out, counts: counts };
+    }
+
+    function getOpts() {
+      var o = {};
+      document.querySelectorAll('[data-rx]').forEach(function(cb) { o[cb.dataset.rx] = cb.checked; });
+      return o;
+    }
+    function getCustom() {
+      var v = document.getElementById('customTerms').value;
+      return v.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+    }
+
+    document.getElementById('redactBtn').addEventListener('click', function() {
+      var text = document.getElementById('src').value;
+      if (!text) { document.getElementById('redactedOut').innerHTML = '<em style="color:var(--text-subtle)">Source is empty.</em>'; return; }
+      var r = redact(text, getOpts(), getCustom());
+      document.getElementById('redactedOut').textContent = r.text;
+      var lines = Object.keys(r.counts).filter(function(k) { return r.counts[k] > 0; }).map(function(k) { return r.counts[k] + ' ' + k; });
+      document.getElementById('stats').textContent = lines.length ? '✓ Redacted: ' + lines.join(', ') + '.' : 'No matches found.';
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      var t = document.getElementById('redactedOut').textContent;
+      navigator.clipboard.writeText(t).then(function() {
+        var b = document.getElementById('copyBtn');
+        b.textContent = '✓ Copied'; setTimeout(function() { b.textContent = '📋 Copy clean text'; }, 1500);
+      });
+    });
+    document.getElementById('dlBtn').addEventListener('click', function() {
+      var t = document.getElementById('redactedOut').textContent;
+      var b = new Blob([t], { type: 'text/plain' });
+      var url = URL.createObjectURL(b);
+      var a = document.createElement('a'); a.href = url; a.download = 'redacted.txt'; a.click();
+      URL.revokeObjectURL(url);
+    });
+    document.getElementById('imgBtn').addEventListener('click', function() {
+      var t = document.getElementById('redactedOut').textContent;
+      var lines = t.split('\n');
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var w = 720, lineH = 22, pad = 24;
+      canvas.width = w; canvas.height = pad * 2 + lines.length * lineH;
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '14px ui-monospace, SFMono-Regular, Menlo, monospace';
+      lines.forEach(function(l, i) { ctx.fillText(l, pad, pad + (i + 1) * lineH - 4); });
+      canvas.toBlob(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a'); a.href = url; a.download = 'redacted.png'; a.click();
+        URL.revokeObjectURL(url);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Vault Lite — Browser-Only Encrypted Vault | Today's Tasks</title>
+  <meta name="description" content="Free zero-knowledge password vault. AES-GCM encrypted in your browser. Optional cross-device sync with end-to-end encryption. No accounts required to start." />
+  <meta name="keywords" content="password vault, encrypted password manager, AES password manager, zero-knowledge vault, browser password vault" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/password-vault/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Password Vault Lite — Browser-Only Encrypted Vault" /><meta property="og:description" content="Zero-knowledge AES-GCM vault. Browser only." /><meta property="og:url" content="https://todays-tasks.com/tools/password-vault/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script src="/tools/supabase.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Password Vault Lite","url":"https://todays-tasks.com/tools/password-vault/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Password Vault Lite</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000003" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ AES-GCM 256-bit · Browser-only</span>
+    <h1>Password Vault Lite</h1>
+    <p class="intro">A zero-knowledge password vault that runs entirely in your browser. Your master passphrase derives the encryption key; we never see it. Free tier stores up to 10 entries locally. Premium unlocks unlimited entries and end-to-end encrypted cross-device sync.</p>
+
+    <div id="lockScreen" class="calc-card">
+      <h2 style="margin:0 0 8px;font-size:18px">Create or unlock your vault</h2>
+      <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 14px">Pick a passphrase you'll remember. We can't recover it — if you forget it, your data is unrecoverable. That's the price of zero-knowledge encryption.</p>
+      <label for="masterPw">Master passphrase</label>
+      <input type="password" id="masterPw" autocomplete="off" placeholder="At least 12 characters" />
+      <button type="button" class="btn-calc" id="unlockBtn" style="background:#059669;margin-top:12px">Unlock vault</button>
+      <p id="lockStatus" style="margin-top:10px;font-size:13px;color:var(--text-muted)"></p>
+    </div>
+
+    <div id="vaultUI" style="display:none">
+      <div class="calc-card">
+        <h2 style="margin:0 0 10px;font-size:18px">Add new entry</h2>
+        <div class="row two-col">
+          <div><label for="vSite">Site / app</label><input type="text" id="vSite" placeholder="github.com" /></div>
+          <div><label for="vUser">Username</label><input type="text" id="vUser" placeholder="you@example.com" /></div>
+        </div>
+        <div class="row">
+          <label for="vPw">Password</label>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:8px">
+            <input type="text" id="vPw" autocomplete="off" placeholder="Paste or generate" />
+            <button type="button" id="vGen" style="background:var(--surface);border:1px solid var(--border-strong);padding:0 14px;border-radius:10px;font-weight:600;cursor:pointer">⚡ Generate</button>
+          </div>
+        </div>
+        <div class="row">
+          <label for="vNote">Notes (optional)</label>
+          <input type="text" id="vNote" placeholder="Recovery email, 2FA backup…" />
+        </div>
+        <button type="button" class="btn-calc" id="vAdd" style="background:#059669">Add to vault</button>
+        <p id="vAddStatus" style="margin-top:8px;font-size:12.5px;color:var(--text-muted)"></p>
+      </div>
+
+      <h2 style="font-size:18px;margin:24px 0 10px">Your vault <span id="vCount" style="font-size:13px;color:var(--text-muted);font-weight:500"></span></h2>
+      <div class="vault-list" id="vaultList"></div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" id="vLock" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;font-family:inherit;cursor:pointer">🔒 Lock vault</button>
+        <button type="button" id="vExport" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;font-family:inherit;cursor:pointer">📥 Export encrypted backup</button>
+      </div>
+
+      <div id="syncContainer" style="margin-top:24px"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000004" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>How the Vault Works</h2>
+    <p>Your master passphrase is fed through PBKDF2 (250,000 SHA-256 iterations) to derive a 256-bit AES-GCM key. Every entry is encrypted with a fresh random IV. The ciphertext lives in your browser's localStorage. Sync (Premium) uploads only the encrypted blob — our server sees ciphertext, not contents.</p>
+    <div class="formula">key = PBKDF2(passphrase, salt, 250k iter, SHA-256, 256 bit)<br>ciphertext = AES-GCM(key, iv, plaintext)<br><br>stored: { iv, ciphertext }   ←  never the passphrase</div>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/password-checker/"><div class="icon-box passwords">🔑</div><h2>Password Checker</h2><p>Test before you save.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Data Leak Checker</h2><p>Has your email been in a breach?</p></a>
+      <a class="tool-card privacy-card" href="/tools/privacy-dashboard/"><div class="icon-box identity">🛡️</div><h2>Privacy Dashboard</h2><p>Vault health + risk score.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    // ---------- Crypto helpers (PBKDF2 → AES-GCM) ----------
+    function deriveKey(pass, saltStr) {
+      var enc = new TextEncoder();
+      return crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey'])
+        .then(function(km) {
+          return crypto.subtle.deriveKey(
+            { name: 'PBKDF2', salt: enc.encode(saltStr), iterations: 250000, hash: 'SHA-256' },
+            km, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']
+          );
+        });
+    }
+    function b64(buf) { var bytes = new Uint8Array(buf); var s=''; for (var i=0;i<bytes.length;i++) s+=String.fromCharCode(bytes[i]); return btoa(s); }
+    function fromB64(s) { s = atob(s); var arr = new Uint8Array(s.length); for (var i=0;i<s.length;i++) arr[i]=s.charCodeAt(i); return arr; }
+    function encryptStr(key, plain) {
+      var iv = crypto.getRandomValues(new Uint8Array(12));
+      return crypto.subtle.encrypt({name:'AES-GCM', iv:iv}, key, new TextEncoder().encode(plain))
+        .then(function(ct) { return { iv: b64(iv), ct: b64(ct) }; });
+    }
+    function decryptStr(key, ivStr, ctStr) {
+      return crypto.subtle.decrypt({name:'AES-GCM', iv:fromB64(ivStr)}, key, fromB64(ctStr))
+        .then(function(buf) { return new TextDecoder().decode(buf); });
+    }
+
+    var SALT = 'tt_vault_v1';
+    var STORAGE_KEY = 'tt_vault_blob';
+    var FREE_LIMIT = 10;
+    var key = null;
+    var entries = [];
+
+    function persist() {
+      var plain = JSON.stringify(entries);
+      return encryptStr(key, plain).then(function(payload) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      });
+    }
+    function loadEncrypted() {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return Promise.resolve([]);
+      try {
+        var payload = JSON.parse(raw);
+        return decryptStr(key, payload.iv, payload.ct).then(function(plain) {
+          return JSON.parse(plain || '[]');
+        });
+      } catch(e) { return Promise.reject(e); }
+    }
+
+    document.getElementById('unlockBtn').addEventListener('click', function() {
+      var p = document.getElementById('masterPw').value;
+      var status = document.getElementById('lockStatus');
+      if (!p || p.length < 8) { status.textContent = 'Passphrase must be at least 8 characters.'; return; }
+      status.textContent = 'Deriving key…';
+      deriveKey(p, SALT).then(function(k) {
+        key = k;
+        return loadEncrypted();
+      }).then(function(arr) {
+        entries = arr;
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('vaultUI').style.display = '';
+        renderList();
+        // Render sync card (Supabase scaffold)
+        if (window.ttSync) ttSync.renderSyncCard('syncContainer', { kind: 'vault' });
+      }).catch(function() {
+        status.textContent = '⚠ Could not decrypt existing vault. Wrong passphrase? Try again.';
+        key = null;
+      });
+    });
+
+    function renderList() {
+      var list = document.getElementById('vaultList');
+      document.getElementById('vCount').textContent = '(' + entries.length + (ttPremium && ttPremium.isPremium() ? ' / unlimited' : ' / ' + FREE_LIMIT) + ')';
+      if (entries.length === 0) {
+        list.innerHTML = '<p class="history-empty">Vault is empty. Add your first entry above.</p>';
+        return;
+      }
+      list.innerHTML = entries.map(function(e, i) {
+        return '<div class="vault-entry">' +
+          '<div class="v-site">' + (e.site || '—') + '</div>' +
+          '<div class="v-actions">' +
+            '<button type="button" data-i="' + i + '" data-act="copy">📋 Copy pw</button>' +
+            '<button type="button" data-i="' + i + '" data-act="reveal">👁</button>' +
+            '<button type="button" data-i="' + i + '" data-act="delete">🗑</button>' +
+          '</div>' +
+          '<div class="v-user">' + (e.user || '') + (e.note ? ' · ' + e.note : '') + '</div>' +
+        '</div>';
+      }).join('');
+      list.querySelectorAll('button').forEach(function(b) {
+        b.addEventListener('click', function() {
+          var i = +this.dataset.i, act = this.dataset.act;
+          if (act === 'copy') {
+            navigator.clipboard.writeText(entries[i].pw).then(function() {
+              b.textContent = '✓';
+              setTimeout(function() { b.textContent = '📋 Copy pw'; }, 1400);
+            });
+          } else if (act === 'reveal') {
+            alert(entries[i].pw);
+          } else if (act === 'delete') {
+            if (confirm('Delete entry for ' + entries[i].site + '?')) {
+              entries.splice(i, 1); persist().then(renderList);
+            }
+          }
+        });
+      });
+    }
+
+    document.getElementById('vAdd').addEventListener('click', function() {
+      if (entries.length >= FREE_LIMIT && (!window.ttPremium || !ttPremium.isPremium())) {
+        ttPremium.showPaywall('Unlimited Password Vault');
+        return;
+      }
+      var entry = {
+        site: document.getElementById('vSite').value.trim(),
+        user: document.getElementById('vUser').value.trim(),
+        pw:   document.getElementById('vPw').value,
+        note: document.getElementById('vNote').value.trim()
+      };
+      if (!entry.site || !entry.pw) {
+        document.getElementById('vAddStatus').textContent = 'Site and password required.';
+        return;
+      }
+      entries.unshift(entry);
+      persist().then(function() {
+        document.getElementById('vSite').value = '';
+        document.getElementById('vUser').value = '';
+        document.getElementById('vPw').value = '';
+        document.getElementById('vNote').value = '';
+        document.getElementById('vAddStatus').textContent = '✓ Encrypted and saved.';
+        setTimeout(function() { document.getElementById('vAddStatus').textContent = ''; }, 2200);
+        renderList();
+      });
+    });
+
+    document.getElementById('vGen').addEventListener('click', function() {
+      var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*';
+      var out = '';
+      var arr = new Uint8Array(20);
+      crypto.getRandomValues(arr);
+      for (var i = 0; i < arr.length; i++) out += chars[arr[i] % chars.length];
+      document.getElementById('vPw').value = out;
+    });
+
+    document.getElementById('vLock').addEventListener('click', function() {
+      key = null; entries = [];
+      document.getElementById('vaultUI').style.display = 'none';
+      document.getElementById('lockScreen').style.display = '';
+      document.getElementById('masterPw').value = '';
+      document.getElementById('lockStatus').textContent = '🔒 Locked.';
+    });
+
+    document.getElementById('vExport').addEventListener('click', function() {
+      var blob = localStorage.getItem(STORAGE_KEY) || '{}';
+      var b = new Blob([blob], { type: 'application/json' });
+      var url = URL.createObjectURL(b);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'vault-encrypted-backup.json';
+      a.click(); URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

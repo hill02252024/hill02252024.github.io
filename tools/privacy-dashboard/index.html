@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Dashboard — Your Personal Exposure Hub | Today's Tasks</title>
+  <meta name="description" content="One dashboard for your privacy: risk score trend, vault health, leak alerts, monitored emails. Premium unlocks cross-device sync and live monitoring." />
+  <meta name="keywords" content="privacy dashboard, security dashboard, identity overview, leak monitoring, vault health" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/privacy-dashboard/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Privacy Dashboard" /><meta property="og:url" content="https://todays-tasks.com/tools/privacy-dashboard/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script src="/tools/supabase.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Privacy Dashboard","url":"https://todays-tasks.com/tools/privacy-dashboard/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Privacy Dashboard</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000017" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Privacy Dashboard <span class="premium-badge">PRO</span></h1>
+    <p class="intro">Your one-glance status across every privacy tool — risk score, vault health, monitored emails, breach hits. Free tier shows local snapshots. Premium pulls live signals from monitoring + your synced devices.</p>
+
+    <div id="dashContainer"></div>
+
+    <div id="syncContainer" style="margin-top:24px"></div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000018" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>What Powers This Dashboard</h2>
+    <p>Each tool you use writes a small snapshot to your browser's localStorage — risk score, vault size, watched emails. The dashboard reads those snapshots. With Premium + sign-in, the same snapshots sync end-to-end encrypted across your devices, and the monitoring backend feeds in live breach alerts.</p>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/identity-risk-score/"><div class="icon-box identity">📊</div><h2>Risk Score</h2><p>Re-run the audit.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Leak Checker</h2><p>Add another email.</p></a>
+      <a class="tool-card privacy-card" href="/tools/password-vault/"><div class="icon-box passwords">🗝️</div><h2>Vault</h2><p>Manage saved credentials.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    function loadScore() {
+      try {
+        var s = JSON.parse(localStorage.getItem('tt_risk_score') || 'null');
+        if (!s) return null;
+        return s;
+      } catch(e) { return null; }
+    }
+    function vaultCount() {
+      try {
+        var raw = localStorage.getItem('tt_vault_blob');
+        if (!raw) return 0;
+        // We can't decrypt without the master key, so just signal "set" vs "empty".
+        return raw ? 'encrypted' : 0;
+      } catch(e) { return 0; }
+    }
+    function watchedCount() {
+      try { return (JSON.parse(localStorage.getItem('tt_watch_emails') || '[]')).length; } catch(e) { return 0; }
+    }
+    function aliasCount() {
+      try { return (JSON.parse(localStorage.getItem('tt_aliases') || '[]')).length; } catch(e) { return 0; }
+    }
+
+    function render() {
+      var score = loadScore();
+      var scoreCard;
+      if (score == null) {
+        scoreCard = '<div class="dash-card"><span class="dash-icon">📊</span><span class="dash-title">Risk score</span>' +
+          '<span class="dash-value">—</span><span class="dash-meta"><a href="/tools/identity-risk-score/">Run the audit →</a></span></div>';
+      } else {
+        var cls = score.score <= 30 ? 'ok' : score.score <= 60 ? '' : 'alert';
+        scoreCard = '<div class="dash-card ' + cls + '"><span class="dash-icon">📊</span><span class="dash-title">Risk score</span>' +
+          '<span class="dash-value">' + score.score + '</span>' +
+          '<span class="dash-meta">' + new Date(score.t).toLocaleDateString() + ' · <a href="/tools/identity-risk-score/">re-run</a></span></div>';
+      }
+      var vault = vaultCount();
+      var vaultCard = '<div class="dash-card"><span class="dash-icon">🗝️</span><span class="dash-title">Vault</span>' +
+        '<span class="dash-value">' + (vault === 'encrypted' ? '🔒' : '0') + '</span>' +
+        '<span class="dash-meta">' + (vault === 'encrypted' ? 'Encrypted vault set · <a href="/tools/password-vault/">unlock</a>' : '<a href="/tools/password-vault/">Create vault →</a>') + '</span></div>';
+      var watched = watchedCount();
+      var watchedCard = '<div class="dash-card ' + (watched > 0 ? 'ok' : '') + '"><span class="dash-icon">📬</span><span class="dash-title">Monitored emails</span>' +
+        '<span class="dash-value">' + watched + '</span>' +
+        '<span class="dash-meta"><a href="/tools/data-leak-checker/">Add email →</a></span></div>';
+      var aliases = aliasCount();
+      var aliasCard = '<div class="dash-card ' + (aliases > 5 ? 'ok' : '') + '"><span class="dash-icon">📧</span><span class="dash-title">Aliases created</span>' +
+        '<span class="dash-value">' + aliases + '</span>' +
+        '<span class="dash-meta"><a href="/tools/email-alias/">Generate more →</a></span></div>';
+      var breachCard = '<div class="dash-card"><span class="dash-icon">🔍</span><span class="dash-title">Breach alerts (24h)</span>' +
+        '<span class="dash-value">' + (ttPremium && ttPremium.isPremium() ? '0' : '—') + '</span>' +
+        '<span class="dash-meta">' + (ttPremium && ttPremium.isPremium() ? 'No new breaches.' : '<a href="/tools/data-leak-checker/">Premium feature →</a>') + '</span></div>';
+      var checklistCard = '<div class="dash-card"><span class="dash-icon">📱</span><span class="dash-title">Device hardening</span>' +
+        '<span class="dash-value">' + checklistProgress() + '%</span>' +
+        '<span class="dash-meta"><a href="/tools/device-checklist/">Open checklist →</a></span></div>';
+
+      document.getElementById('dashContainer').innerHTML =
+        '<div class="dash-grid">' + scoreCard + vaultCard + watchedCard + aliasCard + breachCard + checklistCard + '</div>';
+
+      if (window.ttSync) ttSync.renderSyncCard('syncContainer', { kind: 'dashboard state' });
+    }
+    function checklistProgress() {
+      try {
+        var done = JSON.parse(localStorage.getItem('tt_device_check') || '[]');
+        var total = parseInt(localStorage.getItem('tt_device_check_total') || '30', 10);
+        return Math.round((done.length / total) * 100);
+      } catch(e) { return 0; }
+    }
+    document.addEventListener('DOMContentLoaded', render);
+  </script>
+</body>
+</html>

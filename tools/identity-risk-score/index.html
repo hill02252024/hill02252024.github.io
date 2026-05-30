@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Identity Risk Score — Free Privacy Exposure Audit | Today's Tasks</title>
+  <meta name="description" content="Free identity risk score. Answer a short audit — accounts, password reuse, 2FA coverage, social exposure — and get a composite 0–100 risk score with prioritised next steps." />
+  <meta name="keywords" content="identity risk score, privacy audit, exposure score, security checkup, identity theft risk" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/identity-risk-score/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Identity Risk Score — Free Audit" /><meta property="og:url" content="https://todays-tasks.com/tools/identity-risk-score/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Identity Risk Score","url":"https://todays-tasks.com/tools/identity-risk-score/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Identity Risk Score</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000013" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ Browser-only · Answers never uploaded</span>
+    <h1>Identity Risk Score</h1>
+    <p class="intro">Eight questions, one composite score, prioritised actions. We measure exposure across passwords, email, identity reuse, 2FA coverage and device hygiene — and surface the highest-leverage fixes first.</p>
+
+    <div class="calc-card">
+      <form id="quizForm"></form>
+      <button type="button" class="btn-calc" id="scoreBtn" style="background:#059669">Calculate my risk score</button>
+      <div id="scoreOut" style="display:none">
+        <div class="risk-gauge">
+          <div class="score" id="scoreNum">0</div>
+          <div class="score-label" id="scoreLabel">your risk score</div>
+        </div>
+        <ul class="risk-factors" id="factors"></ul>
+        <h3 style="font-size:15px;margin:20px 0 8px">Top recommended actions</h3>
+        <ol id="recos" style="padding-left:22px;font-size:14.5px;line-height:1.7"></ol>
+      </div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000014" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>How the Score Works</h2>
+    <p>Each question carries a weight. We sum penalties (bad answers) and bonuses (good answers), normalise to 0–100, then group the result into low (0–30), medium (31–60) and high (61–100) risk bands.</p>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/privacy-dashboard/"><div class="icon-box identity">🛡️</div><h2>Privacy Dashboard</h2><p>Track score + vault + alerts.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Data Leak Checker</h2><p>Breach lookup.</p></a>
+      <a class="tool-card privacy-card" href="/tools/device-checklist/"><div class="icon-box identity">📱</div><h2>Device Checklist</h2><p>Hardening steps.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var QUESTIONS = [
+      { id: 'q1', label: 'Roughly how many online accounts do you have?', weight: 10,
+        opts: [{v:0,t:'< 20',score:0},{v:1,t:'20–100',score:4},{v:2,t:'100–300',score:8},{v:3,t:'300+',score:10}],
+        reco: 'Pare down: delete dormant accounts. Use justdelete.me to find delete links.' },
+      { id: 'q2', label: 'Do you reuse the same password across sites?', weight: 18,
+        opts: [{v:0,t:'Never',score:0},{v:1,t:'A few low-stakes sites',score:6},{v:2,t:'Many sites',score:14},{v:3,t:'Almost everywhere',score:18}],
+        reco: 'Stop reuse. Generate unique passwords per site with the Password Vault Lite.' },
+      { id: 'q3', label: 'Is 2FA enabled on your email + bank + main social accounts?', weight: 16,
+        opts: [{v:0,t:'Yes, all three',score:0},{v:1,t:'Two of three',score:5},{v:2,t:'One of three',score:10},{v:3,t:'None',score:16}],
+        reco: 'Enable 2FA on email first — it controls every "reset password" path.' },
+      { id: 'q4', label: 'How many data breaches has your main email been in?', weight: 12,
+        opts: [{v:0,t:'0–1',score:0},{v:1,t:'2–4',score:6},{v:2,t:'5–9',score:10},{v:3,t:'10+',score:12}],
+        reco: 'Run the Data Leak Checker. Rotate any reused passwords from breached sites.' },
+      { id: 'q5', label: 'Do you give your real email to every signup?', weight: 10,
+        opts: [{v:0,t:'Never — I use aliases',score:0},{v:1,t:'Sometimes',score:5},{v:2,t:'Mostly',score:8},{v:3,t:'Always',score:10}],
+        reco: 'Use the Email Alias Generator. Catch leaks before they become spam.' },
+      { id: 'q6', label: 'Phone screen lock?', weight: 8,
+        opts: [{v:0,t:'Biometric + strong code',score:0},{v:1,t:'Biometric only',score:3},{v:2,t:'PIN only (4-digit)',score:6},{v:3,t:'None',score:8}],
+        reco: 'Set a 6-digit minimum PIN. Biometrics fall back to it.' },
+      { id: 'q7', label: 'Encrypted backups of your phone / laptop?', weight: 10,
+        opts: [{v:0,t:'Yes, both',score:0},{v:1,t:'One device',score:5},{v:2,t:'Neither, but cloud backup',score:7},{v:3,t:'No backup at all',score:10}],
+        reco: 'Encrypted backup means a stolen device is a nuisance, not a crisis.' },
+      { id: 'q8', label: 'Do you scrub metadata from photos before posting publicly?', weight: 6,
+        opts: [{v:0,t:'Always',score:0},{v:1,t:'Usually',score:2},{v:2,t:'Rarely',score:4},{v:3,t:'Never',score:6}],
+        reco: 'EXIF data leaks location + device. Most social sites strip it; many cloud services don\'t.' },
+    ];
+    var form = document.getElementById('quizForm');
+    form.innerHTML = QUESTIONS.map(function(q, qi) {
+      return '<fieldset style="border:none;padding:0;margin:0 0 14px"><legend style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">' + (qi+1) + '. ' + q.label + '</legend>' +
+        q.opts.map(function(o, oi) {
+          return '<label style="display:block;font-size:13.5px;color:var(--text-muted);padding:5px 0"><input type="radio" name="' + q.id + '" value="' + oi + '" ' + (oi===0?'checked':'') + ' style="accent-color:#059669;margin-right:8px" />' + o.t + '</label>';
+        }).join('') + '</fieldset>';
+    }).join('');
+
+    document.getElementById('scoreBtn').addEventListener('click', function() {
+      var totalRaw = 0, maxRaw = 0;
+      var factorLines = [];
+      QUESTIONS.forEach(function(q) {
+        var sel = form.querySelector('input[name="' + q.id + '"]:checked');
+        var oi = sel ? +sel.value : 0;
+        var opt = q.opts[oi];
+        totalRaw += opt.score;
+        maxRaw += Math.max.apply(null, q.opts.map(function(o) { return o.score; }));
+        factorLines.push({ label: q.label, impact: opt.score, max: q.weight, reco: opt.score >= q.weight * 0.5 ? q.reco : null });
+      });
+      var score = Math.round((totalRaw / maxRaw) * 100);
+      var band = score <= 30 ? 'low' : score <= 60 ? 'med' : 'high';
+      var bandLabel = band === 'low' ? 'Low risk · keep it up' : band === 'med' ? 'Moderate risk · room to harden' : 'High risk · act this week';
+      document.getElementById('scoreNum').textContent = score;
+      document.getElementById('scoreNum').className = 'score ' + band;
+      document.getElementById('scoreLabel').textContent = bandLabel;
+      var fs = factorLines.map(function(f) {
+        var pct = f.max > 0 ? (f.impact / f.max) * 100 : 0;
+        var klass = pct >= 50 ? 'bad' : 'good';
+        return '<li><span>' + f.label.slice(0, 60) + '</span><span class="impact ' + klass + '">+' + f.impact + '</span></li>';
+      }).join('');
+      document.getElementById('factors').innerHTML = fs;
+      var recos = factorLines.filter(function(f) { return f.reco; }).slice(0, 4).map(function(f) {
+        return '<li style="margin-bottom:6px">' + f.reco + '</li>';
+      }).join('');
+      document.getElementById('recos').innerHTML = recos || '<li>You\'re doing great. Re-run quarterly to catch drift.</li>';
+      document.getElementById('scoreOut').style.display = '';
+      // Save to localStorage for dashboard
+      localStorage.setItem('tt_risk_score', JSON.stringify({ score: score, t: Date.now() }));
+    });
+  </script>
+</body>
+</html>

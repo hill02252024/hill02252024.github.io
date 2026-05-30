@@ -1,0 +1,499 @@
+/* =======================================================================
+   /tools/privacy.css — privacy hub aesthetic.
+   Layered on top of /style.css + /tools/tools.css.
+   Calm slate + emerald accents, trust-first design.
+   ======================================================================= */
+
+:root {
+  --priv-bg:       #f8fafc;
+  --priv-deep:     #0f172a;
+  --priv-emerald:  #059669;
+  --priv-emerald-soft: #d1fae5;
+  --priv-blue:     #2563eb;
+  --priv-blue-soft: #dbeafe;
+  --priv-amber:    #d97706;
+  --priv-amber-soft: #fef3c7;
+  --priv-violet:   #7c3aed;
+  --priv-violet-soft: #ede9fe;
+}
+
+/* ---- Hub hero ---- */
+.privacy-hero {
+  background: radial-gradient(ellipse at top, rgba(5, 150, 105, 0.06) 0%, transparent 60%),
+              linear-gradient(180deg, var(--surface), transparent);
+  padding: 64px 20px 28px;
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.privacy-trust-pill {
+  display: inline-block;
+  background: var(--priv-emerald-soft);
+  color: #047857;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+  letter-spacing: 0.2px;
+}
+.privacy-hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.12;
+  margin: 0 0 14px;
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.privacy-hero .lede {
+  font-size: clamp(15px, 2vw, 17.5px);
+  color: var(--text-muted);
+  margin: 0 auto 24px;
+  max-width: 620px;
+  line-height: 1.6;
+}
+.privacy-hero-stats {
+  display: inline-flex;
+  gap: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 22px;
+  margin-top: 4px;
+  box-shadow: var(--shadow-sm);
+}
+.privacy-hero-stats div { text-align: center; }
+.privacy-hero-stats b {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--priv-emerald);
+  line-height: 1;
+}
+.privacy-hero-stats span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ---- Category filter ---- */
+.privacy-categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto 28px;
+  max-width: 720px;
+  padding: 0 20px;
+}
+.privacy-categories button {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.privacy-categories button:hover {
+  border-color: var(--priv-emerald);
+  color: var(--priv-emerald);
+}
+.privacy-categories button[aria-pressed="true"] {
+  background: var(--priv-emerald);
+  border-color: var(--priv-emerald);
+  color: #fff;
+}
+
+/* ---- Privacy tool cards ---- */
+.tool-card.privacy-card {
+  padding: 22px 20px;
+  gap: 12px;
+}
+.tool-card.privacy-card .icon-box.passwords  { background: var(--priv-amber-soft); color: var(--priv-amber); }
+.tool-card.privacy-card .icon-box.email      { background: var(--priv-blue-soft); color: var(--priv-blue); }
+.tool-card.privacy-card .icon-box.identity   { background: var(--priv-emerald-soft); color: var(--priv-emerald); }
+.tool-card.privacy-card .icon-box.documents  { background: var(--priv-violet-soft); color: var(--priv-violet); }
+.tool-card.privacy-card .cat-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: -4px;
+}
+.tool-card.privacy-card h2 { font-size: 16px; }
+
+/* ---- Trust section ---- */
+.trust-section {
+  margin: 60px auto 0;
+  max-width: 1080px;
+  padding: 40px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+.trust-section h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  text-align: center;
+  margin: 0 0 28px;
+  color: var(--text);
+  font-weight: 800;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+@media (min-width: 640px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+.trust-item {
+  text-align: center;
+  padding: 4px;
+}
+.trust-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  background: var(--priv-emerald-soft);
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-item h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+  color: var(--text);
+  font-weight: 700;
+}
+.trust-item p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ---- Apps funnel ---- */
+.apps-funnel {
+  margin: 40px auto 0;
+  max-width: 1080px;
+  background: linear-gradient(135deg, var(--priv-blue-soft), var(--priv-violet-soft));
+  border-radius: 20px;
+  padding: 28px 32px;
+}
+.apps-funnel-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+@media (max-width: 640px) { .apps-funnel-inner { grid-template-columns: 1fr; text-align: center; } }
+.apps-funnel h2 { font-size: 20px; margin: 0 0 4px; color: var(--text); font-weight: 800; }
+.apps-funnel p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+.apps-funnel-cta {
+  background: var(--priv-deep);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14.5px;
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+.apps-funnel-cta:hover { transform: translateY(-2px); }
+
+/* ---- Privacy tool page layout ---- */
+.privacy-tool {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.privacy-tool .breadcrumb { font-size: 13px; color: var(--text-subtle); margin: 14px 0 0; }
+.privacy-tool .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+.privacy-tool .breadcrumb a:hover { color: var(--priv-emerald); }
+.privacy-tool h1 {
+  font-size: clamp(26px, 4vw, 36px);
+  margin: 16px 0 8px;
+  font-weight: 800;
+  color: var(--text);
+}
+.privacy-tool > .intro {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+.privacy-tool .local-only-pill {
+  display: inline-block;
+  background: var(--priv-emerald-soft);
+  color: #047857;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 0 0 10px;
+}
+
+/* ---- Specific tool components ---- */
+
+/* Strength meter */
+.strength-meter {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.strength-meter > div {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease, background 0.3s ease;
+  width: 0;
+  background: #ef4444;
+}
+.strength-meter.s0 > div { width: 8%;   background: #dc2626; }
+.strength-meter.s1 > div { width: 25%;  background: #ef4444; }
+.strength-meter.s2 > div { width: 50%;  background: #f59e0b; }
+.strength-meter.s3 > div { width: 75%;  background: #84cc16; }
+.strength-meter.s4 > div { width: 100%; background: var(--priv-emerald); }
+.strength-label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 8px;
+  color: var(--text);
+}
+.strength-label .s0 { color: #dc2626; }
+.strength-label .s1 { color: #ef4444; }
+.strength-label .s2 { color: #d97706; }
+.strength-label .s3 { color: #84cc16; }
+.strength-label .s4 { color: var(--priv-emerald); }
+
+/* Generator output */
+.gen-output {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 15px;
+  color: var(--text);
+  word-break: break-all;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gen-output .gen-value { flex: 1; }
+.gen-output button {
+  background: var(--priv-emerald);
+  color: #fff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12.5px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.gen-output button:hover { background: #047857; }
+.gen-list { display: grid; gap: 8px; margin-top: 12px; }
+
+/* Vault entries */
+.vault-list { display: grid; gap: 8px; margin-top: 12px; }
+.vault-entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+  align-items: center;
+}
+.vault-entry .v-site { font-weight: 700; color: var(--text); font-size: 14.5px; }
+.vault-entry .v-user { font-size: 13px; color: var(--text-muted); grid-column: 1; }
+.vault-entry .v-actions { display: flex; gap: 6px; grid-row: span 2; }
+.vault-entry .v-actions button {
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.vault-entry .v-actions button:hover { color: var(--priv-emerald); border-color: var(--priv-emerald); }
+
+/* Risk score gauge */
+.risk-gauge {
+  background: var(--surface-2);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  margin: 14px 0;
+}
+.risk-gauge .score { font-size: 56px; font-weight: 800; line-height: 1; }
+.risk-gauge .score.low  { color: var(--priv-emerald); }
+.risk-gauge .score.med  { color: var(--priv-amber); }
+.risk-gauge .score.high { color: #dc2626; }
+.risk-gauge .score-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; }
+.risk-factors { margin-top: 16px; display: grid; gap: 8px; }
+.risk-factors li { list-style: none; padding: 8px 12px; background: var(--surface); border-radius: 8px; font-size: 13.5px; display: flex; justify-content: space-between; }
+.risk-factors li .impact.good { color: var(--priv-emerald); font-weight: 700; }
+.risk-factors li .impact.bad  { color: #dc2626; font-weight: 700; }
+
+/* Redactor canvas / editor */
+.redactor-area {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 220px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.redactor-area mark.redacted {
+  background: #111;
+  color: #111;
+  padding: 0 2px;
+  border-radius: 2px;
+  user-select: none;
+}
+.redactor-options { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.redactor-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.redactor-options input[type="checkbox"] { accent-color: var(--priv-emerald); }
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.checklist li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  font-size: 14px;
+  cursor: pointer;
+}
+.checklist li input { margin-top: 3px; accent-color: var(--priv-emerald); }
+.checklist li.done { background: var(--priv-emerald-soft); border-color: var(--priv-emerald); }
+.checklist li.done .item-text { text-decoration: line-through; color: var(--text-muted); }
+.checklist .item-cat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.checklist-summary {
+  margin: 18px 0 8px;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+.checklist-summary b { color: var(--priv-emerald); font-size: 18px; }
+.checklist-progress {
+  height: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.checklist-progress > div {
+  height: 100%;
+  background: var(--priv-emerald);
+  transition: width 0.3s ease;
+}
+
+/* Privacy dashboard cards */
+.dash-grid { display: grid; gap: 14px; grid-template-columns: 1fr; margin-top: 14px; }
+@media (min-width: 640px) { .dash-grid { grid-template-columns: repeat(2, 1fr); } }
+.dash-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dash-card .dash-icon { font-size: 22px; }
+.dash-card .dash-title { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+.dash-card .dash-value { font-size: 28px; font-weight: 800; color: var(--text); line-height: 1; }
+.dash-card .dash-meta  { font-size: 12.5px; color: var(--text-subtle); }
+.dash-card.alert { border-color: #dc2626; background: #fef2f2; }
+.dash-card.ok    { border-color: var(--priv-emerald); background: var(--priv-emerald-soft); }
+
+/* Sign-in / sync section */
+.sync-card {
+  background: linear-gradient(135deg, var(--priv-emerald-soft), var(--surface));
+  border: 1px solid var(--priv-emerald);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin: 22px 0;
+}
+.sync-card h3 { margin: 0 0 6px; font-size: 16px; color: var(--text); font-weight: 800; }
+.sync-card p { margin: 0 0 12px; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
+.sync-card .sync-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.sync-card input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--surface);
+}
+.sync-card button {
+  background: var(--priv-emerald);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.sync-card button:hover { background: #047857; }
+.sync-card.signed-in { background: var(--priv-emerald-soft); }
+.sync-card .signed-email { font-weight: 700; color: #065f46; }

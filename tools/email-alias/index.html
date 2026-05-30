@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Alias Generator — Site-Specific Aliases Free | Today's Tasks</title>
+  <meta name="description" content="Generate site-specific email aliases for Gmail, iCloud, ProtonMail, or your own domain. Track who leaked your address. Free, no signup, browser-only." />
+  <meta name="keywords" content="email alias generator, gmail plus alias, icloud hide my email, custom email alias, anti-spam email, disposable alias" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/email-alias/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Email Alias Generator — Free, Browser-Only" /><meta property="og:description" content="Per-site aliases for Gmail, iCloud, custom domains." /><meta property="og:url" content="https://todays-tasks.com/tools/email-alias/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Email Alias Generator","url":"https://todays-tasks.com/tools/email-alias/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="privacy-tool">
+    <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Email Alias Generator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000005" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <span class="local-only-pill">🛡️ Browser-only · No upload</span>
+    <h1>Email Alias Generator</h1>
+    <p class="intro">Give every site a unique alias so you can spot exactly who sold your email. Supports Gmail tag aliases, iCloud Hide My Email format, ProtonMail aliases, and custom domains via catch-all.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="emailBase">Your base email</label><input type="email" id="emailBase" autocomplete="email" placeholder="you@gmail.com" /></div>
+        <div><label for="site">Site / service</label><input type="text" id="site" placeholder="newsletter.com" /></div>
+      </div>
+      <div class="row">
+        <label>Strategy</label>
+        <div class="unit-toggle" id="strategyToggle">
+          <button type="button" data-s="plus" class="active">Gmail +tag</button>
+          <button type="button" data-s="dot">Gmail dot</button>
+          <button type="button" data-s="icloud">iCloud HME</button>
+          <button type="button" data-s="catchall">Custom catch-all</button>
+        </div>
+      </div>
+      <div id="catchAllRow" class="row" style="display:none">
+        <label for="customDomain">Your domain (catch-all)</label>
+        <input type="text" id="customDomain" placeholder="me.com" />
+      </div>
+      <button type="button" class="btn-calc" id="genBtn" style="background:#059669">Generate alias</button>
+      <div class="gen-output" id="aliasOut" style="display:none">
+        <span class="gen-value" id="aliasValue"></span>
+        <button type="button" id="copyAlias">📋 Copy</button>
+      </div>
+      <p id="aliasNote" style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.5"></p>
+
+      <h3 style="font-size:15px;margin:24px 0 8px">📚 Recent aliases (saved locally)</h3>
+      <div class="gen-list" id="aliasHistory"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000006" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h2>Which Strategy Should You Use?</h2>
+    <ul style="font-size:14.5px;line-height:1.7">
+      <li><strong>Gmail +tag</strong> — works everywhere, but some sites strip "+". Mail still arrives in your main inbox.</li>
+      <li><strong>Gmail dot</strong> — Gmail ignores dots in addresses, so <code>j.smith@gmail.com</code> = <code>jsmith@gmail.com</code>. Lower spam-detection by site filters.</li>
+      <li><strong>iCloud Hide My Email</strong> — Apple-managed forwarder. Random alias, optional disable. Requires iCloud+ for unlimited.</li>
+      <li><strong>Custom catch-all</strong> — own a domain? Every <code>anything@yourdomain.com</code> hits your inbox. The strongest option.</li>
+    </ul>
+
+    <h2>How to Catch Leaks</h2>
+    <p>If you sign up for <code>newsletter.com</code> using <code>you+newsletter@gmail.com</code> and later get marketing spam to that exact alias from a <em>different</em> sender, you know newsletter.com leaked or sold your address. Cancel them, block the alias, move on.</p>
+
+    <h2>More Privacy Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card privacy-card" href="/tools/disposable-email/"><div class="icon-box email">📨</div><h2>Disposable Email</h2><p>One-time inboxes for risky signups.</p></a>
+      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Data Leak Checker</h2><p>Has your email been in a breach?</p></a>
+      <a class="tool-card privacy-card" href="/tools/sensitive-data-cleaner/"><div class="icon-box documents">🧹</div><h2>Data Cleaner</h2><p>Strip emails + IDs from text.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var strategy = 'plus';
+    document.querySelectorAll('#strategyToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#strategyToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        strategy = b.dataset.s;
+        document.getElementById('catchAllRow').style.display = strategy === 'catchall' ? '' : 'none';
+      });
+    });
+
+    function slug(s) { return (s || '').toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/[^a-z0-9]/g, '').slice(0, 24); }
+    function rand(len) {
+      var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      var arr = new Uint8Array(len); crypto.getRandomValues(arr);
+      var out = ''; for (var i = 0; i < len; i++) out += chars[arr[i] % chars.length];
+      return out;
+    }
+
+    function generate() {
+      var base = document.getElementById('emailBase').value.trim();
+      var site = slug(document.getElementById('site').value);
+      var note = document.getElementById('aliasNote');
+      if (!site) { note.textContent = '⚠ Enter a site or service name.'; return null; }
+      var alias = '';
+      if (strategy === 'plus') {
+        if (!base || !/@/.test(base)) { note.textContent = '⚠ Enter your base email.'; return null; }
+        var parts = base.split('@');
+        alias = parts[0] + '+' + site + '@' + parts[1];
+        note.textContent = '✓ Works on most providers. If "+" is rejected, try the iCloud or catch-all strategy.';
+      } else if (strategy === 'dot') {
+        if (!base || !/@/.test(base)) { note.textContent = '⚠ Enter your Gmail address.'; return null; }
+        var parts2 = base.split('@');
+        var name = parts2[0].replace(/\./g, '');
+        // Insert a dot at a deterministic position based on site name
+        var pos = (site.charCodeAt(0) + site.length) % (name.length - 1) + 1;
+        alias = name.slice(0, pos) + '.' + name.slice(pos) + '@' + parts2[1];
+        note.textContent = '✓ Gmail ignores dots — mail arrives in your inbox. The dot position is derived from "' + site + '".';
+      } else if (strategy === 'icloud') {
+        alias = site + '_' + rand(6) + '@icloud.com';
+        note.textContent = 'ℹ For real iCloud HME, open Settings → iCloud → Hide My Email. This is a template — Apple generates the real address.';
+      } else if (strategy === 'catchall') {
+        var dom = document.getElementById('customDomain').value.trim().replace(/^@/, '');
+        if (!dom) { note.textContent = '⚠ Enter your domain.'; return null; }
+        alias = site + '@' + dom;
+        note.textContent = '✓ Requires catch-all email routing on ' + dom + '. Set in your DNS provider (Cloudflare, Namecheap, etc.).';
+      }
+      return alias;
+    }
+    document.getElementById('genBtn').addEventListener('click', function() {
+      var alias = generate();
+      if (!alias) return;
+      document.getElementById('aliasValue').textContent = alias;
+      document.getElementById('aliasOut').style.display = '';
+      saveAlias(alias);
+      renderHistory();
+    });
+    document.getElementById('copyAlias').addEventListener('click', function() {
+      var v = document.getElementById('aliasValue').textContent;
+      navigator.clipboard.writeText(v).then(function() {
+        var b = document.getElementById('copyAlias');
+        b.textContent = '✓ Copied';
+        setTimeout(function() { b.textContent = '📋 Copy'; }, 1500);
+      });
+    });
+
+    function saveAlias(a) {
+      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_aliases') || '[]'); } catch(e) {}
+      var site = document.getElementById('site').value.trim();
+      arr.unshift({ t: Date.now(), site: site, alias: a, strategy: strategy });
+      if (arr.length > 50) arr = arr.slice(0, 50);
+      localStorage.setItem('tt_aliases', JSON.stringify(arr));
+    }
+    function renderHistory() {
+      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_aliases') || '[]'); } catch(e) {}
+      var c = document.getElementById('aliasHistory');
+      if (arr.length === 0) { c.innerHTML = '<p class="history-empty">No aliases yet.</p>'; return; }
+      c.innerHTML = arr.slice(0, 10).map(function(it, i) {
+        return '<div class="gen-output" style="margin-top:0"><span class="gen-value">' + it.alias + ' <small style="color:var(--text-subtle);font-size:11px">· ' + it.site + '</small></span>' +
+          '<button type="button" data-cp="' + i + '">📋</button></div>';
+      }).join('');
+      c.querySelectorAll('button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          navigator.clipboard.writeText(arr[+this.dataset.cp].alias);
+          btn.textContent = '✓'; setTimeout(function() { btn.textContent = '📋'; }, 1400);
+        });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', renderHistory);
+  </script>
+</body>
+</html>
