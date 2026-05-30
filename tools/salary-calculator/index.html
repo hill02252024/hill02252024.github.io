@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salary Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free take-home salary calculator for the UK, US, AU, and HK. See your net pay per year, month, week, and hour after tax. No login required." />
+  <meta name="keywords" content="salary calculator, take home pay, net salary, after tax calculator, UK salary, US salary, AU salary, HK salary" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/salary-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Salary Calculator — Free Online" /><meta property="og:description" content="Take-home pay for UK, US, AU, HK. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/salary-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Take-Home Salary Calculator","url":"https://todays-tasks.com/tools/salary-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Are these tax brackets official?","acceptedAnswer":{"@type":"Answer","text":"Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home."}},
+    {"@type":"Question","name":"Does this include state or city tax?","acceptedAnswer":{"@type":"Answer","text":"No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live."}},
+    {"@type":"Question","name":"Why does my real paycheck differ?","acceptedAnswer":{"@type":"Answer","text":"Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Salary Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000007" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Take-Home Salary Calculator</h1>
+    <p class="intro">Free take-home pay calculator for the UK, US, Australia, and Hong Kong. Enter your gross salary, pick a country, and see your net pay per year, month, week, and hour after income tax and social charges.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="gross">Gross salary</label><input type="number" id="gross" inputmode="decimal" min="0" step="100" placeholder="e.g. 60000" /></div>
+        <div><label for="period">Per</label><select id="period"><option value="year">Year</option><option value="month">Month</option><option value="hour">Hour</option></select></div>
+      </div>
+      <div class="row">
+        <label>Country</label>
+        <div class="unit-toggle" id="countryToggle">
+          <button type="button" data-c="uk" class="active">🇬🇧 UK</button>
+          <button type="button" data-c="us">🇺🇸 US</button>
+          <button type="button" data-c="au">🇦🇺 AU</button>
+          <button type="button" data-c="hk">🇭🇰 HK</button>
+        </div>
+      </div>
+      <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000008" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Take-Home Salary for Android — UK, US, AU, HK presets, pension &amp; bonus modelling, save scenarios.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Salary Calculator</h2>
+    <ol class="step-list">
+      <li>Enter your gross (before-tax) salary and pick whether it's per year, month, or hour.</li>
+      <li>Pick the country — each one applies its real tax bands and social charges.</li>
+      <li>Hit Calculate. You'll see annual, monthly, weekly, and hourly net pay.</li>
+    </ol>
+
+    <h2>How Take-Home Pay Is Calculated</h2>
+    <p>This calculator applies progressive income-tax brackets plus each country's main social-security charge. The math walks each tax bracket in turn, taking the appropriate percent of the income slice that falls inside that bracket.</p>
+    <div class="formula">net = gross − income_tax − social_charge<br><br>UK: 20% / 40% / 45% bands + National Insurance<br>US: 10/12/22/24/32/35/37% federal + 7.65% FICA<br>AU: 0/16/30/37/45% + 2% Medicare<br>HK: 2/6/10/14/17% (capped at 15% standard) + 5% MPF</div>
+    <p>"Hourly" assumes a full-time year of 52 weeks × 40 hours = 2,080 hours. "Weekly" divides annual net by 52.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>Are these tax brackets official?</summary><p>Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home.</p></details>
+    <details class="faq-item"><summary>Does this include state or city tax?</summary><p>No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live.</p></details>
+    <details class="faq-item"><summary>Why does my real paycheck differ?</summary><p>Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/investment-calculator/"><div class="icon-box finance" aria-hidden="true">📈</div><h2>Investment Calculator</h2><p>Compound growth projection.</p></a>
+      <a class="tool-card" href="/tools/debt-calculator/"><div class="icon-box finance" aria-hidden="true">💳</div><h2>Debt Payoff</h2><p>Months to debt-free.</p></a>
+      <a class="tool-card" href="/tools/mortgage-calculator/"><div class="icon-box property" aria-hidden="true">🏠</div><h2>Mortgage Calculator</h2><p>Monthly PITI breakdown.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var country = 'uk';
+    document.querySelectorAll('#countryToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#countryToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        country = b.dataset.c;
+      });
+    });
+
+    // Progressive bracket walker: brackets = [[upper, rate], ...] in order.
+    function bracketTax(income, brackets) {
+      var tax = 0, prev = 0;
+      for (var i = 0; i < brackets.length; i++) {
+        var top = brackets[i][0], rate = brackets[i][1];
+        if (income > top) { tax += (top - prev) * rate; prev = top; }
+        else { tax += (income - prev) * rate; return tax; }
+      }
+      return tax;
+    }
+
+    function calcUK(g) {
+      // 2024/25 simplified: 12,570 personal allowance, 20/40/45 bands.
+      var pa = 12570;
+      var taxable = Math.max(0, g - pa);
+      // Personal allowance tapers above 100k (lose £1 per £2 over).
+      if (g > 100000) {
+        var loss = Math.min(pa, (g - 100000) / 2);
+        taxable = Math.max(0, g - (pa - loss));
+      }
+      var inc = bracketTax(taxable, [[37700, 0.20], [125140 - pa, 0.40], [Infinity, 0.45]]);
+      // NI: 8% from £12,570–£50,270, 2% above.
+      var ni = 0;
+      if (g > 12570) ni += Math.min(g, 50270) - 12570 > 0 ? (Math.min(g, 50270) - 12570) * 0.08 : 0;
+      if (g > 50270) ni += (g - 50270) * 0.02;
+      return { inc: inc, soc: ni, label: 'Income tax + NI', cur: '£' };
+    }
+    function calcUS(g) {
+      // 2024 single filer simplified federal.
+      var std = 14600;
+      var taxable = Math.max(0, g - std);
+      var inc = bracketTax(taxable, [[11600, 0.10], [47150, 0.12], [100525, 0.22], [191950, 0.24], [243725, 0.32], [609350, 0.35], [Infinity, 0.37]]);
+      // FICA: 6.2% SS (cap 168,600) + 1.45% Medicare.
+      var soc = Math.min(g, 168600) * 0.062 + g * 0.0145;
+      return { inc: inc, soc: soc, label: 'Federal income + FICA', cur: '$' };
+    }
+    function calcAU(g) {
+      // 2024-25 resident: 0/16/30/37/45 from Jul 2024.
+      var inc = bracketTax(g, [[18200, 0], [45000, 0.16], [135000, 0.30], [190000, 0.37], [Infinity, 0.45]]);
+      // Medicare levy: 2% above ~26k threshold (simplified).
+      var med = g > 26000 ? g * 0.02 : 0;
+      return { inc: inc, soc: med, label: 'Income tax + Medicare', cur: 'A$' };
+    }
+    function calcHK(g) {
+      // HK salaries tax: progressive on net (50k allowance), capped at 15% standard.
+      var allowance = 132000;
+      var net = Math.max(0, g - allowance);
+      var prog = bracketTax(net, [[50000, 0.02], [50000 + 50000, 0.06], [50000 + 100000, 0.10], [50000 + 150000, 0.14], [Infinity, 0.17]]);
+      var standard = g * 0.15;
+      var inc = Math.min(prog, standard);
+      // MPF: 5% mandatory, monthly relevant income capped 30,000/mo = 360,000/yr.
+      var mpf = Math.min(g, 360000) * 0.05;
+      return { inc: inc, soc: mpf, label: 'Salaries tax + MPF', cur: 'HK$' };
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var raw = tt.read('gross');
+      var period = document.getElementById('period').value;
+      if (raw <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter a gross salary.</div>', 'error');
+        return;
+      }
+      var annual = raw;
+      if (period === 'month') annual = raw * 12;
+      if (period === 'hour') annual = raw * 2080;
+      var r = country === 'uk' ? calcUK(annual) : country === 'us' ? calcUS(annual) : country === 'au' ? calcAU(annual) : calcHK(annual);
+      var totalTax = r.inc + r.soc;
+      var net = annual - totalTax;
+      var fmtCur = function(n) { return r.cur + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); };
+      var rate = annual > 0 ? (totalTax / annual * 100) : 0;
+      var html =
+        '<div class="primary"><span class="label">Net annual</span>' + fmtCur(net) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Monthly net<b>' + fmtCur(net / 12) + '</b></div>' +
+          '<div>Weekly net<b>' + fmtCur(net / 52) + '</b></div>' +
+          '<div>Hourly net<b>' + fmtCur(net / 2080) + '</b></div>' +
+          '<div>Gross annual<b>' + fmtCur(annual) + '</b></div>' +
+          '<div>' + r.label + '<b>' + fmtCur(totalTax) + '</b></div>' +
+          '<div>Effective rate<b>' + rate.toFixed(1) + '%</b></div>' +
+        '</div>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Gross ' + fmtCur(annual) + ' · Net ' + fmtCur(net) + ' (' + rate.toFixed(1) + '% effective) · ' + country.toUpperCase() + '\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

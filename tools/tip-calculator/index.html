@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tip Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free online tip calculator with bill splitting. Quick presets for 10%, 15%, 18%, 20%, 25% — or set your own. Round up for clean cash splits. Works on mobile." />
+  <meta name="keywords" content="tip calculator, bill splitter, restaurant tip, gratuity calculator, split the bill, free tip calculator" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/tip-calculator/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tip Calculator — Free Online Calculator" />
+  <meta property="og:description" content="Free tip calculator with bill splitting. Presets + custom percent. No login." />
+  <meta property="og:url" content="https://todays-tasks.com/tools/tip-calculator/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Tip Calculator","url":"https://todays-tasks.com/tools/tip-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online tip calculator with bill splitting."}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How much should I tip at a restaurant?","acceptedAnswer":{"@type":"Answer","text":"In the U.S., 18–20% is standard for good service. 15% is acceptable for average service. In Europe a service charge is often included — anything extra is optional."}},
+    {"@type":"Question","name":"Do I tip on the pre-tax or post-tax total?","acceptedAnswer":{"@type":"Answer","text":"Tipping on the pre-tax subtotal is technically correct, but many people tip on the full post-tax total for simplicity. Either is acceptable in casual settings."}},
+    {"@type":"Question","name":"What is the 'Round Up' option?","acceptedAnswer":{"@type":"Answer","text":"Round Up bumps each person's share to the nearest dollar so cash splits are clean. The extra cents are added to the tip — nobody comes up short."}}
+  ]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/">Today's Tasks</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a>
+      </nav>
+      <a class="site-cta" href="/todo.html">Todo App</a>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Tip Calculator</nav>
+
+    <div class="ad-slot ad-top">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000001" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+
+    <h1>Tip Calculator</h1>
+    <p class="intro">Free online tip calculator and bill splitter. Enter your bill, pick a tip percentage, and see how much each person owes. No login, no signup — just instant restaurant tip math.</p>
+
+    <div class="calc-card">
+      <div class="row">
+        <label for="bill">Bill amount <span class="hint">total before tip</span></label>
+        <input type="number" id="bill" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 84.50" />
+      </div>
+      <div class="row">
+        <label>Tip %</label>
+        <div class="preset-row" id="tipPresets">
+          <button type="button" data-pct="10">10%</button>
+          <button type="button" data-pct="15">15%</button>
+          <button type="button" data-pct="18" class="active">18%</button>
+          <button type="button" data-pct="20">20%</button>
+          <button type="button" data-pct="25">25%</button>
+        </div>
+        <div style="margin-top:8px"><input type="number" id="tipCustom" inputmode="decimal" min="0" max="100" step="0.5" placeholder="Custom %" /></div>
+      </div>
+      <div class="row two-col">
+        <div>
+          <label for="people">Split between</label>
+          <input type="number" id="people" inputmode="numeric" min="1" max="100" step="1" value="2" />
+        </div>
+        <div>
+          <label for="roundup">&nbsp;</label>
+          <button type="button" id="roundup" class="preset-row" style="display:block;width:100%;padding:12px;border:1px solid var(--border-strong);background:var(--surface);border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;color:var(--text-muted)">Round up: OFF</button>
+        </div>
+      </div>
+      <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000002" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+
+    <a class="mobile-cta" href="/apps.html">
+      <span class="emoji" aria-hidden="true">📱</span>
+      <span class="text">
+        <h3>Try the mobile app</h3>
+        <p>Download our free Android Tip Calculator — works offline, 5 presets, dark mode for dim restaurants.</p>
+      </span>
+      <span class="chev" aria-hidden="true">›</span>
+    </a>
+
+    <h2>How to Use This Tip Calculator</h2>
+    <ol class="step-list">
+      <li>Type your bill amount. Use the total before tip — that's what the percentage applies to.</li>
+      <li>Tap a preset percentage (15%, 18%, 20%…) or enter a custom percent.</li>
+      <li>Set how many people are splitting. Toggle "Round up" if you want clean cash amounts.</li>
+    </ol>
+
+    <h2>How a Tip Is Calculated</h2>
+    <p>The math is straightforward. The tip is a percentage of your subtotal, and the per-person amount is the bill plus tip, divided by the headcount.</p>
+    <div class="formula">tip = bill × (tip% ÷ 100)<br>total = bill + tip<br>per person = total ÷ people</div>
+    <p>The "Round up" option rounds each person's share to the nearest dollar. The extra cents are absorbed into the tip total, so nobody at the table comes up short and the server gets a slightly better tip.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>How much should I tip at a restaurant?</summary><p>In the U.S., 18–20% is standard for good service. 15% is acceptable for average service. In Europe a service charge is often included — anything extra is optional.</p></details>
+    <details class="faq-item"><summary>Do I tip on the pre-tax or post-tax total?</summary><p>Tipping on the pre-tax subtotal is technically correct, but many people tip on the full post-tax total for simplicity. Either is acceptable in casual settings.</p></details>
+    <details class="faq-item"><summary>What is the "Round Up" option?</summary><p>Round Up bumps each person's share to the nearest dollar so cash splits are clean. The extra cents are added to the tip — nobody comes up short.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay after tax.</p></a>
+      <a class="tool-card" href="/tools/debt-calculator/"><div class="icon-box finance" aria-hidden="true">💳</div><h2>Debt Payoff</h2><p>Debt-free date + interest saved.</p></a>
+      <a class="tool-card" href="/tools/mortgage-calculator/"><div class="icon-box property" aria-hidden="true">🏠</div><h2>Mortgage Calculator</h2><p>Monthly PITI + amortization.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var tipPct = 18;
+    var roundUp = false;
+    document.querySelectorAll('#tipPresets button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#tipPresets button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        tipPct = parseFloat(b.dataset.pct);
+        document.getElementById('tipCustom').value = '';
+      });
+    });
+    document.getElementById('tipCustom').addEventListener('input', function() {
+      var v = parseFloat(this.value);
+      if (!isNaN(v)) {
+        tipPct = v;
+        document.querySelectorAll('#tipPresets button').forEach(function(x) { x.classList.remove('active'); });
+      }
+    });
+    document.getElementById('roundup').addEventListener('click', function() {
+      roundUp = !roundUp;
+      this.textContent = 'Round up: ' + (roundUp ? 'ON' : 'OFF');
+      this.style.background = roundUp ? '#1a7f3c' : 'var(--surface)';
+      this.style.color = roundUp ? '#fff' : 'var(--text-muted)';
+      this.style.borderColor = roundUp ? '#1a7f3c' : 'var(--border-strong)';
+    });
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var bill = tt.read('bill');
+      var people = Math.max(1, Math.floor(tt.read('people') || 1));
+      if (bill <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter a bill amount.</div>', 'error');
+        return;
+      }
+      var tip = bill * (tipPct / 100);
+      var total = bill + tip;
+      var perPerson = total / people;
+      var tipPerPerson = tip / people;
+      if (roundUp && perPerson > 0) {
+        var ceil = Math.ceil(perPerson);
+        var extra = (ceil - perPerson) * people;
+        tip += extra;
+        total = bill + tip;
+        perPerson = ceil;
+        tipPerPerson = tip / people;
+      }
+      var html =
+        '<div class="primary"><span class="label">Per person</span>' + tt.fmt(perPerson) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Tip total<b>' + tt.fmt(tip) + '</b></div>' +
+          '<div>Total bill<b>' + tt.fmt(total) + '</b></div>' +
+          '<div>Tip per person<b>' + tt.fmt(tipPerPerson) + '</b></div>' +
+          '<div>People<b>' + people + '</b></div>' +
+        '</div>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Bill ' + tt.fmt(bill) + ' · Tip ' + tt.fmt(tip) + ' · Total ' + tt.fmt(total) + ' · ' + people + '× ' + tt.fmt(perPerson) + ' per person\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

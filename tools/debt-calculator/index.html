@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debt Payoff Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free debt payoff calculator. See your debt-free date, total interest paid, and how an extra monthly payment slashes both. Works for credit card, loan, or student debt." />
+  <meta name="keywords" content="debt payoff calculator, debt free date, snowball, credit card payoff, extra payment, debt reduction" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/debt-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Debt Payoff Calculator — Free Online" /><meta property="og:description" content="Debt-free date + interest saved. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/debt-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Debt Payoff Calculator","url":"https://todays-tasks.com/tools/debt-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Should I pay off debt or invest?","acceptedAnswer":{"@type":"Answer","text":"Compare interest rates. Credit-card debt at 18–25% almost always beats expected stock returns of 7–10%. Mortgage debt at 3–4% may not. Pay down anything above 6–7% before investing extra."}},
+    {"@type":"Question","name":"What is the avalanche vs snowball method?","acceptedAnswer":{"@type":"Answer","text":"Avalanche: pay highest interest rate first — mathematically optimal. Snowball: pay smallest balance first — emotionally rewarding because debts disappear faster. Pick the one you'll actually stick with."}},
+    {"@type":"Question","name":"How much extra should I pay?","acceptedAnswer":{"@type":"Answer","text":"Even $50–100 extra per month dramatically shortens credit-card payoff and saves thousands in interest. Try a few scenarios in the calculator to see the impact."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Debt Payoff Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000013" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Debt Payoff Calculator</h1>
+    <p class="intro">Free debt payoff calculator with extra-payment what-if. See your debt-free date and total interest paid, plus how much sooner you'd be free if you added an extra payment each month.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="balance">Total debt</label><input type="number" id="balance" inputmode="decimal" min="0" step="100" placeholder="e.g. 15000" value="15000" /></div>
+        <div><label for="apr">Interest rate % (APR)</label><input type="number" id="apr" inputmode="decimal" min="0" max="100" step="0.1" placeholder="e.g. 18.9" value="18.9" /></div>
+      </div>
+      <div class="row two-col">
+        <div><label for="monthly">Monthly payment</label><input type="number" id="monthly" inputmode="decimal" min="0" step="10" placeholder="e.g. 400" value="400" /></div>
+        <div><label for="extra">Extra monthly <span class="hint">what-if</span></label><input type="number" id="extra" inputmode="decimal" min="0" step="10" placeholder="e.g. 100" value="100" /></div>
+      </div>
+      <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000014" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Debt-Free Plan for Android — multi-debt avalanche/snowball, monthly progress, payoff date.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Debt Calculator</h2>
+    <ol class="step-list">
+      <li>Enter your current total debt and the APR (interest rate). Use the highest-rate debt first for the biggest impact.</li>
+      <li>Enter your normal monthly payment. The calculator will reject any payment too small to cover monthly interest.</li>
+      <li>Set an "extra" amount to compare. Even $50–100 extra typically shaves years off and saves thousands.</li>
+    </ol>
+
+    <h2>How Debt Payoff Is Calculated</h2>
+    <p>Each month the calculator walks one period of amortization: add interest, subtract the payment, see what's left. It repeats until the balance hits zero, counting months and total interest along the way.</p>
+    <div class="formula">monthly interest = balance × (APR ÷ 12 ÷ 100)<br>new balance = balance + monthly interest − payment<br>repeat until balance ≤ 0</div>
+    <p>If the payment is smaller than the monthly interest, the balance grows forever — the calculator catches this and warns you to increase the payment.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>Should I pay off debt or invest?</summary><p>Compare interest rates. Credit-card debt at 18–25% almost always beats expected stock returns of 7–10%. Mortgage debt at 3–4% may not. Pay down anything above 6–7% before investing extra.</p></details>
+    <details class="faq-item"><summary>What is the avalanche vs snowball method?</summary><p>Avalanche: pay highest interest rate first — mathematically optimal. Snowball: pay smallest balance first — emotionally rewarding because debts disappear faster. Pick the one you'll actually stick with.</p></details>
+    <details class="faq-item"><summary>How much extra should I pay?</summary><p>Even $50–100 extra per month dramatically shortens credit-card payoff and saves thousands in interest. Try a few scenarios in the calculator to see the impact.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/mortgage-calculator/"><div class="icon-box property" aria-hidden="true">🏠</div><h2>Mortgage Calculator</h2><p>Monthly PITI + amortization.</p></a>
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay by country.</p></a>
+      <a class="tool-card" href="/tools/investment-calculator/"><div class="icon-box finance" aria-hidden="true">📈</div><h2>Investment Calculator</h2><p>Compound growth projection.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    function payoff(balance, apr, monthly) {
+      var r = apr / 100 / 12;
+      var bal = balance, months = 0, interest = 0;
+      var maxMonths = 600;
+      while (bal > 0.005 && months < maxMonths) {
+        var ix = bal * r;
+        var principal = monthly - ix;
+        if (principal <= 0) return { months: Infinity, interest: Infinity };
+        if (principal > bal) {
+          interest += ix;
+          bal = 0;
+        } else {
+          interest += ix;
+          bal -= principal;
+        }
+        months++;
+      }
+      if (months >= maxMonths) return { months: Infinity, interest: Infinity };
+      return { months: months, interest: interest };
+    }
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var bal = tt.read('balance'), apr = tt.read('apr'), m = tt.read('monthly'), extra = tt.read('extra');
+      if (bal <= 0 || m <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter debt and monthly payment.</div>', 'error');
+        return;
+      }
+      var base = payoff(bal, apr, m);
+      var withExtra = extra > 0 ? payoff(bal, apr, m + extra) : null;
+      if (!isFinite(base.months)) {
+        tt.showResult('result', '<div class="primary">Payment too small.</div><p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">Monthly interest exceeds your payment, so the balance grows forever. Increase your monthly payment.</p>', 'error');
+        return;
+      }
+      var ym = function(n) { return Math.floor(n / 12) + 'y ' + (n % 12) + 'm'; };
+      var freeDate = function(n) {
+        var d = new Date(); d.setMonth(d.getMonth() + n);
+        return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      };
+      var html =
+        '<div class="primary"><span class="label">Debt-free in</span>' + ym(base.months) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Payoff date<b>' + freeDate(base.months) + '</b></div>' +
+          '<div>Total interest<b>' + tt.fmt(base.interest) + '</b></div>' +
+          '<div>Total paid<b>' + tt.fmt(bal + base.interest) + '</b></div>';
+      if (withExtra && isFinite(withExtra.months)) {
+        var savedMonths = base.months - withExtra.months;
+        var savedInterest = base.interest - withExtra.interest;
+        html += '<div>With +' + tt.fmt(extra) + '/mo<b>' + ym(withExtra.months) + ' (save ' + savedMonths + 'mo)</b></div>' +
+                '<div>Interest saved<b>' + tt.fmt(savedInterest) + '</b></div>';
+      }
+      html += '</div>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Debt-free in ' + ym(base.months) + ' · Total interest ' + tt.fmt(base.interest) + '\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free BMI calculator with metric and imperial units. See your category, the healthy weight range for your height, and your healthy-weight gap." />
+  <meta name="keywords" content="BMI calculator, body mass index, healthy weight, metric imperial bmi, free bmi calculator" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/bmi-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="BMI Calculator — Free Online" /><meta property="og:description" content="Body mass index + healthy range. Metric or imperial." /><meta property="og:url" content="https://todays-tasks.com/tools/bmi-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BMI Calculator","url":"https://todays-tasks.com/tools/bmi-calculator/","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What does BMI actually measure?","acceptedAnswer":{"@type":"Answer","text":"BMI is a ratio of weight to height squared. It is a population-level screening tool — useful for tracking trends, but it does not directly measure body fat and ignores muscle mass, bone density, and body composition."}},
+    {"@type":"Question","name":"What are the BMI categories?","acceptedAnswer":{"@type":"Answer","text":"Underweight: below 18.5. Healthy weight: 18.5 to 24.9. Overweight: 25 to 29.9. Obesity: 30 and above. The WHO uses these thresholds for adults."}},
+    {"@type":"Question","name":"Is BMI accurate for athletes?","acceptedAnswer":{"@type":"Answer","text":"No — muscle is denser than fat, so very muscular people often score in the 'overweight' or 'obese' range despite having low body fat. For athletes, body fat percent or waist-to-height ratio is more meaningful."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; BMI Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000005" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>BMI Calculator</h1>
+    <p class="intro">Free online BMI (body mass index) calculator with metric and imperial units. See your BMI category and the exact weight range that puts you in the healthy 18.5–24.9 zone for your height.</p>
+
+    <div class="calc-card">
+      <div class="row">
+        <label>Units</label>
+        <div class="unit-toggle" id="unitToggle">
+          <button type="button" data-unit="metric" class="active">Metric (kg / cm)</button>
+          <button type="button" data-unit="imperial">Imperial (lb / in)</button>
+        </div>
+      </div>
+      <div class="row two-col">
+        <div><label for="weight"><span id="wLabel">Weight (kg)</span></label><input type="number" id="weight" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 70" /></div>
+        <div><label for="height"><span id="hLabel">Height (cm)</span></label><input type="number" id="height" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 175" /></div>
+      </div>
+      <button type="button" class="btn-calc health" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000006" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Track your BMI over time in the Today's Tasks wellbeing app. Plus weight history, mood log, and habits.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This BMI Calculator</h2>
+    <ol class="step-list">
+      <li>Pick metric (kg / cm) or imperial (lb / in). The labels update instantly.</li>
+      <li>Type your weight and height. Decimals are fine — height 5'10" is 70 inches or 177.8 cm.</li>
+      <li>Hit Calculate. You'll get your BMI, your category, and the healthy weight range for your height.</li>
+    </ol>
+
+    <h2>How BMI Is Calculated</h2>
+    <p>Body mass index is a simple ratio of weight to the square of height. The formula has been around since the 1830s and is the same worldwide — only the units change.</p>
+    <div class="formula">Metric:    BMI = kg ÷ (m × m)<br>Imperial:  BMI = 703 × lb ÷ (in × in)</div>
+    <p>The healthy weight range shown is just the formula run backwards — your height squared, multiplied by 18.5 to 24.9, gives the kilogram (or pound) range that lands inside the "healthy" BMI band.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>What does BMI actually measure?</summary><p>BMI is a ratio of weight to height squared. It is a population-level screening tool — useful for tracking trends, but it does not directly measure body fat and ignores muscle mass, bone density, and body composition.</p></details>
+    <details class="faq-item"><summary>What are the BMI categories?</summary><p>Underweight: below 18.5. Healthy weight: 18.5 to 24.9. Overweight: 25 to 29.9. Obesity: 30 and above. The WHO uses these thresholds for adults.</p></details>
+    <details class="faq-item"><summary>Is BMI accurate for athletes?</summary><p>No — muscle is denser than fat, so very muscular people often score in the "overweight" or "obese" range despite having low body fat. For athletes, body fat percent or waist-to-height ratio is more meaningful.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay by country.</p></a>
+      <a class="tool-card" href="/tools/long-weekend/"><div class="icon-box travel" aria-hidden="true">📅</div><h2>Long Weekend Planner</h2><p>Maximise public holidays.</p></a>
+      <a class="tool-card" href="/tools/tip-calculator/"><div class="icon-box finance" aria-hidden="true">🍽️</div><h2>Tip Calculator</h2><p>Bill split + round up.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var unit = 'metric';
+    document.querySelectorAll('#unitToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#unitToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        unit = b.dataset.unit;
+        document.getElementById('wLabel').textContent = unit === 'metric' ? 'Weight (kg)' : 'Weight (lb)';
+        document.getElementById('hLabel').textContent = unit === 'metric' ? 'Height (cm)' : 'Height (in)';
+        document.getElementById('weight').placeholder = unit === 'metric' ? 'e.g. 70' : 'e.g. 154';
+        document.getElementById('height').placeholder = unit === 'metric' ? 'e.g. 175' : 'e.g. 69';
+      });
+    });
+
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var w = tt.read('weight'), h = tt.read('height');
+      if (w <= 0 || h <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter weight and height.</div>', 'error');
+        return;
+      }
+      var bmi, hMeters, lowKg, highKg, lowLb, highLb;
+      if (unit === 'metric') {
+        hMeters = h / 100;
+        bmi = w / (hMeters * hMeters);
+        lowKg = 18.5 * hMeters * hMeters;
+        highKg = 24.9 * hMeters * hMeters;
+      } else {
+        bmi = 703 * w / (h * h);
+        lowLb = 18.5 * h * h / 703;
+        highLb = 24.9 * h * h / 703;
+      }
+      var cat, klass, advice;
+      if (bmi < 18.5) { cat = 'Underweight'; klass = 'bmi-under'; advice = 'Below the healthy range — consider adding nutrient-dense calories.'; }
+      else if (bmi < 25) { cat = 'Healthy weight'; klass = 'bmi-normal'; advice = 'In the healthy range. Keep up your current habits.'; }
+      else if (bmi < 30) { cat = 'Overweight'; klass = 'bmi-overweight'; advice = 'Above healthy range. Small daily deficits compound over months.'; }
+      else { cat = 'Obesity'; klass = 'bmi-obese'; advice = 'Above the overweight range. A doctor or dietitian can help with a plan.'; }
+      var rangeStr;
+      if (unit === 'metric') {
+        rangeStr = lowKg.toFixed(1) + ' – ' + highKg.toFixed(1) + ' kg';
+      } else {
+        rangeStr = lowLb.toFixed(1) + ' – ' + highLb.toFixed(1) + ' lb';
+      }
+      var gap = '';
+      if (unit === 'metric') {
+        if (w < lowKg) gap = '+' + (lowKg - w).toFixed(1) + ' kg to reach healthy range';
+        else if (w > highKg) gap = '−' + (w - highKg).toFixed(1) + ' kg to reach healthy range';
+        else gap = 'Already in healthy range ✓';
+      } else {
+        if (w < lowLb) gap = '+' + (lowLb - w).toFixed(1) + ' lb to reach healthy range';
+        else if (w > highLb) gap = '−' + (w - highLb).toFixed(1) + ' lb to reach healthy range';
+        else gap = 'Already in healthy range ✓';
+      }
+      var html =
+        '<div class="primary"><span class="label">' + cat + '</span>BMI ' + bmi.toFixed(1) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Healthy range for your height<b>' + rangeStr + '</b></div>' +
+          '<div>Gap<b>' + gap + '</b></div>' +
+        '</div>' +
+        '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">' + advice + '</p>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'BMI ' + bmi.toFixed(1) + ' (' + cat + ') · healthy range ' + rangeStr + '\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html, klass);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free mortgage calculator. Monthly payment, total interest, and amortization snapshots. Enter home price, down payment, term, and rate — get answers instantly." />
+  <meta name="keywords" content="mortgage calculator, monthly mortgage payment, home loan calculator, amortization, principal and interest" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/mortgage-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Mortgage Calculator — Free Online" /><meta property="og:description" content="Monthly payment + total interest + amortization. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/mortgage-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Calculator","url":"https://todays-tasks.com/tools/mortgage-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is included in the monthly payment?","acceptedAnswer":{"@type":"Answer","text":"This calculator returns principal and interest only (P&I). Your real mortgage payment also includes property tax, homeowners insurance, and PMI/MIP if applicable — together called PITI."}},
+    {"@type":"Question","name":"How much down payment do I need?","acceptedAnswer":{"@type":"Answer","text":"Conventional loans typically require 5–20% down. FHA loans can go as low as 3.5%. Less than 20% down usually triggers PMI (mortgage insurance) until you reach 20% equity."}},
+    {"@type":"Question","name":"Is the interest rate fixed?","acceptedAnswer":{"@type":"Answer","text":"This calculator assumes a fixed-rate mortgage. The same annual rate is applied to every payment of the loan term. For ARM loans the monthly payment can change at reset dates."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Mortgage Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000003" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Mortgage Calculator</h1>
+    <p class="intro">Free online mortgage calculator. Find your monthly principal and interest payment, total interest paid, and amortization snapshots at Year 1, Year 5, Year 10, and the final year.</p>
+
+    <div class="calc-card">
+      <div class="row"><label for="price">Home price</label><input type="number" id="price" inputmode="decimal" min="0" step="1000" placeholder="e.g. 450000" value="450000" /></div>
+      <div class="row two-col">
+        <div><label for="down">Down payment $</label><input type="number" id="down" inputmode="decimal" min="0" step="1000" placeholder="e.g. 90000" value="90000" /></div>
+        <div><label for="downPct">Down payment %</label><input type="number" id="downPct" inputmode="decimal" min="0" max="100" step="0.5" placeholder="e.g. 20" value="20" /></div>
+      </div>
+      <div class="row two-col">
+        <div><label for="term">Loan term (years)</label><input type="number" id="term" inputmode="numeric" min="1" max="40" step="1" value="30" /></div>
+        <div><label for="rate">Annual rate %</label><input type="number" id="rate" inputmode="decimal" min="0" max="20" step="0.01" placeholder="e.g. 6.5" value="6.5" /></div>
+      </div>
+      <button type="button" class="btn-calc property" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000004" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Mortgage Calc for Android — PITI, PMI/MIP, FHA/VA/USDA scenarios, refinance break-even.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Mortgage Calculator</h2>
+    <ol class="step-list">
+      <li>Enter the home price and your down payment (either dollars or a percent — the other updates).</li>
+      <li>Choose your loan term (15, 20, or 30 years are standard) and the annual interest rate.</li>
+      <li>Hit Calculate. You'll see monthly P&I, total interest, and amortization snapshots.</li>
+    </ol>
+
+    <h2>How a Mortgage Payment Is Calculated</h2>
+    <p>This is the standard fixed-rate amortization formula. The monthly payment stays the same for the life of the loan, but each payment is split differently between principal and interest as the balance shrinks.</p>
+    <div class="formula">M = P × (r × (1 + r)^n) ÷ ((1 + r)^n − 1)<br><br>where:<br>P = loan principal (price − down)<br>r = annual rate ÷ 12 ÷ 100<br>n = loan term in months</div>
+    <p>Year 1, Year 5, and Year 10 balances are calculated by walking the amortization schedule forward, which is exactly what your lender does each month.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>What is included in the monthly payment?</summary><p>This calculator returns principal and interest only (P&I). Your real mortgage payment also includes property tax, homeowners insurance, and PMI/MIP if applicable — together called PITI.</p></details>
+    <details class="faq-item"><summary>How much down payment do I need?</summary><p>Conventional loans typically require 5–20% down. FHA loans can go as low as 3.5%. Less than 20% down usually triggers PMI (mortgage insurance) until you reach 20% equity.</p></details>
+    <details class="faq-item"><summary>Is the interest rate fixed?</summary><p>This calculator assumes a fixed-rate mortgage. The same annual rate is applied to every payment of the loan term. For ARM loans the monthly payment can change at reset dates.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/rental-yield/"><div class="icon-box property" aria-hidden="true">🏘️</div><h2>Rental Yield</h2><p>Property ROI in seconds.</p></a>
+      <a class="tool-card" href="/tools/debt-calculator/"><div class="icon-box finance" aria-hidden="true">💳</div><h2>Debt Payoff</h2><p>Months to debt-free.</p></a>
+      <a class="tool-card" href="/tools/investment-calculator/"><div class="icon-box finance" aria-hidden="true">📈</div><h2>Investment Calculator</h2><p>Compound interest projection.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    var lastEdited = 'pct';
+    function syncDownFromPct() {
+      var price = tt.read('price'), pct = tt.read('downPct');
+      if (price > 0) document.getElementById('down').value = Math.round(price * pct / 100);
+    }
+    function syncPctFromDown() {
+      var price = tt.read('price'), down = tt.read('down');
+      if (price > 0) document.getElementById('downPct').value = (down / price * 100).toFixed(1);
+    }
+    document.getElementById('downPct').addEventListener('input', function() { lastEdited = 'pct'; syncDownFromPct(); });
+    document.getElementById('down').addEventListener('input', function() { lastEdited = 'dollar'; syncPctFromDown(); });
+    document.getElementById('price').addEventListener('input', function() {
+      if (lastEdited === 'pct') syncDownFromPct(); else syncPctFromDown();
+    });
+
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var price = tt.read('price'), down = tt.read('down');
+      var term = Math.max(1, Math.floor(tt.read('term') || 30));
+      var rate = tt.read('rate');
+      var P = price - down;
+      if (P <= 0) {
+        tt.showResult('result', '<div class="primary">Down payment must be less than home price.</div>', 'error');
+        return;
+      }
+      var n = term * 12;
+      var r = rate / 100 / 12;
+      var M = r === 0 ? P / n : P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      var totalPaid = M * n;
+      var totalInterest = totalPaid - P;
+
+      // Build amortization snapshots
+      var snapshotMonths = [12, 60, 120, n];
+      var snapshotLabels = ['Year 1', 'Year 5', 'Year 10', 'Final year'];
+      var bal = P;
+      var snaps = {};
+      for (var m = 1; m <= n; m++) {
+        var interest = bal * r;
+        var principal = M - interest;
+        bal -= principal;
+        if (snapshotMonths.indexOf(m) >= 0) snaps[m] = Math.max(0, bal);
+      }
+      var snapHtml = snapshotMonths.map(function(m, i) {
+        if (m > n) return '';
+        return '<div>' + snapshotLabels[i] + ' balance<b>' + tt.fmt(snaps[m] || 0) + '</b></div>';
+      }).join('');
+
+      var html =
+        '<div class="primary"><span class="label">Monthly payment (P&amp;I)</span>' + tt.fmt(M) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Loan amount<b>' + tt.fmt(P) + '</b></div>' +
+          '<div>Total paid<b>' + tt.fmt(totalPaid) + '</b></div>' +
+          '<div>Total interest<b>' + tt.fmt(totalInterest) + '</b></div>' +
+          '<div>Term<b>' + term + ' years</b></div>' +
+          snapHtml +
+        '</div>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Monthly ' + tt.fmt(M) + ' · Loan ' + tt.fmt(P) + ' · Total interest ' + tt.fmt(totalInterest) + ' over ' + term + 'y at ' + rate + '%\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

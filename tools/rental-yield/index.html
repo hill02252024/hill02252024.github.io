@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rental Yield Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free rental yield calculator. Enter property value, monthly rent, and annual expenses to see gross yield, net yield, and monthly cashflow. No login required." />
+  <meta name="keywords" content="rental yield calculator, buy to let, property ROI, gross yield, net yield, cashflow, property investment" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/rental-yield/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Rental Yield Calculator — Free Online" /><meta property="og:description" content="Gross + net yield + monthly cashflow. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/rental-yield/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Rental Yield Calculator","url":"https://todays-tasks.com/tools/rental-yield/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a good rental yield?","acceptedAnswer":{"@type":"Answer","text":"5–7% gross yield is typical in healthy markets. Above 8% may indicate higher risk or a less desirable area. London / Hong Kong / San Francisco often sit at 2–4% — investors there bet on capital growth, not yield."}},
+    {"@type":"Question","name":"What's the difference between gross and net yield?","acceptedAnswer":{"@type":"Answer","text":"Gross yield is annual rent ÷ property value — it ignores expenses. Net yield subtracts management fees, insurance, maintenance, vacancy, and tax — it's what actually lands in your bank account."}},
+    {"@type":"Question","name":"Should I include mortgage payments?","acceptedAnswer":{"@type":"Answer","text":"For yield calculations, no — yield measures the property's return on capital. To assess cashflow with a mortgage, subtract the annual mortgage payment from the net rental income and compare against your equity in the property."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Rental Yield Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000011" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Rental Yield Calculator</h1>
+    <p class="intro">Free rental yield calculator for landlords and property investors. Enter the property value, monthly rent, and annual expenses to see gross yield, net yield, and monthly cashflow.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="value">Property value</label><input type="number" id="value" inputmode="decimal" min="0" step="1000" placeholder="e.g. 450000" value="450000" /></div>
+        <div><label for="rent">Monthly rent</label><input type="number" id="rent" inputmode="decimal" min="0" step="50" placeholder="e.g. 2200" value="2200" /></div>
+      </div>
+      <div class="row two-col">
+        <div><label for="expenses">Annual expenses <span class="hint">tax, insurance, repairs</span></label><input type="number" id="expenses" inputmode="decimal" min="0" step="100" placeholder="e.g. 3500" value="3500" /></div>
+        <div><label for="vacancy">Vacancy % <span class="hint">expected empty time</span></label><input type="number" id="vacancy" inputmode="decimal" min="0" max="100" step="0.5" placeholder="e.g. 5" value="5" /></div>
+      </div>
+      <button type="button" class="btn-calc property" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000012" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Rental Yield Calc for Android — track multiple properties, compare scenarios, mortgage-adjusted ROI.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Rental Yield Calculator</h2>
+    <ol class="step-list">
+      <li>Enter the property's market value (or purchase price if you're modelling a deal).</li>
+      <li>Enter monthly rent and your full annual expense estimate — property tax, insurance, maintenance, management fees.</li>
+      <li>Set a vacancy percent (5% means one month empty out of 20 — a realistic baseline).</li>
+    </ol>
+
+    <h2>How Rental Yield Is Calculated</h2>
+    <p>Two yields matter for property investors. Gross yield is a quick screening number. Net yield is what you actually pocket.</p>
+    <div class="formula">gross yield = (monthly rent × 12) ÷ property value<br><br>effective rent = monthly rent × 12 × (1 − vacancy%)<br>net yield   = (effective rent − annual expenses) ÷ property value</div>
+    <p>Monthly cashflow is the net annual income divided by 12 — a more intuitive number for landlords than the yield percentage.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>What is a good rental yield?</summary><p>5–7% gross yield is typical in healthy markets. Above 8% may indicate higher risk or a less desirable area. London / Hong Kong / San Francisco often sit at 2–4% — investors there bet on capital growth, not yield.</p></details>
+    <details class="faq-item"><summary>What's the difference between gross and net yield?</summary><p>Gross yield is annual rent ÷ property value — it ignores expenses. Net yield subtracts management fees, insurance, maintenance, vacancy, and tax — it's what actually lands in your bank account.</p></details>
+    <details class="faq-item"><summary>Should I include mortgage payments?</summary><p>For yield calculations, no — yield measures the property's return on capital. To assess cashflow with a mortgage, subtract the annual mortgage payment from the net rental income and compare against your equity in the property.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/mortgage-calculator/"><div class="icon-box property" aria-hidden="true">🏠</div><h2>Mortgage Calculator</h2><p>Monthly PITI + amortization.</p></a>
+      <a class="tool-card" href="/tools/investment-calculator/"><div class="icon-box finance" aria-hidden="true">📈</div><h2>Investment Calculator</h2><p>Compound growth projection.</p></a>
+      <a class="tool-card" href="/tools/dividend-calculator/"><div class="icon-box finance" aria-hidden="true">💎</div><h2>Dividend Calculator</h2><p>Yield + DRIP projection.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var v = tt.read('value'), r = tt.read('rent'), e = tt.read('expenses'), vac = tt.read('vacancy');
+      if (v <= 0 || r <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter property value and rent.</div>', 'error');
+        return;
+      }
+      var annualRent = r * 12;
+      var grossYield = annualRent / v * 100;
+      var effective = annualRent * (1 - vac / 100);
+      var netAnnual = effective - e;
+      var netYield = netAnnual / v * 100;
+      var monthlyCash = netAnnual / 12;
+      var klass = netYield >= 5 ? 'bmi-normal' : netYield >= 3 ? '' : 'bmi-overweight';
+      var verdict = netYield >= 6 ? 'Strong yield' : netYield >= 4 ? 'Solid yield' : netYield >= 2 ? 'Modest yield' : 'Low yield — capital growth play?';
+      var html =
+        '<div class="primary"><span class="label">Net yield</span>' + netYield.toFixed(2) + '%</div>' +
+        '<div class="secondary">' +
+          '<div>Gross yield<b>' + grossYield.toFixed(2) + '%</b></div>' +
+          '<div>Monthly cashflow<b>' + tt.fmt(monthlyCash) + '</b></div>' +
+          '<div>Net annual income<b>' + tt.fmt(netAnnual) + '</b></div>' +
+          '<div>Annual rent (gross)<b>' + tt.fmt(annualRent) + '</b></div>' +
+          '<div>Effective rent (vacancy-adj.)<b>' + tt.fmt(effective) + '</b></div>' +
+          '<div>Verdict<b>' + verdict + '</b></div>' +
+        '</div>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Gross ' + grossYield.toFixed(2) + '% · Net ' + netYield.toFixed(2) + '% · Cashflow ' + tt.fmt(monthlyCash) + '/mo\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html, klass);
+    });
+  </script>
+</body>
+</html>

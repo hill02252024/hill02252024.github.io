@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dividend Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free dividend calculator. See annual dividend income, dividend yield, and a 10-year DRIP reinvestment projection. No login required." />
+  <meta name="keywords" content="dividend calculator, dividend yield, drip calculator, dividend reinvestment, passive income, free dividend calc" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/dividend-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Dividend Calculator — Free Online" /><meta property="og:description" content="Yield + 10-year DRIP projection. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/dividend-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Dividend Calculator","url":"https://todays-tasks.com/tools/dividend-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is dividend yield?","acceptedAnswer":{"@type":"Answer","text":"Dividend yield is annual dividend per share ÷ stock price, expressed as a percent. A $4 annual dividend on a $100 stock is a 4% yield. Yields above 6% deserve extra scrutiny — they often signal trouble at the company."}},
+    {"@type":"Question","name":"What is DRIP?","acceptedAnswer":{"@type":"Answer","text":"Dividend reinvestment plan. Instead of taking dividends as cash, you buy more shares of the same stock. Over years, this compounds — you earn dividends on the new shares too. Many brokers offer commission-free DRIP."}},
+    {"@type":"Question","name":"Are dividends taxed?","acceptedAnswer":{"@type":"Answer","text":"Yes, in most countries. Qualified US dividends are taxed at the long-term capital gains rate (0/15/20%). UK dividends have a £500 allowance then 8.75/33.75/39.35% bands. Hold dividend stocks in tax-advantaged accounts (IRA, ISA, MPF) when possible."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Dividend Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000019" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Dividend Calculator</h1>
+    <p class="intro">Free dividend calculator with DRIP (reinvestment) projection. Enter stock price, dividend per share, shares owned, and expected dividend growth — see annual income now and how it compounds over 10 years if you reinvest.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="price">Stock price</label><input type="number" id="price" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 100" value="100" /></div>
+        <div><label for="div">Annual dividend / share</label><input type="number" id="div" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 4" value="4" /></div>
+      </div>
+      <div class="row two-col">
+        <div><label for="shares">Shares owned</label><input type="number" id="shares" inputmode="decimal" min="0" step="1" placeholder="e.g. 100" value="100" /></div>
+        <div><label for="growth">Annual div growth %</label><input type="number" id="growth" inputmode="decimal" min="0" max="50" step="0.1" placeholder="e.g. 6" value="6" /></div>
+      </div>
+      <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000020" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Dividend Tracker for Android — multi-stock portfolio, ex-div dates, monthly cashflow chart.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Dividend Calculator</h2>
+    <ol class="step-list">
+      <li>Enter the current stock price and the annual dividend per share (sum the last 4 quarterly payments).</li>
+      <li>Enter how many shares you own (or plan to buy).</li>
+      <li>Set a realistic dividend growth rate — 5–7% is healthy for "dividend aristocrats", more is risky.</li>
+    </ol>
+
+    <h2>How Dividend Income Is Calculated</h2>
+    <p>Year-1 income is straightforward. The DRIP projection assumes every dividend buys new shares at the current price, and dividends grow at your assumed rate each year.</p>
+    <div class="formula">annual income = shares × dividend per share<br>yield        = (dividend per share ÷ stock price) × 100<br><br>DRIP year by year:<br>  new shares = annual income ÷ stock price<br>  shares    += new shares<br>  dividend  ×= (1 + growth%)</div>
+    <p>This assumes stock price stays flat — a conservative way to see the pure income-compounding effect. In reality, dividend-growth stocks usually appreciate too.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>What is dividend yield?</summary><p>Dividend yield is annual dividend per share ÷ stock price, expressed as a percent. A $4 annual dividend on a $100 stock is a 4% yield. Yields above 6% deserve extra scrutiny — they often signal trouble at the company.</p></details>
+    <details class="faq-item"><summary>What is DRIP?</summary><p>Dividend reinvestment plan. Instead of taking dividends as cash, you buy more shares of the same stock. Over years, this compounds — you earn dividends on the new shares too. Many brokers offer commission-free DRIP.</p></details>
+    <details class="faq-item"><summary>Are dividends taxed?</summary><p>Yes, in most countries. Qualified US dividends are taxed at the long-term capital gains rate (0/15/20%). UK dividends have a £500 allowance then 8.75/33.75/39.35% bands. Hold dividend stocks in tax-advantaged accounts (IRA, ISA, MPF) when possible.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/investment-calculator/"><div class="icon-box finance" aria-hidden="true">📈</div><h2>Investment Calculator</h2><p>Compound growth projection.</p></a>
+      <a class="tool-card" href="/tools/rental-yield/"><div class="icon-box property" aria-hidden="true">🏘️</div><h2>Rental Yield</h2><p>Property ROI in seconds.</p></a>
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay by country.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var price = tt.read('price'), div = tt.read('div'), shares = tt.read('shares'), growth = tt.read('growth');
+      if (price <= 0 || div < 0 || shares <= 0) {
+        tt.showResult('result', '<div class="primary">Please enter price, dividend, and shares.</div>', 'error');
+        return;
+      }
+      var yield_ = div / price * 100;
+      var annualIncome = shares * div;
+      var monthly = annualIncome / 12;
+
+      // DRIP projection — flat price, growing dividend.
+      var s = shares, d = div;
+      var rows = [];
+      var snapYears = [1, 3, 5, 10];
+      for (var y = 1; y <= 10; y++) {
+        var income = s * d;
+        var newShares = income / price;
+        if (snapYears.indexOf(y) >= 0) {
+          rows.push('<tr><td>Year ' + y + '</td><td>' + s.toFixed(2) + '</td><td>' + tt.fmt(d, {decimals:2}) + '</td><td>' + tt.fmt(income) + '</td></tr>');
+        }
+        s += newShares;
+        d *= (1 + growth / 100);
+      }
+      var finalIncome = s * d / (1 + growth / 100); // already advanced d for next year
+      var y10Income = (function() { var ss = shares, dd = div; for (var i = 1; i <= 10; i++) { ss += (ss * dd) / price; dd *= (1 + growth / 100); } return ss * dd / (1 + growth/100); })();
+
+      var html =
+        '<div class="primary"><span class="label">Annual income (now)</span>' + tt.fmt(annualIncome) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Dividend yield<b>' + yield_.toFixed(2) + '%</b></div>' +
+          '<div>Monthly income (now)<b>' + tt.fmt(monthly) + '</b></div>' +
+          '<div>Year-10 income (DRIP)<b>' + tt.fmt(y10Income) + '</b></div>' +
+          '<div>Income multiple<b>' + (annualIncome > 0 ? (y10Income / annualIncome).toFixed(2) + '×' : '—') + '</b></div>' +
+        '</div>' +
+        '<table class="growth-table"><thead><tr><th>Year</th><th>Shares</th><th>Div / share</th><th>Income</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'' + tt.fmt(annualIncome) + '/yr at ' + yield_.toFixed(2) + '% yield · Year-10 ' + tt.fmt(y10Income) + ' (DRIP)\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

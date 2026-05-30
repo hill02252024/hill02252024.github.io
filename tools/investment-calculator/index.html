@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investment Calculator — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free investment calculator with monthly contributions and compound growth. See future value, interest earned, and year-by-year growth. No login required." />
+  <meta name="keywords" content="investment calculator, compound interest, future value, monthly contribution, retirement savings, free investment calc" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/investment-calculator/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Investment Calculator — Free Online" /><meta property="og:description" content="Compound growth + monthly contributions. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/investment-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Investment Calculator","url":"https://todays-tasks.com/tools/investment-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Are returns guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. Investment returns vary year by year — stocks have averaged ~7% real return historically but with big swings. Use this calculator to model scenarios, not to forecast certain outcomes."}},
+    {"@type":"Question","name":"Should I use a real or nominal return?","acceptedAnswer":{"@type":"Answer","text":"For retirement planning, use a real (inflation-adjusted) return like 5–7% — that way your future value is in today's dollars. For short horizons, nominal returns work fine."}},
+    {"@type":"Question","name":"How does compounding work?","acceptedAnswer":{"@type":"Answer","text":"Each year your existing balance earns a return, and that return is added to the balance. Next year's return is earned on a slightly larger pot. Over decades this snowballs — most of your final balance comes from growth on previous growth, not your original contributions."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Investment Calculator</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000009" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Investment Calculator</h1>
+    <p class="intro">Free investment calculator with compound interest and monthly contributions. See how a starting balance and a monthly deposit grow over 5, 10, 20, or 30+ years.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label for="initial">Initial amount</label><input type="number" id="initial" inputmode="decimal" min="0" step="100" placeholder="e.g. 5000" value="5000" /></div>
+        <div><label for="monthly">Monthly contribution</label><input type="number" id="monthly" inputmode="decimal" min="0" step="50" placeholder="e.g. 500" value="500" /></div>
+      </div>
+      <div class="row two-col">
+        <div><label for="rate">Annual return %</label><input type="number" id="rate" inputmode="decimal" min="0" max="50" step="0.1" placeholder="e.g. 7" value="7" /></div>
+        <div><label for="years">Years</label><input type="number" id="years" inputmode="numeric" min="1" max="60" step="1" value="20" /></div>
+      </div>
+      <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000010" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Investment Calc for Android — save scenarios, compare strategies, year-by-year charts.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Investment Calculator</h2>
+    <ol class="step-list">
+      <li>Enter your starting balance and how much you plan to add each month.</li>
+      <li>Pick a realistic annual return — 7% real is a common stock-market planning number.</li>
+      <li>Choose your horizon. The year-by-year table shows the snowball effect.</li>
+    </ol>
+
+    <h2>How Compound Growth Is Calculated</h2>
+    <p>This calculator compounds monthly. Each month your balance grows by 1/12 of the annual rate, and then your monthly contribution is added. Over decades, that monthly compounding is meaningfully more powerful than annual compounding.</p>
+    <div class="formula">monthly rate r = annual ÷ 12 ÷ 100<br>balance(m+1) = balance(m) × (1 + r) + contribution</div>
+    <p>The "Total contributed" line shows your out-of-pocket — initial plus monthly × months. Everything above that line is interest earned.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>Are returns guaranteed?</summary><p>No. Investment returns vary year by year — stocks have averaged ~7% real return historically but with big swings. Use this calculator to model scenarios, not to forecast certain outcomes.</p></details>
+    <details class="faq-item"><summary>Should I use a real or nominal return?</summary><p>For retirement planning, use a real (inflation-adjusted) return like 5–7% — that way your future value is in today's dollars. For short horizons, nominal returns work fine.</p></details>
+    <details class="faq-item"><summary>How does compounding work?</summary><p>Each year your existing balance earns a return, and that return is added to the balance. Next year's return is earned on a slightly larger pot. Over decades this snowballs — most of your final balance comes from growth on previous growth, not your original contributions.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/dividend-calculator/"><div class="icon-box finance" aria-hidden="true">💎</div><h2>Dividend Calculator</h2><p>Yield + DRIP projection.</p></a>
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay by country.</p></a>
+      <a class="tool-card" href="/tools/debt-calculator/"><div class="icon-box finance" aria-hidden="true">💳</div><h2>Debt Payoff</h2><p>Months to debt-free.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var P = tt.read('initial'), c = tt.read('monthly');
+      var rate = tt.read('rate'), years = Math.max(1, Math.floor(tt.read('years') || 1));
+      if (P < 0 || c < 0 || rate < 0) {
+        tt.showResult('result', '<div class="primary">Please enter valid numbers.</div>', 'error');
+        return;
+      }
+      var r = rate / 100 / 12;
+      var months = years * 12;
+      var bal = P;
+      var rows = [];
+      var snapshots = [1, 5, 10, 20, 30, years].filter(function(y, i, a) { return y <= years && a.indexOf(y) === i; }).sort(function(a, b) { return a - b; });
+      var snapMap = {};
+      for (var m = 1; m <= months; m++) {
+        bal = bal * (1 + r) + c;
+        if (snapshots.indexOf(m / 12) >= 0) snapMap[m / 12] = bal;
+      }
+      var contributed = P + c * months;
+      var interest = bal - contributed;
+      var rowsHtml = snapshots.map(function(y) {
+        var v = snapMap[y] || 0;
+        var ctd = P + c * y * 12;
+        var ix = v - ctd;
+        return '<tr><td>Year ' + y + '</td><td>' + tt.fmt(v) + '</td><td>' + tt.fmt(ctd) + '</td><td>' + tt.fmt(ix) + '</td></tr>';
+      }).join('');
+      var html =
+        '<div class="primary"><span class="label">Future value</span>' + tt.fmt(bal) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Total contributed<b>' + tt.fmt(contributed) + '</b></div>' +
+          '<div>Interest earned<b>' + tt.fmt(interest) + '</b></div>' +
+          '<div>Growth multiple<b>' + (contributed > 0 ? (bal / contributed).toFixed(2) + '×' : '—') + '</b></div>' +
+          '<div>Horizon<b>' + years + ' years</b></div>' +
+        '</div>' +
+        '<table class="growth-table"><thead><tr><th>Year</th><th>Balance</th><th>Contributed</th><th>Interest</th></tr></thead><tbody>' + rowsHtml + '</tbody></table>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'Future value ' + tt.fmt(bal) + ' after ' + years + 'y · contributed ' + tt.fmt(contributed) + ' · interest ' + tt.fmt(interest) + '\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>

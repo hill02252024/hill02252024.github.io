@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Long Weekend Planner — Free Online Calculator | No Login Required</title>
+  <meta name="description" content="Free long weekend planner for 2026 and 2027. See every public holiday in the UK, US, AU, and HK that lands next to a weekend and the best PTO days to book." />
+  <meta name="keywords" content="long weekend planner, public holiday calendar 2026, bank holidays, PTO planner, holiday strategy" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/long-weekend/" />
+  <meta property="og:type" content="website" /><meta property="og:title" content="Long Weekend Planner — Free Online" /><meta property="og:description" content="2026 + 2027 holidays + best PTO days. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/long-weekend/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Long Weekend Planner","url":"https://todays-tasks.com/tools/long-weekend/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What counts as a long weekend?","acceptedAnswer":{"@type":"Answer","text":"Three or more consecutive days off. A Friday or Monday public holiday automatically gives a 3-day weekend. Booking one strategic PTO day next to a Tuesday or Thursday holiday gives a 4-day weekend."}},
+    {"@type":"Question","name":"Which days are flagged as 'best PTO'?","acceptedAnswer":{"@type":"Answer","text":"Tuesdays and Thursdays — bridge days. A Tuesday holiday + Monday PTO = 4 days off. A Thursday holiday + Friday PTO = 4 days off. The biggest wins come around Christmas / New Year where 3 PTO days can buy 9 days off."}},
+    {"@type":"Question","name":"Are these dates official?","acceptedAnswer":{"@type":"Answer","text":"Yes — they follow each country's published 2026 and 2027 public-holiday calendar. UK = England & Wales bank holidays. US = federal holidays. AU = national holidays. HK = general holidays."}}
+  ]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🛠️ Tools</a><a href="/apps.html">Apps</a><a href="/productivity-tips.html">Productivity Tips</a><a href="/time-blocking-guide.html">Time Blocking</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
+
+  <main class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Tools</a> &nbsp;›&nbsp; Long Weekend Planner</nav>
+    <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000017" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <h1>Long Weekend Planner</h1>
+    <p class="intro">Free long weekend planner for 2026 and 2027. Pick your country, pick your year, and see every public holiday — with the best PTO days to book for 4-day and 9-day breaks highlighted.</p>
+
+    <div class="calc-card">
+      <div class="row two-col">
+        <div><label>Country</label>
+          <div class="unit-toggle" id="cToggle">
+            <button type="button" data-c="uk" class="active">🇬🇧 UK</button>
+            <button type="button" data-c="us">🇺🇸 US</button>
+            <button type="button" data-c="au">🇦🇺 AU</button>
+            <button type="button" data-c="hk">🇭🇰 HK</button>
+          </div>
+        </div>
+        <div><label>Year</label>
+          <div class="unit-toggle" id="yToggle">
+            <button type="button" data-y="2026" class="active">2026</button>
+            <button type="button" data-y="2027">2027</button>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn-calc travel" id="calcBtn">Show holidays</button>
+      <div id="result" class="result-box" aria-live="polite"></div>
+    </div>
+
+    <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000018" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Long Weekend for Android — calendar sync, multi-country combos, "buy 1 day, get 4" alerts.</p></span><span class="chev" aria-hidden="true">›</span></a>
+
+    <h2>How to Use This Long Weekend Planner</h2>
+    <ol class="step-list">
+      <li>Pick your country. UK, US, AU, HK are pre-loaded with official public holidays.</li>
+      <li>Pick 2026 or 2027 — both calendar years are available.</li>
+      <li>Look for ⭐ marks. Those are bridge days where one PTO buys a 4-day weekend.</li>
+    </ol>
+
+    <h2>How "Best PTO Days" Are Calculated</h2>
+    <p>The planner walks each public holiday and checks the day of week. A Friday or Monday holiday is already a long weekend. A Tuesday or Thursday is a "bridge" — booking the adjacent Monday or Friday turns one holiday into four consecutive days off.</p>
+    <div class="formula">Friday or Monday holiday → ✅ 3-day weekend automatic<br>Tuesday holiday        → ⭐ book Monday PTO → 4 days off<br>Thursday holiday       → ⭐ book Friday PTO → 4 days off<br>Wednesday holiday      → ⚠️ awkward (would need 2 PTO days)</div>
+    <p>Christmas + New Year clusters are the highest-leverage windows of the year — typically 3 PTO days can buy 9 consecutive days off.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <details class="faq-item"><summary>What counts as a long weekend?</summary><p>Three or more consecutive days off. A Friday or Monday public holiday automatically gives a 3-day weekend. Booking one strategic PTO day next to a Tuesday or Thursday holiday gives a 4-day weekend.</p></details>
+    <details class="faq-item"><summary>Which days are flagged as "best PTO"?</summary><p>Tuesdays and Thursdays — bridge days. A Tuesday holiday + Monday PTO = 4 days off. A Thursday holiday + Friday PTO = 4 days off. The biggest wins come around Christmas / New Year where 3 PTO days can buy 9 days off.</p></details>
+    <details class="faq-item"><summary>Are these dates official?</summary><p>Yes — they follow each country's published 2026 and 2027 public-holiday calendar. UK = England & Wales bank holidays. US = federal holidays. AU = national holidays. HK = general holidays.</p></details>
+
+    <h2>More Free Tools</h2>
+    <div class="more-tools">
+      <a class="tool-card" href="/tools/vat-refund/"><div class="icon-box travel" aria-hidden="true">🛍️</div><h2>VAT Refund</h2><p>Tourist tax-free refunds.</p></a>
+      <a class="tool-card" href="/tools/tip-calculator/"><div class="icon-box finance" aria-hidden="true">🍽️</div><h2>Tip Calculator</h2><p>Restaurant bill + split.</p></a>
+      <a class="tool-card" href="/tools/salary-calculator/"><div class="icon-box finance" aria-hidden="true">💼</div><h2>Salary Calculator</h2><p>Take-home pay by country.</p></a>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+
+  <script src="/tools/tools.js"></script>
+  <script>
+    // Public holidays, ISO date strings. England & Wales / US Federal / AU National / HK General.
+    var HOLIDAYS = {
+      uk: {
+        '2026': [
+          ['2026-01-01', "New Year's Day"], ['2026-04-03', 'Good Friday'], ['2026-04-06', 'Easter Monday'],
+          ['2026-05-04', 'Early May'], ['2026-05-25', 'Spring Bank Holiday'], ['2026-08-31', 'Summer Bank Holiday'],
+          ['2026-12-25', 'Christmas Day'], ['2026-12-28', 'Boxing Day (subst.)']
+        ],
+        '2027': [
+          ['2027-01-01', "New Year's Day"], ['2027-03-26', 'Good Friday'], ['2027-03-29', 'Easter Monday'],
+          ['2027-05-03', 'Early May'], ['2027-05-31', 'Spring Bank Holiday'], ['2027-08-30', 'Summer Bank Holiday'],
+          ['2027-12-27', 'Christmas Day (subst.)'], ['2027-12-28', 'Boxing Day (subst.)']
+        ]
+      },
+      us: {
+        '2026': [
+          ['2026-01-01', "New Year's Day"], ['2026-01-19', 'MLK Jr. Day'], ['2026-02-16', "Presidents' Day"],
+          ['2026-05-25', 'Memorial Day'], ['2026-06-19', 'Juneteenth'], ['2026-07-03', 'Independence Day (obs.)'],
+          ['2026-09-07', 'Labor Day'], ['2026-10-12', 'Columbus Day'], ['2026-11-11', 'Veterans Day'],
+          ['2026-11-26', 'Thanksgiving'], ['2026-12-25', 'Christmas Day']
+        ],
+        '2027': [
+          ['2027-01-01', "New Year's Day"], ['2027-01-18', 'MLK Jr. Day'], ['2027-02-15', "Presidents' Day"],
+          ['2027-05-31', 'Memorial Day'], ['2027-06-18', 'Juneteenth (obs.)'], ['2027-07-05', 'Independence Day (obs.)'],
+          ['2027-09-06', 'Labor Day'], ['2027-10-11', 'Columbus Day'], ['2027-11-11', 'Veterans Day'],
+          ['2027-11-25', 'Thanksgiving'], ['2027-12-24', 'Christmas Day (obs.)']
+        ]
+      },
+      au: {
+        '2026': [
+          ['2026-01-01', "New Year's Day"], ['2026-01-26', 'Australia Day'], ['2026-04-03', 'Good Friday'],
+          ['2026-04-04', 'Easter Saturday'], ['2026-04-06', 'Easter Monday'], ['2026-04-25', 'ANZAC Day'],
+          ['2026-12-25', 'Christmas Day'], ['2026-12-28', 'Boxing Day (subst.)']
+        ],
+        '2027': [
+          ['2027-01-01', "New Year's Day"], ['2027-01-26', 'Australia Day'], ['2027-03-26', 'Good Friday'],
+          ['2027-03-29', 'Easter Monday'], ['2027-04-26', 'ANZAC Day (obs.)'], ['2027-12-27', 'Christmas Day (obs.)'],
+          ['2027-12-28', 'Boxing Day (obs.)']
+        ]
+      },
+      hk: {
+        '2026': [
+          ['2026-01-01', "New Year's Day"], ['2026-02-17', 'Lunar New Year Day 1'], ['2026-02-18', 'Lunar New Year Day 2'],
+          ['2026-02-19', 'Lunar New Year Day 3'], ['2026-04-03', 'Good Friday'], ['2026-04-04', 'Day after Good Friday'],
+          ['2026-04-06', 'Easter Monday'], ['2026-04-05', 'Ching Ming'], ['2026-05-01', 'Labour Day'],
+          ['2026-05-24', 'Buddha\'s Birthday'], ['2026-06-19', 'Dragon Boat'], ['2026-07-01', 'HKSAR Day'],
+          ['2026-09-26', 'Mid-Autumn (day after)'], ['2026-10-01', 'National Day'], ['2026-10-19', 'Chung Yeung'],
+          ['2026-12-25', 'Christmas'], ['2026-12-26', 'First weekday after Christmas']
+        ],
+        '2027': [
+          ['2027-01-01', "New Year's Day"], ['2027-02-06', 'Lunar New Year Day 1'], ['2027-02-08', 'Lunar New Year Day 3'],
+          ['2027-02-09', 'Lunar New Year Day 4'], ['2027-03-26', 'Good Friday'], ['2027-03-27', 'Day after Good Friday'],
+          ['2027-03-29', 'Easter Monday'], ['2027-04-05', 'Ching Ming'], ['2027-05-01', 'Labour Day'],
+          ['2027-05-13', 'Buddha\'s Birthday'], ['2027-06-09', 'Dragon Boat'], ['2027-07-01', 'HKSAR Day'],
+          ['2027-09-16', 'Mid-Autumn (day after)'], ['2027-10-01', 'National Day'], ['2027-10-08', 'Chung Yeung'],
+          ['2027-12-25', 'Christmas'], ['2027-12-27', 'First weekday after Christmas']
+        ]
+      }
+    };
+    var country = 'uk', year = '2026';
+    document.querySelectorAll('#cToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#cToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active'); country = b.dataset.c;
+      });
+    });
+    document.querySelectorAll('#yToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#yToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active'); year = b.dataset.y;
+      });
+    });
+
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      var hs = HOLIDAYS[country][year];
+      var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var rows = hs.map(function(h) {
+        var d = new Date(h[0] + 'T00:00:00');
+        var dow = d.getDay();
+        var dayName = dayNames[dow];
+        var hint = '', cls = '';
+        if (dow === 1 || dow === 5) { hint = '✅ Already a 3-day weekend'; cls = 'good'; }
+        else if (dow === 2) { hint = '⭐ Book Monday PTO → 4 days off'; cls = 'star'; }
+        else if (dow === 4) { hint = '⭐ Book Friday PTO → 4 days off'; cls = 'star'; }
+        else if (dow === 3) { hint = '⚠️ Mid-week (2 PTO for 5 days off)'; cls = 'mid'; }
+        else { hint = 'Falls on weekend'; cls = 'weekend'; }
+        var dateStr = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        return '<li class="' + cls + '"><span class="date">' + dateStr + '</span><span class="name">' + h[1] + '</span><span class="hint">' + hint + '</span></li>';
+      }).join('');
+      var stars = hs.filter(function(h) { var d = new Date(h[0]+'T00:00:00').getDay(); return d === 2 || d === 4; }).length;
+      var html =
+        '<div class="primary"><span class="label">' + country.toUpperCase() + ' ' + year + '</span>' + stars + ' bridge-day wins</div>' +
+        '<ul class="holiday-list">' + rows + '</ul>' +
+        '<div class="result-actions">' +
+          '<button type="button" onclick="tt.copyText(\'' + country.toUpperCase() + ' ' + year + ': ' + stars + ' bridge-day wins (Tue/Thu holidays)\', this)">📋 Copy Result</button>' +
+          '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
+        '</div>';
+      tt.showResult('result', html);
+    });
+  </script>
+</body>
+</html>
