@@ -12,6 +12,8 @@
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script src="/tools/premium.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Investment Calculator","url":"https://todays-tasks.com/tools/investment-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Are returns guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. Investment returns vary year by year — stocks have averaged ~7% real return historically but with big swings. Use this calculator to model scenarios, not to forecast certain outcomes."}},
@@ -44,6 +46,45 @@
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000010" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
+    <div id="historyPanel" class="history-panel"></div>
+
+    <section class="premium-section">
+      <h2>📊 Multi-Portfolio Comparison <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Compare up to 5 scenarios side by side. Inflation-adjusted toggle. Live chart.</p>
+      <label style="display:inline-flex;gap:8px;align-items:center;font-size:13.5px;color:var(--text-muted);margin-bottom:10px">
+        <input type="checkbox" id="inflToggle" /> Show inflation-adjusted (real) returns
+      </label>
+      <div class="row two-col" id="inflRow" style="display:none">
+        <div><label for="inflRate">Inflation %</label><input type="number" id="inflRate" inputmode="decimal" min="0" max="20" step="0.1" value="3" /></div>
+        <div></div>
+      </div>
+      <div class="pro-stack" id="portfolioStack"></div>
+      <button type="button" class="btn-add-row" id="addPortfolioBtn">+ Add portfolio</button>
+      <div id="comparisonOutput"></div>
+      <div id="chartWrap" style="margin-top:14px"><canvas id="growthChart" height="220"></canvas></div>
+    </section>
+
+    <section class="premium-section" id="retireSection">
+      <h2>🔥 Retirement / FIRE Calculator <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">When can you retire? Required nest egg, monthly savings, projected age.</p>
+      <div id="retireBody">
+        <div class="row two-col">
+          <div><label for="curAge">Current age</label><input type="number" id="curAge" inputmode="numeric" min="18" max="80" step="1" value="35" /></div>
+          <div><label for="retAge">Target retirement age</label><input type="number" id="retAge" inputmode="numeric" min="35" max="90" step="1" value="60" /></div>
+        </div>
+        <div class="row two-col">
+          <div><label for="monthlyExp">Monthly expenses (retired)</label><input type="number" id="monthlyExp" inputmode="decimal" min="0" step="100" value="4000" /></div>
+          <div><label for="retReturn">Expected return %</label><input type="number" id="retReturn" inputmode="decimal" min="0" max="20" step="0.1" value="7" /></div>
+        </div>
+        <div class="row two-col">
+          <div><label for="curSavings">Current savings</label><input type="number" id="curSavings" inputmode="decimal" min="0" step="1000" value="50000" /></div>
+          <div><label for="curContrib">Current monthly contribution</label><input type="number" id="curContrib" inputmode="decimal" min="0" step="100" value="1500" /></div>
+        </div>
+        <button type="button" class="btn-calc finance" id="retireCalcBtn">Calculate retirement plan</button>
+        <div id="retireResult" class="result-box" aria-live="polite"></div>
+      </div>
+    </section>
+
     <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Investment Calc for Android — save scenarios, compare strategies, year-by-year charts.</p></span><span class="chev" aria-hidden="true">›</span></a>
 
     <h2>How to Use This Investment Calculator</h2>
@@ -75,6 +116,14 @@
 
   <script src="/tools/tools.js"></script>
   <script>
+    var lastInputs = null, lastSummary = '';
+    function restoreInputs(inputs) {
+      if (!inputs) return;
+      ['initial', 'monthly', 'rate', 'years'].forEach(function(k) {
+        if (inputs[k] != null) document.getElementById(k).value = inputs[k];
+      });
+      document.getElementById('calcBtn').click();
+    }
     document.getElementById('calcBtn').addEventListener('click', function() {
       var P = tt.read('initial'), c = tt.read('monthly');
       var rate = tt.read('rate'), years = Math.max(1, Math.floor(tt.read('years') || 1));
@@ -114,6 +163,183 @@
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+      lastInputs = { initial: P, monthly: c, rate: rate, years: years };
+      lastSummary = tt.fmt(bal) + ' in ' + years + 'y · contributed ' + tt.fmt(contributed);
+      ttPremium.afterResult('investment', lastInputs, lastSummary, restoreInputs, 'historyPanel');
+    });
+
+    // ---------- Multi-Portfolio Comparison (PRO) ----------
+    var portfolios = [];
+    function projectPortfolio(p) {
+      var r = (p.rate || 0) / 100 / 12;
+      var months = (p.years || 1) * 12;
+      var bal = p.initial || 0;
+      var series = [bal];
+      for (var m = 1; m <= months; m++) {
+        bal = bal * (1 + r) + (p.monthly || 0);
+        if (m % 12 === 0) series.push(bal);
+      }
+      var contributed = (p.initial || 0) + (p.monthly || 0) * months;
+      return { final: bal, contributed: contributed, interest: bal - contributed, series: series };
+    }
+    function renderPortfolios() {
+      var stack = document.getElementById('portfolioStack');
+      stack.innerHTML = portfolios.map(function(p, i) {
+        return '<div class="pro-row" data-i="' + i + '">' +
+          '<div class="pro-row-head"><span class="pro-row-name">' + (p.name || 'Portfolio ' + (i+1)) + '</span>' +
+            (portfolios.length > 1 ? '<button type="button" class="pro-row-remove" data-rm="' + i + '" aria-label="Remove">×</button>' : '') +
+          '</div>' +
+          '<div class="pro-row-grid">' +
+            '<div><label>Name</label><input type="text" data-k="name" data-i="' + i + '" value="' + (p.name || '') + '" placeholder="Conservative"/></div>' +
+            '<div><label>Initial $</label><input type="number" data-k="initial" data-i="' + i + '" value="' + p.initial + '" min="0" step="100"/></div>' +
+            '<div><label>Monthly $</label><input type="number" data-k="monthly" data-i="' + i + '" value="' + p.monthly + '" min="0" step="50"/></div>' +
+            '<div><label>Return %</label><input type="number" data-k="rate" data-i="' + i + '" value="' + p.rate + '" min="0" max="50" step="0.1"/></div>' +
+            '<div><label>Years</label><input type="number" data-k="years" data-i="' + i + '" value="' + p.years + '" min="1" max="60" step="1"/></div>' +
+          '</div></div>';
+      }).join('');
+      stack.querySelectorAll('input').forEach(function(el) {
+        el.addEventListener('input', function() {
+          var i = +this.dataset.i, k = this.dataset.k;
+          portfolios[i][k] = k === 'name' ? this.value : parseFloat(this.value) || 0;
+          renderComparison();
+        });
+      });
+      stack.querySelectorAll('.pro-row-remove').forEach(function(b) {
+        b.addEventListener('click', function() {
+          portfolios.splice(+this.dataset.rm, 1);
+          renderPortfolios(); renderComparison();
+        });
+      });
+      renderComparison();
+    }
+    var chart = null;
+    function renderComparison() {
+      var out = document.getElementById('comparisonOutput');
+      if (portfolios.length === 0) { out.innerHTML = ''; if (chart) { chart.destroy(); chart = null; } return; }
+      var infl = document.getElementById('inflToggle').checked;
+      var inflRate = parseFloat(document.getElementById('inflRate').value) || 0;
+      var projections = portfolios.map(projectPortfolio);
+      var bestIdx = 0;
+      projections.forEach(function(pr, i) { if (pr.final > projections[bestIdx].final) bestIdx = i; });
+      var rows = projections.map(function(pr, i) {
+        var p = portfolios[i];
+        var realFV = infl ? pr.final / Math.pow(1 + inflRate/100, p.years || 1) : pr.final;
+        var roi = pr.contributed > 0 ? (pr.final / pr.contributed - 1) * 100 : 0;
+        var cls = i === bestIdx ? 'best' : '';
+        return '<tr class="' + cls + '"><td>' + (p.name || 'Portfolio ' + (i+1)) + '</td>' +
+          '<td>' + tt.fmt(pr.final) + '</td>' +
+          (infl ? '<td>' + tt.fmt(realFV) + '</td>' : '') +
+          '<td>' + tt.fmt(pr.contributed) + '</td>' +
+          '<td>' + tt.fmt(pr.interest) + '</td>' +
+          '<td>' + roi.toFixed(0) + '%</td></tr>';
+      }).join('');
+      out.innerHTML = '<table class="pro-table"><thead><tr><th>Portfolio</th><th>Final value</th>' +
+        (infl ? '<th>Real (today $)</th>' : '') +
+        '<th>Contributed</th><th>Interest</th><th>ROI</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      drawChart(projections);
+    }
+    function drawChart(projections) {
+      var canvas = document.getElementById('growthChart');
+      if (!canvas || typeof Chart === 'undefined') return;
+      if (chart) chart.destroy();
+      var maxYears = Math.max.apply(null, portfolios.map(function(p) { return p.years || 1; }));
+      var labels = []; for (var y = 0; y <= maxYears; y++) labels.push('Y' + y);
+      var COLORS = ['#1a7f3c', '#1d4ed8', '#ea580c', '#7c3aed', '#0891b2'];
+      var datasets = projections.map(function(pr, i) {
+        return {
+          label: portfolios[i].name || 'Portfolio ' + (i+1),
+          data: pr.series,
+          borderColor: COLORS[i % COLORS.length],
+          backgroundColor: COLORS[i % COLORS.length] + '22',
+          tension: 0.25,
+          fill: false
+        };
+      });
+      chart = new Chart(canvas, {
+        type: 'line',
+        data: { labels: labels, datasets: datasets },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 12 } } } },
+          scales: { y: { beginAtZero: true, ticks: { callback: function(v) { return '$' + (v/1000).toFixed(0) + 'k'; } } } }
+        }
+      });
+    }
+    document.getElementById('addPortfolioBtn').addEventListener('click', function() {
+      var max = ttPremium.isPremium() ? 5 : 1;
+      if (portfolios.length >= max) {
+        if (!ttPremium.isPremium()) { ttPremium.showPaywall('Multi-Portfolio Comparison'); return; }
+        alert('Max 5 portfolios.'); return;
+      }
+      portfolios.push({ name: '', initial: 5000, monthly: 500, rate: 7, years: 20 });
+      renderPortfolios();
+    });
+    document.getElementById('inflToggle').addEventListener('change', function() {
+      if (!ttPremium.isPremium()) { this.checked = false; ttPremium.showPaywall('Inflation-Adjusted Returns'); return; }
+      document.getElementById('inflRow').style.display = this.checked ? '' : 'none';
+      renderComparison();
+    });
+    document.getElementById('inflRate').addEventListener('input', renderComparison);
+
+    // ---------- Retirement / FIRE (PRO) ----------
+    document.getElementById('retireCalcBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Retirement Calculator'); return; }
+      var cur = tt.read('curAge'), ret = tt.read('retAge');
+      var exp = tt.read('monthlyExp'), r = tt.read('retReturn');
+      var sav = tt.read('curSavings'), contrib = tt.read('curContrib');
+      var yearsToRetire = ret - cur;
+      if (yearsToRetire < 1 || exp <= 0 || r <= 0) {
+        tt.showResult('retireResult', '<div class="primary">Check your inputs.</div>', 'error');
+        return;
+      }
+      // Nest egg: 4% safe withdrawal rule (or use r as withdrawal target).
+      var nestEgg = (exp * 12) / 0.04;
+      // Project current savings to retire age.
+      var rm = r / 100 / 12;
+      var months = yearsToRetire * 12;
+      var bal = sav;
+      for (var m = 1; m <= months; m++) bal = bal * (1 + rm) + contrib;
+      // Required monthly to hit nest egg from current savings:
+      var future = nestEgg;
+      var fvCurrent = sav * Math.pow(1 + rm, months);
+      var gap = future - fvCurrent;
+      var requiredMonthly = rm > 0 ? (gap * rm) / (Math.pow(1 + rm, months) - 1) : gap / months;
+      // Projected retire age given current contribution.
+      var projAge = null;
+      var b2 = sav, mm = 0;
+      while (b2 < nestEgg && mm < 720) { b2 = b2 * (1 + rm) + contrib; mm++; }
+      if (mm < 720) projAge = cur + mm / 12;
+      var status = bal >= nestEgg ? '✓ On track' : '⚠ Falling short by ' + tt.fmt(nestEgg - bal);
+      var html =
+        '<div class="primary"><span class="label">Required nest egg</span>' + tt.fmt(nestEgg) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Projection at age ' + ret + '<b>' + tt.fmt(bal) + '</b></div>' +
+          '<div>Required monthly<b>' + tt.fmt(Math.max(0, requiredMonthly)) + '</b></div>' +
+          '<div>Projected retire age<b>' + (projAge == null ? '70+' : projAge.toFixed(1)) + '</b></div>' +
+          '<div>Status<b>' + status + '</b></div>' +
+        '</div>' +
+        '<p style="margin:12px 0 0;color:var(--text-muted);font-size:13px">Nest egg uses the 4% safe withdrawal rule. Adjust target return for more conservative or aggressive plans.</p>';
+      tt.showResult('retireResult', html);
+    });
+
+    // Premium gates
+    function applyGates() {
+      if (!ttPremium.isPremium()) {
+        var ret = document.getElementById('retireBody');
+        if (!ret.classList.contains('premium-locked')) {
+          ret.classList.add('premium-locked');
+          var ov = document.createElement('div'); ov.className = 'premium-overlay';
+          ov.innerHTML = '<h3>Retirement calculator</h3><p>Required nest egg + when you can retire.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+          ret.appendChild(ov);
+          ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall('Retirement Calculator'); });
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      portfolios.push({ name: 'Default', initial: 5000, monthly: 500, rate: 7, years: 20 });
+      renderPortfolios();
+      ttPremium.renderHistoryPanel('investment', 'historyPanel', restoreInputs);
+      applyGates();
     });
   </script>
 </body>

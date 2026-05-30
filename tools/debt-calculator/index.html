@@ -12,6 +12,7 @@
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Debt Payoff Calculator","url":"https://todays-tasks.com/tools/debt-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Should I pay off debt or invest?","acceptedAnswer":{"@type":"Answer","text":"Compare interest rates. Credit-card debt at 18–25% almost always beats expected stock returns of 7–10%. Mortgage debt at 3–4% may not. Pay down anything above 6–7% before investing extra."}},
@@ -43,6 +44,33 @@
     </div>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000014" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <div id="historyPanel" class="history-panel"></div>
+
+    <section class="premium-section">
+      <h2>💳 Multi-Debt Manager <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Add every card, loan, and student debt. See the full picture.</p>
+      <div class="pro-stack" id="debtStack"></div>
+      <button type="button" class="btn-add-row" id="addDebtBtn">+ Add debt</button>
+      <div class="row two-col" style="margin-top:14px">
+        <div><label for="extraPool">Extra to throw at debt / month</label><input type="number" id="extraPool" inputmode="decimal" min="0" step="50" value="200" /></div>
+        <div></div>
+      </div>
+      <div class="pro-summary" id="debtSummary" style="display:none"></div>
+    </section>
+
+    <section class="premium-section" id="strategySection">
+      <h2>⚖️ Snowball vs Avalanche <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Same total payment, two strategies. We'll tell you which saves more.</p>
+      <button type="button" class="btn-calc finance" id="strategyBtn">Compare strategies</button>
+      <div id="strategyOutput"></div>
+    </section>
+
+    <section class="premium-section" id="timelineSection">
+      <h2>📅 Debt Freedom Timeline <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Visual payoff timeline using the recommended (avalanche) strategy.</p>
+      <div id="timelineOutput"></div>
+    </section>
 
     <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Debt-Free Plan for Android — multi-debt avalanche/snowball, monthly progress, payoff date.</p></span><span class="chev" aria-hidden="true">›</span></a>
 
@@ -95,6 +123,14 @@
       if (months >= maxMonths) return { months: Infinity, interest: Infinity };
       return { months: months, interest: interest };
     }
+    var lastInputs = null, lastSummary = '';
+    function restoreInputs(inputs) {
+      if (!inputs) return;
+      ['balance', 'apr', 'monthly', 'extra'].forEach(function(k) {
+        if (inputs[k] != null) document.getElementById(k).value = inputs[k];
+      });
+      document.getElementById('calcBtn').click();
+    }
     document.getElementById('calcBtn').addEventListener('click', function() {
       var bal = tt.read('balance'), apr = tt.read('apr'), m = tt.read('monthly'), extra = tt.read('extra');
       if (bal <= 0 || m <= 0) {
@@ -130,6 +166,155 @@
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+      lastInputs = { balance: bal, apr: apr, monthly: m, extra: extra };
+      lastSummary = 'Debt-free in ' + ym(base.months) + ' · interest ' + tt.fmt(base.interest);
+      ttPremium.afterResult('debt', lastInputs, lastSummary, restoreInputs, 'historyPanel');
+    });
+
+    // ---------- Multi-Debt Manager (PRO) ----------
+    var debts = [];
+    function renderDebts() {
+      var stack = document.getElementById('debtStack');
+      stack.innerHTML = debts.map(function(d, i) {
+        return '<div class="pro-row" data-i="' + i + '">' +
+          '<div class="pro-row-head"><span class="pro-row-name">' + (d.name || 'Debt ' + (i+1)) + '</span>' +
+            (debts.length > 1 ? '<button type="button" class="pro-row-remove" data-rm="' + i + '">×</button>' : '') +
+          '</div>' +
+          '<div class="pro-row-grid">' +
+            '<div><label>Name</label><input type="text" data-k="name" data-i="' + i + '" value="' + (d.name || '') + '" placeholder="Visa Card"/></div>' +
+            '<div><label>Balance</label><input type="number" data-k="balance" data-i="' + i + '" value="' + d.balance + '" min="0" step="100"/></div>' +
+            '<div><label>APR %</label><input type="number" data-k="apr" data-i="' + i + '" value="' + d.apr + '" min="0" max="100" step="0.1"/></div>' +
+            '<div><label>Min payment</label><input type="number" data-k="min" data-i="' + i + '" value="' + d.min + '" min="0" step="10"/></div>' +
+          '</div></div>';
+      }).join('');
+      stack.querySelectorAll('input').forEach(function(el) {
+        el.addEventListener('input', function() {
+          var i = +this.dataset.i, k = this.dataset.k;
+          debts[i][k] = k === 'name' ? this.value : parseFloat(this.value) || 0;
+          updateDebtSummary();
+        });
+      });
+      stack.querySelectorAll('.pro-row-remove').forEach(function(b) {
+        b.addEventListener('click', function() { debts.splice(+this.dataset.rm, 1); renderDebts(); updateDebtSummary(); });
+      });
+      updateDebtSummary();
+    }
+    function updateDebtSummary() {
+      var s = document.getElementById('debtSummary');
+      if (debts.length === 0) { s.style.display = 'none'; return; }
+      var totalBal = 0, totalMin = 0, weightedRate = 0;
+      debts.forEach(function(d) {
+        totalBal += d.balance || 0;
+        totalMin += d.min || 0;
+        weightedRate += (d.balance || 0) * (d.apr || 0);
+      });
+      weightedRate = totalBal > 0 ? weightedRate / totalBal : 0;
+      s.style.display = '';
+      s.innerHTML =
+        '<div>Total debt<b>' + tt.fmt(totalBal) + '</b></div>' +
+        '<div>Min payment / mo<b>' + tt.fmt(totalMin) + '</b></div>' +
+        '<div>Weighted avg APR<b>' + weightedRate.toFixed(2) + '%</b></div>' +
+        '<div>Debts<b>' + debts.length + '</b></div>';
+    }
+    document.getElementById('addDebtBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium() && debts.length >= 1) { ttPremium.showPaywall('Multi-Debt Manager'); return; }
+      debts.push({ name: '', balance: 5000, apr: 19.9, min: 100 });
+      renderDebts();
+    });
+
+    // ---------- Strategy simulator (PRO) ----------
+    // Pay every debt its minimum. Apply extra pool to ONE focus debt per strategy.
+    // Snowball: focus = smallest balance. Avalanche: focus = highest APR.
+    function simulate(debtsClone, extraPool, focusFn) {
+      var totalInterest = 0, months = 0, maxMonths = 720;
+      var bals = debtsClone.map(function(d) { return Object.assign({}, d); });
+      var payoffMonths = bals.map(function() { return null; });
+      while (bals.some(function(d) { return d.balance > 0.01; }) && months < maxMonths) {
+        months++;
+        var pool = extraPool;
+        // First, accrue interest + apply minimums
+        bals.forEach(function(d, i) {
+          if (d.balance <= 0) return;
+          var mrate = d.apr / 12 / 100;
+          var ix = d.balance * mrate;
+          totalInterest += ix;
+          d.balance += ix;
+          var pay = Math.min(d.min, d.balance);
+          d.balance -= pay;
+          if (d.balance <= 0.01 && payoffMonths[i] == null) payoffMonths[i] = months;
+        });
+        // Then dump pool onto focus debt
+        var active = bals.filter(function(d) { return d.balance > 0; });
+        if (active.length === 0) break;
+        var focus = focusFn(active);
+        if (focus && pool > 0) {
+          var paid = Math.min(pool, focus.balance);
+          focus.balance -= paid;
+          var idx = bals.indexOf(focus);
+          if (focus.balance <= 0.01 && payoffMonths[idx] == null) payoffMonths[idx] = months;
+        }
+      }
+      return { months: months, interest: totalInterest, payoffMonths: payoffMonths };
+    }
+    document.getElementById('strategyBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Snowball vs Avalanche'); return; }
+      if (debts.length === 0) { document.getElementById('strategyOutput').innerHTML = '<p class="history-empty">Add at least one debt above.</p>'; return; }
+      var pool = tt.read('extraPool') || 0;
+      var snowball = simulate(debts, pool, function(active) { return active.slice().sort(function(a,b){return a.balance-b.balance;})[0]; });
+      var avalanche = simulate(debts, pool, function(active) { return active.slice().sort(function(a,b){return b.apr-a.apr;})[0]; });
+      var saved = snowball.interest - avalanche.interest;
+      var ym = function(n) { return Math.floor(n/12) + 'y ' + (n%12) + 'm'; };
+      var html = '<table class="pro-table"><thead><tr><th>Strategy</th><th>Debt-free in</th><th>Total interest</th></tr></thead><tbody>' +
+        '<tr class="' + (snowball.interest < avalanche.interest ? 'best' : '') + '"><td>🟢 Snowball (smallest first)</td><td>' + ym(snowball.months) + '</td><td>' + tt.fmt(snowball.interest) + '</td></tr>' +
+        '<tr class="' + (avalanche.interest <= snowball.interest ? 'best' : '') + '"><td>❄️ Avalanche (highest APR first)</td><td>' + ym(avalanche.months) + '</td><td>' + tt.fmt(avalanche.interest) + '</td></tr>' +
+        '</tbody></table>' +
+        '<p style="margin-top:12px;font-size:13.5px;color:var(--text-muted)">' +
+        (saved > 0 ? '<b>Avalanche saves you ' + tt.fmt(saved) + '</b> — but Snowball may feel better if you need quick wins.' :
+         saved < 0 ? '<b>Snowball wins by ' + tt.fmt(-saved) + '</b> (unusual — likely small debt + high APR mix).' :
+                     'Both strategies are tied for this debt mix.') +
+        '</p>';
+      document.getElementById('strategyOutput').innerHTML = html;
+      renderTimeline(avalanche);
+    });
+
+    // ---------- Debt Freedom Timeline (PRO) ----------
+    function renderTimeline(simResult) {
+      var out = document.getElementById('timelineOutput');
+      if (!ttPremium.isPremium() || !simResult) { return; }
+      var max = simResult.months || Math.max.apply(null, simResult.payoffMonths.filter(function(m){return m;})) || 1;
+      var now = new Date();
+      var rows = debts.map(function(d, i) {
+        var m = simResult.payoffMonths[i];
+        if (m == null) return '<div class="timeline-row"><span class="name">' + (d.name || 'Debt ' + (i+1)) + '</span><span class="bar"></span><span class="end">—</span></div>';
+        var pct = Math.min(100, (m / max) * 100);
+        var d2 = new Date(now); d2.setMonth(d2.getMonth() + m);
+        var dateLabel = d2.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        return '<div class="timeline-row"><span class="name">' + (d.name || 'Debt ' + (i+1)) + '</span>' +
+               '<span class="bar"><span class="fill" style="width:' + pct + '%"></span></span>' +
+               '<span class="end">' + dateLabel + '</span></div>';
+      }).join('');
+      out.innerHTML = '<div class="timeline">' + rows + '</div>';
+    }
+
+    function applyGates() {
+      if (ttPremium.isPremium()) return;
+      ['strategySection', 'timelineSection'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el || el.classList.contains('premium-locked')) return;
+        var inner = document.createElement('div');
+        var feats = { strategySection: 'Snowball vs Avalanche', timelineSection: 'Debt Freedom Timeline' };
+        el.classList.add('premium-locked');
+        var ov = document.createElement('div'); ov.className = 'premium-overlay';
+        ov.innerHTML = '<h3>' + feats[id] + '</h3><p>Premium unlocks this section.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+        el.appendChild(ov);
+        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall(feats[id]); });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      debts.push({ name: 'Visa Card', balance: 5000, apr: 19.9, min: 100 });
+      renderDebts();
+      ttPremium.renderHistoryPanel('debt', 'historyPanel', restoreInputs);
+      applyGates();
     });
   </script>
 </body>

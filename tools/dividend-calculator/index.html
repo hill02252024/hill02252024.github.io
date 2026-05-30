@@ -12,6 +12,7 @@
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Dividend Calculator","url":"https://todays-tasks.com/tools/dividend-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"What is dividend yield?","acceptedAnswer":{"@type":"Answer","text":"Dividend yield is annual dividend per share ÷ stock price, expressed as a percent. A $4 annual dividend on a $100 stock is a 4% yield. Yields above 6% deserve extra scrutiny — they often signal trouble at the company."}},
@@ -44,6 +45,39 @@
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000020" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
+    <div id="historyPanel" class="history-panel"></div>
+
+    <section class="premium-section" id="portfolioSection">
+      <h2>📊 Portfolio Tracker <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Track every dividend stock you own. Total income, blended yield, monthly cashflow — all in one place.</p>
+      <div class="pro-stack" id="portfolioStack"></div>
+      <button type="button" class="btn-add-row" id="addStockBtn">+ Add stock</button>
+      <div class="pro-summary" id="portfolioSummary" style="display:none"></div>
+    </section>
+
+    <section class="premium-section" id="calendarSection">
+      <h2>📅 Monthly Dividend Calendar <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">See which months your dividends land. Pick the ex-div quarter for each stock.</p>
+      <div id="calendarBody"></div>
+    </section>
+
+    <section class="premium-section" id="fireSection">
+      <h2>🔥 FIRE Target Calculator <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">How big does your portfolio need to be to live off dividends?</p>
+      <div id="fireBody">
+        <div class="row two-col">
+          <div><label for="fireIncome">Target monthly income</label><input type="number" id="fireIncome" inputmode="decimal" min="0" step="100" value="4000" /></div>
+          <div><label for="fireYield">Expected portfolio yield %</label><input type="number" id="fireYield" inputmode="decimal" min="0.1" max="20" step="0.1" value="4" /></div>
+        </div>
+        <div class="row two-col">
+          <div><label for="fireCurrent">Current portfolio value</label><input type="number" id="fireCurrent" inputmode="decimal" min="0" step="1000" value="50000" /></div>
+          <div><label for="fireMonthly">Monthly contribution</label><input type="number" id="fireMonthly" inputmode="decimal" min="0" step="100" value="2000" /></div>
+        </div>
+        <button type="button" class="btn-calc finance" id="fireCalcBtn">Calculate FIRE target</button>
+        <div id="fireResult" class="result-box" aria-live="polite"></div>
+      </div>
+    </section>
+
     <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Dividend Tracker for Android — multi-stock portfolio, ex-div dates, monthly cashflow chart.</p></span><span class="chev" aria-hidden="true">›</span></a>
 
     <h2>How to Use This Dividend Calculator</h2>
@@ -75,6 +109,16 @@
 
   <script src="/tools/tools.js"></script>
   <script>
+    // ---------- Tool state ----------
+    var lastInputs = null, lastSummary = '';
+    function restoreInputs(inputs) {
+      if (!inputs) return;
+      ['price', 'div', 'shares', 'growth'].forEach(function(k) {
+        if (inputs[k] != null) document.getElementById(k).value = inputs[k];
+      });
+      document.getElementById('calcBtn').click();
+    }
+    // ---------- Single-stock calc (existing) ----------
     document.getElementById('calcBtn').addEventListener('click', function() {
       var price = tt.read('price'), div = tt.read('div'), shares = tt.read('shares'), growth = tt.read('growth');
       if (price <= 0 || div < 0 || shares <= 0) {
@@ -115,6 +159,154 @@
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+      lastInputs = { price: price, div: div, shares: shares, growth: growth };
+      lastSummary = tt.fmt(annualIncome) + '/yr · ' + yield_.toFixed(2) + '% yield · 10y ' + tt.fmt(y10Income);
+      ttPremium.afterResult('dividend', lastInputs, lastSummary, restoreInputs, 'historyPanel');
+    });
+
+    // ---------- Portfolio Tracker (PRO) ----------
+    var portfolio = [];
+    var QUARTERS = { Q1: [0,3,6,9], Q2: [1,4,7,10], Q3: [2,5,8,11], MONTHLY: [0,1,2,3,4,5,6,7,8,9,10,11] };
+    function renderPortfolio() {
+      var stack = document.getElementById('portfolioStack');
+      stack.innerHTML = portfolio.map(function(s, i) {
+        return '<div class="pro-row" data-i="' + i + '">' +
+          '<div class="pro-row-head"><span class="pro-row-name">' + (s.ticker || 'Stock ' + (i+1)) + '</span><button type="button" class="pro-row-remove" data-rm="' + i + '" aria-label="Remove">×</button></div>' +
+          '<div class="pro-row-grid">' +
+            '<div><label>Ticker</label><input type="text" data-k="ticker" data-i="' + i + '" value="' + (s.ticker || '') + '" placeholder="AAPL" maxlength="8" /></div>' +
+            '<div><label>Shares</label><input type="number" data-k="shares" data-i="' + i + '" value="' + s.shares + '" min="0" step="1" /></div>' +
+            '<div><label>Div / share / yr</label><input type="number" data-k="div" data-i="' + i + '" value="' + s.div + '" min="0" step="0.01" /></div>' +
+            '<div><label>Growth %</label><input type="number" data-k="growth" data-i="' + i + '" value="' + s.growth + '" min="0" step="0.1" /></div>' +
+            '<div><label>Pay schedule</label><select data-k="schedule" data-i="' + i + '"><option value="Q1"' + (s.schedule==='Q1'?' selected':'') + '>Quarterly (Jan/Apr/Jul/Oct)</option><option value="Q2"' + (s.schedule==='Q2'?' selected':'') + '>Quarterly (Feb/May/Aug/Nov)</option><option value="Q3"' + (s.schedule==='Q3'?' selected':'') + '>Quarterly (Mar/Jun/Sep/Dec)</option><option value="MONTHLY"' + (s.schedule==='MONTHLY'?' selected':'') + '>Monthly</option></select></div>' +
+            '<div><label>Price (optional)</label><input type="number" data-k="price" data-i="' + i + '" value="' + (s.price||'') + '" min="0" step="0.01" placeholder="for yield"/></div>' +
+          '</div></div>';
+      }).join('');
+      stack.querySelectorAll('input, select').forEach(function(el) {
+        el.addEventListener('input', function() {
+          var i = +this.dataset.i, k = this.dataset.k;
+          portfolio[i][k] = (k === 'ticker' || k === 'schedule') ? this.value : parseFloat(this.value) || 0;
+          updatePortfolioSummary();
+          renderCalendar();
+        });
+      });
+      stack.querySelectorAll('.pro-row-remove').forEach(function(b) {
+        b.addEventListener('click', function() {
+          portfolio.splice(+this.dataset.rm, 1);
+          renderPortfolio(); updatePortfolioSummary(); renderCalendar();
+        });
+      });
+      updatePortfolioSummary();
+      renderCalendar();
+    }
+    function updatePortfolioSummary() {
+      var sum = document.getElementById('portfolioSummary');
+      if (portfolio.length === 0) { sum.style.display = 'none'; return; }
+      var totalIncome = 0, totalValue = 0, hasPrice = false;
+      portfolio.forEach(function(s) {
+        totalIncome += (s.shares || 0) * (s.div || 0);
+        if (s.price > 0) { totalValue += s.shares * s.price; hasPrice = true; }
+      });
+      var blended = hasPrice && totalValue > 0 ? (totalIncome / totalValue * 100) : null;
+      sum.style.display = '';
+      sum.innerHTML =
+        '<div>Total annual income<b>' + tt.fmt(totalIncome) + '</b></div>' +
+        '<div>Monthly average<b>' + tt.fmt(totalIncome / 12) + '</b></div>' +
+        '<div>Blended yield<b>' + (blended != null ? blended.toFixed(2) + '%' : '—') + '</b></div>' +
+        '<div>Stocks held<b>' + portfolio.length + '</b></div>';
+    }
+    document.getElementById('addStockBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium() && portfolio.length >= 1) {
+        ttPremium.showPaywall('Unlimited Portfolio Tracking');
+        return;
+      }
+      portfolio.push({ ticker: '', shares: 100, div: 4, growth: 6, schedule: 'Q1', price: 0 });
+      renderPortfolio();
+    });
+
+    // ---------- Monthly Dividend Calendar (PRO, free preview Q1) ----------
+    var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function renderCalendar() {
+      var body = document.getElementById('calendarBody');
+      var monthSums = [0,0,0,0,0,0,0,0,0,0,0,0];
+      portfolio.forEach(function(s) {
+        var pay = QUARTERS[s.schedule] || QUARTERS.Q1;
+        var perPay = ((s.shares || 0) * (s.div || 0)) / pay.length;
+        pay.forEach(function(m) { monthSums[m] += perPay; });
+      });
+      var max = Math.max.apply(null, monthSums);
+      var grid = '<div class="div-calendar">' + monthSums.map(function(amt, i) {
+        var cls = amt === 0 ? 'zero' : amt > max * 0.66 ? 'high' : amt > max * 0.33 ? 'mid' : 'low';
+        return '<div class="div-cal-month ' + cls + '"><div class="m">' + MONTHS[i] + '</div><div class="amt">' + (amt > 0 ? tt.fmt(amt, {decimals: 0}) : '—') + '</div></div>';
+      }).join('') + '</div>';
+      var totalYr = monthSums.reduce(function(a, b) { return a + b; }, 0);
+      if (!ttPremium.isPremium() && portfolio.length > 0) {
+        // Free preview: blur Q2–Q4
+        body.innerHTML = '<div class="premium-locked"><div class="premium-blur">' + grid + '</div>' +
+          '<div class="premium-overlay"><h3>Full year calendar</h3><p>See every month\'s expected income across all your stocks.</p>' +
+          '<button type="button" class="btn-upgrade" data-feat="Monthly Dividend Calendar">Unlock with Premium</button></div></div>';
+        body.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall('Monthly Dividend Calendar'); });
+      } else if (portfolio.length === 0) {
+        body.innerHTML = '<p class="history-empty">Add stocks above to populate the calendar.</p>';
+      } else {
+        body.innerHTML = grid + '<p class="history-empty" style="margin-top:10px">Total ' + tt.fmt(totalYr) + ' / year · highest month ' + tt.fmt(max) + '</p>';
+      }
+    }
+
+    // ---------- FIRE Target Calculator (PRO) ----------
+    document.getElementById('fireCalcBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('FIRE Target Calculator'); return; }
+      var income = tt.read('fireIncome'), y = tt.read('fireYield');
+      var current = tt.read('fireCurrent'), monthly = tt.read('fireMonthly');
+      if (income <= 0 || y <= 0) {
+        tt.showResult('fireResult', '<div class="primary">Please enter target income and yield.</div>', 'error');
+        return;
+      }
+      var target = (income * 12) / (y / 100);
+      var gap = target - current;
+      var years = null;
+      if (gap <= 0) {
+        years = 0;
+      } else if (monthly > 0) {
+        // Solve months given monthly contribution + assumed 7% growth on portfolio.
+        var rGrow = 0.07 / 12;
+        var bal = current, m = 0;
+        while (bal < target && m < 600) {
+          bal = bal * (1 + rGrow) + monthly;
+          m++;
+        }
+        years = m >= 600 ? null : m / 12;
+      }
+      var html =
+        '<div class="primary"><span class="label">Portfolio needed</span>' + tt.fmt(target) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Gap to FIRE<b>' + tt.fmt(Math.max(0, gap)) + '</b></div>' +
+          '<div>Years to FIRE<b>' + (years == null ? '60+ yrs' : years === 0 ? 'Already there ✓' : years.toFixed(1) + ' yrs') + '</b></div>' +
+          '<div>Current coverage<b>' + (current > 0 ? (current / target * 100).toFixed(1) + '%' : '0%') + '</b></div>' +
+          '<div>Assumed growth<b>7% / yr</b></div>' +
+        '</div>';
+      tt.showResult('fireResult', html);
+    });
+
+    // ---------- Premium gating + boot ----------
+    function applyPremiumGates() {
+      var pro = ttPremium.isPremium();
+      // FIRE form: lock for free users
+      var fire = document.getElementById('fireBody');
+      if (!pro && !fire.classList.contains('premium-locked')) {
+        fire.classList.add('premium-locked');
+        var ov = document.createElement('div');
+        ov.className = 'premium-overlay';
+        ov.innerHTML = '<h3>FIRE target calculator</h3><p>Find your dividend nest egg + years to financial independence.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+        fire.appendChild(ov);
+        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall('FIRE Target Calculator'); });
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      // Seed portfolio with 1 row so the UI is alive.
+      portfolio.push({ ticker: 'AAPL', shares: 100, div: 1.00, growth: 5, schedule: 'Q1', price: 230 });
+      renderPortfolio();
+      ttPremium.renderHistoryPanel('dividend', 'historyPanel', restoreInputs);
+      applyPremiumGates();
     });
   </script>
 </body>

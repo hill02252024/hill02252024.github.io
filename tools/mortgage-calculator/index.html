@@ -12,6 +12,7 @@
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Calculator","url":"https://todays-tasks.com/tools/mortgage-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"What is included in the monthly payment?","acceptedAnswer":{"@type":"Answer","text":"This calculator returns principal and interest only (P&I). Your real mortgage payment also includes property tax, homeowners insurance, and PMI/MIP if applicable — together called PITI."}},
@@ -44,6 +45,47 @@
     </div>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000004" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <div id="historyPanel" class="history-panel"></div>
+
+    <section class="premium-section">
+      <h2>🏘️ Property Comparison <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Compare up to 3 properties side by side — full cost of ownership, not just monthly payment.</p>
+      <div class="pro-stack" id="propStack"></div>
+      <button type="button" class="btn-add-row" id="addPropBtn">+ Add property</button>
+      <div id="propOutput"></div>
+    </section>
+
+    <section class="premium-section" id="sensSection">
+      <h2>📈 Interest Rate Sensitivity <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">What if rates change? Monthly payment from −2% to +3%.</p>
+      <div id="sensBody">
+        <div class="row two-col">
+          <div><label for="affordable">Max monthly you can afford</label><input type="number" id="affordable" inputmode="decimal" min="0" step="50" value="3500" /></div>
+          <div></div>
+        </div>
+        <button type="button" class="btn-calc property" id="sensBtn">Run sensitivity</button>
+        <div id="sensOutput"></div>
+      </div>
+    </section>
+
+    <section class="premium-section" id="overpaySection">
+      <h2>💪 Overpayment Calculator <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">What if I pay extra each month? Slide to see time + interest saved.</p>
+      <div id="overpayBody">
+        <div class="range-row">
+          <input type="range" id="overpaySlider" min="0" max="2000" step="50" value="500" />
+          <div class="range-val" id="overpayVal">+$500 / mo</div>
+        </div>
+        <div id="overpayOutput" class="pro-summary" style="display:none"></div>
+      </div>
+    </section>
+
+    <section class="premium-section" id="amortSection">
+      <h2>📋 Full Amortization Schedule <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Month-by-month for the entire loan. Exportable to PDF.</p>
+      <div id="amortBody"></div>
+    </section>
 
     <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Mortgage Calc for Android — PITI, PMI/MIP, FHA/VA/USDA scenarios, refinance break-even.</p></span><span class="chev" aria-hidden="true">›</span></a>
 
@@ -91,6 +133,32 @@
       if (lastEdited === 'pct') syncDownFromPct(); else syncPctFromDown();
     });
 
+    var lastInputs = null, lastSummary = '';
+    function restoreInputs(inputs) {
+      if (!inputs) return;
+      ['price', 'down', 'downPct', 'term', 'rate'].forEach(function(k) {
+        if (inputs[k] != null) document.getElementById(k).value = inputs[k];
+      });
+      document.getElementById('calcBtn').click();
+    }
+    // Pure payment calc helper
+    function calcM(P, rate, term) {
+      var n = term * 12, r = rate / 100 / 12;
+      return r === 0 ? P / n : P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+    function calcPayoff(P, rate, term, extra) {
+      var n = term * 12, r = rate / 100 / 12;
+      var M = calcM(P, rate, term) + (extra || 0);
+      var bal = P, months = 0, interest = 0;
+      while (bal > 0.01 && months < n + 1) {
+        var ix = bal * r;
+        var principal = M - ix;
+        if (principal > bal) { interest += ix; bal = 0; }
+        else { interest += ix; bal -= principal; }
+        months++;
+      }
+      return { months: months, interest: interest, monthly: M };
+    }
     document.getElementById('calcBtn').addEventListener('click', function() {
       var price = tt.read('price'), down = tt.read('down');
       var term = Math.max(1, Math.floor(tt.read('term') || 30));
@@ -136,6 +204,164 @@
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+      lastInputs = { price: price, down: down, downPct: tt.read('downPct'), term: term, rate: rate };
+      lastSummary = tt.fmt(M) + '/mo · ' + term + 'y at ' + rate + '% · loan ' + tt.fmt(P);
+      ttPremium.afterResult('mortgage', lastInputs, lastSummary, restoreInputs, 'historyPanel');
+      // Refresh dependent premium sections
+      renderOverpay();
+      renderAmortization();
+    });
+
+    // ---------- Property Comparison (PRO) ----------
+    var props = [];
+    function renderProps() {
+      var stack = document.getElementById('propStack');
+      stack.innerHTML = props.map(function(p, i) {
+        return '<div class="pro-row" data-i="' + i + '">' +
+          '<div class="pro-row-head"><span class="pro-row-name">' + (p.name || 'Property ' + (i+1)) + '</span>' +
+            (props.length > 1 ? '<button type="button" class="pro-row-remove" data-rm="' + i + '">×</button>' : '') +
+          '</div>' +
+          '<div class="pro-row-grid">' +
+            '<div><label>Name</label><input type="text" data-k="name" data-i="' + i + '" value="' + (p.name || '') + '" placeholder="123 Oak St"/></div>' +
+            '<div><label>Price</label><input type="number" data-k="price" data-i="' + i + '" value="' + p.price + '" min="0" step="1000"/></div>' +
+            '<div><label>Down $</label><input type="number" data-k="down" data-i="' + i + '" value="' + p.down + '" min="0" step="1000"/></div>' +
+            '<div><label>Rate %</label><input type="number" data-k="rate" data-i="' + i + '" value="' + p.rate + '" min="0" step="0.01"/></div>' +
+            '<div><label>Term (yrs)</label><input type="number" data-k="term" data-i="' + i + '" value="' + p.term + '" min="1" max="40" step="1"/></div>' +
+            '<div><label>HOA / maint $/mo</label><input type="number" data-k="hoa" data-i="' + i + '" value="' + p.hoa + '" min="0" step="10"/></div>' +
+          '</div></div>';
+      }).join('');
+      stack.querySelectorAll('input').forEach(function(el) {
+        el.addEventListener('input', function() {
+          var i = +this.dataset.i, k = this.dataset.k;
+          props[i][k] = k === 'name' ? this.value : parseFloat(this.value) || 0;
+          renderPropComparison();
+        });
+      });
+      stack.querySelectorAll('.pro-row-remove').forEach(function(b) {
+        b.addEventListener('click', function() { props.splice(+this.dataset.rm, 1); renderProps(); renderPropComparison(); });
+      });
+      renderPropComparison();
+    }
+    function renderPropComparison() {
+      var out = document.getElementById('propOutput');
+      if (props.length === 0) { out.innerHTML = ''; return; }
+      var rows = props.map(function(p) {
+        var loan = (p.price || 0) - (p.down || 0);
+        if (loan <= 0) return { p: p, valid: false };
+        var M = calcM(loan, p.rate, p.term);
+        var allIn = M + (p.hoa || 0);
+        var totalPaid = M * p.term * 12;
+        var totalCost = totalPaid + (p.hoa || 0) * 12 * p.term + (p.down || 0);
+        return { p: p, valid: true, loan: loan, M: M, allIn: allIn, totalCost: totalCost };
+      });
+      var bestI = 0;
+      rows.forEach(function(r, i) { if (r.valid && (rows[bestI].totalCost == null || r.totalCost < rows[bestI].totalCost)) bestI = i; });
+      var html = '<table class="pro-table"><thead><tr><th>Property</th><th>Loan</th><th>P&amp;I / mo</th><th>All-in / mo</th><th>Total cost (' + (props[0].term||30) + 'y)</th></tr></thead><tbody>' +
+        rows.map(function(r, i) {
+          if (!r.valid) return '<tr><td>' + (r.p.name || 'Property ' + (i+1)) + '</td><td colspan="4">— check inputs</td></tr>';
+          var cls = i === bestI ? 'best' : '';
+          return '<tr class="' + cls + '"><td>' + (r.p.name || 'Property ' + (i+1)) + '</td>' +
+            '<td>' + tt.fmt(r.loan) + '</td><td>' + tt.fmt(r.M) + '</td>' +
+            '<td>' + tt.fmt(r.allIn) + '</td><td>' + tt.fmt(r.totalCost) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+      out.innerHTML = html;
+    }
+    document.getElementById('addPropBtn').addEventListener('click', function() {
+      var max = ttPremium.isPremium() ? 3 : 1;
+      if (props.length >= max) {
+        if (!ttPremium.isPremium()) { ttPremium.showPaywall('Property Comparison'); return; }
+        alert('Max 3 properties.'); return;
+      }
+      props.push({ name: '', price: 450000, down: 90000, rate: 6.5, term: 30, hoa: 0 });
+      renderProps();
+    });
+
+    // ---------- Interest Rate Sensitivity (PRO) ----------
+    document.getElementById('sensBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Rate Sensitivity'); return; }
+      var price = tt.read('price'), down = tt.read('down'), term = tt.read('term') || 30, rate = tt.read('rate') || 6.5;
+      var P = price - down;
+      if (P <= 0) { document.getElementById('sensOutput').innerHTML = '<p class="history-empty">Enter loan inputs above first.</p>'; return; }
+      var afford = tt.read('affordable') || Infinity;
+      var deltas = [-2, -1, -0.5, 0, 0.5, 1, 2, 3];
+      var rows = deltas.map(function(d) {
+        var newRate = Math.max(0, rate + d);
+        var M = calcM(P, newRate, term);
+        var cls = '';
+        if (M <= afford * 0.85) cls = 'affordable';
+        else if (M <= afford) cls = 'stretch';
+        else cls = 'danger';
+        var deltaLabel = d === 0 ? 'Current' : (d > 0 ? '+' : '') + d.toFixed(1) + '%';
+        return '<tr class="' + cls + '"><td>' + deltaLabel + '</td><td>' + newRate.toFixed(2) + '%</td><td>' + tt.fmt(M) + '</td><td>' + tt.fmt(M - calcM(P, rate, term)) + '</td></tr>';
+      }).join('');
+      document.getElementById('sensOutput').innerHTML = '<table class="pro-table sens-table"><thead><tr><th>Rate change</th><th>New rate</th><th>Monthly P&amp;I</th><th>vs current</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    });
+
+    // ---------- Overpayment Slider (PRO) ----------
+    var slider = document.getElementById('overpaySlider'), sliderVal = document.getElementById('overpayVal');
+    function renderOverpay() {
+      sliderVal.textContent = '+$' + slider.value + ' / mo';
+      var price = tt.read('price'), down = tt.read('down'), term = tt.read('term') || 30, rate = tt.read('rate') || 6.5;
+      var P = price - down;
+      var out = document.getElementById('overpayOutput');
+      if (P <= 0) { out.style.display = 'none'; return; }
+      if (!ttPremium.isPremium()) { out.style.display = 'none'; return; }
+      var extra = parseFloat(slider.value) || 0;
+      var base = calcPayoff(P, rate, term, 0);
+      var withExtra = calcPayoff(P, rate, term, extra);
+      var monthsSaved = base.months - withExtra.months;
+      var interestSaved = base.interest - withExtra.interest;
+      out.style.display = '';
+      out.innerHTML =
+        '<div>Months saved<b>' + monthsSaved + ' mo</b></div>' +
+        '<div>Years saved<b>' + (monthsSaved/12).toFixed(1) + ' yrs</b></div>' +
+        '<div>Interest saved<b>' + tt.fmt(interestSaved) + '</b></div>' +
+        '<div>New payoff<b>' + (withExtra.months/12).toFixed(1) + ' yrs</b></div>';
+    }
+    slider.addEventListener('input', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Overpayment Calculator'); slider.value = 0; sliderVal.textContent = '+$0 / mo'; return; }
+      renderOverpay();
+    });
+
+    // ---------- Full Amortization (PRO) ----------
+    function renderAmortization() {
+      var body = document.getElementById('amortBody');
+      if (!ttPremium.isPremium()) {
+        body.innerHTML = '<p class="history-empty">Full month-by-month amortization is a Premium feature.</p>'; return;
+      }
+      var price = tt.read('price'), down = tt.read('down'), term = tt.read('term') || 30, rate = tt.read('rate') || 6.5;
+      var P = price - down;
+      if (P <= 0) { body.innerHTML = '<p class="history-empty">Enter loan inputs above to build the schedule.</p>'; return; }
+      var n = term * 12, r = rate / 100 / 12;
+      var M = calcM(P, rate, term);
+      var bal = P;
+      var rows = '';
+      for (var m = 1; m <= n; m++) {
+        var ix = bal * r, principal = M - ix;
+        bal -= principal;
+        rows += '<tr><td>' + m + '</td><td>' + tt.fmt(M) + '</td><td>' + tt.fmt(principal) + '</td><td>' + tt.fmt(ix) + '</td><td>' + tt.fmt(Math.max(0, bal)) + '</td></tr>';
+      }
+      body.innerHTML = '<div style="max-height:400px;overflow-y:auto"><table class="pro-table"><thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }
+
+    function applyGates() {
+      if (ttPremium.isPremium()) return;
+      ['sensBody', 'overpayBody', 'amortBody'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el || el.classList.contains('premium-locked')) return;
+        el.classList.add('premium-locked');
+        var ov = document.createElement('div'); ov.className = 'premium-overlay';
+        var feats = { sensBody: 'Rate Sensitivity', overpayBody: 'Overpayment Calculator', amortBody: 'Full Amortization' };
+        ov.innerHTML = '<h3>' + feats[id] + '</h3><p>Premium unlocks this section.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+        el.appendChild(ov);
+        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall(feats[id]); });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      props.push({ name: 'Property A', price: 450000, down: 90000, rate: 6.5, term: 30, hoa: 250 });
+      renderProps();
+      ttPremium.renderHistoryPanel('mortgage', 'historyPanel', restoreInputs);
+      applyGates();
     });
   </script>
 </body>

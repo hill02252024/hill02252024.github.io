@@ -12,6 +12,7 @@
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
+  <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Take-Home Salary Calculator","url":"https://todays-tasks.com/tools/salary-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Are these tax brackets official?","acceptedAnswer":{"@type":"Answer","text":"Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home."}},
@@ -48,6 +49,52 @@
     </div>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000008" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+
+    <div id="historyPanel" class="history-panel"></div>
+
+    <section class="premium-section">
+      <h2>🌍 Multi-Country Comparison <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Same gross salary, every country. Spot the geo-arbitrage move.</p>
+      <button type="button" class="btn-calc finance" id="compareBtn">Compare all 4 countries</button>
+      <div id="compareOutput"></div>
+    </section>
+
+    <section class="premium-section" id="reverseSection">
+      <h2>🎯 Salary Negotiation — Reverse Calculator <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">"I need <em>X</em> in my pocket — what should I ask for gross?"</p>
+      <div id="reverseBody">
+        <div class="row two-col">
+          <div><label for="targetNet">Target NET monthly income</label><input type="number" id="targetNet" inputmode="decimal" min="0" step="100" value="5000" /></div>
+          <div></div>
+        </div>
+        <button type="button" class="btn-calc finance" id="reverseBtn">Find required gross</button>
+        <div id="reverseResult" class="result-box" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="premium-section" id="selfEmpSection">
+      <h2>💼 Freelancer / Self-Employed Mode <span class="premium-badge">PRO</span></h2>
+      <p class="premium-intro">Hourly rate → annual take-home, with SE tax included.</p>
+      <div id="selfEmpBody">
+        <div class="row two-col">
+          <div><label for="hourly">Hourly rate</label><input type="number" id="hourly" inputmode="decimal" min="0" step="1" value="75" /></div>
+          <div><label for="hoursWk">Hours / week</label><input type="number" id="hoursWk" inputmode="decimal" min="0" max="80" step="1" value="30" /></div>
+        </div>
+        <div class="row two-col">
+          <div><label for="weeksYr">Billable weeks / year</label><input type="number" id="weeksYr" inputmode="decimal" min="1" max="52" step="1" value="48" /></div>
+          <div><label>Country</label>
+            <div class="unit-toggle" id="seCountryToggle">
+              <button type="button" data-c="uk" class="active">🇬🇧 UK</button>
+              <button type="button" data-c="us">🇺🇸 US</button>
+              <button type="button" data-c="au">🇦🇺 AU</button>
+              <button type="button" data-c="hk">🇭🇰 HK</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-calc finance" id="seBtn">Calculate freelance take-home</button>
+        <div id="seResult" class="result-box" aria-live="polite"></div>
+      </div>
+    </section>
 
     <a class="mobile-cta" href="/apps.html"><span class="emoji" aria-hidden="true">📱</span><span class="text"><h3>Try the mobile app</h3><p>Take-Home Salary for Android — UK, US, AU, HK presets, pension &amp; bonus modelling, save scenarios.</p></span><span class="chev" aria-hidden="true">›</span></a>
 
@@ -144,6 +191,19 @@
       return { inc: inc, soc: mpf, label: 'Salaries tax + MPF', cur: 'HK$' };
     }
 
+    var lastInputs = null, lastSummary = '';
+    function restoreInputs(inputs) {
+      if (!inputs) return;
+      if (inputs.gross != null) document.getElementById('gross').value = inputs.gross;
+      if (inputs.period) document.getElementById('period').value = inputs.period;
+      if (inputs.country) {
+        document.querySelectorAll('#countryToggle button').forEach(function(x) {
+          x.classList.toggle('active', x.dataset.c === inputs.country);
+        });
+        country = inputs.country;
+      }
+      document.getElementById('calcBtn').click();
+    }
     document.getElementById('calcBtn').addEventListener('click', function() {
       var raw = tt.read('gross');
       var period = document.getElementById('period').value;
@@ -174,6 +234,124 @@
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+      lastInputs = { gross: raw, period: period, country: country };
+      lastSummary = country.toUpperCase() + ': ' + fmtCur(net) + ' net (' + rate.toFixed(1) + '% effective)';
+      ttPremium.afterResult('salary', lastInputs, lastSummary, restoreInputs, 'historyPanel');
+    });
+
+    // ---------- Multi-Country Comparison (PRO) ----------
+    var CALCS = { uk: calcUK, us: calcUS, au: calcAU, hk: calcHK };
+    var CUR_LABELS = { uk: '£', us: '$', au: 'A$', hk: 'HK$' };
+    var CTY_LABELS = { uk: '🇬🇧 UK', us: '🇺🇸 US', au: '🇦🇺 AU', hk: '🇭🇰 HK' };
+    document.getElementById('compareBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Multi-Country Comparison'); return; }
+      var raw = tt.read('gross');
+      var period = document.getElementById('period').value;
+      if (raw <= 0) { document.getElementById('compareOutput').innerHTML = '<p class="history-empty">Enter a gross salary above first.</p>'; return; }
+      var annual = raw;
+      if (period === 'month') annual = raw * 12;
+      if (period === 'hour') annual = raw * 2080;
+      var rows = ['uk','us','au','hk'].map(function(c) {
+        var r = CALCS[c](annual);
+        var total = r.inc + r.soc;
+        var net = annual - total;
+        var rate = (total / annual * 100);
+        return { c: c, gross: annual, tax: r.inc, soc: r.soc, net: net, rate: rate, cur: r.cur };
+      });
+      rows.sort(function(a, b) { return b.net - a.net; });
+      var best = rows[0], worst = rows[rows.length - 1];
+      var html = '<table class="pro-table"><thead><tr><th>Country</th><th>Gross</th><th>Tax</th><th>Social</th><th>Net / month</th><th>Net / year</th><th>Effective %</th></tr></thead><tbody>' +
+        rows.map(function(r) {
+          var cls = r.c === best.c ? 'best' : r.c === worst.c ? 'worst' : '';
+          var fmt = function(n) { return r.cur + n.toLocaleString('en-US', { maximumFractionDigits: 0 }); };
+          return '<tr class="' + cls + '"><td>' + CTY_LABELS[r.c] + '</td><td>' + fmt(r.gross) + '</td>' +
+            '<td>' + fmt(r.tax) + '</td><td>' + fmt(r.soc) + '</td>' +
+            '<td>' + fmt(r.net/12) + '</td><td>' + fmt(r.net) + '</td>' +
+            '<td>' + r.rate.toFixed(1) + '%</td></tr>';
+        }).join('') + '</tbody></table>';
+      var diff = best.net - worst.net;
+      html += '<p style="margin-top:12px;font-size:13.5px;color:var(--text-muted)">Moving from <b>' + CTY_LABELS[worst.c] + '</b> to <b>' + CTY_LABELS[best.c] + '</b> nets you an extra <b>' + best.cur + diff.toLocaleString('en-US', {maximumFractionDigits:0}) + '</b> per year (same gross).</p>';
+      document.getElementById('compareOutput').innerHTML = html;
+    });
+
+    // ---------- Salary Negotiation — Reverse Calculator (PRO) ----------
+    document.getElementById('reverseBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Salary Negotiation'); return; }
+      var targetNetMo = tt.read('targetNet');
+      if (targetNetMo <= 0) { tt.showResult('reverseResult', '<div class="primary">Enter target net.</div>', 'error'); return; }
+      var targetNet = targetNetMo * 12;
+      // Bisect required gross per country.
+      function solveGross(calcFn, targetNet) {
+        var lo = 0, hi = 1e7, mid;
+        for (var i = 0; i < 60; i++) {
+          mid = (lo + hi) / 2;
+          var r = calcFn(mid); var net = mid - r.inc - r.soc;
+          if (net < targetNet) lo = mid; else hi = mid;
+        }
+        return (lo + hi) / 2;
+      }
+      var html = '<div class="primary"><span class="label">Required gross per year</span>' + tt.fmt(targetNet, {prefix:'$', decimals:0}) + '<small style="display:block;font-size:14px;font-weight:600;color:var(--text-muted);margin-top:4px">net target</small></div>' +
+        '<table class="pro-table" style="margin-top:14px"><thead><tr><th>Country</th><th>Required gross</th><th>Monthly gross</th></tr></thead><tbody>' +
+        ['uk','us','au','hk'].map(function(c) {
+          var g = solveGross(CALCS[c], targetNet);
+          return '<tr><td>' + CTY_LABELS[c] + '</td><td>' + CUR_LABELS[c] + g.toLocaleString('en-US', {maximumFractionDigits: 0}) + '</td><td>' + CUR_LABELS[c] + (g/12).toLocaleString('en-US', {maximumFractionDigits: 0}) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+      tt.showResult('reverseResult', html);
+    });
+
+    // ---------- Freelancer / Self-Employed (PRO) ----------
+    var seCountry = 'uk';
+    document.querySelectorAll('#seCountryToggle button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#seCountryToggle button').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active'); seCountry = b.dataset.c;
+      });
+    });
+    document.getElementById('seBtn').addEventListener('click', function() {
+      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Freelancer Mode'); return; }
+      var hr = tt.read('hourly'), hpw = tt.read('hoursWk'), wpy = tt.read('weeksYr');
+      if (hr <= 0 || hpw <= 0 || wpy <= 0) { tt.showResult('seResult', '<div class="primary">Enter rate, hours and weeks.</div>', 'error'); return; }
+      var grossAnnual = hr * hpw * wpy;
+      var base = CALCS[seCountry](grossAnnual);
+      // Self-employed surcharges (rough):
+      var seSurcharge = 0, seLabel = '';
+      if (seCountry === 'us') { seSurcharge = grossAnnual * 0.0765; seLabel = 'Employer-side FICA (SE tax)'; }
+      else if (seCountry === 'uk') { seSurcharge = Math.max(0, grossAnnual - 12570) * 0.06; seLabel = 'Class 4 NI (6%)'; }
+      else if (seCountry === 'au') { seSurcharge = grossAnnual * 0.115; seLabel = 'Super (11.5% self-funded)'; }
+      else if (seCountry === 'hk') { seSurcharge = Math.min(grossAnnual, 360000) * 0.05; seLabel = 'MPF (5% self)'; }
+      var totalTax = base.inc + base.soc + seSurcharge;
+      var net = grossAnnual - totalTax;
+      var fmt = function(n) { return base.cur + n.toLocaleString('en-US', { maximumFractionDigits: 0 }); };
+      var html =
+        '<div class="primary"><span class="label">Net annual (self-employed)</span>' + fmt(net) + '</div>' +
+        '<div class="secondary">' +
+          '<div>Gross billings<b>' + fmt(grossAnnual) + '</b></div>' +
+          '<div>Monthly net<b>' + fmt(net / 12) + '</b></div>' +
+          '<div>Effective rate (after tax)<b>' + base.cur + (net / (hpw * wpy)).toLocaleString('en-US', {maximumFractionDigits:0}) + '/hr</b></div>' +
+          '<div>' + seLabel + '<b>' + fmt(seSurcharge) + '</b></div>' +
+          '<div>Income tax + base social<b>' + fmt(base.inc + base.soc) + '</b></div>' +
+          '<div>Tax wedge<b>' + (totalTax/grossAnnual*100).toFixed(1) + '%</b></div>' +
+        '</div>';
+      tt.showResult('seResult', html);
+    });
+
+    // Premium gates for reverse + selfEmp
+    function applyGates() {
+      if (ttPremium.isPremium()) return;
+      ['reverseBody', 'selfEmpBody'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el || el.classList.contains('premium-locked')) return;
+        el.classList.add('premium-locked');
+        var ov = document.createElement('div'); ov.className = 'premium-overlay';
+        var feat = id === 'reverseBody' ? 'Salary Negotiation' : 'Freelancer Mode';
+        ov.innerHTML = '<h3>' + feat + '</h3><p>Unlock with Premium for full reverse-tax-bracket solving.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
+        el.appendChild(ov);
+        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall(feat); });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      ttPremium.renderHistoryPanel('salary', 'historyPanel', restoreInputs);
+      applyGates();
     });
   </script>
 </body>
