@@ -970,3 +970,140 @@ body.ads-hidden .ad-slot { display: none !important; }
   .hero-quick { flex-direction: column; }
   .hero-quick .quick-btn { width: 100%; text-align: center; }
 }
+
+/* ===================================================================
+   FIX 1 — Sensitive Data Cleaner: history + custom patterns
+   =================================================================== */
+.custom-patterns, .clean-history {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+  padding: 18px; margin: 18px 0;
+}
+.custom-patterns h2, .clean-history h2 { margin: 0 0 4px; font-size: 17px; }
+.custom-patterns .muted, .clean-history .muted { color: #64748b; font-size: 13px; margin: 0 0 12px; }
+.pro-pill {
+  background: #1e40af; color: #fff; font-size: 11px;
+  padding: 2px 8px; border-radius: 999px; font-weight: 800; vertical-align: middle;
+}
+
+.cp-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.cp-locked { color: #64748b; font-style: italic; padding: 12px; background: #f8fafc; border-radius: 8px; }
+.cp-row {
+  display: flex; gap: 8px; align-items: center;
+  background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 10px;
+}
+.cp-type {
+  background: #1e40af; color: #fff; font-size: 11px;
+  padding: 2px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase;
+}
+.cp-row code {
+  flex: 1; background: transparent; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; word-break: break-all;
+}
+.cp-del {
+  background: transparent; border: 1px solid #cbd5e1; padding: 2px 8px;
+  border-radius: 6px; color: #b91c1c; cursor: pointer;
+}
+.cp-add { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.cp-add input {
+  flex: 1; min-width: 160px; padding: 8px 10px; border-radius: 8px;
+  border: 1px solid #cbd5e1; font-family: inherit;
+}
+.cp-add select {
+  padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit;
+}
+
+.ch-list { display: flex; flex-direction: column; gap: 8px; }
+.ch-empty { color: #64748b; font-style: italic; padding: 12px; }
+.ch-row {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 10px 12px; display: grid; grid-template-columns: 1fr auto; gap: 4px;
+  align-items: center;
+}
+.ch-row > div:first-child { grid-column: 1 / -1; font-size: 14px; }
+.ch-meta { color: #475569; font-size: 13px; }
+.ch-cats { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; grid-column: 1 / -1; }
+.ch-tag {
+  background: #dbeafe; color: #1e40af; font-size: 11.5px;
+  padding: 2px 8px; border-radius: 999px; font-weight: 600;
+}
+.ch-actions { grid-column: 2; }
+.ch-lock {
+  display: flex; gap: 12px; justify-content: space-between; align-items: center;
+  background: #fef3c7; border: 1px dashed #fde68a; border-radius: 10px;
+  padding: 12px; color: #92400e;
+}
+.ch-unlock {
+  background: #1e40af; color: #fff; border: none; padding: 8px 14px;
+  border-radius: 10px; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+
+/* ===================================================================
+   FIX 2 — Device Checklist: actions, chart, share, bell
+   =================================================================== */
+.reminder-bell { margin-left: 6px; }
+.dl-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.dl-chart, .dl-share {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+  padding: 18px; margin: 18px 0;
+}
+.dl-chart h2, .dl-share h2 { margin: 0 0 4px; font-size: 17px; }
+.dl-chart .muted, .dl-share .muted { color: #64748b; font-size: 13px; margin: 0 0 12px; }
+
+.weekly-chart {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  align-items: end; padding: 12px 4px 0;
+}
+.wc-bar {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.wc-fill {
+  width: 100%; max-width: 56px;
+  height: 0; min-height: 6px;
+  background: linear-gradient(to top, #1e40af, #3b82f6);
+  border-radius: 10px 10px 0 0;
+}
+/* Bar background container — give the bars a consistent rail */
+.wc-bar { position: relative; }
+.wc-bar::before {
+  content: ''; position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%);
+  width: 100%; max-width: 56px; height: 110px; background: #f1f5f9;
+  border-radius: 10px 10px 0 0; z-index: 0;
+}
+.wc-fill { position: relative; z-index: 1; max-height: 110px; }
+.wc-pct { font-size: 12.5px; font-weight: 700; color: #1e40af; z-index: 1; }
+.wc-lbl { font-size: 12px; color: #64748b; }
+
+.dl-share-row { display: flex; gap: 8px; align-items: stretch; }
+.dl-share-row input {
+  flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+}
+
+/* Mobile QA for the new surfaces */
+@media (max-width: 480px) {
+  .ch-row { grid-template-columns: 1fr; }
+  .ch-actions { grid-column: 1; }
+  .ch-lock { flex-direction: column; align-items: stretch; }
+  .ch-unlock { width: 100%; }
+  .cp-add { flex-direction: column; align-items: stretch; }
+  .cp-add input, .cp-add select { width: 100%; }
+  .dl-actions { flex-direction: column; }
+  .dl-actions .btn-secondary { width: 100%; }
+  .dl-share-row { flex-direction: column; }
+  .dl-share-row input { width: 100%; }
+  /* Compact weekly chart on mobile */
+  .weekly-chart { gap: 6px; }
+  .wc-bar::before { max-width: 44px; }
+  .wc-fill { max-width: 44px; }
+  .wc-pct { font-size: 11px; }
+  .wc-lbl { font-size: 10.5px; }
+}
+
+/* Print stylesheet — used by PDF Export */
+@media print {
+  .site-header, .site-nav, .footer, .ad-slot, .dl-actions,
+  .dl-share, .more-tools, .breadcrumb,
+  #paywallModal, .premium-banner, .tt-expiry-banner { display: none !important; }
+  body { background: #fff; color: #000; }
+  .calc-card, .dl-chart { border: 1px solid #ccc; box-shadow: none; }
+}

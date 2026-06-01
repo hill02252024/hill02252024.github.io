@@ -36,7 +36,7 @@
     <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Device Safety Checklist</nav>
     <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000019" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-    <span class="local-only-pill">🛡️ Progress saved locally · No account needed</span>
+    <span class="local-only-pill">🛡️ Progress saved locally · No account needed <span id="reminderBell" class="reminder-bell" hidden title="Weekly reminder is on">🔔</span></span>
     <h1>Device Safety Checklist</h1>
     <p class="intro">30 actions across phone, laptop, browser and accounts. Pick a device type, tick each off in 30 minutes. Your progress is saved to this browser — Premium syncs across devices.</p>
 
@@ -45,9 +45,34 @@
       <div style="flex:1;margin-left:18px"><div class="checklist-progress"><div id="progressBar"></div></div></div>
     </div>
 
+    <div class="dl-actions">
+      <button type="button" id="reminderBtn" class="btn-secondary">⏰ Set Weekly Reminder</button>
+      <button type="button" id="pdfBtn" class="btn-secondary">📄 Export as PDF</button>
+      <button type="button" id="historyBtn" class="btn-secondary">📈 View Progress History</button>
+    </div>
+
     <div class="calc-card">
       <ul class="checklist" id="checklist"></ul>
     </div>
+
+    <!-- ============ Progress Over Time ============ -->
+    <section class="dl-chart" aria-labelledby="chartTitle">
+      <h2 id="chartTitle">Progress Over Time</h2>
+      <p class="muted">Your score % across the last 4 weeks. Come back each week to keep it rising.</p>
+      <div id="weeklyChart" class="weekly-chart"></div>
+    </section>
+
+    <!-- ============ Share / Team ============ -->
+    <section class="dl-share" aria-labelledby="shareTitle">
+      <h2 id="shareTitle">Share this checklist with your team or family</h2>
+      <div class="dl-share-row">
+        <input type="text" id="shareUrl" readonly />
+        <button type="button" id="copyShare" class="btn-secondary">📋 Copy</button>
+      </div>
+      <button type="button" id="teamShareBtn" class="btn-plan" style="margin-top:8px">
+        ✨ Send a custom link with my progress pre-filled (Premium)
+      </button>
+    </section>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000020" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
@@ -100,7 +125,11 @@
     ];
 
     var KEY = 'tt_device_check';
+    var PROGRESS_KEY = 'tt_checklist_progress';
+    var HISTORY_KEY = 'tt_checklist_history';
+    var REMINDER_KEY = 'tt_checklist_reminder';
     var done = []; try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+    function isPremium(){ return !!(window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium()); }
 
     function render() {
       var ul = document.getElementById('checklist');
@@ -119,8 +148,11 @@
           var pos = done.indexOf(i);
           if (pos < 0) done.push(i); else done.splice(pos, 1);
           localStorage.setItem(KEY, JSON.stringify(done));
+          // Mirror to the new dashboard key (array of completed indices).
+          localStorage.setItem(PROGRESS_KEY, JSON.stringify(done));
           localStorage.setItem('tt_device_check_total', String(ITEMS.length));
-          render(); updateSummary();
+          saveWeeklySnapshot();
+          render(); updateSummary(); renderChart();
         });
       });
       updateSummary();
@@ -131,7 +163,127 @@
       var pct = (done.length / ITEMS.length) * 100;
       document.getElementById('progressBar').style.width = pct + '%';
     }
-    document.addEventListener('DOMContentLoaded', render);
+
+    // ===== Weekly snapshots (last 8 weeks) =====
+    function isoWeek(d){
+      // ISO week number: copy date, shift to Thursday, then floor (date−jan1)/7
+      var t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      var dow = (t.getUTCDay() + 6) % 7;
+      t.setUTCDate(t.getUTCDate() - dow + 3);
+      var firstThu = new Date(Date.UTC(t.getUTCFullYear(), 0, 4));
+      var diff = (t - firstThu) / 86400000;
+      var week = 1 + Math.round(diff / 7);
+      return t.getUTCFullYear() + '-W' + String(week).padStart(2, '0');
+    }
+    function loadHistory(){
+      try { var a = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            return Array.isArray(a) ? a : []; }
+      catch(e){ return []; }
+    }
+    function saveWeeklySnapshot(){
+      var pct = ITEMS.length ? Math.round(done.length / ITEMS.length * 100) : 0;
+      var wk = isoWeek(new Date());
+      var arr = loadHistory();
+      // Replace this week's record if present, else prepend.
+      var idx = arr.findIndex(function(r){ return r.week === wk; });
+      var rec = { week: wk, savedAt: Date.now(),
+                  completedCount: done.length, totalCount: ITEMS.length,
+                  scorePercent: pct };
+      if (idx >= 0) arr[idx] = rec; else arr.unshift(rec);
+      // Keep last 8 distinct weeks (newest first).
+      if (arr.length > 8) arr = arr.slice(0, 8);
+      try { localStorage.setItem(HISTORY_KEY, JSON.stringify(arr)); } catch(e){}
+    }
+    function renderChart(){
+      var arr = loadHistory().slice(0, 4).slice().reverse();
+      // Pad to 4 weeks so the chart has stable layout.
+      while (arr.length < 4) arr.unshift({ week: '—', scorePercent: 0 });
+      var labels = ['Week 1', 'Week 2', 'Week 3', 'This Week'];
+      var el = document.getElementById('weeklyChart');
+      el.innerHTML = arr.map(function(r, i){
+        var pct = Math.max(0, Math.min(100, r.scorePercent || 0));
+        return '<div class="wc-bar">' +
+                 '<div class="wc-fill" style="height:' + pct + '%"></div>' +
+                 '<div class="wc-pct">' + pct + '%</div>' +
+                 '<div class="wc-lbl">' + labels[i] + '</div>' +
+               '</div>';
+      }).join('');
+    }
+
+    // ===== Reminder =====
+    function refreshReminderBell(){
+      var on = localStorage.getItem(REMINDER_KEY) === '1';
+      document.getElementById('reminderBell').hidden = !on;
+      var btn = document.getElementById('reminderBtn');
+      btn.textContent = on ? '🔔 Weekly reminder on' : '⏰ Set Weekly Reminder';
+    }
+    document.getElementById('reminderBtn').addEventListener('click', function(){
+      if (localStorage.getItem(REMINDER_KEY) === '1') {
+        localStorage.removeItem(REMINDER_KEY);
+        refreshReminderBell();
+        return;
+      }
+      if (!('Notification' in window)) {
+        localStorage.setItem(REMINDER_KEY, '1'); refreshReminderBell();
+        alert('Reminder set locally. Your browser does not support push notifications, so come back next week to update your checklist.');
+        return;
+      }
+      Notification.requestPermission().then(function(p){
+        if (p === 'granted') {
+          localStorage.setItem(REMINDER_KEY, '1');
+          refreshReminderBell();
+          new Notification('Today\'s Tasks · Device Checklist', {
+            body: 'Reminder set. Come back each week to update your checklist.',
+            icon: '/assets/1.jpg'
+          });
+        } else {
+          alert('Notification permission denied. You can still come back each week — your progress is saved.');
+        }
+      });
+    });
+
+    // ===== PDF Export (gated) =====
+    document.getElementById('pdfBtn').addEventListener('click', function(){
+      if (!isPremium()) {
+        if (window.ttPremium) window.ttPremium.showPaywall('PDF Export');
+        return;
+      }
+      window.print();
+    });
+
+    // ===== Progress History (gated beyond chart) =====
+    document.getElementById('historyBtn').addEventListener('click', function(){
+      if (!isPremium()) {
+        if (window.ttPremium) window.ttPremium.showPaywall('Progress History');
+        return;
+      }
+      var arr = loadHistory();
+      if (!arr.length) { alert('No snapshots yet.'); return; }
+      var lines = arr.map(function(r){
+        return r.week + ' — ' + r.scorePercent + '% (' + r.completedCount + '/' + r.totalCount + ')';
+      });
+      alert('Full progress history (last ' + arr.length + ' weeks):\n\n' + lines.join('\n'));
+    });
+
+    // ===== Sharing =====
+    document.getElementById('shareUrl').value = location.origin + location.pathname;
+    document.getElementById('copyShare').addEventListener('click', function(){
+      var i = document.getElementById('shareUrl');
+      navigator.clipboard.writeText(i.value).then(function(){
+        var b = document.getElementById('copyShare');
+        b.textContent = '✓ Copied'; setTimeout(function(){ b.textContent = '📋 Copy'; }, 1400);
+      });
+    });
+    document.getElementById('teamShareBtn').addEventListener('click', function(){
+      if (window.ttPremium) window.ttPremium.showPaywall('Team Sharing');
+    });
+
+    document.addEventListener('DOMContentLoaded', function(){
+      render();
+      saveWeeklySnapshot();  // first-load also lays down "This Week" baseline
+      renderChart();
+      refreshReminderBell();
+    });
   </script>
 </body>
 </html>

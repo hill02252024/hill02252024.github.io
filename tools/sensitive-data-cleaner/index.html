@@ -59,10 +59,32 @@
       <div class="redactor-area" id="out"><em style="color:var(--text-subtle)">Output will appear here.</em></div>
       <p id="stats" style="margin-top:10px;font-size:13px;color:var(--text-muted)"></p>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <button type="button" id="copyBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📋 Copy clean text</button>
-        <button type="button" id="dlBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📥 Download .txt</button>
+        <button type="button" id="copyBtn" class="btn-secondary">📋 Copy clean text</button>
+        <button type="button" id="dlBtn" class="btn-secondary">📥 Download .txt</button>
       </div>
     </div>
+
+    <!-- ============ CUSTOM PATTERNS (Premium) ============ -->
+    <section class="custom-patterns" aria-labelledby="cpTitle">
+      <h2 id="cpTitle">Custom Patterns <span class="pro-pill">PRO</span></h2>
+      <p class="muted">Add company codes, internal project names, or any keyword/regex you want masked. Up to 20 patterns.</p>
+      <div id="cpList" class="cp-list"></div>
+      <div class="cp-add">
+        <input type="text" id="cpInput" placeholder="Project Phoenix · ACME-\d{4} · @internal\.example" />
+        <select id="cpType">
+          <option value="keyword">Keyword</option>
+          <option value="regex">Regex</option>
+        </select>
+        <button type="button" id="cpAddBtn" class="btn-secondary">＋ Add pattern</button>
+      </div>
+    </section>
+
+    <!-- ============ CLEANING HISTORY ============ -->
+    <section class="clean-history" aria-labelledby="chTitle">
+      <h2 id="chTitle">Cleaning history</h2>
+      <p class="muted">Free: last 5 sessions. Premium: last 20 + cross-device sync.</p>
+      <div id="chList" class="ch-list"></div>
+    </section>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000016" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
@@ -128,10 +150,173 @@
           return replace(k, m);
         });
       });
+      // Premium: apply custom patterns too.
+      if (isPremium()) {
+        loadPatterns().forEach(function(p, idx){
+          counts['CUSTOM_' + idx] = 0;
+          var rx;
+          try {
+            rx = p.type === 'regex'
+              ? new RegExp(p.value, 'gi')
+              : new RegExp(p.value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+          } catch(e) { return; }
+          out = out.replace(rx, function(m){
+            counts['CUSTOM_' + idx]++;
+            return replace('CUSTOM', m);
+          });
+        });
+      }
       document.getElementById('out').textContent = out;
-      var lines = Object.keys(counts).filter(function(k) { return counts[k] > 0; }).map(function(k) { return counts[k] + ' ' + k.toLowerCase(); });
+      var lines = Object.keys(counts).filter(function(k) { return counts[k] > 0; })
+        .map(function(k) {
+          var label = k.indexOf('CUSTOM_') === 0 ? 'custom' : k.toLowerCase();
+          return counts[k] + ' ' + label;
+        });
       document.getElementById('stats').textContent = lines.length ? '✓ Cleaned: ' + lines.join(', ') + '.' : 'Nothing detected.';
+
+      // Persist for history + dashboard
+      var detectedCats = Object.keys(counts).filter(function(k){ return counts[k] > 0; });
+      var itemsRemoved = detectedCats.reduce(function(s, k){ return s + counts[k]; }, 0);
+      saveCleanSession(text.length, itemsRemoved, detectedCats);
+      renderHistory();
+      // also light up the dashboard's Document Safety card
+      pingRedactDashboard(itemsRemoved, detectedCats);
     });
+
+    // ============ HISTORY ============
+    var FREE_HISTORY = 5, MAX_HISTORY = 20;
+    function isPremium(){ return !!(window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium()); }
+    function nano(){
+      var a = new Uint32Array(2); crypto.getRandomValues(a);
+      return Array.from(a).map(function(n){ return n.toString(36); }).join('').slice(0,10);
+    }
+    function loadHistory(){
+      try { var a = JSON.parse(localStorage.getItem('tt_clean_history') || '[]');
+            return Array.isArray(a) ? a : []; }
+      catch(e){ return []; }
+    }
+    function saveCleanSession(inputLength, itemsRemoved, categories){
+      var arr = loadHistory();
+      arr.unshift({ id: nano(), cleanedAt: Date.now(), inputLength: inputLength,
+                    itemsRemoved: itemsRemoved, categories: categories,
+                    style: style });
+      if (arr.length > MAX_HISTORY) arr = arr.slice(0, MAX_HISTORY);
+      try { localStorage.setItem('tt_clean_history', JSON.stringify(arr)); } catch(e){}
+    }
+    function pingRedactDashboard(itemsRemoved, categories){
+      try {
+        var arr = JSON.parse(localStorage.getItem('tt_redact_history') || '[]');
+        arr.unshift({ t: Date.now(), kind: 'text',
+                      summary: 'Cleaned ' + itemsRemoved + ' items (' + categories.slice(0,3).join(', ') + ')' });
+        if (arr.length > 100) arr.length = 100;
+        localStorage.setItem('tt_redact_history', JSON.stringify(arr));
+      } catch(e){}
+    }
+    function fmtDate(t){
+      var d = new Date(t);
+      return d.toLocaleString();
+    }
+    function renderHistory(){
+      var arr = loadHistory();
+      var visible = isPremium() ? arr.slice(0, MAX_HISTORY) : arr.slice(0, FREE_HISTORY);
+      var c = document.getElementById('chList');
+      if (!arr.length) {
+        c.innerHTML = '<div class="ch-empty">No cleaning history yet — your sessions will appear here.</div>';
+      } else {
+        c.innerHTML = visible.map(function(h){
+          return '<div class="ch-row">' +
+            '<div><strong>' + fmtDate(h.cleanedAt) + '</strong></div>' +
+            '<div class="ch-meta">' + h.inputLength.toLocaleString() + ' chars · ' +
+              h.itemsRemoved + ' items removed</div>' +
+            '<div class="ch-cats">' + (h.categories || []).slice(0,6).map(function(c){
+              return '<span class="ch-tag">' + escapeHtml(c.toLowerCase()) + '</span>';
+            }).join('') + '</div>' +
+            '<div class="ch-actions"><button class="btn-secondary ch-load" data-style="' + h.style + '">Load settings</button></div>' +
+            '</div>';
+        }).join('');
+
+        if (!isPremium() && arr.length > FREE_HISTORY) {
+          c.innerHTML +=
+            '<div class="ch-lock">' +
+              '<strong>+' + (arr.length - FREE_HISTORY) + ' more sessions locked</strong>' +
+              '<button class="btn-plan ch-unlock">Unlock history</button>' +
+            '</div>';
+          var unlockBtn = c.querySelector('.ch-unlock');
+          if (unlockBtn) unlockBtn.addEventListener('click', function(){
+            if (window.ttPremium) window.ttPremium.showPaywall('Cleaning History');
+          });
+        }
+
+        c.querySelectorAll('.ch-load').forEach(function(b){
+          b.addEventListener('click', function(){
+            style = b.dataset.style || 'placeholder';
+            document.querySelectorAll('#styleToggle button').forEach(function(x){
+              x.classList.toggle('active', x.dataset.s === style);
+            });
+            b.textContent = '✓ Loaded'; setTimeout(function(){ b.textContent = 'Load settings'; }, 1500);
+          });
+        });
+      }
+    }
+    function escapeHtml(s){
+      return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // ============ CUSTOM PATTERNS ============
+    var MAX_PATTERNS = 20;
+    function loadPatterns(){
+      try { var a = JSON.parse(localStorage.getItem('tt_clean_custom_patterns') || '[]');
+            return Array.isArray(a) ? a : []; }
+      catch(e){ return []; }
+    }
+    function savePatterns(arr){
+      try { localStorage.setItem('tt_clean_custom_patterns', JSON.stringify(arr.slice(0, MAX_PATTERNS))); } catch(e){}
+    }
+    function renderPatterns(){
+      var arr = loadPatterns();
+      var list = document.getElementById('cpList');
+      if (!isPremium() && arr.length === 0) {
+        list.innerHTML = '<div class="cp-locked">Custom patterns are a Premium feature. Free tier: 0 / 20 patterns. Premium: 20 / 20.</div>';
+        return;
+      }
+      if (!arr.length) {
+        list.innerHTML = '<div class="ch-empty">No custom patterns yet.</div>';
+        return;
+      }
+      list.innerHTML = arr.map(function(p, i){
+        return '<div class="cp-row">' +
+          '<span class="cp-type">' + p.type + '</span>' +
+          '<code>' + escapeHtml(p.value) + '</code>' +
+          '<button class="cp-del" data-i="' + i + '">×</button>' +
+          '</div>';
+      }).join('');
+      list.querySelectorAll('.cp-del').forEach(function(b){
+        b.addEventListener('click', function(){
+          var i = +b.dataset.i;
+          var a = loadPatterns(); a.splice(i, 1); savePatterns(a); renderPatterns();
+        });
+      });
+    }
+    document.getElementById('cpAddBtn').addEventListener('click', function(){
+      if (!isPremium()) {
+        if (window.ttPremium) window.ttPremium.showPaywall('Custom Patterns');
+        return;
+      }
+      var v = document.getElementById('cpInput').value.trim();
+      var t = document.getElementById('cpType').value;
+      if (!v) { alert('Enter a pattern.'); return; }
+      if (t === 'regex') {
+        try { new RegExp(v); } catch(e) { alert('Invalid regex: ' + e.message); return; }
+      }
+      var a = loadPatterns();
+      if (a.length >= MAX_PATTERNS) { alert('Pattern limit reached (' + MAX_PATTERNS + ').'); return; }
+      a.push({ value: v, type: t });
+      savePatterns(a);
+      document.getElementById('cpInput').value = '';
+      renderPatterns();
+    });
+
+    document.addEventListener('DOMContentLoaded', function(){ renderHistory(); renderPatterns(); });
     document.getElementById('copyBtn').addEventListener('click', function() {
       navigator.clipboard.writeText(document.getElementById('out').textContent).then(function() {
         var b = document.getElementById('copyBtn'); b.textContent = '✓ Copied'; setTimeout(function() { b.textContent = '📋 Copy clean text'; }, 1500);
