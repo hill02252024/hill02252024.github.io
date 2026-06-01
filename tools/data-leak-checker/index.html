@@ -13,7 +13,21 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
   <script src="/tools/premium.js" defer></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Data Leak Checker","url":"https://todays-tasks.com/tools/data-leak-checker/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Data Breach Checker",
+    "url": "https://todays-tasks.com/tools/data-leak-checker/",
+    "description": "Check if your email or password has been exposed in a known data breach",
+    "applicationCategory": "SecurityApplication",
+    "applicationSubCategory": "SecurityApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+    "featureList": ["Browser-based", "No account required", "Privacy-first"],
+    "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
+  }
+  </script>
 </head>
 <body>
   <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
@@ -113,10 +127,12 @@
                 tt.showResult('result',
                   '<div class="primary"><span class="label">⚠ Breached</span>Seen ' + hit.toLocaleString() + ' times</div>' +
                   '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">Change this password everywhere. The lookup was anonymized — only the first 5 chars of the SHA-1 hash were sent to the API.</p>', 'error');
+                saveLastCheck('password', hit);
               } else {
                 tt.showResult('result',
                   '<div class="primary"><span class="label">✓ Not found</span>Safe in 600M+ records</div>' +
                   '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This password doesn\'t appear in known breach corpora.</p>', 'bmi-normal');
+                saveLastCheck('password', 0);
               }
             });
         }).catch(function(e) {
@@ -129,8 +145,18 @@
           '<div class="primary"><span class="label">Email mode</span>Open HIBP</div>' +
           '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">The HIBP email API requires an API key, so we hand off to the official site. Your email never touched our servers.</p>' +
           '<div class="result-actions"><a href="https://haveibeenpwned.com/account/' + encodeURIComponent(email) + '" target="_blank" rel="noopener" style="background:var(--surface);color:var(--text);border:1px solid var(--border-strong);padding:8px 14px;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none">Check at haveibeenpwned.com →</a></div>');
+        saveLastCheck('email', null, email);
       }
     });
+
+    // Persist last check to feed the Privacy Dashboard.
+    function saveLastCheck(mode, hitCount, email) {
+      try {
+        localStorage.setItem('tt_leak_check_last', JSON.stringify({
+          t: Date.now(), mode: mode, hitCount: hitCount, email: email || ''
+        }));
+      } catch(e) {}
+    }
 
     // Premium alerts gate
     document.getElementById('watchBtn').addEventListener('click', function() {

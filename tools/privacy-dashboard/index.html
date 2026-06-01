@@ -4,17 +4,39 @@
   <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Dashboard — Your Personal Exposure Hub | Today's Tasks</title>
-  <meta name="description" content="One dashboard for your privacy: risk score trend, vault health, leak alerts, monitored emails. Premium unlocks cross-device sync and live monitoring." />
-  <meta name="keywords" content="privacy dashboard, security dashboard, identity overview, leak monitoring, vault health" />
+  <title>Privacy Security Dashboard — Your Personal Score | Today's Tasks</title>
+  <meta name="description" content="Track your personal security score across all privacy tools in one place. Live, browser-only dashboard — no account required." />
+  <meta name="keywords" content="privacy dashboard, security score, privacy overview, breach alerts, password health" />
   <link rel="canonical" href="https://todays-tasks.com/tools/privacy-dashboard/" />
-  <meta property="og:type" content="website" /><meta property="og:title" content="Privacy Dashboard" /><meta property="og:url" content="https://todays-tasks.com/tools/privacy-dashboard/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Privacy Security Dashboard — Your Personal Score" />
+  <meta property="og:description" content="Live security score across passwords, breaches, aliases, secrets, redaction and device hardening." />
+  <meta property="og:url" content="https://todays-tasks.com/tools/privacy-dashboard/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/firebase-config.js" defer></script>
+  <script src="/tools/firebase.js" defer></script>
   <script src="/tools/premium.js" defer></script>
-  <script src="/tools/supabase.js" defer></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Privacy Dashboard","url":"https://todays-tasks.com/tools/privacy-dashboard/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Privacy Security Dashboard",
+    "url": "https://todays-tasks.com/tools/privacy-dashboard/",
+    "description": "Track your personal security score across all privacy tools in one place",
+    "applicationCategory": "SecurityApplication",
+    "applicationSubCategory": "SecurityApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+    "featureList": ["Browser-based", "No account required", "Privacy-first"],
+    "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
+  }
+  </script>
 </head>
 <body>
   <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
@@ -23,95 +45,393 @@
     <nav class="breadcrumb"><a href="/">Home</a> &nbsp;›&nbsp; <a href="/tools/">Privacy Tools</a> &nbsp;›&nbsp; Privacy Dashboard</nav>
     <div class="ad-slot ad-top"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000017" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-    <h1>Privacy Dashboard <span class="premium-badge">PRO</span></h1>
-    <p class="intro">Your one-glance status across every privacy tool — risk score, vault health, monitored emails, breach hits. Free tier shows local snapshots. Premium pulls live signals from monitoring + your synced devices.</p>
+    <h1>Your Security Control Centre</h1>
+    <p class="intro">A live snapshot of your security across every Today's Tasks tool. The dashboard reads your local activity — no account required, nothing leaves your device. Premium unlocks cross-device sync.</p>
 
-    <div id="dashContainer"></div>
+    <!-- ===== OVERALL SCORE ===== -->
+    <section class="dash-overall" aria-label="Overall security score">
+      <div class="score-ring" id="scoreRing" style="--p:0;--col:#dc3545">
+        <div class="score-inner">
+          <div class="score-num"><span id="scoreNum">0</span><span class="score-tot">/100</span></div>
+          <div class="score-band" id="scoreBand">Calculating…</div>
+        </div>
+      </div>
+      <div class="score-meta">
+        <div>Your Privacy Score</div>
+        <div class="score-updated" id="scoreUpdated">Last updated: just now</div>
+        <button type="button" id="refreshBtn" class="dash-refresh">🔁 Refresh</button>
+      </div>
+    </section>
 
-    <div id="syncContainer" style="margin-top:24px"></div>
+    <!-- ===== STATUS CARDS ===== -->
+    <section class="dash-cards" id="dashCards" aria-label="Status cards"></section>
+
+    <!-- ===== TIPS ===== -->
+    <section class="dash-tips" id="dashTips" hidden>
+      <h2>Action items</h2>
+      <ol id="tipsList"></ol>
+    </section>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000018" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-    <h2>What Powers This Dashboard</h2>
-    <p>Each tool you use writes a small snapshot to your browser's localStorage — risk score, vault size, watched emails. The dashboard reads those snapshots. With Premium + sign-in, the same snapshots sync end-to-end encrypted across your devices, and the monitoring backend feeds in live breach alerts.</p>
+    <!-- ===== PREMIUM SYNC CTA ===== -->
+    <section class="dash-sync" id="dashSync"></section>
+
+    <h2>How the score is calculated</h2>
+    <table class="dash-formula">
+      <thead><tr><th>Source</th><th style="text-align:right">Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Password health (Strength + breach status)</td><td>20</td></tr>
+        <tr><td>Alias safety (active / compromised)</td><td>15</td></tr>
+        <tr><td>Breach monitoring (last leak check)</td><td>25</td></tr>
+        <tr><td>Shared secrets (active count)</td><td>10</td></tr>
+        <tr><td>Document safety (redactions performed)</td><td>10</td></tr>
+        <tr><td>Device security checklist</td><td>20</td></tr>
+        <tr><th>Total</th><th style="text-align:right">100</th></tr>
+      </tbody>
+    </table>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">
-      <a class="tool-card privacy-card" href="/tools/identity-risk-score/"><div class="icon-box identity">📊</div><h2>Risk Score</h2><p>Re-run the audit.</p></a>
-      <a class="tool-card privacy-card" href="/tools/data-leak-checker/"><div class="icon-box identity">🔍</div><h2>Leak Checker</h2><p>Add another email.</p></a>
-      <a class="tool-card privacy-card" href="/tools/password-vault/"><div class="icon-box passwords">🗝️</div><h2>Vault</h2><p>Manage saved credentials.</p></a>
+      <a class="tool-card privacy-card" href="/tools/password-generator/"><div class="icon-box passwords">🔑</div><h2>Password Generator</h2><p>Strong &amp; memorable.</p></a>
+      <a class="tool-card privacy-card" href="/tools/secret-share/"><div class="icon-box passwords">🤐</div><h2>Secret Sharer</h2><p>Self-destructing link.</p></a>
+      <a class="tool-card privacy-card" href="/tools/email-alias/"><div class="icon-box email">📧</div><h2>Email Alias</h2><p>Per-site addresses.</p></a>
     </div>
   </main>
 
-  <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+  <footer class="footer">© <span id="yr"></span> Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
 
   <script src="/tools/tools.js"></script>
   <script>
-    function loadScore() {
-      try {
-        var s = JSON.parse(localStorage.getItem('tt_risk_score') || 'null');
-        if (!s) return null;
-        return s;
-      } catch(e) { return null; }
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // -------- localStorage readers --------
+    function readJSON(key, fallback){ try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch(e){ return fallback; } }
+    function lastPwCheck(){
+      var arr = readJSON('tt_history_password-checker', []);
+      return arr && arr[0] ? arr[0] : null;
     }
-    function vaultCount() {
-      try {
-        var raw = localStorage.getItem('tt_vault_blob');
-        if (!raw) return 0;
-        // We can't decrypt without the master key, so just signal "set" vs "empty".
-        return raw ? 'encrypted' : 0;
-      } catch(e) { return 0; }
+    function aliasState(){
+      // Primary key (new tracker); fall back to legacy.
+      var arr = readJSON('tt_alias_tracker', null) || readJSON('tt_aliases', []);
+      if (!Array.isArray(arr)) arr = [];
+      var st = { total: arr.length, active: 0, compromised: 0, retired: 0, lastT: 0 };
+      arr.forEach(function(a){
+        var s = (a.status || 'active').toLowerCase();
+        if (s === 'active') st.active++;
+        else if (s === 'compromised') st.compromised++;
+        else if (s === 'retired') st.retired++;
+        else st.active++;
+        if (a.createdAt && a.createdAt > st.lastT) st.lastT = a.createdAt;
+        else if (a.t && a.t > st.lastT) st.lastT = a.t;
+      });
+      return st;
     }
-    function watchedCount() {
-      try { return (JSON.parse(localStorage.getItem('tt_watch_emails') || '[]')).length; } catch(e) { return 0; }
+    function lastLeakCheck(){ return readJSON('tt_leak_check_last', null); }
+    function secretsState(){
+      var arr = readJSON('tt_secrets_history', []);
+      if (!Array.isArray(arr)) return { count: 0, active: 0, lastT: 0 };
+      var now = Date.now(), week = now - 7*86400000;
+      var thisWeek = arr.filter(function(s){ return s.t >= week; });
+      var active = arr.filter(function(s){ return s.expiresAt && s.expiresAt > now; });
+      return { count: thisWeek.length, active: active.length, lastT: arr[0] ? arr[0].t : 0 };
     }
-    function aliasCount() {
-      try { return (JSON.parse(localStorage.getItem('tt_aliases') || '[]')).length; } catch(e) { return 0; }
+    function redactState(){
+      var arr = readJSON('tt_redact_history', []);
+      if (!Array.isArray(arr)) return { count: 0, lastT: 0, lastImg: null };
+      var imgs = arr.filter(function(r){ return r.kind === 'image'; });
+      return { count: arr.length, lastT: arr[0] ? arr[0].t : 0,
+               lastImg: imgs[0] ? imgs[0].summary : null };
+    }
+    function checklistState(){
+      var done = readJSON('tt_checklist_progress', null) || readJSON('tt_device_check', []);
+      var total = parseInt(localStorage.getItem('tt_device_check_total') || '30', 10);
+      var n = Array.isArray(done) ? done.length : (typeof done === 'number' ? done : 0);
+      return { done: n, total: total, pct: total ? Math.round(n / total * 100) : 0 };
     }
 
-    function render() {
-      var score = loadScore();
-      var scoreCard;
-      if (score == null) {
-        scoreCard = '<div class="dash-card"><span class="dash-icon">📊</span><span class="dash-title">Risk score</span>' +
-          '<span class="dash-value">—</span><span class="dash-meta"><a href="/tools/identity-risk-score/">Run the audit →</a></span></div>';
-      } else {
-        var cls = score.score <= 30 ? 'ok' : score.score <= 60 ? '' : 'alert';
-        scoreCard = '<div class="dash-card ' + cls + '"><span class="dash-icon">📊</span><span class="dash-title">Risk score</span>' +
-          '<span class="dash-value">' + score.score + '</span>' +
-          '<span class="dash-meta">' + new Date(score.t).toLocaleDateString() + ' · <a href="/tools/identity-risk-score/">re-run</a></span></div>';
+    // -------- scoring algorithm --------
+    function score(state){
+      var s = 0;
+      // Password health: 20
+      if (state.pw) {
+        var bits = state.pw.score || state.pw.entropy || 0;
+        var br = state.pw.breachCount || 0;
+        var pwPts = 0;
+        if (bits >= 60) pwPts = 18;
+        else if (bits >= 36) pwPts = 12;
+        else if (bits > 0) pwPts = 5;
+        if (br === 0) pwPts += 2; else pwPts = Math.max(0, pwPts - 8);
+        s += Math.min(20, pwPts);
       }
-      var vault = vaultCount();
-      var vaultCard = '<div class="dash-card"><span class="dash-icon">🗝️</span><span class="dash-title">Vault</span>' +
-        '<span class="dash-value">' + (vault === 'encrypted' ? '🔒' : '0') + '</span>' +
-        '<span class="dash-meta">' + (vault === 'encrypted' ? 'Encrypted vault set · <a href="/tools/password-vault/">unlock</a>' : '<a href="/tools/password-vault/">Create vault →</a>') + '</span></div>';
-      var watched = watchedCount();
-      var watchedCard = '<div class="dash-card ' + (watched > 0 ? 'ok' : '') + '"><span class="dash-icon">📬</span><span class="dash-title">Monitored emails</span>' +
-        '<span class="dash-value">' + watched + '</span>' +
-        '<span class="dash-meta"><a href="/tools/data-leak-checker/">Add email →</a></span></div>';
-      var aliases = aliasCount();
-      var aliasCard = '<div class="dash-card ' + (aliases > 5 ? 'ok' : '') + '"><span class="dash-icon">📧</span><span class="dash-title">Aliases created</span>' +
-        '<span class="dash-value">' + aliases + '</span>' +
-        '<span class="dash-meta"><a href="/tools/email-alias/">Generate more →</a></span></div>';
-      var breachCard = '<div class="dash-card"><span class="dash-icon">🔍</span><span class="dash-title">Breach alerts (24h)</span>' +
-        '<span class="dash-value">' + (ttPremium && ttPremium.isPremium() ? '0' : '—') + '</span>' +
-        '<span class="dash-meta">' + (ttPremium && ttPremium.isPremium() ? 'No new breaches.' : '<a href="/tools/data-leak-checker/">Premium feature →</a>') + '</span></div>';
-      var checklistCard = '<div class="dash-card"><span class="dash-icon">📱</span><span class="dash-title">Device hardening</span>' +
-        '<span class="dash-value">' + checklistProgress() + '%</span>' +
-        '<span class="dash-meta"><a href="/tools/device-checklist/">Open checklist →</a></span></div>';
-
-      document.getElementById('dashContainer').innerHTML =
-        '<div class="dash-grid">' + scoreCard + vaultCard + watchedCard + aliasCard + breachCard + checklistCard + '</div>';
-
-      if (window.ttSync) ttSync.renderSyncCard('syncContainer', { kind: 'dashboard state' });
+      // Alias safety: 15
+      if (state.alias.total === 0) s += 8;
+      else if (state.alias.compromised === 0) s += 15;
+      else if (state.alias.compromised <= 2) s += 8;
+      else s += 3;
+      // Breach monitoring: 25
+      if (state.leak) {
+        var ageDays = (Date.now() - state.leak.t) / 86400000;
+        if (state.leak.hitCount > 0) s += 0;
+        else if (ageDays <= 30) s += 25;
+        else if (ageDays <= 90) s += 15;
+        else s += 5;
+      }
+      // Shared secrets: 10
+      if (state.secrets.active === 0) s += 10;
+      else if (state.secrets.active <= 2) s += 7;
+      else s += 4;
+      // Document safety: 10
+      s += state.redact.count > 0 ? 10 : 5;
+      // Device checklist: 20
+      s += Math.round(state.check.pct / 5);
+      return Math.max(0, Math.min(100, Math.round(s)));
     }
-    function checklistProgress() {
-      try {
-        var done = JSON.parse(localStorage.getItem('tt_device_check') || '[]');
-        var total = parseInt(localStorage.getItem('tt_device_check_total') || '30', 10);
-        return Math.round((done.length / total) * 100);
-      } catch(e) { return 0; }
+
+    function band(n){
+      if (n < 40) return { label: 'At risk', col: '#dc3545' };
+      if (n < 70) return { label: 'Improving', col: '#f59e0b' };
+      return { label: 'Strong', col: '#16a34a' };
     }
+
+    // -------- card factories --------
+    function fmtDate(t){
+      if (!t) return '—';
+      var d = new Date(t);
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function card(opts){
+      var alert = opts.alert ? ' alert' : opts.ok ? ' ok' : '';
+      return '<div class="dash-card-v2' + alert + '">' +
+        '<div class="dc-head"><span class="dc-icon">' + opts.icon + '</span>' +
+        '<h3>' + opts.title + '</h3>' +
+        (opts.badge ? '<span class="dc-badge">' + opts.badge + '</span>' : '') +
+        '</div>' +
+        '<div class="dc-body">' + opts.body + '</div>' +
+        '<a class="dc-cta" href="' + opts.href + '">' + opts.cta + ' →</a>' +
+        '</div>';
+    }
+
+    function buildCards(state){
+      var html = '';
+
+      // 1. Password Health
+      if (state.pw) {
+        var labels = ['Very weak','Weak','Moderate','Strong','Excellent'];
+        var lbl = labels[Math.min(4, state.pw.score || 0)] || '—';
+        var bc = state.pw.breachCount || 0;
+        html += card({
+          icon: '🔑', title: 'Password Health',
+          alert: bc > 0,
+          ok: state.pw.score >= 3 && bc === 0,
+          body: '<div><strong>' + lbl + '</strong> · ' + fmtDate(state.pw.checkedAt) + '</div>' +
+                '<div class="dc-meta">Crack time: ' + (state.pw.crackTime || '—') + '</div>' +
+                '<div class="dc-meta">' + (bc ? '⚠ Found in ' + bc + ' breaches' : '✓ Not found in breaches') + '</div>',
+          cta: 'Check a password',
+          href: '/tools/password-checker/'
+        });
+      } else {
+        html += card({
+          icon: '🔑', title: 'Password Health',
+          body: '<div class="dc-empty">No password checked yet.</div>',
+          cta: 'Check now', href: '/tools/password-checker/'
+        });
+      }
+
+      // 2. Alias Safety
+      if (state.alias.total) {
+        html += card({
+          icon: '📧', title: 'Alias Safety',
+          alert: state.alias.compromised > 0,
+          ok: state.alias.total > 0 && state.alias.compromised === 0,
+          badge: state.alias.compromised ? state.alias.compromised + ' compromised' : null,
+          body: '<div><strong>' + state.alias.total + '</strong> aliases tracked</div>' +
+                '<div class="dc-meta">🟢 ' + state.alias.active + ' active · 🔴 ' + state.alias.compromised + ' compromised · ⚪ ' + state.alias.retired + ' retired</div>',
+          cta: 'Manage aliases', href: '/tools/email-alias/'
+        });
+      } else {
+        html += card({
+          icon: '📧', title: 'Alias Safety',
+          body: '<div class="dc-empty">No aliases tracked yet.</div>',
+          cta: 'Start tracking', href: '/tools/email-alias/'
+        });
+      }
+
+      // 3. Breach Monitoring
+      if (state.leak) {
+        var hit = state.leak.hitCount;
+        html += card({
+          icon: '🔍', title: 'Breach Monitoring',
+          alert: hit > 0,
+          ok: hit === 0,
+          body: '<div>Last checked: ' + fmtDate(state.leak.t) + '</div>' +
+                '<div class="dc-meta">' +
+                (state.leak.email ? state.leak.email + ' · ' : '') +
+                (hit > 0 ? '⚠ ' + hit + ' breaches found' : '✓ Clean') +
+                '</div>',
+          cta: 'Run a new check', href: '/tools/data-leak-checker/'
+        });
+      } else {
+        html += card({
+          icon: '🔍', title: 'Breach Monitoring',
+          alert: true,
+          body: '<div class="dc-empty">Never checked. Action needed.</div>',
+          cta: 'Run first check', href: '/tools/data-leak-checker/'
+        });
+      }
+
+      // 4. Shared Secrets
+      if (state.secrets.count || state.secrets.active) {
+        var statusTxt = state.secrets.active === 0 ? '✓ All expired/read'
+                                                   : state.secrets.active + ' still active';
+        html += card({
+          icon: '🤐', title: 'Shared Secrets',
+          body: '<div><strong>' + state.secrets.count + '</strong> shared this week</div>' +
+                '<div class="dc-meta">Last shared: ' + fmtDate(state.secrets.lastT) + '</div>' +
+                '<div class="dc-meta">' + statusTxt + '</div>',
+          cta: 'Share another', href: '/tools/secret-share/'
+        });
+      } else {
+        html += card({
+          icon: '🤐', title: 'Shared Secrets',
+          body: '<div class="dc-empty">No secrets shared.</div>',
+          cta: 'Share a secret', href: '/tools/secret-share/'
+        });
+      }
+
+      // 5. Document Safety
+      if (state.redact.count) {
+        html += card({
+          icon: '✂️', title: 'Document Safety',
+          ok: state.redact.count > 0,
+          body: '<div><strong>' + state.redact.count + '</strong> documents processed</div>' +
+                '<div class="dc-meta">Last action: ' + fmtDate(state.redact.lastT) + '</div>' +
+                (state.redact.lastImg ? '<div class="dc-meta">Last image scan: ' + state.redact.lastImg + '</div>' : ''),
+          cta: 'Redact a document', href: '/tools/document-redactor/'
+        });
+      } else {
+        html += card({
+          icon: '✂️', title: 'Document Safety',
+          body: '<div class="dc-empty">No documents scanned.</div>',
+          cta: 'Redact a document', href: '/tools/document-redactor/'
+        });
+      }
+
+      // 6. Device Checklist
+      if (state.check.done) {
+        html += card({
+          icon: '📱', title: 'Device Checklist',
+          ok: state.check.pct >= 80,
+          body: '<div><strong>' + state.check.done + ' / ' + state.check.total + '</strong> items complete</div>' +
+                '<div class="dc-meta">' + state.check.pct + '% hardened</div>' +
+                '<div class="mini-bar"><span style="width:' + state.check.pct + '%"></span></div>',
+          cta: 'Continue checklist', href: '/tools/device-checklist/'
+        });
+      } else {
+        html += card({
+          icon: '📱', title: 'Device Checklist',
+          body: '<div class="dc-empty">Checklist not started.</div>',
+          cta: 'Start checklist', href: '/tools/device-checklist/'
+        });
+      }
+
+      document.getElementById('dashCards').innerHTML = html;
+    }
+
+    function buildTips(state, total){
+      var tips = [];
+      // Compromised aliases
+      if (state.alias.compromised > 0) {
+        tips.push({ p: 100, t: 'You have ' + state.alias.compromised + ' compromised aliases — update those accounts',
+                    href: '/tools/email-alias/' });
+      }
+      // Stale leak check
+      if (state.leak) {
+        var ageDays = Math.round((Date.now() - state.leak.t) / 86400000);
+        if (ageDays > 14) tips.push({ p: 80, t: 'Your breach check is ' + ageDays + ' days old — run a fresh check',
+                                       href: '/tools/data-leak-checker/' });
+      } else {
+        tips.push({ p: 90, t: 'You have never run a breach check — start now',
+                    href: '/tools/data-leak-checker/' });
+      }
+      // Weak password
+      if (state.pw && state.pw.score < 3) {
+        tips.push({ p: 75, t: 'Your last password check came back ' + ['very weak','weak','moderate'][state.pw.score] + ' — regenerate it',
+                    href: '/tools/password-generator/' });
+      }
+      // Checklist incomplete
+      if (state.check.pct < 80) {
+        tips.push({ p: 60, t: 'Device checklist is only ' + state.check.pct + '% complete — finish for full protection',
+                    href: '/tools/device-checklist/' });
+      }
+      // No aliases
+      if (state.alias.total === 0) {
+        tips.push({ p: 50, t: 'Start tracking aliases so you can spot which sites sold your address',
+                    href: '/tools/email-alias/' });
+      }
+      tips.sort(function(a,b){ return b.p - a.p; });
+      tips = tips.slice(0, 3);
+      if (!tips.length) {
+        document.getElementById('dashTips').hidden = true;
+        return;
+      }
+      document.getElementById('dashTips').hidden = false;
+      document.getElementById('tipsList').innerHTML = tips.map(function(tp){
+        return '<li><a href="' + tp.href + '">' + tp.t + ' →</a></li>';
+      }).join('');
+    }
+
+    function buildSync(){
+      var box = document.getElementById('dashSync');
+      var premium = (window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium());
+      var hasFb = window.TT_FIREBASE_CONFIG && !/REPLACE/.test(window.TT_FIREBASE_CONFIG.apiKey || '');
+      if (premium && hasFb) {
+        box.innerHTML = '<div class="dash-sync-card ok">' +
+          '<h2>✓ Premium · Cross-device sync</h2>' +
+          '<p>Your dashboard is synced. Last synced: <strong>' + new Date().toLocaleString() + '</strong></p>' +
+          '</div>';
+      } else if (premium) {
+        box.innerHTML = '<div class="dash-sync-card">' +
+          '<h2>Premium active — sync not configured</h2>' +
+          '<p>Firebase backend is not yet wired (developer needs to fill in firebase-config.js). Your dashboard works locally.</p>' +
+          '</div>';
+      } else {
+        box.innerHTML = '<div class="dash-sync-card">' +
+          '<h2>Sync this dashboard across all devices</h2>' +
+          '<p>Free: this dashboard reads from your browser only. Premium: sign in and your dashboard appears on every device, end-to-end encrypted.</p>' +
+          '<a class="btn-plan" href="/tools/#hubPremium">See plans</a>' +
+          '</div>';
+      }
+    }
+
+    function render(){
+      var state = {
+        pw: lastPwCheck(),
+        alias: aliasState(),
+        leak: lastLeakCheck(),
+        secrets: secretsState(),
+        redact: redactState(),
+        check: checklistState()
+      };
+      var total = score(state);
+      var b = band(total);
+      var ring = document.getElementById('scoreRing');
+      ring.style.setProperty('--p', total);
+      ring.style.setProperty('--col', b.col);
+      document.getElementById('scoreNum').textContent = total;
+      document.getElementById('scoreBand').textContent = b.label;
+      // last update timestamp = max of all sources
+      var times = [state.pw && state.pw.checkedAt, state.leak && state.leak.t,
+                   state.alias.lastT, state.secrets.lastT, state.redact.lastT].filter(Boolean);
+      var latest = times.length ? Math.max.apply(null, times) : Date.now();
+      document.getElementById('scoreUpdated').textContent = 'Last updated: ' + new Date(latest).toLocaleString();
+      buildCards(state);
+      buildTips(state, total);
+      buildSync();
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', render);
     document.addEventListener('DOMContentLoaded', render);
   </script>
 </body>

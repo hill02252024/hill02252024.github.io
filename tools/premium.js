@@ -109,17 +109,31 @@ window.ttPremium = (function() {
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && !modal.hidden) hidePaywall();
     });
-    // Demo "restore" — accepts any email; in production wire to Lemon Squeezy license API.
+    // Production restore — validates against Lemon Squeezy license keys API.
+    // REPLACE: optionally add your Lemon Squeezy store ID check inside validateLicense().
     modal.querySelector('.paywall-restore').addEventListener('click', function(e) {
       e.preventDefault();
-      var email = prompt('Email used for purchase:');
-      if (email && /@/.test(email)) {
-        setPremium(email, Date.now() + 365 * 86400000);
-        hidePaywall();
-        location.reload();
-      } else if (email) {
-        alert('Please enter a valid email.');
-      }
+      var key = prompt('Enter your license key (sent by email after purchase):');
+      if (!key) return;
+      key = key.trim();
+      if (!key) return;
+      var restoreLink = modal.querySelector('.paywall-restore');
+      var oldHtml = restoreLink.innerHTML;
+      restoreLink.textContent = 'Verifying license…';
+      validateLicense(key).then(function(res){
+        if (res && res.valid) {
+          setPremium(res.email || '', res.expiresAt || (Date.now() + 365*86400000));
+          alert('🎉 License validated. Premium is now active on this device.');
+          hidePaywall();
+          location.reload();
+        } else {
+          restoreLink.innerHTML = oldHtml;
+          alert(res && res.error ? res.error : 'License key not found or expired. Please check your email.');
+        }
+      }).catch(function(){
+        restoreLink.innerHTML = oldHtml;
+        alert('Could not verify license — please try again or contact support.');
+      });
     });
   }
   function showPaywall(featureName) {
@@ -247,13 +261,116 @@ window.ttPremium = (function() {
     window.print();
   }
 
+  // ---------- E2E Premium chain helpers ----------
+  // Lemon Squeezy License Keys API — https://docs.lemonsqueezy.com/api/license-api
+  function validateLicense(licenseKey) {
+    return fetch('https://api.lemonsqueezy.com/v1/licenses/validate', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'license_key=' + encodeURIComponent(licenseKey) +
+            '&instance_name=' + encodeURIComponent('todays-tasks-web-' + (Date.now() % 100000))
+    }).then(function(r){ return r.json().catch(function(){ return null; }); })
+      .then(function(j){
+        if (!j) return { valid: false, error: 'Invalid response from license server.' };
+        if (j.valid !== true) return { valid: false, error: j.error || 'License key not found or expired.' };
+        // OPTIONAL: enforce store id
+        // if (j.meta && j.meta.store_id !== YOUR_STORE_ID) return { valid: false, error: 'Wrong store.' };
+        var exp = 0;
+        if (j.license_key && j.license_key.expires_at) {
+          var t = Date.parse(j.license_key.expires_at);
+          if (!isNaN(t)) exp = t;
+        }
+        if (!exp) exp = Date.now() + 365 * 86400000; // lifetime → grant 1y
+        return { valid: true, email: (j.meta && j.meta.customer_email) || '', expiresAt: exp };
+      });
+  }
+
+  function ensureExpiryBanner() {
+    if (!isPremium()) return;
+    var exp = parseInt(localStorage.getItem(KEYS.expiry) || '0', 10);
+    if (!exp) return;
+    var days = Math.ceil((exp - Date.now()) / 86400000);
+    if (days > 7 || days <= 0) return;
+    if (document.getElementById('ttExpiryBanner')) return;
+    var bar = document.createElement('div');
+    bar.id = 'ttExpiryBanner';
+    bar.className = 'tt-expiry-banner';
+    bar.innerHTML = 'Your Premium expires in <strong>' + days + ' day' + (days === 1 ? '' : 's') +
+                    '</strong> — renew to keep your benefits. ' +
+                    '<a href="' + LINKS.annual + '" class="tt-renew">Renew Now</a>';
+    document.body.insertBefore(bar, document.body.firstChild);
+  }
+
+  function handleSuccessRedirect() {
+    var p = new URLSearchParams(location.search);
+    if (p.get('success') !== 'true') return;
+    var email = p.get('email') || '';
+    // Show welcome
+    var box = document.createElement('div');
+    box.className = 'tt-welcome-modal';
+    box.innerHTML = '<div class="tt-welcome-card">' +
+                    '<h2>🎉 Welcome to Premium!</h2>' +
+                    '<p>Your account is now active. Enter the license key from your purchase email to finalise:</p>' +
+                    '<input id="ttWelcomeKey" placeholder="License key" />' +
+                    '<button id="ttWelcomeGo" class="btn-plan">Activate Premium</button>' +
+                    '<button id="ttWelcomeSkip" class="btn-plan outline">Maybe later</button>' +
+                    '<p class="tt-welcome-msg" id="ttWelcomeMsg"></p>' +
+                    '</div>';
+    document.body.appendChild(box);
+    var msg = box.querySelector('#ttWelcomeMsg');
+    box.querySelector('#ttWelcomeSkip').addEventListener('click', function(){ box.remove(); });
+    box.querySelector('#ttWelcomeGo').addEventListener('click', function(){
+      var k = box.querySelector('#ttWelcomeKey').value.trim();
+      if (!k) return;
+      msg.textContent = 'Verifying…';
+      validateLicense(k).then(function(res){
+        if (res && res.valid) {
+          setPremium(res.email || email, res.expiresAt || (Date.now() + 365*86400000));
+          msg.textContent = 'Activated. Reloading…';
+          setTimeout(function(){ location.reload(); }, 800);
+        } else {
+          msg.textContent = (res && res.error) || 'License not found or expired.';
+        }
+      }).catch(function(){ msg.textContent = 'Network error — try again.'; });
+    });
+    // Strip query params
+    var clean = location.pathname + location.hash;
+    history.replaceState(null, '', clean);
+  }
+
+  function checkExpiryAndSync() {
+    var exp = parseInt(localStorage.getItem(KEYS.expiry) || '0', 10);
+    if (exp > 0 && Date.now() > exp) {
+      clearPremium();
+      console.log('[ttPremium] Subscription expired — reverted to free tier.');
+    }
+    // Firebase passthrough (no-op until config is filled in)
+    try {
+      var hasFb = window.TT_FIREBASE_CONFIG &&
+                  !/REPLACE/.test(window.TT_FIREBASE_CONFIG.apiKey || '');
+      if (hasFb && window.ttAuth && window.ttAuth.syncPremium) {
+        window.ttAuth.syncPremium();
+      }
+    } catch (e) {}
+  }
+
   // ---------- Boot ----------
   function init() {
     ensurePaywall();
+    checkExpiryAndSync();
+    handleSuccessRedirect();
     if (isPremium()) {
       hideAds();
       showPremiumBanner();
       showPremiumBadge();
+      ensureExpiryBanner();
+    } else {
+      showAds();
+    }
+    // Dev-only diagnostic
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      console.log('[ttPremium] Premium:', isPremium(),
+                  '· ads hidden:', document.body.classList.contains('ads-hidden'));
     }
   }
   if (document.readyState === 'loading') {
@@ -271,6 +388,7 @@ window.ttPremium = (function() {
     saveCalculation: saveCalculation, getHistory: getHistory, clearHistory: clearHistory,
     renderHistoryPanel: renderHistoryPanel,
     afterResult: afterResult, exportPDF: exportPDF,
+    validateLicense: validateLicense,
     LINKS: LINKS
   };
 })();

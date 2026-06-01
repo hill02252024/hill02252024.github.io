@@ -157,6 +157,20 @@ function importKey(k64){return crypto.subtle.importKey("raw",unb64(k64),{name:"A
 function encryptIt(plain,key){var iv=crypto.getRandomValues(new Uint8Array(12));return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,new TextEncoder().encode(plain)).then(function(ct){return{ct:b64(ct),iv:b64(iv)};});}
 function decryptIt(ct,ivB64,key){return crypto.subtle.decrypt({name:"AES-GCM",iv:new Uint8Array(unb64(ivB64))},key,unb64(ct)).then(function(buf){return new TextDecoder().decode(buf);});}
 
+// ===== persist a small history snippet (no plaintext) for the Privacy Dashboard =====
+function saveSecretShared(id, ttlHours, maxViews) {
+  try {
+    var arr = JSON.parse(localStorage.getItem("tt_secrets_history") || "[]");
+    arr.unshift({
+      id: id, t: Date.now(),
+      expiresAt: Date.now() + ttlHours * 3600 * 1000,
+      maxViews: maxViews
+    });
+    if (arr.length > 50) arr.length = 50;
+    localStorage.setItem("tt_secrets_history", JSON.stringify(arr));
+  } catch(e) {}
+}
+
 // ===== parse URL hash to decide mode =====
 function parseHash(){
   var h = location.hash.replace(/^#/,"");
@@ -199,6 +213,7 @@ document.getElementById("encrypt-btn").addEventListener("click", function(){
         var out = document.getElementById("share-link"); out.value = link;
         document.getElementById("link-out").hidden = false;
         msg.textContent = "Done. The decryption key lives only in the URL — share it carefully.";
+        saveSecretShared(id, ttl, maxViews);
         // wipe plaintext from memory-ish
         document.getElementById("secret").value = "";
       });

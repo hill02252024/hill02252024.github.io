@@ -13,7 +13,22 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
   <script src="/tools/premium.js" defer></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Document Redactor","url":"https://todays-tasks.com/tools/document-redactor/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Document Redactor & Image Privacy Scanner",
+    "url": "https://todays-tasks.com/tools/document-redactor/",
+    "description": "Remove sensitive information from documents and scan photos for hidden GPS data",
+    "applicationCategory": "SecurityApplication",
+    "applicationSubCategory": "PrivacyApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+    "featureList": ["Browser-based", "No account required", "Privacy-first", "EXIF metadata reader"],
+    "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js" defer></script>
 </head>
 <body>
   <header class="site-header"><div class="site-header-inner"><a class="site-brand" href="/">Today's Tasks</a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"><a href="/tools/">🔒 Tools</a><a href="/apps.html">📱 Apps</a><a href="/productivity-tips.html">Productivity</a><a href="/etsy-guides.html">Templates</a><a href="/about.html">About</a></nav><a class="site-cta" href="/todo.html">Todo App</a></div></header>
@@ -54,9 +69,48 @@
       <p id="stats" style="margin-top:10px;font-size:13px;color:var(--text-muted)"></p>
 
       <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-        <button type="button" id="copyBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📋 Copy clean text</button>
-        <button type="button" id="dlBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">📥 Download .txt</button>
-        <button type="button" id="imgBtn" style="background:var(--surface);border:1px solid var(--border-strong);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;font-family:inherit">🖼 Export as image</button>
+        <button type="button" id="copyBtn" class="btn-secondary">📋 Copy clean text</button>
+        <button type="button" id="dlBtn" class="btn-secondary">📥 Download .txt</button>
+        <button type="button" id="imgBtn" class="btn-secondary">🖼 Export as image</button>
+      </div>
+
+      <!-- ===== SAFETY CHECKLIST (appears after Redact) ===== -->
+      <div id="safetyChecklist" class="safety-checklist" hidden>
+        <h3>Is this safe to send?</h3>
+        <ul id="safetyList"></ul>
+        <p id="safetyVerdict" class="safety-verdict"></p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         🔍 IMAGE PRIVACY SCANNER (EXIF reader)
+         ============================================================ -->
+    <div class="calc-card" style="margin-top:24px">
+      <h2 style="margin-top:0">🔍 Image Privacy Scanner — Hidden Data in Your Photos</h2>
+      <p style="color:var(--text-muted)">Photos often contain hidden GPS location, device model and timestamp. Check before sharing.</p>
+
+      <label for="imgInput">Select image (JPG · PNG · HEIC · TIFF)</label>
+      <input type="file" id="imgInput" accept="image/jpeg,image/png,image/heic,image/tiff,image/webp" style="margin-top:6px" />
+
+      <div id="exifResults" hidden>
+        <div class="exif-grid">
+          <div class="exif-card" id="gpsCard"><h3>📍 GPS Location</h3><div class="exif-body">—</div></div>
+          <div class="exif-card" id="deviceCard"><h3>📱 Device</h3><div class="exif-body">—</div></div>
+          <div class="exif-card" id="timeCard"><h3>🕒 Timestamp</h3><div class="exif-body">—</div></div>
+          <div class="exif-card" id="otherCard">
+            <details>
+              <summary><h3 style="display:inline">⚙ Other metadata</h3></summary>
+              <div class="exif-body">—</div>
+            </details>
+          </div>
+        </div>
+
+        <div id="safetyScore" class="exif-verdict"></div>
+
+        <div id="stripActions" style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap" hidden>
+          <button type="button" id="stripBtn" class="btn-calc" style="background:#059669">Strip Metadata &amp; Download Clean Image</button>
+        </div>
+        <p id="exifMsg" class="muted" style="margin-top:10px;font-size:13px"></p>
       </div>
     </div>
 
@@ -146,11 +200,50 @@
     document.getElementById('redactBtn').addEventListener('click', function() {
       var text = document.getElementById('src').value;
       if (!text) { document.getElementById('redactedOut').innerHTML = '<em style="color:var(--text-subtle)">Source is empty.</em>'; return; }
-      var r = redact(text, getOpts(), getCustom());
+      var opts = getOpts();
+      var r = redact(text, opts, getCustom());
       document.getElementById('redactedOut').textContent = r.text;
       var lines = Object.keys(r.counts).filter(function(k) { return r.counts[k] > 0; }).map(function(k) { return r.counts[k] + ' ' + k; });
       document.getElementById('stats').textContent = lines.length ? '✓ Redacted: ' + lines.join(', ') + '.' : 'No matches found.';
+      buildSafetyChecklist(opts, r.counts);
+      saveRedactSession('text', lines.length + ' types redacted');
     });
+
+    function row(ok, label){
+      return '<li>' + (ok ? '✓' : '✗') + ' <span>' + label + '</span></li>';
+    }
+    function buildSafetyChecklist(opts, counts){
+      var ul = document.getElementById('safetyList');
+      var html = '';
+      html += row(opts.email,  'Email addresses ' + (counts.email ? 'removed' : (opts.email ? 'none found' : 'not scanned')));
+      html += row(opts.phone,  'Phone numbers ' + (counts.phone ? 'removed' : (opts.phone ? 'none found' : 'not scanned')));
+      html += row(opts.card,   'Credit card numbers ' + (counts.card ? 'removed' : (opts.card ? 'none found' : 'not scanned')));
+      html += row(opts.url || true, 'URLs ' + (counts.url ? 'removed' : (opts.url ? 'none found' : 'not scanned (toggle on if needed)')));
+      var nameHit = counts.names > 0;
+      html += '<li>' + (opts.names ? (nameHit ? '⚠' : '✓') : '✗') + ' <span>Names ' +
+              (opts.names ? (nameHit ? 'detected — review manually' : 'no matches') : 'not scanned') + '</span></li>';
+      ul.innerHTML = html;
+      var risky = (opts.names && nameHit) ||
+                  (opts.email && !counts.email && /\S+@\S+\.\S+/.test(document.getElementById('src').value));
+      var verdict = document.getElementById('safetyVerdict');
+      if (risky) {
+        verdict.innerHTML = '⚠️ <strong>Review before sharing.</strong> Possible PII still in the output.';
+        verdict.className = 'safety-verdict warn';
+      } else {
+        verdict.innerHTML = '✅ <strong>Looks safe to share.</strong>';
+        verdict.className = 'safety-verdict ok';
+      }
+      document.getElementById('safetyChecklist').hidden = false;
+    }
+
+    function saveRedactSession(kind, summary){
+      try {
+        var arr = JSON.parse(localStorage.getItem('tt_redact_history') || '[]');
+        arr.unshift({ t: Date.now(), kind: kind, summary: summary });
+        if (arr.length > 100) arr.length = 100;
+        localStorage.setItem('tt_redact_history', JSON.stringify(arr));
+      } catch(e) {}
+    }
 
     document.getElementById('copyBtn').addEventListener('click', function() {
       var t = document.getElementById('redactedOut').textContent;
@@ -166,6 +259,101 @@
       var a = document.createElement('a'); a.href = url; a.download = 'redacted.txt'; a.click();
       URL.revokeObjectURL(url);
     });
+    // ============================================================
+    // IMAGE EXIF SCANNER
+    // ============================================================
+    var currentImgFile = null;
+    document.getElementById('imgInput').addEventListener('change', function(e) {
+      var f = e.target.files && e.target.files[0]; if (!f) return;
+      currentImgFile = f;
+      document.getElementById('exifResults').hidden = false;
+      document.getElementById('exifMsg').textContent = 'Reading EXIF in your browser…';
+      var parser = function(){
+        return (window.exifr && window.exifr.parse)
+          ? window.exifr.parse(f, { gps: true, tiff: true, ifd0: true, exif: true })
+          : new Promise(function(_, rej){ rej(new Error('EXIF library not loaded')); });
+      };
+      parser().then(function(meta) {
+        meta = meta || {};
+        renderExif(meta);
+        document.getElementById('exifMsg').textContent = '';
+      }).catch(function(err) {
+        renderExif({});
+        document.getElementById('exifMsg').textContent = 'EXIF read note: ' + (err.message || 'no metadata');
+      });
+    });
+
+    function renderExif(m){
+      var hasGps = m.latitude !== undefined && m.longitude !== undefined;
+      var hasDevice = !!(m.Make || m.Model || m.Software);
+      var hasTime = !!(m.DateTimeOriginal || m.CreateDate);
+
+      var gps = document.querySelector('#gpsCard .exif-body');
+      if (hasGps) {
+        var lat = (+m.latitude).toFixed(5), lng = (+m.longitude).toFixed(5);
+        gps.innerHTML = '<div class="warn">⚠️ HIGH RISK: anyone receiving this photo can see exactly where it was taken.</div>' +
+          '<div><strong>' + lat + ', ' + lng + '</strong></div>' +
+          '<a href="https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng + '" target="_blank" rel="noopener">View on Google Maps →</a>';
+      } else {
+        gps.innerHTML = '<div class="ok">✓ No GPS location data found.</div>';
+      }
+
+      var dev = document.querySelector('#deviceCard .exif-body');
+      if (hasDevice) {
+        dev.innerHTML = '<div class="warn">This reveals the device you used.</div>' +
+          [['Make', m.Make], ['Model', m.Model], ['Software', m.Software]]
+            .filter(function(p){ return p[1]; })
+            .map(function(p){ return '<div><strong>' + p[0] + ':</strong> ' + p[1] + '</div>'; }).join('');
+      } else {
+        dev.innerHTML = '<div class="ok">✓ No device information.</div>';
+      }
+
+      var tc = document.querySelector('#timeCard .exif-body');
+      if (hasTime) {
+        var dt = m.DateTimeOriginal || m.CreateDate;
+        tc.innerHTML = '<div><strong>' + new Date(dt).toLocaleString() + '</strong></div>';
+      } else {
+        tc.innerHTML = '<div class="ok">✓ No timestamp found.</div>';
+      }
+
+      var other = document.querySelector('#otherCard .exif-body');
+      var rows = [['Orientation', m.Orientation], ['Flash', m.Flash],
+                  ['ISO', m.ISO], ['FocalLength', m.FocalLength],
+                  ['ExposureTime', m.ExposureTime], ['FNumber', m.FNumber]]
+                  .filter(function(p){ return p[1] !== undefined; });
+      other.innerHTML = rows.length
+        ? rows.map(function(p){ return '<div><strong>' + p[0] + ':</strong> ' + p[1] + '</div>'; }).join('')
+        : 'No other technical metadata.';
+
+      var verdict = document.getElementById('safetyScore');
+      var summary;
+      if (hasGps)        { verdict.innerHTML = '🔴 <strong>HIGH RISK</strong> — contains GPS location + device info'; verdict.className = 'exif-verdict high'; summary = 'HIGH RISK · GPS exposed'; }
+      else if (hasDevice){ verdict.innerHTML = '🟡 <strong>MEDIUM RISK</strong> — contains device info but no GPS';  verdict.className = 'exif-verdict med';  summary = 'MEDIUM RISK · device info'; }
+      else               { verdict.innerHTML = '🟢 <strong>LOW RISK</strong> — no sensitive metadata found';          verdict.className = 'exif-verdict low';  summary = 'LOW RISK · clean'; }
+      document.getElementById('stripActions').hidden = !(hasGps || hasDevice || hasTime);
+      saveRedactSession('image', summary);
+    }
+
+    document.getElementById('stripBtn').addEventListener('click', function(){
+      if (!currentImgFile) return;
+      var img = new Image();
+      var url = URL.createObjectURL(currentImgFile);
+      img.onload = function(){
+        var c = document.createElement('canvas');
+        c.width = img.naturalWidth; c.height = img.naturalHeight;
+        var ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        c.toBlob(function(blob){
+          var dl = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = dl; a.download = currentImgFile.name.replace(/\.\w+$/, '') + '-clean.jpg'; a.click();
+          URL.revokeObjectURL(dl);
+        }, 'image/jpeg', 0.92);
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    });
+
     document.getElementById('imgBtn').addEventListener('click', function() {
       var t = document.getElementById('redactedOut').textContent;
       var lines = t.split('\n');

@@ -13,7 +13,21 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" /><link rel="stylesheet" href="/tools/privacy.css" />
   <script src="/tools/premium.js" defer></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Password Strength Checker","url":"https://todays-tasks.com/tools/password-checker/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Password Strength Checker",
+    "url": "https://todays-tasks.com/tools/password-checker/",
+    "description": "Check password strength and test against known data breaches instantly",
+    "applicationCategory": "SecurityApplication",
+    "applicationSubCategory": "SecurityApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+    "featureList": ["Browser-based", "No account required", "Privacy-first"],
+    "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
+  }
+  </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Does this tool send my password anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Entropy scoring and crack-time estimation run entirely in your browser. The breach check uses k-anonymity — only the first 5 characters of the SHA-1 hash leave your device, never the password itself."}},
     {"@type":"Question","name":"What is k-anonymity?","acceptedAnswer":{"@type":"Answer","text":"A privacy technique where we hash your password locally, then send only the first 5 hex characters to the Have I Been Pwned API. The API returns hundreds of partial matches and we check the full hash against them in your browser. Your actual password never leaves your device."}},
@@ -51,7 +65,19 @@
         <button type="button" class="btn-calc" id="breachBtn" style="background:#059669">Check breach databases (anonymized)</button>
         <div id="breachResult" class="result-box" aria-live="polite"></div>
       </div>
+
+      <div id="improveTip" class="improve-tip" hidden></div>
     </div>
+
+    <!-- Recheck reminder banner (shown only when stale) -->
+    <div id="recheckBanner" class="recheck-banner" hidden></div>
+
+    <!-- Password history (no plaintext stored — only strength/result) -->
+    <section class="pw-history-panel" aria-labelledby="pwHistTitle">
+      <h2 id="pwHistTitle">Recent Password Checks</h2>
+      <p class="muted">Strength &amp; result only — your passwords were never stored.</p>
+      <div id="pwHistory" class="pw-history-list"></div>
+    </section>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000002" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
@@ -155,15 +181,18 @@
     }
     var labels = ['Very weak', 'Weak', 'Moderate', 'Strong', 'Excellent'];
 
+    var lastScore = 0, lastCrack = '—', lastEntropy = 0;
     function update() {
       var p = pw.value;
       if (!p) {
         meter.className = 'strength-meter';
         label.textContent = 'Type a password to score it';
         metrics.style.display = 'none';
+        document.getElementById('improveTip').hidden = true;
         return;
       }
       var r = scoreEntropy(p);
+      lastScore = r.score; lastEntropy = r.entropy; lastCrack = crackTime(r.entropy);
       meter.className = 'strength-meter s' + r.score;
       label.innerHTML = '<span class="s' + r.score + '">' + labels[r.score] + '</span>';
       metrics.style.display = '';
@@ -171,9 +200,19 @@
         '<div>Length<b>' + p.length + '</b></div>' +
         '<div>Entropy<b>' + r.entropy.toFixed(1) + ' bits</b></div>' +
         '<div>Character pool<b>' + r.pool + '</b></div>' +
-        '<div>Estimated crack time<b>' + crackTime(r.entropy) + '</b></div>';
+        '<div>Estimated crack time<b>' + lastCrack + '</b></div>';
       suggestions.innerHTML = '<strong>Suggestions:</strong><ul style="margin:6px 0 0 18px;padding:0">' +
         suggest(p).map(function(s) { return '<li style="margin-bottom:4px">' + s + '</li>'; }).join('') + '</ul>';
+
+      // Strength improvement tip
+      var tipEl = document.getElementById('improveTip');
+      var tip;
+      if (r.score <= 1) tip = '💡 Add 2+ special characters and increase length to 16+.';
+      else if (r.score === 2) tip = '💡 Add uppercase letters and avoid dictionary words.';
+      else if (r.score === 3) tip = '✅ Strong password. Consider a 5-word passphrase for even better memorability.';
+      else tip = '🛡️ Excellent — well past the safe threshold.';
+      tipEl.textContent = tip;
+      tipEl.hidden = false;
     }
     pw.addEventListener('input', update);
     document.getElementById('togglePw').addEventListener('click', function() {
@@ -192,6 +231,48 @@
         return hex.toUpperCase();
       });
     }
+    // -------- History persistence (no plaintext, dashboard hook) --------
+    var STRENGTH_LABELS = ['Very weak','Weak','Moderate','Strong','Excellent'];
+    function savePwHistory(score, entropy, crackTimeStr, breachCount){
+      var rec = { checkedAt: Date.now(), score: score, entropy: entropy,
+                  crackTime: crackTimeStr, breachCount: breachCount,
+                  strength: STRENGTH_LABELS[Math.min(4, score)] };
+      var arr; try { arr = JSON.parse(localStorage.getItem('tt_history_password-checker') || '[]'); } catch(e){ arr = []; }
+      arr.unshift(rec);
+      var max = (window.ttPremium && window.ttPremium.isPremium()) ? 50 : 5;
+      if (arr.length > max) arr = arr.slice(0, max);
+      try { localStorage.setItem('tt_history_password-checker', JSON.stringify(arr)); } catch(e){}
+      renderPwHistory();
+      updateRecheckBanner();
+    }
+    function renderPwHistory(){
+      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_history_password-checker') || '[]'); } catch(e){}
+      var c = document.getElementById('pwHistory');
+      if (!arr.length) { c.innerHTML = '<p class="history-empty">No checks yet — try one above.</p>'; return; }
+      c.innerHTML = arr.slice(0,5).map(function(h){
+        var when = new Date(h.checkedAt).toLocaleString();
+        var bClass = h.breachCount > 0 ? 'alert' : 'ok';
+        var bTxt = h.breachCount > 0 ? '⚠ ' + h.breachCount + ' breaches' : '✓ Clean';
+        return '<div class="pw-history-row">' +
+          '<span class="pwhr-date">' + when + '</span>' +
+          '<span class="pwhr-strength s' + h.score + '">' + (h.strength || '—') + '</span>' +
+          '<span class="pwhr-crack">' + (h.crackTime || '—') + '</span>' +
+          '<span class="pwhr-breach ' + bClass + '">' + bTxt + '</span>' +
+          '</div>';
+      }).join('');
+    }
+    function updateRecheckBanner(){
+      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_history_password-checker') || '[]'); } catch(e){}
+      var b = document.getElementById('recheckBanner');
+      if (!arr.length) { b.hidden = true; return; }
+      var ageDays = (Date.now() - arr[0].checkedAt) / 86400000;
+      if (ageDays >= 30) {
+        b.innerHTML = '🔔 Your last password check was ' + Math.floor(ageDays) + ' days ago — time for a review.';
+        b.hidden = false;
+      } else { b.hidden = true; }
+    }
+    document.addEventListener('DOMContentLoaded', function(){ renderPwHistory(); updateRecheckBanner(); });
+
     document.getElementById('breachBtn').addEventListener('click', function() {
       var p = pw.value;
       if (!p) { tt.showResult('breachResult', '<div class="primary">Type a password first.</div>', 'error'); return; }
@@ -212,10 +293,12 @@
               tt.showResult('breachResult',
                 '<div class="primary"><span class="label">⚠ Breached</span>Seen ' + hit.toLocaleString() + ' time' + (hit === 1 ? '' : 's') + ' in known breaches</div>' +
                 '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This password has appeared in public breach corpora. Change it everywhere it\'s used. The lookup was anonymized — only the first 5 chars of the hash were sent.</p>', 'error');
+              savePwHistory(lastScore, lastEntropy, lastCrack, hit);
             } else {
               tt.showResult('breachResult',
                 '<div class="primary"><span class="label">✓ Not found</span>No matches in 600M+ breached passwords</div>' +
                 '<p style="margin:14px 0 0;color:var(--text-muted);font-size:14px">This is not a guarantee of safety, just that it hasn\'t appeared in known leaks. Combine with strong entropy + unique-per-site.</p>', 'bmi-normal');
+              savePwHistory(lastScore, lastEntropy, lastCrack, 0);
             }
           });
       }).catch(function(e) {
