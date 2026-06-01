@@ -122,26 +122,8 @@
   </script>
 </head>
 <body>
+  <script src="/nav.js" defer></script>
   <!-- Top nav（與首頁一致） -->
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="site-brand" href="/">Today's Tasks</a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-      <nav class="site-nav" id="primary-nav" aria-label="Primary">
-        <a href="/tools/">🔒 Tools</a>
-        <a href="/apps.html">Apps</a>
-        <a href="/productivity-tips.html">Productivity Tips</a>
-        <a href="/time-blocking-guide.html">Time Blocking</a>
-        <a href="/etsy-guides.html" class="active" aria-current="page">Templates</a>
-        <a href="/about.html">About</a>
-      </nav>
-      <a class="site-cta" href="/todo.html">Todo App</a>
-    </div>
-  </header>
   <script>(function(){var t=document.querySelector('.nav-toggle');if(!t)return;t.addEventListener('click',function(){var h=t.closest('.site-header');var o=h.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));});})();</script>
 
   <nav class="page-breadcrumbs" aria-label="Breadcrumb">

@@ -1180,3 +1180,19 @@ body.ads-hidden .ad-slot { display: none !important; }
     padding-top: 8px;
   }
 }
+
+/* ===================================================================
+   Hide empty AdSense slots before approval — removes blank white space
+   when the unit hasn't yet been filled by Google.
+   =================================================================== */
+.ad-slot ins.adsbygoogle:not([data-ad-status]) {
+  display: none !important;
+}
+.ad-slot:has(ins.adsbygoogle:not([data-ad-status="filled"])) {
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.ad-slot ins.adsbygoogle[data-ad-status="filled"] {
+  display: block !important;
+}
