@@ -548,10 +548,9 @@
 
 .tools-body { background: #f8fafc; }
 
-.site-nav { display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 22px; background: #fff; border-bottom: 1px solid #e2e8f0; }
-.site-nav .brand { font-weight: 800; color: #1e40af; text-decoration: none; }
-.site-nav nav a { margin-left: 16px; color: #334155; text-decoration: none; }
+/* (legacy .site-nav overrides removed — that pattern was replaced by /nav.js;
+    the real .site-nav now comes from /style.css and must not be clobbered.) */
+
 .site-foot { text-align: center; padding: 28px 16px; color: #64748b; font-size: 13.5px; }
 
 .tool-main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
