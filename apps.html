@@ -4,8 +4,8 @@
   <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobile Apps by Hill App — Finance, Travel, Health &amp; Productivity</title>
-  <meta name="description" content="30+ free Android and iOS apps: budgeting, paychecks, mortgage, fitness, alarms, sleep, travel, language, HK transit. Offline-first. No accounts. Indie-built." />
+  <title>30+ Free Mobile Apps — Finance, Travel &amp; HK Life | Today's Tasks</title>
+  <meta name="description" content="Download free Android and iOS apps for mortgage calculations, salary tools, dividend tracking, HK transport and more. Privacy-first, works offline." />
   <meta name="keywords" content="mobile apps, Android apps, iOS apps, free Android apps, iOS productivity tools, finance calculator app, mortgage calculator, paycheck calculator, tip calculator, BMI calculator, budgeting app, AI memory app, language learning app, sleep app, alarm app, Hong Kong MTR app, HK Bus app, travel app, VAT refund, long weekend planner, Hill App, Hong Kong indie developer" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://todays-tasks.com/apps.html" />
@@ -71,6 +71,20 @@
     {"@context":"https://schema.org","@type":"MobileApplication","name":"HK Price Watch / Pricly","operatingSystem":"ANDROID","applicationCategory":"ShoppingApplication","description":"Hong Kong supermarket price comparison and grocery-deal tracker.","offers":{"@type":"Offer","price":"0","priceCurrency":"HKD"},"author":{"@type":"Person","name":"Hill App"}},
     {"@context":"https://schema.org","@type":"MobileApplication","name":"HK Parking Finder","operatingSystem":"ANDROID","applicationCategory":"TravelApplication","description":"Real-time Hong Kong parking lot availability.","offers":{"@type":"Offer","price":"0","priceCurrency":"HKD"},"author":{"@type":"Person","name":"Hill App"}}
   ]
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "name":"Top Finance Mobile Apps by Today's Tasks",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"WealthMind","url":"https://play.google.com/store/apps/details?id=com.hillapp.vaultmind","description":"Private offline-first budgeting, net worth, and FIRE planner with AES-256 encrypted backups."},
+      {"@type":"ListItem","position":2,"name":"Mortgage Calc","url":"https://todays-tasks.com/tools/mortgage-calculator/","description":"U.S. mortgage math — PITI, PMI/MIP, FHA/VA/USDA, refinance break-even, DTI affordability."},
+      {"@type":"ListItem","position":3,"name":"Take-Home Paycheck Calculator","url":"https://todays-tasks.com/tools/salary-calculator/","description":"U.S. paycheck calculator — federal + FICA + 50 states + 11 city wage taxes, side-by-side scenarios."},
+      {"@type":"ListItem","position":4,"name":"Investment Calculator","url":"https://todays-tasks.com/tools/investment-calculator/","description":"Compound interest and investment growth projection with monthly contribution model."},
+      {"@type":"ListItem","position":5,"name":"Debt-Free Plan","url":"https://todays-tasks.com/tools/debt-calculator/","description":"Debt-free date and credit-card payoff calculator — avalanche vs snowball comparison."}
+    ]
+  }
   </script>
   <script type="application/ld+json">
   {
@@ -141,6 +155,54 @@
     .faq-item[open] summary::after{content:"−"}
     .faq-item[open] summary{margin-bottom:8px}
     .faq-item .answer{color:var(--text-muted);font-size:14.5px;line-height:1.6}
+
+    /* ===== Featured Apps hero ===== */
+    .featured-section{max-width:1180px;margin:24px auto 8px;padding:24px 20px 36px;background:linear-gradient(180deg,var(--accent-soft),var(--surface));border:1px solid var(--border);border-radius:24px}
+    .featured-head{text-align:center;margin-bottom:18px}
+    .featured-head h2{font-size:clamp(24px,4vw,32px);margin:0 0 8px;font-weight:800;color:var(--text)}
+    .featured-head .sub{font-size:15px;color:var(--text-muted);margin:0 auto;max-width:580px}
+    .social-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px 0 22px}
+    .sp-pill{background:var(--surface);border:1px solid var(--border);padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--text)}
+    .featured-grid{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:720px){.featured-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.featured-grid{grid-template-columns:repeat(3,1fr)}}
+    .featured-card{position:relative;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease}
+    .featured-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+    .featured-card .fc-badge{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.3px}
+    .featured-card .fc-head{display:flex;align-items:center;gap:14px}
+    .featured-card .fc-icon{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:var(--surface-2)}
+    .featured-card .fc-icon-emoji{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-hover));display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
+    .featured-card h3{font-size:18px;font-weight:800;margin:0 0 3px;color:var(--text);line-height:1.2}
+    .featured-card .fc-prop{font-size:13.5px;color:var(--text-muted);margin:0;line-height:1.45;font-weight:500}
+    .featured-card .fc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+    .featured-card .fc-list li{font-size:13px;color:var(--text);padding-left:20px;position:relative;line-height:1.45}
+    .featured-card .fc-list li::before{content:"✓";color:var(--success);position:absolute;left:0;font-weight:700}
+    .featured-card .fc-ctas{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+    .featured-card .fc-cta{flex:1 1 calc(50% - 4px);min-width:120px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;border-radius:9px;font-weight:700;font-size:12.5px;text-decoration:none;transition:filter .15s ease,transform .15s ease}
+    .featured-card .fc-cta:hover{filter:brightness(1.08)}
+    .featured-card .fc-cta--play{background:#01875f;color:#fff}
+    .featured-card .fc-cta--apple{background:transparent;color:var(--text);border:1px solid var(--text)}
+    .featured-card .fc-cta[aria-disabled="true"]{opacity:.5;pointer-events:none}
+    .featured-card .fc-web{font-size:12.5px;color:var(--accent-hover);text-decoration:none;font-weight:600;border-top:1px dashed var(--border);padding-top:10px;margin-top:4px}
+    .featured-card .fc-web:hover{text-decoration:underline}
+
+    /* ===== Category filter ===== */
+    .cat-filter{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 18px}
+    .cat-filter button{background:var(--surface);border:1px solid var(--border-strong);color:var(--text);padding:8px 16px;border-radius:999px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;transition:background .15s ease,color .15s ease,border-color .15s ease}
+    .cat-filter button:hover{background:var(--surface-2)}
+    .cat-filter button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+    /* ===== Cross-promo banner ===== */
+    .cross-promo{background:var(--accent-soft);border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;margin:8px auto}
+    .cross-promo a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;transition:background .15s ease}
+    .cross-promo a:hover{background:var(--accent-hover)}
+    .cross-promo .cp-title{font-size:18px;font-weight:700;color:var(--text);margin:0 0 8px}
+    .cross-promo .cp-sub{font-size:14px;color:var(--text-muted);margin:0 auto 14px;max-width:520px}
+
+    @media(max-width:480px){
+      .featured-card .fc-ctas{flex-direction:column}
+      .featured-card .fc-cta{width:100%}
+    }
   </style>
 </head>
 <body>
@@ -151,6 +213,114 @@
       <h1 id="hero-title">30+ Mobile Apps for Everyday Life</h1>
       <p class="lede">A growing collection of free Android apps and iOS productivity tools — budgeting, paychecks, mortgage math, fitness, sleep, alarms, language learning, travel, and Hong Kong daily life. Built privacy-first, designed to work even offline.</p>
       <p class="bio">Made by Hill, an independent developer based in Hong Kong. Thirty+ shipped apps focused on small tools that solve real, recurring problems — without ads invading your data flow or accounts you don't want.</p>
+    </section>
+
+    <!-- ===== FEATURED APPS — Top 5 by score ===== -->
+    <section class="featured-section" aria-labelledby="featured-title">
+      <div class="featured-head">
+        <h2 id="featured-title">Our Most Popular Finance Tools</h2>
+        <p class="sub">Downloaded by users in 50+ countries. Free to use, no account needed.</p>
+        <div class="social-proof" role="group" aria-label="App qualities">
+          <span class="sp-pill">📱 30+ Apps</span>
+          <span class="sp-pill">🎁 Free to Download</span>
+          <span class="sp-pill">✈️ Works Offline</span>
+          <span class="sp-pill">🛡️ Privacy-First</span>
+        </div>
+      </div>
+
+      <div class="featured-grid">
+
+        <!-- #1 — WealthMind (only app with live Play Store link) -->
+        <article class="featured-card">
+          <span class="fc-badge">⭐ Most Popular</span>
+          <div class="fc-head">
+            <img class="fc-icon" src="/assets/apps/wealthmind.png" alt="WealthMind icon" width="64" height="64" loading="lazy" decoding="async" />
+            <div><h3>WealthMind</h3><p class="fc-prop">Private budgeting, net worth &amp; FIRE planner</p></div>
+          </div>
+          <ul class="fc-list">
+            <li>Envelope budgets + net worth tracker</li>
+            <li>On-device AI Advisor — never uploaded</li>
+            <li>AES-256 encrypted backups</li>
+          </ul>
+          <div class="fc-ctas">
+            <a class="fc-cta fc-cta--play" href="https://play.google.com/store/apps/details?id=com.hillapp.vaultmind" aria-label="Get WealthMind on Google Play">▶ Google Play</a>
+            <a class="fc-cta fc-cta--apple" href="#app-store-coming-soon" aria-label="WealthMind on App Store — coming soon" aria-disabled="true"> App Store</a>
+          </div>
+        </article>
+
+        <!-- #2 — Mortgage Calc -->
+        <article class="featured-card">
+          <div class="fc-head">
+            <img class="fc-icon" src="/assets/apps/mortgage.png" alt="Mortgage Calc icon" width="64" height="64" loading="lazy" decoding="async" />
+            <div><h3>Mortgage Calc</h3><p class="fc-prop">U.S. mortgage math, no lender funnel</p></div>
+          </div>
+          <ul class="fc-list">
+            <li>Full PITI + PMI/MIP</li>
+            <li>FHA, VA, USDA scenarios + refinance break-even</li>
+            <li>DTI affordability check</li>
+          </ul>
+          <div class="fc-ctas">
+            <a class="fc-cta fc-cta--play" href="#google-play-coming-soon" aria-disabled="true">▶ Google Play</a>
+            <a class="fc-cta fc-cta--apple" href="#app-store-coming-soon" aria-disabled="true"> App Store</a>
+          </div>
+          <a class="fc-web" href="/tools/mortgage-calculator/">Also available as web tool →</a>
+        </article>
+
+        <!-- #3 — Take-Home -->
+        <article class="featured-card">
+          <div class="fc-head">
+            <img class="fc-icon" src="/assets/apps/takehome.png" alt="Take-Home Paycheck Calculator icon" width="64" height="64" loading="lazy" decoding="async" />
+            <div><h3>Take-Home Paycheck</h3><p class="fc-prop">U.S. paycheck math, side-by-side scenarios</p></div>
+          </div>
+          <ul class="fc-list">
+            <li>50 states + 11 major city wage taxes</li>
+            <li>2025 IRS percentage-method tables</li>
+            <li>What-If sliders: raise / 401(k) / bonus</li>
+          </ul>
+          <div class="fc-ctas">
+            <a class="fc-cta fc-cta--play" href="#google-play-coming-soon" aria-disabled="true">▶ Google Play</a>
+            <a class="fc-cta fc-cta--apple" href="#app-store-coming-soon" aria-disabled="true"> App Store</a>
+          </div>
+          <a class="fc-web" href="/tools/salary-calculator/">Also available as web tool →</a>
+        </article>
+
+        <!-- #4 — Investment Calculator -->
+        <article class="featured-card">
+          <div class="fc-head">
+            <img class="fc-icon" src="/assets/apps/investment.png" alt="Investment Calculator icon" width="64" height="64" loading="lazy" decoding="async" />
+            <div><h3>Investment Calculator</h3><p class="fc-prop">Compound interest, projected growth</p></div>
+          </div>
+          <ul class="fc-list">
+            <li>Monthly contribution model</li>
+            <li>Inflation-adjusted preview</li>
+            <li>Save and compare scenarios</li>
+          </ul>
+          <div class="fc-ctas">
+            <a class="fc-cta fc-cta--play" href="#google-play-coming-soon" aria-disabled="true">▶ Google Play</a>
+            <a class="fc-cta fc-cta--apple" href="#app-store-coming-soon" aria-disabled="true"> App Store</a>
+          </div>
+          <a class="fc-web" href="/tools/investment-calculator/">Also available as web tool →</a>
+        </article>
+
+        <!-- #5 — Debt-Free Plan -->
+        <article class="featured-card">
+          <div class="fc-head">
+            <img class="fc-icon" src="/assets/apps/debtfree.png" alt="Debt-Free Plan icon" width="64" height="64" loading="lazy" decoding="async" />
+            <div><h3>Debt-Free Plan</h3><p class="fc-prop">See your debt-free date in seconds</p></div>
+          </div>
+          <ul class="fc-list">
+            <li>Avalanche vs snowball comparison</li>
+            <li>Multi-card payoff timeline</li>
+            <li>Extra-payment what-if</li>
+          </ul>
+          <div class="fc-ctas">
+            <a class="fc-cta fc-cta--play" href="#google-play-coming-soon" aria-disabled="true">▶ Google Play</a>
+            <a class="fc-cta fc-cta--apple" href="#app-store-coming-soon" aria-disabled="true"> App Store</a>
+          </div>
+          <a class="fc-web" href="/tools/debt-calculator/">Also available as web tool →</a>
+        </article>
+
+      </div>
     </section>
 
     <!-- Category Overview -->
@@ -169,8 +339,17 @@
     <section class="apps-section" aria-labelledby="apps-grid-title">
       <h2 id="apps-grid-title" class="section-title">All Apps <span class="count">— 28 titles across 5 categories</span></h2>
 
+      <div class="cat-filter" role="group" aria-label="Filter by category">
+        <button type="button" data-f="all" class="active">All</button>
+        <button type="button" data-f="finance">💰 Finance</button>
+        <button type="button" data-f="travel">✈️ Travel</button>
+        <button type="button" data-f="transport">🚌 HK Transport</button>
+        <button type="button" data-f="health">🏥 Health</button>
+        <button type="button" data-f="utility">🛠️ Utility</button>
+      </div>
+
       <!-- ====== FINANCE ====== -->
-      <h3 class="group-title"><span class="emoji" aria-hidden="true">💰</span>Finance &amp; Money</h3>
+      <h3 class="group-title" data-group="finance"><span class="emoji" aria-hidden="true">💰</span>Finance &amp; Money</h3>
       <div class="apps-grid">
 
         <article class="app-card">
@@ -296,7 +475,7 @@
       </div>
 
       <!-- ====== HEALTH ====== -->
-      <h3 class="group-title"><span class="emoji" aria-hidden="true">💪</span>Health, Sleep &amp; Fitness</h3>
+      <h3 class="group-title" data-group="health"><span class="emoji" aria-hidden="true">💪</span>Health, Sleep &amp; Fitness</h3>
       <div class="apps-grid">
 
         <article class="app-card">
@@ -392,7 +571,7 @@
       </div>
 
       <!-- ====== AI ====== -->
-      <h3 class="group-title"><span class="emoji" aria-hidden="true">🧠</span>AI, Memory &amp; Learning</h3>
+      <h3 class="group-title" data-group="utility"><span class="emoji" aria-hidden="true">🧠</span>AI, Memory &amp; Learning</h3>
       <div class="apps-grid">
 
         <article class="app-card">
@@ -428,7 +607,7 @@
       </div>
 
       <!-- ====== TRAVEL ====== -->
-      <h3 class="group-title"><span class="emoji" aria-hidden="true">✈️</span>Travel &amp; Adventure</h3>
+      <h3 class="group-title" data-group="travel"><span class="emoji" aria-hidden="true">✈️</span>Travel &amp; Adventure</h3>
       <div class="apps-grid">
 
         <article class="app-card">
@@ -539,7 +718,7 @@
       </div>
 
       <!-- ====== HONG KONG ====== -->
-      <h3 class="group-title"><span class="emoji" aria-hidden="true">🇭🇰</span>Hong Kong Daily Life</h3>
+      <h3 class="group-title" data-group="transport"><span class="emoji" aria-hidden="true">🇭🇰</span>Hong Kong Daily Life</h3>
       <div class="apps-grid">
 
         <article class="app-card">
@@ -630,6 +809,15 @@
       </article>
     </section>
 
+    <!-- ===== Cross-promotion banner ===== -->
+    <section class="apps-section">
+      <div class="cross-promo">
+        <p class="cp-title">🔒 Need privacy tools?</p>
+        <p class="cp-sub">Free browser-based tools to generate strong passwords, share secrets safely, scan EXIF data and more — no install, no account.</p>
+        <a href="/tools/">Try our free web tools →</a>
+      </div>
+    </section>
+
     <!-- CTA + Share -->
     <section class="apps-section" aria-labelledby="cta-block-title">
       <div class="cta-block">
@@ -675,6 +863,41 @@
       this.setAttribute('aria-expanded', String(!open));
       if (nav) nav.classList.toggle('is-open');
     });
+
+    /* Category filter — walks back from each .app-card to the nearest
+       preceding h3[data-group] to derive its category. No HTML edit needed. */
+    (function(){
+      var cards = document.querySelectorAll('.apps-section .app-card');
+      cards.forEach(function(card){
+        var el = card;
+        while (el && !(el.nodeType === 1 && el.matches && el.matches('h3[data-group]'))) {
+          el = el.previousElementSibling || (el.parentElement ? el.parentElement.previousElementSibling : null);
+        }
+        if (el) card.dataset.category = el.dataset.group;
+      });
+      function applyFilter(cat){
+        var anyVisibleByGroup = {};
+        cards.forEach(function(card){
+          var show = cat === 'all' || card.dataset.category === cat;
+          card.style.display = show ? '' : 'none';
+          if (show) anyVisibleByGroup[card.dataset.category] = true;
+        });
+        // Hide group titles + their grid if everything inside is hidden.
+        document.querySelectorAll('h3[data-group]').forEach(function(h){
+          var grid = h.nextElementSibling;
+          var hide = !(cat === 'all' || anyVisibleByGroup[h.dataset.group]);
+          h.style.display = hide ? 'none' : '';
+          if (grid) grid.style.display = hide ? 'none' : '';
+        });
+      }
+      document.querySelectorAll('.cat-filter button').forEach(function(b){
+        b.addEventListener('click', function(){
+          document.querySelectorAll('.cat-filter button').forEach(function(x){ x.classList.remove('active'); });
+          b.classList.add('active');
+          applyFilter(b.dataset.f);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
