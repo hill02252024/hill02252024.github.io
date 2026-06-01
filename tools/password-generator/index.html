@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator — Free, Strong &amp; Secure | Today's Tasks</title>
+  <meta name="description" content="Generate strong passwords, memorable passphrases or PINs in your browser. Live strength meter, crack-time estimate, and breach check. Nothing leaves your device." />
+  <meta name="keywords" content="password generator, strong password, secure password generator, memorable password, passphrase generator, pin generator, free password generator" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/password-generator/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="Password Generator — Free, Strong &amp; Secure" />
+  <meta property="og:description" content="Strong passwords with strength meter, crack-time and breach check. 100% browser-side." />
+  <meta property="og:url" content="https://todays-tasks.com/tools/password-generator/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Password Generator — Free, Strong &amp; Secure" />
+  <meta name="twitter:description" content="Strong passwords with strength meter and breach check. Browser-only." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/premium.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Password Generator",
+    "url":"https://todays-tasks.com/tools/password-generator/",
+    "applicationCategory":"SecurityApplication",
+    "operatingSystem":"Web Browser",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"Generate strong passwords, passphrases or PINs in your browser. Strength meter, crack time and HIBP breach check."
+  }
+  </script>
+</head>
+<body class="tools-body">
+
+<header class="site-nav">
+  <a href="/" class="brand">Today's Tasks</a>
+  <nav><a href="/tools/">Tools</a><a href="/about.html">About</a></nav>
+</header>
+
+<main class="tool-main">
+  <section class="tool-hero">
+    <h1>Strong password generator</h1>
+    <p class="lede">Pick a length, hit Generate. Strength score, crack-time and breach check, all in your browser.</p>
+  </section>
+
+  <div class="ad-slot ad-slot-top">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <section class="card">
+    <div class="row tabs">
+      <button class="tab active" data-mode="random">Random</button>
+      <button class="tab" data-mode="memorable">Memorable</button>
+      <button class="tab" data-mode="pin">PIN</button>
+    </div>
+
+    <div id="opts-random" class="opts">
+      <label>Length: <output id="len-out">20</output>
+        <input type="range" id="len" min="8" max="64" value="20" />
+      </label>
+      <label><input type="checkbox" id="upper" checked> Uppercase A-Z</label>
+      <label><input type="checkbox" id="lower" checked> Lowercase a-z</label>
+      <label><input type="checkbox" id="number" checked> Numbers 0-9</label>
+      <label><input type="checkbox" id="symbol" checked> Symbols !@#$…</label>
+    </div>
+    <div id="opts-memorable" class="opts" hidden>
+      <label>Words: <output id="words-out">4</output>
+        <input type="range" id="words" min="3" max="8" value="4" />
+      </label>
+      <label>Separator
+        <select id="sep">
+          <option value="-">-</option><option value=".">.</option>
+          <option value="_">_</option><option value=" "> (space)</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="capWords" checked> Capitalise each word</label>
+      <label><input type="checkbox" id="addNum" checked> Add a number</label>
+    </div>
+    <div id="opts-pin" class="opts" hidden>
+      <label>Digits: <output id="pin-out">6</output>
+        <input type="range" id="pinlen" min="4" max="12" value="6" />
+      </label>
+    </div>
+
+    <button id="gen" class="primary">Generate</button>
+
+    <label for="pw-out">Generated</label>
+    <div class="link-row">
+      <input id="pw-out" readonly />
+      <button id="copy">Copy</button>
+    </div>
+
+    <div class="strength">
+      <div class="bar"><span id="bar"></span></div>
+      <p id="strength-text">Strength: —</p>
+      <p id="crack-text" class="muted">Estimated crack time: —</p>
+      <p id="breach-text" class="muted">Breach check: —</p>
+    </div>
+
+    <details class="history">
+      <summary>Recent passwords (last 5, this device only)</summary>
+      <ol id="hist"></ol>
+      <button id="clearHist" class="ghost">Clear history</button>
+    </details>
+  </section>
+
+  <div class="ad-slot ad-slot-bottom">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <section class="trust-strip">
+    <div><strong>100% browser-side.</strong> No network calls except an anonymous breach hash.</div>
+    <div><strong>History stays local.</strong> Last 5 in <code>localStorage</code>, never synced.</div>
+    <div><strong>Premium:</strong> sync history across devices, custom word lists.</div>
+  </section>
+
+  <section class="related">
+    <h2>Related tools</h2>
+    <ul>
+      <li><a href="/tools/secret-share/">Share a password securely</a></li>
+      <li><a href="/tools/password-checker/">Strength &amp; breach checker</a></li>
+      <li><a href="/tools/password-vault/">Encrypted password vault</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>© <span id="yr"></span> Today's Tasks · <a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></p>
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+(adsbygoogle = window.adsbygoogle || []).push({});
+(adsbygoogle = window.adsbygoogle || []).push({});
+
+// Small EFF-style word list (compact; ~256 words is enough for memorable mode).
+var WORDS = ["apple","river","sunset","stone","forest","cloud","mountain","ocean","piano","rocket",
+"silver","bronze","copper","cedar","lemon","quiet","fierce","gentle","brave","calm","clever","cosmic",
+"daring","eager","fancy","gleam","happy","ivory","jolly","keen","lively","magic","noble","orbit","peach",
+"quill","rapid","sleek","tidal","unity","vivid","witty","xenon","yacht","zesty","amber","brisk","crisp",
+"daisy","ember","fable","glade","hover","inkwell","jewel","koala","lunar","misty","novel","oasis","plume",
+"quartz","ruby","sable","topaz","umbra","velvet","willow","xerus","yarrow","zephyr","arrow","badge","candle",
+"diver","echo","flame","glow","hawk","iris","jade","kite","leaf","moon","nest","onyx","prism","queen","rune",
+"saint","tiger","umbra","vault","whale","xenia","yeti","zero","brisk","cobra","drift","eagle","frost","grove",
+"hatch","ivory","jolly","knack","latte","mango","ninja","ocean","puma","quest","river","spark","trail","ultra",
+"vapor","wolf","xylo","yummy","zonal","aspen","birch","cliff","dusk","elder","fern","gust","haze","ice","jet",
+"kelp","lake","mint","nova","opal","peak","quay","rock","sage","tundra","vista","wave","xeric","yolk","zen",
+"abbey","brook","comet","dawn","ebony","ferry","glade","harbor","inlet","jetty","kelp","lagoon","meadow","nest",
+"oak","park","quark","ridge","spring","tide","unicorn","valley","wild","year","zinc","arch","bark","crag","den",
+"echo","fjord","glen","heath","isle","jungle","knoll","lawn","marsh","nook","oasis","pier","ravine","shore","trail",
+"vale","wharf","ace","barn","cove","dune","edge","field","gull","hill","ink","jay","ken","loft","mast","nut","orb",
+"pine","quay","reef","skiff","tarn","ulm","vale","weft","yew","zoo","atlas","blaze","crown","dream","flare","ghost",
+"hero","ion","jove","kin","lyric","myth","node","omen","pulse","quest","relic","saga","totem","ursa","vortex","wisp",
+"xanth","yore","zeal"];
+
+var SYMBOLS = "!@#$%^&*-_=+?";
+
+function rng(n){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n;}
+function pick(arr){return arr[rng(arr.length)];}
+function shuffleStr(s){var a=s.split("");for(var i=a.length-1;i>0;i--){var j=rng(i+1);var t=a[i];a[i]=a[j];a[j]=t;}return a.join("");}
+
+function genRandom(){
+  var len = +document.getElementById("len").value;
+  var sets = [];
+  if (document.getElementById("upper").checked) sets.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  if (document.getElementById("lower").checked) sets.push("abcdefghijklmnopqrstuvwxyz");
+  if (document.getElementById("number").checked) sets.push("0123456789");
+  if (document.getElementById("symbol").checked) sets.push(SYMBOLS);
+  if (!sets.length) return "";
+  // Ensure at least one of each selected set.
+  var pw = sets.map(function(s){return s.charAt(rng(s.length));}).join("");
+  var all = sets.join("");
+  while (pw.length < len) pw += all.charAt(rng(all.length));
+  return shuffleStr(pw);
+}
+
+function genMemorable(){
+  var n = +document.getElementById("words").value;
+  var sep = document.getElementById("sep").value;
+  var cap = document.getElementById("capWords").checked;
+  var addNum = document.getElementById("addNum").checked;
+  var pieces = [];
+  for (var i=0;i<n;i++){
+    var w = pick(WORDS);
+    if (cap) w = w.charAt(0).toUpperCase()+w.slice(1);
+    pieces.push(w);
+  }
+  if (addNum) pieces.push(String(rng(100)));
+  return pieces.join(sep);
+}
+
+function genPin(){
+  var n = +document.getElementById("pinlen").value;
+  var out = "";
+  for (var i=0;i<n;i++) out += rng(10);
+  return out;
+}
+
+// Strength: entropy-based estimate.
+function entropy(pw){
+  var sets = 0;
+  if (/[a-z]/.test(pw)) sets += 26;
+  if (/[A-Z]/.test(pw)) sets += 26;
+  if (/[0-9]/.test(pw)) sets += 10;
+  if (/[^A-Za-z0-9]/.test(pw)) sets += SYMBOLS.length;
+  if (!sets) return 0;
+  return Math.round(pw.length * Math.log2(sets));
+}
+function crackTime(bits){
+  // 1e11 guesses/sec offline GPU.
+  var secs = Math.pow(2, bits) / 1e11;
+  if (secs < 1) return "instant";
+  var units = [["second",60],["minute",60],["hour",24],["day",365],["year",1e9]];
+  var i=0;
+  while (i<units.length && secs >= units[i][1]) { secs /= units[i][1]; i++; }
+  return secs.toFixed(1) + " " + units[Math.min(i,4)][0] + "s";
+}
+function band(bits){
+  if (bits < 28) return ["very weak", 10, "#dc3545"];
+  if (bits < 36) return ["weak", 25, "#fd7e14"];
+  if (bits < 60) return ["fair", 50, "#ffc107"];
+  if (bits < 90) return ["strong", 80, "#28a745"];
+  return ["excellent", 100, "#198754"];
+}
+
+function sha1Hex(s){
+  var enc = new TextEncoder().encode(s);
+  return crypto.subtle.digest("SHA-1", enc).then(function(buf){
+    return Array.from(new Uint8Array(buf))
+      .map(function(b){return b.toString(16).padStart(2,"0");}).join("").toUpperCase();
+  });
+}
+function checkBreach(pw){
+  document.getElementById("breach-text").textContent = "Breach check: checking…";
+  return sha1Hex(pw).then(function(hash){
+    var prefix = hash.slice(0,5), suffix = hash.slice(5);
+    return fetch("https://api.pwnedpasswords.com/range/" + prefix, {mode:"cors"})
+      .then(function(r){return r.text();})
+      .then(function(body){
+        var hit = body.split("\n").find(function(line){
+          return line.split(":")[0].trim().toUpperCase() === suffix;
+        });
+        if (hit) {
+          var n = hit.split(":")[1].trim();
+          document.getElementById("breach-text").innerHTML = "Breach check: ⚠️ <strong>seen "+n+" times</strong> in breaches — don't use.";
+        } else {
+          document.getElementById("breach-text").textContent = "Breach check: ✓ not found in any known breach.";
+        }
+      })
+      .catch(function(){ document.getElementById("breach-text").textContent = "Breach check: offline."; });
+  });
+}
+
+function setStrength(pw){
+  if (!pw) { document.getElementById("bar").style.width="0"; document.getElementById("strength-text").textContent="Strength: —"; return; }
+  var bits = entropy(pw);
+  var b = band(bits);
+  document.getElementById("bar").style.width = b[1] + "%";
+  document.getElementById("bar").style.background = b[2];
+  document.getElementById("strength-text").textContent = "Strength: " + b[0] + " (" + bits + " bits)";
+  document.getElementById("crack-text").textContent = "Estimated crack time: " + crackTime(bits);
+}
+
+// History (local only)
+function loadHist(){ try { return JSON.parse(localStorage.getItem("tt_pwhist") || "[]"); } catch(e){ return []; } }
+function saveHist(h){ try { localStorage.setItem("tt_pwhist", JSON.stringify(h.slice(0,5))); } catch(e){} }
+function renderHist(){
+  var ol = document.getElementById("hist"); ol.innerHTML = "";
+  loadHist().forEach(function(p){
+    var li = document.createElement("li"); li.textContent = p; ol.appendChild(li);
+  });
+}
+renderHist();
+
+document.getElementById("clearHist").addEventListener("click", function(){
+  try { localStorage.removeItem("tt_pwhist"); } catch(e){} renderHist();
+});
+
+// Mode tabs
+document.querySelectorAll(".tab").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active");});
+    b.classList.add("active");
+    var m = b.getAttribute("data-mode");
+    document.getElementById("opts-random").hidden = m !== "random";
+    document.getElementById("opts-memorable").hidden = m !== "memorable";
+    document.getElementById("opts-pin").hidden = m !== "pin";
+  });
+});
+
+["len","words","pinlen"].forEach(function(id){
+  var el = document.getElementById(id);
+  el.addEventListener("input", function(){
+    var out = ({len:"len-out", words:"words-out", pinlen:"pin-out"})[id];
+    document.getElementById(out).textContent = el.value;
+  });
+});
+
+document.getElementById("gen").addEventListener("click", function(){
+  var mode = document.querySelector(".tab.active").getAttribute("data-mode");
+  var pw = mode === "memorable" ? genMemorable() : mode === "pin" ? genPin() : genRandom();
+  document.getElementById("pw-out").value = pw;
+  setStrength(pw);
+  checkBreach(pw);
+  var h = loadHist(); h.unshift(pw); saveHist(h); renderHist();
+});
+
+document.getElementById("copy").addEventListener("click", function(){
+  var i = document.getElementById("pw-out"); if (!i.value) return;
+  navigator.clipboard.writeText(i.value).then(function(){
+    this.textContent = "Copied!"; setTimeout(function(){this.textContent="Copy";}.bind(this), 1500);
+  }.bind(this));
+});
+
+// generate one on load
+document.getElementById("gen").click();
+</script>
+
+</body>
+</html>

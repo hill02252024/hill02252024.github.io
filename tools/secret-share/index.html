@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Password Securely — One-Time Encrypted Link | Today's Tasks</title>
+  <meta name="description" content="Send passwords, API keys and private notes through a self-destructing encrypted link. End-to-end AES-GCM encryption in your browser. We never see the secret." />
+  <meta name="keywords" content="send password securely, one time secret, share api key safely, encrypted note, self destructing link, secure password share, end to end encrypted" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/tools/secret-share/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="Share Password Securely — One-Time Encrypted Link" />
+  <meta property="og:description" content="Encrypt in your browser, share a one-time link, it self-destructs. Free." />
+  <meta property="og:url" content="https://todays-tasks.com/tools/secret-share/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Share Password Securely — One-Time Encrypted Link" />
+  <meta name="twitter:description" content="Self-destructing encrypted link. Browser-only AES-GCM. We never see your secret." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <link rel="stylesheet" href="/tools/privacy.css" />
+  <script src="/tools/firebase-config.js" defer></script>
+  <script src="/tools/firebase.js" defer></script>
+  <script src="/tools/premium.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Secure Secret Sharer",
+    "url":"https://todays-tasks.com/tools/secret-share/",
+    "applicationCategory":"SecurityApplication",
+    "operatingSystem":"Web Browser",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"Browser-side AES-GCM encryption, server-side ciphertext only, self-destructing links."
+  }
+  </script>
+</head>
+<body class="tools-body">
+
+<header class="site-nav">
+  <a href="/" class="brand">Today's Tasks</a>
+  <nav>
+    <a href="/tools/">Tools</a>
+    <a href="/about.html">About</a>
+  </nav>
+</header>
+
+<main class="tool-main">
+  <section class="tool-hero">
+    <h1>Send a password the safe way</h1>
+    <p class="lede">Type a secret. Your browser encrypts it. You get a one-time link.
+       Once it's read, it's gone — even from us.</p>
+    <p class="zk-badge">🔐 Zero-knowledge · AES-GCM 256 · Open to audit</p>
+  </section>
+
+  <!-- AdSense above tool -->
+  <div class="ad-slot ad-slot-top">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <!-- =============== CREATE MODE =============== -->
+  <section id="create-pane" class="card">
+    <label for="secret">Secret</label>
+    <textarea id="secret" rows="6" placeholder="Paste the password, API key or note you want to share…" autocomplete="off" spellcheck="false"></textarea>
+
+    <div class="row">
+      <label>Self-destruct after
+        <select id="ttl">
+          <option value="1">1 hour</option>
+          <option value="24">24 hours</option>
+          <option value="168" data-prem="1">7 days (Premium)</option>
+        </select>
+      </label>
+      <label>Max views
+        <select id="views">
+          <option value="1">1 view</option>
+          <option value="3" data-prem="1">3 views (Premium)</option>
+          <option value="10" data-prem="1">10 views (Premium)</option>
+        </select>
+      </label>
+    </div>
+
+    <button id="encrypt-btn" class="primary">Encrypt &amp; create link</button>
+    <p id="create-msg" class="msg" role="status" aria-live="polite"></p>
+
+    <div id="link-out" hidden>
+      <label for="share-link">Share this link (the decryption key lives only in the URL):</label>
+      <div class="link-row">
+        <input id="share-link" readonly />
+        <button id="copy-btn">Copy</button>
+      </div>
+      <p class="hint">Anyone with this link can read the secret once.
+         Send it through a different channel from where you'll send context.</p>
+      <button id="reset-btn" class="ghost">Create another</button>
+    </div>
+  </section>
+
+  <!-- =============== READ MODE =============== -->
+  <section id="read-pane" class="card" hidden>
+    <h2>Someone shared a secret with you</h2>
+    <p>This link will self-destruct after you reveal it.</p>
+    <button id="reveal-btn" class="primary">Reveal the secret</button>
+    <pre id="revealed" hidden></pre>
+    <p id="read-msg" class="msg" role="status" aria-live="polite"></p>
+    <button id="copy-rev" class="ghost" hidden>Copy</button>
+    <a href="/tools/secret-share/" class="ghost" id="send-own" hidden>Send your own</a>
+  </section>
+
+  <!-- AdSense below tool -->
+  <div class="ad-slot ad-slot-bottom">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <section class="trust-strip">
+    <div><strong>End-to-end encrypted.</strong> AES-GCM 256 happens in your browser.</div>
+    <div><strong>Zero-knowledge.</strong> The decryption key never leaves the URL fragment.</div>
+    <div><strong>Self-destructing.</strong> One read, or expiry — record is wiped.</div>
+  </section>
+
+  <section class="related">
+    <h2>Related tools</h2>
+    <ul>
+      <li><a href="/tools/password-generator/">Strong password generator</a></li>
+      <li><a href="/tools/password-checker/">Password strength &amp; breach checker</a></li>
+      <li><a href="/tools/email-alias/">Email alias generator</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>© <span id="yr"></span> Today's Tasks · <a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></p>
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+(adsbygoogle = window.adsbygoogle || []).push({});
+(adsbygoogle = window.adsbygoogle || []).push({});
+
+// ===== client-side crypto =====
+function b64(buf){var b="",a=new Uint8Array(buf);for(var i=0;i<a.length;i++)b+=String.fromCharCode(a[i]);return btoa(b).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
+function unb64(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var bin=atob(s);var a=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a.buffer;}
+function genKey(){return crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]);}
+function exportKey(k){return crypto.subtle.exportKey("raw",k).then(b64);}
+function importKey(k64){return crypto.subtle.importKey("raw",unb64(k64),{name:"AES-GCM",length:256},false,["decrypt"]);}
+function encryptIt(plain,key){var iv=crypto.getRandomValues(new Uint8Array(12));return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,new TextEncoder().encode(plain)).then(function(ct){return{ct:b64(ct),iv:b64(iv)};});}
+function decryptIt(ct,ivB64,key){return crypto.subtle.decrypt({name:"AES-GCM",iv:new Uint8Array(unb64(ivB64))},key,unb64(ct)).then(function(buf){return new TextDecoder().decode(buf);});}
+
+// ===== parse URL hash to decide mode =====
+function parseHash(){
+  var h = location.hash.replace(/^#/,"");
+  if (!h) return null;
+  var out = {}; h.split("&").forEach(function(p){var i=p.indexOf("=");if(i>0)out[p.slice(0,i)]=decodeURIComponent(p.slice(i+1));});
+  return (out.id && out.key) ? out : null;
+}
+
+var hash = parseHash();
+if (hash) {
+  document.getElementById("create-pane").hidden = true;
+  document.getElementById("read-pane").hidden = false;
+}
+
+// ===== CREATE flow =====
+document.getElementById("encrypt-btn").addEventListener("click", function(){
+  var secret = document.getElementById("secret").value;
+  var msg = document.getElementById("create-msg");
+  if (!secret) { msg.textContent = "Type or paste a secret first."; return; }
+
+  var ttl = parseInt(document.getElementById("ttl").value, 10);
+  var maxViews = parseInt(document.getElementById("views").value, 10);
+
+  // Gate premium options
+  var prem = (window.ttAuth && window.ttAuth.isPremium && window.ttAuth.isPremium()) ||
+             (window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium());
+  if (!prem) {
+    if (ttl > 24) ttl = 24;
+    if (maxViews > 1) maxViews = 1;
+  }
+
+  if (!window.ttSecrets) { msg.textContent = "Backend not configured yet — see firebase-config.js"; return; }
+
+  msg.textContent = "Encrypting…";
+  genKey().then(function(key){
+    return Promise.all([exportKey(key), encryptIt(secret, key)]).then(function(r){
+      var k64 = r[0], enc = r[1];
+      return window.ttSecrets.createSecret(enc.ct, enc.iv, ttl, maxViews).then(function(id){
+        var link = location.origin + location.pathname + "#id=" + id + "&key=" + k64;
+        var out = document.getElementById("share-link"); out.value = link;
+        document.getElementById("link-out").hidden = false;
+        msg.textContent = "Done. The decryption key lives only in the URL — share it carefully.";
+        // wipe plaintext from memory-ish
+        document.getElementById("secret").value = "";
+      });
+    });
+  }).catch(function(e){ msg.textContent = "Error: " + (e.message || e); });
+});
+
+document.getElementById("copy-btn") && document.getElementById("copy-btn").addEventListener("click", function(){
+  var i = document.getElementById("share-link");
+  i.select(); i.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(i.value).then(function(){
+    this.textContent = "Copied!"; setTimeout(function(){this.textContent="Copy";}.bind(this), 1500);
+  }.bind(this));
+});
+
+document.getElementById("reset-btn") && document.getElementById("reset-btn").addEventListener("click", function(){
+  location.href = "/tools/secret-share/";
+});
+
+// ===== READ flow =====
+if (hash) {
+  document.getElementById("reveal-btn").addEventListener("click", function(){
+    var msg = document.getElementById("read-msg");
+    if (!window.ttSecrets) { msg.textContent = "Backend not configured yet — see firebase-config.js"; return; }
+    msg.textContent = "Fetching…";
+    window.ttSecrets.readSecret(hash.id).then(function(r){
+      if (!r) { msg.textContent = "This secret has expired or already been read."; return; }
+      return importKey(hash.key).then(function(key){
+        return decryptIt(r.ciphertext, r.iv, key);
+      }).then(function(plain){
+        var pre = document.getElementById("revealed");
+        pre.textContent = plain; pre.hidden = false;
+        document.getElementById("reveal-btn").hidden = true;
+        document.getElementById("copy-rev").hidden = false;
+        document.getElementById("send-own").hidden = false;
+        msg.textContent = "View " + r.viewCount + " of " + r.maxViews +
+                          (r.viewCount >= r.maxViews ? " — record deleted." : "");
+        // Strip key from URL bar so a screenshot won't reveal it.
+        history.replaceState(null, "", location.pathname);
+      });
+    }).catch(function(e){ msg.textContent = "Error: " + (e.message || e); });
+  });
+
+  document.getElementById("copy-rev").addEventListener("click", function(){
+    var t = document.getElementById("revealed").textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      this.textContent = "Copied!"; setTimeout(function(){this.textContent="Copy";}.bind(this), 1500);
+    }.bind(this));
+  });
+}
+</script>
+
+</body>
+</html>
