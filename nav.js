@@ -10,12 +10,11 @@
   "use strict";
 
   var NAV_ITEMS = [
-    { href: "/tools/",                 label: "🔒 Tools" },
+    { href: "/tools/",                 label: "Tools" },
     { href: "/apps.html",              label: "Apps" },
-    { href: "/productivity-tips.html", label: "Productivity Tips" },
-    { href: "/time-blocking-guide.html", label: "Time Blocking" },
-    { href: "/etsy-guides.html",       label: "Templates" },
-    { href: "/about.html",             label: "About" }
+    { href: "/pricing.html",           label: "Pricing" },
+    { href: "/learn/why-local.html",   label: "Why Local?" },
+    { href: "/productivity-tips.html", label: "Blog" }
   ];
 
   function escapeHtml(s) {
@@ -53,9 +52,46 @@
           '<nav class="site-nav" id="primary-nav" aria-label="Primary">' +
             links +
           '</nav>' +
-          '<a class="site-cta" href="/apps.html">Todo App</a>' +
+          '<a class="site-cta" href="/pricing.html">Go Pro</a>' +
         '</div>' +
       '</header>'
+    );
+  }
+
+  function buildFooter() {
+    return (
+      '<footer class="site-footer-v2" role="contentinfo">' +
+        '<div class="site-footer-v2-grid">' +
+          '<div>' +
+            '<div class="site-footer-v2-col-title">Products</div>' +
+            '<div class="site-footer-v2-links">' +
+              '<a href="/tools/">Privacy Tools</a>' +
+              '<a href="/apps.html">28 Mobile Apps</a>' +
+              '<a href="/pricing.html">Pricing</a>' +
+              '<a href="/todo.html">Today\'s Tasks To-Do</a>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="site-footer-v2-col-title">Learn</div>' +
+            '<div class="site-footer-v2-links">' +
+              '<a href="/learn/why-local.html">Why browser-only?</a>' +
+              '<a href="/productivity-tips.html">Blog</a>' +
+              '<a href="/about.html">About</a>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="site-footer-v2-col-title">Trust</div>' +
+            '<div class="site-footer-v2-links">' +
+              '<a href="/privacy.html">Privacy Policy</a>' +
+              '<a href="/contact.html">Contact</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="site-footer-v2-bottom">' +
+          '<div class="site-footer-v2-trustline">0 bytes uploaded · 0 accounts needed · 0 third parties on tool pages</div>' +
+          '<div>© ' + (new Date()).getFullYear() + ' Today\'s Tasks · Built by one independent developer · Hong Kong</div>' +
+        '</div>' +
+      '</footer>'
     );
   }
 
@@ -70,6 +106,19 @@
       existing.parentNode.replaceChild(header, existing);
     } else {
       document.body.insertBefore(header, document.body.firstChild);
+    }
+
+    // Inject the structured footer — replaces legacy .footer / .footer-secondary
+    // blocks on every page automatically. Skip if already present (idempotent).
+    if (!document.querySelector("footer.site-footer-v2")) {
+      var fwrap = document.createElement("div");
+      fwrap.innerHTML = buildFooter();
+      var footer = fwrap.firstElementChild;
+      // Hide any legacy single-line footer to avoid duplicate copyright lines
+      document.querySelectorAll("footer.footer, footer.site-foot, .footer-secondary").forEach(function (el) {
+        el.style.display = "none";
+      });
+      document.body.appendChild(footer);
     }
 
     // No fallback styles — every page loads /style.css which already

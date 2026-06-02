@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Browser-Only Processing Is Different | Today's Tasks</title>
+  <meta name="description" content="How cloud PDF tools work, how Today's Tasks works, and how to verify in 60 seconds that your file never left your device. No upload. No account.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://todays-tasks.com/learn/why-local.html">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Today's Tasks">
+  <meta property="og:title" content="Why Browser-Only Processing Is Different">
+  <meta property="og:description" content="The 60-second DevTools test that proves your file never leaves your device.">
+  <meta property="og:url" content="https://todays-tasks.com/learn/why-local.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Browser-Only Processing Is Different">
+  <meta name="twitter:description" content="The 60-second DevTools test that proves your file never leaves your device.">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Why Browser-Only Processing Is Different",
+    "description": "How cloud PDF tools work, how local-first tools work, and how to verify in DevTools.",
+    "author": { "@type": "Person", "name": "Hill" },
+    "publisher": { "@type": "Organization", "name": "Today's Tasks" },
+    "mainEntityOfPage": "https://todays-tasks.com/learn/why-local.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is local processing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Local processing means the work happens inside your browser tab using JavaScript. The file you select is never uploaded to a server. When you close the tab, the data is gone -- because it was never anywhere else." } },
+      { "@type": "Question", "name": "How is this different from end-to-end encryption?",
+        "acceptedAnswer": { "@type": "Answer", "text": "End-to-end encryption still sends your file to a server in encrypted form. Local processing doesn't send anything at all. There is no server in the loop." } },
+      { "@type": "Question", "name": "Why does it matter for lawyers, doctors, or accountants?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Professional confidentiality, HIPAA, attorney-client privilege, and many other compliance regimes are violated the moment a sensitive document is uploaded to a third-party server, even if it is later deleted. Browser-only tools avoid the violation entirely." } },
+      { "@type": "Question", "name": "How can I verify this myself?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open Chrome or Firefox DevTools (F12), switch to the Network tab, then use any tool on this site. You will see zero outbound requests carrying your file. The tool runs entirely in your tab." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <main style="max-width:780px;margin:0 auto;padding:60px 20px 80px">
+
+    <nav class="page-breadcrumbs" style="background:transparent;border:0;padding:0;margin-bottom:24px;font-size:13.5px">
+      <a href="/">Home</a> &nbsp;›&nbsp; <span class="current">Why browser-only?</span>
+    </nav>
+
+    <span class="badge free" style="margin-bottom:18px;display:inline-block">60-second read</span>
+    <h1 class="display" style="color:var(--brand-deep);margin-bottom:16px">Why browser-only processing is different</h1>
+    <p class="lede">Most "free" privacy and PDF tools online send your file to a server, do the work there, and ask you to trust them. Today's Tasks doesn't have a server in the loop. Here's what that means — and how to verify it yourself.</p>
+
+    <!-- Section 1: How cloud tools work -->
+    <section style="margin-top:48px">
+      <h2>1. How most cloud PDF / privacy tools work</h2>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin:20px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;text-align:center">
+          <div style="flex:1;min-width:120px"><div style="font-size:32px">📄</div><b>Your file</b></div>
+          <div style="font-size:24px;color:var(--danger)">↗</div>
+          <div style="flex:1;min-width:120px"><div style="font-size:32px">☁️</div><b>Their server</b><br><span style="font-size:12px;color:var(--text-muted)">file copied here</span></div>
+          <div style="font-size:24px;color:var(--text-muted)">↓</div>
+          <div style="flex:1;min-width:120px"><div style="font-size:32px">⚙️</div><b>Processing</b><br><span style="font-size:12px;color:var(--text-muted)">on their machines</span></div>
+          <div style="font-size:24px;color:var(--text-muted)">↩</div>
+          <div style="flex:1;min-width:120px"><div style="font-size:32px">📄</div><b>Result back</b><br><span style="font-size:12px;color:var(--text-muted)">trust they delete it</span></div>
+        </div>
+      </div>
+      <p>Even reputable tools advertise that they "automatically delete files after 2 hours". You're being asked to trust that promise. For most documents that's fine. For a contract, a medical record, a tax return, or a confidential settlement — it shouldn't be.</p>
+    </section>
+
+    <!-- Section 2: How we work -->
+    <section style="margin-top:48px">
+      <h2>2. How Today's Tasks tools work</h2>
+      <div style="background:var(--brand-soft);border:1px solid var(--brand-soft-border);border-radius:14px;padding:24px;margin:20px 0">
+        <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px;text-align:center">
+          <div style="flex:1;min-width:120px;max-width:160px"><div style="font-size:32px">📄</div><b>Your file</b><br><span style="font-size:12px;color:var(--text-muted)">stays on your device</span></div>
+          <div style="font-size:24px;color:var(--brand-trust)">→</div>
+          <div style="flex:1;min-width:120px;max-width:160px"><div style="font-size:32px">🖥️</div><b>Your browser tab</b><br><span style="font-size:12px;color:var(--text-muted)">processes it locally</span></div>
+          <div style="font-size:24px;color:var(--brand-trust)">→</div>
+          <div style="flex:1;min-width:120px;max-width:160px"><div style="font-size:32px">📄</div><b>Result</b><br><span style="font-size:12px;color:var(--text-muted)">stays on your device</span></div>
+        </div>
+        <div style="text-align:center;margin-top:20px;font-size:14px;color:var(--brand-trust);font-weight:600">No server in the loop. 0 bytes uploaded.</div>
+      </div>
+      <p>Every privacy tool on this site is built with browser-native JavaScript (and where needed, WebAssembly). The file you pick is read by your browser, processed by your browser, and the result is written back to your browser. No network request ever carries your file.</p>
+    </section>
+
+    <!-- Section 3: Who needs this -->
+    <section style="margin-top:48px">
+      <h2>3. Who needs browser-only processing?</h2>
+      <div class="guide-grid" style="margin:20px 0">
+        <div class="guide-card" style="cursor:default">
+          <span class="guide-tag">Legal</span>
+          <h3>Lawyers &amp; paralegals</h3>
+          <p>Attorney-client privilege is broken the moment a draft contract is uploaded to a third-party server.</p>
+        </div>
+        <div class="guide-card" style="cursor:default">
+          <span class="guide-tag">Health</span>
+          <h3>Doctors &amp; clinics</h3>
+          <p>HIPAA, GDPR, and patient confidentiality apply even when a tool promises 2-hour deletion.</p>
+        </div>
+        <div class="guide-card" style="cursor:default">
+          <span class="guide-tag">Finance</span>
+          <h3>Accountants &amp; auditors</h3>
+          <p>Client tax returns, bank statements, and ledgers don't belong on a free tool's servers, ever.</p>
+        </div>
+        <div class="guide-card" style="cursor:default">
+          <span class="guide-tag">Press</span>
+          <h3>Journalists &amp; activists</h3>
+          <p>Source documents, leaked materials, and case files require zero-server handling — not "we'll delete it later".</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: How to verify -->
+    <section style="margin-top:48px">
+      <h2>4. Verify it yourself in 60 seconds</h2>
+      <ol style="font-size:16px;line-height:1.8;padding-left:20px">
+        <li><b>Open a Today's Tasks tool</b> — try <a href="/tools/document-redactor/" style="color:var(--brand-trust);font-weight:600">Document Redactor</a> or <a href="/tools/password-generator/" style="color:var(--brand-trust);font-weight:600">Password Generator</a>.</li>
+        <li><b>Open DevTools.</b> Press <code>F12</code> (or <code>⌘⌥I</code> on Mac), then click the <b>Network</b> tab. Reload the page to start clean.</li>
+        <li><b>Use the tool.</b> Type, paste, generate, redact — whatever the tool does. Now look at the Network panel.</li>
+        <li><b>Count outbound requests carrying your input.</b> You'll find: zero. The only network requests are for the page itself, the CSS, and (where applicable) an anonymous k-hash lookup for breach checks.</li>
+      </ol>
+      <p style="margin-top:24px;padding:18px;background:var(--surface);border-left:4px solid var(--brand-trust);border-radius:8px">
+        You can do this test on any tool on this site, any time. We don't get to fake the Network panel.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner" style="margin-top:64px;border-radius:20px;border:1px solid var(--brand-soft-border)">
+      <h2 style="color:var(--brand-deep)">Try a tool now — no upload, no account</h2>
+      <div class="hero-cta-row" style="margin-top:24px">
+        <a class="btn primary" href="/tools/">Open the Privacy Tools</a>
+        <a class="btn outline" href="/pricing.html">See Pricing</a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

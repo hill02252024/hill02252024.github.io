@@ -9,8 +9,8 @@
   --priv-deep:     #0f172a;
   --priv-emerald:  #059669;
   --priv-emerald-soft: #d1fae5;
-  --priv-blue:     #2563eb;
-  --priv-blue-soft: #dbeafe;
+  --priv-blue:     #0ea5e9;        /* sky (semantic: "email" category) */
+  --priv-blue-soft: #e0f2fe;
   --priv-amber:    #d97706;
   --priv-amber-soft: #fef3c7;
   --priv-violet:   #7c3aed;
@@ -522,7 +522,7 @@
   border: 1px solid var(--border-strong); font-size: 15px; background: #fff;
   font-family: inherit;
 }
-.hero-search input:focus { outline: 2px solid #2563eb; outline-offset: 1px; }
+.hero-search input:focus { outline: 2px solid var(--brand-trust); outline-offset: 1px; }
 
 .tier-title {
   margin: 28px 0 4px; font-size: 22px; display: flex; align-items: center;
@@ -726,12 +726,12 @@ body.ads-hidden .ad-slot { display: none !important; }
 .mini-bar span { display: block; height: 100%; background: #1e40af; }
 
 .dash-tips {
-  background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 14px;
+  background: var(--brand-soft); border: 1px solid var(--brand-soft-border); border-radius: 14px;
   padding: 16px; margin: 20px 0;
 }
-.dash-tips h2 { margin: 0 0 8px; font-size: 16px; color: #1e40af; }
+.dash-tips h2 { margin: 0 0 8px; font-size: 16px; color: var(--brand-trust); }
 .dash-tips ol { margin: 0; padding-left: 20px; }
-.dash-tips a { color: #1e40af; text-decoration: none; font-weight: 600; }
+.dash-tips a { color: var(--brand-trust); text-decoration: none; font-weight: 600; }
 
 .dash-sync-card {
   background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px;
@@ -882,8 +882,8 @@ body.ads-hidden .ad-slot { display: none !important; }
    =================================================================== */
 .improve-tip {
   margin-top: 14px; padding: 12px 14px;
-  background: #eff6ff; border-left: 4px solid #1e40af;
-  border-radius: 8px; font-size: 14px; color: #1e3a8a;
+  background: var(--brand-soft); border-left: 4px solid var(--brand-trust);
+  border-radius: 8px; font-size: 14px; color: #064e3b;
 }
 .recheck-banner {
   background: #fef3c7; border: 1px solid #fde68a; color: #92400e;
@@ -1058,7 +1058,7 @@ body.ads-hidden .ad-slot { display: none !important; }
 .wc-fill {
   width: 100%; max-width: 56px;
   height: 0; min-height: 6px;
-  background: linear-gradient(to top, #1e40af, #3b82f6);
+  background: var(--brand-trust);
   border-radius: 10px 10px 0 0;
 }
 /* Bar background container — give the bars a consistent rail */

@@ -312,7 +312,7 @@
 .result-box.bmi-normal     { background: #dcfce7; border-color: #16a34a; }
 .result-box.bmi-overweight { background: #fef9c3; border-color: #ca8a04; }
 .result-box.bmi-obese      { background: #fee2e2; border-color: #dc2626; }
-.result-box.bmi-under      { background: #dbeafe; border-color: #2563eb; }
+.result-box.bmi-under      { background: #e0f2fe; border-color: var(--brand-accent); }
 .result-box.error          { background: #fef2f2; border-color: #ef4444; }
 .result-box.error .primary { font-size: 18px; color: #991b1b; font-weight: 600; }
 .result-actions {

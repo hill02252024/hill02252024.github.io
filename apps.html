@@ -117,7 +117,7 @@
     .app-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
     .app-card-head{display:flex;align-items:center;gap:14px}
     .app-card-icon{width:64px;height:64px;border-radius:14px;object-fit:cover;flex-shrink:0;background:var(--surface-2)}
-    .app-card-icon-placeholder{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-hover));display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
+    .app-card-icon-placeholder{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
     .app-card-titles h3.app-name{font-size:17px;margin:0 0 3px;color:var(--text);font-weight:700;line-height:1.2}
     .app-card-titles .app-pitch{font-size:12.5px;margin:0;color:var(--text-muted);font-weight:500;line-height:1.4}
     .app-card-body p{font-size:13.5px;color:var(--text-muted);margin:0;line-height:1.55}
@@ -141,7 +141,9 @@
     .category-card p{font-size:13px;color:var(--text-muted);margin:0;line-height:1.5}
     .seo-article{max-width:760px;margin:0 auto}
     .seo-article p{font-size:15.5px;line-height:1.7;color:var(--text);margin:0 0 16px}
-    .cta-block{background:linear-gradient(180deg,var(--accent-soft),var(--surface));border:1px solid var(--border);border-radius:20px;padding:36px 24px;text-align:center}
+    .cta-block{background:var(--brand-deep);color:#fff;border:1px solid var(--brand-deep);border-radius:20px;padding:36px 24px;text-align:center}
+    .cta-block h2{color:#fff}
+    .cta-block p{color:#94a3b8}
     .cta-block h2{font-size:clamp(22px,3vw,28px);margin:0 0 8px;color:var(--text)}
     .cta-block p{font-size:15px;color:var(--text-muted);max-width:520px;margin:0 auto 18px}
     .share-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -157,7 +159,7 @@
     .faq-item .answer{color:var(--text-muted);font-size:14.5px;line-height:1.6}
 
     /* ===== Featured Apps hero ===== */
-    .featured-section{max-width:1180px;margin:24px auto 8px;padding:24px 20px 36px;background:linear-gradient(180deg,var(--accent-soft),var(--surface));border:1px solid var(--border);border-radius:24px}
+    .featured-section{max-width:1180px;margin:24px auto 8px;padding:24px 20px 36px;background:var(--brand-soft);border:1px solid var(--brand-soft-border);border-radius:24px}
     .featured-head{text-align:center;margin-bottom:18px}
     .featured-head h2{font-size:clamp(24px,4vw,32px);margin:0 0 8px;font-weight:800;color:var(--text)}
     .featured-head .sub{font-size:15px;color:var(--text-muted);margin:0 auto;max-width:580px}
@@ -171,7 +173,7 @@
     .featured-card .fc-badge{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.3px}
     .featured-card .fc-head{display:flex;align-items:center;gap:14px}
     .featured-card .fc-icon{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:var(--surface-2)}
-    .featured-card .fc-icon-emoji{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-hover));display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
+    .featured-card .fc-icon-emoji{width:64px;height:64px;border-radius:14px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff}
     .featured-card h3{font-size:18px;font-weight:800;margin:0 0 3px;color:var(--text);line-height:1.2}
     .featured-card .fc-prop{font-size:13.5px;color:var(--text-muted);margin:0;line-height:1.45;font-weight:500}
     .featured-card .fc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
@@ -211,6 +213,12 @@
     <!-- Hero -->
     <section class="apps-hero" aria-labelledby="hero-title">
       <h1 id="hero-title">30+ Mobile Apps for Everyday Life</h1>
+      <div class="trust-strip" style="margin:18px auto 22px">
+        <div class="trust-item"><b>0</b><span>bytes uploaded</span></div>
+        <div class="trust-item"><b>12</b><span>browser tools</span></div>
+        <div class="trust-item"><b>28</b><span>mobile apps</span></div>
+        <div class="trust-item"><b>0</b><span>accounts needed</span></div>
+      </div>
       <p class="lede">A growing collection of free Android apps and iOS productivity tools — budgeting, paychecks, mortgage math, fitness, sleep, alarms, language learning, travel, and Hong Kong daily life. Built privacy-first, designed to work even offline.</p>
       <p class="bio">Made by Hill, an independent developer based in Hong Kong. Thirty+ shipped apps focused on small tools that solve real, recurring problems — without ads invading your data flow or accounts you don't want.</p>
     </section>
@@ -338,6 +346,12 @@
     <!-- All Apps Grid -->
     <section class="apps-section" aria-labelledby="apps-grid-title">
       <h2 id="apps-grid-title" class="section-title">All Apps <span class="count">— 28 titles across 5 categories</span></h2>
+
+      <div class="app-sort-bar" role="group" aria-label="Sort apps" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        <span class="badge pro" style="background:var(--brand-trust);color:#fff">★ Featured</span>
+        <span class="badge new">New</span>
+        <span class="badge free">A–Z</span>
+      </div>
 
       <div class="cat-filter" role="group" aria-label="Filter by category">
         <button type="button" data-f="all" class="active">All</button>
@@ -809,12 +823,12 @@
       </article>
     </section>
 
-    <!-- ===== Cross-promotion banner ===== -->
+    <!-- ===== Cross-promotion (reverse): drive desktop users to /tools/ ===== -->
     <section class="apps-section">
-      <div class="cross-promo">
-        <p class="cp-title">🔒 Need privacy tools?</p>
-        <p class="cp-sub">Free browser-based tools to generate strong passwords, share secrets safely, scan EXIF data and more — no install, no account.</p>
-        <a href="/tools/">Try our free web tools →</a>
+      <div class="cross-sell-light" style="margin:0 auto">
+        <h2>Need these tools on desktop?</h2>
+        <p>All 12 privacy tools run directly in your browser. No install. No upload.</p>
+        <a class="btn primary" href="/tools/">Open the Browser Tools →</a>
       </div>
     </section>
 

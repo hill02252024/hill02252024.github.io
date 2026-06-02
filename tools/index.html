@@ -64,6 +64,20 @@
     ]}
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Do these tools upload my files or text?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every tool on this page processes your input entirely in your browser tab. You can verify it by opening DevTools (F12) -> Network tab and watching: zero outbound requests carry your data." } },
+      { "@type": "Question", "name": "Do I need an account to use these tools?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No account, no email, no signup. Open a tool and use it. Optional Pro features (sync, monitoring) require an account, but the free tools never do." } },
+      { "@type": "Question", "name": "How is this different from other free privacy tools?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most 'free' privacy tools online upload your file to a server for processing and ask you to trust that they delete it afterwards. Our tools have no server in the loop -- the processing runs in your browser." } }
+    ]
+  }
+  </script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -71,6 +85,12 @@
     <section class="privacy-hero" aria-labelledby="hub-title">
       <div class="privacy-trust-pill">🛡️ Local-first · Zero-knowledge · No account needed</div>
       <h1 id="hub-title">Your Personal Security Control Centre</h1>
+      <div class="trust-strip" style="margin:14px auto 22px">
+        <div class="trust-item"><b>0</b><span>bytes uploaded</span></div>
+        <div class="trust-item"><b>12</b><span>browser tools</span></div>
+        <div class="trust-item"><b>28</b><span>mobile apps</span></div>
+        <div class="trust-item"><b>0</b><span>accounts needed</span></div>
+      </div>
       <p class="lede">Free tools to protect your passwords, files and identity. Everything runs in your browser — we never see your secrets.</p>
 
       <div class="hero-quick" role="group" aria-label="Quick actions">
@@ -251,6 +271,13 @@
           </div>
           <a class="apps-funnel-cta" href="/apps.html">Browse the Apps →</a>
         </div>
+      </section>
+
+      <!-- Cross-sell: drive privacy users into the mobile app catalogue -->
+      <section class="cross-sell-dark">
+        <h2>Also available on mobile</h2>
+        <p>28 apps that work the same way — local, offline, no login.</p>
+        <a class="btn" href="/apps.html">Browse 28 Mobile Apps →</a>
       </section>
 
     </div>

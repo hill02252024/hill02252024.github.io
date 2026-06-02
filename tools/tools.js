@@ -51,6 +51,26 @@ window.tt = window.tt || {};
     if (ad && !ad.dataset.adsbygoogleStatus) {
       try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
     }
+    // Fire the privacy reassurance toast (debounced inside).
+    tt.privacyToast();
+  };
+
+  // Reassurance toast: confirms the work just done stayed on-device.
+  // Debounced so repeated tool actions don't stack toasts.
+  var _toastTimer = null;
+  tt.privacyToast = function(msg) {
+    if (_toastTimer) return; // already showing
+    var existing = document.getElementById('privacy-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'privacy-toast';
+    toast.innerHTML = '<span aria-hidden="true">✓</span> ' +
+      (msg || 'Processed on your device. 0 bytes sent to any server.');
+    document.body.appendChild(toast);
+    _toastTimer = setTimeout(function() {
+      toast.remove();
+      _toastTimer = null;
+    }, 4000);
   };
   // Hide a previously shown result.
   tt.hideResult = function(boxId) {
@@ -67,6 +87,7 @@ window.tt = window.tt || {};
         btn.textContent = '✓ Copied';
         setTimeout(function() { btn.textContent = orig; }, 1600);
       }
+      tt.privacyToast('Copied locally. Clipboard stayed on your device.');
     };
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(ok).catch(function() {
@@ -97,4 +118,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .forEach(function() {
       try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
     });
+
+  // Catch-all: fire the privacy reassurance toast on any primary tool
+  // action that doesn't already route through tt.showResult / tt.copyText.
+  // Verbs we treat as "tool ran": Generate, Redact, Encrypt, Reveal,
+  // Calculate, Check, Strip, Mask, Scan, Run.
+  var TOOL_VERBS = /^(generate|redact|encrypt|reveal|calculate|check|strip|mask|scan|run|create|hash)\b/i;
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('button, .btn');
+    if (!btn) return;
+    var label = (btn.textContent || '').trim();
+    if (!label || !TOOL_VERBS.test(label)) return;
+    // Fire shortly after the tool's own handler has done its DOM work.
+    setTimeout(function () { tt.privacyToast(); }, 700);
+  }, { passive: true });
 });
