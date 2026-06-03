@@ -1,0 +1,252 @@
+[
+  {
+    "number": "95110000",
+    "category": "scam",
+    "report_count": 2105
+  },
+  {
+    "number": "35001234",
+    "category": "fraud",
+    "report_count": 612
+  },
+  {
+    "number": "35012345",
+    "category": "fraud",
+    "report_count": 571
+  },
+  {
+    "number": "35023456",
+    "category": "fraud",
+    "report_count": 538
+  },
+  {
+    "number": "30000000",
+    "category": "scam",
+    "report_count": 501
+  },
+  {
+    "number": "35034567",
+    "category": "fraud",
+    "report_count": 497
+  },
+  {
+    "number": "30111111",
+    "category": "scam",
+    "report_count": 472
+  },
+  {
+    "number": "35045678",
+    "category": "fraud",
+    "report_count": 456
+  },
+  {
+    "number": "30222222",
+    "category": "scam",
+    "report_count": 443
+  },
+  {
+    "number": "35056789",
+    "category": "fraud",
+    "report_count": 419
+  },
+  {
+    "number": "30333333",
+    "category": "scam",
+    "report_count": 418
+  },
+  {
+    "number": "61000000",
+    "category": "scam",
+    "report_count": 410
+  },
+  {
+    "number": "30456789",
+    "category": "scam",
+    "report_count": 395
+  },
+  {
+    "number": "35067890",
+    "category": "fraud",
+    "report_count": 380
+  },
+  {
+    "number": "61234567",
+    "category": "scam",
+    "report_count": 378
+  },
+  {
+    "number": "30567890",
+    "category": "scam",
+    "report_count": 368
+  },
+  {
+    "number": "35078901",
+    "category": "fraud",
+    "report_count": 347
+  },
+  {
+    "number": "62000000",
+    "category": "scam",
+    "report_count": 342
+  },
+  {
+    "number": "30678901",
+    "category": "scam",
+    "report_count": 341
+  },
+  {
+    "number": "30789012",
+    "category": "scam",
+    "report_count": 318
+  },
+  {
+    "number": "35089012",
+    "category": "fraud",
+    "report_count": 316
+  },
+  {
+    "number": "21100000",
+    "category": "telemarketing",
+    "report_count": 312
+  },
+  {
+    "number": "62345678",
+    "category": "scam",
+    "report_count": 311
+  },
+  {
+    "number": "30890123",
+    "category": "scam",
+    "report_count": 292
+  },
+  {
+    "number": "21234567",
+    "category": "telemarketing",
+    "report_count": 287
+  },
+  {
+    "number": "35090123",
+    "category": "fraud",
+    "report_count": 287
+  },
+  {
+    "number": "30901234",
+    "category": "scam",
+    "report_count": 270
+  },
+  {
+    "number": "31010101",
+    "category": "scam",
+    "report_count": 244
+  },
+  {
+    "number": "24000000",
+    "category": "telemarketing",
+    "report_count": 233
+  },
+  {
+    "number": "31121212",
+    "category": "scam",
+    "report_count": 221
+  },
+  {
+    "number": "24111111",
+    "category": "telemarketing",
+    "report_count": 219
+  },
+  {
+    "number": "24222222",
+    "category": "telemarketing",
+    "report_count": 204
+  },
+  {
+    "number": "21345678",
+    "category": "telemarketing",
+    "report_count": 201
+  },
+  {
+    "number": "31232323",
+    "category": "scam",
+    "report_count": 199
+  },
+  {
+    "number": "24333333",
+    "category": "telemarketing",
+    "report_count": 195
+  },
+  {
+    "number": "21456789",
+    "category": "telemarketing",
+    "report_count": 188
+  },
+  {
+    "number": "58000000",
+    "category": "harassment",
+    "report_count": 188
+  },
+  {
+    "number": "24444444",
+    "category": "telemarketing",
+    "report_count": 187
+  },
+  {
+    "number": "31343434",
+    "category": "scam",
+    "report_count": 182
+  },
+  {
+    "number": "21567890",
+    "category": "telemarketing",
+    "report_count": 174
+  },
+  {
+    "number": "58111111",
+    "category": "harassment",
+    "report_count": 172
+  },
+  {
+    "number": "21678901",
+    "category": "telemarketing",
+    "report_count": 166
+  },
+  {
+    "number": "31454545",
+    "category": "scam",
+    "report_count": 166
+  },
+  {
+    "number": "21789012",
+    "category": "telemarketing",
+    "report_count": 159
+  },
+  {
+    "number": "58222222",
+    "category": "harassment",
+    "report_count": 156
+  },
+  {
+    "number": "21890123",
+    "category": "telemarketing",
+    "report_count": 151
+  },
+  {
+    "number": "21901234",
+    "category": "telemarketing",
+    "report_count": 143
+  },
+  {
+    "number": "58333333",
+    "category": "harassment",
+    "report_count": 141
+  },
+  {
+    "number": "22010101",
+    "category": "telemarketing",
+    "report_count": 138
+  },
+  {
+    "number": "58444444",
+    "category": "harassment",
+    "report_count": 127
+  }
+]

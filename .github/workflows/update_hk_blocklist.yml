@@ -1,0 +1,122 @@
+name: Update HK Blocklist
+
+# Rebuilds hk-blocklist-data/data/blocklist.json from upstream sources
+# (HKJunkCall + the existing on-disk JSON as a floor) and commits the
+# result if it changed. The downstream consumer is the HK Call Guard
+# Android app, which fetches the file at
+# https://todays-tasks.com/hk-blocklist-data/data/blocklist.json.
+#
+# Safety contract:
+#   - The build script refuses to shrink the file. If today's upstream
+#     scrape returns fewer entries than yesterday's stored file, the
+#     existing file wins and nothing is committed.
+#   - Bad schema (wrong category, empty number, non-int count) fails
+#     the script with exit 2 and prevents the commit.
+#   - Workflow_dispatch lets you trigger a build by hand without
+#     waiting for cron — useful right after editing the script.
+
+on:
+  schedule:
+    # 06:00 UTC = 14:00 HK. Slightly off the top of the hour to dodge
+    # GitHub's cron contention.
+    - cron: "7 6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the candidate JSON, don't commit."
+        required: false
+        default: "false"
+      allow_shrink:
+        description: "Override the don't-shrink safety net."
+        required: false
+        default: "false"
+
+permissions:
+  contents: write  # required to commit back the regenerated JSON
+
+concurrency:
+  group: update-hk-blocklist
+  cancel-in-progress: false  # let an in-flight run finish before the next
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Need full history so the auto-commit ends up on main with
+          # the correct parent.
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run the blocklist builder
+        id: build
+        run: |
+          mkdir -p hk-blocklist-data/data build/logs
+          # Snapshot the pre-build state so the diff step can tell
+          # exactly what (if anything) changed.
+          cp hk-blocklist-data/data/blocklist.json build/logs/before.json
+          set +e
+          python3 scripts/build_hk_blocklist.py \
+            --input  hk-blocklist-data/data/blocklist.json \
+            --output hk-blocklist-data/data/blocklist.json \
+            --report build/logs/build_report.json \
+            $( [ "${{ inputs.dry_run }}" = "true" ] && echo "--dry-run" ) \
+            $( [ "${{ inputs.allow_shrink }}" = "true" ] && echo "--allow-shrink" ) \
+            > build/logs/build.log 2>&1
+          code=$?
+          set -e
+          cat build/logs/build.log
+          echo "---"
+          cat build/logs/build_report.json || true
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          # exit code 2 = schema fatal (real failure). Anything else is
+          # a stable outcome (kept / wrote / shrink-blocked) and the
+          # workflow should not error out.
+          if [ "$code" = "2" ]; then exit 2; fi
+
+      - name: Upload build artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hk-blocklist-build-${{ github.run_number }}
+          path: build/logs/
+          retention-days: 30
+
+      - name: Detect diff
+        id: diff
+        run: |
+          if git diff --quiet -- hk-blocklist-data/data/blocklist.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "[info] no on-disk changes — skipping commit."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "[info] blocklist.json changed. Will commit."
+            diff -u build/logs/before.json \
+              hk-blocklist-data/data/blocklist.json \
+              | head -80 || true
+          fi
+
+      - name: Commit and push if changed
+        if: steps.diff.outputs.changed == 'true' && inputs.dry_run != 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          REPORT=$(cat build/logs/build_report.json)
+          # Pull the headline numbers out of the report for the commit
+          # subject. Falls back to a generic line if jq isn't around.
+          NEW_COUNT=$(python3 -c "import json,sys;print(json.load(open('build/logs/build_report.json'))['final_count'])")
+          OLD_COUNT=$(python3 -c "import json,sys;print(json.load(open('build/logs/build_report.json'))['existing_count'])")
+          git add hk-blocklist-data/data/blocklist.json
+          git commit -m "hk-blocklist: ${OLD_COUNT} → ${NEW_COUNT} entries" \
+                     -m "$REPORT"
+          # Retry-once on push to ride out a transient ref-update race.
+          git push origin HEAD:main || (git pull --rebase origin main && git push origin HEAD:main)
