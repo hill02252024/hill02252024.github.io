@@ -377,9 +377,12 @@ def main() -> int:
         "--output", required=True,
         help="Where to write the new blocklist.json")
     ap.add_argument(
-        "--manual-csv", default="",
+        "--manual-csv", action="append", default=[],
         help="Optional path to manual.csv — every row is merged in. "
-             "Format documented in the file itself.")
+             "Format documented in the file itself. "
+             "Pass multiple times to merge several files; later "
+             "files do NOT overwrite earlier categories (non-'other' "
+             "wins) and counts merge max-wins.")
     ap.add_argument(
         "--url-list", default="",
         help="Optional path to urls.txt — each URL is scraped for HK "
@@ -407,17 +410,20 @@ def main() -> int:
 
     sources: list[list[Entry]] = [existing]
 
-    # 1. Manual CSV — highest signal, runs first so its categories
+    # 1. Manual CSV(s) — highest signal, run first so their categories
     #    win when the same number also appears in a noisier scrape.
-    if args.manual_csv:
-        csv_path = Path(args.manual_csv)
-        report.sources_attempted.append(f"manual.csv ({csv_path})")
+    #    --manual-csv may be passed multiple times; each file is
+    #    loaded independently and concatenated into the merge.
+    for csv_path_str in args.manual_csv:
+        csv_path = Path(csv_path_str)
+        label = f"manual.csv ({csv_path.name})"
+        report.sources_attempted.append(label)
         manual = load_manual_csv(csv_path)
         if manual:
-            report.sources_succeeded.append(f"manual.csv ({len(manual)})")
-            print(f"[info] manual.csv: {len(manual)} entries")
+            report.sources_succeeded.append(f"{label}: {len(manual)}")
+            print(f"[info] {label}: {len(manual)} entries")
         else:
-            print("[info] manual.csv: 0 entries (file empty or only seeds)")
+            print(f"[info] {label}: 0 entries (file empty or only seeds)")
         sources.append(manual)
 
     # 2. URL list — best-effort scrape of any page that lists HK
