@@ -66,9 +66,11 @@ jobs:
           cp hk-blocklist-data/data/blocklist.json build/logs/before.json
           set +e
           python3 scripts/build_hk_blocklist.py \
-            --input  hk-blocklist-data/data/blocklist.json \
-            --output hk-blocklist-data/data/blocklist.json \
-            --report build/logs/build_report.json \
+            --input      hk-blocklist-data/data/blocklist.json \
+            --output     hk-blocklist-data/data/blocklist.json \
+            --manual-csv hk-blocklist-data/sources/manual.csv \
+            --url-list   hk-blocklist-data/sources/urls.txt \
+            --report     build/logs/build_report.json \
             $( [ "${{ inputs.dry_run }}" = "true" ] && echo "--dry-run" ) \
             $( [ "${{ inputs.allow_shrink }}" = "true" ] && echo "--allow-shrink" ) \
             > build/logs/build.log 2>&1

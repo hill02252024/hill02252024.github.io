@@ -28,6 +28,7 @@ CLI:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import re
@@ -90,6 +91,115 @@ def load_existing(path: Path) -> list[Entry]:
         if e is not None:
             out.append(e)
     return out
+
+
+# ── Source: manual CSV (highest signal, lowest noise) ────────────────────
+# This is the supported way to grow the list when scrapers can't. The
+# CSV format is documented in the file itself; we accept comments and
+# blank lines, and we coerce every row through the same _coerce_row
+# pipeline as JSON sources so a typo can never crash the build.
+def load_manual_csv(path: Path) -> list[Entry]:
+    if not path.exists():
+        return []
+    out: list[Entry] = []
+    bad = 0
+    try:
+        with path.open("r", encoding="utf-8", newline="") as f:
+            for line_no, raw in enumerate(f, start=1):
+                line = raw.strip()
+                if not line or line.startswith("#"):
+                    continue
+                # Strip trailing inline comments (# after a real cell).
+                # We can't do a naive split('#') because '#' might
+                # legitimately appear inside a note. Use csv to parse
+                # then drop notes that start with '#'.
+                parts = next(csv.reader([line]), [])
+                if len(parts) < 2:
+                    bad += 1
+                    continue
+                number, category = parts[0].strip(), parts[1].strip()
+                report_count = parts[2].strip() if len(parts) >= 3 else "1"
+                row = {
+                    "number": number,
+                    "category": category.lower(),
+                    "report_count": report_count,
+                }
+                e = _coerce_row(row)
+                if e is None:
+                    bad += 1
+                    print(f"[manual.csv:{line_no}] rejected: {line}",
+                          file=sys.stderr)
+                    continue
+                out.append(e)
+    except OSError as e:
+        print(f"[warn] manual CSV unreadable: {e}", file=sys.stderr)
+        return []
+    if bad:
+        print(f"[manual.csv] {bad} rows rejected (see warnings)",
+              file=sys.stderr)
+    return out
+
+
+# ── Source: arbitrary URL list (read from a text file) ───────────────────
+# Each URL is fetched with realistic browser headers, stripped of HTML,
+# scanned for HK phone numbers, and the surrounding context is fed to
+# CATEGORY_HINTS for classification. A URL that fails (4xx/5xx/timeout
+# /empty body) contributes 0 entries and is logged. Never crashes.
+def load_url_list(path: Path, timeout: int = 12) -> tuple[
+    list[Entry], list[str]
+]:
+    """Returns (entries, per_url_log_lines)."""
+    if not path.exists():
+        return [], []
+    urls: list[str] = []
+    try:
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            line = raw.split("#", 1)[0].strip()
+            if not line:
+                continue
+            urls.append(line)
+    except OSError as e:
+        print(f"[warn] urls.txt unreadable: {e}", file=sys.stderr)
+        return [], []
+    if not urls:
+        return [], []
+    headers = dict(HKJC_HEADERS)
+    collected: dict[str, Entry] = {}
+    log_lines: list[str] = []
+    for url in urls:
+        added = 0
+        try:
+            req = Request(url, headers=headers)
+            with urlopen(req, timeout=timeout) as resp:
+                status = resp.status
+                if status != 200:
+                    msg = f"  {url}: HTTP {status}, 0 entries"
+                    log_lines.append(msg)
+                    print(f"[url-list] {msg}", file=sys.stderr)
+                    continue
+                body = resp.read().decode("utf-8", errors="replace")
+        except HTTPError as e:
+            log_lines.append(f"  {url}: HTTP {e.code}, 0 entries")
+            print(f"[url-list] {url} → HTTP {e.code}", file=sys.stderr)
+            continue
+        except (URLError, TimeoutError, ConnectionError) as e:
+            log_lines.append(
+                f"  {url}: {type(e).__name__}, 0 entries")
+            print(f"[url-list] {url} → {type(e).__name__}: {e}",
+                  file=sys.stderr)
+            continue
+        except Exception as e:  # paranoia
+            log_lines.append(
+                f"  {url}: unexpected {type(e).__name__}, 0 entries")
+            print(f"[url-list] {url} → unexpected: {e}", file=sys.stderr)
+            continue
+        for entry in _extract_numbers_from_html(body):
+            if entry.number not in collected:
+                collected[entry.number] = entry
+                added += 1
+        log_lines.append(f"  {url}: HTTP 200, {added} entries")
+        time.sleep(0.8)
+    return list(collected.values()), log_lines
 
 
 # ── Source: hkjunkcall.com (best effort) ──────────────────────────────────
@@ -243,6 +353,7 @@ class BuildReport:
     sources_attempted: list[str] = field(default_factory=list)
     sources_succeeded: list[str] = field(default_factory=list)
     category_breakdown: dict[str, int] = field(default_factory=dict)
+    url_list_log: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -253,6 +364,7 @@ class BuildReport:
             "sources_attempted": self.sources_attempted,
             "sources_succeeded": self.sources_succeeded,
             "category_breakdown": self.category_breakdown,
+            "url_list_log": self.url_list_log,
         }
 
 
@@ -264,6 +376,15 @@ def main() -> int:
     ap.add_argument(
         "--output", required=True,
         help="Where to write the new blocklist.json")
+    ap.add_argument(
+        "--manual-csv", default="",
+        help="Optional path to manual.csv — every row is merged in. "
+             "Format documented in the file itself.")
+    ap.add_argument(
+        "--url-list", default="",
+        help="Optional path to urls.txt — each URL is scraped for HK "
+             "phone numbers via the same flat-text extractor used for "
+             "hkjunkcall. Lines starting with '#' are skipped.")
     ap.add_argument(
         "--allow-shrink", action="store_true",
         help="Allow the new file to have fewer entries than the old one. "
@@ -284,7 +405,40 @@ def main() -> int:
     report.existing_count = len(existing)
     print(f"[info] existing entries: {len(existing)}")
 
-    report.sources_attempted.append("hkjunkcall.com")
+    sources: list[list[Entry]] = [existing]
+
+    # 1. Manual CSV — highest signal, runs first so its categories
+    #    win when the same number also appears in a noisier scrape.
+    if args.manual_csv:
+        csv_path = Path(args.manual_csv)
+        report.sources_attempted.append(f"manual.csv ({csv_path})")
+        manual = load_manual_csv(csv_path)
+        if manual:
+            report.sources_succeeded.append(f"manual.csv ({len(manual)})")
+            print(f"[info] manual.csv: {len(manual)} entries")
+        else:
+            print("[info] manual.csv: 0 entries (file empty or only seeds)")
+        sources.append(manual)
+
+    # 2. URL list — best-effort scrape of any page that lists HK
+    #    phone numbers. Defined in urls.txt, anyone can add to it
+    #    without touching Python.
+    if args.url_list:
+        url_path = Path(args.url_list)
+        report.sources_attempted.append(f"url-list ({url_path})")
+        url_entries, url_log = load_url_list(url_path)
+        report.url_list_log = url_log
+        if url_entries:
+            report.sources_succeeded.append(
+                f"url-list ({len(url_entries)})")
+            print(f"[info] url-list: {len(url_entries)} entries total")
+        else:
+            print("[info] url-list: 0 entries from all URLs combined")
+        sources.append(url_entries)
+
+    # 3. Dedicated HKJunkCall path (still kept because the homepage
+    #    sometimes returns something the generic url-list doesn't).
+    report.sources_attempted.append("hkjunkcall.com (dedicated)")
     scraped = fetch_hkjunkcall()
     if scraped:
         report.sources_succeeded.append(
@@ -292,8 +446,9 @@ def main() -> int:
         print(f"[info] hkjunkcall scraped: {len(scraped)}")
     else:
         print("[info] hkjunkcall returned 0 entries (likely blocked).")
+    sources.append(scraped)
 
-    candidate = merge(existing, scraped)
+    candidate = merge(*sources)
     report.candidate_count = len(candidate)
     print(f"[info] merged candidate: {len(candidate)}")
 

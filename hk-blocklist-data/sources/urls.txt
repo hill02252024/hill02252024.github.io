@@ -1,0 +1,39 @@
+# HTML / text URLs the scraper will try in addition to hkjunkcall.com.
+#
+# Format: one URL per line. Blank lines and lines starting with '#' are
+# ignored. Anything after '#' on the same line is treated as a comment.
+#
+# For each URL the scraper:
+#   1. Fetches the page with a realistic Chrome User-Agent.
+#   2. Strips HTML tags to flat text.
+#   3. Extracts every 8-digit HK phone number ([2-9]\d{7}).
+#   4. Looks at a 60-char window around each match for a category hint
+#      (EN + 繁中 keywords). Anything without a hint becomes "other".
+#
+# A URL that returns 403 / times out / yields 0 numbers is logged and
+# silently dropped — never breaks the build. The build report lists
+# every URL we tried and how many entries each contributed.
+#
+# Add new sources here without touching Python.
+
+# ── HK Police Anti-Deception Coordination Centre (ADCC) ───────────────
+# Bilingual gov.hk pages. Today's snapshot has 0 phone numbers — these
+# pages publish narrative warnings, not lists. Kept here on the chance
+# they ever post a "known scam numbers" table.
+https://www.police.gov.hk/ppp_en/04_crime_matters/adcc/
+https://www.police.gov.hk/ppp_tc/04_crime_matters/adcc/
+
+# ── CyberDefender (HK Police-OFCA joint anti-fraud portal) ────────────
+# Hosts the Scameter front-end. SPA — most data is fetched async by JS
+# so plain HTML scrape often returns 0. Kept for completeness; if the
+# DOM ever ships pre-rendered numbers, we'll catch them.
+https://cyberdefender.hk/
+https://cyberdefender.hk/scameter
+
+# ── HKJunkCall (primary source, often blocked) ────────────────────────
+# Already tried by the dedicated HKJunkCall scraper in the Python.
+# Listed here too in case the dedicated path 403s but a deeper URL
+# (e.g. /Phone/Search/2xxx) gets through.
+https://hkjunkcall.com/Phone
+https://hkjunkcall.com/Phone/Top
+https://hkjunkcall.com/Phone/Latest

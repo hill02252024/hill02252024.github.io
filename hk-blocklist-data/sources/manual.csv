@@ -1,0 +1,24 @@
+# HK Call Guard manual entries — primary growth lever.
+#
+# This file is the one place you can grow the blocklist without
+# writing code. Append rows here, run the workflow (or wait for
+# tomorrow's cron), and they merge into hk-blocklist-data/data/blocklist.json
+# the same as any scraped source.
+#
+# Format: number,category,report_count[,note]
+#   - number       HK digits only (8 digits). The merger strips +852, spaces, dashes.
+#   - category     telemarketing | scam | harassment | fraud | other
+#                  (anything else falls back to 'other' silently)
+#   - report_count integer >= 1 (use 1 if you don't have a count)
+#   - note         optional free text. Ignored by the app, useful for you.
+#
+# Lines starting with '#' and blank lines are skipped.
+# The order doesn't matter — the merger dedupes and sorts on its own.
+#
+# Bulk-paste tip:
+#   When you screenshot a junk-call notification, the number is usually
+#   already in your phone's recent calls. Paste the digits below and add
+#   ',scam,1' or whichever category fits.
+
+# ── Seed examples (delete or replace) ─────────────────────────────────
+# 21234567,scam,5,sample — replace this row with real entries
