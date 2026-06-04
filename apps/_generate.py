@@ -45,6 +45,26 @@ APPS = {
             ("Refinance shopper", "Checking break-even months at today's rate before the next Fed meeting moves the curve."),
             ("Affordability check", "Running the 28/36 comfort DTI with a co-borrower's income to see what's actually safe."),
         ],
+        "demo": {
+            "heading": "From home price to monthly payment in under a minute",
+            "lead": "Drop in a price, choose a loan type, and see the real PITI — principal, interest, taxes, insurance, PMI — not a teaser P&I number.",
+            "steps": [
+                ("Enter the basics", "Home price, downpayment %, interest rate, loan term. Defaults pre-filled for your state."),
+                ("Pick a loan type", "Conventional, FHA, VA or USDA. PMI / MIP / funding fee handled correctly."),
+                ("See the full PITI", "Monthly payment broken down. DTI verdict against a real income. Refinance break-even months."),
+            ],
+            "result": {
+                "header": "Sample: $450,000 home · 10% down · 30-yr FHA · 7.125%",
+                "rows": [
+                    ("Principal & interest", "$2,727 / mo"),
+                    ("Property tax + insurance", "$487 / mo"),
+                    ("FHA MIP (life of loan)", "$252 / mo"),
+                ],
+                "final_label": "Total PITI",
+                "final_value": "$3,466 / mo",
+                "footnote": "DTI: Comfortable at $95,000 income · Refinance break-even: 47 months",
+            },
+        },
         "faq": [
             ("Is Mortgage Calc free?", "Yes — completely free. No paywalls, no premium tier, no upsells. The whole calculator is free forever."),
             ("Does Mortgage Calc work without internet?", "Yes. All the math runs on your phone. Only the optional weekly PMMS rate refresh uses the network; everything else is offline."),
@@ -79,6 +99,28 @@ APPS = {
             ("Raise planning", "Confirming what a 6% raise puts in your bank account after federal, FICA, and your state and city wage tax."),
             ("Contractor switch", "Modelling W-2 vs 1099 take-home with self-employment tax included."),
         ],
+        "demo": {
+            "heading": "See your real paycheck after taxes",
+            "lead": "Skip the gross number. Get the after-tax dollar that actually hits your bank account, broken down by federal, FICA, state and city.",
+            "steps": [
+                ("Enter salary + state", "Annual salary, pay frequency, filing status, and which of 50 states you live in."),
+                ("Add deductions", "401(k) %, HSA, pre-tax benefits, and any one-time bonus or overtime."),
+                ("See the full breakdown", "Federal, FICA, state and (where applicable) city wage taxes — line by line."),
+            ],
+            "result": {
+                "header": "Sample: $110,000 in NYC · semi-monthly · 8% 401(k)",
+                "rows": [
+                    ("Gross pay", "$4,583"),
+                    ("Federal income tax", "−$724"),
+                    ("FICA (SS + Medicare)", "−$351"),
+                    ("NY state + NYC", "−$481"),
+                    ("401(k) pre-tax", "−$367"),
+                ],
+                "final_label": "Take-home / paycheck",
+                "final_value": "$2,660",
+                "footnote": "Save the scenario; flip to a Texas offer side-by-side in one tap.",
+            },
+        },
         "faq": [
             ("Is the take-home calculator free?", "Yes — entirely free with no premium tier."),
             ("Does it work offline?", "Yes. The 2026 IRS tables and all 50 state rates ship inside the app. No network call is made when you calculate."),
@@ -113,6 +155,26 @@ APPS = {
             ("College savings", "Calculating the monthly contribution needed for a $250,000 college fund in 14 years."),
             ("Retirement planning", "Comparing maxing the 401(k) (+match) vs splitting with a Roth IRA across 30 years."),
         ],
+        "demo": {
+            "heading": "Project long-term growth without a spreadsheet",
+            "lead": "Plug in your starting amount and monthly contribution. See the projection in nominal and inflation-adjusted dollars — the number that actually matters.",
+            "steps": [
+                ("Enter the starting point", "Current portfolio, monthly contribution, expected annual return."),
+                ("Set the time horizon", "Years to project, compounding frequency, assumed inflation rate."),
+                ("See the projection", "Future value (nominal + today's dollars), total contributed, growth-only delta."),
+            ],
+            "result": {
+                "header": "Sample: $25,000 start · $1,000 / mo · 7% return · 25 yrs · 3% inflation",
+                "rows": [
+                    ("Starting amount", "$25,000"),
+                    ("Total contributed", "$300,000"),
+                    ("Future value (nominal)", "$1,012,000"),
+                ],
+                "final_label": "Future value in today's dollars",
+                "final_value": "$483,000",
+                "footnote": "Save as 'Conservative 7%' · run an 'Aggressive 9%' next to it side-by-side.",
+            },
+        },
         "faq": [
             ("Is the investment calculator free?", "Yes — fully free, no ads, no premium tier."),
             ("Does it support compound interest?", "Yes, with daily, monthly, quarterly, and annual compounding options."),
@@ -147,6 +209,26 @@ APPS = {
             ("Bonus allocation", "Choosing whether to put a $3,000 year-end bonus on the 24% APR card or the smallest balance."),
             ("Student loan strategy", "Modelling whether to pay extra now or invest the difference at 7%."),
         ],
+        "demo": {
+            "heading": "Find your debt-free date in 60 seconds",
+            "lead": "List every debt, pick avalanche or snowball, drag an extra payment slider, and watch the debt-free date jump.",
+            "steps": [
+                ("List your debts", "Balance, APR and minimum payment for each card, loan, or balance transfer."),
+                ("Pick a strategy", "Avalanche (highest APR first) or snowball (smallest balance first). Add any extra payment."),
+                ("See your debt-free date", "Exact month and year. Total interest saved compared to minimums-only."),
+            ],
+            "result": {
+                "header": "Sample: 3 cards · $18,200 total · +$300 / mo extra",
+                "rows": [
+                    ("Avalanche debt-free", "Aug 2029"),
+                    ("Snowball debt-free", "Oct 2029"),
+                    ("Interest saved (avalanche)", "$1,847"),
+                ],
+                "final_label": "Months saved vs minimums-only",
+                "final_value": "34 months",
+                "footnote": "Drag the extra-payment slider live; the date and interest update in real time.",
+            },
+        },
         "faq": [
             ("Is Debt-Free Plan free?", "Yes — fully free, no premium tier."),
             ("Does it require a credit check or bank link?", "No. No credit pull, no Plaid, no bank linking. You enter your balances and APRs manually."),
@@ -181,6 +263,26 @@ APPS = {
             ("US BRRRR investing", "Sanity-checking whether the next deal cashflows after PITI, vacancy and management."),
             ("UK buy-to-let", "Modelling gross yield after the post-2025 tax changes and Section 24 mortgage interest rules."),
         ],
+        "demo": {
+            "heading": "Run any property's yield, ROI and cap rate",
+            "lead": "Enter price, rent, and the running costs. Get gross yield, net yield, cap rate and cash-on-cash ROI side-by-side in any currency.",
+            "steps": [
+                ("Enter price + rent", "Purchase price and expected monthly rent. Switch currency in one tap."),
+                ("Add the running costs", "Mortgage, vacancy %, management fee, property tax, insurance, maintenance."),
+                ("See the four metrics", "Gross yield, net yield, cap rate, cash-on-cash ROI — read across at once."),
+            ],
+            "result": {
+                "header": "Sample: HK$8.2M flat · HK$24,000 / mo rent · 70% LTV @ 4.5%",
+                "rows": [
+                    ("Gross yield", "3.51%"),
+                    ("Net yield (after costs)", "2.42%"),
+                    ("Cap rate (NOI / price)", "2.78%"),
+                ],
+                "final_label": "Cash-on-cash ROI",
+                "final_value": "6.10%",
+                "footnote": "Compare three properties side-by-side; the winner highlights in green.",
+            },
+        },
         "faq": [
             ("Is the rental yield calculator free?", "Yes — fully free with no ads."),
             ("What's the difference between gross yield, net yield, cap rate, and cash-on-cash ROI?", "Gross yield is annual rent / price. Net yield subtracts operating expenses. Cap rate uses net operating income / price (institutional standard). Cash-on-cash ROI is annual cash flow / cash actually invested — the only one that accounts for leverage."),
@@ -215,6 +317,26 @@ APPS = {
             ("Tuition remittance", "Sending overseas tuition each term and deciding 'this month or next?' based on the 90-day rank."),
             ("Expat salary", "Paid in HKD, spending in EUR. Knowing when this month's exchange is unusually favourable."),
         ],
+        "demo": {
+            "heading": "Know if today is a good day to exchange",
+            "lead": "Pick a pair, set a baseline window, and get a daily Yes / Wait / Now verdict based on the actual rate percentile.",
+            "steps": [
+                ("Pick a currency pair", "HKD → JPY, USD → HKD, EUR → GBP. Add as many pairs as you watch."),
+                ("Choose your baseline", "Compare today against the last 30, 90, or 365 days."),
+                ("Read today's verdict", "Percentile rank plus a one-sentence Yes / Wait / Now. Optional alerts when a target hits."),
+            ],
+            "result": {
+                "header": "Sample: HKD → JPY today",
+                "rows": [
+                    ("Today's rate", "5.42"),
+                    ("90-day average", "5.21"),
+                    ("90-day percentile", "92%"),
+                ],
+                "final_label": "Today's call",
+                "final_value": "NOW — top 10% of last 90 days",
+                "footnote": "Set a baseline alert at 5.40 and we'll notify you the day it crosses.",
+            },
+        },
         "faq": [
             ("Is RateRadar free?", "Yes — fully free with no banner ads or partner kickbacks."),
             ("Where does the rate data come from?", "Public mid-market FX rates from open sources. No personal data is sent."),
@@ -249,6 +371,26 @@ APPS = {
             ("FIRE couple", "Modelling Coast vs Lean FIRE together without uploading the entire household financial life to a SaaS."),
             ("Independent contractor", "Tracking irregular 1099 income, expenses, and quarterly tax reserves without a Plaid link or accountant subscription."),
         ],
+        "demo": {
+            "heading": "Budget privately. Plan FIRE on your phone.",
+            "lead": "Envelope budgeting, net worth tracking and on-device FIRE projections — your data never leaves the device. The AI advisor runs locally.",
+            "steps": [
+                ("Log income + fixed costs", "Monthly income, rent, utilities, subscriptions. Manual entry, no bank link."),
+                ("Allocate to envelopes", "Distribute the remainder across housing, food, transport, savings, fun."),
+                ("Watch the picture build", "Monthly cash flow, net worth trend, FIRE progress — refreshed live."),
+            ],
+            "result": {
+                "header": "Sample: month snapshot · HKD base",
+                "rows": [
+                    ("Income this month", "HK$58,000"),
+                    ("Envelopes filled", "11 / 12"),
+                    ("Net worth Δ this month", "+HK$8,400"),
+                ],
+                "final_label": "FIRE progress",
+                "final_value": "22% · Coast FIRE in 6.2 yrs",
+                "footnote": "Ask the on-device AI: 'where did $200 extra go in March?' Answer runs locally.",
+            },
+        },
         "faq": [
             ("Is WealthMind free?", "Yes. The full app is free. Optional Pro features may be added later, but the core budget, net worth, and AI advisor will stay free."),
             ("Does WealthMind connect to my bank?", "No. WealthMind is intentionally manual-entry. No Plaid, no MX, no read of your accounts. You stay in control."),
@@ -283,6 +425,26 @@ APPS = {
             ("US restaurant", "Tipping on a pre-tax $86 dinner at 20%, with the per-person total ready for the group chat."),
             ("HK lunch", "Service charge already 10% — toggle it on and the tip calculator handles the rest."),
         ],
+        "demo": {
+            "heading": "Split any bill in 3 seconds",
+            "lead": "Bill, tip %, headcount — done. Plus uneven shares for the friend who didn't drink and round-up so nobody owes 26 cents.",
+            "steps": [
+                ("Enter the bill", "Pre-tax or post-tax base; toggle the HK 10% service charge if it's already on the bill."),
+                ("Pick tip % and people", "Slide 0-30% or tap a preset. Set the headcount; drag a row for an uneven share."),
+                ("Get the per-person total", "Tip, total, per person. Round-up to the nearest dollar so the math is clean."),
+            ],
+            "result": {
+                "header": "Sample: $86 bill · 18% tip · 4 people",
+                "rows": [
+                    ("Tip (18%)", "$15.48"),
+                    ("Total with tip", "$101.48"),
+                    ("Per person (even)", "$25.37"),
+                ],
+                "final_label": "Per person, rounded up",
+                "final_value": "$26 each",
+                "footnote": "Drag a row to give one diner a smaller share — useful when someone didn't drink.",
+            },
+        },
         "faq": [
             ("Is the tip calculator free?", "Yes — fully free with absolutely no ads. Most tip calculators on Play Store are 90% ad; this one is 0%."),
             ("Does it work offline?", "Yes. Open and use, no network needed."),
@@ -382,6 +544,69 @@ def render_features(app_data: dict) -> str:
       <h2 id="features-title">What can {html.escape(app_data["name"])} do?</h2>
       <div class="app-features-grid">
 {items}      </div>
+    </section>
+"""
+
+
+def render_demo(app_data: dict) -> str:
+    """High-conversion 'See it in action' block — placed between
+    Features and Use Cases so a scanning visitor sees the signature
+    workflow (3 numbered steps + a realistic result card) before any
+    persona-based copy. SEO: keywords flow naturally through the
+    heading, lead, step titles and result labels.
+
+    Falls through silently if an app's dict has no `demo` field.
+    """
+    demo = app_data.get("demo")
+    if not demo:
+        return ""
+    steps_html = "".join(
+        f"""        <li class="demo-step">
+          <span class="demo-step-number" aria-hidden="true">{i}</span>
+          <div>
+            <h3>{html.escape(title)}</h3>
+            <p>{html.escape(body)}</p>
+          </div>
+        </li>
+"""
+        for i, (title, body) in enumerate(demo["steps"], start=1)
+    )
+    res = demo["result"]
+    rows_html = "".join(
+        f"""            <div class="demo-result-row">
+              <span class="demo-result-label">{html.escape(label)}</span>
+              <span class="demo-result-value">{html.escape(value)}</span>
+            </div>
+"""
+        for label, value in res["rows"]
+    )
+    footnote_html = (
+        f'<p class="demo-result-footnote">{html.escape(res["footnote"])}</p>'
+        if res.get("footnote") else ""
+    )
+    return f"""
+    <section class="app-demo" aria-labelledby="demo-title">
+      <div class="app-demo-inner">
+        <div class="app-demo-heading">
+          <p class="eyebrow">See it in action</p>
+          <h2 id="demo-title">{html.escape(demo["heading"])}</h2>
+          <p class="section-lead">{html.escape(demo["lead"])}</p>
+        </div>
+        <div class="demo-grid">
+          <ol class="demo-steps">
+{steps_html}          </ol>
+          <aside class="demo-result" aria-label="Example output">
+            <div class="demo-result-header">{html.escape(res["header"])}</div>
+            <div class="demo-result-body">
+{rows_html}            </div>
+            <div class="demo-result-final">
+              <span class="demo-result-label">{html.escape(res["final_label"])}</span>
+              <span class="demo-result-final-value">{html.escape(res["final_value"])}</span>
+            </div>
+            {footnote_html}
+          </aside>
+        </div>
+      </div>
     </section>
 """
 
@@ -572,7 +797,7 @@ def render_page(slug: str, app_data: dict) -> str:
         </div>
       </div>
     </section>
-{render_features(app_data)}{render_use_cases(app_data)}{render_privacy()}{render_screenshots_section(slug)}{render_faq(app_data)}{render_related(app_data)}
+{render_features(app_data)}{render_demo(app_data)}{render_use_cases(app_data)}{render_privacy()}{render_screenshots_section(slug)}{render_faq(app_data)}{render_related(app_data)}
   </main>
 </body>
 </html>
