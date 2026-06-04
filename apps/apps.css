@@ -1,0 +1,355 @@
+/* ============================================================
+   apps.css — shared stylesheet for /apps/<slug>/ landing pages.
+   Layered on /style.css. Uses the global brand tokens:
+     --brand-deep #0f172a, --brand-trust #047857,
+     --brand-soft #f0fdf4, --brand-soft-border #bbf7d0
+   Responsive (mobile-first), respects dark surface if extended.
+   ============================================================ */
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.app-hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 20px 32px;
+  display: grid;
+  grid-template-columns: minmax(120px, 168px) 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.app-hero-icon {
+  width: 100%;
+  max-width: 168px;
+  aspect-ratio: 1 / 1;
+  border-radius: 32px;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-soft-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.app-hero-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.app-hero-icon-fallback {
+  font-size: 56px;
+  color: var(--brand-trust);
+  font-weight: 800;
+}
+.app-hero-text h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px;
+  color: var(--brand-deep);
+  font-weight: 800;
+}
+.app-hero-text .app-hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0 0 18px;
+  max-width: 560px;
+}
+.app-hero-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.app-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brand-soft);
+  color: var(--brand-trust);
+  border: 1px solid var(--brand-soft-border);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+}
+.app-hero-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.app-store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  min-height: 44px;
+  transition: opacity 0.15s;
+}
+.app-store-btn:hover { opacity: 0.85; text-decoration: none; }
+.app-store-btn.google { background: var(--brand-trust); color: #fff; }
+.app-store-btn.apple  { background: var(--brand-deep); color: #fff; }
+.app-store-btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+
+@media (max-width: 640px) {
+  .app-hero { grid-template-columns: 1fr; padding: 36px 18px 24px; }
+  .app-hero-icon { max-width: 96px; }
+  .app-hero-text h1 { font-size: 26px; }
+}
+
+/* ── Section primitives ───────────────────────────────────── */
+.app-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.app-section h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: -0.3px;
+  margin: 0 0 22px;
+  color: var(--brand-deep);
+  font-weight: 800;
+}
+
+/* ── Features grid ────────────────────────────────────────── */
+.app-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .app-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .app-features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.app-feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+}
+.app-feature-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--brand-soft);
+  color: var(--brand-trust);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.app-feature-card h3 {
+  font-size: 16px;
+  margin: 0 0 6px;
+  font-weight: 700;
+  color: var(--brand-deep);
+}
+.app-feature-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ── Use cases ────────────────────────────────────────────── */
+.app-usecase-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .app-usecase-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.app-usecase {
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-soft-border);
+  border-radius: 16px;
+  padding: 22px;
+}
+.app-usecase h3 {
+  font-size: 15.5px;
+  margin: 0 0 8px;
+  color: var(--brand-trust);
+  font-weight: 800;
+}
+.app-usecase p {
+  font-size: 14.5px;
+  color: var(--brand-deep);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ── Privacy promise (4-row check list, dark card) ───────── */
+.app-privacy {
+  background: var(--brand-deep);
+  color: #fff;
+  border-radius: 24px;
+  padding: 36px 28px;
+  max-width: 1080px;
+  margin: 40px auto;
+}
+.app-privacy h2 { color: #fff; margin-bottom: 16px; }
+.app-privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 720px) {
+  .app-privacy-list { grid-template-columns: repeat(2, 1fr); }
+}
+.app-privacy-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.app-privacy-list .check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--brand-trust);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* ── Screenshots strip ────────────────────────────────────── */
+.app-screenshots {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 4px 4px 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.app-screenshots img {
+  flex: 0 0 auto;
+  width: 220px;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  scroll-snap-align: start;
+}
+.app-screenshots-empty {
+  background: var(--surface-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: 16px;
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--text-subtle);
+  font-size: 14px;
+}
+
+/* ── FAQ accordion ────────────────────────────────────────── */
+.app-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.app-faq details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.app-faq details[open] { border-color: var(--brand-soft-border); background: var(--brand-soft); }
+.app-faq summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--brand-deep);
+  font-size: 15.5px;
+}
+.app-faq summary::-webkit-details-marker { display: none; }
+.app-faq summary::after {
+  content: "+";
+  float: right;
+  color: var(--brand-trust);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+}
+.app-faq details[open] summary::after { content: "−"; }
+.app-faq .answer {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* ── Related apps (You might also like) ──────────────────── */
+.app-related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .app-related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.app-related-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: box-shadow 0.18s, transform 0.12s;
+}
+.app-related-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  text-decoration: none;
+  border-color: var(--brand-soft-border);
+}
+.app-related-card img {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: var(--brand-soft);
+}
+.app-related-card-fallback {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--brand-soft);
+  color: var(--brand-trust);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.app-related-card h3 {
+  font-size: 15px;
+  margin: 0 0 2px;
+  color: var(--brand-deep);
+  font-weight: 700;
+}
+.app-related-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.45;
+}

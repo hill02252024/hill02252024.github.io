@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator: PITI, PMI, FHA, VA, Refinance | Free</title>
+  <meta name="description" content="Free offline mortgage calculator. PITI payments, FHA/VA/USDA, refinance break-even, DTI affordability. No signup, no lender funnel, no tracking.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://todays-tasks.com/apps/mortgage-calc/">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hills App">
+  <meta property="og:title" content="Mortgage Calculator: PITI, PMI, FHA, VA, Refinance | Free">
+  <meta property="og:description" content="Free offline mortgage calculator. PITI payments, FHA/VA/USDA, refinance break-even, DTI affordability. No signup, no lender funnel, no tracking.">
+  <meta property="og:url" content="https://todays-tasks.com/apps/mortgage-calc/">
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/mortgage-calc/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mortgage Calculator: PITI, PMI, FHA, VA, Refinance | Free">
+  <meta name="twitter:description" content="Free offline mortgage calculator. PITI payments, FHA/VA/USDA, refinance break-even, DTI affordability. No signup, no lender funnel, no tracking.">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/apps/apps.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Mortgage Calc",
+  "url": "https://todays-tasks.com/apps/mortgage-calc/",
+  "description": "Free offline mortgage calculator. PITI payments, FHA/VA/USDA, refinance break-even, DTI affordability. No signup, no lender funnel, no tracking.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android, iOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hills App",
+    "url": "https://todays-tasks.com"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Mortgage Calc free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — completely free. No paywalls, no premium tier, no upsells. The whole calculator is free forever."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Mortgage Calc work without internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All the math runs on your phone. Only the optional weekly PMMS rate refresh uses the network; everything else is offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do the rate defaults come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Freddie Mac Primary Mortgage Market Survey (PMMS). The app shows an explicit 'rates as of {date}' stamp — no false real-time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Mortgage Calc sell my data to lenders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We have no server, no lender partner, and no referral kickback. We can't sell your data because we never have it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it include PMI and FHA MIP correctly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PMI auto-drops at 78% LTV by federal law; we model that. FHA life-of-loan MIP under 10% down is also handled."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the affordability calculator accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses standard 28/36 (Fannie Mae conventional) and 31/43 (QM rule) DTI thresholds. Co-borrower income is summed gross."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <main>
+    <section class="app-hero">
+      <div class="app-hero-icon"><img src="/assets/apps/mortgage-calc/icon.png" alt="Mortgage Calc icon" width="168" height="168"></div>
+      <div class="app-hero-text">
+        <h1>Mortgage Calc</h1>
+        <p class="app-hero-sub">PITI, PMI, FHA, VA, USDA &amp; refinance break-even. Offline. No lender funnel.</p>
+        <div class="app-hero-badges">
+        <span class="app-hero-badge">✓ 100% Offline</span>
+        <span class="app-hero-badge">✓ No Lender Funnel</span>
+        <span class="app-hero-badge">✓ All 50 States</span>
+        </div>
+        <div class="app-hero-cta">
+          <a class="app-store-btn google" aria-disabled="true" href="#coming-soon"> Google Play (soon)</a>
+          <a class="app-store-btn apple" aria-disabled="true" href="#coming-soon"> App Store (soon)</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="features-title">
+      <h2 id="features-title">What can Mortgage Calc do?</h2>
+      <div class="app-features-grid">
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🏠</div>
+          <h3>True PITI payment</h3>
+          <p>Principal, interest, taxes, insurance, HOA and PMI — the real number, not the teaser P&amp;I.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">📋</div>
+          <h3>All loan types</h3>
+          <p>Conventional, FHA, VA, USDA with correct PMI 78% auto-drop, FHA life-of-loan MIP, VA funding fee, USDA annual fee.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">📈</div>
+          <h3>ARM modelling</h3>
+          <p>5/1, 7/1, 10/1 ARMs with worst-case payment shock under 2/2/5 caps.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">⚖️</div>
+          <h3>Affordability DTI</h3>
+          <p>28/36 Comfortable vs 31/43 Stretched (QM-rule). Co-borrower income supported.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🔄</div>
+          <h3>Refinance break-even</h3>
+          <p>Break-even months, lifetime savings, and a one-sentence verdict you can act on.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">📍</div>
+          <h3>50 states + DC</h3>
+          <p>State-specific property tax and insurance defaults for every U.S. state.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="usecase-title">
+      <h2 id="usecase-title">Who is this for?</h2>
+      <div class="app-usecase-grid">
+        <article class="app-usecase">
+          <h3>First-time buyer</h3>
+          <p>Comparing a 30-year fixed vs a 7/1 ARM before locking. See the worst-case rate-shock month in seconds.</p>
+        </article>
+        <article class="app-usecase">
+          <h3>Refinance shopper</h3>
+          <p>Checking break-even months at today&#x27;s rate before the next Fed meeting moves the curve.</p>
+        </article>
+        <article class="app-usecase">
+          <h3>Affordability check</h3>
+          <p>Running the 28/36 comfort DTI with a co-borrower&#x27;s income to see what&#x27;s actually safe.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="app-privacy" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Your privacy, our priority</h2>
+      <ul class="app-privacy-list">
+        <li><span class="check" aria-hidden="true">✓</span>Works completely offline</li>
+        <li><span class="check" aria-hidden="true">✓</span>No account or signup required</li>
+        <li><span class="check" aria-hidden="true">✓</span>Zero data uploaded to any server</li>
+        <li><span class="check" aria-hidden="true">✓</span>No ads, no tracking, no hidden costs</li>
+      </ul>
+    </section>
+
+    <section class="app-section">
+      <h2>Screenshots</h2>
+      <div class="app-screenshots-empty">Screenshots coming soon.</div>
+    </section>
+
+    <section class="app-section" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently Asked Questions</h2>
+      <div class="app-faq">
+        <details>
+          <summary>Is Mortgage Calc free?</summary>
+          <div class="answer">Yes — completely free. No paywalls, no premium tier, no upsells. The whole calculator is free forever.</div>
+        </details>
+        <details>
+          <summary>Does Mortgage Calc work without internet?</summary>
+          <div class="answer">Yes. All the math runs on your phone. Only the optional weekly PMMS rate refresh uses the network; everything else is offline.</div>
+        </details>
+        <details>
+          <summary>Where do the rate defaults come from?</summary>
+          <div class="answer">Freddie Mac Primary Mortgage Market Survey (PMMS). The app shows an explicit &#x27;rates as of {date}&#x27; stamp — no false real-time.</div>
+        </details>
+        <details>
+          <summary>Does Mortgage Calc sell my data to lenders?</summary>
+          <div class="answer">No. We have no server, no lender partner, and no referral kickback. We can&#x27;t sell your data because we never have it.</div>
+        </details>
+        <details>
+          <summary>Does it include PMI and FHA MIP correctly?</summary>
+          <div class="answer">Yes. PMI auto-drops at 78% LTV by federal law; we model that. FHA life-of-loan MIP under 10% down is also handled.</div>
+        </details>
+        <details>
+          <summary>Is the affordability calculator accurate?</summary>
+          <div class="answer">It uses standard 28/36 (Fannie Mae conventional) and 31/43 (QM rule) DTI thresholds. Co-borrower income is summed gross.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="related-title">
+      <h2 id="related-title">You might also like</h2>
+      <div class="app-related-grid">
+        <a class="app-related-card" href="/apps/investment-calculator/">
+          <img src="/assets/apps/investment-calculator/icon.png" alt="Investment Calculator icon" loading="lazy" width="48" height="48">
+          <div>
+            <h3>Investment Calculator</h3>
+            <p>Compound interest, monthly SIP, dividend DRIP, inflation-adjusted projections.</p>
+          </div>
+        </a>
+        <a class="app-related-card" href="/apps/debt-free-plan/">
+          <img src="/assets/apps/debt-free-plan/icon.png" alt="Debt-Free Plan icon" loading="lazy" width="48" height="48">
+          <div>
+            <h3>Debt-Free Plan</h3>
+            <p>Avalanche vs snowball. Credit card payoff calculator. See your debt-free date.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

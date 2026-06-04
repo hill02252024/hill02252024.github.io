@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Yield Calculator: Cap Rate &amp; Cash-on-Cash ROI</title>
+  <meta name="description" content="Free offline rental yield &amp; ROI calculator. Gross/net yield, cap rate, cash-on-cash. Multi-currency: HKD, USD, GBP. No signup, no agent contact.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://todays-tasks.com/apps/rental-yield-calculator/">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hills App">
+  <meta property="og:title" content="Rental Yield Calculator: Cap Rate &amp; Cash-on-Cash ROI">
+  <meta property="og:description" content="Free offline rental yield &amp; ROI calculator. Gross/net yield, cap rate, cash-on-cash. Multi-currency: HKD, USD, GBP. No signup, no agent contact.">
+  <meta property="og:url" content="https://todays-tasks.com/apps/rental-yield-calculator/">
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/rental-yield-calculator/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rental Yield Calculator: Cap Rate &amp; Cash-on-Cash ROI">
+  <meta name="twitter:description" content="Free offline rental yield &amp; ROI calculator. Gross/net yield, cap rate, cash-on-cash. Multi-currency: HKD, USD, GBP. No signup, no agent contact.">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/apps/apps.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Rental Yield Calculator",
+  "url": "https://todays-tasks.com/apps/rental-yield-calculator/",
+  "description": "Free offline rental yield & ROI calculator. Gross/net yield, cap rate, cash-on-cash. Multi-currency: HKD, USD, GBP. No signup, no agent contact.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Android, iOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hills App",
+    "url": "https://todays-tasks.com"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the rental yield calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — fully free with no ads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between gross yield, net yield, cap rate, and cash-on-cash ROI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gross yield is annual rent / price. Net yield subtracts operating expenses. Cap rate uses net operating income / price (institutional standard). Cash-on-cash ROI is annual cash flow / cash actually invested — the only one that accounts for leverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it support Hong Kong property tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. HK property tax presets are built in, alongside US, UK, and EU defaults."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I model a mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — leverage modelling factors PITI into the monthly cash flow so you see cash-on-cash ROI honestly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All calculations are local. Currency conversion uses cached mid-market rates after first sync."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compare multiple properties?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — three side-by-side with all four key metrics visible."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <main>
+    <section class="app-hero">
+      <div class="app-hero-icon"><img src="/assets/apps/rental-yield-calculator/icon.png" alt="Rental Yield Calculator icon" width="168" height="168"></div>
+      <div class="app-hero-text">
+        <h1>Rental Yield Calculator</h1>
+        <p class="app-hero-sub">Gross &amp; net rental yield, cap rate, cash-on-cash ROI for global property.</p>
+        <div class="app-hero-badges">
+        <span class="app-hero-badge">✓ Multi-Currency</span>
+        <span class="app-hero-badge">✓ 100% Offline</span>
+        <span class="app-hero-badge">✓ Global Markets</span>
+        </div>
+        <div class="app-hero-cta">
+          <a class="app-store-btn google" aria-disabled="true" href="#coming-soon"> Google Play (soon)</a>
+          <a class="app-store-btn apple" aria-disabled="true" href="#coming-soon"> App Store (soon)</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="features-title">
+      <h2 id="features-title">What can Rental Yield Calculator do?</h2>
+      <div class="app-features-grid">
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">📊</div>
+          <h3>Gross &amp; net yield</h3>
+          <p>Headline screening number plus the net yield after vacancy, fees, repairs, insurance and taxes.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🏢</div>
+          <h3>Cap rate</h3>
+          <p>Net operating income / property value — the institutional benchmark, calculated cleanly.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">💰</div>
+          <h3>Cash-on-cash ROI</h3>
+          <p>Actual cash return on actual cash invested (downpayment + closing costs). The honest number.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🌐</div>
+          <h3>Multi-currency</h3>
+          <p>HKD, USD, GBP, EUR, JPY, SGD, AUD, CAD and more. Switch currencies in one tap.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🏠</div>
+          <h3>Leverage modelling</h3>
+          <p>Mortgage payment factored into monthly cash flow. See what&#x27;s actually cashflow-positive.</p>
+        </div>
+        <div class="app-feature-card">
+          <div class="app-feature-icon" aria-hidden="true">🆚</div>
+          <h3>Side-by-side compare</h3>
+          <p>Three properties at a glance. Yield, cap rate, ROI, cash flow — all four metrics, in one screen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="usecase-title">
+      <h2 id="usecase-title">Who is this for?</h2>
+      <div class="app-usecase-grid">
+        <article class="app-usecase">
+          <h3>HK property hunting</h3>
+          <p>Comparing a Sheung Wan flat to a Tsuen Wan unit before viewing. Net yield with HK property tax built in.</p>
+        </article>
+        <article class="app-usecase">
+          <h3>US BRRRR investing</h3>
+          <p>Sanity-checking whether the next deal cashflows after PITI, vacancy and management.</p>
+        </article>
+        <article class="app-usecase">
+          <h3>UK buy-to-let</h3>
+          <p>Modelling gross yield after the post-2025 tax changes and Section 24 mortgage interest rules.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="app-privacy" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Your privacy, our priority</h2>
+      <ul class="app-privacy-list">
+        <li><span class="check" aria-hidden="true">✓</span>Works completely offline</li>
+        <li><span class="check" aria-hidden="true">✓</span>No account or signup required</li>
+        <li><span class="check" aria-hidden="true">✓</span>Zero data uploaded to any server</li>
+        <li><span class="check" aria-hidden="true">✓</span>No ads, no tracking, no hidden costs</li>
+      </ul>
+    </section>
+
+    <section class="app-section">
+      <h2>Screenshots</h2>
+      <div class="app-screenshots">
+        <img src="/assets/apps/rental-yield-calculator/01_calculator_home.png" alt="01 calculator home" loading="lazy" decoding="async" width="220">
+        <img src="/assets/apps/rental-yield-calculator/02_result_hero.png" alt="02 result hero" loading="lazy" decoding="async" width="220">
+        <img src="/assets/apps/rental-yield-calculator/03_cash_vs_mortgage.png" alt="03 cash vs mortgage" loading="lazy" decoding="async" width="220">
+        <img src="/assets/apps/rental-yield-calculator/04_formula_sheet.png" alt="04 formula sheet" loading="lazy" decoding="async" width="220">
+        <img src="/assets/apps/rental-yield-calculator/05_saved_scenarios.png" alt="05 saved scenarios" loading="lazy" decoding="async" width="220">
+        <img src="/assets/apps/rental-yield-calculator/06_settings.png" alt="06 settings" loading="lazy" decoding="async" width="220">
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently Asked Questions</h2>
+      <div class="app-faq">
+        <details>
+          <summary>Is the rental yield calculator free?</summary>
+          <div class="answer">Yes — fully free with no ads.</div>
+        </details>
+        <details>
+          <summary>What&#x27;s the difference between gross yield, net yield, cap rate, and cash-on-cash ROI?</summary>
+          <div class="answer">Gross yield is annual rent / price. Net yield subtracts operating expenses. Cap rate uses net operating income / price (institutional standard). Cash-on-cash ROI is annual cash flow / cash actually invested — the only one that accounts for leverage.</div>
+        </details>
+        <details>
+          <summary>Does it support Hong Kong property tax?</summary>
+          <div class="answer">Yes. HK property tax presets are built in, alongside US, UK, and EU defaults.</div>
+        </details>
+        <details>
+          <summary>Can I model a mortgage?</summary>
+          <div class="answer">Yes — leverage modelling factors PITI into the monthly cash flow so you see cash-on-cash ROI honestly.</div>
+        </details>
+        <details>
+          <summary>Does it work offline?</summary>
+          <div class="answer">Yes. All calculations are local. Currency conversion uses cached mid-market rates after first sync.</div>
+        </details>
+        <details>
+          <summary>Can I compare multiple properties?</summary>
+          <div class="answer">Yes — three side-by-side with all four key metrics visible.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="app-section" aria-labelledby="related-title">
+      <h2 id="related-title">You might also like</h2>
+      <div class="app-related-grid">
+        <a class="app-related-card" href="/apps/mortgage-calc/">
+          <img src="/assets/apps/mortgage-calc/icon.png" alt="Mortgage Calc icon" loading="lazy" width="48" height="48">
+          <div>
+            <h3>Mortgage Calc</h3>
+            <p>PITI, PMI, FHA, VA, USDA &amp; refinance break-even. Offline. No lender funnel.</p>
+          </div>
+        </a>
+        <a class="app-related-card" href="/apps/investment-calculator/">
+          <img src="/assets/apps/investment-calculator/icon.png" alt="Investment Calculator icon" loading="lazy" width="48" height="48">
+          <div>
+            <h3>Investment Calculator</h3>
+            <p>Compound interest, monthly SIP, dividend DRIP, inflation-adjusted projections.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
