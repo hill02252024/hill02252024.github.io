@@ -13,10 +13,10 @@ For each app this file gives you:
 
 ---
 
-## 1. Mortgage Calc
+## 1. Mortgage & Loan Calculator
 
 **Slug:** `mortgage-calc`
-**Play Store title (≤30):** `Mortgage Calculator: PITI & DTI`  (29)
+**Play Store title (≤30):** `Mortgage & Loan Calculatorulator: PITI & DTI`  (29)
 **Short description (≤80):**
 `PITI, PMI, FHA, VA, USDA & refinance break-even. Offline. No lender funnel.`  (76)
 
@@ -37,7 +37,7 @@ See the **true** monthly cost of buying a home — principal, interest, taxes, i
 ✓ **PMI-to-20%** and **rate-sensitivity** previews ("what if I put more down")
 ✓ **Share to iMessage / Mail / Slack** or one-tap copy to clipboard
 
-**Your numbers stay yours.** Mortgage Calc runs 100% on-device. No account. No signup. No tracking. No lender referrals. No "rates as low as" theatre. We can't see your home price, your salary, or your debt — because nothing is uploaded.
+**Your numbers stay yours.** Mortgage & Loan Calculator runs 100% on-device. No account. No signup. No tracking. No lender referrals. No "rates as low as" theatre. We can't see your home price, your salary, or your debt — because nothing is uploaded.
 
 **Built for the moments that matter:**
 First-time buyers stress-testing a 7/1 ARM before locking. Refinance shoppers checking break-even before the rate moves. Investors running affordability across a co-borrower. Anyone tired of mortgage calculators that demand an email and a phone number before showing a payment.
@@ -48,17 +48,17 @@ Rates anchored to **Freddie Mac PMMS** weekly survey with an explicit "as of {da
 
 Download free now — no signup, no upload, no nonsense.
 
-**Meta title (≤60):** `Mortgage Calculator: PITI, PMI, FHA, VA, Refinance | Free`  (58)
+**Meta title (≤60):** `Mortgage & Loan Calculatorulator: PITI, PMI, FHA, VA, Refinance | Free`  (58)
 **Meta description (≤155):** `Free offline mortgage calculator. PITI payments, FHA/VA/USDA, refinance break-even, DTI affordability. No signup, no lender funnel, no tracking.`  (151)
 
 **Primary keywords (6):** mortgage calculator, PITI calculator, FHA loan calculator, mortgage refinance calculator, DTI affordability calculator, offline mortgage calculator
 
 ---
 
-## 2. Take-Home Paycheck Calculator
+## 2. Paycheck Calculator
 
 **Slug:** `paycheck-calculator`
-**Play Store title (≤30):** `Take-Home Paycheck Calculator`  (29)
+**Play Store title (≤30):** `Paycheck Calculator`  (29)
 **Short description (≤80):**
 `U.S. paycheck calculator: federal, FICA, 50 states & 11 city wage taxes.`  (72)
 
@@ -66,7 +66,7 @@ Download free now — no signup, no upload, no nonsense.
 
 > See your real take-home pay — federal, FICA, state, and city wage taxes — in 10 seconds. No signup, no upload.
 
-Whether you're comparing two job offers on the subway home, sizing a raise, or projecting a bonus, Take-Home gives you the after-tax number that actually lands in your bank account. Built for U.S. workers in 2026 with the current IRS percentage-method tables, all 50 states, and the 11 major cities that levy their own wage tax.
+Whether you're comparing two job offers on the subway home, sizing a raise, or projecting a bonus, Paycheck Calculator gives you the after-tax number that actually lands in your bank account. Built for U.S. workers in 2026 with the current IRS percentage-method tables, all 50 states, and the 11 major cities that levy their own wage tax.
 
 ✓ **Federal income tax** using the 2026 IRS percentage-method tables (single, married, head-of-household)
 ✓ **FICA** — Social Security and Medicare with the wage cap correctly applied
@@ -79,26 +79,26 @@ Whether you're comparing two job offers on the subway home, sizing a raise, or p
 ✓ **Self-employed mode** — add the self-employment tax for 1099 income
 ✓ **Share or copy** the breakdown for negotiations, planning, or your spouse
 
-**Your salary stays private.** Take-Home runs 100% offline. No account. No email. No uploaded W-2. No marketing pixel watching your raise. The math runs in your phone — we have no server in the loop.
+**Your salary stays private.** Paycheck Calculator runs 100% offline. No account. No email. No uploaded W-2. No marketing pixel watching your raise. The math runs in your phone — we have no server in the loop.
 
-**Real situations Take-Home was built for:**
+**Real situations Paycheck Calculator was built for:**
 Negotiating an offer in a different state and wondering what the net actually changes. Deciding whether to bump your 401(k) from 6% to 10%. Confirming what a $5,000 year-end bonus looks like after federal + FICA + your state. Comparing W-2 to 1099 contractor income side-by-side.
 
 **Why an offline paycheck calculator matters:** your salary is one of the most sensitive numbers you own. Web paycheck calculators routinely sell intent data to recruiters and ad networks. Ours doesn't have a server to send it to.
 
 Download free now — fast, accurate, private.
 
-**Meta title (≤60):** `Take-Home Paycheck Calculator (USA, 2026) — Free Offline`  (58)
+**Meta title (≤60):** `Paycheck Calculator (USA, 2026) — Free Offline`  (58)
 **Meta description (≤155):** `Free offline U.S. paycheck calculator. Federal, FICA, 50 states & 11 city wage taxes. 401(k), bonus & raise scenarios. No signup, no tracking.`  (151)
 
 **Primary keywords (6):** take-home pay calculator, paycheck calculator, salary calculator USA, after-tax paycheck calculator, 401k paycheck calculator, state income tax calculator
 
 ---
 
-## 3. Investment Calculator
+## 3. Dividend Calculator & ETF SIP
 
 **Slug:** `investment-calculator`
-**Play Store title (≤30):** `Investment Calculator: SIP & DRIP`  (29)
+**Play Store title (≤30):** `Dividend Calculator & ETF SIP: SIP & DRIP`  (29)
 **Short description (≤80):**
 `Compound interest, monthly SIP, dividend DRIP, inflation-adjusted. Offline.`  (76)
 
@@ -119,7 +119,7 @@ Most investment calculators on the web are calorie-counted by their hosting plat
 ✓ **Tax-drag toggle** — see the impact of capital gains and dividend tax
 ✓ **Share scenarios** — send the projection table to your spouse or accountant
 
-**Your portfolio plans stay private.** Investment Calculator is 100% offline. No account. No upload. No advisor referral. The numbers you enter — current portfolio, monthly contribution, target retirement amount — never leave the device.
+**Your portfolio plans stay private.** Dividend Calculator & ETF SIP is 100% offline. No account. No upload. No advisor referral. The numbers you enter — current portfolio, monthly contribution, target retirement amount — never leave the device.
 
 **Built for:**
 Long-term investors running FIRE projections. Parents calculating a college savings plan. Salaried workers deciding 401(k) vs Roth IRA allocation. Anyone modelling "what if I add an extra $200/month" without signing up for another fintech newsletter.
@@ -128,17 +128,17 @@ Long-term investors running FIRE projections. Parents calculating a college savi
 
 Download free now — fast, accurate, private. Plan in peace.
 
-**Meta title (≤60):** `Investment Calculator: SIP, DRIP & Compound Interest, Free`  (60)
+**Meta title (≤60):** `Dividend Calculator & ETF SIP: SIP, DRIP & Compound Interest, Free`  (60)
 **Meta description (≤155):** `Free offline investment calculator. Compound interest, monthly SIP, dividend DRIP, inflation-adjusted growth, saved scenarios. No signup. No tracking.`  (154)
 
 **Primary keywords (6):** investment calculator, compound interest calculator, SIP calculator, dividend calculator, FIRE calculator, retirement calculator
 
 ---
 
-## 4. Debt-Free Plan
+## 4. Credit Card Payoff Plan
 
 **Slug:** `debt-free-plan`
-**Play Store title (≤30):** `Debt-Free Plan: Payoff Calculator`  (29)
+**Play Store title (≤30):** `Credit Card Payoff Plan: Payoff Calculator`  (29)
 **Short description (≤80):**
 `Avalanche vs snowball. Credit card payoff calculator. See your debt-free date.`  (78)
 
@@ -146,7 +146,7 @@ Download free now — fast, accurate, private. Plan in peace.
 
 > See your real debt-free date — avalanche vs snowball, credit-card payoff, multi-debt timeline — without sharing a single number with a fintech.
 
-The credit card you opened last summer is quietly costing you a vacation a year. Debt-Free Plan shows you, in one screen, exactly which payoff strategy gets you out fastest and how much interest you'll save. No "talk to a debt consolidator" funnel. No income verification. No upload of your statements.
+The credit card you opened last summer is quietly costing you a vacation a year. Credit Card Payoff Plan shows you, in one screen, exactly which payoff strategy gets you out fastest and how much interest you'll save. No "talk to a debt consolidator" funnel. No income verification. No upload of your statements.
 
 ✓ **Avalanche vs snowball** side-by-side with the actual interest-saved dollar gap
 ✓ **Multi-debt timeline** — track every credit card, student loan, and personal loan in one plan
@@ -159,7 +159,7 @@ The credit card you opened last summer is quietly costing you a vacation a year.
 ✓ **Lump sum allocation** — tax refund / bonus directed by avalanche or snowball
 ✓ **Share your plan** — send the timeline to your spouse or accountability partner
 
-**Your debts stay private.** Debt-Free Plan is 100% offline. No account. No bank linking. No credit-pull. No upload of statements. The balances, APRs, and payment amounts live only on your phone.
+**Your debts stay private.** Credit Card Payoff Plan is 100% offline. No account. No bank linking. No credit-pull. No upload of statements. The balances, APRs, and payment amounts live only on your phone.
 
 **Built for:**
 The person staring at three credit cards wondering which to attack first. The couple deciding whether to put a $3,000 bonus on the highest-APR card or the smallest balance. The recent grad weighing student-loan strategy. Anyone who tried a "debt-consolidation calculator" website and saw 14 phone-number-required forms before getting a number.
@@ -168,14 +168,14 @@ The person staring at three credit cards wondering which to attack first. The co
 
 Download free now — see your debt-free date in 60 seconds.
 
-**Meta title (≤60):** `Debt-Free Plan: Avalanche vs Snowball Payoff Calculator`  (56)
+**Meta title (≤60):** `Credit Card Payoff Plan: Avalanche vs Snowball Payoff Calculator`  (56)
 **Meta description (≤155):** `Free offline debt payoff calculator. Avalanche vs snowball, credit-card payoff timeline, debt-free date, interest saved. No signup, no credit pull.`  (153)
 
 **Primary keywords (6):** debt payoff calculator, credit card payoff calculator, debt snowball calculator, debt avalanche calculator, debt-free date calculator, debt consolidation calculator
 
 ---
 
-## 5. Rental Yield Calculator
+## 5. Rental Yield & ROI Calculator
 
 **Slug:** `rental-yield-calculator`
 **Play Store title (≤30):** `Rental Yield & ROI Calculator`  (29)
@@ -208,7 +208,7 @@ HK investors comparing yields between Sheung Wan and Tsuen Wan before viewing. U
 
 Download free now — model any property, any currency, in your pocket.
 
-**Meta title (≤60):** `Rental Yield Calculator: Cap Rate & Cash-on-Cash ROI`  (53)
+**Meta title (≤60):** `Rental Yield & ROI Calculator: Cap Rate & Cash-on-Cash ROI`  (53)
 **Meta description (≤155):** `Free offline rental yield & ROI calculator. Gross/net yield, cap rate, cash-on-cash. Multi-currency: HKD, USD, GBP. No signup, no agent contact.`  (152)
 
 **Primary keywords (6):** rental yield calculator, cap rate calculator, cash on cash ROI calculator, buy to let calculator, property investment calculator, rental property calculator
@@ -272,7 +272,7 @@ Every other AI-powered budgeting app sends your transactions to a cloud LLM to g
 ✓ **Net worth tracker** — assets, liabilities, monthly delta, year-over-year chart
 ✓ **FIRE planner** — Coast FIRE, Lean FIRE, Fat FIRE projections with current burn rate
 ✓ **On-device AI advisor** — ask "can I afford this trip?" or "where did $200 go this month?"
-✓ **Debt payoff** integrated with the avalanche/snowball logic from Debt-Free Plan
+✓ **Debt payoff** integrated with the avalanche/snowball logic from Credit Card Payoff Plan
 ✓ **AES-256 encrypted backups** — optional Google Drive backup, encrypted before upload
 ✓ **Multi-currency** — base in HKD, USD, GBP, or any major currency
 ✓ **Goal tracking** — emergency fund, downpayment, retirement, side-by-side progress
@@ -295,10 +295,10 @@ Download free now — the budget that doesn't budget you.
 
 ---
 
-## 8. Tip Calculator & Bill Splitter
+## 8. Tipright: Tip Calculator
 
 **Slug:** `tip-calculator`
-**Play Store title (≤30):** `Tip Calculator & Bill Splitter`  (30)
+**Play Store title (≤30):** `Tipright: Tip Calculator`  (30)
 **Short description (≤80):**
 `Tip calculator, bill splitter, per-person totals. Offline. No ads.`  (66)
 
@@ -328,7 +328,7 @@ Group dinners where someone always splits unevenly because they didn't drink. HK
 
 Download free now — finally, a tip calculator without the noise.
 
-**Meta title (≤60):** `Tip Calculator & Bill Splitter — Offline, No Ads`  (49)
+**Meta title (≤60):** `Tipright: Tip Calculator — Offline, No Ads`  (49)
 **Meta description (≤155):** `Free offline tip calculator and bill splitter. Multi-currency: USD, HKD, EUR. Even or uneven split, tax-aware, round-up. No ads, no signup, no tracking.`  (153)
 
 **Primary keywords (6):** tip calculator, bill splitter, tip percentage calculator, restaurant tip calculator, group bill calculator, tip and split calculator
