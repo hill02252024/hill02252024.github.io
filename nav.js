@@ -83,6 +83,7 @@
             '<div class="site-footer-v2-col-title">Trust</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/privacy.html">Privacy Policy</a>' +
+              '<a href="/terms.html">Terms of Service</a>' +
               '<a href="/contact.html">Contact</a>' +
             '</div>' +
           '</div>' +

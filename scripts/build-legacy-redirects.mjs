@@ -1,5 +1,13 @@
 // scripts/build-legacy-redirects.mjs
 //
+// ⚠️ DEPRECATED (2026-06-10): The /posts/*.html redirect stubs were
+// intentionally DELETED. They were client-side (meta-refresh/JS) soft
+// redirects pointing at the now-permanently-noindex /china/posts/* set,
+// which produced "Page with redirect" + "Duplicate, Google chose a
+// different canonical" noise in Search Console for zero indexing benefit.
+// DO NOT re-run this script — it would recreate that noise. The old
+// /posts/N.html URLs now correctly return 404 (Google will drop them).
+//
 // Generates one tiny redirect-stub HTML per legacy /posts/N.html URL that
 // Google still has in its index from the pre-/china/ subfolder era.
 //

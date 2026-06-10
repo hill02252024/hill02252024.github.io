@@ -87,6 +87,7 @@ const STATIC_PAGES = [
   "/about.html",
   "/contact.html",
   "/privacy.html",
+  "/terms.html",
   "/productivity-tips.html",
   "/productivity-tips-busy-professionals.html",
   "/time-management-strategies.html",
