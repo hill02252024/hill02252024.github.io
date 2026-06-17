@@ -1,27 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-06-16T20:52:07.273Z</lastmod></url>
+  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-06-17T11:47:51.653Z</lastmod></url>
   <url><loc>https://todays-tasks.com/about.html</loc></url>
-  <url><loc>https://todays-tasks.com/contact.html</loc></url>
-  <url><loc>https://todays-tasks.com/privacy.html</loc></url>
-  <url><loc>https://todays-tasks.com/terms.html</loc></url>
-  <url><loc>https://todays-tasks.com/productivity-tips.html</loc></url>
-  <url><loc>https://todays-tasks.com/productivity-tips-busy-professionals.html</loc></url>
-  <url><loc>https://todays-tasks.com/time-management-strategies.html</loc></url>
-  <url><loc>https://todays-tasks.com/digital-vs-paper-todo-lists.html</loc></url>
-  <url><loc>https://todays-tasks.com/how-to-use-todays-tasks.html</loc></url>
-  <url><loc>https://todays-tasks.com/weekly-review-checklist.html</loc></url>
-  <url><loc>https://todays-tasks.com/time-blocking-guide.html</loc></url>
-  <url><loc>https://todays-tasks.com/etsy-guides.html</loc></url>
-  <url><loc>https://todays-tasks.com/todo.html</loc></url>
-  <url><loc>https://todays-tasks.com/new-tab.html</loc></url>
+  <url><loc>https://todays-tasks.com/apps.html</loc></url>
+  <url><loc>https://todays-tasks.com/apps/debt-free-plan/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/investment-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/mortgage-calc/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/paycheck-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/rateradar/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/rental-yield-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/tip-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/apps/wealthmind/</loc></url>
   <url><loc>https://todays-tasks.com/compare/</loc></url>
+  <url><loc>https://todays-tasks.com/compare/asana-vs-todays-tasks.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/no-signup-to-do-list-apps.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/notion-alternatives-daily-tasks.html</loc></url>
+  <url><loc>https://todays-tasks.com/compare/notion-vs-todays-tasks.html</loc></url>
+  <url><loc>https://todays-tasks.com/compare/simple-daily-planner-apps.html</loc></url>
+  <url><loc>https://todays-tasks.com/compare/todoist-vs-notion-vs-todays-tasks.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/todoist-vs-todays-tasks.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/what-i-use-instead-of-notion.html</loc></url>
-  <url><loc>https://todays-tasks.com/compare/notion-vs-todays-tasks.html</loc></url>
-  <url><loc>https://todays-tasks.com/compare/asana-vs-todays-tasks.html</loc></url>
-  <url><loc>https://todays-tasks.com/compare/todoist-vs-notion-vs-todays-tasks.html</loc></url>
-  <url><loc>https://todays-tasks.com/compare/simple-daily-planner-apps.html</loc></url>
+  <url><loc>https://todays-tasks.com/contact.html</loc></url>
+  <url><loc>https://todays-tasks.com/digital-vs-paper-todo-lists.html</loc></url>
+  <url><loc>https://todays-tasks.com/etsy-guides.html</loc></url>
+  <url><loc>https://todays-tasks.com/how-to-use-todays-tasks.html</loc></url>
+  <url><loc>https://todays-tasks.com/learn/why-local.html</loc></url>
+  <url><loc>https://todays-tasks.com/new-tab.html</loc></url>
+  <url><loc>https://todays-tasks.com/pricing.html</loc></url>
+  <url><loc>https://todays-tasks.com/privacy.html</loc></url>
+  <url><loc>https://todays-tasks.com/productivity-tips-busy-professionals.html</loc></url>
+  <url><loc>https://todays-tasks.com/productivity-tips.html</loc></url>
+  <url><loc>https://todays-tasks.com/terms.html</loc></url>
+  <url><loc>https://todays-tasks.com/time-blocking-guide.html</loc></url>
+  <url><loc>https://todays-tasks.com/time-management-strategies.html</loc></url>
+  <url><loc>https://todays-tasks.com/todo.html</loc></url>
+  <url><loc>https://todays-tasks.com/tools/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/bmi-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/data-leak-checker/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/debt-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/device-checklist/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/disposable-email/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/dividend-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/document-redactor/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/email-alias/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/identity-risk-score/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/investment-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/long-weekend/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/mortgage-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/password-checker/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/password-generator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/password-vault/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/privacy-dashboard/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/rental-yield/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/salary-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/secret-share/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/sensitive-data-cleaner/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/tip-calculator/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/vat-refund/</loc></url>
+  <url><loc>https://todays-tasks.com/weekly-review-checklist.html</loc></url>
 </urlset>

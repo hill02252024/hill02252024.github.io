@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+# Non-content directories — keep them out of the index. (Do NOT Disallow
+# /china/: those pages rely on their on-page noindex tag, which Google can
+# only honour if it is allowed to fetch them.)
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /functions/
+Disallow: /hk-blocklist-data/
 
 Sitemap: https://todays-tasks.com/sitemap.xml
