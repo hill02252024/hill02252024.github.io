@@ -47,6 +47,19 @@
     "description":"Generate strong passwords, passphrases or PINs in your browser. Strength meter, crack time and HIBP breach check."
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How long should my password be?","acceptedAnswer":{"@type":"Answer","text":"For a random password, aim for at least 16 characters; 20 or more for important accounts. Length adds far more real strength than swapping an o for a 0. For a word-based passphrase, use four words or more."}},
+      {"@type":"Question","name":"Are these passwords really random?","acceptedAnswer":{"@type":"Answer","text":"They are generated with the browser's cryptographic random source (crypto.getRandomValues), which is designed to be unpredictable. The tool also guarantees at least one character from each set you enable."}},
+      {"@type":"Question","name":"Is it safe to check my password against a breach database?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your password is hashed in your browser and only the first five characters of the hash are sent — never the password, and never the full hash. This k-anonymity model means the breach service cannot reconstruct what you checked."}},
+      {"@type":"Question","name":"Should I use a random password or a passphrase?","acceptedAnswer":{"@type":"Answer","text":"Use a random password for anything stored in a password manager — it is the strongest and you do not have to type it. Use a memorable passphrase for the few passwords you must type by hand, like your device login or the manager's master password."}}
+    ]
+  }
+  </script>
 </head>
 <body class="tools-body">
   <script src="/nav.js" defer></script>
@@ -126,7 +139,38 @@
   <section class="trust-strip">
     <div><strong>100% browser-side.</strong> No network calls except an anonymous breach hash.</div>
     <div><strong>History stays local.</strong> Last 5 in <code>localStorage</code>, never synced.</div>
-    <div><strong>Premium:</strong> sync history across devices, custom word lists.</div>
+    <div><strong>Free, no account.</strong> Every option is available to everyone — nothing is locked.</div>
+  </section>
+
+  <section class="tool-content">
+    <h2>What this password generator does</h2>
+    <p>This tool builds passwords that are genuinely hard to guess — long, random, and free of the patterns people fall back on when they make passwords up by hand. It can produce three things: a fully random string (the strongest option, ideal for storing in a password manager), a memorable passphrase made of several random words (easier to read off a screen when you actually have to type it), or a numeric PIN. Every character comes from your browser's cryptographic random number generator (<code>crypto.getRandomValues</code>), not the predictable <code>Math.random()</code> that weaker generators still rely on.</p>
+
+    <h2>How to use it</h2>
+    <ol>
+      <li>Choose a mode — <strong>Random</strong> for maximum strength, <strong>Memorable</strong> for something you may need to type, or <strong>PIN</strong> for numeric codes.</li>
+      <li>Set the length. For a random password, 16 characters is a sensible floor and 20+ is better; for a passphrase, four words or more.</li>
+      <li>Press <strong>Generate</strong>, then <strong>Copy</strong>. The strength bar shows the estimated entropy in bits and a rough offline crack-time.</li>
+      <li>Read the breach result. If a password has ever appeared in a known data breach, it will say so — generate another instead.</li>
+    </ol>
+
+    <h2>Why randomness matters more than complexity</h2>
+    <p>The problem with human-chosen passwords isn't that they're short — it's that they're predictable. We put a capital letter at the front, a number and a symbol at the end, and a word that means something to us in the middle. Cracking tools try exactly those patterns first, so "complex-looking" passwords often fall fast. A truly random 16-character password has no pattern to exploit; the only way through is to try an impractical number of combinations. That's what the strength estimate on this page measures: how much guessing your password would actually force an attacker to do.</p>
+    <p>Use random passwords for anything that matters — email, banking, your password manager's master entry — and let the manager remember them for you. Save memorable passphrases for the few you have to type from memory or read aloud.</p>
+
+    <div class="expert-note">
+      <p>I've spent about 20 years in IT support, and at the busiest sites I was helping 400+ users a day from all over the world. If you want to know what weak passwords look like in real life: I've reset thousands of them, and they rhyme. It's the company name plus <code>123!</code>, the season plus the year, a kid's name plus a birthday. The damage almost never comes from someone cracking one strong password — it comes from <em>reuse</em>. One website gets breached, the email-and-password pair leaks, and attackers quietly try that same pair on dozens of other services. That's why the breach check here matters more than people expect, and why "just make it longer" misses the point. The fix that actually held up across every team I supported was boring: a long random password, a different one everywhere, stored in a manager. This tool is the first half of that habit.</p>
+      <span class="who">— Hill, 20 years in IT support</span>
+    </div>
+
+    <h2>Is this private?</h2>
+    <p>Yes. Passwords are generated entirely in your browser and are never sent anywhere. The only network request this page can make is the optional breach check, and it's built so your password never leaves your device: the password is hashed locally with SHA-1 and only the <em>first five characters</em> of that hash are sent to the Have I Been Pwned range API — a technique called k-anonymity. The service returns a list of matching hash suffixes and the final comparison happens here, in your tab. Your recent passwords, if you keep history on, stay in this browser's <code>localStorage</code> and are never synced.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How long should my password be?</summary><p>For a random password, aim for at least 16 characters; 20 or more for important accounts. Length adds far more real strength than swapping an "o" for a "0". For a word-based passphrase, use four words or more.</p></details>
+    <details class="faq-item"><summary>Are these passwords really random?</summary><p>They're generated with the browser's cryptographic random source (<code>crypto.getRandomValues</code>), which is designed to be unpredictable. The tool also guarantees at least one character from each set you enable, so a generated password always matches the rules you picked.</p></details>
+    <details class="faq-item"><summary>Is it safe to check my password against a breach database?</summary><p>Yes. Your password is hashed in your browser and only the first five characters of the hash are sent — never the password, and never the full hash. This k-anonymity model means the breach service can't reconstruct what you checked.</p></details>
+    <details class="faq-item"><summary>Should I use a random password or a passphrase?</summary><p>Use a random password for anything stored in a password manager — it's the strongest and you don't have to type it. Use a memorable passphrase for the handful of passwords you must type by hand, like your device login or the manager's master password.</p></details>
   </section>
 
   <section class="related">

@@ -4,22 +4,22 @@
   <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Share Password Securely — One-Time Encrypted Link | Today's Tasks</title>
-  <meta name="description" content="Send passwords, API keys and private notes through a self-destructing encrypted link. End-to-end AES-GCM encryption in your browser. We never see the secret." />
-  <meta name="keywords" content="send password securely, one time secret, share api key safely, encrypted note, self destructing link, secure password share, end to end encrypted" />
+  <title>Share a Secret with an Encrypted Link — Browser-Only | Today's Tasks</title>
+  <meta name="description" content="Encrypt a password, key or note in your browser and share it as a self-contained link. AES-GCM, no server, no account — nothing is ever uploaded or stored." />
+  <meta name="keywords" content="share password securely, encrypted link, share api key safely, encrypted note, browser encryption, aes-gcm, send secret link" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://todays-tasks.com/tools/secret-share/" />
 
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Today's Tasks" />
-  <meta property="og:title" content="Share Password Securely — One-Time Encrypted Link" />
-  <meta property="og:description" content="Encrypt in your browser, share a one-time link, it self-destructs. Free." />
+  <meta property="og:title" content="Share a Secret with an Encrypted Link — Browser-Only" />
+  <meta property="og:description" content="Encrypt in your browser, share a self-contained link, it decrypts in the recipient's browser. No server, no account. Free." />
   <meta property="og:url" content="https://todays-tasks.com/tools/secret-share/" />
   <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Share Password Securely — One-Time Encrypted Link" />
-  <meta name="twitter:description" content="Self-destructing encrypted link. Browser-only AES-GCM. We never see your secret." />
+  <meta name="twitter:title" content="Share a Secret with an Encrypted Link — Browser-Only" />
+  <meta name="twitter:description" content="AES-GCM encryption in your browser. The secret lives in the link — no server, nothing stored." />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -30,23 +30,34 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
   <link rel="stylesheet" href="/tools/privacy.css" />
-  <script src="/tools/firebase-config.js" defer></script>
-  <script src="/tools/firebase.js" defer></script>
   <script src="/tools/premium.js" defer></script>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebApplication",
-    "name":"Secure Secret Sharer",
+    "name":"Encrypted Link Sharer",
     "url":"https://todays-tasks.com/tools/secret-share/",
     "applicationCategory":"SecurityApplication",
     "applicationSubCategory":"Encryption Tool",
     "operatingSystem":"Web Browser",
     "offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},
-    "featureList":["Browser-based","No account required","Privacy-first","End-to-end encrypted"],
+    "featureList":["Browser-based","No account required","Privacy-first","AES-GCM encryption","No backend"],
     "publisher":{"@type":"Organization","name":"Today's Tasks","url":"https://todays-tasks.com"},
-    "description":"Browser-side AES-GCM encryption, server-side ciphertext only, self-destructing links."
+    "description":"Encrypt a secret in your browser and share it as a self-contained link. AES-GCM, no backend, no storage, no account."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Does my secret get uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Encryption and decryption happen entirely in your browser, and the encrypted secret plus its key live in the link's # fragment, which browsers never send over the network. This site runs no backend for this tool and stores nothing."}},
+      {"@type":"Question","name":"Can the link self-destruct after one read?","acceptedAnswer":{"@type":"Answer","text":"Not in this version. Self-destruct and expiry require a server to delete the stored copy, and this tool deliberately has no server. The link stays readable until you delete the message that contains it, so delete it once the recipient has the secret."}},
+      {"@type":"Question","name":"Who can read the link?","acceptedAnswer":{"@type":"Answer","text":"Anyone who has the complete link, because the decryption key is part of it. Treat the link like the secret itself: share it through a channel you trust and don't post it anywhere public or permanent."}},
+      {"@type":"Question","name":"What should I use it for?","acceptedAnswer":{"@type":"Answer","text":"Short, sensitive things: a password, a Wi-Fi key, an API token, a recovery code, a brief note. It isn't designed for long text or file attachments."}}
+    ]
   }
   </script>
 </head>
@@ -55,11 +66,11 @@
 
 <main class="tool-main">
   <section class="tool-hero">
-    <h1>Send a password the safe way</h1>
-    <div class="tool-trust-bar">✓ Processed entirely in your browser &nbsp;·&nbsp; 0 bytes sent &nbsp;·&nbsp; <a href="#" class="verify-link" onclick="alert('Open DevTools (F12) -> Network tab. Use this tool. Watch: zero outbound requests carry your input.');return false;">Verify in DevTools</a></div>
-    <p class="lede">Type a secret. Your browser encrypts it. You get a one-time link.
-       Once it's read, it's gone — even from us.</p>
-    <p class="zk-badge">🔐 Zero-knowledge · AES-GCM 256 · Open to audit</p>
+    <h1>Share a secret with an encrypted link</h1>
+    <div class="tool-trust-bar">✓ Encrypted in your browser &nbsp;·&nbsp; 0 bytes uploaded &nbsp;·&nbsp; <a href="#" class="verify-link" onclick="alert('Open DevTools (F12) -> Network tab. Create a link. Watch: zero outbound requests carry your secret — the key and ciphertext stay in the URL fragment.');return false;">Verify in DevTools</a></div>
+    <p class="lede">Type a secret. Your browser encrypts it and packs it into a link. Send the link;
+       it decrypts in the other person's browser. No server, no account.</p>
+    <p class="zk-badge">🔐 AES-GCM 256 · Encrypted locally · Zero backend</p>
   </section>
 
   <!-- AdSense above tool -->
@@ -72,42 +83,25 @@
     <label for="secret">Secret</label>
     <textarea id="secret" rows="6" placeholder="Paste the password, API key or note you want to share…" autocomplete="off" spellcheck="false"></textarea>
 
-    <div class="row">
-      <label>Self-destruct after
-        <select id="ttl">
-          <option value="1">1 hour</option>
-          <option value="24">24 hours</option>
-          <option value="168" data-prem="1">7 days (Premium)</option>
-        </select>
-      </label>
-      <label>Max views
-        <select id="views">
-          <option value="1">1 view</option>
-          <option value="3" data-prem="1">3 views (Premium)</option>
-          <option value="10" data-prem="1">10 views (Premium)</option>
-        </select>
-      </label>
-    </div>
-
     <button id="encrypt-btn" class="primary">Encrypt &amp; create link</button>
     <p id="create-msg" class="msg" role="status" aria-live="polite"></p>
 
     <div id="link-out" hidden>
-      <label for="share-link">Share this link (the decryption key lives only in the URL):</label>
+      <label for="share-link">Share this link (it contains the encrypted secret and its key):</label>
       <div class="link-row">
         <input id="share-link" readonly />
         <button id="copy-btn">Copy</button>
       </div>
-      <p class="hint">Anyone with this link can read the secret once.
-         Send it through a different channel from where you'll send context.</p>
+      <p class="hint">Anyone with this link can read the secret. Send it through a channel you trust,
+         and delete the message once it's been received.</p>
       <button id="reset-btn" class="ghost">Create another</button>
     </div>
   </section>
 
   <!-- =============== READ MODE =============== -->
   <section id="read-pane" class="card" hidden>
-    <h2>Someone shared a secret with you</h2>
-    <p>This link will self-destruct after you reveal it.</p>
+    <h2>Someone shared an encrypted secret with you</h2>
+    <p>Click reveal to decrypt it in your browser. Nothing is sent anywhere.</p>
     <button id="reveal-btn" class="primary">Reveal the secret</button>
     <pre id="revealed" hidden></pre>
     <p id="read-msg" class="msg" role="status" aria-live="polite"></p>
@@ -121,9 +115,44 @@
   </div>
 
   <section class="trust-strip">
-    <div><strong>End-to-end encrypted.</strong> AES-GCM 256 happens in your browser.</div>
-    <div><strong>Zero-knowledge.</strong> The decryption key never leaves the URL fragment.</div>
-    <div><strong>Self-destructing.</strong> One read, or expiry — record is wiped.</div>
+    <div><strong>Encrypted in your browser.</strong> AES-GCM 256, with a key generated locally.</div>
+    <div><strong>Zero backend.</strong> The secret lives in the link — nothing is uploaded or stored.</div>
+    <div><strong>No account.</strong> Free, and there's nothing to sign up for.</div>
+  </section>
+
+  <section class="tool-content">
+    <h2>What this tool does</h2>
+    <p>This tool encrypts a short secret — a password, an API key, a recovery code, a private note — entirely inside your browser, then packs the encrypted result into a shareable link. Everything needed to read it travels inside the link itself, so there is no server, no database, no account, and nothing is ever uploaded. The person you send it to opens the link and their browser decrypts it locally.</p>
+
+    <h2>How to use it</h2>
+    <ol>
+      <li>Type or paste your secret into the box.</li>
+      <li>Press <strong>Encrypt &amp; create link</strong>. Your browser generates a one-off AES-GCM key, encrypts the secret, and builds a link.</li>
+      <li>Copy the link and send it to the person who needs it.</li>
+      <li>They open it and click <strong>Reveal</strong> — the secret is decrypted in their browser.</li>
+    </ol>
+
+    <h2>How it works, and what stays private</h2>
+    <p>The secret is encrypted with AES-GCM, a standard authenticated cipher, using a random 256-bit key generated in your browser. Both the encrypted text and the key are placed in the part of the link after the <code>#</code> — the URL <em>fragment</em>. Fragments are special: browsers never include them in network requests, so when the recipient opens the link, the key and ciphertext are handled locally and are never sent to this site or anyone else. We run no backend for this tool and store nothing.</p>
+    <p>Here's the honest trade-off: because the key rides inside the link, <strong>anyone who has the full link can read the secret</strong>. Treat the link itself as if it were the password. Send it through a channel you trust, and delete the message once the other person has it. Since nothing is stored on a server, deleting your messages genuinely removes every copy — there's no database record left behind.</p>
+
+    <h2>What this version does and doesn't do</h2>
+    <ul>
+      <li><strong>It does:</strong> encrypt and decrypt entirely in the browser, with zero backend, zero storage, and no account.</li>
+      <li><strong>It doesn't:</strong> self-destruct, expire, or limit the number of views — those features need a server to delete the stored copy, and this version deliberately has none. If a link leaks, it stays readable until you delete the message carrying it.</li>
+      <li><strong>Best for:</strong> passwords, keys, codes and short notes. It isn't meant for long documents or files, since links have length limits.</li>
+    </ul>
+
+    <div class="expert-note">
+      <p>In about 20 years of IT support — at one point handling 400+ users a day across different countries — the most common way credentials leaked wasn't hacking. It was passwords pasted into permanent places: a new hire's login emailed and then forwarded around, the office Wi-Fi key sitting in a pinned chat message that every contractor since 2019 can still scroll back to, a database key dropped into a group channel "just for a minute." The reason that's dangerous is that those copies never get cleaned up. This tool helps with one specific part of the problem: the secret is never stored on any server, so the only copies that exist are the messages you sent — which means you can actually delete them and have nothing linger. The habit I'd pair with it: send the link, confirm the person got it, then delete it. And never post the link somewhere permanent, because the link <em>is</em> the secret.</p>
+      <span class="who">— Hill, 20 years in IT support</span>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does my secret get uploaded anywhere?</summary><p>No. Encryption and decryption happen entirely in your browser, and the encrypted secret plus its key live in the link's <code>#</code> fragment, which browsers never send over the network. This site runs no backend for this tool and stores nothing.</p></details>
+    <details class="faq-item"><summary>Can the link self-destruct after one read?</summary><p>Not in this version. Self-destruct and expiry require a server to delete the stored copy, and this tool deliberately has no server. The link stays readable until you delete the message that contains it — so delete it once the recipient has the secret.</p></details>
+    <details class="faq-item"><summary>Who can read the link?</summary><p>Anyone who has the complete link, because the decryption key is part of it. Treat the link like the secret itself: share it through a channel you trust and don't post it anywhere public or permanent.</p></details>
+    <details class="faq-item"><summary>What should I use it for?</summary><p>Short, sensitive things: a password, a Wi-Fi key, an API token, a recovery code, a brief note. It isn't designed for long text or file attachments.</p></details>
   </section>
 
   <section class="related">
@@ -145,7 +174,7 @@ document.getElementById("yr").textContent = new Date().getFullYear();
 (adsbygoogle = window.adsbygoogle || []).push({});
 (adsbygoogle = window.adsbygoogle || []).push({});
 
-// ===== client-side crypto =====
+// ===== client-side crypto (AES-GCM, all in the browser) =====
 function b64(buf){var b="",a=new Uint8Array(buf);for(var i=0;i<a.length;i++)b+=String.fromCharCode(a[i]);return btoa(b).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
 function unb64(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var bin=atob(s);var a=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a.buffer;}
 function genKey(){return crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt","decrypt"]);}
@@ -154,26 +183,12 @@ function importKey(k64){return crypto.subtle.importKey("raw",unb64(k64),{name:"A
 function encryptIt(plain,key){var iv=crypto.getRandomValues(new Uint8Array(12));return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,new TextEncoder().encode(plain)).then(function(ct){return{ct:b64(ct),iv:b64(iv)};});}
 function decryptIt(ct,ivB64,key){return crypto.subtle.decrypt({name:"AES-GCM",iv:new Uint8Array(unb64(ivB64))},key,unb64(ct)).then(function(buf){return new TextDecoder().decode(buf);});}
 
-// ===== persist a small history snippet (no plaintext) for the Privacy Dashboard =====
-function saveSecretShared(id, ttlHours, maxViews) {
-  try {
-    var arr = JSON.parse(localStorage.getItem("tt_secrets_history") || "[]");
-    arr.unshift({
-      id: id, t: Date.now(),
-      expiresAt: Date.now() + ttlHours * 3600 * 1000,
-      maxViews: maxViews
-    });
-    if (arr.length > 50) arr.length = 50;
-    localStorage.setItem("tt_secrets_history", JSON.stringify(arr));
-  } catch(e) {}
-}
-
-// ===== parse URL hash to decide mode =====
+// ===== parse URL fragment to decide mode =====
 function parseHash(){
   var h = location.hash.replace(/^#/,"");
   if (!h) return null;
-  var out = {}; h.split("&").forEach(function(p){var i=p.indexOf("=");if(i>0)out[p.slice(0,i)]=decodeURIComponent(p.slice(i+1));});
-  return (out.id && out.key) ? out : null;
+  var out = {}; h.split("&").forEach(function(p){var i=p.indexOf("=");if(i>0)out[p.slice(0,i)]=p.slice(i+1);});
+  return (out.ct && out.iv && out.key) ? out : null;
 }
 
 var hash = parseHash();
@@ -182,38 +197,22 @@ if (hash) {
   document.getElementById("read-pane").hidden = false;
 }
 
-// ===== CREATE flow =====
+// ===== CREATE flow — everything lives in the link, no server =====
 document.getElementById("encrypt-btn").addEventListener("click", function(){
   var secret = document.getElementById("secret").value;
   var msg = document.getElementById("create-msg");
   if (!secret) { msg.textContent = "Type or paste a secret first."; return; }
 
-  var ttl = parseInt(document.getElementById("ttl").value, 10);
-  var maxViews = parseInt(document.getElementById("views").value, 10);
-
-  // Gate premium options
-  var prem = (window.ttAuth && window.ttAuth.isPremium && window.ttAuth.isPremium()) ||
-             (window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium());
-  if (!prem) {
-    if (ttl > 24) ttl = 24;
-    if (maxViews > 1) maxViews = 1;
-  }
-
-  if (!window.ttSecrets) { msg.textContent = "Backend not configured yet — see firebase-config.js"; return; }
-
   msg.textContent = "Encrypting…";
   genKey().then(function(key){
     return Promise.all([exportKey(key), encryptIt(secret, key)]).then(function(r){
       var k64 = r[0], enc = r[1];
-      return window.ttSecrets.createSecret(enc.ct, enc.iv, ttl, maxViews).then(function(id){
-        var link = location.origin + location.pathname + "#id=" + id + "&key=" + k64;
-        var out = document.getElementById("share-link"); out.value = link;
-        document.getElementById("link-out").hidden = false;
-        msg.textContent = "Done. The decryption key lives only in the URL — share it carefully.";
-        saveSecretShared(id, ttl, maxViews);
-        // wipe plaintext from memory-ish
-        document.getElementById("secret").value = "";
-      });
+      var link = location.origin + location.pathname + "#ct=" + enc.ct + "&iv=" + enc.iv + "&key=" + k64;
+      var out = document.getElementById("share-link"); out.value = link;
+      document.getElementById("link-out").hidden = false;
+      msg.textContent = "Done. The link below contains everything needed to decrypt — share it carefully.";
+      // wipe the plaintext from the textarea
+      document.getElementById("secret").value = "";
     });
   }).catch(function(e){ msg.textContent = "Error: " + (e.message || e); });
 });
@@ -230,28 +229,23 @@ document.getElementById("reset-btn") && document.getElementById("reset-btn").add
   location.href = "/tools/secret-share/";
 });
 
-// ===== READ flow =====
+// ===== READ flow — decrypt locally from the fragment =====
 if (hash) {
   document.getElementById("reveal-btn").addEventListener("click", function(){
     var msg = document.getElementById("read-msg");
-    if (!window.ttSecrets) { msg.textContent = "Backend not configured yet — see firebase-config.js"; return; }
-    msg.textContent = "Fetching…";
-    window.ttSecrets.readSecret(hash.id).then(function(r){
-      if (!r) { msg.textContent = "This secret has expired or already been read."; return; }
-      return importKey(hash.key).then(function(key){
-        return decryptIt(r.ciphertext, r.iv, key);
-      }).then(function(plain){
-        var pre = document.getElementById("revealed");
-        pre.textContent = plain; pre.hidden = false;
-        document.getElementById("reveal-btn").hidden = true;
-        document.getElementById("copy-rev").hidden = false;
-        document.getElementById("send-own").hidden = false;
-        msg.textContent = "View " + r.viewCount + " of " + r.maxViews +
-                          (r.viewCount >= r.maxViews ? " — record deleted." : "");
-        // Strip key from URL bar so a screenshot won't reveal it.
-        history.replaceState(null, "", location.pathname);
-      });
-    }).catch(function(e){ msg.textContent = "Error: " + (e.message || e); });
+    msg.textContent = "Decrypting…";
+    importKey(hash.key).then(function(key){
+      return decryptIt(hash.ct, hash.iv, key);
+    }).then(function(plain){
+      var pre = document.getElementById("revealed");
+      pre.textContent = plain; pre.hidden = false;
+      document.getElementById("reveal-btn").hidden = true;
+      document.getElementById("copy-rev").hidden = false;
+      document.getElementById("send-own").hidden = false;
+      msg.textContent = "Decrypted in your browser. Nothing was sent anywhere.";
+    }).catch(function(){
+      msg.textContent = "Could not decrypt — the link may be incomplete or corrupted.";
+    });
   });
 
   document.getElementById("copy-rev").addEventListener("click", function(){

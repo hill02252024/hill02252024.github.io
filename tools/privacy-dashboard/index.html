@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
   <link rel="stylesheet" href="/tools/privacy.css" />
-  <script src="/tools/firebase-config.js" defer></script>
-  <script src="/tools/firebase.js" defer></script>
   <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">
   {
@@ -46,7 +44,7 @@
 
     <h1>Your Security Control Centre</h1>
     <div class="tool-trust-bar">✓ Processed entirely in your browser &nbsp;·&nbsp; 0 bytes sent &nbsp;·&nbsp; <a href="#" class="verify-link" onclick="alert('Open DevTools (F12) -> Network tab. Use this tool. Watch: zero outbound requests carry your input.');return false;">Verify in DevTools</a></div>
-    <p class="intro">A live snapshot of your security across every Today's Tasks tool. The dashboard reads your local activity — no account required, nothing leaves your device. Premium unlocks cross-device sync.</p>
+    <p class="intro">A live snapshot of your security across every Today's Tasks tool. The dashboard reads your local activity — no account required, and nothing leaves your device.</p>
 
     <!-- ===== OVERALL SCORE ===== -->
     <section class="dash-overall" aria-label="Overall security score">
@@ -75,7 +73,6 @@
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000018" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
     <!-- ===== PREMIUM SYNC CTA ===== -->
-    <section class="dash-sync" id="dashSync"></section>
 
     <h2>How the score is calculated</h2>
     <table class="dash-formula">
@@ -382,29 +379,6 @@
       }).join('');
     }
 
-    function buildSync(){
-      var box = document.getElementById('dashSync');
-      var premium = (window.ttPremium && window.ttPremium.isPremium && window.ttPremium.isPremium());
-      var hasFb = window.TT_FIREBASE_CONFIG && !/REPLACE/.test(window.TT_FIREBASE_CONFIG.apiKey || '');
-      if (premium && hasFb) {
-        box.innerHTML = '<div class="dash-sync-card ok">' +
-          '<h2>✓ Premium · Cross-device sync</h2>' +
-          '<p>Your dashboard is synced. Last synced: <strong>' + new Date().toLocaleString() + '</strong></p>' +
-          '</div>';
-      } else if (premium) {
-        box.innerHTML = '<div class="dash-sync-card">' +
-          '<h2>Premium active — sync not configured</h2>' +
-          '<p>Firebase backend is not yet wired (developer needs to fill in firebase-config.js). Your dashboard works locally.</p>' +
-          '</div>';
-      } else {
-        box.innerHTML = '<div class="dash-sync-card">' +
-          '<h2>Sync this dashboard across all devices</h2>' +
-          '<p>Free: this dashboard reads from your browser only. Premium: sign in and your dashboard appears on every device, end-to-end encrypted.</p>' +
-          '<a class="btn-plan" href="/tools/#hubPremium">See plans</a>' +
-          '</div>';
-      }
-    }
-
     function render(){
       var state = {
         pw: lastPwCheck(),
@@ -428,7 +402,6 @@
       document.getElementById('scoreUpdated').textContent = 'Last updated: ' + new Date(latest).toLocaleString();
       buildCards(state);
       buildTips(state, total);
-      buildSync();
     }
 
     document.getElementById('refreshBtn').addEventListener('click', render);

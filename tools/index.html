@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Security Control Centre — Free Daily-Use Privacy Tools" />
-  <meta name="twitter:description" content="Daily-use security tools. Local-first. Zero-knowledge sync." />
+  <meta name="twitter:description" content="Daily-use security tools. Local-first. Free, no account." />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -30,8 +30,6 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
   <link rel="stylesheet" href="/tools/privacy.css" />
-  <script src="/tools/firebase-config.js" defer></script>
-  <script src="/tools/firebase.js" defer></script>
   <script src="/tools/premium.js" defer></script>
 
   <script type="application/ld+json">
@@ -72,7 +70,7 @@
       { "@type": "Question", "name": "Do these tools upload my files or text?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Every tool on this page processes your input entirely in your browser tab. You can verify it by opening DevTools (F12) -> Network tab and watching: zero outbound requests carry your data." } },
       { "@type": "Question", "name": "Do I need an account to use these tools?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No account, no email, no signup. Open a tool and use it. Optional Pro features (sync, monitoring) require an account, but the free tools never do." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "No account, no email, no signup. Open any tool and use it. Every tool is free." } },
       { "@type": "Question", "name": "How is this different from other free privacy tools?",
         "acceptedAnswer": { "@type": "Answer", "text": "Most 'free' privacy tools online upload your file to a server for processing and ask you to trust that they delete it afterwards. Our tools have no server in the loop -- the processing runs in your browser." } }
     ]
@@ -119,7 +117,6 @@
         </a>
         <a class="tool-card privacy-card" data-cat="passwords" data-tier="daily" href="/tools/secret-share/">
           <span class="tier-corner daily">DAILY</span>
-          <span class="pro-corner">NEW</span>
           <div class="icon-box passwords" aria-hidden="true">🤐</div>
           <span class="cat-label">Sharing</span>
           <h3>Secure Secret Sharer</h3>
@@ -150,7 +147,7 @@
           <div class="icon-box identity" aria-hidden="true">🔍</div>
           <span class="cat-label">Identity</span>
           <h3>Breach &amp; Leak Checker</h3>
-          <p>Anonymous k-hash lookup. Premium: continuous monitoring.</p>
+          <p>Anonymous k-hash lookup. Only a partial hash ever leaves your device.</p>
         </a>
         <a class="tool-card privacy-card" data-cat="passwords" data-tier="weekly" href="/tools/password-checker/">
           <span class="tier-corner weekly">WEEKLY</span>
@@ -161,7 +158,6 @@
         </a>
         <a class="tool-card privacy-card" data-cat="identity" data-tier="weekly" href="/tools/privacy-dashboard/">
           <span class="tier-corner weekly">WEEKLY</span>
-          <span class="pro-corner">PRO</span>
           <div class="icon-box identity" aria-hidden="true">📊</div>
           <span class="cat-label">Dashboard</span>
           <h3>Privacy Score Dashboard</h3>
@@ -181,11 +177,10 @@
       <p class="tier-lede">One-shot helpers — useful when you need them.</p>
       <div class="tools-grid">
         <a class="tool-card privacy-card" data-cat="passwords" data-tier="anytime" href="/tools/password-vault/">
-          <span class="pro-corner">PRO</span>
           <div class="icon-box passwords" aria-hidden="true">🗝️</div>
           <span class="cat-label">Passwords</span>
           <h3>Password Vault</h3>
-          <p>End-to-end encrypted vault. Premium: cross-device sync.</p>
+          <p>End-to-end encrypted vault. Stored only in your browser.</p>
         </a>
         <a class="tool-card privacy-card" data-cat="documents" data-tier="anytime" href="/tools/sensitive-data-cleaner/">
           <div class="icon-box documents" aria-hidden="true">🧹</div>
@@ -194,7 +189,6 @@
           <p>Strip emails, SSNs, cards, IBANs from any text.</p>
         </a>
         <a class="tool-card privacy-card" data-cat="identity" data-tier="anytime" href="/tools/identity-risk-score/">
-          <span class="pro-corner">PRO</span>
           <div class="icon-box identity" aria-hidden="true">🪪</div>
           <span class="cat-label">Identity</span>
           <h3>Identity Risk Score</h3>
@@ -234,33 +228,9 @@
         </div>
       </section>
 
-      <section class="hub-premium" id="hubPremium">
-        <h2>Sync your security across all devices</h2>
-        <p>One subscription unlocks cross-device sync, continuous leak monitoring, encrypted vault backup, custom secret-share expiry with read receipts, and no ads.</p>
-        <ul class="hub-premium-features">
-          <li>✓ End-to-end encrypted cross-device sync</li>
-          <li>✓ Continuous breach &amp; leak monitoring</li>
-          <li>✓ Encrypted vault backup</li>
-          <li>✓ Read receipts on shared secrets</li>
-          <li>✓ Custom expiry (up to 7 days) and multi-view secrets</li>
-          <li>✓ No ads, ever</li>
-        </ul>
-        <div class="plan-cards">
-          <div class="plan-card">
-            <div class="plan-name">Monthly</div>
-            <div class="price">$3.99</div>
-            <div class="period">per month</div>
-            <a class="btn-plan" id="planMonthly" href="https://YOUR_LEMON_SQUEEZY_MONTHLY_LINK">Start Monthly</a>
-          </div>
-          <div class="plan-card featured">
-            <div class="plan-badge">Best Value</div>
-            <div class="plan-name">Annual</div>
-            <div class="price">$29.99</div>
-            <div class="period">$2.50/mo · save 37%</div>
-            <a class="btn-plan outline" id="planAnnual" href="https://YOUR_LEMON_SQUEEZY_ANNUAL_LINK">Start Annual</a>
-          </div>
-        </div>
-        <p class="paywall-fineprint" style="margin-top:14px">Cancel anytime. Secure payment via Lemon Squeezy.</p>
+      <section class="hub-premium" id="hubFree" style="text-align:center">
+        <h2>Every tool here is free</h2>
+        <p>No accounts, no subscriptions, no locked features. Every tool runs entirely in your browser and is supported by ads — that's the whole model.</p>
       </section>
 
       <section class="apps-funnel">
@@ -288,16 +258,6 @@
   <script src="/tools/tools.js"></script>
   <script>
     document.getElementById("yr").textContent = new Date().getFullYear();
-
-    // Wire Lemon Squeezy links from central config if present.
-    (function(){
-      var m = document.getElementById("planMonthly");
-      var a = document.getElementById("planAnnual");
-      if (window.TT_LEMON_SQUEEZY_MONTHLY_LINK && !/REPLACE|YOUR_/.test(window.TT_LEMON_SQUEEZY_MONTHLY_LINK))
-        m.href = window.TT_LEMON_SQUEEZY_MONTHLY_LINK;
-      if (window.TT_LEMON_SQUEEZY_ANNUAL_LINK && !/REPLACE|YOUR_/.test(window.TT_LEMON_SQUEEZY_ANNUAL_LINK))
-        a.href = window.TT_LEMON_SQUEEZY_ANNUAL_LINK;
-    })();
 
     // Client-side fuzzy filter across tool cards.
     (function(){

@@ -38,7 +38,7 @@
     <span class="local-only-pill">🛡️ Progress saved locally · No account needed <span id="reminderBell" class="reminder-bell" hidden title="Weekly reminder is on">🔔</span></span>
     <h1>Device Safety Checklist</h1>
     <div class="tool-trust-bar">✓ Processed entirely in your browser &nbsp;·&nbsp; 0 bytes sent &nbsp;·&nbsp; <a href="#" class="verify-link" onclick="alert('Open DevTools (F12) -> Network tab. Use this tool. Watch: zero outbound requests carry your input.');return false;">Verify in DevTools</a></div>
-    <p class="intro">30 actions across phone, laptop, browser and accounts. Pick a device type, tick each off in 30 minutes. Your progress is saved to this browser — Premium syncs across devices.</p>
+    <p class="intro">30 actions across phone, laptop, browser and accounts. Pick a device type, tick each off in 30 minutes. Your progress is saved to this browser.</p>
 
     <div class="checklist-summary">
       <div><b id="doneCount">0</b> / <span id="totalCount">30</span> complete</div>
@@ -69,9 +69,6 @@
         <input type="text" id="shareUrl" readonly />
         <button type="button" id="copyShare" class="btn-secondary">📋 Copy</button>
       </div>
-      <button type="button" id="teamShareBtn" class="btn-plan" style="margin-top:8px">
-        ✨ Send a custom link with my progress pre-filled (Premium)
-      </button>
     </section>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000020" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
@@ -273,9 +270,6 @@
         var b = document.getElementById('copyShare');
         b.textContent = '✓ Copied'; setTimeout(function(){ b.textContent = '📋 Copy'; }, 1400);
       });
-    });
-    document.getElementById('teamShareBtn').addEventListener('click', function(){
-      if (window.ttPremium) window.ttPremium.showPaywall('Team Sharing');
     });
 
     document.addEventListener('DOMContentLoaded', function(){

@@ -62,16 +62,6 @@
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="1100000008" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
-    <section class="premium-section">
-      <h2>🚨 Automatic Leak Alerts <span class="premium-badge">PRO</span></h2>
-      <p class="premium-intro">Premium watches your saved addresses 24/7. Get an email the moment a new breach involving you is published.</p>
-      <div id="alertsBody">
-        <label for="watchEmail">Email to monitor</label>
-        <input type="email" id="watchEmail" placeholder="you@example.com" />
-        <button type="button" class="btn-calc" id="watchBtn" style="background:#059669;margin-top:10px">Add to monitoring</button>
-        <div id="watchStatus" style="margin-top:10px;font-size:13.5px;color:var(--text-muted)"></div>
-      </div>
-    </section>
 
     <h2>What "Pwned" Means</h2>
     <p>HIBP aggregates publicly-leaked data dumps from breaches. If your address appears, it was part of a leak — your password may have been exposed in cleartext or as a weak hash. Action: change the password everywhere it was reused, enable 2FA, and consider rotating to an alias.</p>
@@ -158,27 +148,6 @@
       } catch(e) {}
     }
 
-    // Premium alerts gate
-    document.getElementById('watchBtn').addEventListener('click', function() {
-      if (!ttPremium.isPremium()) { ttPremium.showPaywall('Automatic Leak Alerts'); return; }
-      var email = document.getElementById('watchEmail').value.trim();
-      if (!/@/.test(email)) { document.getElementById('watchStatus').textContent = '⚠ Enter a valid email.'; return; }
-      // Persist locally; in production this calls a Supabase edge function that subscribes via HIBP.
-      var arr = []; try { arr = JSON.parse(localStorage.getItem('tt_watch_emails') || '[]'); } catch(e) {}
-      if (arr.indexOf(email) < 0) arr.push(email);
-      localStorage.setItem('tt_watch_emails', JSON.stringify(arr));
-      document.getElementById('watchStatus').textContent = '✓ Monitoring ' + email + ' (' + arr.length + ' total). You\'ll get an email when a new breach appears.';
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      if (!ttPremium.isPremium()) {
-        var body = document.getElementById('alertsBody');
-        body.classList.add('premium-locked');
-        var ov = document.createElement('div'); ov.className = 'premium-overlay';
-        ov.innerHTML = '<h3>Automatic leak alerts</h3><p>24/7 monitoring across all known breach corpora.</p><button type="button" class="btn-upgrade">Unlock with Premium</button>';
-        body.appendChild(ov);
-        ov.querySelector('.btn-upgrade').addEventListener('click', function() { ttPremium.showPaywall('Automatic Leak Alerts'); });
-      }
-    });
   </script>
 </body>
 </html>

@@ -52,7 +52,7 @@
           '<nav class="site-nav" id="primary-nav" aria-label="Primary">' +
             links +
           '</nav>' +
-          '<a class="site-cta" href="/pricing.html">Go Pro</a>' +
+          '<a class="site-cta" href="/tools/">Open Tools</a>' +
         '</div>' +
       '</header>'
     );

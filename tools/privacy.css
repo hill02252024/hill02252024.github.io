@@ -604,6 +604,24 @@
 .related ul { list-style: none; padding: 0; }
 .related li a { color: #1e40af; text-decoration: none; font-weight: 600; }
 
+/* Long-form educational content under each tool (depth for readers + AdSense) */
+.tool-content { margin: 30px 0 8px; }
+.tool-content h2 { font-size: 20px; margin: 26px 0 10px; color: #0f172a; font-weight: 700; }
+.tool-content h2:first-child { margin-top: 0; }
+.tool-content h3 { font-size: 16px; margin: 18px 0 6px; color: #0f172a; }
+.tool-content p { color: #334155; font-size: 15px; line-height: 1.7; margin: 10px 0; }
+.tool-content ul, .tool-content ol { color: #334155; font-size: 15px; line-height: 1.7; margin: 10px 0; padding-left: 22px; }
+.tool-content li { margin: 6px 0; }
+.tool-content code { background: #f1f5f9; border-radius: 5px; padding: 1px 5px; font-size: 13.5px; }
+.tool-content .expert-note {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-left: 3px solid #1e40af;
+  border-radius: 10px; padding: 16px 18px; margin: 20px 0;
+}
+.tool-content .expert-note p { margin: 8px 0; }
+.tool-content .expert-note .who {
+  display: block; margin-top: 10px; font-size: 13px; color: #64748b; font-weight: 700;
+}
+
 /* Password generator surfaces */
 .tabs { gap: 4px; flex-wrap: wrap; }
 .tab { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 14px;
