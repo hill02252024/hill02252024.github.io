@@ -17,7 +17,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Are these tax brackets official?","acceptedAnswer":{"@type":"Answer","text":"Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home."}},
     {"@type":"Question","name":"Does this include state or city tax?","acceptedAnswer":{"@type":"Answer","text":"No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live."}},
-    {"@type":"Question","name":"Why does my real paycheck differ?","acceptedAnswer":{"@type":"Answer","text":"Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments."}}
+    {"@type":"Question","name":"Why does my real paycheck differ?","acceptedAnswer":{"@type":"Answer","text":"Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments."}},{"@type":"Question","name":"How should I compare two offers in different countries?","acceptedAnswer":{"@type":"Answer","text":"Compare the after-tax (net) figure, not the gross salary, then adjust for cost of living — rent, transport and healthcare differ enormously between places. A higher gross in one country can be a lower real income once tax and living costs are counted."}}
   ]}</script>
 </head>
 <body>
@@ -109,10 +109,23 @@
     <div class="formula">net = gross − income_tax − social_charge<br><br>UK: 20% / 40% / 45% bands + National Insurance<br>US: 10/12/22/24/32/35/37% federal + 7.65% FICA<br>AU: 0/16/30/37/45% + 2% Medicare<br>HK: 2/6/10/14/17% (capped at 15% standard) + 5% MPF</div>
     <p>"Hourly" assumes a full-time year of 52 weeks × 40 hours = 2,080 hours. "Weekly" divides annual net by 52.</p>
 
+        <section class="tool-content">
+      <h2>Why take-home pay is the only number that matters</h2>
+      <p>A salary offer is a gross number, but the figure that lands in your account is what you actually live on — and the gap between the two is bigger than most people expect. Income tax, social charges (UK National Insurance, US FICA, AU Medicare, HK MPF) and any pension contribution all come out before you see a cent. Two jobs with the same headline salary can leave you with noticeably different take-home depending on the country, the tax band you land in, and what's deducted at source.</p>
+      <p>This calculator gives you the base after-tax figure per year, month, week and hour, so you can compare offers on equal footing. Just remember it's a simplified model: it doesn't know your personal allowances, student-loan repayments, health premiums or local city taxes.</p>
+      <div class="expert-note">
+        <p>Across 20 years in IT support I worked with colleagues in Manila, Hong Kong, Japan and Singapore, and the question I heard whenever someone got a cross-border offer was always the same: "it looks like a raise, but how much will I actually keep?" More than once I watched someone accept a relocation because the gross number was higher, then realise their real take-home had barely moved — or dropped — once a different tax system and cost of living were factored in. People compare gross salaries because that's the number on the offer letter; almost nobody runs the net side by side first. A quick after-tax comparison would have changed at least a couple of those decisions.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p class="ymyl-note">This is an estimate for comparison, not tax advice. Your real net pay depends on your personal circumstances — check with your employer's payroll or a tax professional for exact figures.</p>
+    </section>
+
     <h2>Frequently Asked Questions</h2>
     <details class="faq-item"><summary>Are these tax brackets official?</summary><p>Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home.</p></details>
     <details class="faq-item"><summary>Does this include state or city tax?</summary><p>No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live.</p></details>
     <details class="faq-item"><summary>Why does my real paycheck differ?</summary><p>Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments.</p></details>
+
+        <details class="faq-item"><summary>How should I compare two offers in different countries?</summary><p>Compare the after-tax (net) figure, not the gross salary, and then adjust for cost of living — rent, transport, and healthcare differ enormously between places. A higher gross in one country can be a lower real income once tax and living costs are accounted for.</p></details>
 
     <h2>More Free Tools</h2>
     <div class="more-tools">

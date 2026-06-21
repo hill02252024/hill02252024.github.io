@@ -488,6 +488,23 @@
   margin: 6px 0 0;
 }
 
+/* Long-form educational content under each tool (depth + first-person E-E-A-T) */
+.tool-content { margin: 28px 0 8px; }
+.tool-content h2 { font-size: 20px; margin: 24px 0 10px; color: var(--text); font-weight: 700; }
+.tool-content h2:first-child { margin-top: 0; }
+.tool-content p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin: 10px 0; }
+.tool-content ul, .tool-content ol { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin: 10px 0; padding-left: 22px; }
+.tool-content li { margin: 6px 0; }
+.tool-content .expert-note {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); border-radius: 10px; padding: 16px 18px; margin: 20px 0;
+}
+.tool-content .expert-note p { margin: 8px 0; }
+.tool-content .expert-note .who {
+  display: block; margin-top: 10px; font-size: 13px; color: var(--text-subtle); font-weight: 700;
+}
+.tool-content .ymyl-note { font-size: 13px; color: var(--text-subtle); margin: 14px 0 0; font-style: italic; }
+
 .more-tools {
   display: grid;
   grid-template-columns: 1fr;
