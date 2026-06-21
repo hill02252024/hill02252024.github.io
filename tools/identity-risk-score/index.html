@@ -28,6 +28,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the identity risk score calculated?","acceptedAnswer":{"@type":"Answer","text":"Each answer contributes a weighted amount of risk \u2014 things like password reuse, missing 2FA, account volume and public exposure \u2014 combined into a single 0-100 figure, with the biggest contributors surfaced as your top fixes."}},{"@type":"Question","name":"Do you store my answers?","acceptedAnswer":{"@type":"Answer","text":"No. The questionnaire runs in your browser and the score is computed locally. Nothing you select is uploaded or saved to a server."}},{"@type":"Question","name":"What should I fix first?","acceptedAnswer":{"@type":"Answer","text":"Follow the ranked steps. Usually the highest-impact moves are replacing reused passwords with unique ones and turning on two-factor authentication for your most important accounts, email first."}},{"@type":"Question","name":"Is a high score an emergency?","acceptedAnswer":{"@type":"Answer","text":"Treat it as a prompt, not a panic. It means several risk factors stack up for you \u2014 work through the top items in order and re-check. Steady fixes lower the score quickly."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -58,6 +59,29 @@
 
     <h2>How the Score Works</h2>
     <p>Each question carries a weight. We sum penalties (bad answers) and bonuses (good answers), normalise to 0–100, then group the result into low (0–30), medium (31–60) and high (61–100) risk bands.</p>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>This is a short questionnaire that turns how you actually manage your accounts — how many you have, whether you reuse passwords, whether two-factor authentication is on, how much of your personal data is already public — into a single 0–100 risk score with a prioritised list of what to fix first.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Answer each question honestly — there are no wrong answers, only your real situation.</li>
+        <li>Read your composite score and, more importantly, the ranked next steps.</li>
+        <li>Fix the top one or two items, then re-take it to see the score move.</li>
+      </ol>
+      <h2>Why the combination matters more than any single answer</h2>
+      <p>Identity risk is rarely about one thing. Having lots of online accounts is fine if each has a unique password and 2FA. Reusing one password is survivable if that account doesn't matter. The danger is the <em>combination</em>: many accounts, plus reused passwords, plus no 2FA, plus personal details already floating around in old breaches. A score is useful precisely because it weighs those together instead of letting you fixate on one reassuring or alarming detail.</p>
+      <div class="expert-note">
+        <p>Over 20 years in IT support — and being the "tech person" for colleagues in Manila, Hong Kong, Japan and Singapore — the question I got most after any data-breach headline was simply "should I be worried?" People wanted a yes or a no, and the honest answer was always "it depends what else is true." The person panicking about one leaked password who had 2FA everywhere was basically fine. The calm person who shrugged "it's just one password" but used that same password on forty sites with no 2FA was the one genuinely exposed. You can't answer "should I worry" from a single fact — you have to look at the stack. That's the whole point of scoring the combination rather than any one item.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>Your answers are processed entirely in your browser to compute the score. There's no account and nothing is uploaded.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>How is the score calculated?</summary><p>Each answer contributes a weighted amount of risk — things like password reuse, missing 2FA, account volume and public exposure — combined into a single 0–100 figure, with the biggest contributors surfaced as your top fixes.</p></details>
+      <details class="faq-item"><summary>Do you store my answers?</summary><p>No. The questionnaire runs in your browser and the score is computed locally. Nothing you select is uploaded or saved to a server.</p></details>
+      <details class="faq-item"><summary>What should I fix first?</summary><p>Follow the ranked steps. Usually the highest-impact moves are replacing reused passwords with unique ones and turning on two-factor authentication for your most important accounts (email first).</p></details>
+      <details class="faq-item"><summary>Is a high score an emergency?</summary><p>Treat it as a prompt, not a panic. It means several risk factors stack up for you — work through the top items in order and re-check. Steady fixes lower the score quickly.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

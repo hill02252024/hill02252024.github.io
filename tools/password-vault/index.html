@@ -28,6 +28,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where is my vault stored?","acceptedAnswer":{"@type":"Answer","text":"Encrypted, in this browser's local storage on this device. It is never uploaded \u2014 there is no server copy of your passwords."}},{"@type":"Question","name":"Can you recover my master passphrase?","acceptedAnswer":{"@type":"Answer","text":"No. We never see or store it, so we can't reset or recover it. If you forget it, the encrypted data can't be unlocked \u2014 choose a passphrase you'll remember and keep a backup."}},{"@type":"Question","name":"Does the vault sync to my other devices?","acceptedAnswer":{"@type":"Answer","text":"No. It's local to this browser and device, with no cloud sync. To use it elsewhere or guard against losing the device, use the encrypted export to move or back up your vault."}},{"@type":"Question","name":"Is this safer than a cloud password manager?","acceptedAnswer":{"@type":"Answer","text":"It's a different trade-off. Local-only means no third party holds your data and nothing central can be breached, but you're responsible for backups and there's no sync. A reputable cloud manager adds convenience and sync at the cost of trusting a provider. Both beat a plain-text file."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -85,6 +86,29 @@
     <h2>How the Vault Works</h2>
     <p>Your master passphrase is fed through PBKDF2 (250,000 SHA-256 iterations) to derive a 256-bit AES-GCM key. Every entry is encrypted with a fresh random IV. The ciphertext lives in your browser's localStorage and never leaves your device.</p>
     <div class="formula">key = PBKDF2(passphrase, salt, 250k iter, SHA-256, 256 bit)<br>ciphertext = AES-GCM(key, iv, plaintext)<br><br>stored: { iv, ciphertext }   ←  never the passphrase</div>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>This is a password vault that runs entirely in your browser. You set one master passphrase, and the tool derives an encryption key from it (PBKDF2) and encrypts every entry with AES-GCM before storing it in your browser's local storage. Without your passphrase the stored data is just unreadable ciphertext.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Choose a strong master passphrase you'll remember — it's the one key to everything inside.</li>
+        <li>Add your entries; each is encrypted locally as you save it.</li>
+        <li>Lock the vault when you step away, and use the encrypted export to keep a backup somewhere safe.</li>
+      </ol>
+      <h2>Local-only: the trade-off worth understanding</h2>
+      <p>Because everything is encrypted and stored on your own device, nothing is ever uploaded — there's no server holding your passwords, and so no company that can be breached to leak them. The flip side is the honest part: the vault lives in <em>this</em> browser on <em>this</em> device. There is no cross-device sync and no cloud backup. If you clear your browser storage or lose the device without an export, the vault is gone — we can't recover it, because we never had it. That's exactly why the encrypted export exists: use it.</p>
+      <div class="expert-note">
+        <p>In 20 years of IT support, across Manila, Hong Kong, Japan and Singapore, I saw how people really store passwords when no one's looking, and it wasn't a password manager. It was a spreadsheet literally named <code>passwords.xlsx</code>, or a phone note, or a sticky pad under the keyboard — all in plain text, all one lost laptop away from disaster. A cloud password manager fixes that but asks you to trust a third party with the lot. A local encrypted vault like this sits at the other end of that trade-off: nobody else holds your data, but you're responsible for the backup. Neither is "right" for everyone — what's never right is the plain-text spreadsheet.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>Encryption happens in your browser, and your master passphrase is never stored and never leaves your device. The data stays local — there is no sync and no upload.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>Where is my vault stored?</summary><p>Encrypted, in this browser's local storage on this device. It's never uploaded — there's no server copy of your passwords.</p></details>
+      <details class="faq-item"><summary>Can you recover my master passphrase?</summary><p>No. We never see or store it, so we can't reset or recover it. If you forget it, the encrypted data can't be unlocked — choose a passphrase you'll remember and keep a backup.</p></details>
+      <details class="faq-item"><summary>Does the vault sync to my other devices?</summary><p>No. It's local to this browser and device, with no cloud sync. To use it elsewhere or guard against losing the device, use the encrypted export to move or back up your vault.</p></details>
+      <details class="faq-item"><summary>Is this safer than a cloud password manager?</summary><p>It's a different trade-off. Local-only means no third party holds your data and there's nothing central to breach — but you're responsible for backups, and there's no sync. A reputable cloud manager adds convenience and sync at the cost of trusting a provider. Both beat a plain-text file.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

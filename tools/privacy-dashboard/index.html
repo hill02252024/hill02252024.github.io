@@ -35,6 +35,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is my dashboard empty or low?","acceptedAnswer":{"@type":"Answer","text":"It only reflects tools you've actually used on this device. Run the password checker, a breach lookup and the device checklist first, then come back \u2014 the score is built from what those tools saved locally."}},{"@type":"Question","name":"Does this track me across devices?","acceptedAnswer":{"@type":"Answer","text":"No. It reads only this browser's local data. There is no account and no sync, so it cannot see your activity on other devices or browsers."}},{"@type":"Question","name":"Is any of this uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The dashboard runs entirely in your browser and sends nothing to a server. It simply reads what the other tools stored locally on this device."}},{"@type":"Question","name":"How do I improve my score?","acceptedAnswer":{"@type":"Answer","text":"Follow the action items in priority order: replace reused or breached passwords with unique ones, turn on two-factor authentication, and finish the device checklist. Re-open the dashboard to see the score update."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -87,6 +88,29 @@
         <tr><th>Total</th><th style="text-align:right">100</th></tr>
       </tbody>
     </table>
+
+        <section class="tool-content">
+      <h2>What this dashboard does</h2>
+      <p>This dashboard gathers the signals from the other tools you've used on this site — your last password check, breach lookups, aliases created, secrets shared, redactions, and how far through the device checklist you are — and turns them into a single security score with clear next steps. It's a way to see your overall posture at a glance instead of one tool at a time.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Use a few of the privacy tools first (password checker, breach checker, device checklist) so there's something to read.</li>
+        <li>Open this dashboard — it reads what those tools saved in your browser and works out a score.</li>
+        <li>Work through the action items, highest impact first, then re-check and watch the score climb.</li>
+      </ol>
+      <h2>Why one overview beats checking tools one by one</h2>
+      <p>Security risk isn't a single switch — it's cumulative. A reused password is a small risk on its own; an old phone still logged into your email is another; a pile of personal data already public is a third. Individually they look minor, but together they multiply. Looking at any one tool in isolation tends to leave you either falsely reassured or needlessly alarmed. A combined view is what actually shows where the real gaps are.</p>
+      <div class="expert-note">
+        <p>In about 20 years of IT support — with people in Manila, Hong Kong, Japan and Singapore — the single most common security misconception I met was "nothing bad has happened to me, so I'm fine." Risk doesn't work like that; it accumulates quietly. The same person would be reusing one password across a dozen sites, still signed in on a phone they stopped using two years ago, and have their email and birthday sitting in an old breach — each harmless-sounding, dangerous together. None of them ever felt urgent in isolation, which is exactly why nobody fixed them. The thing that finally got people moving was seeing it all on one screen, because that's when "I'm probably fine" turned into "oh, that's a lot of small holes."</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>Everything here is read from your own browser. The dashboard has no account and uploads nothing — it only reflects what the tools on this device have stored locally, and it can't see anything beyond that.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>Why is my dashboard empty or low?</summary><p>It only reflects tools you've actually used on this device. Run the password checker, a breach lookup and the device checklist first, then come back — the score is built from what those tools saved locally.</p></details>
+      <details class="faq-item"><summary>Does this track me across devices?</summary><p>No. It reads only this browser's local data. There's no account and no sync, so it can't see your activity on other devices or browsers.</p></details>
+      <details class="faq-item"><summary>Is any of this uploaded?</summary><p>No. The dashboard runs entirely in your browser and sends nothing to a server. It simply reads what the other tools stored locally on this device.</p></details>
+      <details class="faq-item"><summary>How do I improve my score?</summary><p>Follow the action items in priority order — typically: replace reused or breached passwords with unique ones, turn on two-factor authentication, and finish the device checklist. Re-open the dashboard to see the score update.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">
