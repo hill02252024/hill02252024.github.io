@@ -1,4 +1,4 @@
-name: Build Sitemap, Posts and RSS
+name: Build Sitemap
 on:
   schedule:
     - cron: "0 18 * * *"  # 每天香港時間 02:00 自動運行
@@ -6,7 +6,6 @@ on:
   push:
     paths:
       - "scripts/build-sitemaps.mjs"
-      - "scripts/static-render-posts.mjs"
 
 # Workflow-level env. FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 opts the
 # JavaScript actions used below (checkout, setup-node) into the Node 24
@@ -28,12 +27,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: node scripts/static-render-posts.mjs
       - run: node scripts/build-sitemaps.mjs
       - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml sitemap-pages.xml sitemap-posts.xml feed.xml china/posts/
-          git commit -m "Auto update sitemap, posts & feed" || echo "No changes"
+          git add sitemap.xml sitemap-pages.xml
+          git commit -m "Auto update sitemap" || echo "No changes"
           git push

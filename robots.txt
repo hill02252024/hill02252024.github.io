@@ -1,8 +1,6 @@
 User-agent: *
 Allow: /
-# Non-content directories — keep them out of the index. (Do NOT Disallow
-# /china/: those pages rely on their on-page noindex tag, which Google can
-# only honour if it is allowed to fetch them.)
+# Non-content directories — keep them out of the index.
 Disallow: /templates/
 Disallow: /scripts/
 Disallow: /functions/
