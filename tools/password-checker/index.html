@@ -31,7 +31,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Does this tool send my password anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Entropy scoring and crack-time estimation run entirely in your browser. The breach check uses k-anonymity — only the first 5 characters of the SHA-1 hash leave your device, never the password itself."}},
     {"@type":"Question","name":"What is k-anonymity?","acceptedAnswer":{"@type":"Answer","text":"A privacy technique where we hash your password locally, then send only the first 5 hex characters to the Have I Been Pwned API. The API returns hundreds of partial matches and we check the full hash against them in your browser. Your actual password never leaves your device."}},
-    {"@type":"Question","name":"What makes a strong password?","acceptedAnswer":{"@type":"Answer","text":"Length matters more than complexity. A 16-character passphrase made of random words beats an 8-character mix of symbols. Aim for 60+ bits of entropy — that's roughly 12+ random characters or 4+ random dictionary words."}}
+    {"@type":"Question","name":"What makes a strong password?","acceptedAnswer":{"@type":"Answer","text":"Length matters more than complexity. A 16-character passphrase made of random words beats an 8-character mix of symbols. Aim for 60+ bits of entropy — that's roughly 12+ random characters or 4+ random dictionary words."}},{"@type":"Question","name":"Why does my complex password score as weak?","acceptedAnswer":{"@type":"Answer","text":"Because the score measures unpredictability (entropy), not whether it follows complexity rules. Patterns like a word plus 1! are predictable and tried early by cracking tools. A longer, more random password, even without symbols, scores much higher."}}
   ]}</script>
 </head>
 <body>
@@ -85,10 +85,24 @@
     <p>This tool computes a composite score from four signals: character pool size, length, common-password penalty, and pattern detection (sequential, repeated, keyboard walks). Together they produce an entropy estimate in bits.</p>
     <div class="formula">entropy ≈ log2(pool^length) − pattern_penalty<br><br>scoring bands:<br>  &lt; 28 bits → very weak (cracked in minutes)<br>  28–35    → weak (cracked in hours)<br>  36–59    → moderate (days–months)<br>  60–127   → strong (years–centuries)<br>  ≥ 128    → excellent (effectively uncrackable)</div>
 
+        <section class="tool-content">
+      <h2>Why a "complex" password can still be weak</h2>
+      <p>This checker scores entropy — how unpredictable a password is — not whether it ticks the familiar "one capital, one number, one symbol" boxes. That gap matters, because those rules reward passwords that look complex to a person but are easy for software. <code>P@ssw0rd1</code> passes every complexity rule and is one of the first guesses any cracking tool makes. Length and unpredictability beat decoration: a longer, more random password scores far higher than a short one dressed up with symbols.</p>
+      <h2>Why the breach result matters even more</h2>
+      <p>A password can look long and unique and still be a poor choice — because if it has already appeared in a data breach, it's effectively public, and attackers try leaked passwords first. So this tool checks two different things: how strong the password is in theory, and whether it has already been exposed in practice. If a strong-looking password shows up in breaches, replace it anyway.</p>
+      <div class="expert-note">
+        <p>Over 20 years in IT support — with colleagues in Manila, Hong Kong, Japan and Singapore — I watched a lot of people defend a password they were quietly proud of. It was always some variation of a word with a capital, a symbol and a number on the end, and they were sure it was strong. The strength bar rarely changed their mind on its own. What ended the discussion every time was the breach count: paste it in, and up comes "seen 47,000 times in breaches." There's no arguing with that number. It taught me that "complex" and "strong" are not the same word — and that the most useful thing a checker can show isn't the score, it's whether the password is already out there.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>Both checks run privately: the strength score is computed in your browser, and the breach lookup uses k-anonymity, so your password itself is never sent anywhere.</p>
+    </section>
+
     <h2>Frequently Asked Questions</h2>
     <details class="faq-item"><summary>Does this tool send my password anywhere?</summary><p>No. Entropy scoring and crack-time estimation run entirely in your browser. The breach check uses k-anonymity — only the first 5 characters of the SHA-1 hash leave your device, never the password itself.</p></details>
     <details class="faq-item"><summary>What is k-anonymity?</summary><p>We hash your password locally with SHA-1, then send only the first 5 hex characters to the Have I Been Pwned public API. The API returns hundreds of partial matches; we filter them in your browser. Your actual password never leaves your device.</p></details>
     <details class="faq-item"><summary>What makes a strong password?</summary><p>Length matters more than complexity. A 16-character random passphrase beats an 8-character symbol soup. Aim for 60+ bits of entropy — roughly 12+ random characters or 4+ random words.</p></details>
+
+        <details class="faq-item"><summary>Why does my "complex" password score as weak?</summary><p>Because the score measures unpredictability (entropy), not whether it follows complexity rules. Patterns like a word plus "1!" are predictable and tried early by cracking tools. A longer, more random password — even without symbols — scores much higher.</p></details>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

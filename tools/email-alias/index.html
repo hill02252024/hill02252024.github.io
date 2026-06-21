@@ -28,6 +28,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do aliases actually hide my real email?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 the service only ever sees the alias. With a catch-all domain or a provider feature like Gmail plus-addressing or iCloud Hide My Email, mail sent to the alias still reaches your inbox, but the sender never learns your underlying address."}},{"@type":"Question","name":"How does an alias help me catch a leak?","acceptedAnswer":{"@type":"Answer","text":"Because each alias is unique to one service, any message arriving at it could only have come from that service. If you suddenly get spam at an alias you gave one shop, that shop is the source \u2014 and you can disable just that alias."}},{"@type":"Question","name":"What's the difference between the strategies?","acceptedAnswer":{"@type":"Answer","text":"Plus-addressing is instant but easy to strip back to your real address. A custom domain or a hidden-relay feature is more robust because the alias never reveals your real address. Pick based on how much protection you want."}},{"@type":"Question","name":"Is anything uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Aliases are generated in your browser and your tracker is stored locally on your device. Nothing about which aliases you create is sent anywhere."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -122,6 +123,30 @@
 
     <h2>How to Catch Leaks</h2>
     <p>If you sign up for <code>newsletter.com</code> using <code>you+newsletter@gmail.com</code> and later get marketing spam to that exact alias from a <em>different</em> sender, you know newsletter.com leaked or sold your address. Cancel them, block the alias, move on.</p>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>An email alias is a separate address that forwards to your real inbox. Instead of handing your actual email to every website, you give each one its own alias — like <code>storename@yourdomain</code> or a Gmail/iCloud variant — so your primary address stays private. This generator builds those site-specific aliases for Gmail, iCloud, ProtonMail or your own domain, entirely in your browser.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Pick your provider, or enter your own domain.</li>
+        <li>Type the site or service you're signing up for.</li>
+        <li>Copy the generated alias and use it in place of your real address.</li>
+        <li>Keep the alias tracker handy so you remember which alias went to which service.</li>
+      </ol>
+      <h2>Why it matters</h2>
+      <p>Hiding your real address is only half the value. The other half is traceability: because every service gets its own alias, the day spam or a phishing email arrives addressed to one of them, you know <em>exactly</em> which company leaked, sold or was breached. You can then switch off that single alias without disturbing any of your other accounts — something you can never do when every site has your one real address.</p>
+      <div class="expert-note">
+        <p>I spent about 20 years in IT support, working with people in Manila, Hong Kong, Japan and Singapore, and aliases are the one privacy habit I actually changed my own behaviour over. I started giving every signup its own address. Months later a wave of spam turned up addressed to the alias I'd only ever given to one mid-sized online shop — no human had that address, so there was no other explanation: their list had leaked. I killed that one alias and the spam stopped dead, while every other account carried on untouched. You learn very quickly that "we value your privacy" in a signup form means nothing; an alias is how you actually verify it.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>Everything happens locally: the aliases and your tracker live in this browser and are never uploaded.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>Do aliases actually hide my real email?</summary><p>Yes — the service only ever sees the alias. With a catch-all domain or a provider feature like Gmail "+" or iCloud Hide My Email, mail sent to the alias still arrives in your inbox, but the sender never learns your underlying address.</p></details>
+      <details class="faq-item"><summary>How does an alias help me catch a leak?</summary><p>Because each alias is unique to one service, any message arriving at it could only have come from that service's list. If you suddenly get spam or phishing at <code>shop@yourdomain</code>, that shop is the source — and you can disable just that alias.</p></details>
+      <details class="faq-item"><summary>What's the difference between the strategies?</summary><p>Plus-addressing (you+site@gmail.com) is instant but easy for a spammer to strip back to your real address. A custom domain or a provider's hidden-relay feature is more robust because the alias doesn't reveal your real address at all. Pick based on how much protection you want.</p></details>
+      <details class="faq-item"><summary>Is anything uploaded?</summary><p>No. Aliases are generated in your browser and your tracker is stored locally on your device. Nothing about which aliases you create is sent anywhere.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

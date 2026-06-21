@@ -28,6 +28,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it safe to type my password here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your password is hashed in your browser and only the first five characters of the hash are sent (k-anonymity). The service can't see your password, your full hash, or which entry you checked."}},{"@type":"Question","name":"Does this monitor my accounts going forward?","acceptedAnswer":{"@type":"Answer","text":"No. It's a point-in-time check of whether your email or password is in known breaches right now. It doesn't store anything, watch your accounts, or send alerts later."}},{"@type":"Question","name":"My password showed up \u2014 what do I do?","acceptedAnswer":{"@type":"Answer","text":"Stop using it immediately, everywhere. Change it on every account where it was used, switch to a unique password per site, and enable two-factor authentication where you can."}},{"@type":"Question","name":"If my email is in a breach, is my password exposed?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily, but assume the worst for that site. A breach can expose emails alone, or emails with hashed or plaintext passwords. Change the password for that service and anywhere you reused it."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -65,6 +66,29 @@
 
     <h2>What "Pwned" Means</h2>
     <p>HIBP aggregates publicly-leaked data dumps from breaches. If your address appears, it was part of a leak — your password may have been exposed in cleartext or as a weak hash. Action: change the password everywhere it was reused, enable 2FA, and consider rotating to an alias.</p>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>Enter an email address or a password and this tool checks it against Have I Been Pwned's database of known breaches — telling you whether it has appeared in a public data leak. It's a point-in-time check: it answers "is this in a known breach right now?", which is exactly the question worth asking before you trust a password or an account.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Type the email address or password you want to check.</li>
+        <li>Read the result: whether it appears in known breaches, and for passwords, roughly how many times.</li>
+        <li>If it shows up, change that password everywhere you've used it and turn on two-factor authentication.</li>
+      </ol>
+      <h2>Why checking this way is safe</h2>
+      <p>The natural worry is "isn't typing my password into a checker exactly the wrong thing to do?" Here it isn't, because of a technique called <strong>k-anonymity</strong>. Your password is hashed with SHA-1 <em>in your browser</em>, and only the <em>first five characters</em> of that hash are sent to the service. It replies with every breached hash sharing those five characters — hundreds of them — and the final match happens locally, in your tab. The service never sees your password, your full hash, or which specific entry you were checking.</p>
+      <div class="expert-note">
+        <p>In 20 years of IT support, across offices in Manila, Hong Kong, Japan and Singapore, the breach check was the single fastest way to make a security point land. People nod politely when you talk about "good password hygiene"; they sit up when they paste a password they've used for a decade and see it's appeared in breaches tens of thousands of times. That number does the convincing. The part I always had to explain, though, was that the check itself is safe — k-anonymity means only five characters of a hash leave the device, never the password. And I was careful to be honest about its limit: this tells you about leaks that are <em>already public and known today</em>. It's a spot-check, not a guard that watches your accounts — for that you still need unique passwords and 2FA.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>This is a one-time lookup, not monitoring — it doesn't store your input, watch your accounts, or notify you later. Everything except that anonymised five-character hash prefix stays in your browser.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>Is it safe to type my password here?</summary><p>Yes. Your password is hashed in your browser and only the first five characters of the hash are sent (k-anonymity). The service can't see your password, your full hash, or which entry you checked.</p></details>
+      <details class="faq-item"><summary>Does this monitor my accounts going forward?</summary><p>No. It's a point-in-time check of whether your email or password is in known breaches right now. It doesn't store anything, watch your accounts, or send alerts later.</p></details>
+      <details class="faq-item"><summary>My password showed up — what do I do?</summary><p>Stop using it immediately, everywhere. Change it on every account where it was used (especially if reused), switch to a unique password per site, and enable two-factor authentication where you can.</p></details>
+      <details class="faq-item"><summary>If my email is in a breach, is my password exposed?</summary><p>Not necessarily, but assume the worst for that site. A breach can expose emails alone, or emails with hashed or even plaintext passwords. Change the password for the affected service and anywhere you reused it.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

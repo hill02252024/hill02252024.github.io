@@ -28,6 +28,7 @@
     "publisher": { "@type": "Organization", "name": "Today's Tasks", "url": "https://todays-tasks.com" }
   }
   </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When should I use this?","acceptedAnswer":{"@type":"Answer","text":"Any time you're about to paste real text somewhere it will be stored: a support ticket, a public bug report, a group chat, documentation, or an email thread. Clean it first so customer data, credentials and IDs aren't in the copy you share."}},{"@type":"Question","name":"Can it remove API tokens and passwords?","acceptedAnswer":{"@type":"Answer","text":"It catches common patterns out of the box, and you can add custom patterns for token formats or internal IDs specific to your work. Always review the output, and if a real secret was exposed elsewhere, rotate it."}},{"@type":"Question","name":"Is my text uploaded for processing?","acceptedAnswer":{"@type":"Answer","text":"No. All detection and replacement run in your browser. Nothing you paste is sent to a server."}},{"@type":"Question","name":"What's the difference from the document redactor?","acceptedAnswer":{"@type":"Answer","text":"They overlap. The cleaner is tuned for swapping sensitive values in free text for placeholders, great for logs and messages; the redactor focuses on blacking out PII. Use whichever fits the text you're sharing."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -95,6 +96,30 @@
       <li><strong>Bug reports</strong> — share the error, not the user.</li>
       <li><strong>Newsletters / drafts</strong> — sanitise quotes before publishing.</li>
     </ul>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>Paste any block of text and this cleaner strips out the sensitive parts — emails, phone numbers, national IDs, credit cards, IBANs, IP addresses — and swaps them for safe placeholders. It's built for the moment before you share a log, a bug report, a spreadsheet row or a chat message, when you want the content without the personal data.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Paste the text you're about to send or post.</li>
+        <li>Choose how matches are replaced (a label, a mask, or a generic placeholder).</li>
+        <li>Add custom patterns for anything specific — internal IDs, project names, API tokens.</li>
+        <li>Copy the cleaned text and share that instead of the original.</li>
+      </ol>
+      <h2>Why it matters</h2>
+      <p>Most data leaks aren't dramatic hacks — they're ordinary people pasting raw text into places that keep it forever. A support ticket, a group chat, a public issue tracker, a pastebin link in an email: all of these quietly archive whatever you drop into them. Run the text through a cleaner first and the customer details, credentials and identifiers simply aren't in the copy you share.</p>
+      <div class="expert-note">
+        <p>This was a weekly occurrence in 20 years of IT support — and I worked with teams in Manila, Hong Kong, Japan and Singapore, so "weekly" adds up. Someone troubleshooting an API would paste a full request log into a shared ticket to ask for help, with a live bearer token sitting right there in the headers. Or a screenshot of an app error that happened to include a real customer's name, email and order in the background. The token cases were the worst: once a secret lands in a ticketing system or a chat history, you can't un-send it — you have to rotate it and hope nobody copied it first. After enough of those, I started telling everyone the same thing: scrub the paste <em>before</em> it leaves your screen, because afterwards is too late.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>The cleaning happens entirely in your browser. Your text — and everything sensitive in it — never leaves your device.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>When should I use this?</summary><p>Any time you're about to paste real text somewhere it will be stored: a support ticket, a public bug report, a group chat, documentation, or an email thread. Clean it first so customer data, credentials and IDs aren't in the copy you share.</p></details>
+      <details class="faq-item"><summary>Can it remove API tokens and passwords?</summary><p>It catches common patterns out of the box, and you can add custom patterns for token formats, internal IDs or project names specific to your work. Always review the output, and if a real secret was ever exposed elsewhere, rotate it.</p></details>
+      <details class="faq-item"><summary>Is my text uploaded for processing?</summary><p>No. All detection and replacement run in your browser. Nothing you paste is sent to a server.</p></details>
+      <details class="faq-item"><summary>What's the difference from the document redactor?</summary><p>They overlap. The cleaner is tuned for swapping sensitive values in free text for placeholders (great for logs and messages); the redactor focuses on blacking out PII. Use whichever fits the text you're sharing.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">

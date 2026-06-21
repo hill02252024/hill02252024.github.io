@@ -29,6 +29,7 @@
   }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this different from blacking out text in a PDF?","acceptedAnswer":{"@type":"Answer","text":"Very. A black box in a PDF or Word document sits on top of the text, which is still selectable and copyable underneath. This tool replaces the sensitive characters, so the data is genuinely removed from what you copy out."}},{"@type":"Question","name":"What kinds of data does it detect?","acceptedAnswer":{"@type":"Answer","text":"Common PII patterns: names, email addresses, phone numbers, government/ID numbers, credit-card numbers, IBANs and similar. You can also add your own custom terms or patterns to mask."}},{"@type":"Question","name":"Does anything get uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Detection and redaction happen entirely in your browser. The text you paste is never sent to any server."}},{"@type":"Question","name":"Can it catch everything automatically?","acceptedAnswer":{"@type":"Answer","text":"Pattern detection catches the common formats, but no automatic tool is perfect \u2014 unusual identifiers may slip through. Always review the result and add custom patterns for anything specific to your document."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -127,6 +128,30 @@
       <li><strong>Names</strong> — capitalised consecutive words (heuristic, may over-match)</li>
       <li><strong>Custom</strong> — anything you list, case-insensitive</li>
     </ul>
+
+        <section class="tool-content">
+      <h2>What this tool does</h2>
+      <p>This redactor finds and blacks out personal data — names, emails, phone numbers, ID numbers, credit cards and more — in text you paste, right in your browser. Crucially, it doesn't just <em>cover</em> the characters; it replaces them, so there's no original text hiding underneath the black bars.</p>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Paste the text you need to share — a log, an email, a record, a screenshot's transcript.</li>
+        <li>The tool detects common PII patterns and blacks them out automatically.</li>
+        <li>Add any custom words or patterns specific to your case.</li>
+        <li>Copy the redacted result — the masked data is gone, not merely hidden.</li>
+      </ol>
+      <h2>Why "redaction" is not the same as drawing a black box</h2>
+      <p>This is the mistake that bites people. Drawing a black rectangle over text in Word, a PDF viewer, or an image editor only adds a shape <em>on top</em> of the words. The text underneath is still there — selectable, copyable, and often recoverable by anyone who moves the box or copies the page. Real redaction removes the underlying data entirely. That's what this tool does: the sensitive characters are replaced, so what you copy out genuinely no longer contains them.</p>
+      <div class="expert-note">
+        <p>In 20 years of IT support across teams in Manila, Hong Kong, Japan and Singapore, I lost count of the "redacted" documents that weren't. The classic was a contract someone had "blacked out" by dropping filled rectangles over the salary and ID numbers in a PDF — you could literally select the text under the boxes and paste the originals straight out. Another favourite: highlighting text black in Word, which changes the highlight colour but leaves the words perfectly readable to anyone who selects them. People assume covering the pixels covers the data; it almost never does. The only safe redaction is the kind that deletes the underlying characters before the file ever leaves your hands.</p>
+        <span class="who">— Hill, 20 years in IT support</span>
+      </div>
+      <p>All of this runs locally. The text you paste never leaves your browser — there's no server to receive it.</p>
+      <h2>Frequently asked questions</h2>
+      <details class="faq-item"><summary>Is this different from blacking out text in a PDF?</summary><p>Very. A black box in a PDF or Word doc sits on top of the text, which is still selectable and copyable underneath. This tool replaces the sensitive characters, so the data is genuinely removed from what you copy out.</p></details>
+      <details class="faq-item"><summary>What kinds of data does it detect?</summary><p>Common PII patterns: names, email addresses, phone numbers, government/ID numbers, credit-card numbers, IBANs and similar. You can also add your own custom terms or patterns to mask.</p></details>
+      <details class="faq-item"><summary>Does anything get uploaded?</summary><p>No. Detection and redaction happen entirely in your browser. The text you paste is never sent to any server.</p></details>
+      <details class="faq-item"><summary>Can it catch everything automatically?</summary><p>Pattern detection catches the common formats, but no automatic tool is perfect — unusual identifiers or context-specific secrets may slip through. Always review the result, and add custom patterns for anything specific to your document.</p></details>
+    </section>
 
     <h2>More Privacy Tools</h2>
     <div class="more-tools">
