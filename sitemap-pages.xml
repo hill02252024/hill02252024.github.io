@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-07-07T19:56:10.727Z</lastmod></url>
+  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-07-08T07:41:24.219Z</lastmod></url>
   <url><loc>https://todays-tasks.com/about.html</loc></url>
   <url><loc>https://todays-tasks.com/apps.html</loc></url>
+  <url><loc>https://todays-tasks.com/apps/cleanscan.html</loc></url>
+  <url><loc>https://todays-tasks.com/apps/gps-camera.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/</loc></url>
   <url><loc>https://todays-tasks.com/compare/asana-vs-todays-tasks.html</loc></url>
   <url><loc>https://todays-tasks.com/compare/no-signup-to-do-list-apps.html</loc></url>
@@ -15,6 +17,8 @@
   <url><loc>https://todays-tasks.com/contact.html</loc></url>
   <url><loc>https://todays-tasks.com/digital-vs-paper-todo-lists.html</loc></url>
   <url><loc>https://todays-tasks.com/etsy-guides.html</loc></url>
+  <url><loc>https://todays-tasks.com/gps-camera-privacy.html</loc></url>
+  <url><loc>https://todays-tasks.com/gps-camera-support.html</loc></url>
   <url><loc>https://todays-tasks.com/how-to-use-todays-tasks.html</loc></url>
   <url><loc>https://todays-tasks.com/learn/why-local.html</loc></url>
   <url><loc>https://todays-tasks.com/new-tab.html</loc></url>
@@ -49,7 +53,5 @@
   <url><loc>https://todays-tasks.com/tools/sensitive-data-cleaner/</loc></url>
   <url><loc>https://todays-tasks.com/tools/tip-calculator/</loc></url>
   <url><loc>https://todays-tasks.com/tools/vat-refund/</loc></url>
-  <url><loc>https://todays-tasks.com/gps-camera-privacy.html</loc></url>
-  <url><loc>https://todays-tasks.com/gps-camera-support.html</loc></url>
   <url><loc>https://todays-tasks.com/weekly-review-checklist.html</loc></url>
 </urlset>
