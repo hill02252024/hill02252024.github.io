@@ -66,7 +66,7 @@
             '<div class="site-footer-v2-col-title">Products</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/tools/">Privacy Tools</a>' +
-              '<a href="/apps.html">28 Mobile Apps</a>' +
+              '<a href="/apps.html">42 Mobile Apps</a>' +
               '<a href="/pricing.html">Pricing</a>' +
               '<a href="/todo.html">Today\'s Tasks To-Do</a>' +
             '</div>' +
