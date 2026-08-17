@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Exchange rate app — should I exchange today?</title>
+  <meta name="description" content="Not just today&#x27;s rate, but whether it is a good one. RateRadar scores it against the pair&#x27;s 30-day median and 90-day high, backtests the call, and alerts you." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/apps/rateradar/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/rateradar/" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/rateradar/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/rateradar/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="Exchange rate app — should I exchange today?" />
+  <meta property="og:description" content="An exchange rate app that answers the actual question: is today a good day to convert? A verdict against the recent range, a backtest, and alerts when your pair moves." />
+  <meta property="og:url" content="https://todays-tasks.com/apps/rateradar/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/rateradar.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Exchange rate app — should I exchange today?" />
+  <meta name="twitter:description" content="An exchange rate app that answers the actual question: is today a good day to convert? A verdict against the recent range, a backtest, and alerts when your pair moves." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/rateradar.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://todays-tasks.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Apps",
+        "item": "https://todays-tasks.com/apps/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "RateRadar",
+        "item": "https://todays-tasks.com/apps/rateradar/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "RateRadar",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "FinanceApplication",
+    "description": "A currency exchange app that scores the current rate against its recent range and returns a verdict on whether to convert now, with a historical backtest of that verdict, rate alerts, an offline-capable converter, and an indication of the spread between the interbank rate and what a bank or bureau de change will actually give you.",
+    "featureList": "Buy-or-wait verdict against recent range, historical backtest of the verdict, rate watch alerts, multi-currency converter, offline cached rates with freshness indicator, interbank versus bank versus bureau spread hint, currency detail charts, background rate checks, English and Chinese interface",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/apps/rateradar/",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=hk.rateradar.app"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the app decide whether today is a good day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It scores the current rate against that pair's own 30-day median and 90-day high. At or above the 90-day high is the strongest signal to exchange; more than 3% above the median is a good deal, within 3% is normal, and more than 3% below suggests waiting. The detail screen backtests how the same call would have performed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will I get the rate the app shows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, and the app says so. It shows the interbank rate along with the typical haircut a bank (about 2%) or a bureau de change (about 1.5%) applies, so you can see what to expect at the counter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it notify me when a rate hits a target?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Add a pair to your watches with a target and the app checks in the background and sends a local notification when it is reached."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the converter work without a connection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The last fetched rates are cached and used offline, with a freshness stamp showing when they were last updated."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which languages does it support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "English and Chinese."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(27px,4vw,36px);letter-spacing:-.02em;margin:0 0 6px}
+    .applp .lede{font-size:18px;color:var(--text-muted);line-height:1.6;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:22px}
+    .applp p,.applp li{font-size:16.5px;line-height:1.75;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/apps/">Apps</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">RateRadar</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <img class="applp-icon-img" src="/assets/apps/rateradar.png" alt="RateRadar app icon — exchange rate verdict telling you whether today is a good day to convert currency" width="78" height="78" loading="lazy" decoding="async" />
+      <div>
+        <h1>RateRadar — the exchange rate app that tells you if today is a good day</h1>
+        <p class="lede">Every converter shows you the rate. Almost none tell you whether it is a good one. RateRadar scores today against the recent range and gives you a verdict.</p>
+      </div>
+    </div>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=hk.rateradar.app&amp;pcampaignid=web_share" rel="noopener" aria-label="Get RateRadar on Google Play">▶ Google Play</a>
+    </div>
+
+    <h2>A number without context is not information</h2>
+    <p>You are about to move money — paying an overseas invoice, funding a trip, sending remittance home — and you look up the rate. It says 8.42. Is that good? Without knowing where it has been for the past few months, the number tells you nothing, and “I'll wait and see” turns into converting at whatever the rate happens to be on the day you run out of time.</p>
+    <p>RateRadar reframes the question. It compares the current rate against its recent range for that pair and returns a plain verdict — is this near the good end, the bad end, or the middle — so the decision to act or wait is based on something.</p>
+
+    <h2>What the exchange rate app does</h2>
+    <p>A converter is the front door; the judgement is the product.</p>
+    <ul class="applp-features">
+      <li><strong>A verdict, not just a rate.</strong> Each watched pair is scored against its own recent history: the 30-day median and the 90-day high. Hit the 90-day high and you get the strongest <em>exchange now</em> signal; more than 3% above the median reads as a good deal, within 3% is normal, and more than 3% below says wait. The verdict appears as a pill beside the rate, so the answer is legible at a glance rather than buried in a chart.</li>
+      <li><strong>A backtest of that verdict.</strong> The currency detail screen shows how the same call would have performed historically. A recommendation you cannot check is just an opinion; showing the track record is the difference between a signal and a horoscope.</li>
+      <li><strong>The spread you will actually be charged.</strong> The detail view separates the interbank rate from what a bank typically gives — roughly two per cent worse — and what a bureau de change gives, around one and a half per cent worse. Knowing that gap is often worth more than timing the market, because it is the part you can control by choosing where to change money.</li>
+      <li><strong>Watches and alerts.</strong> Put a pair on watch with a target and the app checks in the background and notifies you when it is hit, so you are not opening an app every morning to look at a number.</li>
+      <li><strong>A converter that works offline.</strong> Rates are cached locally with a freshness indicator showing when they were last updated, and an offline banner when there is no connection. You still get a conversion on a plane or in a country where your data has not connected yet.</li>
+      <li><strong>Bilingual.</strong> The interface runs in English and Chinese, with the verdict and spread explanations written in both.</li>
+    </ul>
+
+    <h2>Why the verdict is the point</h2>
+    <p>There is no shortage of currency converters, and they are all accurate, because the mid-market rate is a public number. Accuracy is not what is missing. What is missing is judgement: whether the rate in front of you is one worth taking. RateRadar is built around that single question, and it is honest about the answer by publishing the backtest rather than asserting confidence.</p>
+    <p>It also refuses to hide the spread. Most currency apps quote the interbank rate and let you discover at the counter that you are getting something else. Showing the typical bank and bureau haircut up front is less flattering and considerably more useful.</p>
+
+    <h2>Who it is for</h2>
+    <p>Anyone with a recurring cross-border payment gets the most from it — a freelancer invoicing in another currency, a parent paying overseas tuition, someone sending money to family. These are not one-off conversions, and over a year the difference between converting on good days and bad days is real money.</p>
+    <p>It also suits travellers planning a trip a few months out who want to convert before departure rather than at an airport counter, and anyone in Hong Kong watching a pair like HKD to JPY or HKD to GBP where the range moves enough to matter but not enough to follow daily.</p>
+
+    <h2>Where the rates come from</h2>
+    <p>Rates are fetched from a public exchange-rate feed and cached on the device with a visible last-updated stamp, so you always know how fresh the number is. The spread figures for banks and bureaux are typical indications, not quotes — the counter in front of you sets the real price.</p>
+    <p>Watches, history and settings are stored locally. There is no account. The verdict is a heuristic based on the recent range, not a forecast, and nothing in the app is financial advice. It is free and ad-supported.</p>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=hk.rateradar.app&amp;pcampaignid=web_share" rel="noopener" aria-label="Get RateRadar on Google Play">▶ Google Play</a>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <p><strong>How does the app decide whether today is a good day?</strong> It scores the current rate against that pair's own 30-day median and 90-day high. At or above the 90-day high is the strongest exchange-now signal; more than 3% above the median is a good deal, within 3% is normal, more than 3% below says wait. The detail screen backtests how that call would have performed.</p>
+    <p><strong>Will I get the rate the app shows?</strong> No — and the app is explicit about it. It shows the interbank rate alongside the typical haircut from a bank (about 2%) or a bureau de change (about 1.5%), so you know what to expect at the counter.</p>
+    <p><strong>Can it notify me when a rate hits a target?</strong> Yes. Add the pair to your watches with a target; the app checks in the background and sends a local notification when it is hit.</p>
+    <p><strong>Does the converter work without a connection?</strong> Yes. The last fetched rates are cached and used offline, with a freshness stamp showing how old they are.</p>
+    <p><strong>Which languages does it support?</strong> English and Chinese.</p>
+  </main>
+
+  <aside class="applp-back" aria-label="Related">
+    <p>← Back to <a href="/apps/">all apps</a> · See also <a href="/apps/travel-tools-hub/">Travel Tools Hub</a> · <a href="/apps/vat-refund-calculator/">VAT Refund Calculator</a> · <a href="/apps/world-clock/">World Clock</a> · <a href="/zh-hk/apps/rateradar/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">中文版</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+</body>
+</html>

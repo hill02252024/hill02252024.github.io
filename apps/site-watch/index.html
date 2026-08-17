@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Construction site complaint logging app — Site Watch</title>
+  <meta name="description" content="Record a site problem with photo and coordinates even with no signal; it sends itself when the connection returns, with guards so nothing is filed twice." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/apps/site-watch/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/site-watch/" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/site-watch/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/site-watch/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="Construction site complaint logging app — Site Watch" />
+  <meta property="og:description" content="A shared site complaint log: photo, location and description captured offline, queued in an outbox, and filed automatically when the connection returns." />
+  <meta property="og:url" content="https://todays-tasks.com/apps/site-watch/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Construction site complaint logging app — Site Watch" />
+  <meta name="twitter:description" content="A shared site complaint log: photo, location and description captured offline, queued in an outbox, and filed automatically when the connection returns." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://todays-tasks.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Apps",
+        "item": "https://todays-tasks.com/apps/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Site Watch",
+        "item": "https://todays-tasks.com/apps/site-watch/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "工地投訴 Site Watch",
+    "operatingSystem": "ANDROID, IOS",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "A shared complaint log for problems around a construction site. Reports carry a photo, coordinates and a description, are captured offline into a local outbox, and are submitted automatically when connectivity returns, with two independent layers of duplicate protection. The backend is a GitHub issue tracker, so no separate server is operated.",
+    "featureList": "Photo, location and description capture, offline outbox with automatic send, two-layer duplicate protection, map and list views, shared multi-user log via GitHub Issues, image compression before upload, local search index, credentials in secure storage, Cantonese interface",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/apps/site-watch/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What happens if I have no signal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The report is saved to a local outbox with its photos and location, and the app sends it automatically when the connection returns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Could a report be filed twice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Two independent guards prevent it. Once a report is accepted, its issue number is recorded immediately and it can never be posted again; and before creating anything, the app checks the existing list for its client identifier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are the reports actually stored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As issues in a GitHub repository you configure. There is no separate server, and you get a full history with timestamps for free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can several people use the same log?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Everyone logging into the same repository sees the same reports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is location required?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A site complaint without a position is not actionable, so the app asks for one."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(27px,4vw,36px);letter-spacing:-.02em;margin:0 0 6px}
+    .applp .lede{font-size:18px;color:var(--text-muted);line-height:1.6;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:22px}
+    .applp p,.applp li{font-size:16.5px;line-height:1.75;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/apps/">Apps</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">Site Watch</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <div class="applp-icon" aria-hidden="true">🏗️</div>
+      <div>
+        <h1>Site Watch — a site complaint logging app that survives having no signal</h1>
+        <p class="lede">Basements, lift shafts and half-built floors have no signal. This site complaint logging app captures the report anyway, queues it, and files it the moment the phone reconnects.</p>
+      </div>
+    </div>
+
+    <p class="applp-note">This app is still in development and is not yet listed on the App Store or Google Play. This page describes what has been built.</p>
+
+    <h2>Field reporting fails at the exact moment it is needed</h2>
+    <p>The places where something goes wrong on a construction site are the places with no reception. A web form times out, an app that posts immediately fails, and the report gets postponed until the end of the day — by which point the detail is gone, the photo was never taken, and the exact location is a guess.</p>
+    <p>Site Watch treats offline as the normal case. A report is written to a local outbox with its photo and coordinates, and the app sends it when connectivity returns, without anyone remembering to do so.</p>
+
+    <h2>What the site complaint logging app does</h2>
+    <p>Capture, queue, and make absolutely sure it goes in exactly once.</p>
+    <ul class="applp-features">
+      <li><strong>Capture with photo and coordinates.</strong> A report carries a description, one or more photos taken on the spot or picked from the library, and the location. The location field is required, because a site complaint without a position is not actionable.</li>
+      <li><strong>An outbox you can see.</strong> Pending reports are listed as waiting to send, with the app stating plainly that they will go automatically when there is a connection and that duplicates are checked before sending. A queue you cannot see is a queue you do not trust.</li>
+      <li><strong>Duplicate protection, twice over.</strong> Each report carries a client-generated identifier. Once a report has been accepted, its issue number is written down immediately and it can never be posted again no matter how many times a retry runs. Separately, before creating anything, the app queries the existing list for that identifier. Two independent gates, because the failure mode of a naive retry — a response lost in transit and the report filed twice — is the one that destroys confidence in a shared log.</li>
+      <li><strong>Photos handled sensibly.</strong> Images are compressed before upload and stored as file paths rather than being stuffed into the local database, because three photos of several hundred kilobytes each in a key-value store is a problem waiting to happen.</li>
+      <li><strong>List and map views.</strong> Reports can be read as a list or seen on a map, which is how a pattern in one part of a site becomes visible.</li>
+      <li><strong>Shared across a team.</strong> Multiple people log into the same shared record, so a report filed by one person is visible to everyone.</li>
+      <li><strong>Local search.</strong> A search index on the device, so finding an earlier report does not require a round trip.</li>
+    </ul>
+
+    <h2>No server, on purpose</h2>
+    <p>The shared log is stored as issues in a GitHub repository. That is an unusual choice and a deliberate one: it means there is no backend to run, no database to secure, no hosting bill, and a full history with timestamps and comments for free. For a small team logging site problems, an issue tracker is an extremely good fit for what a complaint log actually is.</p>
+    <p>Access credentials are held in the platform's secure storage rather than in plain preferences, and photos and cached reports live on the device.</p>
+
+    <h2>Who it is for</h2>
+    <p>Site teams, safety officers and residents' committees logging problems around a construction site — dust, noise, obstruction, damage — where a photograph with a location and a timestamp is far more useful than a phone call.</p>
+    <p>More generally, it suits any small team doing field reporting in places with unreliable connectivity, where the report must survive being written in a basement and must not be filed twice when the signal comes back.</p>
+
+    <h2>Storage and privacy</h2>
+    <p>Reports are stored as issues in a GitHub repository configured during setup, so their visibility follows that repository's settings. Photos are compressed on the device before upload. Credentials are kept in secure storage. Location is used to attach coordinates to a report.</p>
+    <p>Anyone using it should be aware that photographs taken on a site may capture people or private property, and should handle that accordingly.</p>
+
+    <p class="applp-note">This app is still in development and is not yet listed on the App Store or Google Play. This page describes what has been built.</p>
+
+    <h2>Frequently asked questions</h2>
+    <p><strong>What happens if I have no signal?</strong> The report is saved to a local outbox with its photos and location, and the app sends it automatically when the connection comes back.</p>
+    <p><strong>Could a report be filed twice?</strong> Two independent guards prevent it. Once a report is accepted, its issue number is written down immediately and it can never be posted again; and before creating anything, the app queries the existing list for its client identifier.</p>
+    <p><strong>Where are the reports actually stored?</strong> As issues in a GitHub repository you configure during setup. There is no separate server, and you get a full history with timestamps and comments for free.</p>
+    <p><strong>Can several people use the same log?</strong> Yes. Everyone logging into the same repository sees the same reports.</p>
+    <p><strong>Is location required?</strong> Yes. A site complaint without a position is not actionable, so the app requires one.</p>
+  </main>
+
+  <aside class="applp-back" aria-label="Related">
+    <p>← Back to <a href="/apps/">all apps</a> · See also <a href="/apps/gps-camera/">GPS Camera</a> · <a href="/apps/decibel-meter/">Decibel Meter</a> · <a href="/apps/hk-heatsafe/">避暑助手 — HeatSafe HK</a> · <a href="/zh-hk/apps/site-watch/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">中文版</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+</body>
+</html>

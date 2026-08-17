@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Hong Kong A&amp;E waiting time and public toilet finder</title>
+  <meta name="description" content="Live waiting times for all 18 public A&amp;E departments, sorted by how far away they are, plus the nearest public toilets. Two urgent searches, one small app." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/apps/ernloo-ae-waiting-times/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/ernloo-ae-waiting-times/" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/ernloo-ae-waiting-times/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/ernloo-ae-waiting-times/" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="Hong Kong A&amp;E waiting time and public toilet finder" />
+  <meta property="og:description" content="Live Hong Kong A&amp;E waiting times from the Hospital Authority, sorted by how far away each hospital is, plus the nearest public toilets from FEHD data." />
+  <meta property="og:url" content="https://todays-tasks.com/apps/ernloo-ae-waiting-times/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/hkweather.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hong Kong A&amp;E waiting time and public toilet finder" />
+  <meta name="twitter:description" content="Live Hong Kong A&amp;E waiting times from the Hospital Authority, sorted by how far away each hospital is, plus the nearest public toilets from FEHD data." />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/hkweather.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://todays-tasks.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Apps",
+        "item": "https://todays-tasks.com/apps/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "即急即廁 — ER & Loo",
+        "item": "https://todays-tasks.com/apps/ernloo-ae-waiting-times/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "即急即廁",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "HealthApplication",
+    "description": "A Hong Kong app combining live accident and emergency waiting times for all 18 public A&E departments from Hospital Authority open data with a nearest public toilet finder from Food and Environmental Hygiene Department data, sorted by distance from your location and shown on a map.",
+    "featureList": "Live A&E waiting times for 18 public hospitals, sorted by distance from you, hospital coordinates added by the app, nearest public toilets, map view, directions handoff, Chinese and English, informational only with no medical advice",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/apps/ernloo-ae-waiting-times/",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=hk.hill.ernloo"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where do the waiting times come from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Hospital Authority's public open data feed, covering all 18 public accident and emergency departments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the official dataset need this app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the dataset publishes hospital names and waiting times but no coordinates. The app adds its own coordinate reference, checked against official hospital addresses, so the list can be sorted by distance from you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a shorter posted wait mean I will be seen sooner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. A&E patients are triaged by urgency and the posted figure reflects the wait for the least urgent category. A serious case is seen ahead of it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does the toilet data come from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Food and Environmental Hygiene Department's public data on public toilets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it medical advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is informational only. In an emergency, call 999."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(27px,4vw,36px);letter-spacing:-.02em;margin:0 0 6px}
+    .applp .lede{font-size:18px;color:var(--text-muted);line-height:1.6;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:22px}
+    .applp p,.applp li{font-size:16.5px;line-height:1.75;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="Breadcrumb">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/apps/">Apps</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">即急即廁 — ER &amp; Loo</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <div class="applp-icon" aria-hidden="true">🏥</div>
+      <div>
+        <h1>即急即廁 — Hong Kong A&E waiting times and the nearest public toilet</h1>
+        <p class="lede">Two things you look up in a hurry and never at leisure: Hong Kong A&E waiting times, and where the nearest public toilet is.</p>
+      </div>
+    </div>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=hk.hill.ernloo&amp;pcampaignid=web_share" rel="noopener" aria-label="Get 即急即廁 on Google Play">▶ Google Play</a>
+    </div>
+
+    <h2>The official data is published, but not in a usable shape</h2>
+    <p>The Hospital Authority publishes live A&E waiting times for all eighteen public emergency departments. Useful — except the dataset gives you hospital names and waiting times and nothing else. No coordinates, no distances. So the actual decision, which is the trade-off between a shorter wait and a longer journey, cannot be made from the data as published.</p>
+    <p>即急即廁 fills that gap. The app carries its own coordinate reference for all eighteen A&E departments, derived from the Hospital Authority's official hospital addresses, so the list can be sorted by how far each one is from you. The wait and the distance are finally on the same screen.</p>
+
+    <h2>What the Hong Kong A&E waiting time app shows</h2>
+    <p>Two searches, both organised by distance, both from official data.</p>
+    <ul class="applp-features">
+      <li><strong>Live A&E waiting times, all eighteen departments.</strong> Straight from the Hospital Authority's open data endpoint, in the same three languages the endpoint publishes — so hospital names match exactly rather than being matched approximately and occasionally getting it wrong.</li>
+      <li><strong>Sorted by how far away they are.</strong> The app's own coordinate set, checked against official hospital addresses, makes distance sorting possible. A hospital with a shorter posted wait forty minutes away is often the worse choice, and now you can see that.</li>
+      <li><strong>Nearest public toilets.</strong> Public toilet locations from the Food and Environmental Hygiene Department, sorted by distance and shown on a map — the second search that is always urgent and never convenient.</li>
+      <li><strong>A map and directions.</strong> Both hospitals and toilets can be viewed on a map, with a handoff to your maps app for directions.</li>
+      <li><strong>Bilingual.</strong> Chinese and English throughout, with an in-app language switch.</li>
+    </ul>
+
+    <h2>Honest about being an information tool</h2>
+    <p>The app is explicit that it is informational and does not constitute medical advice. Posted A&E waiting times are the Hospital Authority's own estimate of the wait for the least urgent category — patients are triaged, and a genuinely urgent case is seen ahead of the posted figure. Choosing a hospital by posted wait is only ever appropriate for a non-urgent presentation.</p>
+    <p>Data comes directly from the Hospital Authority and FEHD open endpoints; there is no backend and no account. The coordinate reference carries a verification date in the source, so it can be rechecked if a hospital relocates.</p>
+
+    <h2>When you would use it</h2>
+    <p>The A&E side is for a non-urgent situation where a public emergency department is nonetheless the right destination — a suspected fracture on a Sunday, a child's high fever after clinics have closed — and where a two-hour difference between hospitals is worth a longer taxi ride.</p>
+    <p>The toilet finder is for parents, for anyone with a condition that makes it a real constraint, and for visitors who do not know that certain buildings are reliable and others are not.</p>
+
+    <h2>Data sources and disclaimer</h2>
+    <p>A&E waiting times come from the Hospital Authority's public open data. Public toilet locations come from the Food and Environmental Hygiene Department. Map tiles are from OpenStreetMap. The app is unofficial and not affiliated with the Hospital Authority, FEHD or any hospital.</p>
+    <p>It is an information tool and does not provide medical advice. In an emergency, call 999. The app is free.</p>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=hk.hill.ernloo&amp;pcampaignid=web_share" rel="noopener" aria-label="Get 即急即廁 on Google Play">▶ Google Play</a>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <p><strong>Where do the waiting times come from?</strong> The Hospital Authority's public open data feed, covering all 18 public accident and emergency departments.</p>
+    <p><strong>Why does the official dataset need this app?</strong> Because the dataset publishes hospital names and waiting times but no coordinates. The app carries its own coordinate reference, checked against official hospital addresses, so the list can be sorted by distance from you.</p>
+    <p><strong>Does a shorter posted wait mean I will be seen sooner?</strong> Not necessarily. A&amp;E patients are triaged by urgency, and the posted figure reflects the wait for the least urgent category — a serious case is seen ahead of it.</p>
+    <p><strong>Where does the toilet data come from?</strong> The Food and Environmental Hygiene Department's public data on public toilets.</p>
+    <p><strong>Is it medical advice?</strong> No. It is informational only and does not constitute medical advice. In an emergency, call 999.</p>
+  </main>
+
+  <aside class="applp-back" aria-label="Related">
+    <p>← Back to <a href="/apps/">all apps</a> · See also <a href="/apps/hk-heatsafe/">避暑助手 — HeatSafe HK</a> · <a href="/apps/hk-weather/">香港天氣通 — HK Weather</a> · <a href="/apps/nearby-travel-companion/">Nearby</a> · <a href="/zh-hk/apps/ernloo-ae-waiting-times/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">中文版</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+</body>
+</html>

@@ -11,7 +11,7 @@
 
   var NAV_ITEMS = [
     { href: "/tools/",                 label: "Tools" },
-    { href: "/apps.html",              label: "Apps" },
+    { href: "/apps/",                  label: "Apps" },
     { href: "/pricing.html",           label: "Pricing" },
     { href: "/learn/why-local.html",   label: "Why Local?" },
     { href: "/productivity-tips.html", label: "Blog" }
@@ -29,6 +29,8 @@
     if (normPath === normHref) return true;
     // Treat /tools/* as Tools-active
     if (normHref === "/tools/" && normPath.indexOf("/tools/") === 0) return true;
+    // Same for /apps/* now that the app pages are directory-style
+    if (normHref === "/apps/" && normPath.indexOf("/apps/") === 0) return true;
     return false;
   }
 
@@ -37,7 +39,7 @@
   // target flips with the current path.
   function langLink() {
     var onZh = location.pathname.indexOf("/zh-hk/") === 0;
-    var href = onZh ? "/apps.html" : "/zh-hk/";
+    var href = onZh ? "/apps/" : "/zh-hk/";
     var label = onZh ? "English" : "中文";
     var lang = onZh ? "en" : "zh-Hant-HK";
     return '<a href="' + href + '" hreflang="' + lang + '" lang="' + lang +
@@ -78,7 +80,7 @@
             '<div class="site-footer-v2-col-title">Products</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/tools/">Privacy Tools</a>' +
-              '<a href="/apps.html">42 Mobile Apps</a>' +
+              '<a href="/apps/">42 Mobile Apps</a>' +
               '<a href="/zh-hk/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">香港應用（中文）</a>' +
               '<a href="/pricing.html">Pricing</a>' +
               '<a href="/todo.html">Today\'s Tasks To-Do</a>' +
