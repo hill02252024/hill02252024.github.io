@@ -5,7 +5,8 @@
 //   sitemap.xml        — sitemap index referencing sitemap-pages.xml
 //
 // A page is included unless it lives in a non-content directory, is the 404
-// page, or carries a `noindex` robots meta tag. Pages are discovered by
+// page, carries a `noindex` robots meta tag, or is a redirect stub. Pages
+// are discovered by
 // scanning the filesystem so the list can never go stale.
 //
 // (The former China-explore post pipeline — remote feed fetch,
@@ -33,6 +34,21 @@ async function hasNoindexMeta(file) {
   } catch { return false; }
 }
 
+/// A redirect stub: a page whose only job is to send a crawler somewhere else.
+/// It must stay crawlable (so the redirect and its canonical are seen) but must
+/// never be submitted in the sitemap — a sitemap is a list of pages you want
+/// indexed, and this is a page you want followed.
+///
+/// Detected structurally rather than by a marker: a zero-delay meta refresh
+/// plus a canonical that points somewhere other than the page itself.
+async function isRedirectStub(file) {
+  try {
+    const html = await fs.readFile(file, "utf8");
+    return /<meta\s+http-equiv=["']refresh["']\s+content=["']0;\s*url=/i.test(html)
+        && /<link\s+rel=["']canonical["']/i.test(html);
+  } catch { return false; }
+}
+
 /// Returns the canonical URL paths of every public, indexable HTML page,
 /// including "/" for the root index. Caller emits "/" separately.
 async function collectStaticPages(root = ".") {
@@ -47,6 +63,7 @@ async function collectStaticPages(root = ".") {
         if (e.name === "404.html") continue;
         const full = path.join(dir, e.name);
         if (await hasNoindexMeta(full)) continue;
+        if (await isRedirectStub(full)) continue;
         let rel = full.split(path.sep).join("/");
         if (rel.startsWith("./")) rel = rel.slice(2);
         let urlPath;
