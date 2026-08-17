@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>香港天氣警告 —— 颱風信號同暴雨警告</title>
+  <meta name="description" content="天文台數據，警告行先：幾號風球、咩色暴雨、九天預報、空氣質素同颱風路徑圖，信號一改就通知你，唔使自己不停 refresh。" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/zh-hk/apps/hk-weather/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/hk-weather.html" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/hk-weather/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/hk-weather.html" />
+
+  <meta property="og:locale" content="zh_HK" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="香港天氣警告 —— 颱風信號同暴雨警告" />
+  <meta property="og:description" content="香港天氣通用天文台開放數據，將颱風信號、暴雨警告擺喺最前，另有九天預報、逐小時預報、颱風路徑同 AQHI。" />
+  <meta property="og:url" content="https://todays-tasks.com/zh-hk/apps/hk-weather/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/hkweather.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="香港天氣警告 —— 颱風信號同暴雨警告" />
+  <meta name="twitter:description" content="香港天氣通用天文台開放數據，將颱風信號、暴雨警告擺喺最前，另有九天預報、逐小時預報、颱風路徑同 AQHI。" />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/hkweather.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "中文首頁",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "香港應用",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "香港天氣通",
+        "item": "https://todays-tasks.com/zh-hk/apps/hk-weather/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "香港天氣通",
+    "operatingSystem": "ANDROID, IOS",
+    "applicationCategory": "WeatherApplication",
+    "inLanguage": "zh-Hant-HK",
+    "description": "以香港天文台開放數據為基礎嘅天氣應用，顯示各氣象站實時天氣、生效中嘅颱風信號及暴雨警告、九天預報、逐小時預報、颱風路徑圖，以及環保署嘅空氣質素健康指數，並可喺警告變更時發本機通知。",
+    "featureList": "各氣象站實時天氣, 颱風信號同暴雨警告, 九天預報, 逐小時預報, 颱風路徑圖, 空氣質素健康指數 AQHI, 警告變更通知, 通勤提示卡, 日出日落, 中英文",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/zh-hk/apps/hk-weather/",
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.hkwww.www",
+      "https://apps.apple.com/app/id6779145047"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "zh-Hant-HK",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "颱風信號一改會唔會通知我？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "會。可以開啟警告變更嘅本機通知，包括颱風信號同暴雨警告。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "啲數據邊度嚟？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "天氣、預報同警告來自香港天文台開放數據 API；空氣質素健康指數來自環境保護署。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "有冇颱風路徑？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有。有風生效嗰陣會畫出預測路徑同香港嘅相對位置。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "會唔會分唔同區？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "會。讀數逐個氣象站顯示 —— 香港各區差異其實好明顯。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "係咪天文台官方 app？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "唔係。呢個係用公開開放數據砌嘅非官方應用。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;margin:0 0 6px;line-height:1.3}
+    .applp .lede{font-size:17.5px;color:var(--text-muted);line-height:1.8;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:21px;line-height:1.4}
+    .applp h3{margin-top:24px;font-size:17.5px;line-height:1.5}
+    .applp p,.applp li{font-size:16.5px;line-height:1.95;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0;line-height:1.8}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="麵包屑導覽">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/zh-hk/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>中文首頁</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/zh-hk/">香港應用</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">香港天氣通</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <img class="applp-icon-img" src="/assets/apps/hkweather.png" alt="香港天氣通 app 圖示 —— 颱風信號、暴雨警告同九天預報" width="78" height="78" loading="lazy" decoding="async" />
+      <div>
+        <h1>香港天氣通 —— 打風落雨，警告擺喺最前</h1>
+        <p class="lede">喺香港，氣溫好少係重點。八號會唔會掛、紅色轉咗黑冇 —— 呢啲先係，所以呢啲擺喺最前。</p>
+      </div>
+    </div>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.www&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載香港天氣通">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779145047" rel="noopener" aria-label="喺 App Store 下載香港天氣通"> App Store</a>
+    </div>
+
+    <h2>一個有天氣政策嘅城市，需要另一種天氣 app</h2>
+    <p>大部分天氣 app 圍住一個氣溫同一個圖示嚟砌，警告係擺喺畫面下面某個角落嘅附屬品。香港唔係咁運作。颱風信號同暴雨警告直接決定公司開唔開、學校返唔返、值唔值得而家出門口 —— 而黃色同黑色暴雨之間嘅分別，就係「帶遮」同「唔好郁」嘅分別。</p>
+    <p>香港天氣通將警告擺喺最頂，全部數據直接讀香港天文台嘅開放數據，仲可以喺信號改變嗰刻通知你，唔使你自己隔十分鐘開一次。</p>
+
+    <h2>香港天氣警告之外，仲顯示咩</h2>
+    <p>警告行先，跟住預報，最後先係細節。</p>
+    <ul class="applp-features">
+      <li><strong>生效中嘅警告，擺喺最當眼。</strong>颱風信號同暴雨警告以橫額同狀態條顯示喺主畫面，唔會收埋喺第二個分頁。冇警告嗰陣，嗰個位就靜返。</li>
+      <li><strong>颱風路徑圖。</strong>有風接近嘅時候，路徑會畫出嚟而唔係淨係講。睇到預測路徑同香港嘅相對位置，先答到一個號碼答唔到嘅問題。</li>
+      <li><strong>九天同逐小時預報。</strong>天文台嘅九天展望加一行逐小時，用氣溫範圍條而唔係一個單一數字 —— 喺冬天一日相差八度好平常嘅城市，呢點好重要。</li>
+      <li><strong>空氣質素。</strong>環保署嘅空氣質素健康指數，用官方尺度：1 至 3 低、4 至 6 中、7 高、8 至 10 甚高、10 以上嚴重，並附健康建議分級。</li>
+      <li><strong>警告通知。</strong>警告變更時發本機通知，唔使開任何嘢都知道八號要掛。</li>
+    </ul>
+
+    <h2>直接讀天文台</h2>
+    <p>所有數據嚟自香港天文台嘅公開開放數據端點同環保署嘅空氣質素數據，中間冇第三方預報模型再詮釋一次。呢點喺香港特別緊要：真正令成個城市停低嘅係天文台嗰個警告，一個國際天氣品牌自己嘅風暴評估睇落幾有趣，但操作上完全唔相干。</p>
+    <p>請求會做快取避免不停撞端點，遇上臨時失敗會重試。定位只用嚟揀最近嘅氣象站，冇帳戶。</p>
+
+    <h2>邊啲人啱用</h2>
+    <p>喺香港要決定去唔去、走唔走嘅人，夏天尤其多。要睇學校停唔停課嘅家長。戶外工作或者通勤路程長嘅人 —— 一個黑色暴雨警告可以改寫成日嘅安排。</p>
+
+    <h2>資料來源同免責聲明</h2>
+    <p>天氣觀測、預報同警告來自香港天文台開放數據 API；空氣質素健康指數來自環境保護署。本應用屬非官方，並非由上述任何機構營運或認可。</p>
+    <p>遇上嚴重天氣事件，以天文台自己嘅公布為準。App 免費、靠廣告支持，唔使開戶口。</p>
+
+    <h2>延伸閱讀</h2>
+    <p>想知香港仲有咩方法？睇埋<a href="/zh-hk/guides/hk-weather-warning-heat-index/">香港天氣警告同酷熱指數點睇</a>。</p>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.www&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載香港天氣通">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779145047" rel="noopener" aria-label="喺 App Store 下載香港天氣通"> App Store</a>
+    </div>
+
+    <h2>常見問題</h2>
+    <p><strong>颱風信號一改會唔會通知我？</strong>會。可以開啟警告變更嘅本機通知，包括颱風信號同暴雨警告。</p>
+    <p><strong>啲數據邊度嚟？</strong>天氣、預報同警告嚟自香港天文台開放數據 API；空氣質素健康指數嚟自環境保護署。</p>
+    <p><strong>有冇颱風路徑？</strong>有。有風生效嗰陣會畫出預測路徑同香港嘅相對位置，而唔係淨係用文字講。</p>
+    <p><strong>會唔會分唔同區？</strong>會。讀數逐個氣象站顯示 —— 香港各區差異其實好明顯。</p>
+    <p><strong>係咪天文台官方 app？</strong>唔係。呢個係用公開開放數據砌嘅非官方應用。</p>
+  </main>
+
+  <aside class="applp-back" aria-label="相關頁面">
+    <p>← 返<a href="/zh-hk/">全部香港應用</a> · <a href="/zh-hk/apps/hk-heatsafe/">避暑助手</a> · <a href="/zh-hk/apps/hk-mtr-pass/">鐵路通</a> · <a href="/zh-hk/apps/ernloo-ae-waiting-times/">即急即廁</a> · <a href="https://todays-tasks.com/apps/hk-weather.html">Read this page in English</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/zh-hk/">中文應用一覽</a> · <a href="https://todays-tasks.com/apps/hk-weather.html">English</a> · <a href="/privacy.html">私隱政策</a> · <a href="/contact.html">聯絡</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · 由香港獨立開發者 Hill 製作及營運。</footer>
+</body>
+</html>

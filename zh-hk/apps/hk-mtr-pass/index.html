@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>港鐵班次查詢 —— 鐵路通實時到站</title>
+  <meta name="description" content="用政府開放數據睇港鐵同輕鐵實時班次，順便查到兩站之間車費、頭尾班車時間同故障消息。字大、免登入、唔使開戶口。" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/zh-hk/apps/hk-mtr-pass/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/hk-mtr-pass.html" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/hk-mtr-pass/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/hk-mtr-pass.html" />
+
+  <meta property="og:locale" content="zh_HK" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="港鐵班次查詢 —— 鐵路通實時到站" />
+  <meta property="og:description" content="鐵路通用 data.gov.hk 開放數據，提供港鐵及輕鐵實時到站時間、車費查詢、頭尾班車時間同服務故障提示。" />
+  <meta property="og:url" content="https://todays-tasks.com/zh-hk/apps/hk-mtr-pass/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/hkmtr.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="港鐵班次查詢 —— 鐵路通實時到站" />
+  <meta name="twitter:description" content="鐵路通用 data.gov.hk 開放數據，提供港鐵及輕鐵實時到站時間、車費查詢、頭尾班車時間同服務故障提示。" />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/hkmtr.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "中文首頁",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "香港應用",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "鐵路通",
+        "item": "https://todays-tasks.com/zh-hk/apps/hk-mtr-pass/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "鐵路通",
+    "operatingSystem": "ANDROID, IOS",
+    "applicationCategory": "TravelApplication",
+    "inLanguage": "zh-Hant-HK",
+    "description": "非官方香港鐵路資訊 app，用政府開放數據提供港鐵及輕鐵實時下班車到站時間、兩站之間車費、頭班車尾班車時間、服務故障提示、常用車站收藏同最近車站定位，介面字體加大並支援語音播報。",
+    "featureList": "港鐵實時到站時間, 輕鐵實時到站, 車費查詢, 頭班車尾班車時間, 行程規劃最快與最平, 服務故障提示, 收藏車站, 最近車站定位, 機場快綫, 車廂貼士, 語音播報, 大字介面",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/zh-hk/apps/hk-mtr-pass/",
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.hkwww.mtr_real_time_info",
+      "https://apps.apple.com/app/id6779618657"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "zh-Hant-HK",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "鐵路通係咪港鐵官方 app？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "唔係。呢個係用香港政府開放數據砌嘅非官方應用，同港鐵公司冇任何關係。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "有冇輕鐵？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有。輕鐵有獨立嘅實時到站畫面，唔係淨係做重鐵。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "可唔可以查尾班車？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "可以。逐站逐方向都列出頭班車同尾班車時間。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "查唔查到車費？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "查到，任何兩個車站之間都得，亦包埋唔同票種。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;margin:0 0 6px;line-height:1.3}
+    .applp .lede{font-size:17.5px;color:var(--text-muted);line-height:1.8;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:21px;line-height:1.4}
+    .applp h3{margin-top:24px;font-size:17.5px;line-height:1.5}
+    .applp p,.applp li{font-size:16.5px;line-height:1.95;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0;line-height:1.8}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="麵包屑導覽">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/zh-hk/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>中文首頁</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/zh-hk/">香港應用</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">鐵路通</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <img class="applp-icon-img" src="/assets/apps/hkmtr.png" alt="鐵路通 app 圖示 —— 香港港鐵實時到站時間同車費查詢" width="78" height="78" loading="lazy" decoding="async" />
+      <div>
+        <h1>鐵路通 —— 港鐵班次查詢、車費同尾班車時間</h1>
+        <p class="lede">企喺月台想知嘅其實得四件事：下一班幾時到、去嗰站幾多錢、今晚仲有冇車、同埋條綫有冇壞。鐵路通就係做呢四件事。</p>
+      </div>
+    </div>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.mtr_real_time_info&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載鐵路通">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779618657" rel="noopener" aria-label="喺 App Store 下載鐵路通"> App Store</a>
+    </div>
+
+    <h2>時間表答唔到你真正想問嘅嘢</h2>
+    <p>香港鐵路班次密到一個地步，時間表其實冇乜用 —— 你想知嘅係企緊呢個月台、面前呢個方向，下兩三班車幾時到。到咗夜晚問題就完全變咗：唔係下一班幾時，而係究竟仲有冇下一班。</p>
+    <p>鐵路通做嘅就係將政府開放數據平台嘅實時列車資料，擺喺一個一眼睇得晒嘅畫面，旁邊順手擺埋車費同頭尾班車時間。呢個係非官方 app，用嘅係公開資料，同港鐵公司冇任何關係。</p>
+
+    <h2>港鐵班次查詢之外，仲有咩</h2>
+    <p>重鐵、輕鐵、車費，加埋幾個容易撞板嘅情況。</p>
+    <ul class="applp-features">
+      <li><strong>實時下班車時間。</strong>逐個車站、逐個方向讀開放數據嘅實時預測。如果個 API 回嘅唔係班次而係服務通知 —— 例如暫停服務、總站、或者根本冇數據 —— app 會照樣顯示嗰段訊息，唔會扮有車。呢一刻其實正正就係你最需要被人話俾你知嘅時候。</li>
+      <li><strong>輕鐵一樣有。</strong>新界西北嘅輕鐵有自己一套實時數據同自己一版畫面。好多第三方港鐵 app 索性唔做輕鐵，但每日搭嘅人唔少。</li>
+      <li><strong>兩站之間車費。</strong>揀起點終點就有車費，包埋唔同票種，入閘前已經知價錢。</li>
+      <li><strong>頭班車同尾班車。</strong>逐站逐方向。過咗十二點呢個係全 app 最有用嘅一格，亦都係其他地方最難即刻搵到嘅資料。</li>
+      <li><strong>為老花而設。</strong>字大、對比高、掂得中，仲有語音播報。呢個唔係事後加落去嘅無障礙選項，而係成個介面由一開始就照住呢個尺寸砌。</li>
+    </ul>
+
+    <h2>非官方，而且講明白</h2>
+    <p>鐵路通同港鐵公司冇任何關係。所有資料嚟自香港政府嘅公開開放數據，所以先可以做到免費、免登入。代價就係上游數據遲、上游數據錯嘅時候，app 一樣會遲會錯 —— 咁樣嘅情況佢會照直顯示，而唔係擺舊數據扮新。</p>
+
+    <h2>邊啲人啱用</h2>
+    <p>日日返工搭鐵路、只想睇兩個數字嘅人。想睇得清楚啲嘅長者 —— 大字排版同語音播報就係為咗呢班用家而做。仲有遊客，佢哋需要嘅係車費同路綫，唔係月票餘額。</p>
+
+    <h2>資料來源同免責聲明</h2>
+    <p>實時列車資料來自香港政府公開資料平台 data.gov.hk。鐵路通屬非官方應用，並非由港鐵公司營運，亦未獲其認可。</p>
+    <p>到站預測嘅準繩度取決於上游數據；遇上大型服務受阻，請以車站職員同官方公布為準。App 免費，靠廣告支持。</p>
+
+    <h2>延伸閱讀</h2>
+    <p>想知香港仲有咩方法？睇埋<a href="/zh-hk/guides/hk-bus-arrival-time/">香港巴士到站時間點樣查最準</a>。</p>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.mtr_real_time_info&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載鐵路通">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779618657" rel="noopener" aria-label="喺 App Store 下載鐵路通"> App Store</a>
+    </div>
+
+    <h2>常見問題</h2>
+    <p><strong>鐵路通係咪港鐵官方 app？</strong>唔係。呢個係用香港政府開放數據砌嘅非官方應用，同港鐵公司冇任何關係，亦冇任何認可。</p>
+    <p><strong>有冇輕鐵？</strong>有。新界西北嘅輕鐵有自己一版實時到站畫面，唔係淨係做重鐵。</p>
+    <p><strong>可唔可以查尾班車？</strong>可以。頭班車同尾班車時間逐站、逐方向列出 —— 過咗午夜就係最有用嗰格。</p>
+    <p><strong>查唔查到車費？</strong>查到。任何兩個車站之間嘅車費都有，亦包埋唔同票種。</p>
+  </main>
+
+  <aside class="applp-back" aria-label="相關頁面">
+    <p>← 返<a href="/zh-hk/">全部香港應用</a> · <a href="/zh-hk/apps/hk-bus-elderly/">九巴通 長者版</a> · <a href="/zh-hk/apps/hk-bus-next/">車到未</a> · <a href="/zh-hk/apps/hk-weather/">香港天氣通</a> · <a href="https://todays-tasks.com/apps/hk-mtr-pass.html">Read this page in English</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/zh-hk/">中文應用一覽</a> · <a href="https://todays-tasks.com/apps/hk-mtr-pass.html">English</a> · <a href="/privacy.html">私隱政策</a> · <a href="/contact.html">聯絡</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · 由香港獨立開發者 Hill 製作及營運。</footer>
+</body>
+</html>

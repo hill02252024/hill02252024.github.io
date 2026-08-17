@@ -32,13 +32,25 @@
     return false;
   }
 
+  // Language switch. On a /zh-hk/ page it offers English; everywhere else it
+  // offers the Traditional Chinese section. Kept out of NAV_ITEMS because the
+  // target flips with the current path.
+  function langLink() {
+    var onZh = location.pathname.indexOf("/zh-hk/") === 0;
+    var href = onZh ? "/apps.html" : "/zh-hk/";
+    var label = onZh ? "English" : "中文";
+    var lang = onZh ? "en" : "zh-Hant-HK";
+    return '<a href="' + href + '" hreflang="' + lang + '" lang="' + lang +
+           '" rel="alternate">' + label + '</a>';
+  }
+
   function buildNav() {
     var links = NAV_ITEMS.map(function (it) {
       var active = isActive(it.href);
       return '<a href="' + it.href + '"' +
              (active ? ' aria-current="page" class="active"' : '') +
              '>' + escapeHtml(it.label) + '</a>';
-    }).join("");
+    }).join("") + langLink();
 
     return (
       '<header class="site-header" id="ttSiteHeader">' +
@@ -67,6 +79,7 @@
             '<div class="site-footer-v2-links">' +
               '<a href="/tools/">Privacy Tools</a>' +
               '<a href="/apps.html">42 Mobile Apps</a>' +
+              '<a href="/zh-hk/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">香港應用（中文）</a>' +
               '<a href="/pricing.html">Pricing</a>' +
               '<a href="/todo.html">Today\'s Tasks To-Do</a>' +
             '</div>' +

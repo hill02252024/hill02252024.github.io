@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>香港泊車空位 —— 即時車位同收費查詢</title>
+  <meta name="description" content="用政府開放數據睇停車場即時剩幾多個車位、時租幾錢，仲有商場泊車優惠、泊車費計算機，收藏嘅停車場一有位就通知你。" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://todays-tasks.com/zh-hk/apps/hk-parking-finder/" />
+  <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/hk-parking-finder.html" />
+  <link rel="alternate" hreflang="zh-Hant-HK" href="https://todays-tasks.com/zh-hk/apps/hk-parking-finder/" />
+  <link rel="alternate" hreflang="x-default" href="https://todays-tasks.com/apps/hk-parking-finder.html" />
+
+  <meta property="og:locale" content="zh_HK" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Today's Tasks" />
+  <meta property="og:title" content="香港泊車空位 —— 即時車位同收費查詢" />
+  <meta property="og:description" content="香港泊車王提供停車場即時空位、時租及月租收費、商場泊車優惠、泊車費計算同有位提示。" />
+  <meta property="og:url" content="https://todays-tasks.com/zh-hk/apps/hk-parking-finder/" />
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/hkparking.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="香港泊車空位 —— 即時車位同收費查詢" />
+  <meta name="twitter:description" content="香港泊車王提供停車場即時空位、時租及月租收費、商場泊車優惠、泊車費計算同有位提示。" />
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/hkparking.png" />
+
+  <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "中文首頁",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "香港應用",
+        "item": "https://todays-tasks.com/zh-hk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "香港泊車王",
+        "item": "https://todays-tasks.com/zh-hk/apps/hk-parking-finder/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "香港泊車王",
+    "operatingSystem": "ANDROID, IOS",
+    "applicationCategory": "TravelApplication",
+    "inLanguage": "zh-Hant-HK",
+    "description": "香港泊車應用，用政府開放數據嘅停車場資料及空位 API 顯示即時餘位同收費，另有地圖聚合標記、商場泊車優惠、泊車費計算機、泊車計時同收藏停車場由滿變有位嘅通知。",
+    "featureList": "停車場即時空位, 時租同月租收費, 地圖聚合標記, 附近同分區搜尋, 商場泊車優惠, 泊車費計算機, 泊車計時同記錄, 收藏有位通知, 電動車充電標示, 導航接力, 中英文",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HKD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Hill App"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Today's Tasks"
+    },
+    "url": "https://todays-tasks.com/zh-hk/apps/hk-parking-finder/",
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.hkwww.carpart",
+      "https://apps.apple.com/app/id6779557505"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "zh-Hant-HK",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "啲車位數字係咪即時？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "嚟自政府嘅停車場空位開放數據，更新頻密但唔係即時到秒。剩得幾個位嗰陣當係提示，唔好當成留位。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "有冇時租收費？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有，時租同月租都係結構化資料，另外仲有計算機幫你計實際停幾耐要幾錢。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "查唔查到商場泊車優惠？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "查到。獨立一版列出換領規則：消費幾多、換到幾耐泊車。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "有位嗰陣會唔會通知我？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "會。收藏咗嘅停車場由滿變返有位，app 會喺背景檢查到並發通知。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "會唔會記住我泊咗幾耐？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "會。開始泊車計時之後 app 會跟住，仲會保留之前嘅記錄。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
+    .applp h1{font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;margin:0 0 6px;line-height:1.3}
+    .applp .lede{font-size:17.5px;color:var(--text-muted);line-height:1.8;margin:0 0 8px}
+    .applp h2{margin-top:34px;font-size:21px;line-height:1.4}
+    .applp h3{margin-top:24px;font-size:17.5px;line-height:1.5}
+    .applp p,.applp li{font-size:16.5px;line-height:1.95;color:var(--text)}
+    .applp-hero{display:flex;gap:20px;align-items:center;margin-bottom:6px}
+    .applp-icon{width:78px;height:78px;border-radius:18px;flex-shrink:0;background:var(--brand-trust);display:flex;align-items:center;justify-content:center;font-size:42px}
+    .applp-icon-img{width:78px;height:78px;border-radius:18px;flex-shrink:0;object-fit:cover;background:var(--surface-2)}
+    .applp-features li{margin-bottom:11px}
+    .applp-stores{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+    .applp-store{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none}
+    .applp-store--play{background:#01875f;color:#fff}
+    .applp-store--apple{background:#0f172a;color:#fff}
+    .applp-note{font-size:13.5px;color:var(--text-muted);margin:9px 0 0;line-height:1.8}
+    .applp-back{max-width:820px;margin:8px auto 0;padding:0 22px}
+    .applp-back a{color:var(--accent-hover);font-weight:600;text-decoration:none}
+    @media(max-width:520px){.applp-hero{flex-direction:column;align-items:flex-start;gap:12px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+
+  <nav class="page-breadcrumbs" aria-label="麵包屑導覽">
+    <ol class="page-breadcrumbs-inner">
+      <li>
+        <a href="/zh-hk/">
+          <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
+          <span>中文首頁</span>
+        </a>
+      </li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li><a href="/zh-hk/">香港應用</a></li>
+      <li class="sep" aria-hidden="true">›</li>
+      <li class="current" aria-current="page">香港泊車王</li>
+    </ol>
+  </nav>
+
+  <main class="applp">
+    <div class="applp-hero">
+        <img class="applp-icon-img" src="/assets/apps/hkparking.png" alt="香港泊車王 app 圖示 —— 香港停車場即時空位同時租收費" width="78" height="78" loading="lazy" decoding="async" />
+      <div>
+        <h1>香港泊車王 —— 即時車位、時租收費同商場泊車優惠</h1>
+        <p class="lede">兜完成個停車場先發現爆滿，係香港駕駛者共同嘅集體回憶。落斜路之前睇一眼即時餘位，其實可以避到。</p>
+      </div>
+    </div>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.carpart&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載香港泊車王">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779557505" rel="noopener" aria-label="喺 App Store 下載香港泊車王"> App Store</a>
+    </div>
+
+    <h2>入到去先知冇位</h2>
+    <p>喺香港揸車，泊車呢個決定係盲住做嘅。你按目的地揀個停車場，揸到埋去，排隊入閘，掉頭已經好難嗰陣先發現冇位。同一時間，收費寫喺入口塊牌，商場嘅泊車優惠規則就貼喺𨋢口 —— 如果搵到嘅話。</p>
+    <p>香港泊車王將呢三樣嘢擺喺你面前：而家仲剩幾多個位、時租幾錢、同埋消費幾多可以換泊車。</p>
+
+    <h2>香港泊車空位之外仲有咩</h2>
+    <p>即時空位、真實成本，加埋泊咗車之後嘅嘢。</p>
+    <ul class="applp-features">
+      <li><strong>即時餘位。</strong>由政府嘅停車場資料及空位 API 攞數，卡片同地圖都有，地圖用聚合標記，一個區嘅選擇一次過睇晒，唔使逐個撳。</li>
+      <li><strong>時租同月租收費。</strong>係結構化嘅收費資料而唔係一個數字，比較長期泊位嗰陣時租同月租兩個數都喺度。</li>
+      <li><strong>商場泊車優惠。</strong>獨立一版列出換領規則 —— 消費幾多換幾耐。呢類資料出面真係難搵，而且會直接改變你揀邊度泊車。</li>
+      <li><strong>泊車費計算機。</strong>入閘前計到成程幾錢，喺頭幾個鐘之後收費跳得好急嘅場尤其重要。</li>
+      <li><strong>有位通知。</strong>收藏一個停車場，佢由「冇位」變返「有位」嗰刻，app 會喺背景檢查到並通知你 —— 係喺狀態轉變嗰下響，唔會不停嘈。</li>
+    </ul>
+
+    <h2>政府數據，加埋政府數據冇嘅嗰層</h2>
+    <p>空位同收費嚟自香港開放數據。但政府嗰個數據集冇嘅，係泊車實際操作嗰一層 —— 商場優惠計劃、收費點計、泊咗幾耐 —— 而呢啲就係 app 自己落手做嘅部分，唔係將一個數據集重新排版。</p>
+    <p>定位用嚟搵你附近嘅停車場；收藏同泊車記錄留喺部電話。冇帳戶。</p>
+
+    <h2>邊啲人啱用</h2>
+    <p>喺香港經常揸車嘅人，特別係去唔熟嘅區 —— 嗰啲區你唔知有咩選擇，而條街又唔會原諒你揀錯轉彎。</p>
+
+    <h2>資料來源同免責聲明</h2>
+    <p>停車場空位及收費資料來自香港政府開放數據平台。商場優惠資料另行整理，隨時可能改變，請以換領櫃檯為準。本應用屬非官方，同任何停車場營辦商或商場冇關係。</p>
+    <p>餘位數字新鮮程度取決於上游數據，並非即時到秒 —— 顯示得返幾個位嘅停車場，你到埗前可能已經滿。App 免費，靠廣告支持。</p>
+
+    <h2>延伸閱讀</h2>
+    <p>想知香港仲有咩方法？睇埋<a href="/zh-hk/guides/hk-parking-vacancy/">香港邊度有泊車位：即時空位查詢方法整理</a>。</p>
+
+    <div class="applp-stores">
+      <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.hkwww.carpart&amp;pcampaignid=web_share" rel="noopener" aria-label="喺 Google Play 下載香港泊車王">▶ Google Play</a>
+      <a class="applp-store applp-store--apple" href="https://apps.apple.com/app/id6779557505" rel="noopener" aria-label="喺 App Store 下載香港泊車王"> App Store</a>
+    </div>
+
+    <h2>常見問題</h2>
+    <p><strong>啲車位數字係咪即時？</strong>嚟自政府嘅停車場空位開放數據，更新頻密但唔係即時到秒。剩得幾個位嗰陣當係提示，唔好當成留咗位。</p>
+    <p><strong>有冇時租收費？</strong>有 —— 時租同月租都係結構化資料，另外有計算機幫你計實際停嗰段時間要幾錢。</p>
+    <p><strong>查唔查到商場泊車優惠？</strong>查到。有獨立一版列出換領規則：消費幾多、換到幾耐泊車。</p>
+    <p><strong>有位嗰陣會唔會通知我？</strong>會。收藏咗嘅停車場一由滿變返有位，app 喺背景檢查到就會發通知。</p>
+    <p><strong>會唔會記住我泊咗幾耐？</strong>會。開始泊車計時之後 app 會跟住計，亦保留之前幾次嘅記錄。</p>
+  </main>
+
+  <aside class="applp-back" aria-label="相關頁面">
+    <p>← 返<a href="/zh-hk/">全部香港應用</a> · <a href="/zh-hk/apps/smart-car-hk/">智駕通</a> · <a href="/zh-hk/apps/hk-mtr-pass/">鐵路通</a> · <a href="/zh-hk/apps/hk-weather/">香港天氣通</a> · <a href="https://todays-tasks.com/apps/hk-parking-finder.html">Read this page in English</a></p>
+  </aside>
+
+  <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
+    <a href="/zh-hk/">中文應用一覽</a> · <a href="https://todays-tasks.com/apps/hk-parking-finder.html">English</a> · <a href="/privacy.html">私隱政策</a> · <a href="/contact.html">聯絡</a>
+  </div>
+  <footer class="footer">© 2026 Today's Tasks · 由香港獨立開發者 Hill 製作及營運。</footer>
+</body>
+</html>
