@@ -1,4 +1,8 @@
 name: Build Sitemap
+
+# scripts/build-sitemaps.mjs is the single source of truth for both sitemap
+# files. This workflow does not write them itself — it runs that generator and
+# commits whatever it produces.
 on:
   schedule:
     - cron: "0 18 * * *"  # 每天香港時間 02:00 自動運行
@@ -6,6 +10,11 @@ on:
   push:
     paths:
       - "scripts/build-sitemaps.mjs"
+      # Pages come and go far more often than the generator does. Without
+      # these, a content push left the sitemap stale until the next nightly
+      # run. The generator only ever writes *.xml, which is not matched here,
+      # so its own commit cannot retrigger this workflow.
+      - "**/*.html"
 
 # Workflow-level env. FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 opts the
 # JavaScript actions used below (checkout, setup-node) into the Node 24
@@ -19,6 +28,12 @@ env:
 permissions:
   contents: write
 
+# Two overlapping runs would both try to push a sitemap commit and one would
+# lose. Queue them instead of racing.
+concurrency:
+  group: build-sitemap
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,11 +42,48 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: node scripts/build-sitemaps.mjs
-      - name: Commit & Push
+
+      - name: Generate
+        run: node scripts/build-sitemaps.mjs
+
+      - name: Commit & push if the generator changed anything
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- sitemap.xml sitemap-pages.xml; then
+            echo "Sitemap already matches the tree — nothing to commit."
+            exit 0
+          fi
+
           git add sitemap.xml sitemap-pages.xml
-          git commit -m "Auto update sitemap" || echo "No changes"
-          git push
+          git commit -m "Auto update sitemap"
+
+          # A human push landing between checkout and push used to reject this
+          # and leave the sitemap stale. Rebase and regenerate on top of
+          # whatever arrived, so the generator still has the last word.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected; rebasing onto origin/main and regenerating."
+            git pull --rebase --strategy-option=theirs origin main || {
+              git rebase --abort || true
+              git reset --hard origin/main
+              node scripts/build-sitemaps.mjs
+              git diff --quiet -- sitemap.xml sitemap-pages.xml && exit 0
+              git add sitemap.xml sitemap-pages.xml
+              git commit -m "Auto update sitemap"
+              continue
+            }
+            node scripts/build-sitemaps.mjs
+            if ! git diff --quiet -- sitemap.xml sitemap-pages.xml; then
+              git add sitemap.xml sitemap-pages.xml
+              git commit --amend --no-edit
+            fi
+          done
+
+          echo "Could not push after 3 attempts." >&2
+          exit 1
