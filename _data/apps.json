@@ -24,7 +24,11 @@
       "meta_description_len": 152,
       "word_count": 987,
       "market": "global",
-      "market_evidence": "no region-specific data source; currency is user-selected",
+      "market_evidence": "no region-specific data source; currency is user-selected | UI: 427 hard-coded UI strings, 0 CJK; no l10n directory, no flutter_localizations",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "427 hard-coded UI strings, 0 CJK; no l10n directory, no flutter_localizations",
       "zh_page": null,
       "evidence": {
         "envelope budgeting with rollover": "lib/features/envelopes/rollover_service.dart, lib/features/envelopes/widgets/ready_to_assign_banner.dart, lib/features/envelopes/widgets/over_budget_alert_sheet.dart",
@@ -65,7 +69,11 @@
       "meta_description_len": 155,
       "word_count": 998,
       "market": "global",
-      "market_evidence": "US tax tables, not HK (lib/core/tax/tax_year_*.dart) — region-specific but not Hong Kong",
+      "market_evidence": "US tax tables, not HK (lib/core/tax/tax_year_*.dart) — region-specific but not Hong Kong | UI: 134 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "134 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "tax years 2024/2025/2026": "lib/core/tax/tax_year_2024.dart, tax_year_2025.dart, tax_year_2026.dart",
@@ -104,7 +112,11 @@
       "meta_description_len": 156,
       "word_count": 908,
       "market": "global",
-      "market_evidence": "US loan types; no HK data source",
+      "market_evidence": "US loan types; no HK data source | UI: 140 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "140 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "PITI breakdown": "lib/features/calculator/ui/calculator_screen.dart:574,577,579,581,598",
@@ -144,7 +156,11 @@
       "meta_description_len": 156,
       "word_count": 879,
       "market": "global",
-      "market_evidence": "pure arithmetic, no region data",
+      "market_evidence": "pure arithmetic, no region data | UI: 49 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "49 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "avalanche/snowball strategy": "lib/domain/enums/payoff_strategy.dart, lib/features/home/widgets/strategy_toggle.dart, lib/services/calc/comparison_builder.dart",
@@ -181,7 +197,11 @@
       "meta_description_len": 155,
       "word_count": 914,
       "market": "global",
-      "market_evidence": "multi-currency picker, no country tax assumptions (lib/domain/models/currency.dart)",
+      "market_evidence": "multi-currency picker, no country tax assumptions (lib/domain/models/currency.dart) | UI: lib/l10n/app_en.arb only; supportedLocales = Locale('en'); 77 UI strings, 0 CJK",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/app_en.arb only; supportedLocales = Locale('en'); 77 UI strings, 0 CJK",
       "zh_page": null,
       "evidence": {
         "yield / cap rate / cash-on-cash": "lib/services/calc/yield_calc.dart, lib/features/compare/ui/compare_screen.dart:67,74,81,88",
@@ -219,7 +239,11 @@
       "meta_description_len": 155,
       "word_count": 858,
       "market": "global",
-      "market_evidence": "pure arithmetic, no market data feed",
+      "market_evidence": "pure arithmetic, no market data feed | UI: 111 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "111 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "three modes + mode selector": "lib/features/calculator/ui/inputs_panel.dart:30, lib/core/models/investment_params.dart",
@@ -256,9 +280,14 @@
       "title_len": 44,
       "meta_description_len": 158,
       "word_count": 975,
-      "market": "global",
-      "market_evidence": "exchangerate-api feed covering many currencies; HK is one locale, not a dependency",
-      "zh_page": null,
+      "market": "both",
+      "market_evidence": "exchangerate-api feed covering many currencies; HK is one locale, not a dependency | UI: lib/l10n/app_en.arb (80 keys) + lib/l10n/app_zh.arb (73 keys); lib/main.dart:126-132 resolves Locale('zh')/Locale('en'); 25 of 40 hard-coded UI strings are Cantonese (home_screen, watches_screen, alert_sheet, currency_detail_screen)",
+      "ui_languages": [
+        "en",
+        "zh"
+      ],
+      "ui_language_evidence": "lib/l10n/app_en.arb (80 keys) + lib/l10n/app_zh.arb (73 keys); lib/main.dart:126-132 resolves Locale('zh')/Locale('en'); 25 of 40 hard-coded UI strings are Cantonese (home_screen, watches_screen, alert_sheet, currency_detail_screen)",
+      "zh_page": "/zh-hk/apps/rateradar/",
       "evidence": {
         "verdict engine (30d median / 90d max, +-3% bands)": "lib/domain/verdict.dart:8-33, lib/shared/widgets/verdict_pill.dart",
         "backtest": "lib/features/detail/backtest_card.dart:366",
@@ -293,7 +322,11 @@
       "meta_description_len": 155,
       "word_count": 777,
       "market": "global",
-      "market_evidence": "multi-currency onboarding (lib/screens/onboarding_screen.dart:5)",
+      "market_evidence": "multi-currency onboarding (lib/screens/onboarding_screen.dart:5) | UI: 86 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "86 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "tip presets + custom": "lib/widgets/tip_selector.dart:135,144",
@@ -328,7 +361,11 @@
       "meta_description_len": 150,
       "word_count": 697,
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: 21 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "21 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "metric/imperial toggle": "lib/widgets/unit_toggle.dart:28,33",
@@ -362,7 +399,11 @@
       "meta_description_len": 153,
       "word_count": 897,
       "market": "global",
-      "market_evidence": "US Navy / Mifflin-St Jeor formulas, region-agnostic",
+      "market_evidence": "US Navy / Mifflin-St Jeor formulas, region-agnostic | UI: 49 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "49 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "US Navy method + citation": "lib/core/body/body_engine.dart:33-40 (BodySources.navy, navyUrl med.navy.mil)",
@@ -399,7 +440,11 @@
       "meta_description_len": 156,
       "word_count": 868,
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: 44 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "44 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "one tap log + undo": "lib/features/home/home_screen.dart:66,105",
@@ -435,7 +480,11 @@
       "meta_description_len": 151,
       "word_count": 760,
       "market": "global",
-      "market_evidence": "bundled audio, no region data",
+      "market_evidence": "bundled audio, no region data | UI: 34 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "34 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "ten sounds": "lib/domain/sound_library.dart:8-79 (rain, brown_noise, fan, river, fire, cafe, thunder, ocean_waves, forest, wind)",
@@ -470,7 +519,11 @@
       "meta_description_len": 155,
       "word_count": 879,
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: 52 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "52 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "barcode dismiss + barcodeKey": "lib/domain/alarm.dart:11-13,44-49, lib/features/barcode/barcode_dismiss_screen.dart:124",
@@ -509,7 +562,11 @@
       "meta_description_len": 153,
       "word_count": 872,
       "market": "global",
-      "market_evidence": "microphone only, no region data",
+      "market_evidence": "microphone only, no region data | UI: 63 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "63 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "A/C/Z weighting with descriptions": "lib/services/weighting.dart:8-29",
@@ -532,7 +589,7 @@
       "page": "/apps/health-insight.html",
       "category": "health",
       "play_url": null,
-      "apple_url": "https://apps.apple.com/hk/app/vitals-health-insights/id6792218186?uo=4",
+      "apple_url": "https://apps.apple.com/app/id6792218186",
       "operating_system": "IOS",
       "primary_keyword": "Apple Health dashboard app",
       "long_tail_keywords": [
@@ -546,9 +603,23 @@
       "title_len": 35,
       "meta_description_len": 155,
       "word_count": 872,
-      "market": "global",
-      "market_evidence": "Apple Health metrics, 10 UI languages (lib/l10n/)",
-      "zh_page": null,
+      "market": "both",
+      "market_evidence": "Apple Health metrics, 10 UI languages (lib/l10n/) | UI: lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh.arb and 8 more; supportedLocales ar de en es fr hi ja ko pt zh; the Chinese metric labels in lib/health/health_metric.dart are defaults overridden at display time by lib/l10n/metric_l10n.dart",
+      "ui_languages": [
+        "en",
+        "zh-Hant",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "es",
+        "pt",
+        "de",
+        "fr",
+        "hi"
+      ],
+      "ui_language_evidence": "lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh.arb and 8 more; supportedLocales ar de en es fr hi ja ko pt zh; the Chinese metric labels in lib/health/health_metric.dart are defaults overridden at display time by lib/l10n/metric_l10n.dart",
+      "zh_page": "/zh-hk/apps/health-insight/",
       "evidence": {
         "eleven HealthKit metrics": "lib/health/health_metric.dart:86-190 (STEPS, HEART_RATE, SLEEP_ASLEEP, HEART_RATE_VARIABILITY_SDNN, EXERCISE_TIME, ACTIVE_ENERGY_BURNED, DISTANCE_WALKING_RUNNING, FLIGHTS_CLIMBED, WALKING_SPEED, WEIGHT, MINDFULNESS)",
         "rule-based engine, no AI/network": "lib/insights/rule_based_insight_engine.dart:10-17",
@@ -588,9 +659,15 @@
       "title_len": 36,
       "meta_description_len": 158,
       "word_count": 832,
-      "market": "global",
-      "market_evidence": "on-device model, 3 UI languages, no region data",
-      "zh_page": null,
+      "market": "both",
+      "market_evidence": "on-device model, 3 UI languages, no region data | UI: lib/core/i18n/strings.dart carries en / zh-TW / ja (95 zh-TW entries). Note the Chinese is Taiwan vocabulary, not Hong Kong",
+      "ui_languages": [
+        "en",
+        "zh-TW",
+        "ja"
+      ],
+      "ui_language_evidence": "lib/core/i18n/strings.dart carries en / zh-TW / ja (95 zh-TW entries). Note the Chinese is Taiwan vocabulary, not Hong Kong",
+      "zh_page": "/zh-hk/apps/memora/",
       "evidence": {
         "on-device LLM providers + tier selection": "lib/core/llm/capability_detector.dart:11-30, gemma_provider.dart, gemini_nano_provider.dart, lite_mode_provider.dart",
         "memory extraction (model + heuristic)": "lib/core/memory/memory_extractor.dart, heuristic_extractor.dart, extraction_prompt.dart",
@@ -627,7 +704,11 @@
       "meta_description_len": 154,
       "word_count": 887,
       "market": "global",
-      "market_evidence": "English/Mandarin/Japanese tutor (lib/core/ai/prompt_templates.dart)",
+      "market_evidence": "English/Mandarin/Japanese tutor (lib/core/ai/prompt_templates.dart) | UI: 141 hard-coded UI strings, 0 CJK; interface is English even though the tutor teaches zh and ja (lib/core/ai/prompt_templates.dart)",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "141 hard-coded UI strings, 0 CJK; interface is English even though the tutor teaches zh and ja (lib/core/ai/prompt_templates.dart)",
       "zh_page": null,
       "evidence": {
         "three languages + personas": "lib/core/ai/prompt_templates.dart:2-11 (en/zh/ja with locale and displayName)",
@@ -668,7 +749,11 @@
       "meta_description_len": 158,
       "word_count": 871,
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: 348 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "348 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "AES-256 key in KeyStore/Keychain": "lib/core/storage/encryption_service.dart:1-18 (flutter_secure_storage, HiveAesCipher, package:encrypt)",
@@ -695,7 +780,7 @@
       "page": "/apps/recap-meeting-recorder.html",
       "category": "ai",
       "play_url": null,
-      "apple_url": "https://apps.apple.com/hk/app/recap-on-device-meeting-ai/id6791632859?uo=4",
+      "apple_url": "https://apps.apple.com/app/id6791632859",
       "operating_system": "IOS",
       "primary_keyword": "on-device meeting recorder",
       "long_tail_keywords": [
@@ -709,9 +794,15 @@
       "title_len": 50,
       "meta_description_len": 155,
       "word_count": 726,
-      "market": "global",
-      "market_evidence": "en/yue/cmn recording languages but no HK data source (lib/models/record_language.dart)",
-      "zh_page": null,
+      "market": "both",
+      "market_evidence": "en/yue/cmn recording languages but no HK data source (lib/models/record_language.dart) | UI: lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh_Hans.arb + app_localizations_zh.dart; recording languages en-US / zh-HK / zh-CN in lib/models/record_language.dart:9-12",
+      "ui_languages": [
+        "en",
+        "zh-Hant",
+        "zh-Hans"
+      ],
+      "ui_language_evidence": "lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh_Hans.arb + app_localizations_zh.dart; recording languages en-US / zh-HK / zh-CN in lib/models/record_language.dart:9-12",
+      "zh_page": "/zh-hk/apps/recap-meeting-recorder/",
       "evidence": {
         "structured summary key points/decisions/action items": "lib/services/summary_service.dart:6-20 (SummaryUpdate)",
         "streaming summary": "lib/services/summary_service.dart:6 ('possibly still-streaming')",
@@ -751,7 +842,11 @@
       "meta_description_len": 157,
       "word_count": 931,
       "market": "global",
-      "market_evidence": "38 jurisdictions, none of them HK (lib/core/data/countries_data.dart)",
+      "market_evidence": "38 jurisdictions, none of them HK (lib/core/data/countries_data.dart) | UI: 83 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "83 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "38 jurisdictions": "lib/core/data/countries_data.dart:11-13 comment + kCountries list",
@@ -791,7 +886,11 @@
       "meta_description_len": 153,
       "word_count": 791,
       "market": "global",
-      "market_evidence": "40 country holiday calendars (lib/core/data/countries_list.dart)",
+      "market_evidence": "40 country holiday calendars (lib/core/data/countries_list.dart) | UI: 61 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "61 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "optimiser ranking by days-off-per-leave, excludes unaffordable": "lib/core/algo/optimizer.dart:19-25",
@@ -829,7 +928,11 @@
       "meta_description_len": 152,
       "word_count": 728,
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: 48 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "48 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "five templates": "lib/data/trip_templates.dart (General Travel, Beach / Resort, Business Trip, Winter / Ski Trip, Carry-on Only)",
@@ -865,7 +968,11 @@
       "meta_description_len": 150,
       "word_count": 728,
       "market": "global",
-      "market_evidence": "ECB rates via Frankfurter, global cities",
+      "market_evidence": "ECB rates via Frankfurter, global cities | UI: 32 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "32 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "Frankfurter / ECB rates, cache, fallback, throttle, never throws": "lib/features/currency/data/currency_repository.dart:9-18; host api.frankfurter.app",
@@ -900,7 +1007,11 @@
       "meta_description_len": 157,
       "word_count": 681,
       "market": "global",
-      "market_evidence": "43 world cities (lib/data/cities_data.dart)",
+      "market_evidence": "43 world cities (lib/data/cities_data.dart) | UI: 23 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "23 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "meeting planner 'Best Time to Connect' + jump to now": "lib/screens/meeting_planner_screen.dart:106,109",
@@ -936,7 +1047,11 @@
       "meta_description_len": 153,
       "word_count": 695,
       "market": "global",
-      "market_evidence": "HERE / Google Places, works in any city (lib/services/here_service.dart)",
+      "market_evidence": "HERE / Google Places, works in any city (lib/services/here_service.dart) | UI: 31 hard-coded UI strings, 0 CJK; no l10n directory",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "31 hard-coded UI strings, 0 CJK; no l10n directory",
       "zh_page": null,
       "evidence": {
         "six categories": "lib/screens/category_screen.dart (restaurants, vegetarian, attractions, hotels, transit, toilets)",
@@ -971,7 +1086,11 @@
       "meta_description_len": 156,
       "word_count": 823,
       "market": "global",
-      "market_evidence": "Japan-focused, not Hong Kong",
+      "market_evidence": "Japan-focused, not Hong Kong | UI: SwiftUI Text() strings all English (11 sampled, 0 CJK); Japanese appears only as generated order sentences, not as interface chrome",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "SwiftUI Text() strings all English (11 sampled, 0 CJK); Japanese appears only as generated order sentences, not as interface chrome",
       "zh_page": null,
       "evidence": {
         "scope: read menu, place order, phrasebook": "CLAUDE.md 'What the app does' 1-3 and 'Resist adding a fourth thing'",
@@ -1008,7 +1127,12 @@
       "meta_description_len": 159,
       "word_count": 803,
       "market": "hk",
-      "market_evidence": "reads rt.data.gov.hk MTR/LRT real-time feed (lib/services/mtr_service.dart); HK-only stations",
+      "market_evidence": "reads rt.data.gov.hk MTR/LRT real-time feed (lib/services/mtr_service.dart); HK-only stations | UI: lib/l10n/strings.dart + flutter_localizations",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/strings.dart + flutter_localizations",
       "zh_page": "/zh-hk/apps/hk-mtr-pass/",
       "evidence": {
         "real-time MTR feed": "lib/services/mtr_service.dart:8-24 (NextTrainResult, status 0 handling); host rt.data.gov.hk",
@@ -1048,7 +1172,12 @@
       "meta_description_len": 156,
       "word_count": 816,
       "market": "hk",
-      "market_evidence": "reads HK operator open data (kmb_api/ctb_api/gmb_api/mtr_bus_api.dart); HK-only routes",
+      "market_evidence": "reads HK operator open data (kmb_api/ctb_api/gmb_api/mtr_bus_api.dart); HK-only routes | UI: lib/l10n/strings.dart + flutter_localizations",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/strings.dart + flutter_localizations",
       "zh_page": "/zh-hk/apps/hk-bus-elderly/",
       "evidence": {
         "KMB / CTB / GMB / MTR Bus APIs": "lib/services/kmb_api.dart, ctb_api.dart, gmb_api.dart, mtr_bus_api.dart, nlb_api.dart; hosts rt.data.gov.hk, data.etabus.gov.hk, data.etagmb.gov.hk, opendata.mtr.com.hk",
@@ -1088,7 +1217,12 @@
       "meta_description_len": 155,
       "word_count": 751,
       "market": "hk",
-      "market_evidence": "data.weather.gov.hk HKO API + EPD AQHI (lib/services/weather_service.dart, aqhi_service.dart)",
+      "market_evidence": "data.weather.gov.hk HKO API + EPD AQHI (lib/services/weather_service.dart, aqhi_service.dart) | UI: lib/l10n/hk_phrases.dart + flutter_localizations",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/hk_phrases.dart + flutter_localizations",
       "zh_page": "/zh-hk/apps/hk-weather/",
       "evidence": {
         "HKO open data endpoints": "lib/services/weather_service.dart:20,24,27 (data.weather.gov.hk weather.php, opendata.php, maps.weather.gov.hk/ocf/dat)",
@@ -1126,7 +1260,12 @@
       "meta_description_len": 153,
       "word_count": 815,
       "market": "hk",
-      "market_evidence": "Consumer Council Online Price Watch feed (lib/data/ccgov_price_feed.dart); HK retailers only",
+      "market_evidence": "Consumer Council Online Price Watch feed (lib/data/ccgov_price_feed.dart); HK retailers only | UI: lib/app/strings.dart + flutter_localizations",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/app/strings.dart + flutter_localizations",
       "zh_page": "/zh-hk/apps/pricly-hk-price-watch/",
       "evidence": {
         "Consumer Council Online Price Watch feed": "lib/data/ccgov_price_feed.dart:3,31 (online-price-watch.consumer.org.hk/opw/opendata/pricewatch.json)",
@@ -1164,7 +1303,12 @@
       "meta_description_len": 160,
       "word_count": 805,
       "market": "hk",
-      "market_evidence": "api.data.gov.hk/v1/carpark-info-vacancy (lib/services/api_service.dart); HK district list in lib/utils/districts.dart",
+      "market_evidence": "api.data.gov.hk/v1/carpark-info-vacancy (lib/services/api_service.dart); HK district list in lib/utils/districts.dart | UI: lib/l10n/strings.dart + flutter_localizations",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/strings.dart + flutter_localizations",
       "zh_page": "/zh-hk/apps/hk-parking-finder/",
       "evidence": {
         "government carpark vacancy API": "lib/services/api_service.dart:10-11 (https://api.data.gov.hk/v1/carpark-info-vacancy)",
@@ -1202,7 +1346,12 @@
       "meta_description_len": 158,
       "word_count": 831,
       "market": "hk",
-      "market_evidence": "HK 8-digit / +852 number parsing and HK nuisance-number dataset (lib/services/ocr_scan_service.dart, hkjunkcall_service.dart)",
+      "market_evidence": "HK 8-digit / +852 number parsing and HK nuisance-number dataset (lib/services/ocr_scan_service.dart, hkjunkcall_service.dart) | UI: lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
       "zh_page": "/zh-hk/apps/hk-call-guard/",
       "evidence": {
         "call screening role": "lib/services/call_screening_role_service.dart:23; AndroidManifest BIND_SCREENING_SERVICE, READ_PHONE_STATE, ANSWER_PHONE_CALLS",
@@ -1240,7 +1389,11 @@
       "meta_description_len": 154,
       "word_count": 817,
       "market": "hk",
-      "market_evidence": "Transport Department JTIS + HK tunnel tolls (lib/services/jtis_service.dart, toll_service.dart); HK cross-border screen",
+      "market_evidence": "Transport Department JTIS + HK tunnel tolls (lib/services/jtis_service.dart, toll_service.dart); HK cross-border screen | UI: Cantonese UI strings throughout lib/screens/*.dart",
+      "ui_languages": [
+        "zh-Hant"
+      ],
+      "ui_language_evidence": "Cantonese UI strings throughout lib/screens/*.dart",
       "zh_page": "/zh-hk/apps/smart-car-hk/",
       "evidence": {
         "JTIS journey times, 2-min refresh, tolerant parser": "lib/services/jtis_service.dart:12-16",
@@ -1278,7 +1431,12 @@
       "meta_description_len": 155,
       "word_count": 727,
       "market": "hk",
-      "market_evidence": "Hospital Authority A&E open data + FEHD toilets (lib/data/hospital_repository.dart, toilet_repository.dart)",
+      "market_evidence": "Hospital Authority A&E open data + FEHD toilets (lib/data/hospital_repository.dart, toilet_repository.dart) | UI: lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
       "zh_page": "/zh-hk/apps/ernloo-ae-waiting-times/",
       "evidence": {
         "HA A&E open data endpoint": "lib/data/hospital_repository.dart:78 (https://www.ha.org.hk/opendata/aed/aedwtdata2)",
@@ -1314,7 +1472,11 @@
       "meta_description_len": 154,
       "word_count": 996,
       "market": "hk",
-      "market_evidence": "HKO heat-stress stations + Labour Department HKHI thresholds (lib/data/hkhi_client.dart, lib/core/heat/levels.dart)",
+      "market_evidence": "HKO heat-stress stations + Labour Department HKHI thresholds (lib/data/hkhi_client.dart, lib/core/heat/levels.dart) | UI: Cantonese UI strings throughout lib/features/*.dart",
+      "ui_languages": [
+        "zh-Hant"
+      ],
+      "ui_language_evidence": "Cantonese UI strings throughout lib/features/*.dart",
       "zh_page": "/zh-hk/apps/hk-heatsafe/",
       "evidence": {
         "HKHI formula 0.80/0.05/0.15 + source": "lib/core/heat/indices.dart:8-16",
@@ -1342,7 +1504,7 @@
       "page": "/apps/hk-bus-next.html",
       "category": "hongkong",
       "play_url": null,
-      "apple_url": "https://apps.apple.com/hk/app/%E8%BB%8A%E5%88%B0%E6%9C%AA-%E9%A6%99%E6%B8%AF%E5%B7%B4%E5%A3%AB%E5%88%B0%E7%AB%99%E6%99%82%E9%96%93-%E5%B0%8F%E5%B7%B4/id6799151521?uo=4",
+      "apple_url": "https://apps.apple.com/app/id6799151521",
       "operating_system": "IOS",
       "primary_keyword": "Hong Kong bus app for all operators",
       "long_tail_keywords": [
@@ -1357,7 +1519,12 @@
       "meta_description_len": 156,
       "word_count": 931,
       "market": "hk",
-      "market_evidence": "five HK operators hard-coded as a closed set (lib/core/bus_operator.dart); App Store listing is HK storefront",
+      "market_evidence": "five HK operators hard-coded as a closed set (lib/core/bus_operator.dart); App Store listing is HK storefront | UI: lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
+      "ui_languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "ui_language_evidence": "lib/l10n/app_localizations_en.dart + app_localizations_zh.dart",
       "zh_page": "/zh-hk/apps/hk-bus-next/",
       "evidence": {
         "closed five-operator set, LWB excluded with verification date": "lib/core/bus_operator.dart:3-14 (verified 2026-08-06 against data.etabus.gov.hk)",
@@ -1399,7 +1566,11 @@
       "meta_description_len": 157,
       "word_count": 790,
       "market": "hk",
-      "market_evidence": "RVD and Housing Authority datasets (lib/services/data_gov_hk_service.dart); Cantonese UI; App Store HK",
+      "market_evidence": "RVD and Housing Authority datasets (lib/services/data_gov_hk_service.dart); Cantonese UI; App Store HK | UI: Cantonese UI strings throughout lib/screens/*.dart and lib/tycoon/*.dart",
+      "ui_languages": [
+        "zh-Hant"
+      ],
+      "ui_language_evidence": "Cantonese UI strings throughout lib/screens/*.dart and lib/tycoon/*.dart",
       "zh_page": "/zh-hk/apps/seoidou-hk-property-sim/",
       "evidence": {
         "real data.gov.hk endpoints with offline fallback": "lib/services/data_gov_hk_service.dart:9-18 (rvd.gov.hk/datagovhk/1.2M.csv; data.housingauthority.gov.hk ssfs-sale-transactions-022_tc.json; assets/data fallback)",
@@ -1436,7 +1607,11 @@
       "meta_description_len": 152,
       "word_count": 810,
       "market": "hk",
-      "market_evidence": "Cantonese-only content about the HK job market (lib/data/events.dart, headlines.dart); App Store HK",
+      "market_evidence": "Cantonese-only content about the HK job market (lib/data/events.dart, headlines.dart); App Store HK | UI: Cantonese UI strings throughout lib/screens/*.dart and lib/data/events.dart",
+      "ui_languages": [
+        "zh-Hant"
+      ],
+      "ui_language_evidence": "Cantonese UI strings throughout lib/screens/*.dart and lib/data/events.dart",
       "zh_page": "/zh-hk/apps/findjob-hk-job-sim/",
       "evidence": {
         "week counter in title": "lib/screens/game_screen.dart:82 ('難搵工 · 第 N 週')",
@@ -1475,7 +1650,11 @@
       "meta_description_len": 153,
       "word_count": 881,
       "market": "hk",
-      "market_evidence": "Cantonese UI throughout (lib/ui/*.dart) and HK construction-site complaint workflow",
+      "market_evidence": "Cantonese UI throughout (lib/ui/*.dart) and HK construction-site complaint workflow | UI: Cantonese UI strings throughout lib/ui/*.dart",
+      "ui_languages": [
+        "zh-Hant"
+      ],
+      "ui_language_evidence": "Cantonese UI strings throughout lib/ui/*.dart",
       "zh_page": "/zh-hk/apps/site-watch/",
       "evidence": {
         "GitHub Issues backend": "lib/data/github/github_api.dart; pubspec description '後端係 GitHub Issues'; hosts api.github.com, github.com",
@@ -1495,14 +1674,18 @@
     {
       "slug": "gps-camera",
       "market": "global",
-      "market_evidence": "no region data",
+      "market_evidence": "no region data | UI: native Swift; 4 sampled UI strings, 0 CJK; ios/Runner has Base.lproj only",
+      "ui_languages": [
+        "en"
+      ],
+      "ui_language_evidence": "native Swift; 4 sampled UI strings, 0 CJK; ios/Runner has Base.lproj only",
       "zh_page": null,
       "project_path": "~/Desktop/gps_camera",
       "app_name": "GPS Camera: Timestamp & Map",
       "page": "/apps/gps-camera.html",
       "category": "tools",
       "play_url": "https://play.google.com/store/apps/details?id=com.hkwww.gpsCamera",
-      "apple_url": "https://apps.apple.com/hk/app/gps-camera-timestamp-map/id6787955697?uo=4",
+      "apple_url": "https://apps.apple.com/app/id6787955697",
       "operating_system": "ANDROID, IOS",
       "note": "Hand-written page, updated in place. Both store links verified live. The App Store listing was found via Apple's lookup API on bundleId com.hkwww.gpsCamera (trackId 6787955697); the page name was changed to Apple's trackName.",
       "evidence": {
@@ -1513,9 +1696,22 @@
     },
     {
       "slug": "cleanscan",
-      "market": "global",
-      "market_evidence": "9 UI languages, no region data",
-      "zh_page": null,
+      "market": "both",
+      "market_evidence": "9 UI languages, no region data | UI: ios/Runner/Info.plist CFBundleLocalizations = en zh-Hant zh-Hans ja ko ar es pt de fr; lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh.arb (108 keys)",
+      "ui_languages": [
+        "en",
+        "zh-Hant",
+        "zh-Hans",
+        "ja",
+        "ko",
+        "ar",
+        "es",
+        "pt",
+        "de",
+        "fr"
+      ],
+      "ui_language_evidence": "ios/Runner/Info.plist CFBundleLocalizations = en zh-Hant zh-Hans ja ko ar es pt de fr; lib/l10n/app_en.arb + app_zh_Hant.arb + app_zh.arb (108 keys)",
+      "zh_page": "/zh-hk/apps/cleanscan/",
       "project_path": "~/Desktop/scan_apps",
       "app_name": "CleanScan: PDF Scanner OCR",
       "page": "/apps/cleanscan.html",
