@@ -97,24 +97,30 @@ curl -s -o /dev/null -w '%{http_code}\n' https://todays-tasks.com/china/posts/10
 
 ## 待核實數字（`{{NEEDS_VERIFY}}`）
 
-美國稅頁嘅原則：**唔確定嘅財務數字寧願留空，唔好作。** 所有已填嘅數字
-都由 `data/us-state-tax.json` 生成，每個都帶住官方來源連結。
+**而家係零。** 全站冇任何 `{{NEEDS_VERIFY}}` 標記，五頁免責語都寫住
+「This page cites no unverified figure.」。
 
-而家**淨返一項**未核實：
+原則保持不變：**唔確定嘅財務數字寧願留空，唔好作。** 所有數字都由
+`data/us-state-tax.json` 生成，每個都帶住官方來源連結。日後如果要加返
+未核實嘅數，用返 `{{NEEDS_VERIFY: 描述}}` 包喺 `<span class="needs-verify">`
+入面，同時要改返嗰頁底部 `<p class="muted">` 嘅最後一句。
 
-| 要查嘅數 | 建議官方來源 | 填落邊個檔 | 位置 |
-|---|---|---|---|
-| 紐約州法定居民日數門檻，同「一日」點計 | NY Dept of Taxation and Finance — Income tax definitions（domicile / statutory residency）<br>https://www.tax.ny.gov/pit/file/pit_definitions.htm<br>另見 Form IT-201 / IT-203 說明書 | `tools/us/new-york-vs-florida-salary-comparison/index.html` | `<h2>Residency is a test, not a mailing address</h2>` 講 statutory residency 嗰段 |
-
-填完之後：
+驗證指令：
 
 ```bash
-grep -rn "NEEDS_VERIFY" tools/us/          # 應該零命中
+grep -rn "NEEDS_VERIFY\|needs-verify" tools/us/     # 應該零命中
 ```
 
-再刪走 `tools/us/new-york-vs-florida-salary-comparison/index.html` 底部
-`<p class="muted">` 入面「A small number of figures on this page are still marked
-pending verification」嗰句，改成同另外四頁一樣嘅「This page cites no unverified figure.」。
+### 查唔到就刪機制，唔好留空位
+
+有幾項查唔到權威來源嘅，處理手法係**刪走具體數字、保留機制講解、
+叫讀者去官方頁面攞數**，唔係留住標記：
+
+- 紐約法定居民日數 → 講清楚有兩個獨立測試、「一日」定義極闊（踏足即算）、
+  舉證責任在納稅人，具體日數連去 NY DTF `pit_definitions.htm`
+- convenience of the employer 州份名單、reciprocity 名單、非居民日數門檻
+- NH 利息股息稅廢除日期、WA 資本利得稅率、社會保障免稅州名單
+- 物業稅、銷售稅、homestead exemption（呢批係整段刪走，見下）
 
 ## 聯邦稅資料點嚟（2026-08-21 重建）
 
