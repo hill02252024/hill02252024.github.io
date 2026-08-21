@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-08-21T14:50:41.685Z</lastmod></url>
+  <url><loc>https://todays-tasks.com/</loc><lastmod>2026-08-21T16:29:41.186Z</lastmod></url>
   <url><loc>https://todays-tasks.com/about.html</loc></url>
   <url><loc>https://todays-tasks.com/apps/</loc></url>
   <url><loc>https://todays-tasks.com/apps/bmi-calculator/</loc></url>
@@ -78,6 +78,11 @@
   <url><loc>https://todays-tasks.com/tools/dividend-calculator/</loc></url>
   <url><loc>https://todays-tasks.com/tools/document-redactor/</loc></url>
   <url><loc>https://todays-tasks.com/tools/email-alias/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/eu/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/eu/france-italy-spain-vat-refund/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/eu/japan-tax-free-shopping/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/eu/uk-northern-ireland-tax-free/</loc></url>
+  <url><loc>https://todays-tasks.com/tools/eu/vat-refund-minimum-spend/</loc></url>
   <url><loc>https://todays-tasks.com/tools/identity-risk-score/</loc></url>
   <url><loc>https://todays-tasks.com/tools/investment-calculator/</loc></url>
   <url><loc>https://todays-tasks.com/tools/long-weekend/</loc></url>
@@ -92,11 +97,6 @@
   <url><loc>https://todays-tasks.com/tools/sensitive-data-cleaner/</loc></url>
   <url><loc>https://todays-tasks.com/tools/tip-calculator/</loc></url>
   <url><loc>https://todays-tasks.com/tools/us/</loc></url>
-  <url><loc>https://todays-tasks.com/tools/eu/</loc></url>
-  <url><loc>https://todays-tasks.com/tools/eu/vat-refund-minimum-spend/</loc></url>
-  <url><loc>https://todays-tasks.com/tools/eu/france-italy-spain-vat-refund/</loc></url>
-  <url><loc>https://todays-tasks.com/tools/eu/uk-northern-ireland-tax-free/</loc></url>
-  <url><loc>https://todays-tasks.com/tools/eu/japan-tax-free-shopping/</loc></url>
   <url><loc>https://todays-tasks.com/tools/us/100k-after-taxes-by-state/</loc></url>
   <url><loc>https://todays-tasks.com/tools/us/california-vs-texas-take-home-pay/</loc></url>
   <url><loc>https://todays-tasks.com/tools/us/new-york-vs-florida-salary-comparison/</loc></url>
