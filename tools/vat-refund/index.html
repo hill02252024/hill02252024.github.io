@@ -6,18 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VAT Refund Calculator — Tax-Free Shopping, EU &amp; UK — Today's Tasks</title>
   <meta name="description" content="Free VAT refund calculator for tourists. Estimate your tax-free shopping refund across the EU, UK (London airport), Japan, Korea, and Singapore. No login required." />
-  <meta name="keywords" content="vat refund calculator, tax free shopping, tourist refund, global blue, premier tax free, EU vat refund" />
+  <meta name="keywords" content="vat refund calculator, tax free shopping, tourist refund, vat refund minimum spend, how much vat back" />
   <link rel="canonical" href="https://todays-tasks.com/tools/vat-refund/" />
   <meta property="og:type" content="website" /><meta property="og:title" content="VAT Refund Calculator — Tax-Free Shopping, EU &amp; UK — Today's Tasks" /><meta property="og:description" content="Estimate tourist tax-free refunds. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/vat-refund/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VAT Refund Calculator","url":"https://todays-tasks.com/tools/vat-refund/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Who is eligible for a VAT refund?","acceptedAnswer":{"@type":"Answer","text":"Non-resident tourists leaving the country / region of purchase. Most schemes require you to export the goods within 30–90 days, present them at customs on departure, and meet a minimum purchase threshold."}},
-    {"@type":"Question","name":"Why is my refund less than the VAT rate?","acceptedAnswer":{"@type":"Answer","text":"VAT refund agents (Global Blue, Premier Tax Free, Planet) take a service fee — typically 35–50% of the VAT amount. The calculator's 'admin fee' field lets you model this. Cash refunds at the airport often have higher fees than card refunds."}},
-    {"@type":"Question","name":"Does the UK still offer tourist VAT refunds?","acceptedAnswer":{"@type":"Answer","text":"As of 2026, the UK no longer offers in-store tax-free shopping to non-EU tourists (ended Jan 2021). Northern Ireland is an exception for some goods. EU countries, Japan, Korea, Singapore, Thailand, and many others still have active schemes."}},{"@type":"Question","name":"What do I actually need to do to claim a VAT refund?","acceptedAnswer":{"@type":"Answer","text":"Typically: spend above the country minimum in a participating shop, ask for a tax-free form at purchase, get it validated by customs when you leave (often with the goods available to show), then submit it to the refund operator. Steps vary by country, so check locally before you travel."}}
-  ]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who is eligible for a VAT refund?", "acceptedAnswer": {"@type": "Answer", "text": "Non-resident tourists leaving the country / region of purchase. Most schemes require you to export the goods within 30–90 days, present them at customs on departure, and meet a minimum purchase threshold."}}, {"@type": "Question", "name": "Why is my refund less than the VAT rate?", "acceptedAnswer": {"@type": "Answer", "text": "The refund operator that processes your claim keeps a cut. Two separate charges do the work: a handling fee taken off the VAT, and a currency-conversion margin applied when the operator pays you in a currency other than the one you were charged in. Taking the refund as cash at the airport normally costs more than having it returned to the card you paid with. How much you lose depends on which operator handles the form and which payout method you choose, so read that operator’s published terms before you sign the form — no single percentage applies across operators. The calculator’s \"admin fee\" field lets you model whatever rate your operator actually quotes."}}, {"@type": "Question", "name": "Does the UK still offer tourist VAT refunds?", "acceptedAnswer": {"@type": "Answer", "text": "Not in Great Britain. England, Scotland and Wales withdrew the VAT Retail Export Scheme on 1 January 2021, so there is no way to reclaim VAT on a high-street purchase when you leave. Northern Ireland still operates the scheme, with no minimum purchase value set by HMRC. Many other countries run their own schemes; the country list in this calculator covers the ones whose rules have been checked against the authority that administers them."}}, {"@type": "Question", "name": "What do I actually need to do to claim it?", "acceptedAnswer": {"@type": "Answer", "text": "Typically: spend above the country's minimum in a participating shop, ask for a tax-free form at purchase, then get it validated by customs when you leave (often with the goods available to show), and submit it to the refund operator. Steps vary by country, so check locally before you travel."}}]}</script>
 </head>
 <body>
   <script src="/nav.js" defer></script>
@@ -31,29 +27,18 @@
     <div class="calc-card">
       <div class="row">
         <label for="country">Country</label>
-        <select id="country">
-          <option value="20">🇫🇷 France (20%)</option>
-          <option value="19">🇩🇪 Germany (19%)</option>
-          <option value="22">🇮🇹 Italy (22%)</option>
-          <option value="21">🇪🇸 Spain (21%)</option>
-          <option value="21">🇳🇱 Netherlands (21%)</option>
-          <option value="25">🇸🇪 Sweden (25%)</option>
-          <option value="10">🇯🇵 Japan (10%)</option>
-          <option value="10">🇰🇷 Korea (10%)</option>
-          <option value="9">🇸🇬 Singapore (9% GST)</option>
-          <option value="7">🇹🇭 Thailand (7%)</option>
-          <option value="custom">Custom rate…</option>
-        </select>
+        <select id="country"><option value="">Loading verified jurisdictions…</option></select>
       </div>
       <div class="row two-col">
         <div><label for="amount">Purchase amount <span class="hint">incl. VAT</span></label><input type="number" id="amount" inputmode="decimal" min="0" step="1" placeholder="e.g. 1200" value="1200" /></div>
         <div><label for="rate">VAT rate %</label><input type="number" id="rate" inputmode="decimal" min="0" max="50" step="0.1" value="20" /></div>
       </div>
       <div class="row">
-        <label for="fee">Admin fee <span class="hint">refund agent's cut, % of VAT</span></label>
-        <input type="number" id="fee" inputmode="decimal" min="0" max="100" step="1" placeholder="e.g. 40" value="40" />
+        <label for="fee">Admin fee <span class="hint">% of VAT — from your operator's terms</span></label>
+        <input type="number" id="fee" inputmode="decimal" min="0" max="100" step="1" placeholder="leave blank for the full VAT" />
       </div>
       <button type="button" class="btn-calc travel" id="calcBtn">Calculate</button>
+      <div id="countryFacts" class="country-facts" hidden></div>
       <div id="result" class="result-box" aria-live="polite"></div>
     </div>
 
@@ -65,7 +50,7 @@
     <ol class="step-list">
       <li>Pick the country where you shopped. The VAT rate fills in automatically.</li>
       <li>Enter the total amount you paid in-store (this is the price including VAT).</li>
-      <li>Set the refund agent's admin fee — typically 35–50% of the VAT amount.</li>
+      <li>Enter the admin fee your refund operator actually quotes, as a percentage of the VAT. It is in the operator's published terms, and it differs between operators and between cash and card payout.</li>
     </ol>
 
     <h2>How a VAT Refund Is Calculated</h2>
@@ -77,7 +62,7 @@
       <h2>Why your refund is smaller than the VAT rate</h2>
       <p>The most common surprise with tax-free shopping is that a 20% VAT rate does not mean 20% back. Refund operators take an administration fee, so what you actually receive is usually noticeably less than the headline VAT. On top of that, most countries set a <strong>minimum spend</strong> per shop or per receipt, require you to be a non-resident visitor taking the goods home unused, and expect you to get the paperwork validated by customs as you leave. This tool gives you a ballpark so the figure at the refund desk isn't a disappointment.</p>
       <div class="expert-note">
-        <p>Across 20 years in IT support with colleagues in Manila, Hong Kong, Japan and Singapore, business trips meant someone was always shopping on the way home — and VAT refunds were endlessly misunderstood. People assumed "20% VAT, so I get 20% back," then felt short-changed when the operator's cut left them with noticeably less. Others missed the minimum spend, or — the classic — left it too late at the airport and couldn't get the forms stamped before the flight, so the refund evaporated entirely. None of it is complicated once you know the rules; the trouble is everyone learns them the expensive way the first time.</p>
+        <p>Across 20 years in IT support with colleagues across Asia, business trips meant someone was always shopping on the way home — and VAT refunds were endlessly misunderstood. People assumed "20% VAT, so I get 20% back," then felt short-changed when the operator's cut left them with noticeably less. Others missed the minimum spend, or — the classic — left it too late at the airport and couldn't get the forms stamped before the flight, so the refund evaporated entirely. None of it is complicated once you know the rules; the trouble is everyone learns them the expensive way the first time.</p>
         <span class="who">— Hill, 20 years in IT support</span>
       </div>
       <p class="ymyl-note">Refund rates, eligibility and minimum-spend thresholds vary by country and change often. Treat this as a rough estimate and confirm the exact terms with the retailer, the refund operator, or the customs desk before relying on it.</p>
@@ -85,8 +70,8 @@
 
     <h2>Frequently Asked Questions</h2>
     <details class="faq-item"><summary>Who is eligible for a VAT refund?</summary><p>Non-resident tourists leaving the country / region of purchase. Most schemes require you to export the goods within 30–90 days, present them at customs on departure, and meet a minimum purchase threshold.</p></details>
-    <details class="faq-item"><summary>Why is my refund less than the VAT rate?</summary><p>VAT refund agents (Global Blue, Premier Tax Free, Planet) take a service fee — typically 35–50% of the VAT amount. The calculator's "admin fee" field lets you model this. Cash refunds at the airport often have higher fees than card refunds.</p></details>
-    <details class="faq-item"><summary>Does the UK still offer tourist VAT refunds?</summary><p>As of 2026, the UK no longer offers in-store tax-free shopping to non-EU tourists (ended Jan 2021). Northern Ireland is an exception for some goods. EU countries, Japan, Korea, Singapore, Thailand, and many others still have active schemes.</p></details>
+    <details class="faq-item"><summary>Why is my refund less than the VAT rate?</summary><p>The refund operator that processes your claim keeps a cut. Two separate charges do the work: a handling fee taken off the VAT, and a currency-conversion margin applied when the operator pays you in a currency other than the one you were charged in. Taking the refund as cash at the airport normally costs more than having it returned to the card you paid with. How much you lose depends on which operator handles the form and which payout method you choose, so read that operator’s published terms before you sign the form — no single percentage applies across operators. The calculator’s "admin fee" field lets you model whatever rate your operator actually quotes.</p></details>
+    <details class="faq-item"><summary>Does the UK still offer tourist VAT refunds?</summary><p>Not in Great Britain. England, Scotland and Wales withdrew the VAT Retail Export Scheme on 1 January 2021, so there is no way to reclaim VAT on a high-street purchase when you leave. Northern Ireland still operates the scheme, with no minimum purchase value set by HMRC. Many other countries run their own schemes; the country list in this calculator covers the ones whose rules have been checked against the authority that administers them.</p></details>
 
         <details class="faq-item"><summary>What do I actually need to do to claim it?</summary><p>Typically: spend above the country's minimum in a participating shop, ask for a tax-free form at purchase, then get it validated by customs when you leave (often with the goods available to show), and submit it to the refund operator. Steps vary by country, so check locally before you travel.</p></details>
 
@@ -100,35 +85,109 @@
 
   <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
 
+  <script src="/tools/vat-tax.js"></script>
   <script src="/tools/tools.js"></script>
   <script>
-    document.getElementById('country').addEventListener('change', function() {
-      if (this.value !== 'custom') document.getElementById('rate').value = this.value;
-    });
-    document.getElementById('calcBtn').addEventListener('click', function() {
+    var VATDATA = null;
+
+    function fillCountries() {
+      var sel = document.getElementById('country');
+      sel.innerHTML = '';
+      VATRefund.refundable().forEach(function (c) {
+        var o = document.createElement('option');
+        o.value = c.code;
+        o.textContent = c.name + ' (' + c.displayVatRate + ')';
+        sel.appendChild(o);
+      });
+      var custom = document.createElement('option');
+      custom.value = 'custom'; custom.textContent = 'Other country — enter the rate yourself';
+      sel.appendChild(custom);
+      syncCountry();
+    }
+
+    function syncCountry() {
+      var code = document.getElementById('country').value;
+      var facts = document.getElementById('countryFacts');
+      var rateInput = document.getElementById('rate');
+      var c = VATRefund.byCode(code);
+      if (!c) {
+        facts.hidden = true; facts.innerHTML = '';
+        rateInput.disabled = false;
+        return;
+      }
+      rateInput.value = (c.vatRate * 100).toFixed(c.vatRate * 100 % 1 ? 1 : 0);
+      rateInput.disabled = false;
+      var e = VATRefund.esc;
+      facts.hidden = false;
+      facts.innerHTML =
+        '<dl>' +
+          '<dt>VAT rate</dt><dd>' + e(c.displayVatRate) + '</dd>' +
+          '<dt>Minimum spend</dt><dd>' + e(c.minSpendDisplay) + '</dd>' +
+          '<dt>Export deadline</dt><dd>' + c.claimDeadlineDays + ' days</dd>' +
+          '<dt>Where to claim</dt><dd>' + e(c.claimLocation) + '</dd>' +
+        '</dl>' +
+        '<p class="cf-notes">' + e(c.refundNotes) + '</p>' +
+        '<p class="cf-src">Verified ' + e(c.lastVerified) + ' &middot; ' + VATRefund.sourceLinks(c) + '</p>';
+    }
+
+    document.getElementById('country').addEventListener('change', syncCountry);
+
+    document.getElementById('calcBtn').addEventListener('click', function () {
       var a = tt.read('amount'), r = tt.read('rate'), fee = tt.read('fee');
       if (a <= 0 || r <= 0) {
         tt.showResult('result', '<div class="primary">Please enter purchase amount and VAT rate.</div>', 'error');
         return;
       }
-      var vat = a * r / (100 + r);
-      var netPrice = a - vat;
-      var refund = vat * (1 - fee / 100);
-      var feePaid = vat - refund;
-      var effective = a > 0 ? (refund / a * 100) : 0;
+      var code = document.getElementById('country').value;
+      var c = VATRefund.byCode(code);
+      var res = VATRefund.compute({ amount: a, rate: r / 100, adminFeePercent: fee });
+      var sym = c ? c.currencySymbol : '';
+      var m = function (n) { return VATRefund.money(n, sym); };
       var html =
-        '<div class="primary"><span class="label">Estimated refund</span>' + tt.fmt(refund) + '</div>' +
+        '<div class="primary"><span class="label">Estimated refund</span>' + m(res.refund) + '</div>' +
         '<div class="secondary">' +
-          '<div>VAT in price<b>' + tt.fmt(vat) + '</b></div>' +
-          '<div>Net price (ex-VAT)<b>' + tt.fmt(netPrice) + '</b></div>' +
-          '<div>Admin fee withheld<b>' + tt.fmt(feePaid) + '</b></div>' +
-          '<div>Effective refund<b>' + effective.toFixed(1) + '% of purchase</b></div>' +
-        '</div>' +
+          '<div>VAT in price<b>' + m(res.vat) + '</b></div>' +
+          '<div>Net price (ex-VAT)<b>' + m(res.netPrice) + '</b></div>' +
+          '<div>Admin fee withheld<b>' + m(res.feeWithheld) + '</b></div>' +
+          '<div>Effective refund<b>' + res.effectivePercent.toFixed(1) + '% of purchase</b></div>' +
+        '</div>';
+      if (c) {
+        var meets = a >= c.minSpendLocal;
+        html += '<p class="min-check ' + (meets ? 'ok' : 'under') + '">' +
+          (c.minSpendLocal <= 0
+            ? '&#10003; ' + VATRefund.esc(c.name) + ' sets no minimum purchase amount, so any amount qualifies.'
+            : meets
+              ? '&#10003; ' + m(a) + ' clears the ' + VATRefund.esc(c.minSpendDisplay) + ' minimum.'
+              : '&#10007; Below the minimum of ' + VATRefund.esc(c.minSpendDisplay) +
+                '. You are short by ' + m(c.minSpendLocal - a) + ', and nothing is refundable until you clear it.') +
+          '</p>';
+      }
+      if (!(fee > 0)) {
+        html += '<p class="fee-note">No admin fee entered, so this is the full VAT before the refund ' +
+          'operator takes its cut. Operators charge a handling fee and a currency-conversion margin, ' +
+          'and cash at the airport normally costs more than a refund to your card. Enter the rate from ' +
+          'your operator\'s published terms to see what actually reaches you.</p>';
+      }
+      html +=
         '<div class="result-actions">' +
-          '<button type="button" onclick="tt.copyText(\'Refund ' + tt.fmt(refund) + ' on ' + tt.fmt(a) + ' purchase at ' + r + '% VAT\', this)">📋 Copy Result</button>' +
+          '<button type="button" onclick="tt.copyText(\'Refund ' + m(res.refund) + ' on ' + m(a) + ' purchase at ' + r + '% VAT\', this)">&#128203; Copy Result</button>' +
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
+    });
+
+    VATRefund.load().then(function (j) {
+      VATDATA = j;
+      fillCountries();
+      var q = VATRefund.parseQuery();
+      if (q.country && VATRefund.byCode(q.country)) {
+        document.getElementById('country').value = q.country;
+        syncCountry();
+      }
+      if (q.amount) document.getElementById('amount').value = q.amount;
+      if (q.country || q.amount) document.getElementById('calcBtn').click();
+    }).catch(function () {
+      document.getElementById('country').innerHTML = '<option value="custom">Data failed to load — enter the rate yourself</option>';
     });
   </script>
 </body>

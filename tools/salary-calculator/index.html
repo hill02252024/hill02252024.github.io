@@ -202,15 +202,18 @@
     }
 
     function calcUK(g) {
-      // 2024/25 simplified: 12,570 personal allowance, 20/40/45 bands.
-      var pa = 12570;
+      // 2024/25 England / Wales / Northern Ireland. Scottish rates are not
+      // modelled.
+      // Personal allowance tapers above £100k — £1 lost per £2 over — and
+      // reaches zero at £125,140.
+      var pa = g > 100000 ? Math.max(0, 12570 - (g - 100000) / 2) : 12570;
       var taxable = Math.max(0, g - pa);
-      // Personal allowance tapers above 100k (lose £1 per £2 over).
-      if (g > 100000) {
-        var loss = Math.min(pa, (g - 100000) / 2);
-        taxable = Math.max(0, g - (pa - loss));
-      }
-      var inc = bracketTax(taxable, [[37700, 0.20], [125140 - pa, 0.40], [Infinity, 0.45]]);
+      // Bands run on TAXABLE income: 20% to £37,700, 40% to £125,140,
+      // 45% above. The 45% boundary is the statutory £125,140 figure, not
+      // £125,140 minus the allowance — putting the allowance back in there
+      // over-taxed everyone at or above £125,140 by exactly £628.50
+      // (£12,570 × the 5pp gap between the 40% and 45% rates).
+      var inc = bracketTax(taxable, [[37700, 0.20], [125140, 0.40], [Infinity, 0.45]]);
       // NI: 8% from £12,570–£50,270, 2% above.
       var ni = 0;
       if (g > 12570) ni += Math.min(g, 50270) - 12570 > 0 ? (Math.min(g, 50270) - 12570) * 0.08 : 0;

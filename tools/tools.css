@@ -1405,3 +1405,142 @@ body.ads-hidden .ad-slot { display: none !important; }
   padding-left: 11px;
   margin: 14px 0;
 }
+
+/* ── VAT refund: verified country facts + minimum-spend check ── */
+.country-facts {
+  margin-top: 14px;
+  padding: 13px 15px;
+  border: 1px solid var(--border, #e3e3e3);
+  border-radius: 10px;
+  background: var(--bg-subtle, #f7f7f8);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.country-facts dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 3px 14px;
+  margin: 0 0 9px;
+}
+.country-facts dt {
+  font-weight: 600;
+  color: var(--text-muted, #666);
+}
+.country-facts dd {
+  margin: 0;
+}
+.country-facts .cf-notes {
+  margin: 0 0 7px;
+}
+.country-facts .cf-src {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-muted, #666);
+}
+.country-facts .cf-src a {
+  color: inherit;
+}
+.min-check {
+  margin: 12px 0 0;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.min-check.ok {
+  background: #ecfdf5;
+  color: #065f46;
+}
+.min-check.under {
+  background: #fff7ed;
+  color: #9a3412;
+}
+.fee-note {
+  margin: 11px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted, #666);
+}
+
+/* ── Inline VAT widget on /tools/eu/* ── */
+.vat-embed {
+  border: 1px solid var(--border, #e3e3e3);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 22px 0 26px;
+  background: var(--bg-subtle, #f7f7f8);
+}
+.vat-embed .ve-title {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.vat-embed .ve-sub {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  color: var(--text-muted, #666);
+}
+.vat-embed .ve-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.vat-embed label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted, #666);
+}
+.vat-embed input,
+.vat-embed select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid var(--border, #d8d8dc);
+  border-radius: 8px;
+  background: var(--bg, #fff);
+  color: inherit;
+}
+.vat-embed .ve-out {
+  background: var(--bg, #fff);
+  border: 1px solid var(--border, #e3e3e3);
+  border-radius: 10px;
+  padding: 14px;
+}
+.vat-embed .ve-big {
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+.vat-embed .ve-big small {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted, #666);
+}
+.vat-embed .ve-rows {
+  list-style: none;
+  margin: 11px 0 0;
+  padding: 11px 0 0;
+  border-top: 1px solid var(--border, #eee);
+  font-size: 13px;
+}
+.vat-embed .ve-rows li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0;
+  font-variant-numeric: tabular-nums;
+}
+.vat-embed .ve-foot {
+  margin: 11px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted, #666);
+}
+.vat-embed .ve-foot a {
+  color: inherit;
+}

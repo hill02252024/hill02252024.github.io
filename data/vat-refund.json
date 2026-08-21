@@ -1,0 +1,236 @@
+{
+ "_source": "Extracted from ~/Desktop/vatrefund lib/core/data/countries_data.dart on 2026-08-22. ONLY entries carrying both lastVerified and sourceUrls are included; the other 27 jurisdictions in that file are unverified and are deliberately excluded.",
+ "_evidenceRule": "A figure may only change on evidence from the authority that administers the scheme. See DATA_SOURCES.md in the vatrefund repo for the T1-T4 evidence tiers.",
+ "_excludes": "Refund-operator handling fees and FX margins are NOT in this file and must not be quoted anywhere: no sourced figure exists for them.",
+ "count": 12,
+ "countries": [
+  {
+   "name": "Austria",
+   "code": "AT",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.2,
+   "displayVatRate": "20%",
+   "minSpendLocal": 75.01,
+   "minSpendDisplay": "€75.01 per invoice",
+   "refundAvailable": true,
+   "refundNotes": "Umsatzsteuer refund for travellers whose passport shows a residence outside the EU. The invoice total must exceed €75. Goods must leave the EU before the end of the third calendar month after purchase. Vienna airport (VIE) has Global Blue and Planet desks.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Customs at airport before check-in.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.bmf.gv.at/themen/zoll/reise/umsatzsteuerrueckerstattung.html"
+   ]
+  },
+  {
+   "name": "Denmark",
+   "code": "DK",
+   "currencyCode": "DKK",
+   "currencySymbol": "kr",
+   "vatRate": 0.25,
+   "displayVatRate": "25%",
+   "minSpendLocal": 300.01,
+   "minSpendDisplay": "300.01 kr per store, VAT included",
+   "refundAvailable": true,
+   "refundNotes": "MOMS refund for travellers resident outside the EU. The purchase must come to MORE than 300 kr including VAT — exactly 300 kr does not qualify — and it is counted per shop, so several receipts from the same shop can be added together. Norwegian and Åland residents instead need each SINGLE item to exceed 1,200 kr including VAT, so a large basket of smaller items does not qualify for them. Goods must leave the EU by the end of the third month after the month of purchase. Copenhagen (CPH) has all major refund operator desks.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Customs at Copenhagen airport.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://info.skat.dk/data.aspx?oid=1978216"
+   ]
+  },
+  {
+   "name": "Finland",
+   "code": "FI",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.255,
+   "displayVatRate": "25.5%",
+   "minSpendLocal": 40.0,
+   "minSpendDisplay": "€40 per receipt, VAT included",
+   "refundAvailable": true,
+   "refundNotes": "ALV refund for travellers whose home is outside both the EU and Norway — Norwegian residents are excluded even though Norway is not in the EU. One of the lowest minimum thresholds in Europe, and the €40 counts the receipt total including VAT. The goods must be on one receipt from one retailer, and must leave the EU unused within three months of the month of purchase. Validate at Helsinki (HEL) customs before check-in.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Customs at airport before check-in.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.vero.fi/en/detailed-guidance/guidance/48464/tax-free-sales-to-travellers-in--finland/",
+    "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/rates-of-vat/"
+   ]
+  },
+  {
+   "name": "France",
+   "code": "FR",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.2,
+   "displayVatRate": "20%",
+   "minSpendLocal": 100.0,
+   "minSpendDisplay": "€100 total per retailer over 3 days",
+   "refundAvailable": true,
+   "refundNotes": "Détaxe scheme for non-EU residents. Minimum €100 including VAT, which may be reached across up to three consecutive days at the same retailer or shopping centre. The PABLO electronic kiosk at CDG, Orly, and other airports validates forms instantly.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "PABLO kiosk or customs desk at airport.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.douane.gouv.fr/sites/default/files/2025-01/10/Circulaire%20du%2019%20ao%C3%BBt%202024%20-%20Version%20finale%20-%20avec%20annexes%20+%20signature%20FIEVET_0.pdf",
+    "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe"
+   ]
+  },
+  {
+   "name": "Ireland",
+   "code": "IE",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.23,
+   "displayVatRate": "23%",
+   "minSpendLocal": 75.0,
+   "minSpendDisplay": "€75 per export voucher",
+   "refundAvailable": true,
+   "refundNotes": "Retail Export Scheme for residents outside the EU. Minimum €75 per export voucher. Northern Ireland residents are excluded. Refunds come from the retailer or a refund agent such as Taxback International or Global Blue, not from Revenue. Dublin (DUB) has electronic validation kiosks.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Customs at Dublin airport before check-in.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.revenue.ie/en/vat/retail-export-scheme/on-what-purchases-can-you-reclaim-vat.aspx",
+    "https://www.revenue.ie/en/vat/retail-export-scheme/certification-of-export.aspx"
+   ]
+  },
+  {
+   "name": "Italy",
+   "code": "IT",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.22,
+   "displayVatRate": "22%",
+   "minSpendLocal": 70.01,
+   "minSpendDisplay": "€70.01 per invoice",
+   "refundAvailable": true,
+   "refundNotes": "IVA refund for non-EU residents. Minimum is €70.01 per invoice (lowered from €154.94 on 1 February 2024). Italy uses the OTELLO digital validation system at major airports including FCO, MXP, VCE.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "OTELLO kiosk or customs at airport.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.adm.gov.it/portale/en/rimborso-iva",
+    "https://www.adm.gov.it/portale/en/ee/citizen/otello-english-version/the-procedure"
+   ]
+  },
+  {
+   "name": "Japan",
+   "code": "JP",
+   "currencyCode": "JPY",
+   "currencySymbol": "¥",
+   "vatRate": 0.1,
+   "displayVatRate": "10%",
+   "minSpendLocal": 5000.0,
+   "minSpendDisplay": "¥5,000 per store per day",
+   "refundAvailable": true,
+   "refundNotes": "Japan applies the exemption IN THE SHOP: show your passport at the register and you pay the tax-free price on the spot. There is no airport refund under the current system, so a purchase rung up at full price stays at full price — ask before you pay, not after. At departure, Customs check that you still have the goods; if you no longer have them you owe the tax. This changes on 1 November 2026 and the app will switch over on the day.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "At the shop register, with your passport. Customs at departure (NRT, HND, KIX, NGO) only inspect the goods — they do not refund.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.nta.go.jp/publication/pamph/shohi/menzei/202506/pdf/0025006-106.pdf",
+    "https://www.customs.go.jp/english/c-answer_e/extsukan/5004_e.htm",
+    "https://www.nta.go.jp/publication/pamph/shohi/menzei/202506/pdf/0025006-106.pdf"
+   ]
+  },
+  {
+   "name": "Netherlands",
+   "code": "NL",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.21,
+   "displayVatRate": "21%",
+   "minSpendLocal": 50.0,
+   "minSpendDisplay": "€50 total, VAT included",
+   "refundAvailable": true,
+   "refundNotes": "BTW refund for residents outside the EU. Minimum €50 in total including VAT. THE PROCEDURE CHANGED ON 1 JANUARY 2026: the shop must register your invoice digitally, and validation is done in the Dutch Customs app \"NL Customs VAT\" — there is NO customs stamp on the paper invoice any more, so do not queue for one and do not treat an unstamped invoice as a failed claim. Download the app before you reach the airport; it tells you whether you also have to show the goods at the customs desk. Check at the till that the shop has registered the purchase digitally — if it has not, there is nothing to validate later. Keep the paper invoice anyway: you may still need it if you leave the EU through another member state. Goods must leave the EU within 3 months of the month of purchase.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Validate in the \"NL Customs VAT\" app; the app says if you must also visit the Schiphol customs desk. No paper stamp is issued.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.douane.nl/onderwerpen/reizen-en-vakantie/btw-terugvragen-bij-uitvoer/",
+    "https://www.douane.nl/onderwerpen/invoer-en-uitvoer/uitvoer/btw-teruggave-aan-klanten/"
+   ]
+  },
+  {
+   "name": "Northern Ireland",
+   "code": "XI",
+   "currencyCode": "GBP",
+   "currencySymbol": "£",
+   "vatRate": 0.2,
+   "displayVatRate": "20%",
+   "minSpendLocal": 0.0,
+   "minSpendDisplay": "No minimum set by HMRC",
+   "refundAvailable": true,
+   "refundNotes": "The VAT Retail Export Scheme still operates in Northern Ireland, unlike Great Britain. You qualify if your home is outside both Northern Ireland and the EU, which includes US residents. The scheme is voluntary for retailers, so not every shop offers it. Goods must leave Northern Ireland and the EU by the last day of the third month after purchase. No refund is due if you travel from Northern Ireland straight to Great Britain, or to Great Britain through an EU country.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "Border Force or EU customs officer before you leave — it cannot be done after you get home.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.gov.uk/guidance/claim-vat-back-on-tax-free-shopping-in-northern-ireland",
+    "https://www.gov.uk/guidance/retail-export-scheme-northern-ireland"
+   ]
+  },
+  {
+   "name": "Spain",
+   "code": "ES",
+   "currencyCode": "EUR",
+   "currencySymbol": "€",
+   "vatRate": 0.21,
+   "displayVatRate": "21%",
+   "minSpendLocal": 0.0,
+   "minSpendDisplay": "No minimum",
+   "refundAvailable": true,
+   "refundNotes": "IVA refund for non-EU residents. Spanish law sets no minimum purchase amount — any amount qualifies, however small. Spanish purchases are validated electronically at a DIVA kiosk (MAD, BCN and most airports); there is no paper stamp for those. BUT if you also bought in other EU countries, those forms need MANUAL stamping at the staffed customs office — the DIVA kiosk cannot process them, so allow time for both. Claim everything in the last EU country you fly out of, and keep the goods with you: no goods, no validation.",
+   "claimDeadlineDays": 90,
+   "claimLocation": "DIVA kiosk for Spanish purchases, staffed customs desk for forms from other EU countries. Both before check-in.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.boe.es/buscar/act.php?id=BOE-A-1992-28740",
+    "https://sede.agenciatributaria.gob.es/Sede/viajeros-trabajadores-desplazados-fronterizos/devoluciones-iva-compras-viajeros/informacion-general-sobre-devolucion-iva-viajeros.html",
+    "https://sede.agenciatributaria.gob.es/static_files/Sede/Tema/Viajeros_Desplazados/DIVA/selladoDIVA_viajeros/folletoDIVA_devIVA.pdf"
+   ]
+  },
+  {
+   "name": "Switzerland",
+   "code": "CH",
+   "currencyCode": "CHF",
+   "currencySymbol": "CHF",
+   "vatRate": 0.081,
+   "displayVatRate": "8.1%",
+   "minSpendLocal": 300.0,
+   "minSpendDisplay": "CHF 300 per receipt, VAT included",
+   "refundAvailable": true,
+   "refundNotes": "MWST refund for buyers not resident in Switzerland. Sale price must be at least CHF 300 including VAT. The export document must be confirmed by Swiss customs on departure — unprompted, and the goods must be shown. Global Blue and Planet operate at ZRH and GVA.",
+   "claimDeadlineDays": 30,
+   "claimLocation": "Customs at airport on departure day.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.estv.admin.ch/de/tax-free-ausfuhren-im-reiseverkehr",
+    "https://www.estv.admin.ch/estv/de/home/mehrwertsteuer/mwst-steuersaetze.html"
+   ]
+  },
+  {
+   "name": "United Kingdom",
+   "code": "GB",
+   "currencyCode": "GBP",
+   "currencySymbol": "£",
+   "vatRate": 0.2,
+   "displayVatRate": "20%",
+   "minSpendLocal": 0.0,
+   "minSpendDisplay": "—",
+   "refundAvailable": false,
+   "refundNotes": "Great Britain (England, Scotland, Wales) abolished the VAT Retail Export Scheme on 1 January 2021. Visitors cannot claim VAT back on high-street purchases on departure; the only tax-free route is goods sent directly to an address outside the UK. Northern Ireland is different and still operates the scheme — see the separate Northern Ireland entry.",
+   "claimDeadlineDays": 0,
+   "claimLocation": "Not applicable in Great Britain.",
+   "lastVerified": "2026-07-31",
+   "sourceUrls": [
+    "https://www.gov.uk/tax-on-shopping/taxfree-shopping",
+    "https://www.gov.uk/guidance/claim-vat-back-on-tax-free-shopping-in-northern-ireland"
+   ]
+  }
+ ]
+}
