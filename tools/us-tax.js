@@ -78,9 +78,15 @@
     var filing = opts.filing || 'single';
     var g = Math.max(0, Number(opts.gross) || 0);
 
-    /* Federal: IRS Pub. 15-T annualized percentage-method brackets. The standard
-       deduction is baked into the first non-zero threshold, so these run on gross. */
-    var fed = bracketTax(g, pickBrackets(fy.brackets, filing));
+    /* Federal: statutory 26 U.S.C. 1(j)(2) rate schedules applied to gross wages
+       minus the 63(c) basic standard deduction. This models annual filing
+       liability, not payroll withholding — the 2025 Pub. 15-T withholding tables
+       predate OBBBA and withhold against a lower standard deduction. */
+    var stdDed = fy.standardDeduction
+      ? (fy.standardDeduction[filing] != null ? fy.standardDeduction[filing] : fy.standardDeduction.single)
+      : 0;
+    var fedTaxable = Math.max(0, g - stdDed);
+    var fed = bracketTax(fedTaxable, pickBrackets(fy.brackets, filing));
 
     var f = fy.fica;
     var ss = Math.min(g, f.socialSecurityWageBase) * f.socialSecurityRate;
@@ -114,7 +120,8 @@
     var total = fed + ss + med + stateTax + cityTax;
     return {
       gross: g, year: year, filing: filing,
-      fed: fed, ss: ss, med: med, fica: ss + med,
+      fed: fed, fedStandardDeduction: stdDed, fedTaxable: fedTaxable,
+      ss: ss, med: med, fica: ss + med,
       stateTax: stateTax, cityTax: cityTax,
       total: total, net: g - total,
       effectiveRate: g > 0 ? total / g * 100 : 0,

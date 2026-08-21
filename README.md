@@ -98,27 +98,49 @@ curl -s -o /dev/null -w '%{http_code}\n' https://todays-tasks.com/china/posts/10
 ## 待核實數字（`{{NEEDS_VERIFY}}`）
 
 美國稅頁嘅原則：**唔確定嘅財務數字寧願留空，唔好作。** 所有已填嘅數字
-都由 `data/us-state-tax.json` 生成，每個都帶住州稅局／IRS 來源連結。
-下面四項係 JSON 冇、要人手核實嘅，核實咗就直接改對應位置，
-順手刪走成個 `<span class="needs-verify">…</span>`。
+都由 `data/us-state-tax.json` 生成，每個都帶住官方來源連結。
+
+而家**淨返一項**未核實：
 
 | 要查嘅數 | 建議官方來源 | 填落邊個檔 | 位置 |
 |---|---|---|---|
-| 聯邦 Form 1040 標準扣除額（按報稅身分）<br>注意：**唔係** Pub. 15-T 預扣稅階嗰個，嗰個標準扣除已經焗死喺第一級門檻入面 | IRS Rev. Proc.（每年 10–11 月出下一年）<br>https://www.irs.gov/pub/irs-drop/ <br>或 https://www.irs.gov/publications/p17 | `tools/us/100k-after-taxes-by-state/index.html` | 約 line 55，`<h2>Start with what does not vary</h2>` 之下、聯邦稅階表之後嗰段 |
-| 401(k) 50 歲以上 catch-up 追加額<br>（基本遞延額 JSON 已有：`federal.<year>.limits.k401Elective`） | IRS Notice「COLA increases for dollar limitations on benefits and contributions」<br>https://www.irs.gov/retirement-plans/cola-increases-for-dollar-limitations-on-benefits-and-contributions | `tools/us/100k-after-taxes-by-state/index.html` | 約 line 119，`<h2>Four things that move the number more than the state does</h2>` 個 `<ol>` 入面「401(k) deferral」嗰條 |
-| 加州 SDI 率同工資上限<br>（2024 起加州取消咗 SDI 工資上限，要確認當年狀態） | California EDD — Contribution Rates and Benefit Amounts<br>https://edd.ca.gov/en/payroll_taxes/rates_and_withholding/ | `tools/us/california-vs-texas-take-home-pay/index.html` | 約 line 91，`<h2>California</h2>` 稅階表之後、講 SDI 係獨立薪俸扣減嗰段 |
-| 紐約州法定居民日數門檻，同「一日」點計 | NY DTF — Income tax definitions（domicile / statutory residency）<br>https://www.tax.ny.gov/pit/file/pit_definitions.htm<br>另見 Form IT-201 / IT-203 說明書 | `tools/us/new-york-vs-florida-salary-comparison/index.html` | 約 line 91，`<h2>Residency is a test, not a mailing address</h2>` 講 statutory residency 嗰段 |
+| 紐約州法定居民日數門檻，同「一日」點計 | NY Dept of Taxation and Finance — Income tax definitions（domicile / statutory residency）<br>https://www.tax.ny.gov/pit/file/pit_definitions.htm<br>另見 Form IT-201 / IT-203 說明書 | `tools/us/new-york-vs-florida-salary-comparison/index.html` | `<h2>Residency is a test, not a mailing address</h2>` 講 statutory residency 嗰段 |
 
-填完之後跑一次確認冇漏：
+填完之後：
 
 ```bash
-grep -rn "NEEDS_VERIFY" tools/us/
+grep -rn "NEEDS_VERIFY" tools/us/          # 應該零命中
 ```
 
-如果全部填完，記得順手改返兩處免責語：`tools/us/100k-after-taxes-by-state/`、
-`tools/us/california-vs-texas-take-home-pay/`、`tools/us/new-york-vs-florida-salary-comparison/`
-底部 `<p class="muted">` 入面「A small number of figures on this page are still marked
-pending verification」嗰句要刪走，改成同另外兩頁一樣嘅「This page cites no unverified figure.」。
+再刪走 `tools/us/new-york-vs-florida-salary-comparison/index.html` 底部
+`<p class="muted">` 入面「A small number of figures on this page are still marked
+pending verification」嗰句，改成同另外四頁一樣嘅「This page cites no unverified figure.」。
+
+## 聯邦稅資料點嚟（2026-08-21 重建）
+
+⚠️ **唔好由 ~/Desktop/takehome 抽聯邦層。** 嗰邊個 `FederalTax2025` 表
+自稱係 Pub. 15-T 預扣稅階，但同 2024/2025/2026 任何一版官方表都對唔上
+（$100k 單身 2025 出 $12,484，正確答案係 $13,449）。州稅同城市稅表就冇問題，
+繼續由 takehome 抽。
+
+`data/us-state-tax.json` 個 `federal` 區塊而家係直接由 IRS 原文重建：
+
+| 欄位 | 來源 | 點嚟 |
+|---|---|---|
+| `brackets`（法定 § 1(j)(2) 稅階） | IRS Pub. 15-T 2024 / 2025 / 2026，STANDARD Withholding Rate Schedules，ANNUAL payroll period | 由官方表嘅**帶寬**由 0 累加還原。呢個方法用 Rev. Proc. 2025-32 § 3.01 印出嘅 2026 法定稅階驗證過，四個報稅身分全部逐個相同 |
+| `standardDeduction` | 2025/2026: Rev. Proc. 2025-32 § 3.08 / § 3.14；2024: Rev. Proc. 2023-34 | OBBBA § 70102 追溯改咗 2025：$15,750 / $23,625 / $31,500（原本 Rev. Proc. 2024-40 公佈嘅係 $15,000 / $22,500 / $30,000） |
+| `fica.socialSecurityWageBase` | IRS Pub. 15 各年 | 2024 $168,600、2025 $176,100、2026 $184,500 |
+| `limits` | Notice 2024-80 / 2025-67（401(k)）、Rev. Proc. 2024-25 / 2025-19（HSA）、Rev. Proc. 2024-40 / 2025-32（FSA） | 2026 全部已正式公佈，唔再係估算 |
+
+**模型係年度應繳稅（`model: annualFilingLiability`），唔係薪俸預扣。**
+2025 年兩者有實質差距：2025 Pub. 15-T 喺 2024-12-09 出版，早過 OBBBA，
+所以佢用緊舊嘅 $15,000 扣除，實際預扣會高過應繳稅，差額報稅時退返。
+呢點寫咗落 `federal.2025.note` 同 100k 頁。
+
+**引擎唔包**：物業稅、銷售稅、州傷殘保險／有薪家事假（加州 SDI、紐約 PFL 等）。
+加州 SDI 資料存喺 `statePayrollTaxes.CA`（2025 1.2%、2026 1.3%、SB 951 由
+2024-01-01 起取消工資上限），只用嚟寫內容，冇入計算結果。
+`conflictNote` 記低咗有二手來源話 2025 係 1.1%、同 EDD 官方矛盾，未解決。
 
 ### 已經唔再標記嘅嘢
 

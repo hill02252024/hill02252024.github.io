@@ -61,7 +61,7 @@
           <div><label for="usYear">Tax year</label><select id="usYear">
             <option value="2024">2024</option>
             <option value="2025" selected>2025</option>
-            <option value="2026">2026 (estimated)</option>
+            <option value="2026">2026</option>
           </select></div>
           <div><label for="usFiling">Filing status</label><select id="usFiling">
             <option value="single">Single</option>
@@ -253,8 +253,13 @@
       if (r.year !== USTAX.states.taxYear) {
         h += '<p>State and city tables shown are the ' + esc(USTAX.states.taxYear) + ' tables. ' + esc(USTAX._stateTableNote) + '</p>';
       }
-      h += '<p>Federal: ' + esc(USTAX.federal[r.year].note) + '</p>';
-      h += '<p>Income tax and payroll tax only &mdash; property tax and sales tax are not modelled.</p>';
+      var fy = USTAX.federal[r.year];
+      h += '<p><b>Federal:</b> ' + esc(fy.note) + ' Standard deduction applied: ' +
+           USTax.usd(fy.standardDeduction[usOpts.filing] != null ? fy.standardDeduction[usOpts.filing] : fy.standardDeduction.single) +
+           '. ' + esc(fy.standardDeductionSource) + '</p>';
+      h += '<p><b>Federal brackets:</b> ' + esc(fy.bracketSource) + '</p>';
+      h += '<p><b>FICA:</b> ' + esc(fy.fica.source) + '</p>';
+      h += '<p>Income tax and payroll tax only &mdash; property tax, sales tax and state disability / paid-family-leave levies (California SDI, NY PFL and similar) are not modelled.</p>';
       return h + '</div>';
     }
 

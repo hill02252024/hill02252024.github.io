@@ -51,11 +51,23 @@
       <p>On a $100,000 salary, two of the three deductions are identical in all fifty states:</p>
 
       <ul>
-        <li><strong>Federal income tax</strong>, computed on taxable income after the standard deduction, across
-        graduated brackets. Current figures, single filer, from the IRS Publication 15-T annualized percentage-method table — the table an employer's payroll actually withholds against. The standard deduction is already built into the first taxable threshold, which is why the 0% band runs to $17,000 rather than starting at zero:<table class="tax-table"><thead><tr><th>Annual wages from</th><th>Rate</th></tr></thead><tbody><tr><td class="num">$0</td><td class="num">0%</td></tr><tr><td class="num">$17,000</td><td class="num">10%</td></tr><tr><td class="num">$28,925</td><td class="num">12%</td></tr><tr><td class="num">$72,375</td><td class="num">22%</td></tr><tr><td class="num">$133,275</td><td class="num">24%</td></tr><tr><td class="num">$241,425</td><td class="num">32%</td></tr><tr><td class="num">$304,625</td><td class="num">35%</td></tr><tr><td class="num">$737,750</td><td class="num">37%</td></tr></tbody></table><span class="src-note">Source: IRS Publication 15-T, Worksheet 1A annualized percentage method, 2025 — held in <a href="/data/us-state-tax.json">us-state-tax.json</a>. These are withholding brackets, not the Form 1040 filing brackets.</span><p>The separate Form 1040 standard-deduction figure used when you file a return: <span class="needs-verify">{{NEEDS_VERIFY: federal Form 1040 standard deduction by filing status for the current tax year}}</span></p></li>
-        <li><strong>FICA</strong> — Social Security up to the annual wage base plus Medicare with no cap. At
+        <li><strong>Federal income tax</strong>, computed on taxable income after the standard deduction,
+        across graduated brackets. For 2025 the basic standard deduction is $15,750 single,
+        $31,500 married filing jointly and $23,625 head of household &mdash;
+        raised retroactively for 2025 by the One Big Beautiful Bill Act, above the figures announced a year earlier.
+        On $100,000 as a single filer that leaves $84,250 of taxable income. The statutory
+        brackets it then runs through:
+        <table class="tax-table"><thead><tr><th>Taxable income from</th><th>Rate</th></tr></thead><tbody><tr><td class="num">$0</td><td class="num">10%</td></tr><tr><td class="num">$11,925</td><td class="num">12%</td></tr><tr><td class="num">$48,475</td><td class="num">22%</td></tr><tr><td class="num">$103,350</td><td class="num">24%</td></tr><tr><td class="num">$197,300</td><td class="num">32%</td></tr><tr><td class="num">$250,525</td><td class="num">35%</td></tr><tr><td class="num">$626,350</td><td class="num">37%</td></tr></tbody></table>
+        <span class="src-note">Standard deduction: IRS Rev. Proc. 2025-32 § 3.08 — OBBBA § 70102 amended § 63(c)(7) retroactively for tax years beginning after 2024-12-31, raising the 2025 basic standard deduction above the $15,000 / $22,500 / $30,000 originally announced in Rev. Proc. 2024-40. Brackets: Derived from the band widths of the IRS Pub. 15-T (2025) STANDARD Withholding Rate Schedules, ANNUAL payroll period (https://www.irs.gov/pub/irs-prior/p15t--2025.pdf). The derivation was verified against the § 1(j)(2) rate tables printed in Rev. Proc. 2025-32 § 3.01 for 2026 — exact match on all four filing statuses.
+        Held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.<br>
+        Payroll withholding in 2025 runs higher than this: the 2025 Pub. 15-T withholding tables were published before
+        the Act and withhold against the older, lower standard deduction. The gap comes back as a refund.</span></li>
+        <li><strong>FICA</strong> &mdash; Social Security up to the annual wage base plus Medicare with no cap. At
         $100,000 the entire salary sits below the Social Security wage base, so the full rate applies to all of
-        it. Current figures: Social Security 6.2% up to a $176,100 wage base, Medicare 1.45% uncapped, plus 0.9% Additional Medicare Tax above $200,000 for a single filer.<span class="src-note">Source: IRS Publication 15-T and the Social Security Administration wage-base announcement, 2025 figures, held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
+        it. For 2025: Social Security 6.2% on wages up to $176,100,
+        Medicare 1.45% uncapped, plus 0.9% Additional Medicare Tax
+        above $200,000 for a single filer.
+        <span class="src-note">IRS Pub. 15 (2025) — social security wage base limit. Rates and Additional Medicare thresholds are statutory. Held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
       </ul>
 
       <p>Run $100,000 through the <a href="/tools/salary-calculator/">take-home salary calculator</a> once and you have the federal-and-FICA figure. That number is your
@@ -115,10 +127,15 @@
         and the standard deduction, and the swing is usually larger than the difference between two mid-range
         states.</li>
         <li><strong>401(k) deferral.</strong> Every pre-tax dollar reduces taxable income at your marginal rate,
-        federal and state. Maxing a 401(k) can move take-home more than relocating.
-        The 2025 elective deferral limit is $23,500. The age-50 catch-up allowance on top of that: <span class="needs-verify">{{NEEDS_VERIFY: current-year 401(k) age-50 catch-up contribution limit}}</span><span class="src-note">Source: IRS annual retirement and health-account limits, 2025 — held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
-        <li><strong>HSA eligibility.</strong> Triple tax advantaged and often overlooked.
-        The 2025 contribution limits are $4,300 for self-only coverage and $8,550 for family coverage. A health FSA is capped separately at $3,300. Unlike a 401(k), HSA and FSA contributions also cut your FICA wages, not just your income-tax base.<span class="src-note">Source: IRS annual retirement and health-account limits, 2025 — held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
+        federal and state. Maxing a 401(k) can move take-home more than relocating. The 2025 elective deferral limit
+        is $23,500, with a $7,500 catch-up from age 50 and a larger
+        $11,250 catch-up for ages 60 to 63 under SECURE 2.0.
+        <span class="src-note">IRS Notice 2024-80 (401(k) elective deferral, age-50 catch-up, SECURE 2.0 age 60-63 catch-up); Rev. Proc. 2024-25 (HSA); Rev. Proc. 2024-40 (health FSA) Held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
+        <li><strong>HSA eligibility.</strong> Triple tax advantaged and often overlooked. The 2025 contribution
+        limits are $4,300 for self-only coverage and $8,550 for family coverage; a
+        health FSA is capped separately at $3,300. Unlike a 401(k), HSA and FSA contributions also
+        cut your FICA wages, not just your income-tax base.
+        <span class="src-note">IRS Notice 2024-80 (401(k) elective deferral, age-50 catch-up, SECURE 2.0 age 60-63 catch-up); Rev. Proc. 2024-25 (HSA); Rev. Proc. 2024-40 (health FSA) Held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
         <li><strong>Health premiums.</strong> Deducted pre-tax through a Section 125 plan, and the difference
         between two employers' plans on a family tier can exceed a whole state's income tax at this salary.</li>
       </ol>
@@ -165,8 +182,7 @@
       gives you a working estimate. It is not a substitute for a CPA or an enrolled agent, and it does not
       know your credits, pre-tax deductions or personal circumstances. Every rate, bracket and standard
       deduction used here comes from the tables in <a href="/data/us-state-tax.json">us-state-tax.json</a>,
-      each carrying a link to the state revenue department or IRS publication it was taken from. A small number of figures on this page are still marked
-      <span class="needs-verify">pending verification</span> and are shown as placeholders rather than as numbers.</p>
+      each carrying a link to the state revenue department or IRS publication it was taken from. This page cites no unverified figure.</p>
     </section>
   </main>
   <footer class="footer">
