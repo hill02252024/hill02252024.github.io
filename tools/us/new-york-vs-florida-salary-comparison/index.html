@@ -41,6 +41,11 @@
       because of the state rate. It is because New York City levies its own income tax on top of the state's, and
       most side-by-side tables quietly leave that layer out.</p>
 
+      <p class="scope-note"><strong>Scope:</strong> this page covers income tax and payroll tax only &mdash; federal income tax, FICA, state income tax and city wage tax. It does not cover property tax or sales tax.</p>
+      <div class="us-embed" data-a="NY" data-b="FL" data-city-a="NYC" data-city-b="" data-salary="100000" data-filing="single" data-year="2025" data-title="New York City vs Florida take-home pay">
+        <p class="emb-fail">Loading live take-home figures &mdash; or use the <a href="/tools/salary-calculator/">full salary calculator</a>.</p>
+      </div>
+
       <h2>New York has two income taxes, not one</h2>
 
       <p>If you live in New York City you pay New York State income tax and a separate New York City resident
@@ -72,23 +77,6 @@
 
       <p>Pre-tax retirement and health contributions also behave identically. A 401(k) deferral reduces federal
       taxable income by the same amount in both states.</p>
-
-      <h2>Where the money actually goes instead</h2>
-
-      <p>Florida funds services without an income tax, primarily through sales tax, property tax and tourism-driven
-      revenue. The swap has a distinct shape:</p>
-
-      <ul>
-        <li><strong>Property insurance, not just property tax.</strong> This is the Florida-specific factor that
-        the standard "no income tax" article omits. Homeowners insurance in coastal and hurricane-exposed counties
-        can be a four-figure annual line that has no equivalent in a New York apartment lease. For a buyer it can
-        consume a meaningful share of the income tax saving.</li>
-        <li><strong>Sales tax.</strong> Applies to consumption rather than earnings, so it hits a high spender
-        harder than a high saver.</li>
-        <li><strong>Property tax.</strong> Assessed on home value. Florida offers a homestead exemption and an
-        assessment cap for primary residences, which changes the math for long-term owners versus recent buyers.
-        Current figures: <span class="needs-verify">{{NEEDS_VERIFY: Florida homestead exemption amount, Save Our Homes assessment cap percentage, statewide sales tax rate and typical county surtax range, and effective property tax rate ranges for both Florida and New York}}</span>.</li>
-      </ul>
 
       <h2>Residency is a test, not a mailing address</h2>
 
@@ -126,8 +114,8 @@
         <li>For the New York figure, subtract New York State income tax, and — if the address is in the five
         boroughs — the New York City resident tax as well. Leaving out the city layer is the classic error.</li>
         <li>For the Florida figure, subtract nothing further at the state level.</li>
-        <li>Add annual housing cost to both sides: rent, or mortgage plus property tax plus insurance. In Florida,
-        get an actual insurance quote for the specific county rather than a state average.</li>
+        <li>Check whether a Yonkers address or workplace applies, which adds its own resident surcharge or
+        non-resident earnings tax on top of the state line.</li>
         <li>If you will keep a New York employer, stop and resolve the remote-work question before comparing
         anything, because it can erase the entire state saving.</li>
       </ol>
@@ -170,5 +158,7 @@
   <footer class="footer">
     <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/us/">US Pay &amp; Taxes</a> · <a href="/privacy.html">Privacy</a></p>
   </footer>
+  <script src="/tools/us-tax.js"></script>
+  <script src="/tools/us/us-embed.js" defer></script>
 </body>
 </html>

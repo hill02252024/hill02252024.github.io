@@ -19,6 +19,10 @@
     .us-source p{margin:0 0 6px}
     .us-source a{color:inherit;text-decoration:underline}
     .us-source .est-warn{color:#b45309;font-weight:600}
+    .vs-output{margin-top:16px}
+    .vs-title{font-size:16px;margin:0 0 10px}
+    .vs-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+    .vs-verdict{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--text-muted,#666)}
   </style>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
   <script src="/tools/premium.js" defer></script>
@@ -70,12 +74,17 @@
           <div><label for="usState">State</label><select id="usState"><option value="">Select a state</option></select></div>
           <div id="usCityWrap" hidden><label for="usCity">City wage tax</label><select id="usCity"><option value="">None</option></select></div>
         </div>
+        <div class="row two-col">
+          <div><label for="usVs">Compare against (optional)</label><select id="usVs"><option value="">No comparison</option></select></div>
+          <div></div>
+        </div>
         <div class="row" id="usResWrap" hidden>
           <label class="us-check"><input type="checkbox" id="usNonRes" /> I work in the city but live outside it (non-resident rate)</label>
         </div>
       </div>
       <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
       <div id="result" class="result-box" aria-live="polite"></div>
+      <div id="vsOutput" class="vs-output" aria-live="polite" hidden></div>
     </div>
 
     <div class="ad-slot ad-result"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7165265186193287" data-ad-slot="0000000008" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
@@ -168,6 +177,7 @@
 
   <footer class="footer">© 2025 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
 
+  <script src="/tools/us-tax.js"></script>
   <script src="/tools/tools.js"></script>
   <script>
     var country = 'uk';
@@ -207,86 +217,25 @@
       if (g > 50270) ni += (g - 50270) * 0.02;
       return { inc: inc, soc: ni, label: 'Income tax + NI', cur: '£' };
     }
-    // ---------- US federal / state / city tax (data/us-state-tax.json) ----------
-    // All figures below come from the JSON table. Nothing is hardcoded here.
+    // ---------- US federal / state / city tax ----------
+    // Engine and data live in /tools/us-tax.js + /data/us-state-tax.json,
+    // shared with the inline widgets on /tools/us/*. Nothing is hardcoded here.
     var USTAX = null, USTAX_FAILED = false;
-    var usOpts = { year: '2025', filing: 'single', state: '', city: '', nonResident: false };
-
-    // Bracket walker for {from, rate} tables: bracket i covers [from_i, from_i+1).
-    function fromBracketTax(amount, brackets) {
-      if (!brackets || amount <= 0) return 0;
-      var tax = 0;
-      for (var i = 0; i < brackets.length; i++) {
-        var from = brackets[i].from;
-        var to = (i + 1 < brackets.length) ? brackets[i + 1].from : Infinity;
-        if (amount <= from) break;
-        tax += ((amount < to ? amount : to) - from) * brackets[i].rate;
-      }
-      return tax;
-    }
-    function byCode(list, code) {
-      if (!list || !code) return null;
-      for (var i = 0; i < list.length; i++) if (list[i].code === code) return list[i];
-      return null;
-    }
-    function usState(code) { return USTAX ? byCode(USTAX.states.entries, code) : null; }
-    function usCity(code) { return USTAX ? byCode(USTAX.localities.entries, code) : null; }
-    // Mirrors StateTax.stdDeductionFor(): MFJ uses the override when set, else 2x single.
-    function usStdDeduction(st, filing) {
-      if (filing === 'marriedFilingJointly') {
-        return st.stdDeductionJointOverride > 0 ? st.stdDeductionJointOverride : st.stdDeductionSingle * 2;
-      }
-      return st.stdDeductionSingle;
-    }
+    var usOpts = { year: '2025', filing: 'single', state: '', city: '', nonResident: false, vs: '', vsCity: '' };
 
     function calcUS(g) {
       if (!USTAX) return { inc: 0, soc: 0, label: 'Federal income + FICA', cur: '$', unavailable: true };
-      var yr = USTAX.federal[usOpts.year] || USTAX.federal['2025'];
-      var filing = usOpts.filing;
-
-      // Federal: IRS Pub. 15-T annualized percentage-method brackets.
-      // The standard deduction is already baked into the first non-zero
-      // threshold, so these run on gross - not on gross minus a deduction.
-      var fed = fromBracketTax(g, yr.brackets[filing] || yr.brackets.single);
-
-      // FICA
-      var f = yr.fica;
-      var ss = Math.min(g, f.socialSecurityWageBase) * f.socialSecurityRate;
-      var addlThr = filing === 'marriedFilingJointly' ? f.additionalMedicareThresholdMfj
-                  : filing === 'marriedFilingSeparately' ? f.additionalMedicareThresholdMfs
-                  : f.additionalMedicareThresholdSingle;
-      var med = g * f.medicareRate + (g > addlThr ? (g - addlThr) * f.additionalMedicareRate : 0);
-
-      // State
-      var st = usState(usOpts.state), stateTax = 0;
-      if (st) {
-        var taxable = Math.max(0, g - usStdDeduction(st, filing));
-        if (st.type === 'flat') stateTax = taxable * st.flatRate;
-        else if (st.type === 'progressive') stateTax = fromBracketTax(taxable, st.brackets[filing] || st.brackets.single);
-      }
-
-      // City wage tax - applies to gross wages, not to state-taxable income.
-      var loc = usCity(usOpts.city), cityTax = 0;
-      if (loc && st && loc.stateCode === st.code) {
-        if (loc.type === 'flat') {
-          cityTax = g * (usOpts.nonResident ? loc.nonResidentFlatRate : loc.flatRate);
-        } else if (usOpts.nonResident) {
-          var nrb = loc.nonResidentBrackets && (loc.nonResidentBrackets[filing] || loc.nonResidentBrackets.single);
-          cityTax = nrb ? fromBracketTax(g, nrb) : g * loc.nonResidentFlatRate;
-        } else {
-          cityTax = fromBracketTax(g, loc.brackets[filing] || loc.brackets.single);
-        }
-      }
-
+      var r = USTax.compute({ gross: g, year: usOpts.year, filing: usOpts.filing,
+                              state: usOpts.state, city: usOpts.city, nonResident: usOpts.nonResident });
       return {
-        inc: fed + stateTax + cityTax, soc: ss + med,
+        inc: r.fed + r.stateTax + r.cityTax, soc: r.fica,
         label: 'Income tax + FICA', cur: '$',
-        fed: fed, ss: ss, med: med, stateTax: stateTax, cityTax: cityTax,
-        st: st, loc: loc, estimated: !!yr.estimated, year: usOpts.year
+        fed: r.fed, stateTax: r.stateTax, cityTax: r.cityTax,
+        st: r.stateObj, loc: r.cityObj, estimated: r.estimated, year: r.year
       };
     }
 
-    function esc(t) { return String(t == null ? '' : t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function esc(t) { return USTax.esc(t); }
     function srcLine(kind, o) {
       return '<p><b>' + esc(kind) + ':</b> ' + esc(o.sourceLabel) +
              ' &mdash; <a href="' + esc(o.sourceUrl) + '" target="_blank" rel="noopener nofollow">' + esc(o.sourceUrl) + '</a></p>';
@@ -295,7 +244,7 @@
     function usSourceBlock(r) {
       var h = '<div class="us-source">';
       if (r.estimated) {
-        h += '<p class="est-warn">\u26A0\uFE0F ' + esc(r.year) + ' federal figures are ESTIMATED, not published. ' +
+        h += '<p class="est-warn">⚠️ ' + esc(r.year) + ' federal figures are ESTIMATED, not published. ' +
              esc(USTAX.federal[r.year].note) + '</p>';
       }
       if (r.st) h += srcLine(r.st.name + ' state tax', r.st);
@@ -305,24 +254,64 @@
         h += '<p>State and city tables shown are the ' + esc(USTAX.states.taxYear) + ' tables. ' + esc(USTAX._stateTableNote) + '</p>';
       }
       h += '<p>Federal: ' + esc(USTAX.federal[r.year].note) + '</p>';
+      h += '<p>Income tax and payroll tax only &mdash; property tax and sales tax are not modelled.</p>';
       return h + '</div>';
+    }
+
+    // ---------- Two-state side-by-side (driven by ?vs=XX) ----------
+    function renderVs() {
+      var box = document.getElementById('vsOutput');
+      if (!USTAX || !usOpts.vs || !usOpts.state) { box.innerHTML = ''; box.hidden = true; return; }
+      var period = document.getElementById('period').value;
+      var annual = tt.read('gross');
+      if (annual <= 0) { box.innerHTML = ''; box.hidden = true; return; }
+      if (period === 'month') annual *= 12;
+      if (period === 'hour') annual *= 2080;
+      var base = { gross: annual, year: usOpts.year, filing: usOpts.filing };
+      var a = USTax.compute(Object.assign({}, base, { state: usOpts.state, city: usOpts.city, nonResident: usOpts.nonResident }));
+      var b = USTax.compute(Object.assign({}, base, { state: usOpts.vs, city: usOpts.vsCity }));
+      if (!a.stateObj || !b.stateObj) { box.innerHTML = ''; box.hidden = true; return; }
+      var u = USTax.usd;
+      function col(r) {
+        return '<td class="num">' + u(r.fed) + '</td><td class="num">' + u(r.fica) + '</td>' +
+               '<td class="num">' + u(r.stateTax) + '</td><td class="num">' + u(r.cityTax) + '</td>' +
+               '<td class="num"><b>' + u(r.net) + '</b></td><td class="num">' + r.effectiveRate.toFixed(1) + '%</td>';
+      }
+      function label(r) {
+        return esc(r.stateObj.name) + (r.cityObj ? ' + ' + esc(r.cityObj.name) : '');
+      }
+      var diff = Math.abs(a.net - b.net);
+      var winner = a.net >= b.net ? a : b, loser = a.net >= b.net ? b : a;
+      box.hidden = false;
+      box.innerHTML =
+        '<h3 class="vs-title">' + label(a) + ' vs ' + label(b) + ' &mdash; ' + u(annual) + ' gross, ' +
+        esc({single:'single', marriedFilingJointly:'married filing jointly', marriedFilingSeparately:'married filing separately', headOfHousehold:'head of household'}[usOpts.filing]) +
+        ', ' + esc(usOpts.year) + '</h3>' +
+        '<table class="pro-table vs-table"><thead><tr><th>Where</th><th>Federal</th><th>FICA</th><th>State</th><th>City</th><th>Net / year</th><th>Effective</th></tr></thead><tbody>' +
+        '<tr class="' + (a.net >= b.net ? 'best' : '') + '"><td>' + label(a) + '</td>' + col(a) + '</tr>' +
+        '<tr class="' + (b.net > a.net ? 'best' : '') + '"><td>' + label(b) + '</td>' + col(b) + '</tr>' +
+        '</tbody></table>' +
+        '<p class="vs-verdict">' + label(winner) + ' keeps <b>' + u(diff) + '</b> more per year than ' +
+        label(loser) + ' at the same gross salary &mdash; ' + u(diff / 12) + ' a month. ' +
+        'Income tax and payroll tax only; property tax and sales tax are not modelled.</p>';
     }
 
     // Populate the pickers once the table loads.
     function initUsPickers() {
-      var sel = document.getElementById('usState');
-      USTAX.states.entries.slice().sort(function(a, b) { return a.name < b.name ? -1 : 1; })
-        .forEach(function(st) {
+      var sel = document.getElementById('usState'), vsSel = document.getElementById('usVs');
+      USTax.statesSorted().forEach(function (st) {
+        [sel, vsSel].forEach(function (target) {
           var o = document.createElement('option');
           o.value = st.code;
           o.textContent = st.name + (st.type === 'none' ? ' (no income tax)' : '');
-          sel.appendChild(o);
+          target.appendChild(o);
         });
+      });
       function syncCity() {
         var wrap = document.getElementById('usCityWrap'), city = document.getElementById('usCity');
-        var opts = USTAX.localities.entries.filter(function(l) { return l.stateCode === usOpts.state; });
+        var opts = USTax.citiesIn(usOpts.state);
         city.innerHTML = '<option value="">None</option>';
-        opts.forEach(function(l) {
+        opts.forEach(function (l) {
           var o = document.createElement('option'); o.value = l.code; o.textContent = l.name; city.appendChild(o);
         });
         wrap.hidden = opts.length === 0;
@@ -330,20 +319,57 @@
         city.value = usOpts.city;
         document.getElementById('usResWrap').hidden = !usOpts.city;
       }
-      sel.addEventListener('change', function() { usOpts.state = sel.value; syncCity(); });
-      document.getElementById('usCity').addEventListener('change', function() {
+      sel.addEventListener('change', function () { usOpts.state = sel.value; syncCity(); });
+      vsSel.addEventListener('change', function () { usOpts.vs = vsSel.value; usOpts.vsCity = ''; });
+      document.getElementById('usCity').addEventListener('change', function () {
         usOpts.city = this.value;
         document.getElementById('usResWrap').hidden = !usOpts.city;
       });
-      document.getElementById('usYear').addEventListener('change', function() { usOpts.year = this.value; });
-      document.getElementById('usFiling').addEventListener('change', function() { usOpts.filing = this.value; syncCity(); });
-      document.getElementById('usNonRes').addEventListener('change', function() { usOpts.nonResident = this.checked; });
+      document.getElementById('usYear').addEventListener('change', function () { usOpts.year = this.value; });
+      document.getElementById('usFiling').addEventListener('change', function () { usOpts.filing = this.value; syncCity(); });
+      document.getElementById('usNonRes').addEventListener('change', function () { usOpts.nonResident = this.checked; });
       syncCity();
     }
-    fetch('/data/us-state-tax.json')
-      .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(j) { USTAX = j; initUsPickers(); })
-      .catch(function() { USTAX_FAILED = true; });
+
+    // ---------- Deep links: /tools/salary-calculator/?state=CA&vs=TX&salary=100000 ----------
+    function applyQuery() {
+      var q = USTax.parseQuery();
+      if (q.country !== 'us' && !q.hasUsParams) return false;
+      country = 'us';
+      document.querySelectorAll('#countryToggle button').forEach(function (x) {
+        x.classList.toggle('active', x.dataset.c === 'us');
+      });
+      document.getElementById('usOptions').hidden = false;
+      if (q.salary) { document.getElementById('gross').value = q.salary; document.getElementById('period').value = 'year'; }
+      if (q.year && USTAX.federal[q.year]) { usOpts.year = q.year; document.getElementById('usYear').value = q.year; }
+      if (q.filing) { usOpts.filing = q.filing; document.getElementById('usFiling').value = q.filing; }
+      if (q.state && USTax.stateFor(q.state)) {
+        usOpts.state = q.state;
+        var sel = document.getElementById('usState'); sel.value = q.state; sel.dispatchEvent(new Event('change'));
+      }
+      if (q.city && USTax.cityFor(q.city)) {
+        var c = USTax.cityFor(q.city);
+        if (c.stateCode === usOpts.state) {
+          usOpts.city = q.city;
+          document.getElementById('usCity').value = q.city;
+          document.getElementById('usResWrap').hidden = false;
+        }
+      }
+      if (q.nonResident) { usOpts.nonResident = true; document.getElementById('usNonRes').checked = true; }
+      if (q.vs && USTax.stateFor(q.vs)) {
+        usOpts.vs = q.vs;
+        document.getElementById('usVs').value = q.vs;
+        var vc = q.vsCity && USTax.cityFor(q.vsCity);
+        if (vc && vc.stateCode === q.vs) usOpts.vsCity = q.vsCity;
+      }
+      if (q.salary && q.state) { document.getElementById('calcBtn').click(); return true; }
+      return true;
+    }
+
+    USTax.load()
+      .then(function (j) { USTAX = j; initUsPickers(); applyQuery(); })
+      .catch(function () { USTAX_FAILED = true; });
+
     function calcAU(g) {
       // 2024-25 resident: 0/16/30/37/45 from Jul 2024.
       var inc = bracketTax(g, [[18200, 0], [45000, 0.16], [135000, 0.30], [190000, 0.37], [Infinity, 0.45]]);
@@ -434,6 +460,7 @@
       lastInputs = { gross: raw, period: period, country: country,
                      us: country === 'us' ? { year: usOpts.year, filing: usOpts.filing, state: usOpts.state, city: usOpts.city, nonResident: usOpts.nonResident } : null };
       lastSummary = country.toUpperCase() + (country === 'us' && r.st ? '/' + r.st.code : '') + ': ' + fmtCur(net) + ' net (' + rate.toFixed(1) + '% effective)';
+      if (country === 'us') renderVs(); else { var vo = document.getElementById('vsOutput'); vo.hidden = true; vo.innerHTML = ''; }
       ttPremium.afterResult('salary', lastInputs, lastSummary, restoreInputs, 'historyPanel');
     });
 

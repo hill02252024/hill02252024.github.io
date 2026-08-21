@@ -41,6 +41,11 @@
       is one of the most searched pay questions in the country. The answer has one number that is the same
       everywhere and one that swings by thousands of dollars depending on your zip code.</p>
 
+      <p class="scope-note"><strong>Scope:</strong> this page covers income tax and payroll tax only &mdash; federal income tax, FICA, state income tax and city wage tax. It does not cover property tax or sales tax.</p>
+      <div class="us-embed" data-a="CA" data-b="TX" data-city-a="" data-city-b="" data-salary="100000" data-filing="single" data-year="2025" data-title="What $100,000 actually takes home &mdash; pick any two states">
+        <p class="emb-fail">Loading live take-home figures &mdash; or use the <a href="/tools/salary-calculator/">full salary calculator</a>.</p>
+      </div>
+
       <h2>Start with what does not vary</h2>
 
       <p>On a $100,000 salary, two of the three deductions are identical in all fifty states:</p>
@@ -112,9 +117,9 @@
         states.</li>
         <li><strong>401(k) deferral.</strong> Every pre-tax dollar reduces taxable income at your marginal rate,
         federal and state. Maxing a 401(k) can move take-home more than relocating.
-        <span class="needs-verify">{{NEEDS_VERIFY: current-year 401(k) elective deferral limit and catch-up contribution limit}}</span></li>
+        The 2025 elective deferral limit is $23,500. The age-50 catch-up allowance on top of that: <span class="needs-verify">{{NEEDS_VERIFY: current-year 401(k) age-50 catch-up contribution limit}}</span><span class="src-note">Source: IRS annual retirement and health-account limits, 2025 — held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
         <li><strong>HSA eligibility.</strong> Triple tax advantaged and often overlooked.
-        <span class="needs-verify">{{NEEDS_VERIFY: current-year HSA contribution limits for self-only and family coverage}}</span></li>
+        The 2025 contribution limits are $4,300 for self-only coverage and $8,550 for family coverage. A health FSA is capped separately at $3,300. Unlike a 401(k), HSA and FSA contributions also cut your FICA wages, not just your income-tax base.<span class="src-note">Source: IRS annual retirement and health-account limits, 2025 — held in <a href="/data/us-state-tax.json">us-state-tax.json</a>.</span></li>
         <li><strong>Health premiums.</strong> Deducted pre-tax through a Section 125 plan, and the difference
         between two employers' plans on a family tier can exceed a whole state's income tax at this salary.</li>
       </ol>
@@ -166,5 +171,7 @@
   <footer class="footer">
     <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/us/">US Pay &amp; Taxes</a> · <a href="/privacy.html">Privacy</a></p>
   </footer>
+  <script src="/tools/us-tax.js"></script>
+  <script src="/tools/us/us-embed.js" defer></script>
 </body>
 </html>
