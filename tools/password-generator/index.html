@@ -48,18 +48,7 @@
   }
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"How long should my password be?","acceptedAnswer":{"@type":"Answer","text":"For a random password, aim for at least 16 characters; 20 or more for important accounts. Length adds far more real strength than swapping an o for a 0. For a word-based passphrase, use four words or more."}},
-      {"@type":"Question","name":"Are these passwords really random?","acceptedAnswer":{"@type":"Answer","text":"They are generated with the browser's cryptographic random source (crypto.getRandomValues), which is designed to be unpredictable. The tool also guarantees at least one character from each set you enable."}},
-      {"@type":"Question","name":"Is it safe to check my password against a breach database?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your password is hashed in your browser and only the first five characters of the hash are sent — never the password, and never the full hash. This k-anonymity model means the breach service cannot reconstruct what you checked."}},
-      {"@type":"Question","name":"Should I use a random password or a passphrase?","acceptedAnswer":{"@type":"Answer","text":"Use a random password for anything stored in a password manager — it is the strongest and you do not have to type it. Use a memorable passphrase for the few passwords you must type by hand, like your device login or the manager's master password."}}
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long should my password be?", "acceptedAnswer": {"@type": "Answer", "text": "For a random password, aim for at least 16 characters; 20 or more for important accounts. Length adds far more real strength than swapping an \"o\" for a \"0\". For a word-based passphrase, use four words or more."}}, {"@type": "Question", "name": "Are these passwords really random?", "acceptedAnswer": {"@type": "Answer", "text": "They're generated with the browser's cryptographic random source (crypto.getRandomValues), which is designed to be unpredictable. The tool also guarantees at least one character from each set you enable, so a generated password always matches the rules you picked."}}, {"@type": "Question", "name": "Is it safe to check my password against a breach database?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Your password is hashed in your browser and only the first five characters of the hash are sent — never the password, and never the full hash. This k-anonymity model means the breach service can't reconstruct what you checked."}}, {"@type": "Question", "name": "Should I use a random password or a passphrase?", "acceptedAnswer": {"@type": "Answer", "text": "Use a random password for anything stored in a password manager — it's the strongest and you don't have to type it. Use a memorable passphrase for the handful of passwords you must type by hand, like your device login or the manager's master password."}}]}</script>
 </head>
 <body class="tools-body">
   <script src="/nav.js" defer></script>

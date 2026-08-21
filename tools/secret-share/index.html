@@ -48,18 +48,7 @@
   }
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Does my secret get uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Encryption and decryption happen entirely in your browser, and the encrypted secret plus its key live in the link's # fragment, which browsers never send over the network. This site runs no backend for this tool and stores nothing."}},
-      {"@type":"Question","name":"Can the link self-destruct after one read?","acceptedAnswer":{"@type":"Answer","text":"Not in this version. Self-destruct and expiry require a server to delete the stored copy, and this tool deliberately has no server. The link stays readable until you delete the message that contains it, so delete it once the recipient has the secret."}},
-      {"@type":"Question","name":"Who can read the link?","acceptedAnswer":{"@type":"Answer","text":"Anyone who has the complete link, because the decryption key is part of it. Treat the link like the secret itself: share it through a channel you trust and don't post it anywhere public or permanent."}},
-      {"@type":"Question","name":"What should I use it for?","acceptedAnswer":{"@type":"Answer","text":"Short, sensitive things: a password, a Wi-Fi key, an API token, a recovery code, a brief note. It isn't designed for long text or file attachments."}}
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does my secret get uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Encryption and decryption happen entirely in your browser, and the encrypted secret plus its key live in the link's # fragment, which browsers never send over the network. This site runs no backend for this tool and stores nothing."}}, {"@type": "Question", "name": "Can the link self-destruct after one read?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. Self-destruct and expiry require a server to delete the stored copy, and this tool deliberately has no server. The link stays readable until you delete the message that contains it — so delete it once the recipient has the secret."}}, {"@type": "Question", "name": "Who can read the link?", "acceptedAnswer": {"@type": "Answer", "text": "Anyone who has the complete link, because the decryption key is part of it. Treat the link like the secret itself: share it through a channel you trust and don't post it anywhere public or permanent."}}, {"@type": "Question", "name": "What should I use it for?", "acceptedAnswer": {"@type": "Answer", "text": "Short, sensitive things: a password, a Wi-Fi key, an API token, a recovery code, a brief note. It isn't designed for long text or file attachments."}}]}</script>
 </head>
 <body class="tools-body">
   <script src="/nav.js" defer></script>
