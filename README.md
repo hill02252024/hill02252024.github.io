@@ -94,3 +94,37 @@ curl -s -o /dev/null -w '%{http_code}\n' https://todays-tasks.com/china/posts/10
 - **英文頁唔應該夾雜中文段落**。唯一例外係 `apps/*` 入面嘅
   應用中文名（例如「九巴通 — 長者版」「鐵路通」），
   嗰啲係產品名唔係內文。
+
+## 待核實數字（`{{NEEDS_VERIFY}}`）
+
+美國稅頁嘅原則：**唔確定嘅財務數字寧願留空，唔好作。** 所有已填嘅數字
+都由 `data/us-state-tax.json` 生成，每個都帶住州稅局／IRS 來源連結。
+下面四項係 JSON 冇、要人手核實嘅，核實咗就直接改對應位置，
+順手刪走成個 `<span class="needs-verify">…</span>`。
+
+| 要查嘅數 | 建議官方來源 | 填落邊個檔 | 位置 |
+|---|---|---|---|
+| 聯邦 Form 1040 標準扣除額（按報稅身分）<br>注意：**唔係** Pub. 15-T 預扣稅階嗰個，嗰個標準扣除已經焗死喺第一級門檻入面 | IRS Rev. Proc.（每年 10–11 月出下一年）<br>https://www.irs.gov/pub/irs-drop/ <br>或 https://www.irs.gov/publications/p17 | `tools/us/100k-after-taxes-by-state/index.html` | 約 line 55，`<h2>Start with what does not vary</h2>` 之下、聯邦稅階表之後嗰段 |
+| 401(k) 50 歲以上 catch-up 追加額<br>（基本遞延額 JSON 已有：`federal.<year>.limits.k401Elective`） | IRS Notice「COLA increases for dollar limitations on benefits and contributions」<br>https://www.irs.gov/retirement-plans/cola-increases-for-dollar-limitations-on-benefits-and-contributions | `tools/us/100k-after-taxes-by-state/index.html` | 約 line 119，`<h2>Four things that move the number more than the state does</h2>` 個 `<ol>` 入面「401(k) deferral」嗰條 |
+| 加州 SDI 率同工資上限<br>（2024 起加州取消咗 SDI 工資上限，要確認當年狀態） | California EDD — Contribution Rates and Benefit Amounts<br>https://edd.ca.gov/en/payroll_taxes/rates_and_withholding/ | `tools/us/california-vs-texas-take-home-pay/index.html` | 約 line 91，`<h2>California</h2>` 稅階表之後、講 SDI 係獨立薪俸扣減嗰段 |
+| 紐約州法定居民日數門檻，同「一日」點計 | NY DTF — Income tax definitions（domicile / statutory residency）<br>https://www.tax.ny.gov/pit/file/pit_definitions.htm<br>另見 Form IT-201 / IT-203 說明書 | `tools/us/new-york-vs-florida-salary-comparison/index.html` | 約 line 91，`<h2>Residency is a test, not a mailing address</h2>` 講 statutory residency 嗰段 |
+
+填完之後跑一次確認冇漏：
+
+```bash
+grep -rn "NEEDS_VERIFY" tools/us/
+```
+
+如果全部填完，記得順手改返兩處免責語：`tools/us/100k-after-taxes-by-state/`、
+`tools/us/california-vs-texas-take-home-pay/`、`tools/us/new-york-vs-florida-salary-comparison/`
+底部 `<p class="muted">` 入面「A small number of figures on this page are still marked
+pending verification」嗰句要刪走，改成同另外兩頁一樣嘅「This page cites no unverified figure.」。
+
+### 已經唔再標記嘅嘢
+
+物業稅、銷售稅、homestead exemption、convenience of the employer 名單、
+reciprocity 名單、非居民日數門檻、NH 利息股息稅廢除日期、WA 資本利得稅、
+社會保障福利免稅州名單 —— 呢啲**唔係待核實，係已經整段刪走**。
+理由：同薪俸計算引擎無關、每年每縣都變、而且係 Tax Foundation
+呢類站嘅主場。五頁而家統一聚焦「稅後薪金」，每頁頂部都有一句範圍聲明。
+唔好再加返去。
