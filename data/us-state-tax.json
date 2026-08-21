@@ -1,0 +1,3911 @@
+{
+  "_source": "Extracted from ~/Desktop/takehome lib/core/tax/ via tool/export_tax_json.dart",
+  "_generated": "run manually; re-run after any change to the Dart tables",
+  "_stateTableNote": "State and locality tables exist only for 2025 in the source. The 2024 and 2026 engines explicitly piggyback the 2025 state tables — the Dart comment says the state-rate cadence is slower than federal and the difference is generally under 0.1pp. Do not present the 2025 state figures as 2024 or 2026 figures.",
+  "federal": {
+    "2024": {
+      "estimated": false,
+      "note": "2024 IRS Pub. 15-T Worksheet 1A annualized percentage-method taxable-wage brackets. The standard deduction is baked into the first non-zero threshold — these are NOT the 1040 filing brackets.",
+      "brackets": {
+        "single": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 16300.0,
+            "rate": 0.1
+          },
+          {
+            "from": 27750.0,
+            "rate": 0.12
+          },
+          {
+            "from": 69500.0,
+            "rate": 0.22
+          },
+          {
+            "from": 127950.0,
+            "rate": 0.24
+          },
+          {
+            "from": 231675.0,
+            "rate": 0.32
+          },
+          {
+            "from": 292375.0,
+            "rate": 0.35
+          },
+          {
+            "from": 708000.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingJointly": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 32450.0,
+            "rate": 0.1
+          },
+          {
+            "from": 55350.0,
+            "rate": 0.12
+          },
+          {
+            "from": 138750.0,
+            "rate": 0.22
+          },
+          {
+            "from": 255650.0,
+            "rate": 0.24
+          },
+          {
+            "from": 463100.0,
+            "rate": 0.32
+          },
+          {
+            "from": 584450.0,
+            "rate": 0.35
+          },
+          {
+            "from": 878100.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingSeparately": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 16300.0,
+            "rate": 0.1
+          },
+          {
+            "from": 27750.0,
+            "rate": 0.12
+          },
+          {
+            "from": 69500.0,
+            "rate": 0.22
+          },
+          {
+            "from": 127950.0,
+            "rate": 0.24
+          },
+          {
+            "from": 231675.0,
+            "rate": 0.32
+          },
+          {
+            "from": 292375.0,
+            "rate": 0.35
+          },
+          {
+            "from": 439050.0,
+            "rate": 0.37
+          }
+        ],
+        "headOfHousehold": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 23350.0,
+            "rate": 0.1
+          },
+          {
+            "from": 38800.0,
+            "rate": 0.12
+          },
+          {
+            "from": 86200.0,
+            "rate": 0.22
+          },
+          {
+            "from": 144600.0,
+            "rate": 0.24
+          },
+          {
+            "from": 248450.0,
+            "rate": 0.32
+          },
+          {
+            "from": 309050.0,
+            "rate": 0.35
+          },
+          {
+            "from": 725000.0,
+            "rate": 0.37
+          }
+        ]
+      },
+      "fica": {
+        "socialSecurityRate": 0.062,
+        "socialSecurityWageBase": 168600.0,
+        "medicareRate": 0.0145,
+        "additionalMedicareRate": 0.009,
+        "additionalMedicareThresholdSingle": 200000.0,
+        "additionalMedicareThresholdMfj": 250000.0,
+        "additionalMedicareThresholdMfs": 125000.0
+      },
+      "limits": {
+        "k401Elective": 23000.0,
+        "hsaSelf": 4150.0,
+        "hsaFamily": 8300.0,
+        "fsaHealth": 3200.0
+      }
+    },
+    "2025": {
+      "estimated": false,
+      "note": "Annualized percentage-method taxable-wage brackets; standard deduction baked into the first non-zero threshold.",
+      "brackets": {
+        "single": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 17000.0,
+            "rate": 0.1
+          },
+          {
+            "from": 28925.0,
+            "rate": 0.12
+          },
+          {
+            "from": 72375.0,
+            "rate": 0.22
+          },
+          {
+            "from": 133275.0,
+            "rate": 0.24
+          },
+          {
+            "from": 241425.0,
+            "rate": 0.32
+          },
+          {
+            "from": 304625.0,
+            "rate": 0.35
+          },
+          {
+            "from": 737750.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingJointly": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 33850.0,
+            "rate": 0.1
+          },
+          {
+            "from": 57700.0,
+            "rate": 0.12
+          },
+          {
+            "from": 144600.0,
+            "rate": 0.22
+          },
+          {
+            "from": 266400.0,
+            "rate": 0.24
+          },
+          {
+            "from": 482700.0,
+            "rate": 0.32
+          },
+          {
+            "from": 609100.0,
+            "rate": 0.35
+          },
+          {
+            "from": 914900.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingSeparately": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 17000.0,
+            "rate": 0.1
+          },
+          {
+            "from": 28925.0,
+            "rate": 0.12
+          },
+          {
+            "from": 72375.0,
+            "rate": 0.22
+          },
+          {
+            "from": 133275.0,
+            "rate": 0.24
+          },
+          {
+            "from": 241425.0,
+            "rate": 0.32
+          },
+          {
+            "from": 304625.0,
+            "rate": 0.35
+          },
+          {
+            "from": 457450.0,
+            "rate": 0.37
+          }
+        ],
+        "headOfHousehold": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 24350.0,
+            "rate": 0.1
+          },
+          {
+            "from": 40450.0,
+            "rate": 0.12
+          },
+          {
+            "from": 89850.0,
+            "rate": 0.22
+          },
+          {
+            "from": 150700.0,
+            "rate": 0.24
+          },
+          {
+            "from": 258900.0,
+            "rate": 0.32
+          },
+          {
+            "from": 322100.0,
+            "rate": 0.35
+          },
+          {
+            "from": 755500.0,
+            "rate": 0.37
+          }
+        ]
+      },
+      "fica": {
+        "socialSecurityRate": 0.062,
+        "socialSecurityWageBase": 176100.0,
+        "medicareRate": 0.0145,
+        "additionalMedicareRate": 0.009,
+        "additionalMedicareThresholdSingle": 200000.0,
+        "additionalMedicareThresholdMfj": 250000.0,
+        "additionalMedicareThresholdMfs": 125000.0
+      },
+      "limits": {
+        "k401Elective": 23500.0,
+        "hsaSelf": 4300.0,
+        "hsaFamily": 8550.0,
+        "fsaHealth": 3300.0
+      }
+    },
+    "2026": {
+      "estimated": true,
+      "note": "ESTIMATED — NOT PUBLISHED. Source file states: 2025 thresholds x 1.028 inflation factor; SSA actuarial estimate for the wage base; directional adjustments for 401(k)/HSA/FSA. Replace when the IRS publishes the real Rev. Proc.",
+      "brackets": {
+        "single": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 17476.0,
+            "rate": 0.1
+          },
+          {
+            "from": 29735.0,
+            "rate": 0.12
+          },
+          {
+            "from": 74402.0,
+            "rate": 0.22
+          },
+          {
+            "from": 137007.0,
+            "rate": 0.24
+          },
+          {
+            "from": 248185.0,
+            "rate": 0.32
+          },
+          {
+            "from": 313155.0,
+            "rate": 0.35
+          },
+          {
+            "from": 758407.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingJointly": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 34798.0,
+            "rate": 0.1
+          },
+          {
+            "from": 59316.0,
+            "rate": 0.12
+          },
+          {
+            "from": 148649.0,
+            "rate": 0.22
+          },
+          {
+            "from": 273859.0,
+            "rate": 0.24
+          },
+          {
+            "from": 496216.0,
+            "rate": 0.32
+          },
+          {
+            "from": 626155.0,
+            "rate": 0.35
+          },
+          {
+            "from": 940517.0,
+            "rate": 0.37
+          }
+        ],
+        "marriedFilingSeparately": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 17476.0,
+            "rate": 0.1
+          },
+          {
+            "from": 29735.0,
+            "rate": 0.12
+          },
+          {
+            "from": 74402.0,
+            "rate": 0.22
+          },
+          {
+            "from": 137007.0,
+            "rate": 0.24
+          },
+          {
+            "from": 248185.0,
+            "rate": 0.32
+          },
+          {
+            "from": 313155.0,
+            "rate": 0.35
+          },
+          {
+            "from": 470259.0,
+            "rate": 0.37
+          }
+        ],
+        "headOfHousehold": [
+          {
+            "from": 0.0,
+            "rate": 0.0
+          },
+          {
+            "from": 25032.0,
+            "rate": 0.1
+          },
+          {
+            "from": 41583.0,
+            "rate": 0.12
+          },
+          {
+            "from": 92366.0,
+            "rate": 0.22
+          },
+          {
+            "from": 154920.0,
+            "rate": 0.24
+          },
+          {
+            "from": 266149.0,
+            "rate": 0.32
+          },
+          {
+            "from": 331119.0,
+            "rate": 0.35
+          },
+          {
+            "from": 776654.0,
+            "rate": 0.37
+          }
+        ]
+      },
+      "fica": {
+        "socialSecurityRate": 0.062,
+        "socialSecurityWageBase": 181800.0,
+        "medicareRate": 0.0145,
+        "additionalMedicareRate": 0.009,
+        "additionalMedicareThresholdSingle": 200000.0,
+        "additionalMedicareThresholdMfj": 250000.0,
+        "additionalMedicareThresholdMfs": 125000.0
+      },
+      "limits": {
+        "k401Elective": 24500.0,
+        "hsaSelf": 4500.0,
+        "hsaFamily": 8800.0,
+        "fsaHealth": 3450.0
+      }
+    }
+  },
+  "states": {
+    "taxYear": "2025",
+    "appliesTo": [
+      "2024",
+      "2025",
+      "2026"
+    ],
+    "estimated": false,
+    "count": 51,
+    "entries": [
+      {
+        "code": "AK",
+        "name": "Alaska",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Alaska DOR — no wage income tax",
+        "sourceUrl": "https://tax.alaska.gov/"
+      },
+      {
+        "code": "FL",
+        "name": "Florida",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Florida DOR — no wage income tax",
+        "sourceUrl": "https://floridarevenue.com/taxes/Pages/default.aspx"
+      },
+      {
+        "code": "NV",
+        "name": "Nevada",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Nevada — no wage income tax",
+        "sourceUrl": "https://tax.nv.gov/"
+      },
+      {
+        "code": "NH",
+        "name": "New Hampshire",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "NH DRA — no wage income tax (interest/dividends repealed 2025)",
+        "sourceUrl": "https://www.revenue.nh.gov/"
+      },
+      {
+        "code": "SD",
+        "name": "South Dakota",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "SD DOR — no wage income tax",
+        "sourceUrl": "https://dor.sd.gov/"
+      },
+      {
+        "code": "TN",
+        "name": "Tennessee",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "TN DOR — no wage income tax (Hall tax repealed)",
+        "sourceUrl": "https://www.tn.gov/revenue.html"
+      },
+      {
+        "code": "TX",
+        "name": "Texas",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Texas Comptroller — no wage income tax",
+        "sourceUrl": "https://comptroller.texas.gov/"
+      },
+      {
+        "code": "WA",
+        "name": "Washington",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "WA DOR — no wage income tax",
+        "sourceUrl": "https://dor.wa.gov/"
+      },
+      {
+        "code": "WY",
+        "name": "Wyoming",
+        "type": "none",
+        "flatRate": 0.0,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "WY DOR — no wage income tax",
+        "sourceUrl": "https://revenue.wyo.gov/"
+      },
+      {
+        "code": "AZ",
+        "name": "Arizona",
+        "type": "flat",
+        "flatRate": 0.025,
+        "brackets": null,
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Arizona DOR — 2.5% flat rate (2023+)",
+        "sourceUrl": "https://azdor.gov/"
+      },
+      {
+        "code": "CO",
+        "name": "Colorado",
+        "type": "flat",
+        "flatRate": 0.044,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Colorado DOR — 4.40% flat (2024)",
+        "sourceUrl": "https://tax.colorado.gov/"
+      },
+      {
+        "code": "ID",
+        "name": "Idaho",
+        "type": "flat",
+        "flatRate": 0.058,
+        "brackets": null,
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Idaho STC — flat 5.8% (2023+)",
+        "sourceUrl": "https://tax.idaho.gov/"
+      },
+      {
+        "code": "IL",
+        "name": "Illinois",
+        "type": "flat",
+        "flatRate": 0.0495,
+        "brackets": null,
+        "stdDeductionSingle": 2775.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Illinois DOR — flat 4.95%",
+        "sourceUrl": "https://tax.illinois.gov/"
+      },
+      {
+        "code": "IN",
+        "name": "Indiana",
+        "type": "flat",
+        "flatRate": 0.0305,
+        "brackets": null,
+        "stdDeductionSingle": 1000.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Indiana DOR — flat 3.05% (2024)",
+        "sourceUrl": "https://www.in.gov/dor/"
+      },
+      {
+        "code": "KY",
+        "name": "Kentucky",
+        "type": "flat",
+        "flatRate": 0.04,
+        "brackets": null,
+        "stdDeductionSingle": 3160.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Kentucky DOR — flat 4.0% (2024)",
+        "sourceUrl": "https://revenue.ky.gov/"
+      },
+      {
+        "code": "MA",
+        "name": "Massachusetts",
+        "type": "flat",
+        "flatRate": 0.05,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Mass. DOR — 5.0% (plus 4% surtax over $1M, not modeled)",
+        "sourceUrl": "https://www.mass.gov/orgs/massachusetts-department-of-revenue"
+      },
+      {
+        "code": "MI",
+        "name": "Michigan",
+        "type": "flat",
+        "flatRate": 0.0425,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Michigan Treasury — 4.25% flat",
+        "sourceUrl": "https://www.michigan.gov/treasury"
+      },
+      {
+        "code": "NC",
+        "name": "North Carolina",
+        "type": "flat",
+        "flatRate": 0.045,
+        "brackets": null,
+        "stdDeductionSingle": 12750.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "NC DOR — 4.5% flat (2024)",
+        "sourceUrl": "https://www.ncdor.gov/"
+      },
+      {
+        "code": "PA",
+        "name": "Pennsylvania",
+        "type": "flat",
+        "flatRate": 0.0307,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "PA DOR — flat 3.07%",
+        "sourceUrl": "https://www.revenue.pa.gov/"
+      },
+      {
+        "code": "UT",
+        "name": "Utah",
+        "type": "flat",
+        "flatRate": 0.0455,
+        "brackets": null,
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Utah STC — flat 4.55% (2024)",
+        "sourceUrl": "https://tax.utah.gov/"
+      },
+      {
+        "code": "AL",
+        "name": "Alabama",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 500.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.05
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.04
+            },
+            {
+              "from": 6000.0,
+              "rate": 0.05
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 500.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.05
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 500.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.05
+            }
+          ]
+        },
+        "stdDeductionSingle": 3000.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Alabama DOR — individual income tax",
+        "sourceUrl": "https://www.revenue.alabama.gov/"
+      },
+      {
+        "code": "AR",
+        "name": "Arkansas",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 5300.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10600.0,
+              "rate": 0.03
+            },
+            {
+              "from": 15100.0,
+              "rate": 0.039
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 5300.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10600.0,
+              "rate": 0.03
+            },
+            {
+              "from": 15100.0,
+              "rate": 0.039
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 5300.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10600.0,
+              "rate": 0.03
+            },
+            {
+              "from": 15100.0,
+              "rate": 0.039
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 5300.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10600.0,
+              "rate": 0.03
+            },
+            {
+              "from": 15100.0,
+              "rate": 0.039
+            }
+          ]
+        },
+        "stdDeductionSingle": 2340.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Arkansas DFA — 2024 brackets",
+        "sourceUrl": "https://www.dfa.arkansas.gov/income-tax/"
+      },
+      {
+        "code": "CA",
+        "name": "California",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.01
+            },
+            {
+              "from": 10412.0,
+              "rate": 0.02
+            },
+            {
+              "from": 24684.0,
+              "rate": 0.04
+            },
+            {
+              "from": 38959.0,
+              "rate": 0.06
+            },
+            {
+              "from": 54081.0,
+              "rate": 0.08
+            },
+            {
+              "from": 68350.0,
+              "rate": 0.093
+            },
+            {
+              "from": 349137.0,
+              "rate": 0.103
+            },
+            {
+              "from": 418961.0,
+              "rate": 0.113
+            },
+            {
+              "from": 698271.0,
+              "rate": 0.123
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.01
+            },
+            {
+              "from": 20824.0,
+              "rate": 0.02
+            },
+            {
+              "from": 49368.0,
+              "rate": 0.04
+            },
+            {
+              "from": 77918.0,
+              "rate": 0.06
+            },
+            {
+              "from": 108162.0,
+              "rate": 0.08
+            },
+            {
+              "from": 136700.0,
+              "rate": 0.093
+            },
+            {
+              "from": 698274.0,
+              "rate": 0.103
+            },
+            {
+              "from": 837922.0,
+              "rate": 0.113
+            },
+            {
+              "from": 1396542.0,
+              "rate": 0.123
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.01
+            },
+            {
+              "from": 10412.0,
+              "rate": 0.02
+            },
+            {
+              "from": 24684.0,
+              "rate": 0.04
+            },
+            {
+              "from": 38959.0,
+              "rate": 0.06
+            },
+            {
+              "from": 54081.0,
+              "rate": 0.08
+            },
+            {
+              "from": 68350.0,
+              "rate": 0.093
+            },
+            {
+              "from": 349137.0,
+              "rate": 0.103
+            },
+            {
+              "from": 418961.0,
+              "rate": 0.113
+            },
+            {
+              "from": 698271.0,
+              "rate": 0.123
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.01
+            },
+            {
+              "from": 20839.0,
+              "rate": 0.02
+            },
+            {
+              "from": 49371.0,
+              "rate": 0.04
+            },
+            {
+              "from": 63644.0,
+              "rate": 0.06
+            },
+            {
+              "from": 78765.0,
+              "rate": 0.08
+            },
+            {
+              "from": 93037.0,
+              "rate": 0.093
+            },
+            {
+              "from": 474824.0,
+              "rate": 0.103
+            },
+            {
+              "from": 569790.0,
+              "rate": 0.113
+            },
+            {
+              "from": 949649.0,
+              "rate": 0.123
+            }
+          ]
+        },
+        "stdDeductionSingle": 5540.0,
+        "stdDeductionJointOverride": 11080.0,
+        "sourceLabel": "California FTB — 2024 tax rates (12.3% + 1% MHST not modeled)",
+        "sourceUrl": "https://www.ftb.ca.gov/"
+      },
+      {
+        "code": "CT",
+        "name": "Connecticut",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.045
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 200000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.069
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0699
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.045
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 200000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 400000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.069
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.0699
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.045
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 200000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.069
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0699
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 16000.0,
+              "rate": 0.045
+            },
+            {
+              "from": 80000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 160000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 320000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 400000.0,
+              "rate": 0.069
+            },
+            {
+              "from": 800000.0,
+              "rate": 0.0699
+            }
+          ]
+        },
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "CT DRS — 2024 brackets",
+        "sourceUrl": "https://portal.ct.gov/DRS"
+      },
+      {
+        "code": "DC",
+        "name": "District of Columbia",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.085
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0925
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0975
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.085
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0925
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0975
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.085
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0925
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0975
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.06
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.065
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.085
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0925
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0975
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "DC OTR — 2024 brackets",
+        "sourceUrl": "https://otr.cfo.dc.gov/"
+      },
+      {
+        "code": "DE",
+        "name": "Delaware",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.022
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.039
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.048
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.052
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0555
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.066
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.022
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.039
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.048
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.052
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0555
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.066
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.022
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.039
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.048
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.052
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0555
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.066
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.022
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.039
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.048
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.052
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0555
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.066
+            }
+          ]
+        },
+        "stdDeductionSingle": 3250.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Delaware Div. Revenue",
+        "sourceUrl": "https://revenue.delaware.gov/"
+      },
+      {
+        "code": "GA",
+        "name": "Georgia",
+        "type": "flat",
+        "flatRate": 0.0539,
+        "brackets": null,
+        "stdDeductionSingle": 12000.0,
+        "stdDeductionJointOverride": 24000.0,
+        "sourceLabel": "Georgia DOR — flat 5.39% (2024 transitional)",
+        "sourceUrl": "https://dor.georgia.gov/"
+      },
+      {
+        "code": "HI",
+        "name": "Hawaii",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 2400.0,
+              "rate": 0.032
+            },
+            {
+              "from": 4800.0,
+              "rate": 0.055
+            },
+            {
+              "from": 9600.0,
+              "rate": 0.064
+            },
+            {
+              "from": 14400.0,
+              "rate": 0.068
+            },
+            {
+              "from": 19200.0,
+              "rate": 0.072
+            },
+            {
+              "from": 24000.0,
+              "rate": 0.076
+            },
+            {
+              "from": 36000.0,
+              "rate": 0.079
+            },
+            {
+              "from": 48000.0,
+              "rate": 0.0825
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.09
+            },
+            {
+              "from": 175000.0,
+              "rate": 0.1
+            },
+            {
+              "from": 200000.0,
+              "rate": 0.11
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 4800.0,
+              "rate": 0.032
+            },
+            {
+              "from": 9600.0,
+              "rate": 0.055
+            },
+            {
+              "from": 19200.0,
+              "rate": 0.064
+            },
+            {
+              "from": 28800.0,
+              "rate": 0.068
+            },
+            {
+              "from": 38400.0,
+              "rate": 0.072
+            },
+            {
+              "from": 48000.0,
+              "rate": 0.076
+            },
+            {
+              "from": 72000.0,
+              "rate": 0.079
+            },
+            {
+              "from": 96000.0,
+              "rate": 0.0825
+            },
+            {
+              "from": 300000.0,
+              "rate": 0.09
+            },
+            {
+              "from": 350000.0,
+              "rate": 0.1
+            },
+            {
+              "from": 400000.0,
+              "rate": 0.11
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 2400.0,
+              "rate": 0.032
+            },
+            {
+              "from": 4800.0,
+              "rate": 0.055
+            },
+            {
+              "from": 9600.0,
+              "rate": 0.064
+            },
+            {
+              "from": 14400.0,
+              "rate": 0.068
+            },
+            {
+              "from": 19200.0,
+              "rate": 0.072
+            },
+            {
+              "from": 24000.0,
+              "rate": 0.076
+            },
+            {
+              "from": 36000.0,
+              "rate": 0.079
+            },
+            {
+              "from": 48000.0,
+              "rate": 0.0825
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.09
+            },
+            {
+              "from": 175000.0,
+              "rate": 0.1
+            },
+            {
+              "from": 200000.0,
+              "rate": 0.11
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 3600.0,
+              "rate": 0.032
+            },
+            {
+              "from": 7200.0,
+              "rate": 0.055
+            },
+            {
+              "from": 14400.0,
+              "rate": 0.064
+            },
+            {
+              "from": 21600.0,
+              "rate": 0.068
+            },
+            {
+              "from": 28800.0,
+              "rate": 0.072
+            },
+            {
+              "from": 36000.0,
+              "rate": 0.076
+            },
+            {
+              "from": 54000.0,
+              "rate": 0.079
+            },
+            {
+              "from": 72000.0,
+              "rate": 0.0825
+            },
+            {
+              "from": 225000.0,
+              "rate": 0.09
+            },
+            {
+              "from": 262500.0,
+              "rate": 0.1
+            },
+            {
+              "from": 300000.0,
+              "rate": 0.11
+            }
+          ]
+        },
+        "stdDeductionSingle": 2200.0,
+        "stdDeductionJointOverride": 4400.0,
+        "sourceLabel": "Hawaii DOTAX",
+        "sourceUrl": "https://tax.hawaii.gov/"
+      },
+      {
+        "code": "IA",
+        "name": "Iowa",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.044
+            },
+            {
+              "from": 6210.0,
+              "rate": 0.0482
+            },
+            {
+              "from": 31050.0,
+              "rate": 0.057
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.044
+            },
+            {
+              "from": 6210.0,
+              "rate": 0.0482
+            },
+            {
+              "from": 31050.0,
+              "rate": 0.057
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.044
+            },
+            {
+              "from": 6210.0,
+              "rate": 0.0482
+            },
+            {
+              "from": 31050.0,
+              "rate": 0.057
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.044
+            },
+            {
+              "from": 6210.0,
+              "rate": 0.0482
+            },
+            {
+              "from": 31050.0,
+              "rate": 0.057
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Iowa DOR — 2024",
+        "sourceUrl": "https://tax.iowa.gov/"
+      },
+      {
+        "code": "KS",
+        "name": "Kansas",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.031
+            },
+            {
+              "from": 15000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 30000.0,
+              "rate": 0.057
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.031
+            },
+            {
+              "from": 15000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 30000.0,
+              "rate": 0.057
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.031
+            },
+            {
+              "from": 15000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 30000.0,
+              "rate": 0.057
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.031
+            },
+            {
+              "from": 15000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 30000.0,
+              "rate": 0.057
+            }
+          ]
+        },
+        "stdDeductionSingle": 3500.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Kansas DOR",
+        "sourceUrl": "https://www.ksrevenue.gov/"
+      },
+      {
+        "code": "LA",
+        "name": "Louisiana",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0185
+            },
+            {
+              "from": 12500.0,
+              "rate": 0.035
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.0425
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0185
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.035
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.0425
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0185
+            },
+            {
+              "from": 12500.0,
+              "rate": 0.035
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.0425
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0185
+            },
+            {
+              "from": 12500.0,
+              "rate": 0.035
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.0425
+            }
+          ]
+        },
+        "stdDeductionSingle": 4500.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Louisiana DOR",
+        "sourceUrl": "https://revenue.louisiana.gov/"
+      },
+      {
+        "code": "MD",
+        "name": "Maryland",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 125000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0575
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 175000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 225000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 300000.0,
+              "rate": 0.0575
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 125000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.0575
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.04
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 175000.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 225000.0,
+              "rate": 0.055
+            },
+            {
+              "from": 300000.0,
+              "rate": 0.0575
+            }
+          ]
+        },
+        "stdDeductionSingle": 2550.0,
+        "stdDeductionJointOverride": 5150.0,
+        "sourceLabel": "Maryland Comptroller (local piggyback not modeled)",
+        "sourceUrl": "https://www.marylandtaxes.gov/"
+      },
+      {
+        "code": "ME",
+        "name": "Maine",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.058
+            },
+            {
+              "from": 26800.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 63450.0,
+              "rate": 0.0715
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.058
+            },
+            {
+              "from": 53600.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 126900.0,
+              "rate": 0.0715
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.058
+            },
+            {
+              "from": 26800.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 63450.0,
+              "rate": 0.0715
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.058
+            },
+            {
+              "from": 40200.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 95150.0,
+              "rate": 0.0715
+            }
+          ]
+        },
+        "stdDeductionSingle": 13850.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Maine Revenue Services",
+        "sourceUrl": "https://www.maine.gov/revenue/"
+      },
+      {
+        "code": "MN",
+        "name": "Minnesota",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0535
+            },
+            {
+              "from": 31690.0,
+              "rate": 0.068
+            },
+            {
+              "from": 104090.0,
+              "rate": 0.0785
+            },
+            {
+              "from": 193240.0,
+              "rate": 0.0985
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0535
+            },
+            {
+              "from": 46330.0,
+              "rate": 0.068
+            },
+            {
+              "from": 184040.0,
+              "rate": 0.0785
+            },
+            {
+              "from": 321450.0,
+              "rate": 0.0985
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0535
+            },
+            {
+              "from": 23165.0,
+              "rate": 0.068
+            },
+            {
+              "from": 92020.0,
+              "rate": 0.0785
+            },
+            {
+              "from": 160725.0,
+              "rate": 0.0985
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0535
+            },
+            {
+              "from": 39010.0,
+              "rate": 0.068
+            },
+            {
+              "from": 156760.0,
+              "rate": 0.0785
+            },
+            {
+              "from": 256880.0,
+              "rate": 0.0985
+            }
+          ]
+        },
+        "stdDeductionSingle": 14575.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "MN DOR — 2024 brackets",
+        "sourceUrl": "https://www.revenue.state.mn.us/"
+      },
+      {
+        "code": "MO",
+        "name": "Missouri",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 1273.0,
+              "rate": 0.02
+            },
+            {
+              "from": 2546.0,
+              "rate": 0.025
+            },
+            {
+              "from": 3819.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5092.0,
+              "rate": 0.035
+            },
+            {
+              "from": 6365.0,
+              "rate": 0.04
+            },
+            {
+              "from": 7638.0,
+              "rate": 0.045
+            },
+            {
+              "from": 8911.0,
+              "rate": 0.048
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 1273.0,
+              "rate": 0.02
+            },
+            {
+              "from": 2546.0,
+              "rate": 0.025
+            },
+            {
+              "from": 3819.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5092.0,
+              "rate": 0.035
+            },
+            {
+              "from": 6365.0,
+              "rate": 0.04
+            },
+            {
+              "from": 7638.0,
+              "rate": 0.045
+            },
+            {
+              "from": 8911.0,
+              "rate": 0.048
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 1273.0,
+              "rate": 0.02
+            },
+            {
+              "from": 2546.0,
+              "rate": 0.025
+            },
+            {
+              "from": 3819.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5092.0,
+              "rate": 0.035
+            },
+            {
+              "from": 6365.0,
+              "rate": 0.04
+            },
+            {
+              "from": 7638.0,
+              "rate": 0.045
+            },
+            {
+              "from": 8911.0,
+              "rate": 0.048
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 1273.0,
+              "rate": 0.02
+            },
+            {
+              "from": 2546.0,
+              "rate": 0.025
+            },
+            {
+              "from": 3819.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5092.0,
+              "rate": 0.035
+            },
+            {
+              "from": 6365.0,
+              "rate": 0.04
+            },
+            {
+              "from": 7638.0,
+              "rate": 0.045
+            },
+            {
+              "from": 8911.0,
+              "rate": 0.048
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Missouri DOR — 2024 brackets",
+        "sourceUrl": "https://dor.mo.gov/"
+      },
+      {
+        "code": "MS",
+        "name": "Mississippi",
+        "type": "flat",
+        "flatRate": 0.044,
+        "brackets": null,
+        "stdDeductionSingle": 2300.0,
+        "stdDeductionJointOverride": 4600.0,
+        "sourceLabel": "Mississippi DOR — flat 4.4% (2024)",
+        "sourceUrl": "https://www.dor.ms.gov/"
+      },
+      {
+        "code": "MT",
+        "name": "Montana",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.047
+            },
+            {
+              "from": 20500.0,
+              "rate": 0.059
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.047
+            },
+            {
+              "from": 20500.0,
+              "rate": 0.059
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.047
+            },
+            {
+              "from": 20500.0,
+              "rate": 0.059
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.047
+            },
+            {
+              "from": 20500.0,
+              "rate": 0.059
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Montana DOR — 2024 brackets",
+        "sourceUrl": "https://mtrevenue.gov/"
+      },
+      {
+        "code": "NE",
+        "name": "Nebraska",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0246
+            },
+            {
+              "from": 3700.0,
+              "rate": 0.0351
+            },
+            {
+              "from": 22170.0,
+              "rate": 0.0501
+            },
+            {
+              "from": 35730.0,
+              "rate": 0.0584
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0246
+            },
+            {
+              "from": 7390.0,
+              "rate": 0.0351
+            },
+            {
+              "from": 44350.0,
+              "rate": 0.0501
+            },
+            {
+              "from": 71460.0,
+              "rate": 0.0584
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0246
+            },
+            {
+              "from": 3700.0,
+              "rate": 0.0351
+            },
+            {
+              "from": 22170.0,
+              "rate": 0.0501
+            },
+            {
+              "from": 35730.0,
+              "rate": 0.0584
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0246
+            },
+            {
+              "from": 6900.0,
+              "rate": 0.0351
+            },
+            {
+              "from": 35460.0,
+              "rate": 0.0501
+            },
+            {
+              "from": 53160.0,
+              "rate": 0.0584
+            }
+          ]
+        },
+        "stdDeductionSingle": 8350.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Nebraska DOR",
+        "sourceUrl": "https://revenue.nebraska.gov/"
+      },
+      {
+        "code": "NJ",
+        "name": "New Jersey",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 35000.0,
+              "rate": 0.035
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.05525
+            },
+            {
+              "from": 75000.0,
+              "rate": 0.0637
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0897
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.0245
+            },
+            {
+              "from": 70000.0,
+              "rate": 0.035
+            },
+            {
+              "from": 80000.0,
+              "rate": 0.05525
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.0637
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0897
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 35000.0,
+              "rate": 0.035
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.05525
+            },
+            {
+              "from": 75000.0,
+              "rate": 0.0637
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0897
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.014
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.0245
+            },
+            {
+              "from": 70000.0,
+              "rate": 0.035
+            },
+            {
+              "from": 80000.0,
+              "rate": 0.05525
+            },
+            {
+              "from": 150000.0,
+              "rate": 0.0637
+            },
+            {
+              "from": 500000.0,
+              "rate": 0.0897
+            },
+            {
+              "from": 1000000.0,
+              "rate": 0.1075
+            }
+          ]
+        },
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "NJ Treasury",
+        "sourceUrl": "https://www.nj.gov/treasury/taxation/"
+      },
+      {
+        "code": "NM",
+        "name": "New Mexico",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.017
+            },
+            {
+              "from": 5500.0,
+              "rate": 0.032
+            },
+            {
+              "from": 11000.0,
+              "rate": 0.047
+            },
+            {
+              "from": 16000.0,
+              "rate": 0.049
+            },
+            {
+              "from": 210000.0,
+              "rate": 0.059
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.017
+            },
+            {
+              "from": 8000.0,
+              "rate": 0.032
+            },
+            {
+              "from": 16000.0,
+              "rate": 0.047
+            },
+            {
+              "from": 24000.0,
+              "rate": 0.049
+            },
+            {
+              "from": 315000.0,
+              "rate": 0.059
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.017
+            },
+            {
+              "from": 4000.0,
+              "rate": 0.032
+            },
+            {
+              "from": 8000.0,
+              "rate": 0.047
+            },
+            {
+              "from": 12000.0,
+              "rate": 0.049
+            },
+            {
+              "from": 157500.0,
+              "rate": 0.059
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.017
+            },
+            {
+              "from": 8000.0,
+              "rate": 0.032
+            },
+            {
+              "from": 16000.0,
+              "rate": 0.047
+            },
+            {
+              "from": 24000.0,
+              "rate": 0.049
+            },
+            {
+              "from": 315000.0,
+              "rate": 0.059
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "NM TRD",
+        "sourceUrl": "https://www.tax.newmexico.gov/"
+      },
+      {
+        "code": "NY",
+        "name": "New York",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 8500.0,
+              "rate": 0.045
+            },
+            {
+              "from": 11700.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 13900.0,
+              "rate": 0.055
+            },
+            {
+              "from": 80650.0,
+              "rate": 0.06
+            },
+            {
+              "from": 215400.0,
+              "rate": 0.0685
+            },
+            {
+              "from": 1077550.0,
+              "rate": 0.0965
+            },
+            {
+              "from": 5000000.0,
+              "rate": 0.103
+            },
+            {
+              "from": 25000000.0,
+              "rate": 0.109
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 17150.0,
+              "rate": 0.045
+            },
+            {
+              "from": 23600.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 27900.0,
+              "rate": 0.055
+            },
+            {
+              "from": 161550.0,
+              "rate": 0.06
+            },
+            {
+              "from": 323200.0,
+              "rate": 0.0685
+            },
+            {
+              "from": 2155350.0,
+              "rate": 0.0965
+            },
+            {
+              "from": 5000000.0,
+              "rate": 0.103
+            },
+            {
+              "from": 25000000.0,
+              "rate": 0.109
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 8500.0,
+              "rate": 0.045
+            },
+            {
+              "from": 11700.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 13900.0,
+              "rate": 0.055
+            },
+            {
+              "from": 80650.0,
+              "rate": 0.06
+            },
+            {
+              "from": 215400.0,
+              "rate": 0.0685
+            },
+            {
+              "from": 1077550.0,
+              "rate": 0.0965
+            },
+            {
+              "from": 5000000.0,
+              "rate": 0.103
+            },
+            {
+              "from": 25000000.0,
+              "rate": 0.109
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.04
+            },
+            {
+              "from": 12800.0,
+              "rate": 0.045
+            },
+            {
+              "from": 17650.0,
+              "rate": 0.0525
+            },
+            {
+              "from": 20900.0,
+              "rate": 0.055
+            },
+            {
+              "from": 107650.0,
+              "rate": 0.06
+            },
+            {
+              "from": 269300.0,
+              "rate": 0.0685
+            },
+            {
+              "from": 1616450.0,
+              "rate": 0.0965
+            },
+            {
+              "from": 5000000.0,
+              "rate": 0.103
+            },
+            {
+              "from": 25000000.0,
+              "rate": 0.109
+            }
+          ]
+        },
+        "stdDeductionSingle": 8000.0,
+        "stdDeductionJointOverride": 16050.0,
+        "sourceLabel": "NY DTF — 2024 brackets (NYC local tax not modeled)",
+        "sourceUrl": "https://www.tax.ny.gov/"
+      },
+      {
+        "code": "ND",
+        "name": "North Dakota",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 47150.0,
+              "rate": 0.0195
+            },
+            {
+              "from": 238200.0,
+              "rate": 0.025
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 78775.0,
+              "rate": 0.0195
+            },
+            {
+              "from": 289975.0,
+              "rate": 0.025
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 39388.0,
+              "rate": 0.0195
+            },
+            {
+              "from": 144988.0,
+              "rate": 0.025
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 63250.0,
+              "rate": 0.0195
+            },
+            {
+              "from": 257100.0,
+              "rate": 0.025
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "ND OST",
+        "sourceUrl": "https://www.tax.nd.gov/"
+      },
+      {
+        "code": "OH",
+        "name": "Ohio",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 26050.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.035
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 26050.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.035
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 26050.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.035
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 26050.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 100000.0,
+              "rate": 0.035
+            }
+          ]
+        },
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Ohio DOT — 2024",
+        "sourceUrl": "https://tax.ohio.gov/"
+      },
+      {
+        "code": "OK",
+        "name": "Oklahoma",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0025
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.0075
+            },
+            {
+              "from": 2500.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 3750.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 4900.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 7200.0,
+              "rate": 0.0475
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0025
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.0075
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 7500.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 9800.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 12200.0,
+              "rate": 0.0475
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0025
+            },
+            {
+              "from": 1000.0,
+              "rate": 0.0075
+            },
+            {
+              "from": 2500.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 3750.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 4900.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 7200.0,
+              "rate": 0.0475
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0025
+            },
+            {
+              "from": 2000.0,
+              "rate": 0.0075
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.0175
+            },
+            {
+              "from": 7500.0,
+              "rate": 0.0275
+            },
+            {
+              "from": 9800.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 12200.0,
+              "rate": 0.0475
+            }
+          ]
+        },
+        "stdDeductionSingle": 6350.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Oklahoma TC",
+        "sourceUrl": "https://oklahoma.gov/tax.html"
+      },
+      {
+        "code": "OR",
+        "name": "Oregon",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 4300.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 10750.0,
+              "rate": 0.0875
+            },
+            {
+              "from": 125000.0,
+              "rate": 0.099
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 8600.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 21500.0,
+              "rate": 0.0875
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.099
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 4300.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 10750.0,
+              "rate": 0.0875
+            },
+            {
+              "from": 125000.0,
+              "rate": 0.099
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 8600.0,
+              "rate": 0.0675
+            },
+            {
+              "from": 21500.0,
+              "rate": 0.0875
+            },
+            {
+              "from": 250000.0,
+              "rate": 0.099
+            }
+          ]
+        },
+        "stdDeductionSingle": 2745.0,
+        "stdDeductionJointOverride": 5495.0,
+        "sourceLabel": "Oregon DOR — 2024 brackets",
+        "sourceUrl": "https://www.oregon.gov/dor/"
+      },
+      {
+        "code": "RI",
+        "name": "Rhode Island",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 77450.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 176050.0,
+              "rate": 0.0599
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 77450.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 176050.0,
+              "rate": 0.0599
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 77450.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 176050.0,
+              "rate": 0.0599
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0375
+            },
+            {
+              "from": 77450.0,
+              "rate": 0.0475
+            },
+            {
+              "from": 176050.0,
+              "rate": 0.0599
+            }
+          ]
+        },
+        "stdDeductionSingle": 10550.0,
+        "stdDeductionJointOverride": 21150.0,
+        "sourceLabel": "RI Div. Taxation — 2024",
+        "sourceUrl": "https://tax.ri.gov/"
+      },
+      {
+        "code": "SC",
+        "name": "South Carolina",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 3460.0,
+              "rate": 0.03
+            },
+            {
+              "from": 17330.0,
+              "rate": 0.064
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 3460.0,
+              "rate": 0.03
+            },
+            {
+              "from": 17330.0,
+              "rate": 0.064
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 3460.0,
+              "rate": 0.03
+            },
+            {
+              "from": 17330.0,
+              "rate": 0.064
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0
+            },
+            {
+              "from": 3460.0,
+              "rate": 0.03
+            },
+            {
+              "from": 17330.0,
+              "rate": 0.064
+            }
+          ]
+        },
+        "stdDeductionSingle": 14600.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "SC DOR — 2024 simplified",
+        "sourceUrl": "https://dor.sc.gov/"
+      },
+      {
+        "code": "VA",
+        "name": "Virginia",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 17000.0,
+              "rate": 0.0575
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 17000.0,
+              "rate": 0.0575
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 17000.0,
+              "rate": 0.0575
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.02
+            },
+            {
+              "from": 3000.0,
+              "rate": 0.03
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.05
+            },
+            {
+              "from": 17000.0,
+              "rate": 0.0575
+            }
+          ]
+        },
+        "stdDeductionSingle": 8000.0,
+        "stdDeductionJointOverride": 16000.0,
+        "sourceLabel": "Virginia Dept. of Taxation",
+        "sourceUrl": "https://www.tax.virginia.gov/"
+      },
+      {
+        "code": "VT",
+        "name": "Vermont",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0335
+            },
+            {
+              "from": 45400.0,
+              "rate": 0.066
+            },
+            {
+              "from": 110050.0,
+              "rate": 0.076
+            },
+            {
+              "from": 229550.0,
+              "rate": 0.0875
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0335
+            },
+            {
+              "from": 75850.0,
+              "rate": 0.066
+            },
+            {
+              "from": 183400.0,
+              "rate": 0.076
+            },
+            {
+              "from": 279450.0,
+              "rate": 0.0875
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0335
+            },
+            {
+              "from": 37925.0,
+              "rate": 0.066
+            },
+            {
+              "from": 91700.0,
+              "rate": 0.076
+            },
+            {
+              "from": 139725.0,
+              "rate": 0.0875
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0335
+            },
+            {
+              "from": 60850.0,
+              "rate": 0.066
+            },
+            {
+              "from": 157150.0,
+              "rate": 0.076
+            },
+            {
+              "from": 254500.0,
+              "rate": 0.0875
+            }
+          ]
+        },
+        "stdDeductionSingle": 7400.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "Vermont Dept. of Taxes",
+        "sourceUrl": "https://tax.vermont.gov/"
+      },
+      {
+        "code": "WI",
+        "name": "Wisconsin",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.035
+            },
+            {
+              "from": 14320.0,
+              "rate": 0.044
+            },
+            {
+              "from": 28640.0,
+              "rate": 0.053
+            },
+            {
+              "from": 315310.0,
+              "rate": 0.0765
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.035
+            },
+            {
+              "from": 19090.0,
+              "rate": 0.044
+            },
+            {
+              "from": 38190.0,
+              "rate": 0.053
+            },
+            {
+              "from": 420420.0,
+              "rate": 0.0765
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.035
+            },
+            {
+              "from": 9545.0,
+              "rate": 0.044
+            },
+            {
+              "from": 19090.0,
+              "rate": 0.053
+            },
+            {
+              "from": 210210.0,
+              "rate": 0.0765
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.035
+            },
+            {
+              "from": 14320.0,
+              "rate": 0.044
+            },
+            {
+              "from": 28640.0,
+              "rate": 0.053
+            },
+            {
+              "from": 315310.0,
+              "rate": 0.0765
+            }
+          ]
+        },
+        "stdDeductionSingle": 13230.0,
+        "stdDeductionJointOverride": 24490.0,
+        "sourceLabel": "Wisconsin DOR",
+        "sourceUrl": "https://www.revenue.wi.gov/"
+      },
+      {
+        "code": "WV",
+        "name": "West Virginia",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.0222
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.0296
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0333
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.0444
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.0482
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.0222
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.0296
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0333
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.0444
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.0482
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.0222
+            },
+            {
+              "from": 5000.0,
+              "rate": 0.0296
+            },
+            {
+              "from": 12500.0,
+              "rate": 0.0333
+            },
+            {
+              "from": 20000.0,
+              "rate": 0.0444
+            },
+            {
+              "from": 30000.0,
+              "rate": 0.0482
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.0222
+            },
+            {
+              "from": 10000.0,
+              "rate": 0.0296
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.0333
+            },
+            {
+              "from": 40000.0,
+              "rate": 0.0444
+            },
+            {
+              "from": 60000.0,
+              "rate": 0.0482
+            }
+          ]
+        },
+        "stdDeductionSingle": 0.0,
+        "stdDeductionJointOverride": 0.0,
+        "sourceLabel": "WV State Tax Department — 2024 reform",
+        "sourceUrl": "https://tax.wv.gov/"
+      }
+    ]
+  },
+  "localities": {
+    "taxYear": "2025",
+    "appliesTo": [
+      "2024",
+      "2025",
+      "2026"
+    ],
+    "estimated": false,
+    "count": 11,
+    "entries": [
+      {
+        "code": "NYC",
+        "name": "New York City",
+        "stateCode": "NY",
+        "type": "progressive",
+        "flatRate": 0.0,
+        "nonResidentFlatRate": 0.0,
+        "brackets": {
+          "single": [
+            {
+              "from": 0.0,
+              "rate": 0.03078
+            },
+            {
+              "from": 12000.0,
+              "rate": 0.03762
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.03819
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.03876
+            }
+          ],
+          "marriedFilingSeparately": [
+            {
+              "from": 0.0,
+              "rate": 0.03078
+            },
+            {
+              "from": 12000.0,
+              "rate": 0.03762
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.03819
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.03876
+            }
+          ],
+          "headOfHousehold": [
+            {
+              "from": 0.0,
+              "rate": 0.03078
+            },
+            {
+              "from": 12000.0,
+              "rate": 0.03762
+            },
+            {
+              "from": 25000.0,
+              "rate": 0.03819
+            },
+            {
+              "from": 50000.0,
+              "rate": 0.03876
+            }
+          ],
+          "marriedFilingJointly": [
+            {
+              "from": 0.0,
+              "rate": 0.03078
+            },
+            {
+              "from": 21600.0,
+              "rate": 0.03762
+            },
+            {
+              "from": 45000.0,
+              "rate": 0.03819
+            },
+            {
+              "from": 90000.0,
+              "rate": 0.03876
+            }
+          ]
+        },
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "NYS Pub. NYS-50 (2025) — NYC resident tax",
+        "sourceUrl": "https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_nyc.pdf"
+      },
+      {
+        "code": "YON",
+        "name": "Yonkers (NY)",
+        "stateCode": "NY",
+        "type": "flat",
+        "flatRate": 0.015,
+        "nonResidentFlatRate": 0.005,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-01-01",
+        "nonResidentNote": "Yonkers non-resident earnings tax (0.50%) applies only to wages physically earned in Yonkers; if you commute to a different work address, your actual liability may be zero.",
+        "sourceLabel": "NYS — Yonkers resident surcharge + non-resident earnings tax",
+        "sourceUrl": "https://www.tax.ny.gov/pit/file/nyc_yonkers_residents.htm"
+      },
+      {
+        "code": "PHI",
+        "name": "Philadelphia (PA)",
+        "stateCode": "PA",
+        "type": "flat",
+        "flatRate": 0.03735,
+        "nonResidentFlatRate": 0.03425,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-07-01",
+        "nonResidentNote": null,
+        "sourceLabel": "City of Philadelphia — 3.735% resident / 3.425% non-resident, effective 1 July 2026",
+        "sourceUrl": "https://www.phila.gov/services/payments-assistance-taxes/taxes/business-taxes/business-taxes-by-type/wage-tax-employers/"
+      },
+      {
+        "code": "PIT",
+        "name": "Pittsburgh (PA)",
+        "stateCode": "PA",
+        "type": "flat",
+        "flatRate": 0.03,
+        "nonResidentFlatRate": 0.01,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "Pittsburgh — 3.0% resident / 1.0% non-resident EIT",
+        "sourceUrl": "https://pittsburghpa.gov/finance/tax-forms"
+      },
+      {
+        "code": "DET",
+        "name": "Detroit (MI)",
+        "stateCode": "MI",
+        "type": "flat",
+        "flatRate": 0.024,
+        "nonResidentFlatRate": 0.012,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2013-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "City of Detroit — 2.4% resident / 1.2% non-resident",
+        "sourceUrl": "https://detroitmi.gov/departments/office-chief-financial-officer/ocfo-divisions/office-treasury/income-tax"
+      },
+      {
+        "code": "BAL",
+        "name": "Baltimore City (MD)",
+        "stateCode": "MD",
+        "type": "flat",
+        "flatRate": 0.032,
+        "nonResidentFlatRate": 0.0,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "Maryland Comptroller — Baltimore City local (residents only)",
+        "sourceUrl": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      {
+        "code": "KCM",
+        "name": "Kansas City (MO)",
+        "stateCode": "MO",
+        "type": "flat",
+        "flatRate": 0.01,
+        "nonResidentFlatRate": 0.01,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2026-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "KCMO Earnings Tax — 1.0% on wages",
+        "sourceUrl": "https://www.kcmo.gov/city-hall/departments/finance/earnings-tax-e-tax"
+      },
+      {
+        "code": "STL",
+        "name": "St. Louis (MO)",
+        "stateCode": "MO",
+        "type": "flat",
+        "flatRate": 0.01,
+        "nonResidentFlatRate": 0.01,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "1959-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "St. Louis Earnings Tax — 1.0% on wages",
+        "sourceUrl": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/"
+      },
+      {
+        "code": "CLE",
+        "name": "Cleveland (OH)",
+        "stateCode": "OH",
+        "type": "flat",
+        "flatRate": 0.025,
+        "nonResidentFlatRate": 0.025,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2020-01-01",
+        "nonResidentNote": null,
+        "sourceLabel": "Cleveland CCA — municipal income tax 2.5%",
+        "sourceUrl": "https://www.ccaohio.gov/"
+      },
+      {
+        "code": "CMH",
+        "name": "Columbus (OH)",
+        "stateCode": "OH",
+        "type": "flat",
+        "flatRate": 0.025,
+        "nonResidentFlatRate": 0.025,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2009-10-01",
+        "nonResidentNote": null,
+        "sourceLabel": "Columbus — municipal income tax 2.5%",
+        "sourceUrl": "https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information"
+      },
+      {
+        "code": "CIN",
+        "name": "Cincinnati (OH)",
+        "stateCode": "OH",
+        "type": "flat",
+        "flatRate": 0.018,
+        "nonResidentFlatRate": 0.018,
+        "brackets": null,
+        "nonResidentBrackets": null,
+        "rateEffectiveFrom": "2020-10-02",
+        "nonResidentNote": null,
+        "sourceLabel": "Cincinnati — municipal income tax 1.8%",
+        "sourceUrl": "https://www.cincinnati-oh.gov/finance/income-taxes/"
+      }
+    ]
+  }
+}

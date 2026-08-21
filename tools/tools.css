@@ -1213,3 +1213,41 @@ body.ads-hidden .ad-slot { display: none !important; }
 .ad-slot ins.adsbygoogle[data-ad-status="filled"] {
   display: block !important;
 }
+
+/* ── US tax pages: verified figures vs figures still awaiting verification ── */
+.needs-verify {
+  background: #fff7ed;
+  border-bottom: 1px dashed #c2410c;
+  color: #9a3412;
+  padding: 0 3px;
+}
+.tax-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 14.5px;
+}
+.tax-table th,
+.tax-table td {
+  border: 1px solid var(--border, #e3e3e3);
+  padding: 6px 9px;
+  text-align: left;
+}
+.tax-table th {
+  background: var(--bg-subtle, #f7f7f8);
+  font-weight: 600;
+}
+.tax-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.src-note {
+  display: block;
+  margin: 6px 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted, #666);
+}
+.src-note a {
+  color: inherit;
+}

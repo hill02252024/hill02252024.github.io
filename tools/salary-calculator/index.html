@@ -11,12 +11,21 @@
   <meta property="og:type" content="website" /><meta property="og:title" content="Take-Home Salary Calculator — UK, US, AU &amp; HK — Today's Tasks" /><meta property="og:description" content="Take-home pay for UK, US, AU, HK. No login." /><meta property="og:url" content="https://todays-tasks.com/tools/salary-calculator/" /><meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" /><meta name="twitter:card" content="summary_large_image" />
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7165265186193287" crossorigin="anonymous"></script>
+  <style>
+    .us-options{border-top:1px solid var(--border,#e3e3e3);margin-top:14px;padding-top:14px}
+    .us-options .us-check{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;cursor:pointer}
+    .us-options .us-check input{width:auto;margin:0}
+    .us-source{margin-top:14px;font-size:13px;line-height:1.55;color:var(--text-muted,#666)}
+    .us-source p{margin:0 0 6px}
+    .us-source a{color:inherit;text-decoration:underline}
+    .us-source .est-warn{color:#b45309;font-weight:600}
+  </style>
   <link rel="stylesheet" href="/style.css" /><link rel="stylesheet" href="/tools/tools.css" />
   <script src="/tools/premium.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Take-Home Salary Calculator","url":"https://todays-tasks.com/tools/salary-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Are these tax brackets official?","acceptedAnswer":{"@type":"Answer","text":"Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home."}},
-    {"@type":"Question","name":"Does this include state or city tax?","acceptedAnswer":{"@type":"Answer","text":"No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live."}},
+    {"@type":"Question","name":"Does this include state or city tax?","acceptedAnswer":{"@type":"Answer","text":"Yes, for the US. Pick your state from the 51-jurisdiction list (50 states plus DC) and, where one applies, a city wage tax. The result breaks out federal income tax, FICA, state tax and city tax separately, and cites the revenue-department source behind each state figure. SDI and other state payroll levies are not modelled."}},
     {"@type":"Question","name":"Why does my real paycheck differ?","acceptedAnswer":{"@type":"Answer","text":"Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments."}},{"@type":"Question","name":"How should I compare two offers in different countries?","acceptedAnswer":{"@type":"Answer","text":"Compare the after-tax (net) figure, not the gross salary, then adjust for cost of living — rent, transport and healthcare differ enormously between places. A higher gross in one country can be a lower real income once tax and living costs are counted."}}
   ]}</script>
 </head>
@@ -41,6 +50,28 @@
           <button type="button" data-c="us">🇺🇸 US</button>
           <button type="button" data-c="au">🇦🇺 AU</button>
           <button type="button" data-c="hk">🇭🇰 HK</button>
+        </div>
+      </div>
+      <div id="usOptions" class="us-options" hidden>
+        <div class="row two-col">
+          <div><label for="usYear">Tax year</label><select id="usYear">
+            <option value="2024">2024</option>
+            <option value="2025" selected>2025</option>
+            <option value="2026">2026 (estimated)</option>
+          </select></div>
+          <div><label for="usFiling">Filing status</label><select id="usFiling">
+            <option value="single">Single</option>
+            <option value="marriedFilingJointly">Married filing jointly</option>
+            <option value="marriedFilingSeparately">Married filing separately</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select></div>
+        </div>
+        <div class="row two-col">
+          <div><label for="usState">State</label><select id="usState"><option value="">Select a state</option></select></div>
+          <div id="usCityWrap" hidden><label for="usCity">City wage tax</label><select id="usCity"><option value="">None</option></select></div>
+        </div>
+        <div class="row" id="usResWrap" hidden>
+          <label class="us-check"><input type="checkbox" id="usNonRes" /> I work in the city but live outside it (non-resident rate)</label>
         </div>
       </div>
       <button type="button" class="btn-calc finance" id="calcBtn">Calculate</button>
@@ -106,7 +137,7 @@
 
     <h2>How Take-Home Pay Is Calculated</h2>
     <p>This calculator applies progressive income-tax brackets plus each country's main social-security charge. The math walks each tax bracket in turn, taking the appropriate percent of the income slice that falls inside that bracket.</p>
-    <div class="formula">net = gross − income_tax − social_charge<br><br>UK: 20% / 40% / 45% bands + National Insurance<br>US: 10/12/22/24/32/35/37% federal + 7.65% FICA<br>AU: 0/16/30/37/45% + 2% Medicare<br>HK: 2/6/10/14/17% (capped at 15% standard) + 5% MPF</div>
+    <div class="formula">net = gross − income_tax − social_charge<br><br>UK: 20% / 40% / 45% bands + National Insurance<br>US: federal withholding brackets + FICA + state tax (51 jurisdictions) + city wage tax<br>AU: 0/16/30/37/45% + 2% Medicare<br>HK: 2/6/10/14/17% (capped at 15% standard) + 5% MPF</div>
     <p>"Hourly" assumes a full-time year of 52 weeks × 40 hours = 2,080 hours. "Weekly" divides annual net by 52.</p>
 
         <section class="tool-content">
@@ -122,7 +153,7 @@
 
     <h2>Frequently Asked Questions</h2>
     <details class="faq-item"><summary>Are these tax brackets official?</summary><p>Yes — they reflect each country's published tax-year bands and core social charges (income tax + UK NI / US FICA / AU Medicare / HK MPF). They are simplified for clarity. Personal allowances, credits, deductions, or local levies may change your real take-home.</p></details>
-    <details class="faq-item"><summary>Does this include state or city tax?</summary><p>No — the US calculation is federal only (income tax + FICA). State, city, and SDI taxes vary widely and are not modelled. Add 4–10% for state and city tax depending on where you live.</p></details>
+    <details class="faq-item"><summary>Does this include state or city tax?</summary><p>Yes, for the US. Pick your state from the 51-jurisdiction list (50 states plus DC) and, where one applies, a city wage tax — 11 cities levy one. The result breaks out federal income tax, FICA, state tax and city tax on separate lines, and shows the revenue-department source behind each state and city figure. SDI and other state payroll levies are not modelled.</p></details>
     <details class="faq-item"><summary>Why does my real paycheck differ?</summary><p>Your real paycheck reflects pension contributions, health insurance, salary sacrifice, student loan repayments, and personal allowances or credits. This tool gives a base estimate before those adjustments.</p></details>
 
         <details class="faq-item"><summary>How should I compare two offers in different countries?</summary><p>Compare the after-tax (net) figure, not the gross salary, and then adjust for cost of living — rent, transport, and healthcare differ enormously between places. A higher gross in one country can be a lower real income once tax and living costs are accounted for.</p></details>
@@ -145,6 +176,7 @@
         document.querySelectorAll('#countryToggle button').forEach(function(x) { x.classList.remove('active'); });
         b.classList.add('active');
         country = b.dataset.c;
+        document.getElementById('usOptions').hidden = (country !== 'us');
       });
     });
 
@@ -175,15 +207,143 @@
       if (g > 50270) ni += (g - 50270) * 0.02;
       return { inc: inc, soc: ni, label: 'Income tax + NI', cur: '£' };
     }
-    function calcUS(g) {
-      // 2024 single filer simplified federal.
-      var std = 14600;
-      var taxable = Math.max(0, g - std);
-      var inc = bracketTax(taxable, [[11600, 0.10], [47150, 0.12], [100525, 0.22], [191950, 0.24], [243725, 0.32], [609350, 0.35], [Infinity, 0.37]]);
-      // FICA: 6.2% SS (cap 168,600) + 1.45% Medicare.
-      var soc = Math.min(g, 168600) * 0.062 + g * 0.0145;
-      return { inc: inc, soc: soc, label: 'Federal income + FICA', cur: '$' };
+    // ---------- US federal / state / city tax (data/us-state-tax.json) ----------
+    // All figures below come from the JSON table. Nothing is hardcoded here.
+    var USTAX = null, USTAX_FAILED = false;
+    var usOpts = { year: '2025', filing: 'single', state: '', city: '', nonResident: false };
+
+    // Bracket walker for {from, rate} tables: bracket i covers [from_i, from_i+1).
+    function fromBracketTax(amount, brackets) {
+      if (!brackets || amount <= 0) return 0;
+      var tax = 0;
+      for (var i = 0; i < brackets.length; i++) {
+        var from = brackets[i].from;
+        var to = (i + 1 < brackets.length) ? brackets[i + 1].from : Infinity;
+        if (amount <= from) break;
+        tax += ((amount < to ? amount : to) - from) * brackets[i].rate;
+      }
+      return tax;
     }
+    function byCode(list, code) {
+      if (!list || !code) return null;
+      for (var i = 0; i < list.length; i++) if (list[i].code === code) return list[i];
+      return null;
+    }
+    function usState(code) { return USTAX ? byCode(USTAX.states.entries, code) : null; }
+    function usCity(code) { return USTAX ? byCode(USTAX.localities.entries, code) : null; }
+    // Mirrors StateTax.stdDeductionFor(): MFJ uses the override when set, else 2x single.
+    function usStdDeduction(st, filing) {
+      if (filing === 'marriedFilingJointly') {
+        return st.stdDeductionJointOverride > 0 ? st.stdDeductionJointOverride : st.stdDeductionSingle * 2;
+      }
+      return st.stdDeductionSingle;
+    }
+
+    function calcUS(g) {
+      if (!USTAX) return { inc: 0, soc: 0, label: 'Federal income + FICA', cur: '$', unavailable: true };
+      var yr = USTAX.federal[usOpts.year] || USTAX.federal['2025'];
+      var filing = usOpts.filing;
+
+      // Federal: IRS Pub. 15-T annualized percentage-method brackets.
+      // The standard deduction is already baked into the first non-zero
+      // threshold, so these run on gross - not on gross minus a deduction.
+      var fed = fromBracketTax(g, yr.brackets[filing] || yr.brackets.single);
+
+      // FICA
+      var f = yr.fica;
+      var ss = Math.min(g, f.socialSecurityWageBase) * f.socialSecurityRate;
+      var addlThr = filing === 'marriedFilingJointly' ? f.additionalMedicareThresholdMfj
+                  : filing === 'marriedFilingSeparately' ? f.additionalMedicareThresholdMfs
+                  : f.additionalMedicareThresholdSingle;
+      var med = g * f.medicareRate + (g > addlThr ? (g - addlThr) * f.additionalMedicareRate : 0);
+
+      // State
+      var st = usState(usOpts.state), stateTax = 0;
+      if (st) {
+        var taxable = Math.max(0, g - usStdDeduction(st, filing));
+        if (st.type === 'flat') stateTax = taxable * st.flatRate;
+        else if (st.type === 'progressive') stateTax = fromBracketTax(taxable, st.brackets[filing] || st.brackets.single);
+      }
+
+      // City wage tax - applies to gross wages, not to state-taxable income.
+      var loc = usCity(usOpts.city), cityTax = 0;
+      if (loc && st && loc.stateCode === st.code) {
+        if (loc.type === 'flat') {
+          cityTax = g * (usOpts.nonResident ? loc.nonResidentFlatRate : loc.flatRate);
+        } else if (usOpts.nonResident) {
+          var nrb = loc.nonResidentBrackets && (loc.nonResidentBrackets[filing] || loc.nonResidentBrackets.single);
+          cityTax = nrb ? fromBracketTax(g, nrb) : g * loc.nonResidentFlatRate;
+        } else {
+          cityTax = fromBracketTax(g, loc.brackets[filing] || loc.brackets.single);
+        }
+      }
+
+      return {
+        inc: fed + stateTax + cityTax, soc: ss + med,
+        label: 'Income tax + FICA', cur: '$',
+        fed: fed, ss: ss, med: med, stateTax: stateTax, cityTax: cityTax,
+        st: st, loc: loc, estimated: !!yr.estimated, year: usOpts.year
+      };
+    }
+
+    function esc(t) { return String(t == null ? '' : t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function srcLine(kind, o) {
+      return '<p><b>' + esc(kind) + ':</b> ' + esc(o.sourceLabel) +
+             ' &mdash; <a href="' + esc(o.sourceUrl) + '" target="_blank" rel="noopener nofollow">' + esc(o.sourceUrl) + '</a></p>';
+    }
+    // Every layer of the US result, plus the source behind each number.
+    function usSourceBlock(r) {
+      var h = '<div class="us-source">';
+      if (r.estimated) {
+        h += '<p class="est-warn">\u26A0\uFE0F ' + esc(r.year) + ' federal figures are ESTIMATED, not published. ' +
+             esc(USTAX.federal[r.year].note) + '</p>';
+      }
+      if (r.st) h += srcLine(r.st.name + ' state tax', r.st);
+      if (r.loc) h += srcLine(r.loc.name + ' city wage tax', r.loc);
+      if (!r.st) h += '<p>No state selected &mdash; state tax is not included in this result.</p>';
+      if (r.year !== USTAX.states.taxYear) {
+        h += '<p>State and city tables shown are the ' + esc(USTAX.states.taxYear) + ' tables. ' + esc(USTAX._stateTableNote) + '</p>';
+      }
+      h += '<p>Federal: ' + esc(USTAX.federal[r.year].note) + '</p>';
+      return h + '</div>';
+    }
+
+    // Populate the pickers once the table loads.
+    function initUsPickers() {
+      var sel = document.getElementById('usState');
+      USTAX.states.entries.slice().sort(function(a, b) { return a.name < b.name ? -1 : 1; })
+        .forEach(function(st) {
+          var o = document.createElement('option');
+          o.value = st.code;
+          o.textContent = st.name + (st.type === 'none' ? ' (no income tax)' : '');
+          sel.appendChild(o);
+        });
+      function syncCity() {
+        var wrap = document.getElementById('usCityWrap'), city = document.getElementById('usCity');
+        var opts = USTAX.localities.entries.filter(function(l) { return l.stateCode === usOpts.state; });
+        city.innerHTML = '<option value="">None</option>';
+        opts.forEach(function(l) {
+          var o = document.createElement('option'); o.value = l.code; o.textContent = l.name; city.appendChild(o);
+        });
+        wrap.hidden = opts.length === 0;
+        if (opts.length === 0) usOpts.city = '';
+        city.value = usOpts.city;
+        document.getElementById('usResWrap').hidden = !usOpts.city;
+      }
+      sel.addEventListener('change', function() { usOpts.state = sel.value; syncCity(); });
+      document.getElementById('usCity').addEventListener('change', function() {
+        usOpts.city = this.value;
+        document.getElementById('usResWrap').hidden = !usOpts.city;
+      });
+      document.getElementById('usYear').addEventListener('change', function() { usOpts.year = this.value; });
+      document.getElementById('usFiling').addEventListener('change', function() { usOpts.filing = this.value; syncCity(); });
+      document.getElementById('usNonRes').addEventListener('change', function() { usOpts.nonResident = this.checked; });
+      syncCity();
+    }
+    fetch('/data/us-state-tax.json')
+      .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j) { USTAX = j; initUsPickers(); })
+      .catch(function() { USTAX_FAILED = true; });
     function calcAU(g) {
       // 2024-25 resident: 0/16/30/37/45 from Jul 2024.
       var inc = bracketTax(g, [[18200, 0], [45000, 0.16], [135000, 0.30], [190000, 0.37], [Infinity, 0.45]]);
@@ -213,6 +373,18 @@
           x.classList.toggle('active', x.dataset.c === inputs.country);
         });
         country = inputs.country;
+        document.getElementById('usOptions').hidden = (country !== 'us');
+      }
+      if (inputs.us && USTAX) {
+        usOpts.year = inputs.us.year; usOpts.filing = inputs.us.filing;
+        usOpts.state = inputs.us.state; usOpts.city = inputs.us.city;
+        usOpts.nonResident = !!inputs.us.nonResident;
+        document.getElementById('usYear').value = usOpts.year;
+        document.getElementById('usFiling').value = usOpts.filing;
+        document.getElementById('usState').value = usOpts.state;
+        document.getElementById('usState').dispatchEvent(new Event('change'));
+        document.getElementById('usCity').value = usOpts.city;
+        document.getElementById('usNonRes').checked = usOpts.nonResident;
       }
       document.getElementById('calcBtn').click();
     }
@@ -227,6 +399,12 @@
       if (period === 'month') annual = raw * 12;
       if (period === 'hour') annual = raw * 2080;
       var r = country === 'uk' ? calcUK(annual) : country === 'us' ? calcUS(annual) : country === 'au' ? calcAU(annual) : calcHK(annual);
+      if (r.unavailable) {
+        tt.showResult('result', '<div class="primary">' + (USTAX_FAILED
+          ? 'US tax tables failed to load. Reload the page and try again.'
+          : 'Loading US tax tables\u2026 try again in a moment.') + '</div>', 'error');
+        return;
+      }
       var totalTax = r.inc + r.soc;
       var net = annual - totalTax;
       var fmtCur = function(n) { return r.cur + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); };
@@ -240,14 +418,22 @@
           '<div>Gross annual<b>' + fmtCur(annual) + '</b></div>' +
           '<div>' + r.label + '<b>' + fmtCur(totalTax) + '</b></div>' +
           '<div>Effective rate<b>' + rate.toFixed(1) + '%</b></div>' +
+          (country === 'us'
+            ? '<div>Federal income tax<b>' + fmtCur(r.fed) + '</b></div>' +
+              '<div>FICA (Social Security + Medicare)<b>' + fmtCur(r.soc) + '</b></div>' +
+              '<div>State tax' + (r.st ? ' \u2014 ' + esc(r.st.name) : ' (none selected)') + '<b>' + fmtCur(r.stateTax) + '</b></div>' +
+              (r.loc ? '<div>City wage tax \u2014 ' + esc(r.loc.name) + (usOpts.nonResident ? ' (non-resident)' : '') + '<b>' + fmtCur(r.cityTax) + '</b></div>' : '')
+            : '') +
         '</div>' +
+        (country === 'us' ? usSourceBlock(r) : '') +
         '<div class="result-actions">' +
           '<button type="button" onclick="tt.copyText(\'Gross ' + fmtCur(annual) + ' · Net ' + fmtCur(net) + ' (' + rate.toFixed(1) + '% effective) · ' + country.toUpperCase() + '\', this)">📋 Copy Result</button>' +
           '<button type="button" class="reset-btn" onclick="tt.hideResult(\'result\')">Reset</button>' +
         '</div>';
       tt.showResult('result', html);
-      lastInputs = { gross: raw, period: period, country: country };
-      lastSummary = country.toUpperCase() + ': ' + fmtCur(net) + ' net (' + rate.toFixed(1) + '% effective)';
+      lastInputs = { gross: raw, period: period, country: country,
+                     us: country === 'us' ? { year: usOpts.year, filing: usOpts.filing, state: usOpts.state, city: usOpts.city, nonResident: usOpts.nonResident } : null };
+      lastSummary = country.toUpperCase() + (country === 'us' && r.st ? '/' + r.st.code : '') + ': ' + fmtCur(net) + ' net (' + rate.toFixed(1) + '% effective)';
       ttPremium.afterResult('salary', lastInputs, lastSummary, restoreInputs, 'historyPanel');
     });
 
@@ -257,6 +443,7 @@
     var CTY_LABELS = { uk: '🇬🇧 UK', us: '🇺🇸 US', au: '🇦🇺 AU', hk: '🇭🇰 HK' };
     document.getElementById('compareBtn').addEventListener('click', function() {
       if (!ttPremium.isPremium()) { ttPremium.showPaywall('Multi-Country Comparison'); return; }
+      if (!USTAX) { document.getElementById('compareOutput').innerHTML = '<p class="history-empty">US tax tables still loading &mdash; try again in a moment.</p>'; return; }
       var raw = tt.read('gross');
       var period = document.getElementById('period').value;
       if (raw <= 0) { document.getElementById('compareOutput').innerHTML = '<p class="history-empty">Enter a gross salary above first.</p>'; return; }
@@ -289,6 +476,7 @@
     // ---------- Salary Negotiation — Reverse Calculator (PRO) ----------
     document.getElementById('reverseBtn').addEventListener('click', function() {
       if (!ttPremium.isPremium()) { ttPremium.showPaywall('Salary Negotiation'); return; }
+      if (!USTAX) { tt.showResult('reverseResult', '<div class="primary">US tax tables still loading &mdash; try again in a moment.</div>', 'error'); return; }
       var targetNetMo = tt.read('targetNet');
       if (targetNetMo <= 0) { tt.showResult('reverseResult', '<div class="primary">Enter target net.</div>', 'error'); return; }
       var targetNet = targetNetMo * 12;
@@ -321,6 +509,7 @@
     });
     document.getElementById('seBtn').addEventListener('click', function() {
       if (!ttPremium.isPremium()) { ttPremium.showPaywall('Freelancer Mode'); return; }
+      if (seCountry === 'us' && !USTAX) { tt.showResult('seResult', '<div class="primary">US tax tables still loading &mdash; try again in a moment.</div>', 'error'); return; }
       var hr = tt.read('hourly'), hpw = tt.read('hoursWk'), wpy = tt.read('weeksYr');
       if (hr <= 0 || hpw <= 0 || wpy <= 0) { tt.showResult('seResult', '<div class="primary">Enter rate, hours and weeks.</div>', 'error'); return; }
       var grossAnnual = hr * hpw * wpy;
