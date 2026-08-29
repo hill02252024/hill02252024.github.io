@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Offline AI language tutor — SpeakLocal</title>
-  <meta name="description" content="Practise speaking English, Mandarin or Japanese with an AI tutor running on your phone. Real scenarios, pronunciation scoring and Mandarin tone detection." />
+  <meta name="description" content="Practise speaking English, Mandarin or Japanese with an AI tutor running on your phone. 25 real scenarios, simple per-turn feedback, and a spaced-repetition vocabulary vault." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://todays-tasks.com/apps/speaklocal/" />
 
@@ -14,12 +14,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Today's Tasks" />
   <meta property="og:title" content="Offline AI language tutor — SpeakLocal" />
-  <meta property="og:description" content="Speaking practice for English, Mandarin and Japanese with an on-device AI tutor. Scenario conversations, pronunciation scoring, tone detection — your voice never leaves the phone." />
+  <meta property="og:description" content="Speaking practice for English, Mandarin and Japanese with an on-device AI tutor. Scenario conversations and per-turn feedback — the model runs on your phone." />
   <meta property="og:url" content="https://todays-tasks.com/apps/speaklocal/" />
   <meta property="og:image" content="https://todays-tasks.com/assets/apps/speaklocal.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Offline AI language tutor — SpeakLocal" />
-  <meta name="twitter:description" content="Speaking practice for English, Mandarin and Japanese with an on-device AI tutor. Scenario conversations, pronunciation scoring, tone detection — your voice never leaves the phone." />
+  <meta name="twitter:description" content="Speaking practice for English, Mandarin and Japanese with an on-device AI tutor. Scenario conversations and per-turn feedback — the model runs on your phone." />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/speaklocal.png" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -61,8 +61,8 @@
     "name": "SpeakLocal — Offline AI Tutor",
     "operatingSystem": "ANDROID",
     "applicationCategory": "EducationApplication",
-    "description": "A language speaking tutor powered by an on-device language model, covering English, Mandarin Chinese and Japanese. It runs scenario-based conversations, scores pronunciation at phoneme level, detects Mandarin tones from the pitch contour, and manages vocabulary with spaced repetition — all locally, with an allowlist network firewall.",
-    "featureList": "On-device AI conversation tutor, English Mandarin and Japanese, twenty-plus roleplay scenarios, speech recognition and text to speech, phoneme-level pronunciation scoring, Mandarin tone detection from pitch contour, spaced-repetition vocabulary vault, progress and confidence charts, network allowlist firewall, encrypted local storage",
+    "description": "A language speaking tutor powered by an on-device language model, covering English, Mandarin Chinese and Japanese. It runs scenario-based conversations, gives simple per-turn feedback with a specific tip, and manages vocabulary with spaced repetition. The model is downloaded once, then runs on the device.",
+    "featureList": "On-device AI conversation tutor, English Mandarin and Japanese, twenty-five roleplay scenarios, speech recognition and text to speech, per-turn feedback with a specific tip, spaced-repetition vocabulary vault, progress and confidence charts, encrypted local storage, on-device data inspector",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -90,7 +90,7 @@
         "name": "Is my voice sent to a server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Speech is processed on the device and the tutor model runs locally. An allowlist network guard blocks requests to any host that is not explicitly permitted."
+          "text": "Your speech is turned into text by your phone\u0027s own speech engine and the tutor model runs on the device. The app does not record audio files and does not upload audio. The only content request it makes over the network is the one-time model download."
         }
       },
       {
@@ -106,7 +106,7 @@
         "name": "How does the pronunciation feedback work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Your attempt is scored per phoneme, so you can see which specific sound is off. For Mandarin, the app also classifies your tone from the pitch contour and draws it against the target."
+          "text": "Each turn gets a simple response \u2014 Good, Almost, or Try again \u2014 plus one short tip on what to fix. It compares what your phone transcribed against what was expected, so it is a practice aid rather than a measurement of pronunciation accuracy."
         }
       },
       {
@@ -114,7 +114,7 @@
         "name": "Does it work without an internet connection?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, once the model has been downloaded during setup. Conversations, scoring and vocabulary review all run offline."
+          "text": "Yes, once the model has been downloaded during setup. Conversation, feedback and vocabulary review all run offline after that."
         }
       },
       {
@@ -122,7 +122,7 @@
         "name": "Can I delete everything?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Settings has an <em>Erase all my data</em> action, and a data inspector showing what is stored, what is encrypted and what has been sent to the cloud."
+          "text": "Yes. Settings has an <em>Erase all my data</em> action, and a data inspector listing every file the app stores on the device and how much of it is encrypted."
         }
       }
     ]
@@ -170,8 +170,8 @@
     <div class="applp-hero">
         <img class="applp-icon-img" src="/assets/apps/speaklocal.png" alt="SpeakLocal app icon — offline AI language tutor for English, Mandarin and Japanese" width="78" height="78" loading="lazy" decoding="async" />
       <div>
-        <h1>SpeakLocal — an offline AI language tutor that never hears you online</h1>
-        <p class="lede">The fastest way to learn a language is to speak it badly to somebody patient. This is that, running entirely on your phone, so the recording of you fumbling never leaves it.</p>
+        <h1>SpeakLocal — an AI language tutor that runs on your phone</h1>
+        <p class="lede">The fastest way to learn a language is to speak it badly to somebody patient. This is that, running on your phone after a one-time download, so you can practise on a plane and nobody records the fumbling.</p>
       </div>
     </div>
 
@@ -181,43 +181,43 @@
 
     <h2>Speaking is the skill nobody practises</h2>
     <p>You can finish a flashcard app's entire tree and still freeze when someone speaks to you. Reading and listening are practised constantly because they are comfortable; speaking is avoided because it is not, and because it requires a partner willing to sit through your first hundred bad sentences.</p>
-    <p>An AI tutor solves the partner problem. But the mainstream ones stream your microphone to a server, which means the sound of you struggling — and everything you happen to say — becomes somebody else's data. SpeakLocal runs the model on the phone instead.</p>
+    <p>An AI tutor solves the partner problem. But a tutor that needs a live server connection stops working the moment you are on a plane, on bad signal, or out of data. SpeakLocal downloads the model once and runs it on the phone instead.</p>
 
     <h2>What a session with the offline AI language tutor looks like</h2>
     <p>You pick a scenario, speak, and get a response plus feedback. Everything below serves that loop.</p>
     <ul class="applp-features">
       <li><strong>Scenario conversations.</strong> Practice happens in situations rather than in the abstract: ordering in a coffee shop, asking directions, introducing yourself, and — in the Pro set — a job interview, a doctor's visit, hotel check-in, a first date, a business meeting, filing a complaint, a phone call with no visual cues, an emergency call. Each has its own register and vocabulary.</li>
       <li><strong>Three languages, three tutor personas.</strong> English, Mandarin Chinese and Japanese, each with its own prompt template and locale so the tutor behaves appropriately for the language rather than being a translated English bot.</li>
-      <li><strong>Pronunciation scoring at phoneme level.</strong> The pronunciation trainer breaks your attempt into phonemes and scores them individually, so you find out that it is one specific sound letting you down rather than getting a vague overall mark.</li>
-      <li><strong>Mandarin tone detection.</strong> For Mandarin, the app extracts a pitch contour and classifies the tone shape — flat-high, rising, dip-rise, falling or neutral — then shows it as a curve against the target. Tones are the single hardest thing for most Mandarin learners and almost never get real feedback.</li>
-      <li><strong>A vocabulary vault with spaced repetition.</strong> Words you meet go into a vault scheduled by an SRS algorithm, reviewed with the familiar Again / Hard / Good / Easy grading, with a due-today count on the home screen.</li>
+      <li><strong>Feedback on every turn.</strong> Each thing you say comes back with one of three responses — Good, Almost, or Try again — plus a short tip naming what to fix. It compares what your phone transcribed against what the scenario expected, which makes it a practice aid rather than a measurement of pronunciation accuracy. That distinction is stated inside the app too.</li>
+      <li><strong>A pronunciation drill bank.</strong> Eight target sentences per language, played back by the device's text-to-speech so you can hear the target before you attempt it, with the same three-level feedback.</li>
+      <li><strong>A vocabulary vault with spaced repetition.</strong> Words you save go into a vault scheduled by an SRS algorithm, reviewed with the familiar Again / Hard / Good / Easy grading, with a due-today count on the home screen.</li>
       <li><strong>Progress you can see.</strong> A confidence chart, streaks and per-session summaries, plus a daily goal set during onboarding.</li>
-      <li><strong>A data inspector.</strong> Settings has a panel showing how much data is stored on-device, how much of it is encrypted, and how much has been sent to the cloud. Publishing that last figure is unusual, and it is the point.</li>
+      <li><strong>A data inspector.</strong> Settings has a panel listing every file the app has written to your device — the model, the encrypted settings store, the progress database — with its size, and how much of the total is encrypted.</li>
     </ul>
 
-    <h2>A firewall, not a promise</h2>
-    <p>Most privacy claims are policy. SpeakLocal implements one in code: an allowlist network guard sits in front of the HTTP client and rejects any host that is not explicitly permitted. The permitted set covers the model download hosts and the ad and purchase SDKs — nothing else can make a request, and crash reporting is only allowlisted if you opt in.</p>
-    <p>Progress and vocabulary are held in an encrypted local store, and there is an <em>Erase all my data</em> action that does exactly that. Your microphone audio is processed on the device and is not uploaded.</p>
+    <h2>One connection, and it is a file download</h2>
+    <p>SpeakLocal connects to GitHub once to download the language model, and after that the tutor runs on the phone — you can finish the download, switch the internet off, and keep practising. That is the whole of the app's own network use. Two SDKs make their own separate requests: Google AdMob on the free plan, and Google Play Billing for purchases. Both are named in the <a href="/speaklocal-privacy.html">privacy policy</a>, because a privacy claim that quietly omits the ad SDK is not a privacy claim.</p>
+    <p>Your speech is turned into text by your phone's own speech engine; the app does not record audio files and does not upload audio. Progress and vocabulary are held in an encrypted local store, and there is an <em>Erase all my data</em> action that does exactly that.</p>
 
     <h2>Who it is for</h2>
     <p>Intermediate learners stuck at the point where they understand far more than they can produce. Twenty minutes of daily speaking with immediate correction moves that faster than another month of vocabulary drills.</p>
-    <p>Mandarin learners specifically, because of the tone feedback. If you have been told your tones are wrong but nobody can explain how, seeing your pitch contour drawn against the target is the missing piece.</p>
+    <p>Anyone who freezes when it is their turn to speak. The value here is volume of attempts without an audience — the tutor will sit through the same scenario twenty times and never sigh.</p>
     <p>And anyone preparing for a specific event — a job interview in a second language, a medical appointment abroad, a business meeting — who wants to rehearse that exact conversation a dozen times without an audience.</p>
 
     <h2>Privacy and requirements</h2>
-    <p>The language model is downloaded once during onboarding from a public model host, after which conversation runs on the device. Speech recognition and text-to-speech use the platform's own engines. Audio is processed locally and not uploaded. Data lives in encrypted local storage and can be erased from Settings.</p>
-    <p>The app is free with a Pro purchase that unlocks the wider scenario set. It is a practice tool, not a certified assessment.</p>
+    <p>The language model (about 550 MB) is downloaded once during onboarding from GitHub, after which conversation runs on the device. Speech recognition and text-to-speech use the platform's own engines. Audio is processed locally and not uploaded. Data lives in encrypted local storage and can be erased from Settings. Full details are in the <a href="/speaklocal-privacy.html">privacy policy</a>, which also carries the Gemma model licence terms.</p>
+    <p>The app is free, with a banner ad above the navigation bar and an occasional full-screen ad after a session; a Pro subscription removes both and unlocks the wider scenario set. It is a practice tool, not a certified assessment.</p>
 
     <div class="applp-stores">
       <a class="applp-store applp-store--play" href="https://play.google.com/store/apps/details?id=com.speaklocal.speaklocal&amp;pcampaignid=web_share" rel="noopener" aria-label="Get SpeakLocal — Offline AI Tutor on Google Play">▶ Google Play</a>
     </div>
 
     <h2>Frequently asked questions</h2>
-    <p><strong>Is my voice sent to a server?</strong> No. Speech is processed on the device and the tutor model runs locally. An allowlist network guard rejects requests to any host not explicitly permitted.</p>
+    <p><strong>Is my voice sent to a server?</strong> Your speech is turned into text by your phone's own speech engine and the tutor model runs on the device. The app does not record audio files and does not upload audio. Its only content request over the network is the one-time model download.</p>
     <p><strong>Which languages can I practise?</strong> English, Mandarin Chinese and Japanese, each with its own tutor persona and locale.</p>
-    <p><strong>How does the pronunciation feedback work?</strong> Your attempt is scored per phoneme, so you can see which specific sound is letting you down. For Mandarin, the app also classifies your tone from the pitch contour and draws it against the target shape.</p>
-    <p><strong>Does it work without an internet connection?</strong> Yes, once the model has been downloaded during setup. Conversation, scoring and vocabulary review all run offline.</p>
-    <p><strong>Can I delete everything?</strong> Yes. Settings has an <em>Erase all my data</em> action, plus a data inspector showing what is stored on-device, how much is encrypted, and how much has been sent to the cloud.</p>
+    <p><strong>How does the feedback work?</strong> Each turn gets Good, Almost, or Try again, plus one short tip. It compares what your phone transcribed against what was expected — a practice aid, not a measurement of pronunciation accuracy. There is deliberately no numeric score, because the on-device model is not calibrated well enough for one to mean anything.</p>
+    <p><strong>Does it work without an internet connection?</strong> Yes, once the model has been downloaded during setup. Conversation, feedback and vocabulary review all run offline after that.</p>
+    <p><strong>Can I delete everything?</strong> Yes. Settings has an <em>Erase all my data</em> action, plus a data inspector listing every file stored on the device and how much of it is encrypted.</p>
   </main>
 
   <aside class="applp-back" aria-label="Related">
