@@ -81,52 +81,44 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is my voice sent to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Your speech is turned into text by your phone\u0027s own speech engine and the tutor model runs on the device. The app does not record audio files and does not upload audio. The only content request it makes over the network is the one-time model download."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which languages can I practise?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "English, Mandarin Chinese and Japanese, each with its own tutor persona and locale."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the pronunciation feedback work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Each turn gets a simple response \u2014 Good, Almost, or Try again \u2014 plus one short tip on what to fix. It compares what your phone transcribed against what was expected, so it is a practice aid rather than a measurement of pronunciation accuracy."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does it work without an internet connection?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, once the model has been downloaded during setup. Conversation, feedback and vocabulary review all run offline after that."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I delete everything?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Settings has an <em>Erase all my data</em> action, and a data inspector listing every file the app stores on the device and how much of it is encrypted."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my voice sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your speech is turned into text by your phone's own speech engine and the tutor model runs on the device. The app does not record audio files and does not upload audio. The only content request it makes over the network is the one-time model download."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Which languages can I practise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "English, Mandarin Chinese and Japanese, each with its own tutor persona and locale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work without an internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, once the model has been downloaded during setup. Conversation, feedback and vocabulary review all run offline after that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I delete everything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Settings has an <em>Erase all my data</em> action, and a data inspector listing every file the app stores on the device and how much of it is encrypted."
+      }
+    }
+  ]
+}
   </script>
   <style>
     .applp{max-width:820px;margin:0 auto;padding:26px 22px 40px}
@@ -221,12 +213,26 @@
   </main>
 
   <aside class="applp-back" aria-label="Related">
-    <p>← Back to <a href="/apps/">all apps</a> · See also <a href="/apps/memora/">Memora</a> · <a href="/apps/vaultmind/">VaultMind</a> · <a href="/apps/world-clock/">World Clock</a></p>
-  </aside>
+    <p>← Back to <a href="/apps/">all apps</a> </p>
+ </aside>
 
   <div class="footer-secondary" style="text-align:center;font-size:13px;color:#6b7280;margin:20px 0 6px">
     <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a>
   </div>
-  <footer class="footer">© 2026 Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+  <footer class="footer">© Today's Tasks · Operated by Hill, an independent developer. All rights reserved.</footer>
+<nav id="static-footer-links" aria-label="Site links">
+  <a href="/">Home</a>
+  <a href="/tools/">Browser tools</a>
+  <a href="/tools/us/">US salary guides</a>
+  <a href="/tools/eu/">EU VAT refund guides</a>
+  <a href="/apps/">Mobile apps</a>
+  <a href="/compare/">Comparisons</a>
+  <a href="/todo.html">To-do list</a>
+  <a href="/zh-hk/">繁體中文</a>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/contact.html">Contact</a>
+</nav>
 </body>
 </html>

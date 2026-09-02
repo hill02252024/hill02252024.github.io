@@ -80,12 +80,55 @@
       What does not change year to year — the structure of the comparison, which layers move and which do not,
       which traps catch people — is written out in full.</p>
 
+      <h2>Which US cities levy their own income tax</h2>
+      <p>The state line is the layer people compare, but a city line exists too, and it is the one that
+        quietly breaks side-by-side salary tables. The calculator behind these guides carries 11 local
+        jurisdictions. This is the full list it knows about — if your city is not here, the calculator is
+        treating your local income tax as zero, which is correct for most of the country and wrong for
+        these places.</p>
+      <table>
+        <caption>Local income taxes carried in <code>us-state-tax.json</code> — 11 jurisdictions, 2025 tax year</caption>
+        <thead><tr><th>Jurisdiction</th><th>State</th><th>Resident rate</th><th>Non-resident rate</th><th>Rate effective from</th></tr></thead>
+        <tbody>
+          <tr><td>New York City</td><td>NY</td><td>3.078%–3.876% (progressive)</td><td>—</td><td>2026-01-01</td></tr>
+          <tr><td>Yonkers (NY)</td><td>NY</td><td>1.5%</td><td>0.5%</td><td>2026-01-01</td></tr>
+          <tr><td>Philadelphia (PA)</td><td>PA</td><td>3.735%</td><td>3.425%</td><td>2026-07-01</td></tr>
+          <tr><td>Pittsburgh (PA)</td><td>PA</td><td>3%</td><td>1%</td><td>2026-01-01</td></tr>
+          <tr><td>Detroit (MI)</td><td>MI</td><td>2.4%</td><td>1.2%</td><td>2013-01-01</td></tr>
+          <tr><td>Baltimore City (MD)</td><td>MD</td><td>3.2%</td><td>—</td><td>2026-01-01</td></tr>
+          <tr><td>Kansas City (MO)</td><td>MO</td><td>1%</td><td>1%</td><td>2026-01-01</td></tr>
+          <tr><td>St. Louis (MO)</td><td>MO</td><td>1%</td><td>1%</td><td>1959-01-01</td></tr>
+          <tr><td>Cleveland (OH)</td><td>OH</td><td>2.5%</td><td>2.5%</td><td>2020-01-01</td></tr>
+          <tr><td>Columbus (OH)</td><td>OH</td><td>2.5%</td><td>2.5%</td><td>2009-10-01</td></tr>
+          <tr><td>Cincinnati (OH)</td><td>OH</td><td>1.8%</td><td>1.8%</td><td>2020-10-02</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Resident and non-resident rates differ in most of these jurisdictions, which is why
+        commuting across a city line is not the same as moving across it. New York City is the only entry
+        that is progressive rather than flat; the range shown is its single-filer schedule. Every figure in
+        this table is read directly from the data file that powers the calculator, not retyped.</p>
+
+      <p class="muted"><strong>Data year.</strong> The state and locality rate tables on this page are the <strong>2025 tax year</strong> tables — 51 state entries and 11 local entries — carried in <code>us-state-tax.json</code> in this repository, where every entry links to the issuing state revenue department. The data file applies those same 2025 state tables to 2024, 2025 and 2026 calculations because the state-rate cadence is slower than the federal one, and it explicitly warns against presenting the 2025 state figures as 2024 or 2026 figures; treat the state layer here as 2025 and re-check it against your state before relying on a year other than 2025. The federal layer is separate and was rebuilt on 2026-08-21 directly from IRS Publication 15-T, IRS Publication 15 and Revenue Procedure 2025-32.</p>
       <p class="muted"><strong>Not tax advice.</strong> These pages explain how the pieces fit together. They do
       not produce a number for your situation and are not a substitute for a CPA or an enrolled agent.</p>
     </section>
   </main>
   <footer class="footer">
-    <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/salary-calculator/">Salary Calculator</a> · <a href="/privacy.html">Privacy</a></p>
+    <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/salary-calculator/">Salary Calculator</a> · <a href="/tools/eu/">VAT Refunds</a> · <a href="/privacy.html">Privacy</a></p>
   </footer>
+<nav id="static-footer-links" aria-label="Site links">
+  <a href="/">Home</a>
+  <a href="/tools/">Browser tools</a>
+  <a href="/tools/us/">US salary guides</a>
+  <a href="/tools/eu/">EU VAT refund guides</a>
+  <a href="/apps/">Mobile apps</a>
+  <a href="/compare/">Comparisons</a>
+  <a href="/todo.html">To-do list</a>
+  <a href="/zh-hk/">繁體中文</a>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/contact.html">Contact</a>
+</nav>
 </body>
 </html>

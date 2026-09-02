@@ -3,17 +3,20 @@ name: Build Sitemap
 # scripts/build-sitemaps.mjs is the single source of truth for both sitemap
 # files. This workflow does not write them itself — it runs that generator and
 # commits whatever it produces.
+# No `schedule:` trigger. The site has no auto-generated content, so the page
+# set only moves when a human pushes HTML. A nightly cron on a repository that
+# will sit unattended for six months is a silent-failure surface with nothing
+# to gain: it can only fail, or commit noise. Content pushes still regenerate
+# the sitemap, and it can always be run by hand.
 on:
-  schedule:
-    - cron: "0 18 * * *"  # 每天香港時間 02:00 自動運行
   workflow_dispatch:
   push:
     paths:
       - "scripts/build-sitemaps.mjs"
-      # Pages come and go far more often than the generator does. Without
-      # these, a content push left the sitemap stale until the next nightly
-      # run. The generator only ever writes *.xml, which is not matched here,
-      # so its own commit cannot retrigger this workflow.
+      # Pages come and go far more often than the generator does, and with
+      # the nightly run gone this is now the only automatic trigger. The
+      # generator only ever writes *.xml, which is not matched here, so its
+      # own commit cannot retrigger this workflow.
       - "**/*.html"
 
 # Workflow-level env. FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 opts the
@@ -38,7 +41,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # fetch-depth: 0 — build-sitemaps.mjs reads each page's real last-commit
+      # date via `git log`. The default shallow clone (depth 1) has no history,
+      # so every lookup would miss and every <lastmod> would vanish.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20"

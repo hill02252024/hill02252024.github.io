@@ -174,17 +174,45 @@
       <p>The California brackets and standard deduction come from the Franchise Tax Board tables published at /data/us-state-tax.json, each carrying a link to the source. The federal figures are the statutory rate schedules with the standard deduction the One Big Beautiful Bill Act set for the tax year, taken from IRS Rev. Proc. 2025-32 and cross-checked against Publication 15-T. The California SDI rate comes from the Employment Development Department. Every number on this page is sourced; none is estimated.</p>
     </details>
 
+      <p class="muted"><strong>Data year.</strong> The state and locality rate tables on this page are the <strong>2025 tax year</strong> tables — 51 state entries and 11 local entries — carried in <code>us-state-tax.json</code> in this repository, where every entry links to the issuing state revenue department. The data file applies those same 2025 state tables to 2024, 2025 and 2026 calculations because the state-rate cadence is slower than the federal one, and it explicitly warns against presenting the 2025 state figures as 2024 or 2026 figures; treat the state layer here as 2025 and re-check it against your state before relying on a year other than 2025. The federal layer is separate and was rebuilt on 2026-08-21 directly from IRS Publication 15-T, IRS Publication 15 and Revenue Procedure 2025-32.</p>
       <p class="muted"><strong>Not tax advice.</strong> This page explains how the pieces fit together and
       gives you a working estimate. It is not a substitute for a CPA or an enrolled agent, and it does not
       know your credits, pre-tax deductions or personal circumstances. Every rate, bracket and standard
       deduction used here comes from the tables in <a href="/data/us-state-tax.json">us-state-tax.json</a>,
       each carrying a link to the state revenue department or IRS publication it was taken from. This page cites no unverified figure.</p>
     </section>
+    <nav id="related-guides" aria-label="Related guides">
+      <h2>Other pay, tax and refund guides</h2>
+      <ul>
+        <li><a href="/tools/us/100k-after-taxes-by-state/">$100,000 After Taxes by State: What Actually Varies and What Does Not</a></li>
+        <li><a href="/tools/us/new-york-vs-florida-salary-comparison/">New York vs Florida Salary: The City Tax Layer Everyone Forgets</a></li>
+        <li><a href="/tools/us/remote-work-multi-state-taxes/">Remote Work Across State Lines: Who Actually Taxes Your Paycheck</a></li>
+        <li><a href="/tools/us/states-with-no-income-tax/">The Nine States With No Income Tax — What Your Paycheck Actually Looks Like</a></li>
+        <li><a href="/tools/eu/france-italy-spain-vat-refund/">France vs Italy vs Spain: Which VAT Refund Is Actually Easiest</a></li>
+        <li><a href="/tools/eu/japan-tax-free-shopping/">Japan Tax-Free Shopping: The Exemption Happens at the Till</a></li>
+        <li><a href="/tools/eu/uk-northern-ireland-tax-free/">UK vs Northern Ireland Tax-Free Shopping: One Country, Two Rulebooks</a></li>
+        <li><a href="/tools/eu/vat-refund-minimum-spend/">VAT Refund Minimum Spend by Country: The Number and the Unit</a></li>
+      </ul>
+    </nav>
   </main>
   <footer class="footer">
     <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/us/">US Pay &amp; Taxes</a> · <a href="/privacy.html">Privacy</a></p>
   </footer>
   <script src="/tools/us-tax.js"></script>
   <script src="/tools/us/us-embed.js" defer></script>
+<nav id="static-footer-links" aria-label="Site links">
+  <a href="/">Home</a>
+  <a href="/tools/">Browser tools</a>
+  <a href="/tools/us/">US salary guides</a>
+  <a href="/tools/eu/">EU VAT refund guides</a>
+  <a href="/apps/">Mobile apps</a>
+  <a href="/compare/">Comparisons</a>
+  <a href="/todo.html">To-do list</a>
+  <a href="/zh-hk/">繁體中文</a>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/contact.html">Contact</a>
+</nav>
 </body>
 </html>

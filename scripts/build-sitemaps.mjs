@@ -13,11 +13,67 @@
 // sitemap-posts.xml, feed.xml — was removed in the 2026 cleanup that took the
 // off-theme travel cluster off the site.)
 import fs from "node:fs/promises";
+import fsSync from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const SITE = "https://todays-tasks.com";
 
 function iso(d) { try { return new Date(d).toISOString(); } catch { return new Date().toISOString(); } }
+
+/// lastmod must describe when a page actually changed, not when this script
+/// happened to run. Stamping Date.now() on every run made the nightly job
+/// rewrite the homepage <lastmod> daily on a site whose content had not moved,
+/// producing a commit a day of pure noise and telling Google the homepage was
+/// freshly edited when it was not.
+///
+/// One `git log` pass builds path -> most-recent-commit-date. git log is
+/// reverse-chronological, so the first date seen for a path is the latest one.
+/// This needs full history: a shallow clone (actions/checkout's default
+/// fetch-depth: 1) yields an almost-empty map, which is why the workflow now
+/// sets fetch-depth: 0.
+function gitLastModMap() {
+  const map = new Map();
+  let out;
+  try {
+    out = execFileSync(
+      "git",
+      ["log", "--no-merges", "--date-order", "--format=%x00%cI", "--name-only"],
+      { encoding: "utf8", maxBuffer: 256 * 1024 * 1024 }
+    );
+  } catch {
+    return map; // not a git checkout, or git unavailable
+  }
+  let current = null;
+  for (const line of out.split("\n")) {
+    if (line.startsWith("\u0000")) { current = line.slice(1).trim(); continue; }
+    const f = line.trim();
+    if (!f || !current) continue;
+    if (!map.has(f)) map.set(f, current);
+  }
+  return map;
+}
+
+const GIT_LASTMOD = gitLastModMap();
+
+/// Returns an ISO timestamp for a file, or null when no honest one exists.
+///
+/// Order: real commit date -> mtime, but mtime ONLY for files git does not
+/// track. For a tracked file with no commit date (shallow clone) mtime is the
+/// checkout time, i.e. "now" for every file at once — exactly the fake-freshness
+/// bug this function exists to remove. In that case emit nothing: a missing
+/// lastmod is a legitimate sitemap; a wrong one is a lie to the crawler.
+function lastModOf(relPath) {
+  const git = GIT_LASTMOD.get(relPath);
+  if (git) return git;
+  let tracked = true;
+  try {
+    execFileSync("git", ["ls-files", "--error-unmatch", "--", relPath],
+                 { stdio: "ignore" });
+  } catch { tracked = false; }
+  if (tracked) return null;
+  try { return iso(fsSync.statSync(relPath).mtime); } catch { return null; }
+}
 
 const EXCLUDE_DIRS = new Set([
   ".git", ".github", "node_modules",
@@ -81,25 +137,45 @@ async function collectStaticPages(root = ".") {
   return Array.from(found);
 }
 
-const now = iso(Date.now());
 const allPages = await collectStaticPages();
 // Homepage "/" is emitted separately (with lastmod); the rest sorted for a
 // stable, diff-friendly order.
 const STATIC_PAGES = allPages.filter(p => p !== "/").sort();
 
 // ---- sitemap-pages.xml ----
+/// URL path -> the file that serves it, so lastmod can be looked up per page.
+function fileFor(urlPath) {
+  if (urlPath === "/") return "index.html";
+  const rel = urlPath.slice(1);
+  return rel.endsWith("/") ? rel + "index.html" : rel;
+}
+
+const seen = [];
+function urlEntry(urlPath) {
+  const lm = lastModOf(fileFor(urlPath));
+  if (lm) seen.push(lm);
+  return `<url><loc>${SITE}${urlPath}</loc>` +
+         (lm ? `<lastmod>${lm}</lastmod>` : "") + `</url>`;
+}
+
+const homeEntry = urlEntry("/");
+const pageEntries = STATIC_PAGES.map(urlEntry);
+
 const sitemapPages = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE}/</loc><lastmod>${now}</lastmod></url>
-  ${STATIC_PAGES.map(p => `<url><loc>${SITE}${p}</loc></url>`).join("\n  ")}
+  ${homeEntry}
+  ${pageEntries.join("\n  ")}
 </urlset>`;
 
 await fs.writeFile("sitemap-pages.xml", sitemapPages, "utf8");
 
 // ---- sitemap.xml (index) ----
+// The index's lastmod is the newest page lastmod, not the clock. Using the
+// clock here churned this file daily for the same reason the homepage churned.
+const indexLastmod = seen.length ? seen.slice().sort().at(-1) : null;
 const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>${SITE}/sitemap-pages.xml</loc><lastmod>${now}</lastmod></sitemap>
+  <sitemap><loc>${SITE}/sitemap-pages.xml</loc>${indexLastmod ? `<lastmod>${indexLastmod}</lastmod>` : ""}</sitemap>
 </sitemapindex>`;
 
 await fs.writeFile("sitemap.xml", sitemapIndex, "utf8");

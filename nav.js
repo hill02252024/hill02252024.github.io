@@ -80,7 +80,7 @@
             '<div class="site-footer-v2-col-title">Products</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/tools/">Privacy Tools</a>' +
-              '<a href="/apps/">42 Mobile Apps</a>' +
+              '<a href="/apps/">41 Mobile Apps</a>' +
               '<a href="/zh-hk/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">香港應用（中文）</a>' +
               '<a href="/pricing.html">Pricing</a>' +
               '<a href="/todo.html">Today\'s Tasks To-Do</a>' +
@@ -90,6 +90,9 @@
             '<div class="site-footer-v2-col-title">Learn</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/learn/why-local.html">Why browser-only?</a>' +
+              '<a href="/tools/us/">US salary guides</a>' +
+              '<a href="/tools/eu/">EU VAT refund guides</a>' +
+              '<a href="/compare/">Comparisons</a>' +
               '<a href="/productivity-tips.html">Blog</a>' +
               '<a href="/about.html">About</a>' +
             '</div>' +
@@ -124,6 +127,15 @@
       document.body.insertBefore(header, document.body.firstChild);
     }
 
+    // Every page also ships a plain <nav id="static-footer-links"> in its HTML.
+    // That block exists for the first crawl pass, which does not run this file:
+    // without it, pages whose only inbound link is generated here (terms.html
+    // was the clearest case, 0 static inbound links against privacy.html's 103)
+    // look like orphans to a crawler reading raw HTML. Once the rich footer is
+    // mounted the plain one is redundant on screen, so it is removed rather
+    // than left to render as a second footer underneath the first.
+    var staticLinks = document.getElementById("static-footer-links");
+
     // Inject the structured footer — replaces legacy .footer / .footer-secondary
     // blocks on every page automatically. Skip if already present (idempotent).
     if (!document.querySelector("footer.site-footer-v2")) {
@@ -135,6 +147,12 @@
         el.style.display = "none";
       });
       document.body.appendChild(footer);
+    }
+
+    // Remove the crawl-pass block only after a real footer is on the page, so a
+    // failure above can never leave the page with no site links at all.
+    if (staticLinks && document.querySelector("footer.site-footer-v2")) {
+      staticLinks.parentNode.removeChild(staticLinks);
     }
 
     // No fallback styles — every page loads /style.css which already

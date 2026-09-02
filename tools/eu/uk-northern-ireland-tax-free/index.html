@@ -149,11 +149,39 @@
       <a href="/data/vat-refund.json">vat-refund.json</a>, each entry linked to the authority that administers the
       scheme. This page cites no unverified figure, and no refund-operator fee percentage.</p>
     </section>
+      <p class="muted"><strong>How these figures are verified.</strong> Every VAT rate, minimum spend and deadline used across these pages comes from <code>vat-refund.json</code> in this repository, and all 12 jurisdictions in that file carry the same verification stamp: <strong>2026-07-31</strong>, checked against the authority that administers each scheme, with the source URL stored alongside the figure. 11 of the 12 have a traveller refund available. The source dataset holds 27 further jurisdictions that do <em>not</em> carry both a verification stamp and an authority source URL; those are deliberately excluded rather than published unverified. Refund-operator handling fees and FX margins are also absent, because no sourced figure for them exists — which means a real refund lands lower than the headline VAT rate implies. Scheme rules change by legislation, so re-check anything you are relying on against the linked authority before you travel.</p>
+    <nav id="related-guides" aria-label="Related guides">
+      <h2>Other pay, tax and refund guides</h2>
+      <ul>
+        <li><a href="/tools/us/100k-after-taxes-by-state/">$100,000 After Taxes by State: What Actually Varies and What Does Not</a></li>
+        <li><a href="/tools/us/california-vs-texas-take-home-pay/">California vs Texas Take-Home Pay: What the State Line Actually Costs</a></li>
+        <li><a href="/tools/us/new-york-vs-florida-salary-comparison/">New York vs Florida Salary: The City Tax Layer Everyone Forgets</a></li>
+        <li><a href="/tools/us/remote-work-multi-state-taxes/">Remote Work Across State Lines: Who Actually Taxes Your Paycheck</a></li>
+        <li><a href="/tools/us/states-with-no-income-tax/">The Nine States With No Income Tax — What Your Paycheck Actually Looks Like</a></li>
+        <li><a href="/tools/eu/france-italy-spain-vat-refund/">France vs Italy vs Spain: Which VAT Refund Is Actually Easiest</a></li>
+        <li><a href="/tools/eu/japan-tax-free-shopping/">Japan Tax-Free Shopping: The Exemption Happens at the Till</a></li>
+        <li><a href="/tools/eu/vat-refund-minimum-spend/">VAT Refund Minimum Spend by Country: The Number and the Unit</a></li>
+      </ul>
+    </nav>
   </main>
   <footer class="footer">
     <p><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/tools/eu/">VAT Refunds</a> · <a href="/privacy.html">Privacy</a></p>
   </footer>
   <script src="/tools/vat-tax.js"></script>
   <script src="/tools/eu/vat-embed.js" defer></script>
+<nav id="static-footer-links" aria-label="Site links">
+  <a href="/">Home</a>
+  <a href="/tools/">Browser tools</a>
+  <a href="/tools/us/">US salary guides</a>
+  <a href="/tools/eu/">EU VAT refund guides</a>
+  <a href="/apps/">Mobile apps</a>
+  <a href="/compare/">Comparisons</a>
+  <a href="/todo.html">To-do list</a>
+  <a href="/zh-hk/">繁體中文</a>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/contact.html">Contact</a>
+</nav>
 </body>
 </html>
