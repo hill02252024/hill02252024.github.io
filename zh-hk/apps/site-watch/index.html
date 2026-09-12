@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>工地投訴記錄 —— 離線影相加座標</title>
-  <meta name="description" content="地牢同未起好嘅樓層都冇訊號。相、座標同描述照樣記得低，排入待送清單，一有網就自動送，而且有兩道防重複閘。" />
+  <title>工地投訴記錄 —— 影相報料，記錄留喺部機</title>
+  <meta name="description" content="見到工地周邊有問題，即場影相記低，30 秒搞掂。記錄寫入你部機、唔會離開部機，冇網都記得低。app 有橫額廣告，地圖同反查街名會連 OpenStreetMap。" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://todays-tasks.com/zh-hk/apps/site-watch/" />
   <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/site-watch/" />
@@ -16,13 +16,13 @@
   <meta property="og:locale" content="zh_HK" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Today's Tasks" />
-  <meta property="og:title" content="工地投訴記錄 —— 離線影相加座標" />
-  <meta property="og:description" content="工地投訴 app 喺冇訊號時將相片、座標同描述寫入本機待送清單，有網自動送出，並設兩層防重複機制。" />
+  <meta property="og:title" content="工地投訴記錄 —— 影相報料，記錄留喺部機" />
+  <meta property="og:description" content="工地投訴 app：影相、揀類別、記低位置，一撳確認就寫入部機。列表、地圖、搜尋一應俱全，記錄唔會離開部機。" />
   <meta property="og:url" content="https://todays-tasks.com/zh-hk/apps/site-watch/" />
   <meta property="og:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="工地投訴記錄 —— 離線影相加座標" />
-  <meta name="twitter:description" content="工地投訴 app 喺冇訊號時將相片、座標同描述寫入本機待送清單，有網自動送出，並設兩層防重複機制。" />
+  <meta name="twitter:title" content="工地投訴記錄 —— 影相報料，記錄留喺部機" />
+  <meta name="twitter:description" content="工地投訴 app：影相、揀類別、記低位置，一撳確認就寫入部機。列表、地圖、搜尋一應俱全，記錄唔會離開部機。" />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -65,8 +65,8 @@
     "operatingSystem": "ANDROID, IOS",
     "applicationCategory": "UtilitiesApplication",
     "inLanguage": "zh-Hant-HK",
-    "description": "工地周邊問題嘅共用投訴記錄應用。每宗投訴包含相片、座標同描述，離線時寫入本機待送清單，有網時自動送出，並設兩道獨立防重複機制。後端使用 GitHub Issues，因此毋須自建伺服器。",
-    "featureList": "相片座標同描述, 離線待送清單自動送出, 兩層防重複, 地圖同列表, 多人共用記錄, 上傳前壓縮相片, 本機搜尋索引, 憑證存於安全儲存, 粵語介面",
+    "description": "記錄工地周邊問題嘅 app。每宗記錄有相片、類別、描述，用家撳一撳仲可以帶埋座標。記錄寫入部機並且留喺部機，冇雲端副本。app 會顯示橫額廣告，地圖同反查街名會連 OpenStreetMap。",
+    "featureList": "影相揀類別加描述, 每宗最多三張相, 座標可加可唔加, 跟進只加得改唔到, 列表同地圖, 部機內搜尋, 記錄留喺部機, 粵語介面",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -91,34 +91,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "冇訊號會點？",
+        "name": "冇網會點？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "投訴連相片同位置存入本機待送清單，接返網之後 app 會自動送出。"
+          "text": "照樣記得低。撳確認嗰刻就已經寫咗入部機，冇任何嘢等緊網絡。要網絡嘅只有地圖同反查街名。"
         }
       },
       {
         "@type": "Question",
-        "name": "會唔會入咗兩次？",
+        "name": "啲記錄實際存喺邊？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "有兩道獨立閘擋住。成功送出之後個 issue number 即刻寫低，之後點重試都唔准再送；開單之前亦會用客戶端識別碼查返現有列表。"
+          "text": "喺你部機。冇雲端副本、冇備份，所以「清走所有記錄」會問你兩次先做。記錄本身唔會送去任何地方。"
         }
       },
       {
         "@type": "Question",
-        "name": "啲投訴實際存喺邊？",
+        "name": "咁個 app 到底有冇用網絡？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "存喺你配置嘅 GitHub 倉庫，以 issue 形式。冇獨立伺服器，仲免費得到完整歷史同時間戳。"
+          "text": "有，三個地方：畫面底部嘅橫額廣告、OpenStreetMap 嘅地圖磚、以及你撳咗「記低位置」之後先行嘅反查街名。記錄本身唔會離開部機。"
         }
       },
       {
         "@type": "Question",
-        "name": "可唔可以幾個人用同一份記錄？",
+        "name": "記低咗之後改唔改得？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "可以。登入同一個倉庫嘅人睇到同一批投訴。"
+          "text": "可以加跟進，每條跟進帶自己嘅時間。最初寫嗰段永遠唔會被改。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "一定要有位置先記得低？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "唔使。撳一下就帶座標；唔撳就自己打個地點，一樣記得低，只係唔會出現喺地圖上面。"
         }
       }
     ]
@@ -167,43 +175,55 @@
     <div class="applp-hero">
         <div class="applp-icon" aria-hidden="true">🏗️</div>
       <div>
-        <h1>工地投訴 —— 冇訊號都記得低，有網先自動送出</h1>
-        <p class="lede">地盤出事嘅位置，通常就係冇訊號嘅位置。呢個 app 當離線係常態：照樣記低，排入隊，一接返網就自己送出去。</p>
+        <h1>工地投訴 —— 影相報料，30 秒搞掂，記錄留喺部機</h1>
+        <p class="lede">見到工地周邊有問題，即場影相、揀個類別、講低喺邊度。撳確認嗰刻就已經寫咗入你部機。冇訊號一樣記得低。</p>
       </div>
     </div>
 
     <p class="applp-note">呢個 app 仲喺開發階段，未喺 App Store 或 Google Play 上架。呢版介紹嘅係已經做好嘅部分。</p>
 
-    <h2>最需要記錄嗰陣，通常就係做唔到嗰陣</h2>
-    <p>地盤出問題嘅地方 —— 地牢、𨋢槽、未起好嘅樓層 —— 通常就係冇接收嘅地方。網頁表單會 timeout，即時上傳嘅 app 會失敗，於是件事拖到夜晚放工先做：到時細節冇咗，相由頭到尾冇影過，位置變成靠估。</p>
-    <p>工地投訴由頭到尾當離線係正常情況。投訴連相片同座標寫入本機待送清單，接返網之後 app 自己送出去，唔使有人記得要撳。</p>
+    <h2>最需要記低嗰陣，通常就係做唔到嗰陣</h2>
+    <p>地盤出問題嘅地方 —— 地牢、𨋢槽、未起好嘅樓層 —— 通常就係冇接收嘅地方。網頁表單會 timeout，版面轉極都轉唔到，於是件事拖到夜晚放工先做：到時細節冇咗，相由頭到尾冇影過，位置變成靠估。</p>
+    <p>工地投訴係直接寫入部機。撳完確認就係最後一步，後面冇嘢吊住，亦都唔使等任何嘢發生，張記錄先至算數。</p>
 
     <h2>工地投訴記錄點運作</h2>
-    <p>記低、排隊，然後確保佢入到去，而且只入一次。</p>
+    <p>一開就見到列表。記低一單，三撳。</p>
     <ul class="applp-features">
-      <li><strong>影相同座標一齊記。</strong>一宗投訴包含描述、即場影或者由相簿揀嘅相片，同埋位置。位置係必填 —— 冇位置嘅工地投訴根本冇得跟進。</li>
-      <li><strong>睇得見嘅待送清單。</strong>未送出嘅投訴會列出「等緊送出」，並寫明有網嗰陣會自動送、送之前會查重。一個你睇唔到嘅隊列，係一個你唔會信嘅隊列。</li>
-      <li><strong>防重複，兩道。</strong>每宗投訴帶一個客戶端產生嘅識別碼。一旦成功送出，個 issue number 即刻寫低，之後點重試都唔准再送。另外，開單之前會先用個識別碼查返現有列表。兩道獨立閘 —— 因為天真嘅重試最衰嗰種情況，就係回應喺半路死咗、然後同一單嘢入咗兩次，而呢樣正正會摧毀大家對共用記錄嘅信任。</li>
-      <li><strong>成隊人共用。</strong>多個人登入同一份共用記錄，一個人開嘅單，其他人都見到。</li>
+      <li><strong>五個類別，入到去已經揀好一個。</strong>垃圾、阻街、噪音、態度、危險。新增頁一開就已經選咗其中一個，唔掂其他嘢都記得到一單。</li>
+      <li><strong>最多三張相。</strong>現場影，或者喺相簿揀。</li>
+      <li><strong>位置可加可唔加。</strong>撳一下就帶座標。唔撳就自己打個地點，一樣記得低 —— 只係唔會出現喺地圖上面。</li>
+      <li><strong>跟進只加得，改唔到。</strong>每條跟進帶自己嘅時間。最初寫嗰段永遠唔會被改，所以原本點寫就係點。</li>
+      <li><strong>有座標嘅全部標喺地圖。</strong>邊一忽位反覆出事，一睇就見到。</li>
+      <li><strong>喺部機度搵。</strong>打兩三個字，地點、描述、類別都搵得返舊嗰單。</li>
     </ul>
 
-    <h2>刻意冇後端</h2>
-    <p>共用記錄以 GitHub 上嘅 issue 形式儲存。呢個選擇唔常見，而且係刻意嘅：即係話唔使自己養一個後端、唔使守一個資料庫、冇寄存費用，仲免費送埋完整歷史、時間戳同留言。對一隊人記錄工地問題嚟講，issue tracker 同一份投訴記錄本質上非常夾。</p>
+    <h2>啲記錄放喺邊</h2>
+    <p>喺記低佢嗰部機度。冇雲端副本、冇備份、冇得還原 —— 所以「清走所有記錄」會問你兩次先做。記錄本身唔會送去任何地方。</p>
+
+    <h2>幾時會用到網絡</h2>
+    <p>三個地方，冇第四個：</p>
+    <ul class="applp-features">
+      <li><strong>橫額廣告</strong>喺畫面底部。個 app 免費，靠呢度養。</li>
+      <li><strong>OpenStreetMap 地圖磚</strong>，開住地圖嗰陣先攞。地圖角落長期顯示 OpenStreetMap 嘅出處。</li>
+      <li><strong>反查街名</strong>，只喺你撳咗「記低位置」之後先行。佢送座標出去、攞個街名返嚟。唔撳就一世唔會行。</li>
+    </ul>
+    <p>上面三樣嘢都要網絡，所以呢版唔會扮個 app 乜都唔使連。真正成立嘅講法窄啲、但實用啲：冇訊號一樣記得低，而張記錄本身留喺你部機。</p>
 
     <h2>邊啲人啱用</h2>
-    <p>記錄工地周邊問題嘅地盤團隊、安全主任同居民組織 —— 塵、噪音、阻塞、損毀 —— 一張連位置同時間嘅相，比一個電話有用好多。</p>
+    <p>記低工地周邊問題嘅地盤人員、安全主任同居民組織 —— 塵、噪音、阻塞、損毀 —— 一張連地點同時間嘅相，比一個電話有用好多。</p>
 
-    <h2>儲存同私隱</h2>
-    <p>投訴以 issue 形式儲存喺你喺設定階段配置嘅 GitHub 倉庫，可見範圍跟該倉庫嘅設定。相片喺上傳前於機身壓縮。憑證存放喺系統安全儲存。定位用嚟為投訴附上座標。</p>
+    <h2>相片同位置</h2>
+    <p>相片同記錄一齊放喺部機。座標淨係喺你主動要嗰陣先會加上去，而反查街名就係位置唯一一次離開部機嘅時刻。</p>
     <p>使用者請注意，喺工地影相有機會影到人或者私人財物，請自行妥善處理。</p>
 
     <p class="applp-note">呢個 app 仲喺開發階段，未喺 App Store 或 Google Play 上架。呢版介紹嘅係已經做好嘅部分。</p>
 
     <h2>常見問題</h2>
-    <p><strong>冇訊號會點？</strong>投訴連相片同位置存入本機待送清單，接返網之後 app 自動送出。</p>
-    <p><strong>會唔會入咗兩次？</strong>有兩道獨立閘。成功送出之後個 issue number 即刻寫低，之後點重試都唔准再送；開單之前亦會用客戶端識別碼查返現有列表。</p>
-    <p><strong>啲投訴實際存喺邊？</strong>以 issue 形式存喺你喺設定階段配置嘅 GitHub 倉庫。冇獨立伺服器，而且免費得到完整歷史、時間戳同留言。</p>
-    <p><strong>可唔可以幾個人用同一份記錄？</strong>可以。登入同一個倉庫嘅人，睇到同一批投訴。</p>
+    <p><strong>冇網會點？</strong>照樣記得低。撳確認嗰刻就已經寫咗入部機，冇任何嘢等緊網絡。要網絡嘅只有地圖同反查街名。</p>
+    <p><strong>啲記錄實際存喺邊？</strong>喺你部機。冇雲端副本、冇備份，所以「清走所有記錄」會問你兩次先做。</p>
+    <p><strong>咁個 app 到底有冇用網絡？</strong>有，三個地方：底部嘅橫額廣告、OpenStreetMap 嘅地圖磚、以及你撳咗「記低位置」之後先行嘅反查街名。記錄本身唔會離開部機。</p>
+    <p><strong>記低咗之後改唔改得？</strong>可以加跟進，每條跟進帶自己嘅時間。最初寫嗰段永遠唔會被改。</p>
+    <p><strong>一定要有位置先記得低？</strong>唔使。撳一下就帶座標；唔撳就自己打個地點，一樣記得低，只係唔會出現喺地圖上面。</p>
   </main>
 
   <aside class="applp-back" aria-label="相關頁面">

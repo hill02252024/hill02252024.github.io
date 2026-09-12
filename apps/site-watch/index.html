@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Construction site complaint logging app — Site Watch</title>
-  <meta name="description" content="Record a site problem with photo and coordinates even with no signal; it sends itself when the connection returns, with guards so nothing is filed twice." />
+  <meta name="description" content="Log a construction site problem in about 30 seconds: a photo, a category, where it is. The record is written to your phone and stays there. No signal needed to make one." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://todays-tasks.com/apps/site-watch/" />
   <link rel="alternate" hreflang="en" href="https://todays-tasks.com/apps/site-watch/" />
@@ -17,12 +17,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Today's Tasks" />
   <meta property="og:title" content="Construction site complaint logging app — Site Watch" />
-  <meta property="og:description" content="A shared site complaint log: photo, location and description captured offline, queued in an outbox, and filed automatically when the connection returns." />
+  <meta property="og:description" content="A site problem log that keeps every record on the phone that made it. Photo, category, location and follow-ups, with a list, a map and a search." />
   <meta property="og:url" content="https://todays-tasks.com/apps/site-watch/" />
   <meta property="og:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Construction site complaint logging app — Site Watch" />
-  <meta name="twitter:description" content="A shared site complaint log: photo, location and description captured offline, queued in an outbox, and filed automatically when the connection returns." />
+  <meta name="twitter:description" content="A site problem log that keeps every record on the phone that made it. Photo, category, location and follow-ups, with a list, a map and a search." />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/wealthmind.png" />
 
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
@@ -64,8 +64,8 @@
     "name": "工地投訴 Site Watch",
     "operatingSystem": "ANDROID, IOS",
     "applicationCategory": "UtilitiesApplication",
-    "description": "A shared complaint log for problems around a construction site. Reports carry a photo, coordinates and a description, are captured offline into a local outbox, and are submitted automatically when connectivity returns, with two independent layers of duplicate protection. The backend is a GitHub issue tracker, so no separate server is operated.",
-    "featureList": "Photo, location and description capture, offline outbox with automatic send, two-layer duplicate protection, map and list views, shared multi-user log via GitHub Issues, image compression before upload, local search index, credentials in secure storage, Cantonese interface",
+    "description": "Logs problems around a construction site. Each record carries a photo, a category, a description and, if the user taps for it, coordinates. Records are written to the device and stay there; there is no cloud copy. The app shows a banner advert, and the map and the street-name lookup draw on OpenStreetMap.",
+    "featureList": "Photo, category and description capture, up to three photos per record, optional coordinates, append-only follow-ups, list and map views, on-device search, records kept on the device, Cantonese interface",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -92,31 +92,31 @@
         "name": "What happens if I have no signal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The report is saved to a local outbox with its photos and location, and the app sends it automatically when the connection returns."
+          "text": "You can still make a record. The record is written to the phone as soon as you confirm it, so nothing is waiting on a connection. Only the map and the street-name lookup need one."
         }
       },
       {
         "@type": "Question",
-        "name": "Could a report be filed twice?",
+        "name": "Where are the records stored?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Two independent guards prevent it. Once a report is accepted, its issue number is recorded immediately and it can never be posted again; and before creating anything, the app checks the existing list for its client identifier."
+          "text": "On the phone that made them. There is no cloud copy and no backup, which is why clearing all records asks you to confirm twice."
         }
       },
       {
         "@type": "Question",
-        "name": "Where are the reports actually stored?",
+        "name": "Does the app use the internet at all?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "As issues in a GitHub repository you configure. There is no separate server, and you get a full history with timestamps for free."
+          "text": "Yes, in three places: the banner advert at the bottom of the screen, the map tiles from OpenStreetMap, and the street-name lookup that runs only after you tap the location button. The records themselves are never sent anywhere."
         }
       },
       {
         "@type": "Question",
-        "name": "Can several people use the same log?",
+        "name": "Can I change a record after filing it?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Everyone logging into the same repository sees the same reports."
+          "text": "You can add follow-ups, and each one carries its own time. What was written first is never edited."
         }
       },
       {
@@ -124,7 +124,7 @@
         "name": "Is location required?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. A site complaint without a position is not actionable, so the app asks for one."
+          "text": "No. Tap the location button to attach coordinates, or just type the place. A record without coordinates is still filed; it simply does not appear on the map."
         }
       }
     ]
@@ -172,49 +172,55 @@
     <div class="applp-hero">
         <div class="applp-icon" aria-hidden="true">🏗️</div>
       <div>
-        <h1>Site Watch — a site complaint logging app that survives having no signal</h1>
-        <p class="lede">Basements, lift shafts and half-built floors have no signal. This site complaint logging app captures the report anyway, queues it, and files it the moment the phone reconnects.</p>
+        <h1>Site Watch — log a construction site problem in 30 seconds</h1>
+        <p class="lede">Photograph the problem, pick a category, say where it is. The record is written to your phone and stays there. You do not need a signal to make one.</p>
       </div>
     </div>
 
     <p class="applp-note">This app is still in development and is not yet listed on the App Store or Google Play. This page describes what has been built.</p>
 
     <h2>Field reporting fails at the exact moment it is needed</h2>
-    <p>The places where something goes wrong on a construction site are the places with no reception. A web form times out, an app that posts immediately fails, and the report gets postponed until the end of the day — by which point the detail is gone, the photo was never taken, and the exact location is a guess.</p>
-    <p>Site Watch treats offline as the normal case. A report is written to a local outbox with its photo and coordinates, and the app sends it when connectivity returns, without anyone remembering to do so.</p>
+    <p>The places where something goes wrong on a construction site are the places with no reception. A web form times out, a page will not load, and the whole thing gets postponed until the end of the day — by which point the detail is gone, the photo was never taken, and the exact spot is a guess.</p>
+    <p>Site Watch writes the record straight to the phone. Confirming it is the last step; there is nothing left pending afterwards, and nothing that has to happen later for the record to exist.</p>
 
     <h2>What the site complaint logging app does</h2>
-    <p>Capture, queue, and make absolutely sure it goes in exactly once.</p>
+    <p>Open it and you are looking at the list. Filing one record is three taps.</p>
     <ul class="applp-features">
-      <li><strong>Capture with photo and coordinates.</strong> A report carries a description, one or more photos taken on the spot or picked from the library, and the location. The location field is required, because a site complaint without a position is not actionable.</li>
-      <li><strong>An outbox you can see.</strong> Pending reports are listed as waiting to send, with the app stating plainly that they will go automatically when there is a connection and that duplicates are checked before sending. A queue you cannot see is a queue you do not trust.</li>
-      <li><strong>Duplicate protection, twice over.</strong> Each report carries a client-generated identifier. Once a report has been accepted, its issue number is written down immediately and it can never be posted again no matter how many times a retry runs. Separately, before creating anything, the app queries the existing list for that identifier. Two independent gates, because the failure mode of a naive retry — a response lost in transit and the report filed twice — is the one that destroys confidence in a shared log.</li>
-      <li><strong>Photos handled sensibly.</strong> Images are compressed before upload and stored as file paths rather than being stuffed into the local database, because three photos of several hundred kilobytes each in a key-value store is a problem waiting to happen.</li>
-      <li><strong>List and map views.</strong> Reports can be read as a list or seen on a map, which is how a pattern in one part of a site becomes visible.</li>
-      <li><strong>Shared across a team.</strong> Multiple people log into the same shared record, so a report filed by one person is visible to everyone.</li>
-      <li><strong>Local search.</strong> A search index on the device, so finding an earlier report does not require a round trip.</li>
+      <li><strong>Five categories, one already chosen.</strong> Rubbish, obstruction, noise, conduct, danger. The add screen opens with one of them selected, so a record can be made without touching anything else.</li>
+      <li><strong>Up to three photos.</strong> Taken on the spot, or picked from the photo library.</li>
+      <li><strong>Location is optional.</strong> One tap attaches coordinates. If you skip it, you can just type the place and the record is still filed — it simply will not appear on the map.</li>
+      <li><strong>Follow-ups are add-only.</strong> Each follow-up carries its own time. What was written first is never edited, so the original description stays as it was written.</li>
+      <li><strong>A map of everything with coordinates.</strong> Records that carry a position are pinned, which is how a pattern in one part of a site becomes visible.</li>
+      <li><strong>Search on the device.</strong> Two or three characters find an earlier record by place, description or category.</li>
     </ul>
 
-    <h2>No server, on purpose</h2>
-    <p>The shared log is stored as issues in a GitHub repository. That is an unusual choice and a deliberate one: it means there is no backend to run, no database to secure, no hosting bill, and a full history with timestamps and comments for free. For a small team logging site problems, an issue tracker is an extremely good fit for what a complaint log actually is.</p>
-    <p>Access credentials are held in the platform's secure storage rather than in plain preferences, and photos and cached reports live on the device.</p>
+    <h2>Where the records live</h2>
+    <p>On the phone that made them. There is no cloud copy, no backup and nothing to restore from — which is exactly why clearing everything asks you to confirm twice. The records themselves are never sent anywhere.</p>
+
+    <h2>When it uses the internet</h2>
+    <p>Three places, and nothing else:</p>
+    <ul class="applp-features">
+      <li><strong>A banner advert</strong> at the bottom of the screen. The app is free and this is how it is paid for.</li>
+      <li><strong>Map tiles from OpenStreetMap</strong>, fetched while the map is on screen. The OpenStreetMap credit is shown in the corner of the map.</li>
+      <li><strong>A street-name lookup</strong>, which runs only after you tap the location button. It sends the coordinates and gets a street name back. Never tap it and it never runs.</li>
+    </ul>
+    <p>All three of those need a connection, and this page will not pretend the app never touches the internet. What is true is narrower and more useful: you can make a record with no reception at all, and the record itself stays on your phone.</p>
 
     <h2>Who it is for</h2>
-    <p>Site teams, safety officers and residents' committees logging problems around a construction site — dust, noise, obstruction, damage — where a photograph with a location and a timestamp is far more useful than a phone call.</p>
-    <p>More generally, it suits any small team doing field reporting in places with unreliable connectivity, where the report must survive being written in a basement and must not be filed twice when the signal comes back.</p>
+    <p>Site staff, safety officers and residents' groups noting problems around a construction site — dust, noise, obstruction, damage — where a photograph with a place and a time is far more useful than a phone call.</p>
 
-    <h2>Storage and privacy</h2>
-    <p>Reports are stored as issues in a GitHub repository configured during setup, so their visibility follows that repository's settings. Photos are compressed on the device before upload. Credentials are kept in secure storage. Location is used to attach coordinates to a report.</p>
+    <h2>Photos and location</h2>
+    <p>Photographs are kept on the device alongside the record. Coordinates are attached only when you ask for them, and the street-name lookup is the one moment a position leaves the phone.</p>
     <p>Anyone using it should be aware that photographs taken on a site may capture people or private property, and should handle that accordingly.</p>
 
     <p class="applp-note">This app is still in development and is not yet listed on the App Store or Google Play. This page describes what has been built.</p>
 
     <h2>Frequently asked questions</h2>
-    <p><strong>What happens if I have no signal?</strong> The report is saved to a local outbox with its photos and location, and the app sends it automatically when the connection comes back.</p>
-    <p><strong>Could a report be filed twice?</strong> Two independent guards prevent it. Once a report is accepted, its issue number is written down immediately and it can never be posted again; and before creating anything, the app queries the existing list for its client identifier.</p>
-    <p><strong>Where are the reports actually stored?</strong> As issues in a GitHub repository you configure during setup. There is no separate server, and you get a full history with timestamps and comments for free.</p>
-    <p><strong>Can several people use the same log?</strong> Yes. Everyone logging into the same repository sees the same reports.</p>
-    <p><strong>Is location required?</strong> Yes. A site complaint without a position is not actionable, so the app requires one.</p>
+    <p><strong>What happens if I have no signal?</strong> You can still make a record. It is written to the phone the moment you confirm it, so nothing is waiting on a connection. Only the map and the street-name lookup need one.</p>
+    <p><strong>Where are the records stored?</strong> On the phone that made them. There is no cloud copy and no backup, which is why clearing all records asks you to confirm twice.</p>
+    <p><strong>Does the app use the internet at all?</strong> Yes, in three places: the banner advert, the OpenStreetMap map tiles, and the street-name lookup that runs only after you tap the location button. The records themselves are never sent anywhere.</p>
+    <p><strong>Can I change a record after filing it?</strong> You can add follow-ups, and each one carries its own time. What was written first is never edited.</p>
+    <p><strong>Is location required?</strong> No. Tap the location button to attach coordinates, or just type the place. A record without coordinates is still filed; it simply does not appear on the map.</p>
   </main>
 
   <aside class="applp-back" aria-label="Related">

@@ -1639,11 +1639,11 @@
       "operating_system": "ANDROID, IOS",
       "primary_keyword": "site complaint logging app",
       "long_tail_keywords": [
-        "construction site issue tracker app offline",
-        "log site problem with photo and GPS",
+        "construction site problem logging app",
+        "log site problem with photo and location",
         "工地投訴記錄 app",
-        "offline field report app that syncs later",
-        "shared complaint log for a team"
+        "site complaint app that keeps records on the phone",
+        "地盤問題記錄 app"
       ],
       "title": "Construction site complaint logging app — Site Watch",
       "title_len": 52,
@@ -1657,18 +1657,16 @@
       "ui_language_evidence": "Cantonese UI strings throughout lib/ui/*.dart",
       "zh_page": "/zh-hk/apps/site-watch/",
       "evidence": {
-        "GitHub Issues backend": "lib/data/github/github_api.dart; pubspec description '後端係 GitHub Issues'; hosts api.github.com, github.com",
-        "offline outbox, photos as file paths not in Hive": "lib/data/local/outbox.dart:3-7",
-        "duplicate guard 1: issue number written on success": "lib/data/local/outbox.dart:38-41",
-        "duplicate guard 2: cid lookup before create": "lib/data/local/outbox.dart:41, lib/ui/list_page.dart:564,565 ('有網嗰陣會自動送，送之前會用 cid 查重。')",
-        "attempted-at timestamp for unknown outcomes": "lib/data/local/outbox.dart:44-46",
-        "photo capture + library + compression": "lib/data/photo_service.dart, lib/ui/add_page.dart:430,437 ('影相','相簿'); pubspec flutter_image_compress, image_picker",
-        "location required": "lib/ui/add_page.dart ('未填地點','要填地點')",
-        "list + map views": "lib/ui/list_page.dart, map_page.dart:67, lib/ui/home_shell.dart:80,85 ('列表','地圖')",
-        "local search index": "lib/data/local/search_index.dart",
-        "secure credential storage": "lib/data/local/credential_store.dart (flutter_secure_storage)",
-        "map tiles": "lib/ui/map_page.dart (flutter_map); host tile.openstreetmap.org",
-        "no store listing": "Play id com.hillapp.sitewatch returns HTTP 404; no Apple ID found"
+        "five categories, one preselected": "lib/ui/add_page.dart category chips",
+        "up to three photos": "lib/data/photo_service.dart; add_page.dart '最多影 3 張'",
+        "location optional": "lib/ui/add_page.dart '記低位置' button; records without coordinates are still filed",
+        "append-only follow-ups": "lib/ui/detail_page.dart '改狀態唔會改到原本報上嚟嗰啲嘢。'",
+        "list + map views": "lib/ui/list_page.dart, map_page.dart, home_shell.dart ('列表','地圖')",
+        "on-device search": "lib/data/local/search_index.dart",
+        "clear-all confirms twice": "lib/ui/list_page.dart overflow menu",
+        "three network egresses": "AdMob banner (lib/ads/), OpenStreetMap tiles (map_page.dart flutter_map), Nominatim reverse geocode on tap (lib/data/geocode_spec.dart)",
+        "no store listing": "Play id com.hillapp.sitewatch returns HTTP 404; no Apple ID found",
+        "records kept on device": "lib/data/complaint_repository.dart submit() writes straight to the local store; the write path has no pending state"
       }
     },
     {
