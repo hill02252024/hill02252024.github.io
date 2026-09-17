@@ -248,5 +248,10 @@
     "number": "58444444",
     "category": "harassment",
     "report_count": 127
+  },
+  {
+    "number": "98765432",
+    "category": "other",
+    "report_count": 1
   }
 ]
