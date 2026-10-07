@@ -6,8 +6,8 @@
     (function () {
       var l = "en";
       try {
-        l = localStorage.getItem("tt-lang") || "";
-        if (l !== "zh" && l !== "en") l = (navigator.language || "").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+        l = localStorage.getItem("tt-lang") || "en";
+        if (l !== "zh") l = "en";
       } catch (e) { l = "en"; }
       document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
       document.documentElement.setAttribute("data-lang", l);
@@ -128,25 +128,25 @@
 
   <nav class="page-breadcrumbs" aria-label="Breadcrumb">
     <ol class="page-breadcrumbs-inner">
-      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span>Home</span></a></li>
+      <li><a href="/"><svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg><span id="crumb-home">Home</span></a></li>
       <li class="sep" aria-hidden="true">›</li>
-      <li class="current" aria-current="page">Today&#39;s Tasks App</li>
+      <li class="current" id="crumb-current" aria-current="page">Today&#39;s Tasks App</li>
     </ol>
   </nav>
 
   <header class="hero">
     <div class="lang-switch" role="group" aria-label="Language">
       <button type="button" id="lang-en">English</button>
-      <button type="button" id="lang-zh" lang="zh-Hant">中文</button>
+      <button type="button" id="lang-zh">Chinese</button>
     </div>
     <div data-lang-block="en">
       <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>
-      <p>The whole thing is one page. Type a task, pick a lane, press add. Three lanes — High Priority, Due Today, General — and every day is kept in this browser, so last month is still there. No account, no install, no upload. Switch to 中文 with the button above.</p>
+      <p>The whole thing is one page. Type a task, pick a lane, press add. Three lanes — High Priority, Due Today, General — and every day is kept in this browser, so last month is still there. No account, no install, no upload. This view stays in English until you press Chinese above.</p>
       <a class="cta" href="#app">Start your list ↓</a>
     </div>
     <div data-lang-block="zh">
       <h1>今日工作清單，開頁就用</h1>
-      <p>一行、一欄、按加入。三欄係重要、今日要做、一般。每一日各自留喺呢部瀏覽器，日曆可以翻返至少一個月。唔使登入、唔使安裝、清單唔會上傳。上面個掣可以切返 English。</p>
+      <p>一行、一欄、按加入。三欄係重要、今日要做、一般。每一日各自留喺呢部瀏覽器，日曆可以翻返至少一個月。唔使登入、唔使安裝、清單唔會上傳。要睇英文版，按上面左邊個掣。</p>
       <a class="cta" href="#app">開始寫 ↓</a>
     </div>
   </header>
@@ -353,7 +353,14 @@
           prevMonth: "Previous month",
           nextMonth: "Next month",
           week: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-          related: "Related reading"
+          related: "Related reading",
+          pageTitle: "Today's Tasks App – Free Browser To-Do List",
+          crumbHome: "Home",
+          crumbHere: "Today's Tasks App",
+          rel1: "→ The Complete Guide to Productivity & Time Management",
+          rel2: "→ Why Digital To-Do Lists Beat Paper",
+          rel3: "→ How to Use Today's Tasks Effectively",
+          rel4: "→ Weekly Review Checklist"
         },
         zh: {
           appTitle: "而家用",
@@ -389,7 +396,14 @@
           prevMonth: "上個月",
           nextMonth: "下個月",
           week: ["一", "二", "三", "四", "五", "六", "日"],
-          related: "相關文章"
+          related: "相關文章",
+          pageTitle: "今日工作清單",
+          crumbHome: "首頁",
+          crumbHere: "今日工作清單",
+          rel1: "→ 生產力同時間管理",
+          rel2: "→ 點解電子待辦好過紙",
+          rel3: "→ 點用今日工作清單",
+          rel4: "→ 每週回顧清單"
         }
       };
 
@@ -491,6 +505,8 @@
         document.documentElement.setAttribute("data-lang", lang);
         document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en" ? "true" : "false");
         document.getElementById("lang-zh").setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
+        document.getElementById("lang-en").textContent = lang === "zh" ? "英文" : "English";
+        document.getElementById("lang-zh").textContent = lang === "zh" ? "中文" : "Chinese";
         document.getElementById("app-title").textContent = s.appTitle;
         document.getElementById("app-lead").textContent = s.appLead;
         document.getElementById("day-today").textContent = s.today;
@@ -510,9 +526,91 @@
         document.getElementById("h-normal").textContent = s.normal;
         document.getElementById("h-completed").textContent = s.completed;
         document.getElementById("related-title").textContent = s.related;
+        document.title = s.pageTitle;
+        document.getElementById("crumb-home").textContent = s.crumbHome;
+        document.getElementById("crumb-current").textContent = s.crumbHere;
+        var crumbs = document.querySelector(".page-breadcrumbs");
+        if (crumbs) crumbs.setAttribute("aria-label", lang === "zh" ? "麵包屑" : "Breadcrumb");
+        var rel = document.querySelectorAll("aside.related a");
+        ["rel1", "rel2", "rel3", "rel4"].forEach(function (key, i) {
+          if (rel[i]) rel[i].textContent = s[key];
+        });
         var sel = document.getElementById("task-priority");
         Array.prototype.forEach.call(sel.options, function (opt) { opt.textContent = s[opt.value]; });
         try { localStorage.setItem("tt-lang", lang); } catch (e) {}
+        applyChrome();
+      }
+
+      function applyChrome() {
+        var zh = lang === "zh";
+        var headerMap = {
+          "/tools/": zh ? "工具" : "Tools",
+          "/apps/": zh ? "應用" : "Apps",
+          "/pricing.html": zh ? "價錢" : "Pricing",
+          "/learn/why-local.html": zh ? "點解留喺本機" : "Why Local?",
+          "/productivity-tips.html": zh ? "網誌" : "Blog"
+        };
+        var footerMap = {
+          "/tools/": zh ? "私隱工具" : "Privacy Tools",
+          "/apps/": zh ? "手機應用" : "41 Mobile Apps",
+          "/pricing.html": zh ? "價錢" : "Pricing",
+          "/todo.html": zh ? "今日工作清單" : "Today's Tasks To-Do",
+          "/learn/why-local.html": zh ? "點解只喺瀏覽器" : "Why browser-only?",
+          "/tools/us/": zh ? "美國薪酬指南" : "US salary guides",
+          "/tools/eu/": zh ? "歐盟退稅指南" : "EU VAT refund guides",
+          "/compare/": zh ? "比較" : "Comparisons",
+          "/productivity-tips.html": zh ? "網誌" : "Blog",
+          "/about.html": zh ? "關於" : "About",
+          "/privacy.html": zh ? "私隱政策" : "Privacy Policy",
+          "/terms.html": zh ? "使用條款" : "Terms of Service",
+          "/contact.html": zh ? "聯絡" : "Contact"
+        };
+        var colTitle = zh ? ["產品", "學習", "信任"] : ["Products", "Learn", "Trust"];
+        document.querySelectorAll(".site-footer-v2-col-title").forEach(function (el, i) {
+          if (colTitle[i]) el.textContent = colTitle[i];
+        });
+        document.querySelectorAll(".site-nav a").forEach(function (a) {
+          var href = a.getAttribute("href");
+          if (href === "/zh-hk/" || href === "/apps/" && a.getAttribute("hreflang")) {
+            a.textContent = zh ? "英文" : "Chinese";
+            if (!a.dataset.ttLang) {
+              a.dataset.ttLang = "1";
+              a.addEventListener("click", function (e) {
+                e.preventDefault();
+                setLang(lang === "zh" ? "en" : "zh");
+              });
+            }
+            return;
+          }
+          if (headerMap[href]) a.textContent = headerMap[href];
+        });
+        var brand = document.querySelector(".site-brand");
+        if (brand) brand.textContent = zh ? "今日工作" : "Today's Tasks";
+        var cta = document.querySelector(".site-cta");
+        if (cta) cta.textContent = zh ? "打開工具" : "Open Tools";
+        var toggle = document.querySelector(".nav-toggle");
+        if (toggle) toggle.setAttribute("aria-label", zh ? "開關選單" : "Toggle navigation");
+        document.querySelectorAll(".site-footer-v2 a").forEach(function (a) {
+          var href = a.getAttribute("href");
+          if (href === "/zh-hk/") {
+            a.textContent = zh ? "香港應用" : "Hong Kong apps";
+            return;
+          }
+          if (footerMap[href]) a.textContent = footerMap[href];
+        });
+        var trust = document.querySelector(".site-footer-v2-trustline");
+        if (trust) {
+          trust.textContent = zh
+            ? "清單唔會上傳 · 唔使帳號 · 工具頁冇第三方"
+            : "0 bytes uploaded · 0 accounts needed · 0 third parties on tool pages";
+        }
+        var copy = document.querySelector(".site-footer-v2-bottom div:not(.site-footer-v2-trustline)");
+        if (copy) {
+          var year = String(new Date().getFullYear());
+          copy.textContent = zh
+            ? "© " + year + " 今日工作 · 香港獨立開發者製作"
+            : "© " + year + " Today's Tasks · Built by one independent developer · Hong Kong";
+        }
       }
 
       function renderCalendar() {
@@ -726,6 +824,7 @@
       document.getElementById("lang-zh").addEventListener("click", function () { setLang("zh"); });
       applyLang();
       render();
+      document.addEventListener("DOMContentLoaded", applyChrome);
     })();
   </script>
 <nav id="static-footer-links" aria-label="Site links">
