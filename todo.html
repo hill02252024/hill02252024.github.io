@@ -2,25 +2,35 @@
 <html lang="en">
 <head>
   <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <script>
+    (function () {
+      var l = "en";
+      try {
+        l = localStorage.getItem("tt-lang") || "";
+        if (l !== "zh" && l !== "en") l = (navigator.language || "").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+      } catch (e) { l = "en"; }
+      document.documentElement.lang = l === "zh" ? "zh-Hant" : "en";
+      document.documentElement.setAttribute("data-lang", l);
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Today's Tasks App – Daily Work Log</title>
-  <meta name="description" content="A free daily work log in the browser. Each day keeps three lanes: meetings, going out, and IT support. Nothing is uploaded. No account." />
+  <title>Today's Tasks App – Free Browser To-Do List</title>
+  <meta name="description" content="A free daily to-do list in the browser. High, Due Today, and General, with every day kept for at least a month. No account, no install. English and 中文." />
   <link rel="canonical" href="https://todays-tasks.com/todo.html" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Today's Tasks – Daily Work Log" />
-  <meta property="og:description" content="Record each work day in three lanes: meetings, site visits, and IT support. Stored in your browser only." />
+  <meta property="og:title" content="Today's Tasks – Free Daily To-Do List App" />
+  <meta property="og:description" content="Three lanes, one list per day, kept in this browser for at least a month. No account. English and 中文." />
   <meta property="og:url" content="https://todays-tasks.com/todo.html" />
   <meta property="og:image" content="https://todays-tasks.com/assets/1.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Today's Tasks – Daily Work Log" />
-  <meta name="twitter:description" content="Meetings, going out, and IT support — one list per day, stored on your device." />
+  <meta name="twitter:title" content="Today's Tasks – Free Daily To-Do List App" />
+  <meta name="twitter:description" content="A free daily to-do list. No account. Each day stays on this device." />
   <meta name="twitter:image" content="https://todays-tasks.com/assets/1.jpg" />
 
   <link rel="stylesheet" href="/style.css" />
 
-  <!-- AdSense account hint -->
   <meta name="google-adsense-account" content="ca-pub-7165265186193287" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
@@ -33,13 +43,16 @@
     "applicationCategory":"ProductivityApplication",
     "operatingSystem":"Web",
     "url":"https://todays-tasks.com/todo.html",
-    "description":"A free daily work log. Each calendar day has three lanes: meetings, going out, and IT support. Data stays in the browser.",
+    "description":"A free daily to-do list. Three lanes: High Priority, Due Today, and General. Each day is stored in the browser for at least a month. No account.",
+    "inLanguage":["en","zh-Hant"],
     "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
   }
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need an account or to install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. Open the page and write today's work. No sign-up, no install, no email."}}, {"@type": "Question", "name": "Where is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "In your browser's localStorage, on your device only. The list is not uploaded. If you clear browser storage or switch browsers, the days go with it."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after the page has loaded once. Add and tick items without a network. Each day stays on this device."}}, {"@type": "Question", "name": "How should I use the three lanes?", "acceptedAnswer": {"@type": "Answer", "text": "Meetings for who you met and what was decided. Out for where you went and what you did there. IT support for the user, the problem, and what you fixed. One line each. Tick it when it is done. It stays on that date."}}, {"@type": "Question", "name": "What happens at midnight?", "acceptedAnswer": {"@type": "Answer", "text": "The page opens on the new date with an empty list. Yesterday is still there — use the date control to read it. Unfinished lines can be copied onto today with one button, which is the practical way to carry an IT job that is not finished."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need an account or to install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. Open the page and write today's list. No sign-up, no install, no email."}}, {"@type": "Question", "name": "Where is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "In your browser's localStorage, on your device only. The list is not uploaded. If you clear browser storage or switch browsers, the days go with it."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, after the page has loaded once. Add and complete tasks without a network. Each day stays on this device."}}, {"@type": "Question", "name": "How should I use the lanes?", "acceptedAnswer": {"@type": "Answer", "text": "High Priority is the short list that has to happen today. Due Today is work that is actually due. General is everything else. One line each. Meetings, site visits, and support work all go in these three lanes — you write the fact, you do not rename the lanes."}}, {"@type": "Question", "name": "How far back can I read?", "acceptedAnswer": {"@type": "Answer", "text": "Every day you write is kept in this browser. The calendar shows the month, and you can move to earlier months. There is no account and no midnight wipe."}}]}</script>
 
   <style>
+    html[data-lang="en"] [data-lang-block="zh"] { display: none; }
+    html[data-lang="zh"] [data-lang-block="en"] { display: none; }
     .feature-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
       margin: 24px 0 32px;
@@ -53,14 +66,12 @@
     .feature-grid .f:hover { box-shadow: var(--shadow-md); border-color: var(--border-strong); }
     .feature-grid .f h3 { margin: 0 0 6px; font-size: 16px; }
     .feature-grid .f p { margin: 0; font-size: 14.5px; color: var(--text-muted); }
-
     .steps {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--r-lg); padding: 18px 24px; margin: 18px 0 28px;
     }
     .steps ol { margin: 0; padding-left: 22px; }
     .steps li { margin: 8px 0; line-height: 1.65; }
-
     .related {
       margin-top: 36px; padding: 18px 22px;
       background: #fffbeb; border: 1px solid #fde68a;
@@ -69,39 +80,43 @@
     .related strong { display: block; margin-bottom: 8px; color: #92400e; }
     .related a { display: block; color: #92400e; margin: 4px 0; font-size: 14.5px; }
     .related a:hover { color: #78350f; }
-
-    .day-bar {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
-      margin: 12px 0 8px;
+    .lang-switch { display: flex; gap: 8px; justify-content: center; margin: 0 0 14px; }
+    .lang-switch button {
+      padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--r-sm);
+      background: var(--surface); font: inherit; cursor: pointer;
     }
-    .day-bar button, .day-actions button {
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      background: var(--surface);
-      font: inherit;
-      cursor: pointer;
+    .lang-switch button[aria-pressed="true"] {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .day-bar, .day-actions, .cal-head {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0;
+    }
+    .day-bar button, .day-actions button, .cal-head button {
+      padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--r-sm);
+      background: var(--surface); font: inherit; cursor: pointer;
     }
     .day-bar input[type="date"] {
-      padding: 8px 10px;
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      font: inherit;
-      background: var(--surface);
+      padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r-sm);
+      font: inherit; background: var(--surface);
     }
     #day-label { font-weight: 650; }
-    #day-open { color: var(--text-muted); font-size: 14px; }
+    #day-open, #copy-status, .lane-empty { color: var(--text-muted); font-size: 14px; }
+    #copy-status { min-height: 1.4em; }
     .day-note {
       margin: 0 0 12px; padding: 8px 12px;
       background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--r-sm);
     }
-    .day-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
-    #copy-status { min-height: 1.4em; color: var(--text-muted); font-size: 14px; }
-    .lane-hint { margin: 0 0 8px; color: var(--text-muted); font-size: 14px; }
-    .lane-empty { margin: 0; color: var(--text-subtle); font-size: 14px; }
-    .task-list li.meeting { border-left-color: var(--accent); }
-    .task-list li.out { border-left-color: var(--warning); }
-    .task-list li.it { border-left-color: var(--success); }
+    .cal { margin: 4px 0 16px; }
+    .cal-week, .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .cal-week span { text-align: center; font-size: 12px; color: var(--text-muted); }
+    .cal-grid button {
+      border: 1px solid var(--border); background: var(--surface); border-radius: 8px;
+      min-height: 36px; font: inherit; cursor: pointer;
+    }
+    .cal-grid button.is-on { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .cal-grid button.is-today { box-shadow: inset 0 0 0 2px var(--accent); }
+    .cal-grid button.has { font-weight: 700; }
+    .lane-tag { font-size: 12px; color: var(--text-muted); margin-right: 8px; white-space: nowrap; }
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://todays-tasks.com/"},{"@type":"ListItem","position":2,"name":"Today's Tasks App","item":"https://todays-tasks.com/todo.html"}]}
@@ -120,103 +135,174 @@
   </nav>
 
   <header class="hero">
-    <h1>Today's Tasks – One List for the Work You Actually Do</h1>
-    <p>Every work day has the same three jobs: a meeting, time out of the office, and IT support. This page keeps one list per date for those three, in your browser. No account. Yesterday stays where you left it.</p>
-    <a class="cta" href="#app">Write today ↓</a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" id="lang-en">English</button>
+      <button type="button" id="lang-zh" lang="zh-Hant">中文</button>
+    </div>
+    <div data-lang-block="en">
+      <h1>Today's Tasks – A Daily To-Do List That Stays Out of Your Way</h1>
+      <p>The whole thing is one page. Type a task, pick a lane, press add. Three lanes — High Priority, Due Today, General — and every day is kept in this browser, so last month is still there. No account, no install, no upload. Switch to 中文 with the button above.</p>
+      <a class="cta" href="#app">Start your list ↓</a>
+    </div>
+    <div data-lang-block="zh">
+      <h1>今日工作清單，開頁就用</h1>
+      <p>一行、一欄、按加入。三欄係重要、今日要做、一般。每一日各自留喺呢部瀏覽器，日曆可以翻返至少一個月。唔使登入、唔使安裝、清單唔會上傳。上面個掣可以切返 English。</p>
+      <a class="cta" href="#app">開始寫 ↓</a>
+    </div>
   </header>
 
   <main class="container">
-    <section>
-      <h2>Built for a day that always has the same three parts</h2>
-      <p>A general to-do list makes you invent categories every morning. This one does not. Meetings, going out, and IT support are already the lanes. You only write the line: who, where, or what you fixed.</p>
+    <div data-lang-block="en">
+      <section>
+        <h2>Built for one job: get today done</h2>
+        <p>Most to-do apps ask you to set up workspaces, tags, and projects before you can write one line. This page does not. One input. Three lanes. A Completed section for the day you are looking at. There is nothing to configure.</p>
+        <p>Meetings, time out of the office, and support work all fit in those three lanes. Write the fact — who, where, or what you finished. The lanes stay the same every day, so you are not renaming the page to match the job.</p>
+        <div class="feature-grid">
+          <div class="f"><h3>No account needed</h3><p>Open the page and start. The list stays in this browser. Nothing is sent to a server.</p></div>
+          <div class="f"><h3>Three lanes</h3><p><strong>High Priority</strong> for what has to happen. <strong>Due Today</strong> for what is actually due. <strong>General</strong> for the rest.</p></div>
+          <div class="f"><h3>At least a month</h3><p>Each date keeps its own list. The calendar opens any day in the month, and earlier months stay too.</p></div>
+          <div class="f"><h3>Works offline</h3><p>After the first load, add and tick items with no network. The days stay on this device.</p></div>
+          <div class="f"><h3>Same on a phone</h3><p>One input, three lanes, a month grid. The same flow on a phone or a desk.</p></div>
+          <div class="f"><h3>Privacy by default</h3><p>Task text is not uploaded. See the <a href="/privacy.html">privacy policy</a>.</p></div>
+        </div>
+      </section>
+      <section>
+        <h2>How it works in three steps</h2>
+        <div class="steps">
+          <ol>
+            <li><strong>Type a task.</strong> One line, one outcome. “Draft the Section 2 outline” moves. “Work on the report” sits there.</li>
+            <li><strong>Pick a lane.</strong> High Priority for the short must-do list. Due Today for time-bound work. General for everything else. General is the default.</li>
+            <li><strong>Press Add.</strong> Tick it when it is done. It stays on that date, under Completed, so the day is still a record tomorrow.</li>
+          </ol>
+        </div>
+        <p>A longer walkthrough is in <a href="/how-to-use-todays-tasks.html">How to Use Today's Tasks</a>.</p>
+      </section>
+    </div>
 
-      <div class="feature-grid">
-        <div class="f"><h3>開會 Meetings</h3><p>One line: time, who, what was decided. Tick it when you leave the room.</p></div>
-        <div class="f"><h3>外出 Out</h3><p>Where you went and what you did there. The day still makes sense when you are back at the desk.</p></div>
-        <div class="f"><h3>IT support</h3><p>User, problem, fix. Unfinished jobs can be copied onto the next morning instead of being retyped.</p></div>
-        <div class="f"><h3>One day, kept</h3><p>Each date is its own page of notes. Midnight opens a blank today. It does not delete yesterday.</p></div>
-        <div class="f"><h3>Copy the day</h3><p>One button copies that date as plain text, so you can paste it into a message or an email.</p></div>
-        <div class="f"><h3>On this device only</h3><p>Nothing in the list is uploaded. See the <a href="/privacy.html">privacy policy</a>.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <h2>How a morning goes</h2>
-      <div class="steps">
-        <ol>
-          <li><strong>Open today.</strong> If an IT job was still open yesterday, press「由上一日帶未完成」. Do not retype it.</li>
-          <li><strong>Write one line in the right lane.</strong> 開會 for the 10:00 client call. 外出 for the site visit. IT support for the printer reset.</li>
-          <li><strong>Tick it when it is done.</strong> It stays on that date, crossed out, so the day still shows what happened.</li>
-        </ol>
-      </div>
-    </section>
+    <div data-lang-block="zh">
+      <section>
+        <h2>呢一頁只做一件事：寫低今日</h2>
+        <p>唔使開工作區、唔使標籤、唔使專案。一個輸入框、三欄、同埋你睇緊嗰一日嘅已完成。冇嘢要設定。</p>
+        <p>開會、出街、支援都寫喺呢三欄。寫低事實：同邊個、去邊、做完咩。欄名每日都一樣，唔使為咗某類工作改標題。</p>
+        <div class="feature-grid">
+          <div class="f"><h3>唔使登入</h3><p>開頁就寫。清單留喺呢部瀏覽器，唔會送去伺服器。</p></div>
+          <div class="f"><h3>三欄</h3><p><strong>重要</strong>係一定要做。<strong>今日要做</strong>係今日到期。<strong>一般</strong>係其餘。</p></div>
+          <div class="f"><h3>至少一個月</h3><p>每一日各自一份。日曆可以開呢個月任何一日，再早嘅月份都仲喺度。</p></div>
+          <div class="f"><h3>離線用得</h3><p>第一次載入之後，冇網絡都可以加同打勾。日子留喺呢部機。</p></div>
+          <div class="f"><h3>手機都係同一頁</h3><p>一個輸入框、三欄、一個月曆。手機同枱面同一個做法。</p></div>
+          <div class="f"><h3>內容唔上傳</h3><p>工作文字唔會上傳。詳見<a href="/privacy.html">私隱政策</a>。</p></div>
+        </div>
+      </section>
+      <section>
+        <h2>三步</h2>
+        <div class="steps">
+          <ol>
+            <li><strong>寫一行。</strong>一件具體嘅事。「寫好第二節大綱」做得到。「處理個報告」會停喺度。</li>
+            <li><strong>揀欄。</strong>重要只放真正要做嘅。今日要做放到期嘅。其餘放一般。預設係一般。</li>
+            <li><strong>按加入。</strong>做完打勾。佢留喺嗰一日嘅已完成，聽日翻返仍然睇到。</li>
+          </ol>
+        </div>
+      </section>
+    </div>
 
     <section id="app">
-      <h2>今日工作</h2>
-      <p>一行一件事。打勾代表做完，仍然留喺嗰一日。資料只放喺呢部瀏覽器。</p>
+      <h2 id="app-title">Try it now</h2>
+      <p id="app-lead">No signup. Pick a date, write the line, and this browser keeps it.</p>
       <div class="day-bar">
-        <button type="button" id="day-prev" aria-label="前一日">←</button>
-        <input id="day-picker" type="date" aria-label="選擇日期" />
-        <button type="button" id="day-next" aria-label="下一日">→</button>
-        <button type="button" id="day-today">今日</button>
+        <button type="button" id="day-prev">←</button>
+        <input id="day-picker" type="date" />
+        <button type="button" id="day-next">→</button>
+        <button type="button" id="day-today">Today</button>
         <span id="day-label"></span>
         <span id="day-open"></span>
       </div>
       <p id="day-note" class="day-note" hidden></p>
+      <div class="cal">
+        <div class="cal-head">
+          <button type="button" id="month-prev">‹</button>
+          <strong id="cal-title"></strong>
+          <button type="button" id="month-next">›</button>
+        </div>
+        <div class="cal-week" id="cal-week"></div>
+        <div class="cal-grid" id="month-grid"></div>
+      </div>
       <div class="input-group">
-        <input id="task-input" type="text" placeholder="一行：10:00 客戶會議、德福上門、重設印表機" aria-label="新工作" />
-        <select id="task-lane" aria-label="邊一欄">
-          <option value="meeting">開會 Meetings</option>
-          <option value="out">外出 Out</option>
-          <option value="it" selected>IT support</option>
+        <input id="task-input" type="text" />
+        <select id="task-priority">
+          <option value="important">High Priority</option>
+          <option value="due">Due Today</option>
+          <option value="normal" selected>General</option>
         </select>
-        <button id="add-btn" type="button">加入</button>
+        <button id="add-btn" type="button">Add Task</button>
       </div>
       <div class="day-actions">
-        <button type="button" id="carry-btn">由上一日帶未完成</button>
-        <button type="button" id="copy-btn">複製呢一日</button>
+        <button type="button" id="carry-btn">Bring unfinished from the previous day</button>
+        <button type="button" id="copy-btn">Copy this day</button>
       </div>
       <p id="copy-status" aria-live="polite"></p>
 
       <section class="group">
-        <h2>開會 <span id="meeting-count"></span></h2>
-        <p class="lane-hint">幾點、同邊個、決定咗咩。</p>
-        <p id="meeting-empty" class="lane-empty">未有會議。</p>
-        <ul id="meeting-list" class="task-list"></ul>
+        <h2 id="h-important">High Priority</h2>
+        <p id="empty-important" class="lane-empty" hidden></p>
+        <ul id="important-list" class="task-list"></ul>
       </section>
       <section class="group">
-        <h2>外出 <span id="out-count"></span></h2>
-        <p class="lane-hint">去邊、做咗咩。</p>
-        <p id="out-empty" class="lane-empty">未有外出。</p>
-        <ul id="out-list" class="task-list"></ul>
+        <h2 id="h-due">Due Today</h2>
+        <p id="empty-due" class="lane-empty" hidden></p>
+        <ul id="due-list" class="task-list"></ul>
       </section>
       <section class="group">
-        <h2>IT support <span id="it-count"></span></h2>
-        <p class="lane-hint">邊個用戶、咩問題、點解決。</p>
-        <p id="it-empty" class="lane-empty">未有支援。</p>
-        <ul id="it-list" class="task-list"></ul>
+        <h2 id="h-normal">General</h2>
+        <p id="empty-normal" class="lane-empty" hidden></p>
+        <ul id="normal-list" class="task-list"></ul>
+      </section>
+      <section class="group">
+        <h2 id="h-completed">Completed</h2>
+        <p id="empty-completed" class="lane-empty" hidden></p>
+        <ul id="completed-list" class="task-list"></ul>
       </section>
     </section>
 
-    <section>
-      <h2>Who it's for</h2>
-      <p>A day that always contains a meeting, a trip out, and IT support. Write the fact, not a project name. "10:00 with accounts, agreed the printer stays" is a line. "Follow up" is not.</p>
-      <p>IT jobs that run overnight stay unfinished. Next morning, bring them forward instead of starting from a blank memory. Meetings and site visits usually finish the same day, so they stay on that date as the record.</p>
-    </section>
+    <div data-lang-block="en">
+      <section>
+        <h2>Who it's for</h2>
+        <p>The same three lanes, whatever the day contains. A meeting is a line in Due Today. A site visit is a line in High or Due Today. A support job is a line in whichever lane matches how urgent it is. You do not need a lane named after the job.</p>
+        <p><strong>Work days.</strong> Three High Priority items by the time you start. Everything else waits in General until it earns a spot. If yesterday still has open lines, bring them forward instead of retyping.</p>
+        <p><strong>A month you can still read.</strong> Open last Tuesday from the calendar when someone asks what you did. Completed stays on that date. Unfinished stays open until you tick it or bring it to another day.</p>
+      </section>
+      <section id="faq">
+        <h2>Frequently asked questions</h2>
+        <details><summary>Do I need an account or to install anything?</summary><p>No. Open the page and write. No sign-up, no install, no email.</p></details>
+        <details><summary>Where is my data stored?</summary><p>In this browser only. The list is not uploaded. Clearing site data, or switching browsers, removes the days.</p></details>
+        <details><summary>Does it work offline?</summary><p>Yes, after the page has loaded once.</p></details>
+        <details><summary>How should I use the lanes?</summary><p>High Priority for the short list that has to happen. Due Today for what is actually due. General for the rest. Write meetings, trips, and support as ordinary lines.</p></details>
+        <details><summary>How far back can I read?</summary><p>Every day you write stays in this browser. Use the calendar for this month, and the month arrows for earlier months. Opening the page tomorrow shows tomorrow; it does not delete today.</p></details>
+        <details><summary>Can I undo a tick?</summary><p>Yes. In Completed, press the arrow to put the line back in its lane, or the cross to delete it.</p></details>
+        <details><summary>Is it really free?</summary><p>Yes. No account and no paid tier. The site shows ads to cover hosting; see the <a href="/privacy.html">privacy policy</a>.</p></details>
+      </section>
+    </div>
 
-    <section id="faq">
-      <h2>Frequently asked questions</h2>
-      <details><summary>Do I need an account or to install anything?</summary><p>No. Open the page and write today's work. No sign-up, no install, no email.</p></details>
-      <details><summary>Where is my data stored?</summary><p>In your browser's <code>localStorage</code>, on your device only. The list is not uploaded. If you clear browser storage or switch browsers, the days go with it.</p></details>
-      <details><summary>Does it work offline?</summary><p>Yes, after the page has loaded once. Add and tick items without a network. Each day stays on this device.</p></details>
-      <details><summary>How should I use the three lanes?</summary><p>開會 for time, people, and the decision. 外出 for where you went and what you did. IT support for the user, the problem, and the fix. One line each. Tick it when it is done. It stays on that date.</p></details>
-      <details><summary>What happens at midnight?</summary><p>The page opens on the new date with an empty list. Yesterday is still there — use the date to read it. Unfinished lines can be copied onto today with「由上一日帶未完成」.</p></details>
-      <details><summary>Can I fix a line I ticked by mistake?</summary><p>Yes. Press the arrow on that line to mark it open again, or the cross to delete it.</p></details>
-      <details><summary>Is it really free?</summary><p>Yes. No in-app purchases, no premium tier. The site shows ads to cover hosting; see the <a href="/privacy.html">privacy policy</a>.</p></details>
-    </section>
+    <div data-lang-block="zh">
+      <section>
+        <h2>邊個用</h2>
+        <p>欄名唔跟工作種類改。會議寫一行落今日要做。出街寫一行落重要或者今日要做。支援寫一行，緊急先放重要。唔使另開一欄叫支援。</p>
+        <p><strong>返工。</strong>開工之前，重要最多三行。其餘先放一般。上一日仲有未完成，用「由上一日帶未完成」，唔使重打。</p>
+        <p><strong>一個月後都翻到。</strong>有人問你上星期二做過咩，喺日曆撳嗰一日。已完成留喺當日。未完成會一直開住，直到你打勾，或者帶去另一日。</p>
+      </section>
+      <section>
+        <h2>常見問題</h2>
+        <details><summary>使唔使登入或者安裝？</summary><p>唔使。開頁就寫。冇註冊、冇安裝、唔使電郵。</p></details>
+        <details><summary>資料放喺邊？</summary><p>只喺呢部瀏覽器。清單唔會上傳。清咗網站資料，或者換瀏覽器，日子會一齊冇。</p></details>
+        <details><summary>離線用唔用得？</summary><p>第一次載入之後用得。</p></details>
+        <details><summary>三欄點用？</summary><p>重要放一定要做嘅短名單。今日要做放到期嘅。其餘放一般。開會、出街、支援都係普通一行。</p></details>
+        <details><summary>可以翻返幾遠？</summary><p>寫過嘅每一日都留喺呢部瀏覽器。呢個月用日曆，再早用月份箭咀。聽日開頁見到聽日，唔會刪走今日。</p></details>
+        <details><summary>打錯勾點算？</summary><p>喺已完成按箭咀，行會返去原來嗰欄。交叉就係刪除。</p></details>
+        <details><summary>係咪免費？</summary><p>係。冇帳號、冇付費版。網站有廣告支付託管，詳見<a href="/privacy.html">私隱政策</a>。</p></details>
+      </section>
+    </div>
 
     <aside class="related" aria-label="Related reading">
-      <strong>Related reading</strong>
+      <strong id="related-title">Related reading</strong>
       <a href="/productivity-tips.html">→ The Complete Guide to Productivity & Time Management</a>
       <a href="/digital-vs-paper-todo-lists.html">→ Why Digital To-Do Lists Beat Paper</a>
       <a href="/how-to-use-todays-tasks.html">→ How to Use Today's Tasks Effectively</a>
@@ -231,18 +317,92 @@
 
   <script>
     (function () {
-      var LANES = ['meeting', 'out', 'it'];
-      var STORE = 'tt-workdays';
+      var LANES = ["important", "due", "normal"];
+      var COPY = {
+        en: {
+          appTitle: "Try it now",
+          appLead: "No signup. Pick a date, write the line, and this browser keeps it.",
+          today: "Today",
+          prevDay: "Previous day",
+          nextDay: "Next day",
+          pick: "Choose a date",
+          placeholder: "Enter a new task…",
+          task: "New task",
+          lane: "Lane",
+          add: "Add Task",
+          important: "High Priority",
+          due: "Due Today",
+          normal: "General",
+          completed: "Completed",
+          carry: "Bring unfinished from the previous day",
+          copy: "Copy this day",
+          emptyOpen: "Nothing here.",
+          emptyDone: "Nothing completed on this day.",
+          none: "(none)",
+          past: "You are reading an earlier day.",
+          future: "You are writing a later day.",
+          noPrev: "The previous day has no record.",
+          noOpen: "The previous day has nothing unfinished.",
+          brought: "Brought {n} unfinished over.",
+          copied: "Copied. Paste it into a message or email.",
+          copyFail: "Could not copy.",
+          open: "{n} still open",
+          doneBtn: "Mark complete",
+          restore: "Restore",
+          del: "Delete",
+          prevMonth: "Previous month",
+          nextMonth: "Next month",
+          week: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          related: "Related reading"
+        },
+        zh: {
+          appTitle: "而家用",
+          appLead: "唔使註冊。揀日子，寫一行，呢部瀏覽器會留低。",
+          today: "今日",
+          prevDay: "前一日",
+          nextDay: "下一日",
+          pick: "選擇日期",
+          placeholder: "寫一行工作…",
+          task: "新工作",
+          lane: "邊一欄",
+          add: "加入",
+          important: "重要",
+          due: "今日要做",
+          normal: "一般",
+          completed: "已完成",
+          carry: "由上一日帶未完成",
+          copy: "複製呢一日",
+          emptyOpen: "未有項目。",
+          emptyDone: "呢一日未有完成。",
+          none: "（冇）",
+          past: "你睇緊舊日紀錄。",
+          future: "你寫緊之後嘅日子。",
+          noPrev: "上一日冇紀錄。",
+          noOpen: "上一日冇未完成項目。",
+          brought: "帶咗 {n} 項未完成過嚟。",
+          copied: "已複製，可以貼去訊息或電郵。",
+          copyFail: "複製唔到。",
+          open: "未完成 {n} 項",
+          doneBtn: "完成",
+          restore: "改回未完成",
+          del: "刪除",
+          prevMonth: "上個月",
+          nextMonth: "下個月",
+          week: ["一", "二", "三", "四", "五", "六", "日"],
+          related: "相關文章"
+        }
+      };
+
+      var lang = document.documentElement.getAttribute("data-lang") === "zh" ? "zh" : "en";
       var current = todayKey();
       var db = load();
 
+      function t() { return COPY[lang]; }
       function todayKey() { return fmt(new Date()); }
-      function fmt(d) {
-        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-      }
-      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+      function fmt(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
       function parseKey(key) {
-        var p = key.split('-');
+        var p = key.split("-");
         return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
       }
       function shift(key, days) {
@@ -250,109 +410,179 @@
         d.setDate(d.getDate() + days);
         return fmt(d);
       }
-      function emptyDay() { return { meeting: [], out: [], it: [] }; }
       function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+      function emptyDay() { return { important: [], due: [], normal: [] }; }
 
+      function normList(arr) {
+        if (!Array.isArray(arr)) return [];
+        return arr.map(function (item) {
+          if (typeof item === "string") return { id: uid(), text: item.trim(), done: false };
+          if (!item || typeof item.text !== "string") return null;
+          return { id: item.id || uid(), text: item.text.trim(), done: !!item.done };
+        }).filter(function (item) { return item && item.text; });
+      }
+      function normDay(day) {
+        var out = emptyDay();
+        if (!day || typeof day !== "object") return out;
+        LANES.forEach(function (id) { out[id] = normList(day[id]); });
+        return out;
+      }
       function load() {
         var data = {};
-        try { data = JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { data = {}; }
-        if (!data || typeof data !== 'object' || Array.isArray(data)) data = {};
-        if (!localStorage.getItem(STORE + '-migrated')) {
-          migrate(data);
-          localStorage.setItem(STORE + '-migrated', '1');
-          localStorage.setItem(STORE, JSON.stringify(data));
+        try { data = JSON.parse(localStorage.getItem("tt-days")) || {}; } catch (e) { data = {}; }
+        if (!data || typeof data !== "object" || Array.isArray(data)) data = {};
+        Object.keys(data).forEach(function (key) { data[key] = normDay(data[key]); });
+        if (!localStorage.getItem("tt-days-v1")) {
+          migrateOld(data);
+          try {
+            localStorage.setItem("tt-days-v1", "1");
+            localStorage.setItem("tt-days", JSON.stringify(data));
+          } catch (e2) {}
         }
         return data;
       }
-      function migrate(data) {
-        var old;
-        try { old = JSON.parse(localStorage.getItem('tasks')); } catch (e) { return; }
-        if (!old || typeof old !== 'object') return;
-        var day = data[todayKey()] || emptyDay();
-        function take(arr, lane, done) {
-          (arr || []).forEach(function (text) {
-            if (typeof text !== 'string' || !text.trim()) return;
-            day[lane].push({ id: uid(), text: text.trim(), done: done });
+      function pushUnique(list, text, done) {
+        var clean = String(text || "").trim();
+        if (!clean) return;
+        var exists = list.some(function (item) { return item.text === clean && item.done === done; });
+        if (!exists) list.push({ id: uid(), text: clean, done: done });
+      }
+      function migrateOld(data) {
+        var legacy;
+        try { legacy = JSON.parse(localStorage.getItem("tasks")); } catch (e) { legacy = null; }
+        if (legacy && typeof legacy === "object") {
+          var day = data[todayKey()] || emptyDay();
+          (legacy.important || []).forEach(function (text) { pushUnique(day.important, text, false); });
+          (legacy.due || []).forEach(function (text) { pushUnique(day.due, text, false); });
+          (legacy.normal || []).forEach(function (text) { pushUnique(day.normal, text, false); });
+          (legacy.completed || []).forEach(function (text) { pushUnique(day.normal, text, true); });
+          data[todayKey()] = day;
+        }
+        var work;
+        try { work = JSON.parse(localStorage.getItem("tt-workdays")); } catch (e2) { work = null; }
+        if (work && typeof work === "object" && !Array.isArray(work)) {
+          Object.keys(work).forEach(function (key) {
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(key)) return;
+            var src = work[key] || {};
+            var day = data[key] || emptyDay();
+            (src.meeting || []).forEach(function (item) { if (item && item.text) pushUnique(day.important, item.text, !!item.done); });
+            (src.out || []).forEach(function (item) { if (item && item.text) pushUnique(day.due, item.text, !!item.done); });
+            (src.it || []).forEach(function (item) { if (item && item.text) pushUnique(day.normal, item.text, !!item.done); });
+            data[key] = day;
           });
         }
-        take(old.important, 'meeting', false);
-        take(old.due, 'out', false);
-        take(old.normal, 'it', false);
-        take(old.completed, 'it', true);
-        data[todayKey()] = day;
       }
-      function save() { localStorage.setItem(STORE, JSON.stringify(db)); }
+      function save() { try { localStorage.setItem("tt-days", JSON.stringify(db)); } catch (e) {} }
+      function readDay() { return db[current] || emptyDay(); }
       function ensure() {
-        if (!db[current]) db[current] = emptyDay();
-        LANES.forEach(function (id) {
-          if (!Array.isArray(db[current][id])) db[current][id] = [];
-        });
+        db[current] = normDay(db[current] || emptyDay());
         return db[current];
       }
-      function readDay() {
-        var day = db[current] || emptyDay();
-        LANES.forEach(function (id) {
-          if (!Array.isArray(day[id])) day[id] = [];
-        });
-        return day;
+      function setStatus(msg) { document.getElementById("copy-status").textContent = msg; }
+      function hasItems(key) {
+        var day = db[key];
+        if (!day) return false;
+        return LANES.some(function (id) { return normList(day[id]).length > 0; });
       }
 
-      function render() {
-        var day = readDay();
-        document.getElementById('day-picker').value = current;
-        document.getElementById('day-label').textContent = parseKey(current).toLocaleDateString('zh-HK', {
-          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      function applyLang() {
+        var s = t();
+        document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+        document.getElementById("lang-zh").setAttribute("aria-pressed", lang === "zh" ? "true" : "false");
+        document.getElementById("app-title").textContent = s.appTitle;
+        document.getElementById("app-lead").textContent = s.appLead;
+        document.getElementById("day-today").textContent = s.today;
+        document.getElementById("day-prev").setAttribute("aria-label", s.prevDay);
+        document.getElementById("day-next").setAttribute("aria-label", s.nextDay);
+        document.getElementById("day-picker").setAttribute("aria-label", s.pick);
+        document.getElementById("month-prev").setAttribute("aria-label", s.prevMonth);
+        document.getElementById("month-next").setAttribute("aria-label", s.nextMonth);
+        document.getElementById("task-input").placeholder = s.placeholder;
+        document.getElementById("task-input").setAttribute("aria-label", s.task);
+        document.getElementById("task-priority").setAttribute("aria-label", s.lane);
+        document.getElementById("add-btn").textContent = s.add;
+        document.getElementById("carry-btn").textContent = s.carry;
+        document.getElementById("copy-btn").textContent = s.copy;
+        document.getElementById("h-important").textContent = s.important;
+        document.getElementById("h-due").textContent = s.due;
+        document.getElementById("h-normal").textContent = s.normal;
+        document.getElementById("h-completed").textContent = s.completed;
+        document.getElementById("related-title").textContent = s.related;
+        var sel = document.getElementById("task-priority");
+        Array.prototype.forEach.call(sel.options, function (opt) { opt.textContent = s[opt.value]; });
+        try { localStorage.setItem("tt-lang", lang); } catch (e) {}
+      }
+
+      function renderCalendar() {
+        var s = t();
+        var shown = parseKey(current);
+        var year = shown.getFullYear();
+        var month = shown.getMonth();
+        document.getElementById("cal-title").textContent = shown.toLocaleDateString(lang === "zh" ? "zh-HK" : "en", { year: "numeric", month: "long" });
+        var week = document.getElementById("cal-week");
+        week.replaceChildren();
+        s.week.forEach(function (name) {
+          var span = document.createElement("span");
+          span.textContent = name;
+          week.appendChild(span);
         });
-        var note = document.getElementById('day-note');
-        if (current === todayKey()) {
-          note.hidden = true;
-          note.textContent = '';
-        } else {
-          note.hidden = false;
-          note.textContent = current < todayKey() ? '你睇緊舊日紀錄。' : '你寫緊之後嘅日子。';
+        var grid = document.getElementById("month-grid");
+        grid.replaceChildren();
+        var first = new Date(year, month, 1);
+        var padCount = (first.getDay() + 6) % 7;
+        var days = new Date(year, month + 1, 0).getDate();
+        var i;
+        for (i = 0; i < padCount; i++) grid.appendChild(document.createElement("span"));
+        for (var day = 1; day <= days; day++) {
+          var key = fmt(new Date(year, month, day));
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = String(day);
+          if (key === current) btn.classList.add("is-on");
+          if (key === todayKey()) btn.classList.add("is-today");
+          if (hasItems(key)) btn.classList.add("has");
+          btn.addEventListener("click", (function (k) {
+            return function () { current = k; setStatus(""); render(); };
+          })(key));
+          grid.appendChild(btn);
         }
-        var open = 0;
-        LANES.forEach(function (id) {
-          var list = document.getElementById(id + '-list');
-          list.replaceChildren();
-          var n = 0;
-          day[id].forEach(function (item) {
-            if (!item.done) n += 1;
-            list.appendChild(row(item, id));
-          });
-          open += n;
-          document.getElementById(id + '-count').textContent = n ? '(' + n + ')' : '';
-          document.getElementById(id + '-empty').hidden = day[id].length !== 0;
-        });
-        document.getElementById('day-open').textContent = '未完成 ' + open + ' 項';
       }
 
-      function row(item, lane) {
-        var li = document.createElement('li');
-        li.className = lane + (item.done ? ' completed' : '');
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'complete-btn';
-        btn.title = item.done ? '改回未完成' : '完成';
-        btn.setAttribute('aria-label', btn.title);
-        btn.textContent = item.done ? '↩' : '✔';
-        btn.addEventListener('click', function () {
+      function row(item, lane, done) {
+        var s = t();
+        var li = document.createElement("li");
+        li.className = lane + (done ? " completed" : "");
+        if (done) {
+          var tag = document.createElement("span");
+          tag.className = "lane-tag";
+          tag.textContent = s[lane];
+          li.appendChild(tag);
+        }
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "complete-btn";
+        btn.title = done ? s.restore : s.doneBtn;
+        btn.setAttribute("aria-label", btn.title);
+        btn.textContent = done ? "↩" : "✔";
+        btn.addEventListener("click", function () {
           item.done = !item.done;
           save();
           render();
         });
-        var span = document.createElement('span');
+        var span = document.createElement("span");
         span.textContent = item.text;
-        var del = document.createElement('button');
-        del.type = 'button';
-        del.className = 'complete-btn';
-        del.title = '刪除';
-        del.setAttribute('aria-label', '刪除');
-        del.textContent = '×';
-        del.addEventListener('click', function () {
+        var del = document.createElement("button");
+        del.type = "button";
+        del.className = "complete-btn";
+        del.title = s.del;
+        del.setAttribute("aria-label", s.del);
+        del.textContent = "×";
+        del.addEventListener("click", function () {
           var list = db[current][lane];
-          var i = list.findIndex(function (x) { return x.id === item.id; });
-          if (i >= 0) list.splice(i, 1);
+          var at = list.findIndex(function (x) { return x.id === item.id; });
+          if (at >= 0) list.splice(at, 1);
           save();
           render();
         });
@@ -362,30 +592,66 @@
         return li;
       }
 
+      function render() {
+        var s = t();
+        var day = readDay();
+        document.getElementById("day-picker").value = current;
+        document.getElementById("day-label").textContent = parseKey(current).toLocaleDateString(lang === "zh" ? "zh-HK" : "en", {
+          weekday: "long", year: "numeric", month: "long", day: "numeric"
+        });
+        var note = document.getElementById("day-note");
+        if (current === todayKey()) {
+          note.hidden = true;
+          note.textContent = "";
+        } else {
+          note.hidden = false;
+          note.textContent = current < todayKey() ? s.past : s.future;
+        }
+        var open = 0;
+        var doneItems = [];
+        LANES.forEach(function (id) {
+          var list = document.getElementById(id + "-list");
+          list.replaceChildren();
+          var n = 0;
+          day[id].forEach(function (item) {
+            if (item.done) doneItems.push({ item: item, lane: id });
+            else {
+              n += 1;
+              list.appendChild(row(item, id, false));
+            }
+          });
+          open += n;
+          document.getElementById("empty-" + id).hidden = n !== 0;
+          document.getElementById("empty-" + id).textContent = s.emptyOpen;
+        });
+        var doneList = document.getElementById("completed-list");
+        doneList.replaceChildren();
+        doneItems.forEach(function (entry) { doneList.appendChild(row(entry.item, entry.lane, true)); });
+        document.getElementById("empty-completed").hidden = doneItems.length !== 0;
+        document.getElementById("empty-completed").textContent = s.emptyDone;
+        document.getElementById("day-open").textContent = s.open.replace("{n}", String(open));
+        renderCalendar();
+      }
+
       function addTask() {
-        var input = document.getElementById('task-input');
-        var lane = document.getElementById('task-lane').value;
-        var text = (input.value || '').trim();
+        var input = document.getElementById("task-input");
+        var lane = document.getElementById("task-priority").value;
+        var text = (input.value || "").trim();
         if (!text || LANES.indexOf(lane) < 0) return;
         ensure()[lane].push({ id: uid(), text: text, done: false });
-        input.value = '';
+        input.value = "";
         save();
         render();
         input.focus();
       }
-
-      function setStatus(msg) {
-        document.getElementById('copy-status').textContent = msg;
-      }
-
       function carry() {
         var src = db[shift(current, -1)];
-        if (!src) { setStatus('上一日冇紀錄。'); return; }
+        if (!src) { setStatus(t().noPrev); return; }
         var day = ensure();
         var n = 0;
         LANES.forEach(function (id) {
-          (src[id] || []).forEach(function (item) {
-            if (!item || item.done || typeof item.text !== 'string') return;
+          normList(src[id]).forEach(function (item) {
+            if (item.done) return;
             var exists = day[id].some(function (x) { return !x.done && x.text === item.text; });
             if (exists) return;
             day[id].push({ id: uid(), text: item.text, done: false });
@@ -394,53 +660,71 @@
         });
         save();
         render();
-        setStatus(n ? '帶咗 ' + n + ' 項未完成過嚟。' : '上一日冇未完成項目。');
+        setStatus(n ? t().brought.replace("{n}", String(n)) : t().noOpen);
       }
-
       function copyDay() {
+        var s = t();
         var day = readDay();
-        var names = { meeting: '開會', out: '外出', it: 'IT support' };
-        var lines = [document.getElementById('day-label').textContent];
+        var lines = [document.getElementById("day-label").textContent];
         LANES.forEach(function (id) {
-          lines.push('');
-          lines.push(names[id]);
-          if (!day[id].length) lines.push('- （冇）');
+          lines.push("");
+          lines.push(s[id]);
+          if (!day[id].length) lines.push("- " + s.none);
           day[id].forEach(function (item) {
-            lines.push((item.done ? '- [x] ' : '- [ ] ') + item.text);
+            lines.push((item.done ? "- [x] " : "- [ ] ") + item.text);
           });
         });
-        var text = lines.join('\n');
+        var text = lines.join("\n");
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function () {
-            setStatus('已複製呢一日，可以貼去訊息或電郵。');
-          }, function () { fallbackCopy(text); });
+          navigator.clipboard.writeText(text).then(function () { setStatus(s.copied); }, function () { fallbackCopy(text); });
         } else fallbackCopy(text);
       }
       function fallbackCopy(text) {
-        var ta = document.createElement('textarea');
+        var ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
         ta.select();
         var ok = false;
-        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
         ta.remove();
-        setStatus(ok ? '已複製呢一日。' : '複製唔到。');
+        setStatus(ok ? t().copied : t().copyFail);
+      }
+      function setLang(next) {
+        lang = next;
+        applyLang();
+        render();
       }
 
-      document.getElementById('add-btn').addEventListener('click', addTask);
-      document.getElementById('task-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') addTask();
+      document.getElementById("add-btn").addEventListener("click", addTask);
+      document.getElementById("task-input").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") addTask();
       });
-      document.getElementById('day-prev').addEventListener('click', function () { current = shift(current, -1); render(); });
-      document.getElementById('day-next').addEventListener('click', function () { current = shift(current, 1); render(); });
-      document.getElementById('day-today').addEventListener('click', function () { current = todayKey(); render(); });
-      document.getElementById('day-picker').addEventListener('change', function (e) {
+      document.getElementById("day-prev").addEventListener("click", function () { current = shift(current, -1); setStatus(""); render(); });
+      document.getElementById("day-next").addEventListener("click", function () { current = shift(current, 1); setStatus(""); render(); });
+      document.getElementById("day-today").addEventListener("click", function () { current = todayKey(); setStatus(""); render(); });
+      document.getElementById("day-picker").addEventListener("change", function (e) {
         if (!e.target.value) return;
         current = e.target.value;
+        setStatus("");
         render();
       });
-      document.getElementById('carry-btn').addEventListener('click', carry);
-      document.getElementById('copy-btn').addEventListener('click', copyDay);
+      document.getElementById("month-prev").addEventListener("click", function () {
+        var d = parseKey(current);
+        current = fmt(new Date(d.getFullYear(), d.getMonth() - 1, 1));
+        setStatus("");
+        render();
+      });
+      document.getElementById("month-next").addEventListener("click", function () {
+        var d = parseKey(current);
+        current = fmt(new Date(d.getFullYear(), d.getMonth() + 1, 1));
+        setStatus("");
+        render();
+      });
+      document.getElementById("carry-btn").addEventListener("click", carry);
+      document.getElementById("copy-btn").addEventListener("click", copyDay);
+      document.getElementById("lang-en").addEventListener("click", function () { setLang("en"); });
+      document.getElementById("lang-zh").addEventListener("click", function () { setLang("zh"); });
+      applyLang();
       render();
     })();
   </script>
