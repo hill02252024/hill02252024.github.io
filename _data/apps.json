@@ -1724,6 +1724,34 @@
         "camera": "lib/core/camera_permission.dart; Info.plist NSCameraUsageDescription",
         "10 languages": "lib/l10n/app_localizations_{ar,de,en,es,fr,ja,ko,pt,zh}.dart"
       }
+    },
+    {
+      "slug": "passport-rush",
+      "app_name": "Passport Rush",
+      "page": "/apps/passport-rush/",
+      "category": "travel",
+      "play_url": "https://play.google.com/store/apps/details?id=com.hillapp.passport_rush_flutter",
+      "apple_url": null,
+      "operating_system": "ANDROID",
+      "primary_keyword": "travel-themed arcade runner game",
+      "long_tail_keywords": [
+        "arcade runner with travel theme",
+        "country-themed endless runner Android game",
+        "travel arcade game with daily missions",
+        "passport stamp collection runner game"
+      ],
+      "title": "Passport Rush: Travel Arcade Runner Game — 30 Countries",
+      "title_len": 55,
+      "meta_description_len": 135,
+      "word_count": 554,
+      "market": "global",
+      "market_evidence": "English-language Google Play listing; store availability may vary by country.",
+      "evidence": {
+        "30 destinations and country modifiers": "Google Play listing, checked 2026-11-01",
+        "daily missions and postcard collection": "Google Play listing, checked 2026-11-01",
+        "ads and in-app purchases": "Google Play listing marks Contains ads and In-app purchases, checked 2026-11-01",
+        "Android store listing": "https://play.google.com/store/apps/details?id=com.hillapp.passport_rush_flutter"
+      }
     }
   ]
 }
