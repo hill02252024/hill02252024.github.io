@@ -80,7 +80,7 @@
             '<div class="site-footer-v2-col-title">Products</div>' +
             '<div class="site-footer-v2-links">' +
               '<a href="/tools/">Privacy Tools</a>' +
-              '<a href="/apps/">41 Mobile Apps</a>' +
+              '<a href="/apps/">42 Mobile Apps</a>' +
               '<a href="/zh-hk/" hreflang="zh-Hant-HK" lang="zh-Hant-HK">香港應用（中文）</a>' +
               '<a href="/pricing.html">Pricing</a>' +
               '<a href="/todo.html">Today\'s Tasks To-Do</a>' +

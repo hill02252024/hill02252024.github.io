@@ -2,6 +2,10 @@
 
 靜態站，GitHub Pages 部署，自訂網域 `todays-tasks.com`（見 `CNAME`）。
 
+## AdSense 與同意管理
+
+廣告程式只留在編輯內容頁；主 to-do、計算器／工具、文件處理畫面、App 目錄與 App 專頁不載入 AdSense，以免廣告靠近輸入、結果、下載或商店按鈕。不要在這些互動頁重新加入廣告程式。EEA、英國及瑞士的個人化廣告同意由 AdSense「Privacy & messaging」的 Google 認證 CMP 管理；本 repository 不自製同意橫幅，帳戶設定仍須在 AdSense 後台確認。
+
 ## 結構
 
 ```
