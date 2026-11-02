@@ -1,0 +1,29 @@
+{
+  "files": [
+    "404.html",
+    "about.html",
+    "assets/calculations.js",
+    "assets/site.css",
+    "assets/site.js",
+    "calculators/fire.html",
+    "calculators/travel.html",
+    "disclaimer.html",
+    "guides/compound-interest-hkd.html",
+    "guides/dividend-yield-vs-total-return.html",
+    "guides/dollar-cost-averaging.html",
+    "guides/emergency-fund-hk.html",
+    "guides/fire-number.html",
+    "guides/hk-monthly-budget.html",
+    "guides/index-funds-etfs.html",
+    "guides/index.html",
+    "guides/investment-diversification.html",
+    "guides/investment-fees-hk.html",
+    "guides/investment-scam-checklist-hk.html",
+    "guides/mpf-fund-fees.html",
+    "guides/passive-income.html",
+    "guides/travel-cashflow.html",
+    "index.html",
+    "news/index.html",
+    "privacy.html"
+  ]
+}
