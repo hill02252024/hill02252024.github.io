@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <script>if(location.hostname==="hill02252024.github.io")location.replace("https://todays-tasks.com"+location.pathname+location.search+location.hash);</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payday Compass — A Paycheck Budgeting App for Daily Spending</title>
+  <meta name="description" content="Plan spending between paydays with Payday Compass: track bills, savings goals, a protected buffer, daily spending pace and weekly or monthly insights.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://todays-tasks.com/apps/payday-compass/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Today's Tasks">
+  <meta property="og:title" content="Payday Compass — A Paycheck Budgeting App for Daily Spending">
+  <meta property="og:description" content="Know what is already reserved for bills and savings, then see a practical spending pace before your next payday.">
+  <meta property="og:url" content="https://todays-tasks.com/apps/payday-compass/">
+  <meta property="og:image" content="https://todays-tasks.com/assets/apps/paydaycompass-feature.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Payday Compass — A Paycheck Budgeting App for Daily Spending">
+  <meta name="twitter:description" content="A paycheck cash-flow planner for bills, savings goals and daily spending pace.">
+  <meta name="twitter:image" content="https://todays-tasks.com/assets/apps/paydaycompass-feature.png">
+  <link rel="stylesheet" href="/style.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"MobileApplication",
+    "name":"Payday Compass",
+    "operatingSystem":"Android",
+    "applicationCategory":"FinanceApplication",
+    "description":"An offline-first U.S. paycheck cash-flow planner that estimates what remains for spending after upcoming bills, planned savings contributions and a protected buffer.",
+    "url":"https://todays-tasks.com/apps/payday-compass/",
+    "image":"https://todays-tasks.com/assets/apps/paydaycompass-feature.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Does Payday Compass connect to my bank?","acceptedAnswer":{"@type":"Answer","text":"No. It has no bank connection or account sign-in. You can enter spending in the app or import a supported bank CSV; suggested categories can be reviewed and edited."}},
+      {"@type":"Question","name":"How does Payday Leftover work?","acceptedAnswer":{"@type":"Answer","text":"It starts with the cash balance you track in the app and subtracts your protected buffer, bills due before the next payday and planned savings contributions. It is a planning estimate, not a bank balance."}},
+      {"@type":"Question","name":"Can I see spending trends?","acceptedAnswer":{"@type":"Answer","text":"Yes. Spending insights include today, this week and this month, with comparable-period changes, daily averages, category shares and daily spending bars."}},
+      {"@type":"Question","name":"Is Payday Compass available on Google Play now?","acceptedAnswer":{"@type":"Answer","text":"A public Google Play listing is not available yet. This page will add a store link when a public listing is live."}}
+    ]
+  }
+  </script>
+  <style>
+    .pc-page{max-width:1040px;margin:0 auto;padding:28px 20px 64px;color:var(--text,#17211e)}
+    .pc-breadcrumb{font-size:14px;color:var(--text-muted,#64716c);margin:0 0 20px}
+    .pc-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(240px,.75fr);gap:32px;align-items:center;padding:30px;border:1px solid var(--border,#dce5df);border-radius:24px;background:var(--surface,#f5f8f5)}
+    .pc-brand{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+    .pc-brand img{width:72px;height:72px;border-radius:18px;box-shadow:0 10px 28px #1232}
+    .pc-kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#28745d}
+    .pc-hero h1{font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-.035em;margin:6px 0 14px}
+    .pc-lead{font-size:19px;line-height:1.65;color:var(--text-muted,#52615a);max-width:64ch}
+    .pc-hero figure{margin:0}
+    .pc-hero figure img{display:block;width:100%;max-height:560px;object-fit:cover;object-position:top;border-radius:18px;box-shadow:0 18px 40px #1233}
+    .pc-note{margin:22px 0;padding:16px 18px;border-left:4px solid #d79a38;background:#fff7e8;border-radius:10px;line-height:1.6}
+    .pc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:22px 0}
+    .pc-card{padding:20px;border:1px solid var(--border,#dce5df);border-radius:16px;background:var(--card,#fff)}
+    .pc-card h3{margin:0 0 8px;font-size:19px}
+    .pc-card p,.pc-page p,.pc-page li{font-size:16px;line-height:1.75}
+    .pc-page h2{margin:38px 0 12px;font-size:27px;letter-spacing:-.02em}
+    .pc-page a{color:#176b53;text-underline-offset:3px}
+    .pc-cta{display:inline-block;margin:8px 10px 0 0;padding:11px 16px;border-radius:10px;background:#176b53;color:#fff!important;font-weight:700;text-decoration:none}
+    .pc-cta--light{background:#e7f1eb;color:#175a47!important}
+    .pc-small{font-size:14px!important;color:var(--text-muted,#64716c)}
+    .pc-screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:760px;margin:28px auto}
+    .pc-screens figure{margin:0;padding:14px;border:1px solid var(--border,#dce5df);border-radius:18px;background:var(--card,#fff)}
+    .pc-screens img{display:block;width:100%;max-height:540px;object-fit:contain;border-radius:10px}
+    .pc-screens figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:var(--text-muted,#64716c)}
+
+    @media(max-width:760px){.pc-hero{grid-template-columns:1fr;padding:22px}.pc-hero figure img{max-height:460px}.pc-grid{grid-template-columns:1fr}.pc-page{padding:20px 16px 48px}}
+  </style>
+</head>
+<body>
+  <script src="/nav.js" defer></script>
+  <main class="pc-page">
+    <p class="pc-breadcrumb"><a href="/">Home</a> / <a href="/apps/">Mobile apps</a> / Payday Compass</p>
+    <section class="pc-hero" aria-labelledby="page-title">
+      <div>
+        <div class="pc-brand"><img src="/assets/apps/paydaycompass.png" alt="Payday Compass app icon" width="72" height="72"><span class="pc-kicker">A U.S. paycheck cash-flow planner</span></div>
+        <h1 id="page-title">A paycheck budgeting app for safer spending before your next payday</h1>
+        <p class="pc-lead">Payday Compass turns the question “How much can I spend before I get paid again?” into a practical plan—after bills, planned savings and a buffer are set aside.</p>
+        <a class="pc-cta" href="#how-it-works">See how it works</a>
+        <a class="pc-cta pc-cta--light" href="/payday-compass-privacy.html">Read the privacy policy</a>
+      </div>
+      <figure><img src="/assets/apps/paydaycompass-insights.png" alt="Payday Compass weekly and monthly spending insights with daily spending bars and category breakdown" width="1080" height="1920" fetchpriority="high"></figure>
+    </section>
+    <p class="pc-note"><strong>Availability:</strong> A public Google Play listing is not live yet, so this page does not include a download button. It will be added once the app has a public store listing.</p>
+    <p>Many budgeting apps focus on monthly totals. Payday Compass focuses on the days between paychecks: it helps you account for bills that are due soon, savings you have already planned, and the cash you want to keep untouched.</p>
+    <h2 id="how-it-works">What you can check in a few seconds</h2>
+    <div class="pc-grid">
+      <article class="pc-card"><h3>Payday Leftover</h3><p>Start with the cash balance you track in the app. Subtract bills due before the next payday, planned savings contributions and your protected buffer to estimate what remains available. It is a planning number—not a live bank balance.</p></article>
+      <article class="pc-card"><h3>Daily spending pace</h3><p>Compare your recent seven-day average with the approximate daily amount available through the next payday. A clear pace makes it easier to notice when spending is running ahead of the plan.</p></article>
+      <article class="pc-card"><h3>Daily, weekly and monthly insights</h3><p>See total spending, the change from a comparable period, daily average, top category, category shares and daily bars. The chart is there to answer “Where did the money go?” without burying the key payday number.</p></article>
+      <article class="pc-card"><h3>Bills, goals and receipts</h3><p>Plan recurring bills and a per-paycheck savings contribution. Receipt scanning can suggest a merchant and total on your device; review and edit the result before saving.</p></article>
+    </div>
+    <section class="pc-screens" aria-label="Payday Compass app screenshots">
+      <figure><img src="/assets/apps/payday-compass-payday-plan.png" alt="Payday Compass plan showing cash available after upcoming bills and savings goals" width="1080" height="1920" loading="lazy"><figcaption>Check what remains after setting aside upcoming bills and planned savings.</figcaption></figure>
+      <figure><img src="/assets/apps/paydaycompass-insights.png" alt="Payday Compass spending insights chart with daily bars and category breakdown" width="1080" height="1920" loading="lazy"><figcaption>Review daily, weekly and monthly spending trends before the next payday.</figcaption></figure>
+    </section>
+    <h2>Useful for the days between paychecks</h2>
+    <p>Payday Compass is designed for people who want a quick check before an everyday purchase, not another complicated financial dashboard. Add or import transactions, check the spending chart, and see how upcoming bills or a savings goal affect the remaining plan.</p>
+    <p>The CFPB’s budgeting guidance also recommends tracking spending and when bills are due, because the timing of income and expenses can make a monthly budget feel tight even when the totals appear workable. Payday Compass applies that cash-flow perspective to the next payday.</p>
+    <h2>Import transactions without linking a bank account</h2>
+    <p>There is no bank login or automatic bank connection. You can record spending yourself or import a supported U.S. bank CSV. The app flags likely duplicate transactions and suggests editable categories; imported activity updates spending history and pace, but does not change the tracked cash balance automatically.</p>
+    <h2>What Payday Compass does not do</h2>
+    <ul>
+      <li>It does not connect to your bank, move money, pay bills or promise that a planned balance matches your actual account.</li>
+      <li>It does not replace a bank statement, a complete tax plan or personalized financial advice.</li>
+      <li>It does not create a cloud backup automatically. You can export a backup and restore it yourself.</li>
+    </ul>
+    <h2>Private records, with one important advertising note</h2>
+    <p>Your paycheck plan, bills, expenses, goals and check-ins are stored on your device. The app does not require an account or operate a bank-sync server. Google Mobile Ads and its consent flow are separate from those records; see the <a href="/payday-compass-privacy.html">privacy policy</a> for details.</p>
+    <h2>Frequently asked questions</h2>
+    <section class="pc-card"><h3>Does Payday Compass connect to my bank?</h3><p>No. It has no bank connection or account sign-in. You can enter spending in the app or import a supported bank CSV; suggested categories can be reviewed and edited.</p></section>
+    <section class="pc-card"><h3>How does Payday Leftover work?</h3><p>It starts with the cash balance you track in the app and subtracts your protected buffer, bills due before the next payday and planned savings contributions. It is a planning estimate, not a bank balance.</p></section>
+    <section class="pc-card"><h3>Can I see spending trends?</h3><p>Yes. Spending insights include today, this week and this month, with comparable-period changes, daily averages, category shares and daily spending bars.</p></section>
+    <section class="pc-card"><h3>Is Payday Compass available on Google Play now?</h3><p>A public Google Play listing is not available yet. This page will add a store link when a public listing is live.</p></section>
+    <p class="pc-small">Related: <a href="/tools/salary-calculator/">estimate a U.S. take-home paycheck</a> · <a href="/apps/">browse all mobile apps</a> · <a href="https://www.consumerfinance.gov/archive/blog/budgeting-how-to-create-a-budget-and-stick-with-it" target="_blank" rel="noopener noreferrer">CFPB budgeting guidance</a>.</p>
+  </main>
+  <nav id="static-footer-links" aria-label="Footer navigation"><a href="/apps/">Mobile apps</a><a href="/payday-compass-privacy.html">Privacy</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav>
+</body>
+</html>

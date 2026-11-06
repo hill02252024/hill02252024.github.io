@@ -12,7 +12,7 @@
 index.html            首頁
 todo.html             瀏覽器 to-do list（主應用）
 tools/                23 個瀏覽器工具（計算機 + 私隱工具）
-apps/                 45 個流動應用落地頁 + 42 個舊路徑重定向 stub
+apps/                 47 個流動應用落地頁 + 42 個舊路徑重定向 stub
 compare/              對比頁
 zh-hk/                繁中分支（25 頁）
 templates/            內部樣板，robots.txt 已 Disallow
