@@ -7,7 +7,7 @@
   <meta name="description" content="Free US mortgage extra payment calculator. Combine monthly, annual and one-time principal payments to estimate interest saved and an earlier payoff date.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://todays-tasks.com/tools/mortgage-extra-payment-calculator/">
-  <meta property="og:type" content="website"><meta property="og:title" content="Mortgage Extra Payment Calculator"><meta property="og:description" content="Combine monthly, annual and lump-sum principal payments. See interest saved and time removed from your mortgage."><meta property="og:url" content="https://todays-tasks.com/tools/mortgage-extra-payment-calculator/">
+  <meta property="og:type" content="website"><meta property="og:title" content="Mortgage Extra Payment Calculator"><meta property="og:description" content="Combine monthly, annual and lump-sum principal payments. See interest saved and time removed from your mortgage."><meta property="og:url" content="https://todays-tasks.com/tools/mortgage-extra-payment-calculator/"><meta property="og:image" content="https://todays-tasks.com/assets/apps/mortgage.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Mortgage Extra Payment Calculator"><meta name="twitter:description" content="Monthly, annual and lump-sum mortgage overpayments with interest saved."><meta name="twitter:image" content="https://todays-tasks.com/assets/apps/mortgage.png">
   <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/tools/tools.css"><link rel="stylesheet" href="./calculator.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Extra Payment Calculator","url":"https://todays-tasks.com/tools/mortgage-extra-payment-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Monthly extra principal, annual extra principal, one-time lump sum, interest saved and accelerated payoff"}</script>
 </head>
@@ -36,14 +36,28 @@
   </form>
   <section id="results" class="results" aria-live="polite">
     <h2>Your estimate</h2><div id="result-summary"></div><div id="result-cards" class="result-cards"></div>
+    <aside class="next-step">
+      <strong>Want to save, compare or use this offline?</strong>
+      <p>The web version handles one quick scenario. Android adds up to 12 lump sums, saved comparisons, full PITI/PMI and refinance analysis.</p>
+      <a class="play-button" href="https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc&amp;referrer=utm_source%3Dtodays-tasks%26utm_medium%3Dresult%26utm_campaign%3Dmortgage-extra-payments" rel="noopener">Get the full Android planner</a>
+    </aside>
     <button id="copy-link" type="button" class="secondary-button">Copy this scenario link</button> <span id="copy-status" role="status"></span>
   </section>
   <section class="app-callout">
     <h2>Plan more than one bonus or refund</h2>
     <p>This browser tool accepts one lump sum. The Android app lets you add up to 12 in different months, saves scenarios and includes full PITI, PMI/MIP, amortization and refinance break-even.</p>
+    <table class="comparison"><thead><tr><th>What you can do</th><th>Web</th><th>Android</th></tr></thead><tbody>
+      <tr><td>Monthly and annual extra payments</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>One-time lump sums</td><td>1</td><td>Up to 12</td></tr>
+      <tr><td>Save and compare scenarios</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Full PITI, PMI/MIP and loan types</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Refinance break-even</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Use offline at an open house</td><td>No</td><td>Yes</td></tr>
+    </tbody></table>
     <a class="play-button" href="https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc&amp;referrer=utm_source%3Dtodays-tasks%26utm_medium%3Dweb%26utm_campaign%3Dmortgage-extra-payments" rel="noopener">Download Mortgage Calculator for Android</a>
   </section>
   <section class="guide-copy">
+    <p class="updated">Methodology and limitations updated November 16, 2026.</p>
     <h2>How the comparison works</h2>
     <p>The standard payment is calculated from principal, fixed annual rate and term. The accelerated schedule uses that same payment, adds your monthly extra, applies the annual extra every 12th month and applies the lump sum in your selected month. Extra money goes to principal after the month's interest.</p>
     <p>Interest saved is total interest with no extras minus total interest with your plan. Time saved is the difference in monthly payments. A final extra payment is capped so it cannot exceed the remaining balance.</p>
