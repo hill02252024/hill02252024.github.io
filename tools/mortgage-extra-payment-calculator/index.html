@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mortgage Extra Payment Calculator — Monthly, Annual & Lump Sum</title>
+  <meta name="description" content="Free US mortgage extra payment calculator. Combine monthly, annual and one-time principal payments to estimate interest saved and an earlier payoff date.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://todays-tasks.com/tools/mortgage-extra-payment-calculator/">
+  <meta property="og:type" content="website"><meta property="og:title" content="Mortgage Extra Payment Calculator"><meta property="og:description" content="Combine monthly, annual and lump-sum principal payments. See interest saved and time removed from your mortgage."><meta property="og:url" content="https://todays-tasks.com/tools/mortgage-extra-payment-calculator/">
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/tools/tools.css"><link rel="stylesheet" href="./calculator.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Extra Payment Calculator","url":"https://todays-tasks.com/tools/mortgage-extra-payment-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Monthly extra principal, annual extra principal, one-time lump sum, interest saved and accelerated payoff"}</script>
+</head>
+<body>
+<script src="/nav.js" defer></script>
+<main class="tool-page payoff-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/">Tools</a> › Mortgage Extra Payment Calculator</nav>
+  <h1>Mortgage Extra Payment Calculator</h1>
+  <p class="intro">Combine a monthly extra, an annual payment and a one-time lump sum. See the potential interest saved and how much sooner the loan could end. Free, private and calculated in your browser.</p>
+  <section class="download-strip" aria-label="Android app download">
+    <div><strong>Need multiple lump sums?</strong><br><span>The Android app supports monthly, annual and up to 12 one-time payments, plus PITI, PMI and refinance.</span></div>
+    <a class="play-button" href="https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc&amp;referrer=utm_source%3Dtodays-tasks%26utm_medium%3Dweb%26utm_campaign%3Dmortgage-extra-payments" rel="noopener">Get it on Google Play</a>
+    <a class="qr-link" href="https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc&amp;referrer=utm_source%3Dtodays-tasks%26utm_medium%3Dqr%26utm_campaign%3Dmortgage-extra-payments" rel="noopener"><img src="./play-qr.svg" alt="QR code linking to Mortgage Calculator on Google Play" width="112" height="112"><span>On a computer?<br>Scan with Android</span></a>
+  </section>
+  <form id="payoff-form" class="payoff-form">
+    <div class="field-grid">
+      <label>Loan principal ($)<input id="loan" type="number" min="1" max="100000000" step="1000" value="328000" required></label>
+      <label>Fixed interest rate (%)<input id="rate" type="number" min="0" max="25" step="0.001" value="7" required></label>
+      <label>Loan term (years)<input id="term" type="number" min="1" max="40" step="1" value="30" required></label>
+      <label>Extra every month ($)<input id="monthly" type="number" min="0" step="50" value="200"></label>
+      <label>Extra every 12 months ($)<input id="annual" type="number" min="0" step="100" value="3000"></label>
+      <label>One-time lump sum ($)<input id="lump" type="number" min="0" step="100" value="5000"></label>
+      <label>Lump-sum payment month<input id="month" type="number" min="1" max="480" step="1" value="12"></label>
+    </div>
+    <button type="submit" class="calculate-button">Calculate savings</button><p id="form-error" class="form-error" role="alert" hidden></p>
+  </form>
+  <section id="results" class="results" aria-live="polite">
+    <h2>Your estimate</h2><div id="result-summary"></div><div id="result-cards" class="result-cards"></div>
+    <button id="copy-link" type="button" class="secondary-button">Copy this scenario link</button> <span id="copy-status" role="status"></span>
+  </section>
+  <section class="app-callout">
+    <h2>Plan more than one bonus or refund</h2>
+    <p>This browser tool accepts one lump sum. The Android app lets you add up to 12 in different months, saves scenarios and includes full PITI, PMI/MIP, amortization and refinance break-even.</p>
+    <a class="play-button" href="https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc&amp;referrer=utm_source%3Dtodays-tasks%26utm_medium%3Dweb%26utm_campaign%3Dmortgage-extra-payments" rel="noopener">Download Mortgage Calculator for Android</a>
+  </section>
+  <section class="guide-copy">
+    <h2>How the comparison works</h2>
+    <p>The standard payment is calculated from principal, fixed annual rate and term. The accelerated schedule uses that same payment, adds your monthly extra, applies the annual extra every 12th month and applies the lump sum in your selected month. Extra money goes to principal after the month's interest.</p>
+    <p>Interest saved is total interest with no extras minus total interest with your plan. Time saved is the difference in monthly payments. A final extra payment is capped so it cannot exceed the remaining balance.</p>
+    <h2>What this page deliberately leaves out</h2>
+    <p>This is principal-and-interest math, not a complete housing budget. It excludes property tax, insurance, HOA dues, PMI/MIP, lender fees, prepayment penalties, recasting and adjustable rates. Check whether your servicer requires special instructions to apply extra money to principal.</p>
+    <h2>Frequently asked questions</h2>
+    <h3>Does this include tax, insurance or PMI?</h3><p>No. This page compares principal and interest only. The Android app provides the fuller PITI and mortgage-insurance estimate.</p>
+    <h3>When is the annual extra applied?</h3><p>Every 12th payment month. The one-time lump sum uses the month you select.</p>
+    <h3>Is this a loan offer?</h3><p>No. It is an educational estimate, not financial advice or a loan offer. Your lender's actual schedule and documents control.</p>
+  </section>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this include tax, insurance or PMI?","acceptedAnswer":{"@type":"Answer","text":"No. This page compares principal and interest only. Property tax, homeowners insurance, HOA dues and PMI/MIP do not change the interest-saved comparison in this fixed-rate model."}},{"@type":"Question","name":"When is the annual extra payment applied?","acceptedAnswer":{"@type":"Answer","text":"It is applied every 12th payment month. A one-time lump sum is applied in the month you select. The final extra payment is capped at the remaining balance."}},{"@type":"Question","name":"Is this a loan offer?","acceptedAnswer":{"@type":"Answer","text":"No. It is a fixed-rate educational estimate. Your lender's actual payment schedule, fees and loan documents are authoritative."}}]}</script>
+</main>
+<script type="module" src="./calculator.mjs"></script>
+</body>
+</html>
