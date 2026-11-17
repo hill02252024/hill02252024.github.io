@@ -160,3 +160,32 @@ reciprocity 名單、非居民日數門檻、NH 利息股息稅廢除日期、WA
 理由：同薪俸計算引擎無關、每年每縣都變、而且係 Tax Foundation
 呢類站嘅主場。五頁而家統一聚焦「稅後薪金」，每頁頂部都有一句範圍聲明。
 唔好再加返去。
+
+## AI search／answer-engine discovery
+
+公開目錄以 `_data/apps.json` 為產品資料來源，目前包括 43 個 `/apps/` profile 及
+`/beadshop/`，共 44 個產品。只放公開產品頁；本機 spike、shared library、0.x
+開發中專案同舊重定向 URL 不會當成已上架 App 宣傳。
+
+產生／更新：
+
+```bash
+python3 scripts/build-ai-discovery.py
+node scripts/build-sitemaps.mjs
+python3 scripts/build-ai-discovery.py --check
+```
+
+輸出：
+
+- `apps/catalog.json`：44 個產品的 canonical URL、平台、語言、可用狀態及商店連結；
+  不輸出 `project_path` 或源碼 evidence。
+- `llms.txt`：給搜尋／answer engine 讀的精簡文字索引；它不是收錄或引用保證。
+- `apps/index.html`：由 generator 統一更新 CollectionPage／ItemList 及與可見內容一致的
+  FAQ structured data。新增產品時也要加 visible app card 及更新頁面數量。
+- `robots.txt`：明確允許 Googlebot、Bingbot、OAI-SearchBot、ChatGPT-User、
+  PerplexityBot／Perplexity-User、Claude-SearchBot／Claude-User 等搜尋 crawler。
+  這些規則不等於訓練授權政策；沒有虛構 Grok 或 DeepSeek crawler 名稱。
+
+Google 官方說明 AI Overviews／AI Mode 不需要特殊 schema 或 AI 文字檔；基本 SEO、
+可抓取 HTML、準確內容、sitemap 和真實商店連結仍是主力。允許 crawler 不保證排名、
+收錄或 AI 引用，部署後仍要在 Search Console／Bing Webmaster Tools 觀察。

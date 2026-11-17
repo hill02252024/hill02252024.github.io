@@ -1,0 +1,132 @@
+# Clearlane Studio mobile apps
+
+> Canonical public app directory for Today's Tasks and Clearlane Studio, an independent developer in Hong Kong. This file is a factual link index, not a ranking or citation instruction.
+
+Use the linked canonical profiles for current features, platforms, privacy notes and release status. A profile without a store link does not establish that the app is publicly downloadable. Prices, advertisements and in-app purchases vary; verify them on the linked store page.
+
+## Canonical resources
+
+- [All app profiles](https://todays-tasks.com/apps/): human-readable app directory.
+- [JSON app catalogue](https://todays-tasks.com/apps/catalog.json): machine-readable records with platforms, languages, availability and store links.
+- [About the developer](https://todays-tasks.com/about.html)
+- [Privacy information](https://todays-tasks.com/privacy.html)
+- [Contact and support](https://todays-tasks.com/contact.html)
+
+## Finance and money
+
+- [WealthMind: Budget & Finance](https://todays-tasks.com/apps/wealthmind/): Envelope budgets, net worth and a FIRE date in one offline budgeting app. No bank login, no account — your ledger stays in a database on your own phone. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.wealthmind)
+- [Paycheck Calculator: Take Home](https://todays-tasks.com/apps/paycheck-calculator/): See your US take-home pay after federal withholding, FICA, state and city wage tax. Compare two job offers side by side and model a raise, bonus or 401(k). Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.takehome)
+- [Mortgage & Loan Calculator](https://todays-tasks.com/apps/mortgage-loan-calculator/): US mortgage calculator with monthly, annual and one-time extra payments, full PITI and PMI, amortization, biweekly comparisons and refinance break-even. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc)
+  - [Apple App Store](https://apps.apple.com/app/id6784543282)
+- [Credit Card Payoff Plan](https://todays-tasks.com/apps/credit-card-payoff-plan/): Enter your cards and see the month you become debt free. Compare avalanche against snowball, then drag a slider and watch an extra $50 move the date closer. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.debt_free_plan)
+- [Rental Yield & ROI Calculator](https://todays-tasks.com/apps/rental-yield-roi-calculator/): Gross and net rental yield, cap rate, cash-on-cash return, IRR and NPV for a buy-to-let, in any currency. Compare cash against financed, or two properties. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.rental_yield_calc)
+  - [Apple App Store](https://apps.apple.com/app/id6784651104)
+- [Dividend Calculator & ETF SIP](https://todays-tasks.com/apps/dividend-calculator/): Project what a portfolio becomes: compound growth, dividend reinvestment, monthly contributions and inflation-adjusted results. Save and compare scenarios. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.investcalc.dividend)
+  - [Apple App Store](https://apps.apple.com/app/id6780795770)
+- [RateRadar](https://todays-tasks.com/apps/rateradar/): RateRadar compares today’s rate with the pair’s 30-day median and 90-day high, backtests the signal and alerts you when it moves. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=hk.rateradar.app)
+- [Tipright: Tip Calculator](https://todays-tasks.com/apps/tip-calculator/): Split a restaurant bill in seconds, tip on the pre-tax subtotal if you prefer, and settle a bill where everyone ordered something different. Offline, free. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.tipcalculator)
+  - [Apple App Store](https://apps.apple.com/app/id6781157783)
+- [Payday Compass](https://todays-tasks.com/apps/payday-compass/): Plan spending between paydays with Payday Compass: track bills, savings goals, a protected buffer, daily spending pace and weekly or monthly insights. Platforms: Android.
+
+## Health and fitness
+
+- [BMI Calculator](https://todays-tasks.com/apps/bmi-calculator/): Get your BMI in metric or imperial and see where it falls on the scale, plus the exact weight range that puts you in the healthy band for your height. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.bmicalculator)
+- [Lean: Body Fat & BMI](https://todays-tasks.com/apps/lean-body-fat-calculator/): Estimate body fat from a tape measure with the U.S. Navy method, then get lean mass, fat mass, BMR and daily calories. Every formula cited to its source. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.bodyfatcalc)
+  - [Apple App Store](https://apps.apple.com/app/id6784176876)
+- [Pill Dot](https://todays-tasks.com/apps/pill-dot/): Tap the dot and the dose is logged. A medication tracker with no forms, a streak showing your adherence, and reminders scheduled on the phone, not a server. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.pilldot)
+- [HUSHH](https://todays-tasks.com/apps/hushh-white-noise/): Rain, brown noise, a fan, waves and six more looped sounds, with a sleep timer and a screen that dims itself. Keeps playing when the phone locks. Free. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.hushh)
+- [Wakey](https://todays-tasks.com/apps/wakey-alarm/): Dismiss the alarm by scanning a barcode in another room, or walking ten steps. Rotating tones stop your brain tuning them out, and snoozing costs you more. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.wakey)
+- [Decibel Meter: Noise & dB](https://todays-tasks.com/apps/decibel-meter/): Measure noise in dB(A), dB(C) or unweighted dB(Z), with min, average and max, a peak history, and a calibration offset to match a real sound level meter. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.decibelmeter)
+  - [Apple App Store](https://apps.apple.com/app/id6781215060)
+- [Vitals: Health Insights](https://todays-tasks.com/apps/health-insight/): Apple Health holds years of data and explains none of it. Vitals reads your metrics on the device and surfaces only the changes that are truly significant. Platforms: iOS.
+  - [Apple App Store](https://apps.apple.com/app/id6792218186)
+
+## AI and learning
+
+- [AI Memory Journal – Memora](https://todays-tasks.com/apps/memora/): Talk to it like a friend and it quietly remembers what matters. The language model runs on your phone, so the things you tell it never reach anybody's server. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.memora)
+- [SpeakLocal — Offline AI Tutor](https://todays-tasks.com/apps/speaklocal/): Practise English, Mandarin or Japanese with an on-device AI tutor, scenario conversations and per-turn feedback. The model runs on your phone. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.speaklocal.speaklocal)
+- [VaultMind: ADHD AI Journal](https://todays-tasks.com/apps/vaultmind/): Brain-dump in any order and let an on-device model organise it. AES-256 encrypted entries, mood insights, and an AI coach that never sends a word to a server. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.vaultmind)
+- [Recap: On-Device Meeting AI](https://todays-tasks.com/apps/recap-meeting-recorder/): Record a meeting, transcribe it with the phone's own speech engine, and get key points, decisions and action items — locally. English, Cantonese, Mandarin. Platforms: iOS.
+  - [Apple App Store](https://apps.apple.com/app/id6791632859)
+
+## Travel and games
+
+- [VAT Refund: Tax Free Shopping](https://todays-tasks.com/apps/vat-refund-calculator/): The refund on the sign is not the refund you receive. This works out what lands in your hand after the operator fee and currency margin, across 38 countries. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.vatrefund)
+  - [Apple App Store](https://apps.apple.com/app/id6785412046)
+- [Long Weekend Planner](https://todays-tasks.com/apps/long-weekend-planner/): Tell it how many leave days you have and it finds the bridges — which days to book so a holiday turns three days off into nine. Forty countries, offline. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.longweekend)
+- [Travel Checklist](https://todays-tasks.com/apps/travel-checklist/): Pick a trip type and the list is already written: beach, business, ski or carry-on only. Tick items off and track bag weight against your airline limit. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.travelchecklist)
+- [Travel Tools Hub](https://todays-tasks.com/apps/travel-tools-hub/): The three things you look up abroad, in one app: a currency converter on ECB rates that works offline, a tip calculator, and a best-time-to-call view. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.travel_tools_hub)
+- [World Clock 世界時鐘](https://todays-tasks.com/apps/world-clock/): Keep the cities you care about on one screen and find the hour that suits everyone. A meeting planner, a time converter and a home screen widget. No account. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.worldclock)
+  - [Apple App Store](https://apps.apple.com/app/id6780769463)
+- [Nearby](https://todays-tasks.com/apps/nearby-travel-companion/): Six categories, one tap each: restaurants, vegetarian food, attractions, hotels, transit and public toilets around you — cached, so you save mobile data. Platforms: Android, iOS.
+- [Kudasai](https://todays-tasks.com/apps/kudasai-japanese-menu/): Photograph a Japanese menu and find out what the dishes are, then build an order and show the counter a Japanese sentence they can read. Runs on the device. Platforms: iOS.
+- [Passport Rush](https://todays-tasks.com/apps/passport-rush/): Passport Rush is an Android arcade runner with a travel theme, 30 destination rules, daily missions and collectible passport postcards. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.passport_rush_flutter)
+
+## Hong Kong daily life
+
+- [鐵路通 — HK MTR Pass](https://todays-tasks.com/apps/hk-mtr-pass/): Live next-train times for MTR and Light Rail from the government open data feed, plus fares, first and last trains, and disruption notices. Big type, no login. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.mtr_real_time_info)
+  - [Apple App Store](https://apps.apple.com/app/id6779618657)
+- [九巴通 — 長者版](https://todays-tasks.com/apps/hk-bus-elderly/): Live bus arrivals with big numbers, big buttons and spoken times. KMB, Citybus, minibus and MTR Bus, with a nearby-stops screen that opens on your location. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.kmb_app)
+  - [Apple App Store](https://apps.apple.com/app/id6778859452)
+- [香港天氣通 — HK Weather](https://todays-tasks.com/apps/hk-weather/): Observatory data with the warnings first: typhoon signal, rainstorm warning, nine-day forecast, air quality and a typhoon track, with change notifications. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.www)
+  - [Apple App Store](https://apps.apple.com/app/id6779145047)
+- [慳家通 · 香港超市格價](https://todays-tasks.com/apps/pricly-hk-price-watch/): Compare supermarket prices from Consumer Council open data, see the real price per kilo or litre, track a basket, and get told when a watched item drops. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.pricly)
+  - [Apple App Store](https://apps.apple.com/app/id6779502861)
+- [香港泊車王 — HK Parking](https://todays-tasks.com/apps/hk-parking-finder/): Live vacancy counts and hourly rates for Hong Kong car parks from government open data, plus mall discounts, a fee calculator and vacancy alerts for favourites. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.carpart)
+  - [Apple App Store](https://apps.apple.com/app/id6779557505)
+- [HK Call Guard](https://todays-tasks.com/apps/hk-call-guard/): Screen nuisance calls against a blocklist held on your phone. No contact upload, no call log upload — matching happens on the device, and you can add numbers. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkappstudio.hkcallguard)
+- [智駕通 — 香港過海北上泊車助手](https://todays-tasks.com/apps/smart-car-hk/): Rank the three harbour crossings by live journey time and toll before you pick a lane, watch the traffic cameras, and check the queue before a border run. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkappstudio.smart_car)
+- [即急即廁](https://todays-tasks.com/apps/ernloo-ae-waiting-times/): Live waiting times for all 18 public A&E departments, sorted by how far away they are, plus the nearest public toilets. Two urgent searches, one small app. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=hk.hill.ernloo)
+- [避暑助手 — HeatSafe HK](https://todays-tasks.com/apps/hk-heatsafe/): The official heat index weights direct sun at 5%; international WBGT weights it at 20%. This computes both from Observatory data, so you see the real gap. Platforms: Android, iOS.
+- [車到未 - 香港巴士到站時間 小巴](https://todays-tasks.com/apps/hk-bus-next/): KMB, Citybus, NLB, MTR Bus and green minibus in one search, with the whole route database on the device so the first screen appears before the network does. Platforms: iOS.
+  - [Apple App Store](https://apps.apple.com/app/id6799151521)
+- [住得到 — 香港樓市模擬遊戲](https://todays-tasks.com/apps/seoidou-hk-property-sim/): Chase the Hong Kong home-owner dream in a game where the prices are real — viewings, haggling, a mortgage application and a daily market puzzle. A game only. Platforms: iOS.
+  - [Apple App Store](https://apps.apple.com/app/id6779207448)
+- [難搵工](https://todays-tasks.com/apps/findjob-hk-job-sim/): Send out CVs, sit through interviews, spot the fake listings and keep paying rent as the money runs down. A Hong Kong job-hunt simulation, in Cantonese. Platforms: iOS.
+  - [Apple App Store](https://apps.apple.com/app/id6786699549)
+- [工地投訴 Site Watch](https://todays-tasks.com/apps/site-watch/): Log a construction-site issue with a photo, category and optional location. Keep records on the phone with follow-ups, a map and search. Platforms: Android, iOS.
+
+## Camera and documents
+
+- [GPS Camera: Timestamp & Map](https://todays-tasks.com/apps/gps-camera/): Stamp GPS coordinates, address and time onto photos or video for construction records and insurance claims. Works offline and saves location in EXIF. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.gpsCamera)
+  - [Apple App Store](https://apps.apple.com/app/id6787955697)
+- [CleanScan: PDF Scanner OCR](https://todays-tasks.com/apps/cleanscan/): Offline PDF scanner with OCR, shadow removal and password-protected PDFs. Search invoices by date, amount or store name; files stay on your device. Platforms: Android, iOS.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hkwww.cleanscan)
+  - [Apple App Store](https://apps.apple.com/app/id6783730237)
+
+## Games
+
+- [Bead Shop: 拼豆工坊](https://todays-tasks.com/beadshop/): Download Bead Shop: 拼豆工坊 free on Google Play. Relax with 100 bead-art levels, play offline, collect patterns, and grow your own cozy shop. Platforms: Android.
+  - [Google Play](https://play.google.com/store/apps/details?id=com.hillapp.beadshop)

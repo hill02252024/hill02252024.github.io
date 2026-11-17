@@ -1752,6 +1752,51 @@
         "ads and in-app purchases": "Google Play listing marks Contains ads and In-app purchases, checked 2026-11-01",
         "Android store listing": "https://play.google.com/store/apps/details?id=com.hillapp.passport_rush_flutter"
       }
+    },
+    {
+      "slug": "payday-compass",
+      "app_name": "Payday Compass",
+      "page": "/apps/payday-compass/",
+      "category": "finance",
+      "play_url": null,
+      "apple_url": null,
+      "operating_system": "ANDROID",
+      "primary_keyword": "paycheck budgeting app",
+      "long_tail_keywords": [
+        "daily spending planner between paydays",
+        "paycheck cash flow planner without bank login",
+        "bills and savings spending buffer app"
+      ],
+      "title": "Payday Compass — A Paycheck Budgeting App for Daily Spending",
+      "market": "us",
+      "ui_languages": ["en"],
+      "evidence": {
+        "cash-flow planning": "apps/payday-compass/index.html: Payday Leftover subtracts the protected buffer, upcoming bills and planned savings",
+        "privacy and availability": "apps/payday-compass/index.html: on-device records, no bank connection; no public Google Play link yet"
+      }
+    },
+    {
+      "slug": "bead-shop",
+      "project_path": "~/Desktop/bead_shop",
+      "app_name": "Bead Shop: 拼豆工坊",
+      "page": "/beadshop/",
+      "category": "games",
+      "play_url": "https://play.google.com/store/apps/details?id=com.hillapp.beadshop",
+      "apple_url": null,
+      "operating_system": "ANDROID",
+      "primary_keyword": "bead art shop game",
+      "long_tail_keywords": [
+        "offline bead art puzzle game",
+        "Perler bead shop simulation game",
+        "cozy bead pattern game for Android"
+      ],
+      "title": "Bead Shop: 拼豆工坊 — Free Bead Art Game for Android",
+      "market": "global",
+      "ui_languages": ["en", "zh-Hant", "zh-Hans", "ja"],
+      "evidence": {
+        "game features": "beadshop/index.html: 100 bead-art levels, pattern collection, daily tasks and shop management",
+        "store and platform": "beadshop/index.html: public Google Play link for com.hillapp.beadshop"
+      }
     }
   ]
 }

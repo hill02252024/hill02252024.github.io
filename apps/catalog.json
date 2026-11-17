@@ -1,0 +1,757 @@
+{
+  "schemaVersion": "1.0",
+  "name": "Clearlane Studio mobile app catalogue",
+  "publisher": {
+    "name": "Clearlane Studio",
+    "type": "Independent developer",
+    "url": "https://todays-tasks.com/about.html"
+  },
+  "catalogueUrl": "https://todays-tasks.com/apps/catalog.json",
+  "canonicalAppDirectory": "https://todays-tasks.com/apps/",
+  "appCount": 44,
+  "availabilityNote": "Store links are included only when listed on the canonical public profile. A product profile without a store link is not evidence of public availability.",
+  "apps": [
+    {
+      "slug": "wealthmind",
+      "name": "WealthMind: Budget & Finance",
+      "profileUrl": "https://todays-tasks.com/apps/wealthmind/",
+      "description": "Envelope budgets, net worth and a FIRE date in one offline budgeting app. No bank login, no account — your ledger stays in a database on your own phone.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.wealthmind"
+      }
+    },
+    {
+      "slug": "paycheck-calculator",
+      "name": "Paycheck Calculator: Take Home",
+      "profileUrl": "https://todays-tasks.com/apps/paycheck-calculator/",
+      "description": "See your US take-home pay after federal withholding, FICA, state and city wage tax. Compare two job offers side by side and model a raise, bonus or 401(k).",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.takehome"
+      }
+    },
+    {
+      "slug": "mortgage-loan-calculator",
+      "name": "Mortgage & Loan Calculator",
+      "profileUrl": "https://todays-tasks.com/apps/mortgage-loan-calculator/",
+      "description": "US mortgage calculator with monthly, annual and one-time extra payments, full PITI and PMI, amortization, biweekly comparisons and refinance break-even.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.mortgage_calc",
+        "appStore": "https://apps.apple.com/app/id6784543282"
+      }
+    },
+    {
+      "slug": "credit-card-payoff-plan",
+      "name": "Credit Card Payoff Plan",
+      "profileUrl": "https://todays-tasks.com/apps/credit-card-payoff-plan/",
+      "description": "Enter your cards and see the month you become debt free. Compare avalanche against snowball, then drag a slider and watch an extra $50 move the date closer.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.debt_free_plan"
+      }
+    },
+    {
+      "slug": "rental-yield-roi-calculator",
+      "name": "Rental Yield & ROI Calculator",
+      "profileUrl": "https://todays-tasks.com/apps/rental-yield-roi-calculator/",
+      "description": "Gross and net rental yield, cap rate, cash-on-cash return, IRR and NPV for a buy-to-let, in any currency. Compare cash against financed, or two properties.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.rental_yield_calc",
+        "appStore": "https://apps.apple.com/app/id6784651104"
+      }
+    },
+    {
+      "slug": "dividend-calculator",
+      "name": "Dividend Calculator & ETF SIP",
+      "profileUrl": "https://todays-tasks.com/apps/dividend-calculator/",
+      "description": "Project what a portfolio becomes: compound growth, dividend reinvestment, monthly contributions and inflation-adjusted results. Save and compare scenarios.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.investcalc.dividend",
+        "appStore": "https://apps.apple.com/app/id6780795770"
+      }
+    },
+    {
+      "slug": "rateradar",
+      "name": "RateRadar",
+      "profileUrl": "https://todays-tasks.com/apps/rateradar/",
+      "description": "RateRadar compares today’s rate with the pair’s 30-day median and 90-day high, backtests the signal and alerts you when it moves.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android",
+      "languages": [
+        "en",
+        "zh"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=hk.rateradar.app"
+      }
+    },
+    {
+      "slug": "tip-calculator",
+      "name": "Tipright: Tip Calculator",
+      "profileUrl": "https://todays-tasks.com/apps/tip-calculator/",
+      "description": "Split a restaurant bill in seconds, tip on the pre-tax subtotal if you prefer, and settle a bill where everyone ordered something different. Offline, free.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.tipcalculator",
+        "appStore": "https://apps.apple.com/app/id6781157783"
+      }
+    },
+    {
+      "slug": "bmi-calculator",
+      "name": "BMI Calculator",
+      "profileUrl": "https://todays-tasks.com/apps/bmi-calculator/",
+      "description": "Get your BMI in metric or imperial and see where it falls on the scale, plus the exact weight range that puts you in the healthy band for your height.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.bmicalculator"
+      }
+    },
+    {
+      "slug": "lean-body-fat-calculator",
+      "name": "Lean: Body Fat & BMI",
+      "profileUrl": "https://todays-tasks.com/apps/lean-body-fat-calculator/",
+      "description": "Estimate body fat from a tape measure with the U.S. Navy method, then get lean mass, fat mass, BMR and daily calories. Every formula cited to its source.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.bodyfatcalc",
+        "appStore": "https://apps.apple.com/app/id6784176876"
+      }
+    },
+    {
+      "slug": "pill-dot",
+      "name": "Pill Dot",
+      "profileUrl": "https://todays-tasks.com/apps/pill-dot/",
+      "description": "Tap the dot and the dose is logged. A medication tracker with no forms, a streak showing your adherence, and reminders scheduled on the phone, not a server.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.pilldot"
+      }
+    },
+    {
+      "slug": "hushh-white-noise",
+      "name": "HUSHH",
+      "profileUrl": "https://todays-tasks.com/apps/hushh-white-noise/",
+      "description": "Rain, brown noise, a fan, waves and six more looped sounds, with a sleep timer and a screen that dims itself. Keeps playing when the phone locks. Free.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.hushh"
+      }
+    },
+    {
+      "slug": "wakey-alarm",
+      "name": "Wakey",
+      "profileUrl": "https://todays-tasks.com/apps/wakey-alarm/",
+      "description": "Dismiss the alarm by scanning a barcode in another room, or walking ten steps. Rotating tones stop your brain tuning them out, and snoozing costs you more.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.wakey"
+      }
+    },
+    {
+      "slug": "decibel-meter",
+      "name": "Decibel Meter: Noise & dB",
+      "profileUrl": "https://todays-tasks.com/apps/decibel-meter/",
+      "description": "Measure noise in dB(A), dB(C) or unweighted dB(Z), with min, average and max, a peak history, and a calibration offset to match a real sound level meter.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.decibelmeter",
+        "appStore": "https://apps.apple.com/app/id6781215060"
+      }
+    },
+    {
+      "slug": "health-insight",
+      "name": "Vitals: Health Insights",
+      "profileUrl": "https://todays-tasks.com/apps/health-insight/",
+      "description": "Apple Health holds years of data and explains none of it. Vitals reads your metrics on the device and surfaces only the changes that are truly significant.",
+      "category": "health",
+      "categoryLabel": "Health and fitness",
+      "operatingSystem": "iOS",
+      "languages": [
+        "en",
+        "zh-Hant",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "es",
+        "pt",
+        "de",
+        "fr",
+        "hi"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "appStore": "https://apps.apple.com/app/id6792218186"
+      }
+    },
+    {
+      "slug": "memora",
+      "name": "AI Memory Journal – Memora",
+      "profileUrl": "https://todays-tasks.com/apps/memora/",
+      "description": "Talk to it like a friend and it quietly remembers what matters. The language model runs on your phone, so the things you tell it never reach anybody's server.",
+      "category": "ai",
+      "categoryLabel": "AI and learning",
+      "operatingSystem": "Android",
+      "languages": [
+        "en",
+        "zh-TW",
+        "ja"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.memora"
+      }
+    },
+    {
+      "slug": "speaklocal",
+      "name": "SpeakLocal — Offline AI Tutor",
+      "profileUrl": "https://todays-tasks.com/apps/speaklocal/",
+      "description": "Practise English, Mandarin or Japanese with an on-device AI tutor, scenario conversations and per-turn feedback. The model runs on your phone.",
+      "category": "ai",
+      "categoryLabel": "AI and learning",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.speaklocal.speaklocal"
+      }
+    },
+    {
+      "slug": "vaultmind",
+      "name": "VaultMind: ADHD AI Journal",
+      "profileUrl": "https://todays-tasks.com/apps/vaultmind/",
+      "description": "Brain-dump in any order and let an on-device model organise it. AES-256 encrypted entries, mood insights, and an AI coach that never sends a word to a server.",
+      "category": "ai",
+      "categoryLabel": "AI and learning",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.vaultmind"
+      }
+    },
+    {
+      "slug": "recap-meeting-recorder",
+      "name": "Recap: On-Device Meeting AI",
+      "profileUrl": "https://todays-tasks.com/apps/recap-meeting-recorder/",
+      "description": "Record a meeting, transcribe it with the phone's own speech engine, and get key points, decisions and action items — locally. English, Cantonese, Mandarin.",
+      "category": "ai",
+      "categoryLabel": "AI and learning",
+      "operatingSystem": "iOS",
+      "languages": [
+        "en",
+        "zh-Hant",
+        "zh-Hans"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "appStore": "https://apps.apple.com/app/id6791632859"
+      }
+    },
+    {
+      "slug": "vat-refund-calculator",
+      "name": "VAT Refund: Tax Free Shopping",
+      "profileUrl": "https://todays-tasks.com/apps/vat-refund-calculator/",
+      "description": "The refund on the sign is not the refund you receive. This works out what lands in your hand after the operator fee and currency margin, across 38 countries.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.vatrefund",
+        "appStore": "https://apps.apple.com/app/id6785412046"
+      }
+    },
+    {
+      "slug": "long-weekend-planner",
+      "name": "Long Weekend Planner",
+      "profileUrl": "https://todays-tasks.com/apps/long-weekend-planner/",
+      "description": "Tell it how many leave days you have and it finds the bridges — which days to book so a holiday turns three days off into nine. Forty countries, offline.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.longweekend"
+      }
+    },
+    {
+      "slug": "travel-checklist",
+      "name": "Travel Checklist",
+      "profileUrl": "https://todays-tasks.com/apps/travel-checklist/",
+      "description": "Pick a trip type and the list is already written: beach, business, ski or carry-on only. Tick items off and track bag weight against your airline limit.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.travelchecklist"
+      }
+    },
+    {
+      "slug": "travel-tools-hub",
+      "name": "Travel Tools Hub",
+      "profileUrl": "https://todays-tasks.com/apps/travel-tools-hub/",
+      "description": "The three things you look up abroad, in one app: a currency converter on ECB rates that works offline, a tip calculator, and a best-time-to-call view.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.travel_tools_hub"
+      }
+    },
+    {
+      "slug": "world-clock",
+      "name": "World Clock 世界時鐘",
+      "profileUrl": "https://todays-tasks.com/apps/world-clock/",
+      "description": "Keep the cities you care about on one screen and find the hour that suits everyone. A meeting planner, a time converter and a home screen widget. No account.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.worldclock",
+        "appStore": "https://apps.apple.com/app/id6780769463"
+      }
+    },
+    {
+      "slug": "nearby-travel-companion",
+      "name": "Nearby",
+      "profileUrl": "https://todays-tasks.com/apps/nearby-travel-companion/",
+      "description": "Six categories, one tap each: restaurants, vegetarian food, attractions, hotels, transit and public toilets around you — cached, so you save mobile data.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "product-profile-only",
+      "storeLinks": {}
+    },
+    {
+      "slug": "kudasai-japanese-menu",
+      "name": "Kudasai",
+      "profileUrl": "https://todays-tasks.com/apps/kudasai-japanese-menu/",
+      "description": "Photograph a Japanese menu and find out what the dishes are, then build an order and show the counter a Japanese sentence they can read. Runs on the device.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "product-profile-only",
+      "storeLinks": {}
+    },
+    {
+      "slug": "hk-mtr-pass",
+      "name": "鐵路通 — HK MTR Pass",
+      "profileUrl": "https://todays-tasks.com/apps/hk-mtr-pass/",
+      "description": "Live next-train times for MTR and Light Rail from the government open data feed, plus fares, first and last trains, and disruption notices. Big type, no login.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.mtr_real_time_info",
+        "appStore": "https://apps.apple.com/app/id6779618657"
+      }
+    },
+    {
+      "slug": "hk-bus-elderly",
+      "name": "九巴通 — 長者版",
+      "profileUrl": "https://todays-tasks.com/apps/hk-bus-elderly/",
+      "description": "Live bus arrivals with big numbers, big buttons and spoken times. KMB, Citybus, minibus and MTR Bus, with a nearby-stops screen that opens on your location.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.kmb_app",
+        "appStore": "https://apps.apple.com/app/id6778859452"
+      }
+    },
+    {
+      "slug": "hk-weather",
+      "name": "香港天氣通 — HK Weather",
+      "profileUrl": "https://todays-tasks.com/apps/hk-weather/",
+      "description": "Observatory data with the warnings first: typhoon signal, rainstorm warning, nine-day forecast, air quality and a typhoon track, with change notifications.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.www",
+        "appStore": "https://apps.apple.com/app/id6779145047"
+      }
+    },
+    {
+      "slug": "pricly-hk-price-watch",
+      "name": "慳家通 · 香港超市格價",
+      "profileUrl": "https://todays-tasks.com/apps/pricly-hk-price-watch/",
+      "description": "Compare supermarket prices from Consumer Council open data, see the real price per kilo or litre, track a basket, and get told when a watched item drops.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.pricly",
+        "appStore": "https://apps.apple.com/app/id6779502861"
+      }
+    },
+    {
+      "slug": "hk-parking-finder",
+      "name": "香港泊車王 — HK Parking",
+      "profileUrl": "https://todays-tasks.com/apps/hk-parking-finder/",
+      "description": "Live vacancy counts and hourly rates for Hong Kong car parks from government open data, plus mall discounts, a fee calculator and vacancy alerts for favourites.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.carpart",
+        "appStore": "https://apps.apple.com/app/id6779557505"
+      }
+    },
+    {
+      "slug": "hk-call-guard",
+      "name": "HK Call Guard",
+      "profileUrl": "https://todays-tasks.com/apps/hk-call-guard/",
+      "description": "Screen nuisance calls against a blocklist held on your phone. No contact upload, no call log upload — matching happens on the device, and you can add numbers.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkappstudio.hkcallguard"
+      }
+    },
+    {
+      "slug": "smart-car-hk",
+      "name": "智駕通 — 香港過海北上泊車助手",
+      "profileUrl": "https://todays-tasks.com/apps/smart-car-hk/",
+      "description": "Rank the three harbour crossings by live journey time and toll before you pick a lane, watch the traffic cameras, and check the queue before a border run.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android",
+      "languages": [
+        "zh-Hant"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkappstudio.smart_car"
+      }
+    },
+    {
+      "slug": "ernloo-ae-waiting-times",
+      "name": "即急即廁",
+      "profileUrl": "https://todays-tasks.com/apps/ernloo-ae-waiting-times/",
+      "description": "Live waiting times for all 18 public A&E departments, sorted by how far away they are, plus the nearest public toilets. Two urgent searches, one small app.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=hk.hill.ernloo"
+      }
+    },
+    {
+      "slug": "hk-heatsafe",
+      "name": "避暑助手 — HeatSafe HK",
+      "profileUrl": "https://todays-tasks.com/apps/hk-heatsafe/",
+      "description": "The official heat index weights direct sun at 5%; international WBGT weights it at 20%. This computes both from Observatory data, so you see the real gap.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant"
+      ],
+      "availability": "product-profile-only",
+      "storeLinks": {}
+    },
+    {
+      "slug": "hk-bus-next",
+      "name": "車到未 - 香港巴士到站時間 小巴",
+      "profileUrl": "https://todays-tasks.com/apps/hk-bus-next/",
+      "description": "KMB, Citybus, NLB, MTR Bus and green minibus in one search, with the whole route database on the device so the first screen appears before the network does.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "iOS",
+      "languages": [
+        "zh-Hant",
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "appStore": "https://apps.apple.com/app/id6799151521"
+      }
+    },
+    {
+      "slug": "seoidou-hk-property-sim",
+      "name": "住得到 — 香港樓市模擬遊戲",
+      "profileUrl": "https://todays-tasks.com/apps/seoidou-hk-property-sim/",
+      "description": "Chase the Hong Kong home-owner dream in a game where the prices are real — viewings, haggling, a mortgage application and a daily market puzzle. A game only.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "iOS",
+      "languages": [
+        "zh-Hant"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "appStore": "https://apps.apple.com/app/id6779207448"
+      }
+    },
+    {
+      "slug": "findjob-hk-job-sim",
+      "name": "難搵工",
+      "profileUrl": "https://todays-tasks.com/apps/findjob-hk-job-sim/",
+      "description": "Send out CVs, sit through interviews, spot the fake listings and keep paying rent as the money runs down. A Hong Kong job-hunt simulation, in Cantonese.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "iOS",
+      "languages": [
+        "zh-Hant"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "appStore": "https://apps.apple.com/app/id6786699549"
+      }
+    },
+    {
+      "slug": "site-watch",
+      "name": "工地投訴 Site Watch",
+      "profileUrl": "https://todays-tasks.com/apps/site-watch/",
+      "description": "Log a construction-site issue with a photo, category and optional location. Keep records on the phone with follow-ups, a map and search.",
+      "category": "hongkong",
+      "categoryLabel": "Hong Kong daily life",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "zh-Hant"
+      ],
+      "availability": "product-profile-only",
+      "storeLinks": {}
+    },
+    {
+      "slug": "gps-camera",
+      "name": "GPS Camera: Timestamp & Map",
+      "profileUrl": "https://todays-tasks.com/apps/gps-camera/",
+      "description": "Stamp GPS coordinates, address and time onto photos or video for construction records and insurance claims. Works offline and saves location in EXIF.",
+      "category": "tools",
+      "categoryLabel": "Camera and documents",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.gpsCamera",
+        "appStore": "https://apps.apple.com/app/id6787955697"
+      }
+    },
+    {
+      "slug": "cleanscan",
+      "name": "CleanScan: PDF Scanner OCR",
+      "profileUrl": "https://todays-tasks.com/apps/cleanscan/",
+      "description": "Offline PDF scanner with OCR, shadow removal and password-protected PDFs. Search invoices by date, amount or store name; files stay on your device.",
+      "category": "tools",
+      "categoryLabel": "Camera and documents",
+      "operatingSystem": "Android, iOS",
+      "languages": [
+        "en",
+        "zh-Hant",
+        "zh-Hans",
+        "ja",
+        "ko",
+        "ar",
+        "es",
+        "pt",
+        "de",
+        "fr"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hkwww.cleanscan",
+        "appStore": "https://apps.apple.com/app/id6783730237"
+      }
+    },
+    {
+      "slug": "passport-rush",
+      "name": "Passport Rush",
+      "profileUrl": "https://todays-tasks.com/apps/passport-rush/",
+      "description": "Passport Rush is an Android arcade runner with a travel theme, 30 destination rules, daily missions and collectible passport postcards.",
+      "category": "travel",
+      "categoryLabel": "Travel and games",
+      "operatingSystem": "Android",
+      "languages": [],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.passport_rush_flutter"
+      }
+    },
+    {
+      "slug": "payday-compass",
+      "name": "Payday Compass",
+      "profileUrl": "https://todays-tasks.com/apps/payday-compass/",
+      "description": "Plan spending between paydays with Payday Compass: track bills, savings goals, a protected buffer, daily spending pace and weekly or monthly insights.",
+      "category": "finance",
+      "categoryLabel": "Finance and money",
+      "operatingSystem": "Android",
+      "languages": [
+        "en"
+      ],
+      "availability": "product-profile-only",
+      "storeLinks": {}
+    },
+    {
+      "slug": "bead-shop",
+      "name": "Bead Shop: 拼豆工坊",
+      "profileUrl": "https://todays-tasks.com/beadshop/",
+      "description": "Download Bead Shop: 拼豆工坊 free on Google Play. Relax with 100 bead-art levels, play offline, collect patterns, and grow your own cozy shop.",
+      "category": "games",
+      "categoryLabel": "Games",
+      "operatingSystem": "Android",
+      "languages": [
+        "en",
+        "zh-Hant",
+        "zh-Hans",
+        "ja"
+      ],
+      "availability": "store-listing-linked",
+      "storeLinks": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.hillapp.beadshop"
+      }
+    }
+  ]
+}

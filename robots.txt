@@ -1,10 +1,33 @@
-User-agent: *
+# Public search engines and AI search/answer crawlers.
+# These rules concern search discovery, not consent to model training.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
 Allow: /
-# Non-content directories — keep them out of the index.
 Disallow: /templates/
 Disallow: /scripts/
 Disallow: /functions/
 Disallow: /hk-blocklist-data/
 Disallow: /_data/
+
+# Other crawlers, including crawlers not documented by their vendors.
+User-agent: *
+Allow: /
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /functions/
+Disallow: /hk-blocklist-data/
+Disallow: /_data/
+
+# Public machine-readable catalogues (informational comments only).
+# JSON: https://todays-tasks.com/apps/catalog.json
+# Text: https://todays-tasks.com/llms.txt
 
 Sitemap: https://todays-tasks.com/sitemap.xml
